@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const cname = 'api.ios.cfw.guide'
+const cname = 'api.cfw.guide'
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
