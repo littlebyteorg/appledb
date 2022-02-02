@@ -1,6 +1,6 @@
 # appledb
 
-Hosted at [api.cfw.guide](https://api.cfw.guide/).
+Hosted at [api.appledb.dev](https://api.appledb.dev/).
 
 This is intended for use in [ios.cfw.guide](https://ios.cfw.guide/), however you may also use this information in your projects.
 
