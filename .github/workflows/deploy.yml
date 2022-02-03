@@ -1,0 +1,42 @@
+name: deploy
+
+on:
+  # trigger deployment on every push to main branch
+  push:
+    branches: [ main, master ]
+  # trigger deployment manually
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # fetch all commits to get last updated time or other git log info
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          # choose node.js version to use
+          node-version: '16'
+
+      # run build script
+      - name: Build json files
+        run: node deploy.js
+
+      # please check out the docs of the workflow for more details
+      # @see https://github.com/crazy-max/ghaction-github-pages
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          # deploy to gh-pages branch
+          target_branch: gh-pages
+          # deploy the default output dir of VuePress
+          build_dir: out
+        env:
+          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
