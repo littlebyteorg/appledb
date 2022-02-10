@@ -54,10 +54,18 @@ const p = 'out'
 mkdir(p)
 fs.writeFileSync(`${p}/CNAME`, cname)
 
-function writeJson(dirName, object, property) {
+var main = {}
+
+function writeJson(dirName, arr, property) {
+  var obj = {}
+  arr.map(function(x) { obj[x[property]] = x })
+
   mkdir(path.join(p, dirName))
-  fs.writeFileSync(path.join(p, dirName, 'index.json'), JSON.stringify(object.map(x => x[property]), null, 2))
-  object.map(function(x) { fs.writeFileSync(path.join(p, dirName, x[property] + '.json'), JSON.stringify(x, null, 2))})
+  fs.writeFileSync(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property]), null, 2))
+  fs.writeFileSync(path.join(p, dirName, 'main.json'), JSON.stringify(obj, null, 2))
+  arr.map(function(x) { fs.writeFileSync(path.join(p, dirName, x[property] + '.json'), JSON.stringify(x, null, 2))})
+
+  main[dirName] = obj
 }
 
 writeJson('ios', iosFiles, 'uniqueBuild')
@@ -65,6 +73,7 @@ writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'identifier')
 writeJson('bypass', bypassApps, 'bundleId')
+fs.writeFileSync(path.join(p, 'main.json'), JSON.stringify(main))
 
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
