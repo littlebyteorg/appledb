@@ -1,9 +1,9 @@
 module.exports = {
   name: "Meridian",
-  priority: 3,
+  priority: 2,
   info: {
     website: {
-      name: "meridian.sparkes.zone",
+      name: "https://meridian.sparkes.zone/",
       url: "https://meridian.sparkes.zone/",
       external: true
     },
@@ -14,13 +14,19 @@ module.exports = {
     },
     guide: [
       {
-        name: "Using Meridian",
-        url: "/using-meridian/",
+        name: "Using TotallyNotSpyware",
+        url: "/using-tns/",
+        pkgman: "cydia",
+      },
+      {
+        name: "Using Meridian (Sideloaded)",
+        url: "/using-meridian-ipa/",
         pkgman: "cydia",
       }
     ],
     type: "Semi-untethered",
     firmwares: ["10.0","10.3.3"],
+    notes: "Redirects to TotallyNotSpyware when pressing the jailbreak button on the Meridian website. Present within TotallyNotSpyware.",
     latestVer: "0.9-007",
     color: "#077a9e",
     icon: "/assets/images/jb-icons/meridian.png",
