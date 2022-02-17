@@ -76,7 +76,7 @@ module.exports = {
       ]
     },
     {
-      priority: 1,
+      priority: 2,
       firmwares: [
         "14G61", // 10.3.4
         "14G60", // 10.3.3
