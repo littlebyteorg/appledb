@@ -141,6 +141,9 @@ module.exports = {
         "iPad4,4", // iPad mini 2 Wi-Fi, A7
         "iPad4,5", // iPad mini 2 Wi-Fi + Cellular, A7
         "iPad4,6", // iPad mini 2 Wi-Fi + Cellular (TD-LTE), A7
+        "iPad4,7", // iPad mini 3 Wi-Fi, A7
+        "iPad4,8", // iPad mini 3 Wi-Fi + Cellular, A7
+        "iPad4,9", // iPad mini 3 Wi-Fi + Cellular (TD-LTE), A7
         "iPad6,3", // iPad Pro (9.7-inch) Wi-Fi, A9X
         "iPad6,4", // iPad Pro (9.7-inch) Wi-Fi + Cellular, A9X
         "iPad6,7", // iPad Pro (12.9-inch) Wi-Fi, A9X
@@ -207,9 +210,6 @@ module.exports = {
       devices: [
         "iPhone7,1", // iPhone 6 Plus, A8
         "iPhone7,2", // iPhone 6, A8
-        "iPad4,7", // iPad mini 3 Wi-Fi, A8
-        "iPad4,8", // iPad mini 3 Wi-Fi + Cellular, A8
-        "iPad4,9", // iPad mini 3 Wi-Fi + Cellular (TD-LTE), A8
         "iPad5,1", // iPad mini 4 Wi-Fi, A8
         "iPad5,2", // iPad mini 4 Wi-Fi + Cellular, A8
         "iPad5,3", // iPad Air 2 Wi-Fi, A8X
@@ -255,9 +255,6 @@ module.exports = {
       devices: [
         "iPhone7,1", // iPhone 6 Plus, A8
         "iPhone7,2", // iPhone 6, A8
-        "iPad4,7", // iPad mini 3 Wi-Fi, A8
-        "iPad4,8", // iPad mini 3 Wi-Fi + Cellular, A8
-        "iPad4,9", // iPad mini 3 Wi-Fi + Cellular (TD-LTE), A8
         "iPad5,1", // iPad mini 4 Wi-Fi, A8
         "iPad5,2", // iPad mini 4 Wi-Fi + Cellular, A8
         "iPad5,3", // iPad Air 2 Wi-Fi, A8X
