@@ -19,7 +19,7 @@ module.exports = {
         pkgman: "sileo",
       }
     ],
-    latestVer: "1.4.1",
+    latestVer: "1.4.2",
     color: "#faf4f7",
     icon: "/assets/images/jb-icons/odyssey.png",
     jailbreaksmeapp: true,
