@@ -6,13 +6,34 @@ on:
       - main
 
 jobs:
-  update:
+  update_dbweb:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
         with: 
           repository: emiyl/appledb-web
+          token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+      - name: Commit
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions - update submodules"
+          git add --all
+          git commit -m "Update AppleDB submodule" || echo "No changes to commit"
+          git push
+          
+  update_cfw:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          repository: cfw-guide/ios.cfw.guide
           token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
 
       - name: Pull & update submodules recursively
