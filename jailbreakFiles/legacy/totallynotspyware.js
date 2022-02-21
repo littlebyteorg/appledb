@@ -1,6 +1,7 @@
 module.exports = {
-  name: "Totally Not Spyware",
-  alias: ["tns", "TotallyNotSpyware", "Totally-Not-Spyware", "Totally_Not_Spyware"],
+  name: "TotallyNotSpyware",
+  alias: ["tns", "Totally Not Spyware", "Totally-Not-Spyware", "Totally_Not_Spyware"],
+  priority: 0,
   info: {
     website: {
       name: "totally-not.spyware.lol",
@@ -12,9 +13,17 @@ module.exports = {
       url: "https://www.theiphonewiki.com/wiki/TotallyNotSpyware",
       external: true
     },
+    guide: [
+      {
+        name: "Using TotallyNotSpyware",
+        url: "/using-tns/",
+        pkgman: "cydia",
+      }
+    ],
     color: "#e5c67c",
     icon: "/assets/images/jb-icons/totallynotspyware.png",
     type: "(Safari) Semi-untethered",
+    notes: "A10(X) devices must use the Meridian option.",
     firmwares: ["10.0","10.3.3"]
   },
   compatibility: [
@@ -35,6 +44,7 @@ module.exports = {
         "14F89", // 10.3.2
         "14F90", // 10.3.2, iPad (5th generation) only
         "14F91", // 10.3.2, iPad mini 4 (Wi-Fi + Cellular) only
+        "14F8089", // 10.3.2, iPad Pro 10.5-inch and iPad Pro 12.9-inch (2nd generation) only
         "14G60", // 10.3.3
       ],
       devices: [
@@ -68,6 +78,10 @@ module.exports = {
         "iPad6,8", // iPad Pro (12.9-inch) Wi-Fi + Cellular, A9X
         "iPad6,11", // iPad (5th generation) Wi-Fi, A9
         "iPad6,12", // iPad (5th generation) Wi-Fi + Cellular, A9
+        "iPad7,1", // iPad Pro (12.9-inch) (2nd generation) Wi-Fi, A10X
+        "iPad7,2", // iPad Pro (12.9-inch) (2nd generation) Wi-Fi + Cellular, A10X
+        "iPad7,3", // iPad Pro 2 (10.5-inch) Wi-Fi, A10X
+        "iPad7,4", // iPad Pro 2 (10.5-inch) Wi-Fi + Cellular, A10X
         "iPod7,1", // iPod touch (6th generation), A8
       ]
     }

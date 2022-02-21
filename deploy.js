@@ -32,23 +32,22 @@ var iosFiles          = requireAll('iosFiles', '.json'),
     bypassTweaks      = requireAll('bypassTweaks', '.json'),
     bypassApps        = requireAll('bypassApps', '.json')
 
-bypassApps = bypassApps.map(function(f) {
-  if (f.bypasses == null) return f
-  
-  f.bypasses = f.bypasses.map(function(b) {
-    var bpName
-    var notes
-    var bypass
+bypassApps = bypassApps.map(function(app) {
+  if (!app.bypasses) return JSON.stringify(app)
 
-    if (b.name) bpName = b.name
-    if (b.notes) notes = b.notes
-    if (bpName) bypass = bypassTweaks.filter(x => x.name == bpName)[0]
-    if (notes && bpName) bypass.notes = notes
+  app.bypasses = app.bypasses.map(function(b) {
+    if (!b.name) return b
+    
+    var bypassObj = bypassTweaks.filter(t => t.name == b.name)[0]
+    if (b.notes) bypassObj.appNotes = b.notes
 
-    return bypass
+    return bypassObj
   })
-  return f
+
+  return JSON.stringify(app)
 })
+
+bypassApps = bypassApps.map(x => JSON.parse(x)) // This is extremely dumb but necessary for some reason
 
 const p = 'out'
 mkdir(p)
@@ -57,19 +56,19 @@ fs.writeFileSync(`${p}/CNAME`, cname)
 var main = {}
 var filesWritten = 0
 
+function write(p, f) {
+  fs.writeFileSync(p, f)
+  filesWritten++
+}
+
 function writeJson(dirName, arr, property) {
   var obj = {}
   arr.map(function(x) { obj[x[property]] = x })
 
   mkdir(path.join(p, dirName))
-  fs.writeFileSync(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property]), null, 2))
-  filesWritten++
-  fs.writeFileSync(path.join(p, dirName, 'main.json'), JSON.stringify(obj, null, 2))
-  filesWritten++
-  arr.map(function(x) {
-    fs.writeFileSync(path.join(p, dirName, x[property] + '.json'), JSON.stringify(x, null, 2))
-    filesWritten++
-  })
+  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property]), null, 2))
+  write(path.join(p, dirName, 'main.json'), JSON.stringify(obj, null, 2))
+  arr.map(function(x) { write(path.join(p, dirName, x[property] + '.json'), JSON.stringify(x, null, 2))})
 
   main[dirName] = obj
 }
@@ -80,8 +79,7 @@ writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'identifier')
 writeJson('bypass', bypassApps, 'bundleId')
 
-fs.writeFileSync(path.join(p, 'main.json'), JSON.stringify(main))
-filesWritten++
+write(path.join(p, 'main.json'), JSON.stringify(main))
 
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
@@ -93,8 +91,7 @@ iosFiles.map(function(fw) {
         return y.devices.includes(dev) && y.firmwares.includes(fw.uniqueBuild)
       }).length > 0
     }).sort((a,b) => a.priority - b.priority)
-    fs.writeFileSync(path.join(dirName, dev, fw.uniqueBuild + '.json'), JSON.stringify(jb, null, 2))
-    filesWritten++
+    write(path.join(dirName, dev, fw.uniqueBuild + '.json'), JSON.stringify(jb, null, 2))
   })
 })
 

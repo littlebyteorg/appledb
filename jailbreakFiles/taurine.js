@@ -19,7 +19,7 @@ module.exports = {
         pkgman: "sileo",
       }
     ],
-    latestVer: "1.1.1",
+    latestVer: "1.1.2",
     color: "#6742cd",
     icon: "/assets/images/jb-icons/taurine.png",
     jailbreaksmeapp: true,

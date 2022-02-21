@@ -12,7 +12,7 @@ module.exports = {
       external: true
     },
     type: "Untethered",
-    firmwares: ["14.4","14.5.1"],
+    firmwares: ["14.3","14.5.1"],
     soc: "A12+"
   },
   compatibility: [

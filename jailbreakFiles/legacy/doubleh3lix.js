@@ -1,7 +1,7 @@
 module.exports = {
   name: "doubleh3lix",
   alias: "doublehelix",
-  priority: 2,
+  priority: 1,
   info: {
     website: {
       name: "doubleh3lix.tihmstar.net",
@@ -15,13 +15,19 @@ module.exports = {
     },
     guide: [
       {
-        name: "Installing doubleh3lix",
-        url: "/installing-doubleh3lix/",
+        name: "Using TotallyNotSpyware",
+        url: "/using-tns/",
+        pkgman: "cydia",
+      },
+      {
+        name: "Using doubleh3lix (Sideloaded)",
+        url: "/using-doubleh3lix-ipa/",
         pkgman: "cydia",
       }
     ],
     type: "Semi-untethered",
     firmwares: ["10.0","10.3.3"],
+    notes: "Present within TotallyNotSpyware",
     latestVer: "RC8",
     color: "#077a9e",
     icon: "/assets/images/jb-icons/doubleh3lix.png",

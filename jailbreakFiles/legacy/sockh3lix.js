@@ -1,7 +1,7 @@
 module.exports = {
   name: "sockH3lix",
   alias: "sockHelix",
-  priority: 0,
+  priority: 3,
   info: {
     website: {
       name: "github.com/SongXiaoXi/sockH3lix",
@@ -76,7 +76,7 @@ module.exports = {
       ]
     },
     {
-      priority: 2,
+      priority: 1,
       firmwares: [
         "14G61", // 10.3.4
         "14G60", // 10.3.3
