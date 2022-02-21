@@ -17,8 +17,8 @@ jobs:
 
       - name: Pull & update submodules recursively
         run: |
-          git submodule update --init --recursive
-          git submodule update --recursive --remote
+          git submodule update --init docs/.vuepress/json/appledb
+          git submodule update --remote docs/.vuepress/json/appledb
       - name: Commit
         run: |
           git config user.email "actions@github.com"
