@@ -65,5 +65,14 @@ module.exports = {
         "iPod5,1", // iPod touch (5th generation), A5
       ]
     },
+    {
+      firmwares: [
+        "10B329a", // 5.2.1, AppleTV
+        "10B809", // 5.3, AppleTV
+      ],
+      devices: [
+        "AppleTV2,1", // Apple TV 2nd Gen, A4
+      ]
+    }
   ]
 }
