@@ -21,18 +21,18 @@ module.exports = {
   compatibility: [
     {
       firmwares: [
-        "10A406e", // 6.0, AppleTV
-        "10A831", // 6.0.1, AppleTV
-        "11B554A", // 6.0.2, AppleTV
-        "10B144b", // 6.1, AppleTV
+        "11A470e", // 6.0, AppleTV
+        "11A502", // 6.0, AppleTV
+        "11B511d", // 6.0.1, AppleTV
+        "11B554a", // 6.0.2, AppleTV
+        "11B651", // 6.0.2, AppleTV
+        "11D169b", // 6.1, AppleTV
         "11D201c", // 6.1.1, AppleTV
-        "10B329a", // 6.1.3, AppleTV
-        "10B809", // 6.1.4, AppleTV
         "11D257c", // 6.2, AppleTV
         "12H523", // 7.2.1, AppleTV
         "12H606", // 7.2.2, AppleTV
         "12H847", // 7.3, AppleTV
-        "12H847", // 7.3.1, AppleTV
+        "12H864", // 7.3.1, AppleTV
         "12H876", // 7.4, AppleTV
         "12H885", // 7.5, AppleTV
         "12H903", // 7.6, AppleTV

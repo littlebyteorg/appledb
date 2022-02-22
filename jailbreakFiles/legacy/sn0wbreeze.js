@@ -139,5 +139,14 @@ module.exports = {
         "iPad1,1", // iPad
       ]
     },
+    {
+      firmwares: [
+        "8M89", // 4.0, AppleTV
+        "8F202", // 4.2.1, AppleTV
+      ],
+      devices: [
+        "AppleTV2,1", // Apple TV 2nd Gen, A4
+      ]
+    }
   ]
 }
