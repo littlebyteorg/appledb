@@ -42,9 +42,10 @@ module.exports = {
         "10B144b", // 5.2, AppleTV
         "10B329a", // 5.2.1, AppleTV
         "10B809", // 5.3, AppleTV
-        "11D258", // 6.2.1, AppleTV
+        "11D258" // 6.2.1, AppleTV
       ],
-        "AppleTV2,1", // Apple TV 2nd Gen, A4
+      devices: [
+        "AppleTV2,1" // Apple TV 2nd Gen, A4
       ]
     }
   ]
