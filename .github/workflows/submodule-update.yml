@@ -1,0 +1,49 @@
+name: Send submodule updates to parent repo
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  update_dbweb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          repository: emiyl/appledb-web
+          token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init docs/.vuepress/json/appledb
+          git submodule update --remote docs/.vuepress/json/appledb
+      - name: Commit
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions - update submodules"
+          git add --all
+          git commit -m "Update AppleDB submodule" || echo "No changes to commit"
+          git push
+          
+  update_cfw:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          repository: cfw-guide/ios.cfw.guide
+          token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init docs/.vuepress/json/appledb
+          git submodule update --remote docs/.vuepress/json/appledb
+      - name: Commit
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions - update submodules"
+          git add --all
+          git commit -m "Update AppleDB submodule" || echo "No changes to commit"
+          git push

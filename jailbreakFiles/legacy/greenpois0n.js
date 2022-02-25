@@ -53,6 +53,16 @@ module.exports = {
       devices: [
         "iPhone2,1", // iPhone 3GS
       ]
+    },
+    {
+      firmwares: [
+        "8M89", // 4.0, AppleTV
+        "8C154", // 4.1.1, AppleTV
+        "8C152", // 4.1.1, AppleTV
+      ],
+      devices: [
+        "AppleTV2,1", // Apple TV 2nd Gen, A4
+      ]
     }
   ]
 };

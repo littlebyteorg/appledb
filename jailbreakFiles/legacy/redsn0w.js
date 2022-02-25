@@ -130,6 +130,18 @@ module.exports = {
       devices: [
         "iPhone4,1", // iPhone 4S, A5
       ]
+    },
+    {
+      firmwares: [
+        "10A406e", // 5.1, AppleTV
+        "10A831", // 5.1.1, AppleTV
+        "10B144b", // 5.2, AppleTV
+        "10B329a", // 5.2.1, AppleTV
+        "10B809", // 5.3, AppleTV
+      ],
+      devices: [
+        "AppleTV2,1", // Apple TV 2nd Gen, A4
+      ]
     }
   ]
 }

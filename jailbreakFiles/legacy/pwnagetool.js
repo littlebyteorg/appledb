@@ -9,7 +9,7 @@ module.exports = {
     },
     type: "Untethered",
     firmwares: ["4.0","5.1.1"],
-    notes: "Also supports iPhoneOS 1.1.4 and iPhoneOS 2.0 to 2.2.1",
+    notes: "Also supports iPhoneOS 1.1.4, iPhoneOS 2.0 to 2.2.1, and tvOS 4.0 to 4.2.2",
     latestVer: "5.1.1",
     color: "#d0cfd1",
     icon: "/assets/images/jb-icons/pwnagetool.png",
@@ -113,6 +113,19 @@ module.exports = {
       ],
       devices: [
         "iPad1,1", // iPad
+      ]
+    },
+    {
+      firmwares: [
+        "8M89", // 4.0, AppleTV
+        "8C150", // 4.1, AppleTV
+        "8C154", // 4.1.1, AppleTV
+        "8C152", // 4.1.1, AppleTV
+        "8F202", // 4.2.1, AppleTV
+        "8F305", // 4.2.2, AppleTV
+      ],
+      devices: [
+        "AppleTV2,1", // Apple TV 2nd Gen, A4
       ]
     }
   ]
