@@ -7,6 +7,13 @@ module.exports = {
       url: "https://www.theiphonewiki.com/wiki/PwnageTool",
       external: true
     },
+    guide: [
+      {
+        name: "Installing PwnageTool",
+        url: "/installing-pwnagetool/",
+        pkgman: "cydia",
+      }
+    ],
     type: "Untethered",
     firmwares: ["4.0","5.1.1"],
     notes: "Also supports iPhoneOS 1.1.4, iPhoneOS 2.0 to 2.2.1, and tvOS 4.0 to 4.2.2",
