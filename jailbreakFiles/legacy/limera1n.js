@@ -13,6 +13,13 @@ module.exports = {
       url: "https://www.theiphonewiki.com/wiki/Limera1n",
       external: true
     },
+    guide: [
+      {
+        name: "Installing limera1n",
+        url: "/installing-limera1n/",
+        pkgman: "cydia",
+      }
+    ],
     type: "Untethered",
     firmwares: ["3.2.2","4.2.1"],
     latestVer: "RC1b",
