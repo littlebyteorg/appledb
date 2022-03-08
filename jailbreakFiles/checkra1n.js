@@ -65,6 +65,8 @@ module.exports = {
           "18H107", // 14.8.1
         ],
         devices: [
+          "iPad5,3", // iPad Air 2 Wi-Fi, A8X
+          "iPad5,4", // iPad Air 2 Wi-Fi + Cellular, A8X
           "iPad6,3", // iPad Pro (9.7-inch) Wi-Fi, A9X
           "iPad6,4", // iPad Pro (9.7-inch) Wi-Fi + Cellular, A9X
           "iPad6,7", // iPad Pro (12.9-inch) Wi-Fi, A9X
