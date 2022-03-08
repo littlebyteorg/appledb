@@ -32,6 +32,11 @@ var iosFiles          = requireAll('iosFiles', '.json'),
     bypassTweaks      = requireAll('bypassTweaks', '.json'),
     bypassApps        = requireAll('bypassApps', '.json')
 
+iosFiles = iosFiles.map(function(ver) {
+  if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
+  if (!ver.beta) ver.beta = false
+})
+
 bypassApps = bypassApps.map(function(app) {
   if (!app.bypasses) return JSON.stringify(app)
 
