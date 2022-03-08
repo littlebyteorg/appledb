@@ -25,6 +25,23 @@ function mkdir(p) {
   if (!fs.existsSync(p)) fs.mkdirSync(p)
 }
 
+function write(p, f) {
+  fs.writeFileSync(p, f)
+  filesWritten++
+}
+
+function writeJson(dirName, arr, property) {
+  var obj = {}
+  arr.map(function(x) { obj[x[property]] = x })
+
+  mkdir(path.join(p, dirName))
+  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property]), null, 2))
+  write(path.join(p, dirName, 'main.json'), JSON.stringify(obj, null, 2))
+  arr.map(function(x) { write(path.join(p, dirName, x[property] + '.json'), JSON.stringify(x, null, 2))})
+
+  main[dirName] = obj
+}
+
 var iosFiles          = requireAll('iosFiles', '.json'),
     jailbreakFiles    = requireAll('jailbreakFiles', '.js'),
     deviceGroupFiles  = requireAll('deviceGroupFiles', '.json'),
@@ -35,6 +52,7 @@ var iosFiles          = requireAll('iosFiles', '.json'),
 iosFiles = iosFiles.map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
   if (!ver.beta) ver.beta = false
+  return ver
 })
 
 bypassApps = bypassApps.map(function(app) {
@@ -60,23 +78,6 @@ fs.writeFileSync(`${p}/CNAME`, cname)
 
 var main = {}
 var filesWritten = 0
-
-function write(p, f) {
-  fs.writeFileSync(p, f)
-  filesWritten++
-}
-
-function writeJson(dirName, arr, property) {
-  var obj = {}
-  arr.map(function(x) { obj[x[property]] = x })
-
-  mkdir(path.join(p, dirName))
-  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property]), null, 2))
-  write(path.join(p, dirName, 'main.json'), JSON.stringify(obj, null, 2))
-  arr.map(function(x) { write(path.join(p, dirName, x[property] + '.json'), JSON.stringify(x, null, 2))})
-
-  main[dirName] = obj
-}
 
 writeJson('ios', iosFiles, 'uniqueBuild')
 writeJson('jailbreak', jailbreakFiles, 'name')
