@@ -30,8 +30,8 @@ module.exports = {
         ],
       },
       {
-        name: "Installing Odysseyra1n (A9X)",
-        url: "/installing-odysseyra1n-a9x/",
+        name: "Installing Odysseyra1n (A8X/A9X)",
+        url: "/installing-odysseyra1n-a8x-a9x/",
         pkgman: 'sileo',
         firmwares: [
           "18E5140j", // 14.5 beta
