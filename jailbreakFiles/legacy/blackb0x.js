@@ -24,8 +24,8 @@ module.exports = {
         "11A470e", // 6.0, AppleTV
         "11A502", // 6.0, AppleTV
         "11B511d", // 6.0.1, AppleTV
-        "11B554a", // 6.0.2, AppleTV
-        "11B651", // 6.0.2, AppleTV
+        "11B554a-TV", // 6.0.2, AppleTV
+        "11B651-TV", // 6.0.2, AppleTV
         "11D169b", // 6.1, AppleTV
         "11D201c", // 6.1.1, AppleTV
         "11D257c", // 6.2, AppleTV
