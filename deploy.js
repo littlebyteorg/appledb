@@ -52,6 +52,10 @@ var iosFiles          = requireAll('iosFiles', '.json'),
 iosFiles = iosFiles.map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
   if (!ver.beta) ver.beta = false
+  if (!ver.sortVersion) {
+    if (ver.iosVersion) ver.sortVersion = ver.iosVersion
+    else ver.sortVersion = ver.version
+  }
   return ver
 })
 
