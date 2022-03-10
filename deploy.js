@@ -1,6 +1,6 @@
+const cname = 'api.appledb.dev'
 const fs = require('fs')
 const path = require('path')
-const cname = 'api.appledb.dev'
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
