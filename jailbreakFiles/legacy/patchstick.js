@@ -14,7 +14,8 @@ module.exports = {
         "8N5239", // 1.1, AppleTV
         "8N5400", // 2.0, AppleTV
         "8N5455", // 2.0.1, AppleTV
-        "8N5461", // 2.1, AppleTV
+        "8N5461", // 2.0.2, AppleTV
+        "8N5519", // 2.1, AppleTV
         "8N5622", // 2.2, AppleTV
         "8N5722", // 2.3, AppleTV
         "8N5818", // 2.3.1, AppleTV
