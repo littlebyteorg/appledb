@@ -56,6 +56,7 @@ iosFiles = iosFiles.map(function(ver) {
     if (ver.iosVersion) ver.sortVersion = ver.iosVersion
     else ver.sortVersion = ver.version
   }
+  if (!ver.devices) ver.devices = {}
   return ver
 })
 
