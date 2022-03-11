@@ -1,6 +1,6 @@
+const cname = 'api.appledb.dev'
 const fs = require('fs')
 const path = require('path')
-const cname = 'api.appledb.dev'
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
@@ -52,6 +52,16 @@ var iosFiles          = requireAll('iosFiles', '.json'),
 iosFiles = iosFiles.map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
   if (!ver.beta) ver.beta = false
+  if (!ver.sortVersion) {
+    if (ver.iosVersion) ver.sortVersion = ver.iosVersion
+    else ver.sortVersion = ver.version
+  }
+  if (!ver.devices) ver.devices = {}
+  
+  ver.osType = ver.osStr
+  if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
+  if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
+
   return ver
 })
 
@@ -90,7 +100,7 @@ write(path.join(p, 'main.json'), JSON.stringify(main))
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
 iosFiles.map(function(fw) {
-  Object.keys(fw.devices).map(function(dev) {
+  if (fw.devices) Object.keys(fw.devices).map(function(dev) {
     mkdir(path.join(dirName, dev))
     var jb = jailbreakFiles.filter(function(x) {
       if (x.hasOwnProperty('compatibility')) return x.compatibility.filter(function(y) {
