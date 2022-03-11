@@ -62,8 +62,29 @@ iosFiles = iosFiles.map(function(ver) {
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
 
+  ver.appledburl = ['https://appledb.dev/firmware',ver.osType,ver.uniqueBuild].join('/') + '.html'
+
   return ver
 })
+
+const buildArr = iosFiles.map(x => x.uniqueBuild)
+const uniqueBuildArr = new Set(buildArr)
+const duplicateBuildArr = buildArr.filter(x => {
+  if (uniqueBuildArr.has(x)) {
+    uniqueBuildArr.delete(x);
+  } else {
+    return x;
+  }
+})
+
+for (i of duplicateBuildArr) {
+  var getObjArr = iosFiles.filter(x => x.uniqueBuild == i)
+  for (j of getObjArr) {
+    j.uniqueBuild += '-' + j.osType
+  }
+}
+
+console.log(iosFiles.filter(x => x.uniqueBuild.includes('-')))
 
 bypassApps = bypassApps.map(function(app) {
   if (!app.bypasses) return JSON.stringify(app)
