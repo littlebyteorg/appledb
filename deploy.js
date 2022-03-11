@@ -62,7 +62,7 @@ iosFiles = iosFiles.map(function(ver) {
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
 
-  ver.appledburl = ['https://appledb.dev/firmware',ver.osType,ver.uniqueBuild].join('/') + '.html'
+  ver.appledburl = ['https://appledb.dev',ver.osType,ver.uniqueBuild].join('/') + '.html'
 
   return ver
 })
