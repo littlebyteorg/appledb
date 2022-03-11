@@ -57,6 +57,11 @@ iosFiles = iosFiles.map(function(ver) {
     else ver.sortVersion = ver.version
   }
   if (!ver.devices) ver.devices = {}
+  
+  ver.osType = ver.osStr
+  if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
+  if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
+
   return ver
 })
 
