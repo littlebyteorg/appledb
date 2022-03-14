@@ -37,7 +37,7 @@ function requireAll(p, fileType) {
 
 const version = require(process.argv[2])
 const build = version.build
-const devices = requireAll('../../deviceFiles', '.json')
+const devices = requireAll('../../../deviceFiles', '.json')
 
 Object.keys(version.devices).map(function(x) {
   var url
