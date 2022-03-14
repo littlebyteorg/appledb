@@ -40,6 +40,7 @@ module.exports = {
         "12H914", // 7.6.2, AppleTV
         "12H923", // 7.7, AppleTV
         "12H937", // 7.8, AppleTV
+        "12H1006", // 7.9, AppleTV
       ],
       devices: [
         "AppleTV3,1", // Apple TV 3rd Gen (3,1), A5
