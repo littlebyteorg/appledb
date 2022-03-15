@@ -20,7 +20,7 @@ module.exports = {
         "14S471", // 3.1, Watch
         "14S883", // 3.1.1, Watch
         "14S960", // 3.1.3, Watch
-        "14V485", // 3.2, Watch
+        "14V249", // 3.2, Watch
         "14V485", // 3.2.2, Watch
         "14V753", // 3.2.3, Watch
       ],
