@@ -19,7 +19,7 @@ module.exports = {
   compatibility: [
     {
       firmwares: [
-        "13A346", // 10.0, iPhone 7 and iPhone 7 Plus only
+        "14A346", // 10.0
         "14A403", // 10.0.1
         "14A456", // 10.0.2
       ],
