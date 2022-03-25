@@ -49,6 +49,11 @@ var iosFiles          = requireAll('iosFiles', '.json'),
     bypassTweaks      = requireAll('bypassTweaks', '.json'),
     bypassApps        = requireAll('bypassApps', '.json')
 
+deviceFiles = deviceFiles.map(function(dev) {
+  dev.icon = dev.icon.map(ico =>  `https://emiyl.github.io/appleicons/com.apple.${ico}.icns.png`)
+  return dev
+})
+
 iosFiles = iosFiles.map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
   if (!ver.beta) ver.beta = false
