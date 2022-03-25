@@ -31,6 +31,7 @@ module.exports = {
   compatibility: [
     {
       firmwares: [
+        "14A346", // 10.0
         "14A403", // 10.0.1
         "14A456", // 10.0.2
         "14B72", // 10.1
