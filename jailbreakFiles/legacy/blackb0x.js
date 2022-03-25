@@ -13,7 +13,7 @@ module.exports = {
       url: "https://www.theiphonewiki.com/wiki/Blackb0x",
       external: true
     },
-    type: "Tethered",
+    type: "Mixed",
     latestVer: "0.6.2",
     color: "#800080",
     firmwares: ["5.3","7.8"]
