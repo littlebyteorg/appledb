@@ -50,7 +50,7 @@ var iosFiles          = requireAll('iosFiles', '.json'),
     bypassApps        = requireAll('bypassApps', '.json')
 
 deviceFiles = deviceFiles.map(function(dev) {
-  dev.icon = dev.icon.map(ico =>  `https://emiyl.github.io/appleicons/com.apple.${ico}.icns.png`)
+  if (dev.icon && Array.isArray(dev.icon)) dev.icon = dev.icon.map(ico =>  `https://emiyl.github.io/appleicons/com.apple.${ico}.icns.png`)
   return dev
 })
 
