@@ -106,7 +106,7 @@ module.exports = {
         "17D50",    // 13.3.1   iOS (HomePod)
         "17L256",   // 13.4     audioOS
         "17L562",   // 13.4.5   audioOS
-        "17L580",   // 13.4.6   audioOS
+        "17L570",   // 13.4.6   audioOS
         "17M61",    // 13.4.8   audioOS
         "18J8394",  // 14.1     audioOS
         "18K60",    // 14.2     audioOS
