@@ -30,6 +30,12 @@ module.exports = {
         ],
       },
       {
+        devices: [
+          "AudioAccessory1,1",
+          "AudioAccessory1,2"
+        ]
+      },
+      {
         name: "Installing Odysseyra1n (A8X/A9X)",
         url: "/installing-odysseyra1n-a8x-a9x/",
         pkgman: 'sileo',
@@ -92,6 +98,30 @@ module.exports = {
     firmwares: ["12.0","14.8.1"]
   },
   compatibility: [
+    {
+      firmwares: [
+        "17B84",    // 13.2     iOS (HomePod)
+        "17B90",    // 13.2.1   iOS (HomePod)
+        "17C54",    // 13.3     iOS (HomePod)
+        "17D50",    // 13.3.1   iOS (HomePod)
+        "17L256",   // 13.4     audioOS
+        "17L562",   // 13.4.5   audioOS
+        "17L580",   // 13.4.6   audioOS
+        "17M61",    // 13.4.8   audioOS
+        "18J8394",  // 14.1     audioOS
+        "18K60",    // 14.2     audioOS
+        "18K75",    // 14.2.1   audioOS
+        "18K563",   // 14.3     audioOS
+        "18K802",   // 14.4     audioOS
+        "18L203",   // 14.5     audioOS
+        "18L569",   // 14.6     audioOS
+        "18M60"     // 14.7     audioOS
+      ],
+      devices: [
+        "AudioAccessory1,1",
+        "AudioAccessory1,2"
+      ]
+    },
     {
       firmwares: [
         "16A366-GM", // 12.0 GM
