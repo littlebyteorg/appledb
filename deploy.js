@@ -51,6 +51,7 @@ var iosFiles          = requireAll('iosFiles', '.json'),
 
 deviceFiles = deviceFiles.map(function(dev) {
   if (dev.icon && Array.isArray(dev.icon)) dev.icon = dev.icon.map(ico =>  `https://emiyl.github.io/appleicons/com.apple.${ico}.icns.png`)
+  if (dev.board && !Array.isArray(dev.board)) dev.board = [dev.board]
   return dev
 })
 
