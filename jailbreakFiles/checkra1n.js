@@ -32,7 +32,9 @@ module.exports = {
       {
         devices: [
           "AudioAccessory1,1",
-          "AudioAccessory1,2"
+          "AudioAccessory1,2",
+          "AppleTV5,3",
+          "AppleTV6,2"
         ]
       },
       {
