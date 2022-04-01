@@ -130,7 +130,7 @@ bypassApps = bypassApps.map(function(app) {
 
 bypassApps = bypassApps.map(x => JSON.parse(x)) // This is extremely dumb but necessary for some reason
 
-/*const p = 'out'
+const p = 'out'
 mkdir(p)
 fs.writeFileSync(`${p}/CNAME`, cname)
 
@@ -159,4 +159,4 @@ iosFiles.map(function(fw) {
   })
 })
 
-console.log('Files Written:', filesWritten)*/
+console.log('Files Written:', filesWritten)
