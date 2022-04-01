@@ -76,6 +76,26 @@ iosFiles = iosFiles.map(function(ver) {
   return ver
 })
 
+jailbreakFiles = jailbreakFiles.map(function(jb) {
+  if (jb.info.guide) {
+    jb.info.guide = jb.info.guide.map(function(g) {
+      if ((g.name || g.text) && g.url) {
+        if (!g.name) g.name = g.text
+        else if (!g.text) g.text = g.name
+        g.validGuide = true
+      }
+      else g.validGuide = false
+      g.text = (g.text) ? g.text : 'none'
+      g.name = (g.name) ? g.name : 'none'
+      g.url = (g.url) ? g.url : ''
+      g.pkgman = (g.pkgman) ? g.pkgman : 'none'
+      return g
+    })
+    console.log(jb.info.guide)
+  }
+  return jb
+})
+
 const buildArr = iosFiles.map(x => x.uniqueBuild)
 const uniqueBuildArr = new Set(buildArr)
 const duplicateBuildArr = buildArr.filter(x => {
@@ -92,8 +112,6 @@ for (i of duplicateBuildArr) {
     j.uniqueBuild += '-' + j.osType
   }
 }
-
-console.log(iosFiles.filter(x => x.uniqueBuild.includes('-')))
 
 bypassApps = bypassApps.map(function(app) {
   if (!app.bypasses) return JSON.stringify(app)
@@ -112,7 +130,7 @@ bypassApps = bypassApps.map(function(app) {
 
 bypassApps = bypassApps.map(x => JSON.parse(x)) // This is extremely dumb but necessary for some reason
 
-const p = 'out'
+/*const p = 'out'
 mkdir(p)
 fs.writeFileSync(`${p}/CNAME`, cname)
 
@@ -141,4 +159,4 @@ iosFiles.map(function(fw) {
   })
 })
 
-console.log('Files Written:', filesWritten)
+console.log('Files Written:', filesWritten)*/
