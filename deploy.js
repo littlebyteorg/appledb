@@ -91,7 +91,6 @@ jailbreakFiles = jailbreakFiles.map(function(jb) {
       g.pkgman = (g.pkgman) ? g.pkgman : 'none'
       return g
     })
-    console.log(jb.info.guide)
   }
   return jb
 })
