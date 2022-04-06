@@ -58,6 +58,11 @@ deviceFiles = deviceFiles.map(function(dev) {
   return dev
 })
 
+deviceGroupFiles = deviceGroupFiles.map(g => {
+  if (!g.hideChildren) g.hideChildren = false
+  return g
+})
+
 iosFiles = iosFiles.map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
   if (!ver.beta) ver.beta = false
