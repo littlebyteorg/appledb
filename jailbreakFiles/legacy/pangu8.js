@@ -8,6 +8,7 @@ module.exports = {
     },
     type: "Untethered",
     firmwares: ["8.0","8.1"],
+    notes: "Not Functional (Dead Servers)",
     latestVer: "1.2.1 (Windows)\n1.0.0 (macOS)",
     color: "#ffffff",
     icon: "/assets/images/jb-icons/pangu8.png",
