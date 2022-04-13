@@ -7,8 +7,7 @@ module.exports = {
       external: true
     },
     type: "Untethered",
-    firmwares: ["8.0","8.4"],
-    notes: "Not Functional (Dead Servers)"
+    firmwares: ["8.0","8.4"]
   },
   compatibility: [
     {
