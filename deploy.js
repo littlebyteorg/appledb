@@ -71,7 +71,7 @@ iosFiles = iosFiles.map(function(ver) {
     else ver.sortVersion = ver.version
   }
   if (!ver.devices) ver.devices = {}
-  if (!ver.released) ver.released = 0
+  if (!ver.released) ver.released = -1
   
   ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
