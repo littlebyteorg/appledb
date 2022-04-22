@@ -45,11 +45,15 @@ Object.keys(version.devices).map(function(x) {
   else url = `https://api.ipsw.me/v4/ipsw/${x}/${build}`
 
   request(url, function (error, response, body) {
-    if (version.beta) response = JSON.parse(body).filter(x => x.buildid == build)[0]
-    else response = JSON.parse(body)
+    try {
+      if (version.beta) response = JSON.parse(body).filter(x => x.buildid == build)[0]
+      else response = JSON.parse(body)
 
-    if (response) response = response.url
-    else response = "none"
+      if (response) response = response.url
+      else response = "none"
+    } catch {
+      response = "none"
+    }
 
     if (response == "none" && version.beta) {
       const deviceType = devTypeLookup[devices.filter(d => d.identifier == x)[0].type]
