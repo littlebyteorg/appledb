@@ -12,7 +12,7 @@ module.exports = {
       external: true
     },
     type: "Untethered",
-    firmwares: ["1.0.0","1.1.5"],
+    firmwares: ["1.0","1.1.5"],
     latestVer: "3.6",
     color: "#ed9121",
     icon: "/assets/images/jb-icons/ziphone.png",
