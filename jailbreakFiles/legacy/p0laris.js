@@ -13,6 +13,13 @@ module.exports = {
       url: "https://www.theiphonewiki.com/wiki/p0laris",
       external: true
     },
+    guide: [
+      {
+        name: "Installing p0laris",
+        url: "/installing-p0laris/",
+        pkgman: "cydia",
+      }
+    ],
     latestVer: "1.0",
     color: "#202020",
     icon: "/assets/images/jb-icons/p0laris.png",
