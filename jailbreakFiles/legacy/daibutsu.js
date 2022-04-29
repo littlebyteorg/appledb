@@ -27,9 +27,6 @@ module.exports = {
       ],
       devices: [
         "iPhone4,1", // iPhone 4S, A5
-        "iPad2,1", // iPad 2 Wi-Fi, A5
-        "iPad2,2", // iPad 2 Wi-Fi + 3G (GSM), A5
-        "iPad2,3", // iPad 2 Wi-Fi + 3G (CDMA), A5
         "iPad2,4", // iPad 2 Wi-Fi (Mid 2012), A5
         "iPad2,5", // iPad mini Wi-Fi, A5
         "iPad2,5", // iPad mini Wi-Fi + Cellular, A5
