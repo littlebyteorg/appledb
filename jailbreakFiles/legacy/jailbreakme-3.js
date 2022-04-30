@@ -22,7 +22,8 @@ module.exports = {
       }
     ],
     type: "(Safari) Untethered",
-    firmwares: ["4.2.6","4.3.3"]
+    firmwares: ["4.2.6","4.3.3"],
+    notes: "Doesn't support 4.2.9 or 4.2.10 on iPhone 4 CDMA. iPad 2 supported only on 4.3.3",
   },
   compatibility: [
     {

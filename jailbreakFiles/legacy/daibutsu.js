@@ -16,6 +16,7 @@ module.exports = {
     ],
     type: "Untethered",
     firmwares: ["8.4.1","8.4.1"],
+    notes: "iPad 2 support limited to the 2012 WiFi-Only 16GB revision",
     latestVer: "1.2.1",
     color: "#f6b0f6",
     icon: "/assets/images/jb-icons/daibutsu.png",
