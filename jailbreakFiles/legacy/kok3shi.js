@@ -22,7 +22,7 @@ module.exports = {
     ],
     type: "Semi-untethered",
     firmwares: ["9.3","9.3.5"],
-    notes: "Doesn't support A9 or A9X devices",
+    notes: "32-bit support only for 9.3.5 and 9.3.6",
     latestVer: "1.0 beta 2",
     color: "#c279a0",
     icon: "/assets/images/jb-icons/kok3shi.png",
@@ -43,6 +43,8 @@ module.exports = {
         "iPhone6,2", // iPhone 5s (CDMA), A7
         "iPhone7,1", // iPhone 6 Plus, A8
         "iPhone7,2", // iPhone 6, A8
+        "iPhone8,1", // iPhone 6s, A9
+        "iPhone8,2", // iPhone 6s Plus, A9
         "iPad4,1", // iPad Air Wi-Fi, A7
         "iPad4,2", // iPad Air Wi-Fi + Cellular, A7
         "iPad4,3", // iPad Air Wi-Fi + Cellular (TD-LTE), A7
@@ -57,6 +59,10 @@ module.exports = {
         "iPad5,3", // iPad Air 2 Wi-Fi, A8X
         "iPad5,4", // iPad Air 2 Wi-Fi + Cellular, A8X
         "iPod7,1", // iPod touch (6th generation), A8
+        "iPad6,3", // iPad Pro (9.7-inch) Wi-Fi, A9X
+        "iPad6,4", // iPad Pro (9.7-inch) Wi-Fi + Cellular, A9X
+        "iPad6,7", // iPad Pro (12.9-inch) Wi-Fi, A9X
+        "iPad6,8", // iPad Pro (12.9-inch) Wi-Fi + Cellular, A9X
       ]
     },
     {
