@@ -21,9 +21,8 @@ module.exports = {
       }
     ],
     type: "Semi-untethered",
-    firmwares: ["9.3","9.3.5"],
-    notes: "32-bit support only for 9.3.5 and 9.3.6",
-    latestVer: "1.0 beta 2",
+    firmwares: ["9.3","9.3.6"],
+    latestVer: "2.1.2",
     color: "#c279a0",
     icon: "/assets/images/jb-icons/kok3shi.png",
   },
@@ -45,6 +44,7 @@ module.exports = {
         "iPhone7,2", // iPhone 6, A8
         "iPhone8,1", // iPhone 6s, A9
         "iPhone8,2", // iPhone 6s Plus, A9
+        "iPhone8,4", // iPhone SE, A9
         "iPad4,1", // iPad Air Wi-Fi, A7
         "iPad4,2", // iPad Air Wi-Fi + Cellular, A7
         "iPad4,3", // iPad Air Wi-Fi + Cellular (TD-LTE), A7
