@@ -56,6 +56,20 @@ deviceFiles = deviceFiles.map(function(dev) {
   if (dev.board && !Array.isArray(dev.board)) dev.board = [dev.board]
   if (!dev.model) dev.model = []
   if (!dev.board) dev.board = []
+
+  if (dev.info) dev.info = dev.info.map(o => {
+    if (o.type != 'Display') return x
+    if (o.Resolution && o.Screen_Size) {
+      const diagRes = Math.sqrt(Math.pow(o.Resolution.x, 2) + Math.pow(o.Resolution.y, 2))
+      const size = o.Screen_Size
+      const ppi = Math.round(diagRes / size)
+      o.Pixels_per_Inch = ppi
+      return o
+    }
+  })
+
+  console.log(dev)
+
   return dev
 })
 
