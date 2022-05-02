@@ -58,7 +58,7 @@ deviceFiles = deviceFiles.map(function(dev) {
   if (!dev.board) dev.board = []
 
   if (dev.info) dev.info = dev.info.map(o => {
-    if (o.type != 'Display') return x
+    if (o.type != 'Display') return o
     if (o.Resolution && o.Screen_Size) {
       const diagRes = Math.sqrt(Math.pow(o.Resolution.x, 2) + Math.pow(o.Resolution.y, 2))
       const size = o.Screen_Size
