@@ -181,7 +181,7 @@ fs.writeFileSync(`${p}/CNAME`, cname)
 var main = {}
 var filesWritten = 0
 
-/*writeJson('ios', iosFiles, 'uniqueBuild')
+writeJson('ios', iosFiles, 'uniqueBuild')
 writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'identifier')
@@ -203,4 +203,4 @@ iosFiles.map(function(fw) {
   })
 })
 
-console.log('Files Written:', filesWritten)*/
+console.log('Files Written:', filesWritten)
