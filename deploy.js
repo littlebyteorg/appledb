@@ -68,15 +68,39 @@ deviceFiles = deviceFiles.map(function(dev) {
     }
   })
 
-  console.log(dev)
-
   return dev
 })
 
 deviceGroupFiles = deviceGroupFiles.map(g => {
   if (!g.hideChildren) g.hideChildren = false
   return g
+}).sort((a,b) => {
+  function getReleased(dev) {
+    let ret = deviceFiles.filter(x => x.identifier == dev)[0].released
+    if (!Array.isArray(ret)) ret = [ret]
+    return new Date(ret[0]).valueOf()
+  }
+  const released = [a,b].map(x => getReleased(x.devices[0]))
+  const type = [a,b].map(x => x.type)
+  if (type[0] < type[1]) return -1
+  if (type[0] > type[1]) return 1
+  if (released[0] < released[1]) return -1
+  if (released[0] > released[1]) return 1
+  return 0
 })
+
+let counter = 0
+let lastDevType = ''
+for (const group of deviceGroupFiles) {
+  if (group.type == lastDevType) {
+    counter++
+    group.order = counter
+  } else {
+    counter = 0
+    group.order = counter
+    lastDevType = group.type
+  }
+}
 
 iosFiles = iosFiles.map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
@@ -157,7 +181,7 @@ fs.writeFileSync(`${p}/CNAME`, cname)
 var main = {}
 var filesWritten = 0
 
-writeJson('ios', iosFiles, 'uniqueBuild')
+/*writeJson('ios', iosFiles, 'uniqueBuild')
 writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'identifier')
@@ -179,4 +203,4 @@ iosFiles.map(function(fw) {
   })
 })
 
-console.log('Files Written:', filesWritten)
+console.log('Files Written:', filesWritten)*/
