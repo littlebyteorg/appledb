@@ -61,7 +61,7 @@ deviceFiles = deviceFiles.map(function(dev) {
     if (o.type != 'Display') return o
     if (o.Resolution && o.Screen_Size) {
       const diagRes = Math.sqrt(Math.pow(o.Resolution.x, 2) + Math.pow(o.Resolution.y, 2))
-      const size = o.Screen_Size
+      const size = parseInt(o.Screen_Size.replace('"',''))
       const ppi = Math.round(diagRes / size)
       o.Pixels_per_Inch = ppi
       return o
