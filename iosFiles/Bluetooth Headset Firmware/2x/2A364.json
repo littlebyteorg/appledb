@@ -1,30 +1,30 @@
 {
-  "osStr": "Bluetooth Headset Firmware",
-  "version": "2.0",
-  "build": "2A364",
-  "released": "2019-09-10",
-  "deviceMap": [
-    "AirPods2,1",
-    "AirPods1,2",
-    "Powerbeats Pro"
-  ],
-  "sources": [
-    {
-      "deviceMap": [
+    "osStr": "Bluetooth Headset Firmware",
+    "version": "2.0",
+    "build": "2A364",
+    "released": "2019-09-10",
+    "deviceMap": [
+        "AirPods1,2",
         "AirPods2,1",
-        "AirPods1,2"
-      ],
-      "type": "ota",
-      "host": [
+        "Powerbeats Pro"
+    ],
+    "sources": [
         {
-          "value": "https://updates.cdn-apple.com",
-          "properties": [
-            "preferred",
-            "active"
-          ]
+            "deviceMap": [
+                "AirPods1,2",
+                "AirPods2,1"
+            ],
+            "type": "ota",
+            "host": [
+                {
+                    "value": "https://updates.cdn-apple.com",
+                    "properties": [
+                        "preferred",
+                        "active"
+                    ]
+                }
+            ],
+            "path": "/2019/ios/091-88709-20190903-2F78C0F8-D34E-11E9-98DC-AE1F72111DF7/com_apple_MobileAsset_MobileAccessoryUpdate_A2032_EA/dbfe28dc3d845764fe4662cf5043c6f589791cef.zip"
         }
-      ],
-      "path": "/2019/ios/091-88709-20190903-2F78C0F8-D34E-11E9-98DC-AE1F72111DF7/com_apple_MobileAsset_MobileAccessoryUpdate_A2032_EA/dbfe28dc3d845764fe4662cf5043c6f589791cef.zip"
-    }
-  ]
+    ]
 }
