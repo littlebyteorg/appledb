@@ -1,20 +1,33 @@
 {
-    "osStr": "macOS",
-    "version": "11.0.1",
-    "build": "20B29",
-    "released": "2020-11-18",
-    "devices": {
-        "MacBookAir10,1": {
-            "ipsw": "https://updates.cdn-apple.com/2020FallFCS/fullrestores/001-79706/93A4C43C-2B45-47AF-84EA-794F8886B85C/UniversalMac_11.0.1_20B29_Restore.ipsw"
-        },
-        "MacBookPro17,1": {
-            "ipsw": "https://updates.cdn-apple.com/2020FallFCS/fullrestores/001-79706/93A4C43C-2B45-47AF-84EA-794F8886B85C/UniversalMac_11.0.1_20B29_Restore.ipsw"
-        },
-        "ADP3,2": {
-            "ipsw": "https://updates.cdn-apple.com/2020FallFCS/fullrestores/001-79706/93A4C43C-2B45-47AF-84EA-794F8886B85C/UniversalMac_11.0.1_20B29_Restore.ipsw"
-        },
-        "Macmini9,1": {
-            "ipsw": "https://updates.cdn-apple.com/2020FallFCS/fullrestores/001-79706/93A4C43C-2B45-47AF-84EA-794F8886B85C/UniversalMac_11.0.1_20B29_Restore.ipsw"
+  "osStr": "macOS",
+  "version": "11.0.1",
+  "build": "20B29",
+  "released": "2020-11-18",
+  "deviceMap": [
+    "MacBookAir10,1",
+    "MacBookPro17,1",
+    "ADP3,2",
+    "Macmini9,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "MacBookAir10,1",
+        "MacBookPro17,1",
+        "ADP3,2",
+        "Macmini9,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2020FallFCS/fullrestores/001-79706/93A4C43C-2B45-47AF-84EA-794F8886B85C/UniversalMac_11.0.1_20B29_Restore.ipsw"
     }
+  ]
 }

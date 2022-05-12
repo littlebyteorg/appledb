@@ -1,14 +1,30 @@
 {
-    "osStr": "tvOS",
-    "version": "14.5 RC",
-    "build": "18L204",
-    "uniqueBuild": "18L204-RC",
-    "released": "2021-04-20",
-    "beta": true,
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/061-87489/B0FE78F0-FC69-4306-AD8D-A157254B0673/AppleTV5,3_14.5_18L204_Restore.ipsw"
-        },
-        "AppleTV6,2": {}
+  "osStr": "tvOS",
+  "version": "14.5 RC",
+  "build": "18L204",
+  "uniqueBuild": "18L204-RC",
+  "released": "2021-04-20",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV5,3",
+    "AppleTV6,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2021SpringFCS/fullrestores/061-87489/B0FE78F0-FC69-4306-AD8D-A157254B0673/AppleTV5,3_14.5_18L204_Restore.ipsw"
     }
+  ]
 }

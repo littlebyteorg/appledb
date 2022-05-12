@@ -1,13 +1,28 @@
 {
-    "osStr": "Keyboard Cover Firmware",
-    "version": "0450.0523.0200",
-    "build": "9M4217",
-    "devices": {
-        "Magic Keyboard (11-inch)": {
-            "ota": "https://updates.cdn-apple.com/2020/ios/061-23591-20200723-C9722812-CD25-11EA-8DDA-7F284B6064A0/com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardCoverFirmware_7/057ba17d37475266434518946663da2986768414.zip"
-        },
-        "Magic Keyboard for iPad Pro 12.9-inch (4th generation)": {
-            "ota": "https://updates.cdn-apple.com/2020/ios/061-23591-20200723-C9722812-CD25-11EA-8DDA-7F284B6064A0/com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardCoverFirmware_7/057ba17d37475266434518946663da2986768414.zip"
+  "osStr": "Keyboard Cover Firmware",
+  "version": "0450.0523.0200",
+  "build": "9M4217",
+  "deviceMap": [
+    "Magic Keyboard (11-inch)",
+    "Magic Keyboard for iPad Pro 12.9-inch (4th generation)"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "Magic Keyboard (11-inch)",
+        "Magic Keyboard for iPad Pro 12.9-inch (4th generation)"
+      ],
+      "type": "ota",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2020/ios/061-23591-20200723-C9722812-CD25-11EA-8DDA-7F284B6064A0/com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardCoverFirmware_7/057ba17d37475266434518946663da2986768414.zip"
     }
+  ]
 }

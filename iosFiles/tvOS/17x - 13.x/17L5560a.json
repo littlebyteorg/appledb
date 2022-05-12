@@ -1,13 +1,29 @@
 {
-    "osStr": "tvOS",
-    "version": "13.4.5 beta 4",
-    "build": "17L5560a",
-    "released": "2020-05-06",
-    "beta": true,
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "https://updates.cdn-apple.com/auto/fullrestores/001-06073/C54949B1-6BD3-4A6B-9F09-D6B2927A4492/AppleTV5,3_13.4.5_17L5560a_Restore.ipsw"
-        },
-        "AppleTV6,2": {}
+  "osStr": "tvOS",
+  "version": "13.4.5 beta 4",
+  "build": "17L5560a",
+  "released": "2020-05-06",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV5,3",
+    "AppleTV6,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/auto/fullrestores/001-06073/C54949B1-6BD3-4A6B-9F09-D6B2927A4492/AppleTV5,3_13.4.5_17L5560a_Restore.ipsw"
     }
+  ]
 }

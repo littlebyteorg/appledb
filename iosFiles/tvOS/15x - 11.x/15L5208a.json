@@ -1,13 +1,29 @@
 {
-    "osStr": "tvOS",
-    "version": "11.3 beta 5",
-    "build": "15L5208a",
-    "released": "2018-03-12",
-    "beta": true,
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "http://appldnld.apple.com/tvos11.3seed/091-72658-20180221-A4BFFFFA-23C0-11E8-8E66-F85C5B3DAFD9/AppleTV5,3_11.3_15L5208a_Restore.ipsw"
-        },
-        "AppleTV6,2": {}
+  "osStr": "tvOS",
+  "version": "11.3 beta 5",
+  "build": "15L5208a",
+  "released": "2018-03-12",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV5,3",
+    "AppleTV6,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/tvos11.3seed/091-72658-20180221-A4BFFFFA-23C0-11E8-8E66-F85C5B3DAFD9/AppleTV5,3_11.3_15L5208a_Restore.ipsw"
     }
+  ]
 }

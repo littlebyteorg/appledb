@@ -1,13 +1,29 @@
 {
-    "osStr": "tvOS",
-    "version": "12.1.1 beta",
-    "build": "16K5035b",
-    "released": "2018-10-31",
-    "beta": true,
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "https://updates.cdn-apple.com/2018FallSeed/fullrestores/041-12600/0540C7FE-DBBA-11E8-A6F0-F5636FC77B26/AppleTV5,3_12.1.1_16K5035b_Restore.ipsw"
-        },
-        "AppleTV6,2": {}
+  "osStr": "tvOS",
+  "version": "12.1.1 beta",
+  "build": "16K5035b",
+  "released": "2018-10-31",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV5,3",
+    "AppleTV6,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2018FallSeed/fullrestores/041-12600/0540C7FE-DBBA-11E8-A6F0-F5636FC77B26/AppleTV5,3_12.1.1_16K5035b_Restore.ipsw"
     }
+  ]
 }

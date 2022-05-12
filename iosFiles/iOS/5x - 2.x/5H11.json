@@ -1,17 +1,61 @@
 {
-    "osStr": "iPhoneOS",
-    "version": "2.2.1",
-    "build": "5H11",
-    "released": "2009-01-27",
-    "devices": {
-        "iPhone1,1": {
-            "ipsw": "http://appldnld.apple.com/iPhone/061-5830.20090127.Mmni6/iPhone1,1_2.2.1_5H11_Restore.ipsw"
-        },
-        "iPhone1,2": {
-            "ipsw": "http://appldnld.apple.com/iPhone/061-5828.20090127.aQLi8/iPhone1,2_2.2.1_5H11_Restore.ipsw"
-        },
-        "iPod1,1": {
-            "ipsw": "http://appldnld.apple.com/ProtectedAsset/iPod/061-5862.2009127.f2dke/iPod1,1_2.2.1_5H11_Restore.ipsw"
+  "osStr": "iPhoneOS",
+  "version": "2.2.1",
+  "build": "5H11",
+  "released": "2009-01-27",
+  "deviceMap": [
+    "iPhone1,1",
+    "iPhone1,2",
+    "iPod1,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "iPhone1,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/iPhone/061-5830.20090127.Mmni6/iPhone1,1_2.2.1_5H11_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPhone1,2"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/iPhone/061-5828.20090127.aQLi8/iPhone1,2_2.2.1_5H11_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPod1,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/ProtectedAsset/iPod/061-5862.2009127.f2dke/iPod1,1_2.2.1_5H11_Restore.ipsw"
     }
+  ]
 }

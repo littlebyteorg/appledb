@@ -1,50 +1,128 @@
 {
-    "osStr": "iOS",
-    "version": "12.4.4",
-    "build": "16G140",
-    "released": "2019-12-10",
-    "devices": {
-        "iPhone6,1": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38024/DEAC4414-0BFC-11EA-8CCC-6EFE7531BBAA/iPhone_4.0_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPhone6,2": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38024/DEAC4414-0BFC-11EA-8CCC-6EFE7531BBAA/iPhone_4.0_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPhone7,1": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-37919/DEAB77C8-0BFC-11EA-8AEB-6FFE7531BBAA/iPhone_5.5_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPhone7,2": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-37750/DEB56BCA-0BFC-11EA-AA76-70FE7531BBAA/iPhone_4.7_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,1": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38293/DEA20CEC-0BFC-11EA-828E-6AFE7531BBAA/iPad_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,2": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38293/DEA20CEC-0BFC-11EA-828E-6AFE7531BBAA/iPad_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,3": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38293/DEA20CEC-0BFC-11EA-828E-6AFE7531BBAA/iPad_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,4": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38293/DEA20CEC-0BFC-11EA-828E-6AFE7531BBAA/iPad_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,5": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38293/DEA20CEC-0BFC-11EA-828E-6AFE7531BBAA/iPad_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,6": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-38293/DEA20CEC-0BFC-11EA-828E-6AFE7531BBAA/iPad_64bit_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,7": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-37550/DEB24C74-0BFC-11EA-B8FE-6BFE7531BBAA/iPad_64bit_TouchID_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,8": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-37550/DEB24C74-0BFC-11EA-B8FE-6BFE7531BBAA/iPad_64bit_TouchID_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPad4,9": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-37550/DEB24C74-0BFC-11EA-B8FE-6BFE7531BBAA/iPad_64bit_TouchID_12.4.4_16G140_Restore.ipsw"
-        },
-        "iPod7,1": {
-            "ipsw": "https://updates.cdn-apple.com/2019FallFCS/fullrestores/061-37821/DEA2AD0A-0BFC-11EA-84A6-6DFE7531BBAA/iPodtouch_12.4.4_16G140_Restore.ipsw"
+  "osStr": "iOS",
+  "version": "12.4.4",
+  "build": "16G140",
+  "released": "2019-12-10",
+  "deviceMap": [
+    "iPhone6,1",
+    "iPhone6,2",
+    "iPhone7,1",
+    "iPhone7,2",
+    "iPad4,1",
+    "iPad4,2",
+    "iPad4,3",
+    "iPad4,4",
+    "iPad4,5",
+    "iPad4,6",
+    "iPad4,7",
+    "iPad4,8",
+    "iPad4,9",
+    "iPod7,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "iPhone6,1",
+        "iPhone6,2"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2019FallFCS/fullrestores/061-38024/DEAC4414-0BFC-11EA-8CCC-6EFE7531BBAA/iPhone_4.0_64bit_12.4.4_16G140_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPhone7,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2019FallFCS/fullrestores/061-37919/DEAB77C8-0BFC-11EA-8AEB-6FFE7531BBAA/iPhone_5.5_12.4.4_16G140_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPhone7,2"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2019FallFCS/fullrestores/061-37750/DEB56BCA-0BFC-11EA-AA76-70FE7531BBAA/iPhone_4.7_12.4.4_16G140_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPad4,1",
+        "iPad4,2",
+        "iPad4,3",
+        "iPad4,4",
+        "iPad4,5",
+        "iPad4,6"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2019FallFCS/fullrestores/061-38293/DEA20CEC-0BFC-11EA-828E-6AFE7531BBAA/iPad_64bit_12.4.4_16G140_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPad4,7",
+        "iPad4,8",
+        "iPad4,9"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2019FallFCS/fullrestores/061-37550/DEB24C74-0BFC-11EA-B8FE-6BFE7531BBAA/iPad_64bit_TouchID_12.4.4_16G140_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPod7,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2019FallFCS/fullrestores/061-37821/DEA2AD0A-0BFC-11EA-84A6-6DFE7531BBAA/iPodtouch_12.4.4_16G140_Restore.ipsw"
     }
+  ]
 }

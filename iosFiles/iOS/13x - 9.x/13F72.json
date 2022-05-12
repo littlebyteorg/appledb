@@ -1,14 +1,44 @@
 {
-    "osStr": "iOS",
-    "version": "9.3.2",
-    "build": "13F72",
-    "released": "2016-06-02",
-    "devices": {
-        "iPad6,3": {
-            "ipsw": "http://appldnld.apple.com/ios9.3.2/031-63513-20160531-52E11156-2665-11E6-8860-F0F5662719FC/iPad6,3_9.3.2_13F72_Restore.ipsw"
-        },
-        "iPad6,4": {
-            "ipsw": "http://appldnld.apple.com/ios9.3.2/031-63521-20160531-52E11160-2665-11E6-8860-F1F5662719FC/iPad6,4_9.3.2_13F72_Restore.ipsw"
+  "osStr": "iOS",
+  "version": "9.3.2",
+  "build": "13F72",
+  "released": "2016-06-02",
+  "deviceMap": [
+    "iPad6,3",
+    "iPad6,4"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "iPad6,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/ios9.3.2/031-63513-20160531-52E11156-2665-11E6-8860-F0F5662719FC/iPad6,3_9.3.2_13F72_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPad6,4"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/ios9.3.2/031-63521-20160531-52E11160-2665-11E6-8860-F1F5662719FC/iPad6,4_9.3.2_13F72_Restore.ipsw"
     }
+  ]
 }

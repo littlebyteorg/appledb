@@ -1,14 +1,29 @@
 {
-    "osStr": "Durian Firmware",
-    "version": "1.0.291",
-    "build": "1A291a",
-    "released": "2021-08-26",
-    "devices": {
-        "AirTag1,1": {
-            "ota": "https://updates.cdn-apple.com/2021/patches/071-58111/415FAA07-3A8D-4DA6-9B0D-A9FD6BB67B7C/com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware/b90d4ba2db40429c5986614064934974f15e8dee.zip"
-        },
-        "afw1,5": {
-            "ota": "https://updates.cdn-apple.com/2021/patches/071-58111/415FAA07-3A8D-4DA6-9B0D-A9FD6BB67B7C/com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware/b90d4ba2db40429c5986614064934974f15e8dee.zip"
+  "osStr": "Durian Firmware",
+  "version": "1.0.291",
+  "build": "1A291a",
+  "released": "2021-08-26",
+  "deviceMap": [
+    "AirTag1,1",
+    "afw1,5"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AirTag1,1",
+        "afw1,5"
+      ],
+      "type": "ota",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2021/patches/071-58111/415FAA07-3A8D-4DA6-9B0D-A9FD6BB67B7C/com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware/b90d4ba2db40429c5986614064934974f15e8dee.zip"
     }
+  ]
 }

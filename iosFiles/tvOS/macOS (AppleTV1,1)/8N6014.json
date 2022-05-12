@@ -1,11 +1,27 @@
 {
-    "osStr": "Apple TV Software",
-    "version": "3.0.2",
-    "build": "8N6014",
-    "released": "2010-02-10",
-    "devices": {
-        "AppleTV1,1": {
-            "ipsw": "https://mesu.apple.com/data/OS/061-7495.20100210.TAVfr/2Z694-6013-013.dmg"
+  "osStr": "Apple TV Software",
+  "version": "3.0.2",
+  "build": "8N6014",
+  "released": "2010-02-10",
+  "deviceMap": [
+    "AppleTV1,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV1,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://mesu.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/data/OS/061-7495.20100210.TAVfr/2Z694-6013-013.dmg"
     }
+  ]
 }

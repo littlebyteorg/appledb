@@ -1,13 +1,29 @@
 {
-    "osStr": "tvOS",
-    "version": "14.0 beta 6",
-    "build": "18J5370e",
-    "released": "2020-08-25",
-    "beta": true,
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "https://updates.cdn-apple.com/2020SummerSeed/fullrestores/001-40973/F7266350-9A82-46BA-9712-03CABAA4F4AE/AppleTV5,3_14.0_18J5370e_Restore.ipsw"
-        },
-        "AppleTV6,2": {}
+  "osStr": "tvOS",
+  "version": "14.0 beta 6",
+  "build": "18J5370e",
+  "released": "2020-08-25",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV5,3",
+    "AppleTV6,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2020SummerSeed/fullrestores/001-40973/F7266350-9A82-46BA-9712-03CABAA4F4AE/AppleTV5,3_14.0_18J5370e_Restore.ipsw"
     }
+  ]
 }

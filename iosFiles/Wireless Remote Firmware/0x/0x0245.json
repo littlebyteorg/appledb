@@ -1,11 +1,27 @@
 {
-    "osStr": "Wireless Remote Firmware",
-    "version": "0x0245",
-    "build": "0x0245",
-    "released": "2016-04-05",
-    "devices": {
-        "Siri Remote (1st generation)": {
-            "ota": "http://appldnld.apple.com/ios9/031-51647-201600405-BC1BF5BE-F771-11E5-9D90-527FED25FABD/com_apple_MobileAsset_MobileAccessoryUpdate_WirelessRemoteFirmware/b787da463c7ed2f628a2a6f70aff14735e25794d.zip"
+  "osStr": "Wireless Remote Firmware",
+  "version": "0x0245",
+  "build": "0x0245",
+  "released": "2016-04-05",
+  "deviceMap": [
+    "Siri Remote (1st generation)"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "Siri Remote (1st generation)"
+      ],
+      "type": "ota",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/ios9/031-51647-201600405-BC1BF5BE-F771-11E5-9D90-527FED25FABD/com_apple_MobileAsset_MobileAccessoryUpdate_WirelessRemoteFirmware/b787da463c7ed2f628a2a6f70aff14735e25794d.zip"
     }
+  ]
 }

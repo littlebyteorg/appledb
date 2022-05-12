@@ -1,12 +1,28 @@
 {
-    "osStr": "tvOS",
-    "version": "9.2.1 beta 3",
-    "build": "13Y768",
-    "released": "2016-04-27",
-    "beta": true,
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "https://developer.apple.com/services-account/download?path=/iOS/tvOS_9.2.1_beta_3/AppleTV53_9.2.1_13Y768_Restore.ipsw"
+  "osStr": "tvOS",
+  "version": "9.2.1 beta 3",
+  "build": "13Y768",
+  "released": "2016-04-27",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV5,3"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://developer.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/services-account/download?path=/iOS/tvOS_9.2.1_beta_3/AppleTV53_9.2.1_13Y768_Restore.ipsw"
     }
+  ]
 }

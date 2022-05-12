@@ -1,13 +1,29 @@
 {
-    "osStr": "tvOS",
-    "version": "15.4.1",
-    "build": "19L452",
-    "released": "2022-03-31",
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "https://updates.cdn-apple.com/2022FCSWinter/fullrestores/002-82887/6CDA7A9F-0866-417F-A440-E95C8D8A863B/AppleTV5,3_15.4.1_19L452_Restore.ipsw"
-        },
-        "AppleTV6,2": {},
-        "AppleTV11,1": {}
+  "osStr": "tvOS",
+  "version": "15.4.1",
+  "build": "19L452",
+  "released": "2022-03-31",
+  "deviceMap": [
+    "AppleTV5,3",
+    "AppleTV6,2",
+    "AppleTV11,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2022FCSWinter/fullrestores/002-82887/6CDA7A9F-0866-417F-A440-E95C8D8A863B/AppleTV5,3_15.4.1_19L452_Restore.ipsw"
     }
+  ]
 }

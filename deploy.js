@@ -26,11 +26,13 @@ function mkdir(p) {
 }
 
 function write(p, f) {
+  return
   fs.writeFileSync(p, f)
   filesWritten++
 }
 
 function writeJson(dirName, arr, property) {
+  return
   var obj = {}
   arr.map(function(x) { obj[x[property]] = x })
 
@@ -108,14 +110,37 @@ iosFiles = iosFiles.map(function(ver) {
     if (ver.iosVersion) ver.sortVersion = ver.iosVersion
     else ver.sortVersion = ver.version
   }
-  if (!ver.devices) ver.devices = {}
+  if (!ver.deviceMap) ver.deviceMap = []
   if (!ver.released) ver.released = -1
   
   ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
 
-  ver.appledburl = encodeURI(['https://appledb.dev',ver.osType,ver.uniqueBuild].join('/') + '.html')
+  function getLegacyDevicesObjectArray() {
+    let obj = {}
+    ver.deviceMap.map(x => obj[x] = {})
+    if (!ver.sources) return obj
+
+    ver.deviceMap.map(x => {
+      const source = ver.sources.filter(y => y.deviceMap.includes(x))[0]
+      if (!source) return
+      const type = source.type
+      const hostArr = source.host
+      const propertyArr = hostArr.filter(x => x.hasOwnProperty('properties')).map(x => x.properties).flat()
+      const host = hostArr.filter(x => {
+        if (propertyArr.includes('preferred')) return x.properties.includes('preferred')
+        else return true
+      })[0].value
+      const path = host + source.path
+      obj[x][type] = path
+    })
+    return obj
+  }
+
+  ver.devices = getLegacyDevicesObjectArray()
+
+  ver.appledburl = encodeURI(`https://appledb.dev/firmware.html?os=${ver.osStr}&build=${ver.uniqueBuild}}`)
 
   return ver
 })
@@ -191,7 +216,7 @@ write(path.join(p, 'main.json'), JSON.stringify(main))
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
 iosFiles.map(function(fw) {
-  if (fw.devices) Object.keys(fw.devices).map(function(dev) {
+  if (fw.deviceMap) fw.deviceMap.map(function(dev) {
     mkdir(path.join(dirName, dev))
     var jb = jailbreakFiles.filter(function(x) {
       if (x.hasOwnProperty('compatibility')) return x.compatibility.filter(function(y) {

@@ -1,11 +1,27 @@
 {
-    "osStr": "Apple TV Software",
-    "version": "2.1",
-    "build": "8N5519",
-    "released": "2008-07-09",
-    "devices": {
-        "AppleTV1,1": {
-            "ipsw": "https://mesu.apple.com/data/OS/061-5044.20080709.de43E/2Z694-5485-1.dmg"
+  "osStr": "Apple TV Software",
+  "version": "2.1",
+  "build": "8N5519",
+  "released": "2008-07-09",
+  "deviceMap": [
+    "AppleTV1,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV1,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://mesu.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/data/OS/061-5044.20080709.de43E/2Z694-5485-1.dmg"
     }
+  ]
 }

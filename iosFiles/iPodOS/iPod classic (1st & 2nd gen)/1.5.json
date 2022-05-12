@@ -1,14 +1,29 @@
 {
-    "osStr": "Pixo",
-    "version": "1.5",
-    "build": "0x1508000",
-    "released": "2006-09-12",
-    "devices": {
-        "iPod (Scroll Wheel)": {
-            "ipsw": "http://appldnld.apple.com/iPod/SBML/osx/bundles/061-2686.20060912.ipTsW/iPod_1.1.5.ipsw"
-        },
-        "iPod (Touch Wheel)": {
-            "ipsw": "http://appldnld.apple.com/iPod/SBML/osx/bundles/061-2686.20060912.ipTsW/iPod_1.1.5.ipsw"
+  "osStr": "Pixo",
+  "version": "1.5",
+  "build": "0x1508000",
+  "released": "2006-09-12",
+  "deviceMap": [
+    "iPod (Scroll Wheel)",
+    "iPod (Touch Wheel)"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "iPod (Scroll Wheel)",
+        "iPod (Touch Wheel)"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/iPod/SBML/osx/bundles/061-2686.20060912.ipTsW/iPod_1.1.5.ipsw"
     }
+  ]
 }

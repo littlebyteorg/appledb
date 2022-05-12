@@ -1,23 +1,35 @@
 {
-    "osStr": "macOS",
-    "version": "11.3.1",
-    "build": "20E241",
-    "released": "2021-05-03",
-    "devices": {
-        "MacBookAir10,1": {
-            "ipsw": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/071-32411/2A29A9DC-01C7-4A50-A6C4-9705269F780D/UniversalMac_11.3.1_20E241_Restore.ipsw"
-        },
-        "MacBookPro17,1": {
-            "ipsw": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/071-32411/2A29A9DC-01C7-4A50-A6C4-9705269F780D/UniversalMac_11.3.1_20E241_Restore.ipsw"
-        },
-        "Macmini9,1": {
-            "ipsw": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/071-32411/2A29A9DC-01C7-4A50-A6C4-9705269F780D/UniversalMac_11.3.1_20E241_Restore.ipsw"
-        },
-        "iMac21,1": {
-            "ipsw": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/071-32411/2A29A9DC-01C7-4A50-A6C4-9705269F780D/UniversalMac_11.3.1_20E241_Restore.ipsw"
-        },
-        "iMac21,2": {
-            "ipsw": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/071-32411/2A29A9DC-01C7-4A50-A6C4-9705269F780D/UniversalMac_11.3.1_20E241_Restore.ipsw"
+  "osStr": "macOS",
+  "version": "11.3.1",
+  "build": "20E241",
+  "released": "2021-05-03",
+  "deviceMap": [
+    "MacBookAir10,1",
+    "MacBookPro17,1",
+    "Macmini9,1",
+    "iMac21,1",
+    "iMac21,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "MacBookAir10,1",
+        "MacBookPro17,1",
+        "Macmini9,1",
+        "iMac21,1",
+        "iMac21,2"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2021SpringFCS/fullrestores/071-32411/2A29A9DC-01C7-4A50-A6C4-9705269F780D/UniversalMac_11.3.1_20E241_Restore.ipsw"
     }
+  ]
 }

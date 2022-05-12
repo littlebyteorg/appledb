@@ -1,11 +1,27 @@
 {
-    "osStr": "Wireless Remote Firmware 2",
-    "version": "0x0100",
-    "build": "0x0100",
-    "released": "2018-02-28",
-    "devices": {
-        "Siri Remote (1st generation, Rev A)": {
-            "ota": "http://appldnld.apple.com/ios11.0/031-97766-20180228-B71C8384-17FA-11E8-8AC3-3847894A1518/com_apple_MobileAsset_MobileAccessoryUpdate_WirelessRemoteFirmware_2/a48e4d1fe847069cc117e638882ff897f66f7a4d.zip"
+  "osStr": "Wireless Remote Firmware 2",
+  "version": "0x0100",
+  "build": "0x0100",
+  "released": "2018-02-28",
+  "deviceMap": [
+    "Siri Remote (1st generation, Rev A)"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "Siri Remote (1st generation, Rev A)"
+      ],
+      "type": "ota",
+      "host": [
+        {
+          "value": "http://appldnld.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/ios11.0/031-97766-20180228-B71C8384-17FA-11E8-8AC3-3847894A1518/com_apple_MobileAsset_MobileAccessoryUpdate_WirelessRemoteFirmware_2/a48e4d1fe847069cc117e638882ff897f66f7a4d.zip"
     }
+  ]
 }

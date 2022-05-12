@@ -1,17 +1,29 @@
 {
-    "osStr": "audioOS",
-    "version": "14.3",
-    "build": "18K563",
-    "released": "2020-12-15",
-    "devices": {
-        "AudioAccessory1,1": {
-            "ipsw": "none"
-        },
-        "AudioAccessory1,2": {
-            "ipsw": "none"
-        },
-        "AudioAccessory5,1": {
-            "ipsw": "https://updates.cdn-apple.com/2020WinterFCS/fullrestores/001-88390/AD84FD14-E210-4E26-AFF7-42ABE73D5969/AudioAccessory5,1_14.3_18K563_Restore.ipsw"
+  "osStr": "audioOS",
+  "version": "14.3",
+  "build": "18K563",
+  "released": "2020-12-15",
+  "deviceMap": [
+    "AudioAccessory1,1",
+    "AudioAccessory1,2",
+    "AudioAccessory5,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AudioAccessory5,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2020WinterFCS/fullrestores/001-88390/AD84FD14-E210-4E26-AFF7-42ABE73D5969/AudioAccessory5,1_14.3_18K563_Restore.ipsw"
     }
+  ]
 }

@@ -1,16 +1,46 @@
 {
-    "osStr": "Apple TV Software",
-    "version": "7.3 beta 4",
-    "iosVersion": "8.4.2",
-    "build": "12H841",
-    "released": "2019-05-07",
-    "beta": true,
-    "devices": {
-        "AppleTV3,1": {
-            "ipsw": "https://updates.cdn-apple.com/2019/tvosseed/041-59069-2019507-E3813748-6D04-11E9-BBBB-5A9D83025259/AppleTV3,1_8.4.2_12H841_Restore.ipsw"
-        },
-        "AppleTV3,2": {
-            "ipsw": "https://updates.cdn-apple.com/2019/tvosseed/041-59068--2019507-E3813748-6D04-11E9-BBCD-5A9D83025259/AppleTV3,2_8.4.2_12H841_Restore.ipsw"
+  "osStr": "Apple TV Software",
+  "version": "7.3 beta 4",
+  "iosVersion": "8.4.2",
+  "build": "12H841",
+  "released": "2019-05-07",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV3,1",
+    "AppleTV3,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV3,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2019/tvosseed/041-59069-2019507-E3813748-6D04-11E9-BBBB-5A9D83025259/AppleTV3,1_8.4.2_12H841_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "AppleTV3,2"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2019/tvosseed/041-59068--2019507-E3813748-6D04-11E9-BBCD-5A9D83025259/AppleTV3,2_8.4.2_12H841_Restore.ipsw"
     }
+  ]
 }

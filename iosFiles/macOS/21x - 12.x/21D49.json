@@ -1,41 +1,45 @@
 {
-    "osStr": "macOS",
-    "version": "12.2",
-    "build": "21D49",
-    "released": "2022-01-26",
-    "devices": {
-        "Mac13,1": {
-            "ipsw": "none"
-        },
-        "Mac13,2": {
-            "ipsw": "none"
-        },
-        "MacBookAir10,1": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "MacBookPro17,1": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "MacBookPro18,1": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "MacBookPro18,2": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "MacBookPro18,3": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "MacBookPro18,4": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "Macmini9,1": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "iMac21,1": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
-        },
-        "iMac21,2": {
-            "ipsw": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
+  "osStr": "macOS",
+  "version": "12.2",
+  "build": "21D49",
+  "released": "2022-01-26",
+  "deviceMap": [
+    "Mac13,1",
+    "Mac13,2",
+    "MacBookAir10,1",
+    "MacBookPro17,1",
+    "MacBookPro18,1",
+    "MacBookPro18,2",
+    "MacBookPro18,3",
+    "MacBookPro18,4",
+    "Macmini9,1",
+    "iMac21,1",
+    "iMac21,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "MacBookAir10,1",
+        "MacBookPro17,1",
+        "MacBookPro18,1",
+        "MacBookPro18,2",
+        "MacBookPro18,3",
+        "MacBookPro18,4",
+        "Macmini9,1",
+        "iMac21,1",
+        "iMac21,2"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw"
     }
+  ]
 }

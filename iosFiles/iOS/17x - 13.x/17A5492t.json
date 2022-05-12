@@ -1,48 +1,82 @@
 {
-    "osStr": "iOS",
-    "version": "13.0 beta",
-    "build": "17A5492t",
-    "released": "2019-06-03",
-    "beta": true,
-    "devices": {
-        "iPad11,1": {
-            "ipsw": "https://developer.apple.com/services-account/download?path=/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Spring_2019_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad11,2": {
-            "ipsw": "https://developer.apple.com/services-account/download?path=/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Spring_2019_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad11,3": {
-            "ipsw": "https://developer.apple.com/services-account/download?path=/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Spring_2019_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad11,4": {
-            "ipsw": "https://developer.apple.com/services-account/download?path=/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Spring_2019_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,1": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,2": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,3": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,4": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,5": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,6": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,7": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPad8,8": {
-            "ipsw": "https://download.developer.apple.com/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
-        },
-        "iPod9,1": {
-            "ipsw": "https://developer.apple.com/services-account/download?path=/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPodtouch_13.0_17A5492t_Restore.ipsw"
+  "osStr": "iOS",
+  "version": "13.0 beta",
+  "build": "17A5492t",
+  "released": "2019-06-03",
+  "beta": true,
+  "deviceMap": [
+    "iPad11,1",
+    "iPad11,2",
+    "iPad11,3",
+    "iPad11,4",
+    "iPad8,1",
+    "iPad8,2",
+    "iPad8,3",
+    "iPad8,4",
+    "iPad8,5",
+    "iPad8,6",
+    "iPad8,7",
+    "iPad8,8",
+    "iPod9,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "iPad11,1",
+        "iPad11,2",
+        "iPad11,3",
+        "iPad11,4"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://developer.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/services-account/download?path=/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Spring_2019_13.0_17A5492t_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPad8,1",
+        "iPad8,2",
+        "iPad8,3",
+        "iPad8,4",
+        "iPad8,5",
+        "iPad8,6",
+        "iPad8,7",
+        "iPad8,8"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://download.developer.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPad_Fall_2018_13.0_17A5492t_Restore.ipsw"
+    },
+    {
+      "deviceMap": [
+        "iPod9,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://developer.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/services-account/download?path=/WWDC_2019/iOS_and_tvOS_IPSWs_for_Jun_3_2019_Seed/iPodtouch_13.0_17A5492t_Restore.ipsw"
     }
+  ]
 }

@@ -1,14 +1,29 @@
 {
-    "osStr": "Bluetooth Headset Firmware",
-    "version": "4.1",
-    "build": "4B61",
-    "released": "2021-10-25",
-    "devices": {
-        "AirPods1,3": {
-            "ota": "https://updates.cdn-apple.com/2021/patches/002-17315/89F18298-AAE2-48E2-B231-AE5DABD95692/com_apple_MobileAsset_MobileAccessoryUpdate_A2564_EA/e8b9b93cc61d1c85926e3686b6c083317f70cb66.zip"
-        },
-        "Audio2,1": {
-            "ota": "https://updates.cdn-apple.com/2021/patches/002-17315/89F18298-AAE2-48E2-B231-AE5DABD95692/com_apple_MobileAsset_MobileAccessoryUpdate_A2564_EA/e8b9b93cc61d1c85926e3686b6c083317f70cb66.zip"
+  "osStr": "Bluetooth Headset Firmware",
+  "version": "4.1",
+  "build": "4B61",
+  "released": "2021-10-25",
+  "deviceMap": [
+    "AirPods1,3",
+    "Audio2,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AirPods1,3",
+        "Audio2,1"
+      ],
+      "type": "ota",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2021/patches/002-17315/89F18298-AAE2-48E2-B231-AE5DABD95692/com_apple_MobileAsset_MobileAccessoryUpdate_A2564_EA/e8b9b93cc61d1c85926e3686b6c083317f70cb66.zip"
     }
+  ]
 }

@@ -1,16 +1,30 @@
 {
-    "osStr": "Apple TV Software",
-    "version": "5.0 beta",
-    "iosVersion": "5.1 beta 2",
-    "build": "9B5127c",
-    "released": "2011-12-12",
-    "beta": true,
-    "devices": {
-        "AppleTV2,1": {
-            "ipsw": "none"
-        },
-        "AppleTV3,1": {
-            "ipsw": "http://adcdownload.apple.com/ios/ios_6_beta/apple_tv_3rd_generation_software_update_beta.dmg"
+  "osStr": "Apple TV Software",
+  "version": "5.0 beta",
+  "iosVersion": "5.1 beta 2",
+  "build": "9B5127c",
+  "released": "2011-12-12",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV2,1",
+    "AppleTV3,1"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV3,1"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "http://adcdownload.apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/ios/ios_6_beta/apple_tv_3rd_generation_software_update_beta.dmg"
     }
+  ]
 }

@@ -1,13 +1,29 @@
 {
-    "osStr": "tvOS",
-    "version": "13.3.1 beta 3",
-    "build": "17K5795a",
-    "released": "2020-01-22",
-    "beta": true,
-    "devices": {
-        "AppleTV5,3": {
-            "ipsw": "https://updates.cdn-apple.com/2020WinterSeed/fullrestores/061-68786/DDB93BB7-72A9-4D70-9688-5C3656766D04/AppleTV5,3_13.3.1_17K5795a_Restore.ipsw"
-        },
-        "AppleTV6,2": {}
+  "osStr": "tvOS",
+  "version": "13.3.1 beta 3",
+  "build": "17K5795a",
+  "released": "2020-01-22",
+  "beta": true,
+  "deviceMap": [
+    "AppleTV5,3",
+    "AppleTV6,2"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "AppleTV5,3"
+      ],
+      "type": "ipsw",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
+        }
+      ],
+      "path": "/2020WinterSeed/fullrestores/061-68786/DDB93BB7-72A9-4D70-9688-5C3656766D04/AppleTV5,3_13.3.1_17K5795a_Restore.ipsw"
     }
+  ]
 }

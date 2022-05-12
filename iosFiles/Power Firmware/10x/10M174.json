@@ -1,11 +1,27 @@
 {
-    "osStr": "MagSafe Battery Pack Firmware",
-    "version": "2.5",
-    "build": "10M174",
-    "released": "2021-12-09",
-    "devices": {
-        "MagSafe Battery Pack": {
-            "ota": "https://updates.cdn-apple.com/2021/patches/071-94552/FB99DCD4-474A-4129-82DA-9101A3BA8ECA/com_apple_MobileAsset_UARP_A2384/19b6aa667b6bdafc182a34c134cd7b185922aae5.zip"
+  "osStr": "MagSafe Battery Pack Firmware",
+  "version": "2.5",
+  "build": "10M174",
+  "released": "2021-12-09",
+  "deviceMap": [
+    "MagSafe Battery Pack"
+  ],
+  "sources": [
+    {
+      "deviceMap": [
+        "MagSafe Battery Pack"
+      ],
+      "type": "ota",
+      "host": [
+        {
+          "value": "https://updates.cdn-apple.com",
+          "properties": [
+            "preferred",
+            "active"
+          ]
         }
+      ],
+      "path": "/2021/patches/071-94552/FB99DCD4-474A-4129-82DA-9101A3BA8ECA/com_apple_MobileAsset_UARP_A2384/19b6aa667b6bdafc182a34c134cd7b185922aae5.zip"
     }
+  ]
 }
