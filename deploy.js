@@ -26,13 +26,11 @@ function mkdir(p) {
 }
 
 function write(p, f) {
-  return
   fs.writeFileSync(p, f)
   filesWritten++
 }
 
 function writeJson(dirName, arr, property) {
-  return
   var obj = {}
   arr.map(function(x) { obj[x[property]] = x })
 
