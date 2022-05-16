@@ -54,7 +54,8 @@ module.exports = {
         "9A334", // 5.0
         "9A405", // 5.0.1
         "9A406", // 5.0.1, iPhone 4S only
-        "9B206", // 5.1.1
+        "9B206", // 5.1.1,
+        "9B179", // 5.5.1, iPhone 4S only
       ],
       devices: [
         "iPhone4,1", // iPhone 4S, A5
