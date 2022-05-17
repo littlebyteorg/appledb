@@ -39,7 +39,7 @@ const version = require(process.argv[2])
 const build = version.build
 const devices = requireAll('../../../deviceFiles', '.json')
 
-Object.keys(version.devices).map(function(x) {
+version.deviceMap.map(function(x) {
   var url
   if (version.beta) url = `https://api.m1sta.xyz/betas/${x}`
   else url = `https://api.ipsw.me/v4/ipsw/${x}/${build}`
