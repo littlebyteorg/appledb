@@ -102,6 +102,18 @@ module.exports = {
         "iPad7,6", // iPad (6th generation) Wi-Fi + Cellular, A10
         "iPad7,11", // iPad (7th generation) Wi-Fi, A10
         "iPad7,12", // iPad (7th generation) Wi-Fi + Cellular, A10
+        "iPad8,1",
+        "iPad8,2",
+        "iPad8,3",
+        "iPad8,4",
+        "iPad8,5",
+        "iPad8,6",
+        "iPad8,7",
+        "iPad8,8",
+        "iPad8,9",
+        "iPad8,10",
+        "iPad8,11",
+        "iPad8,12",
         "iPad11,1", // iPad mini (5th generation) Wi-Fi, A12
         "iPad11,2", // iPad mini (5th generation) Wi-Fi + Cellular, A12
         "iPad11,3", // iPad Air (3rd generation) Wi-Fi, A12
