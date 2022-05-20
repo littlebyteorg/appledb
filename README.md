@@ -1,4 +1,4 @@
-# appledb
+# AppleDB
 
 Hosted at [api.appledb.dev](https://api.appledb.dev/).
 
