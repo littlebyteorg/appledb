@@ -125,12 +125,11 @@ iosFiles = iosFiles.map(function(ver) {
       if (!source) return
       const type = source.type
       const linksArr = source.links
-      const host = linksArr.filter(x => {
+      const link = linksArr.filter(x => {
         if (linksArr.some(x => x.preferred)) return x.preferred
         else return true
-      })[0].value
-      const path = host + source.path
-      obj[x][type] = path
+      })[0].url
+      obj[x][type] = link
     })
     return obj
   }
