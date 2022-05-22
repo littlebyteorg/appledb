@@ -1,6 +1,6 @@
 module.exports = {
   name: "openpwnage",
-  priority: 3,
+  priority: 6,
   info: {
     website: {
       name: "github.com/zachary7829/openpwnage/",
