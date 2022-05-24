@@ -7,22 +7,33 @@ module.exports = {
       url: "https://github.com/zachary7829/openpwnage/",
       external: true
     },
-    latestVer: "Pre-Alpha Build 3",
+    latestVer: "Alpha Build 4",
     color: "#faf4f7",
-    notes: "Currently only intended for developers/testers. Does not install bootstrap and rootFS is currently read only.",
+    notes: "Does not install bootstrap currently.",
     type: "Semi-untethered",
-    firmwares: ["9.0","9.3.6"]
+    firmwares: ["9.0b1","9.3.6"]
   },
   compatibility: [
     {
       firmwares: [
+        "13A4254v", // 9.0 Beta
+        "13A4280e", // 9.0 Beta 2
+        "13A4293g", // 9.0 Beta 3
+        "13A4305g", // 9.0 Beta 4
+        "13A4325c", // 9.0 Beta 5
         "13A340", // 9.0 GM
         "13A344", // 9.0
         "13A404", // 9.0.1
         "13A452", // 9.0.2
+        "13B5110e", // 9.1 Beta
+        "13B5119e", // 9.1 Beta 2
+        "13B5130b", // 9.1 Beta 3
         "13B136", // 9.1 Beta 4
         "13B137", // 9.1 Beta 5
         "13B143", // 9.1
+        "13C5055d", // 9.2 Beta
+        "13C5060d", // 9.2 Beta 2
+        "13C71", // 9.2 Beta 3
         "13C75", // 9.2 / 9.2 Beta 4
         "13D11", // 9.2.1 Beta
         "13D14", // 9.2.1 Beta 2
@@ -31,8 +42,9 @@ module.exports = {
         "13E5181f", // 9.3 Beta 1.1
         "13E5191d", // 9.3 Beta 2
         "13E5200d", // 9.3 Beta 3
-        "13E5214a", // 9.3 Beta 4
-        "13E5231a", // 9.3 Beta 5
+        "13E5214d", // 9.3 Beta 4
+        "13E5225a", // 9.3 Beta 5
+        "13E5231a", // 9.3 Beta 6
         "13E5233a", // 9.3 Beta 7
         "13E233", // 9.3
         "13E236", // 9.3 (iPad 2 Wi-Fi + 3G)
