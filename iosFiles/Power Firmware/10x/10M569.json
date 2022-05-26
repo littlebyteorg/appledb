@@ -11,16 +11,18 @@
                 "USB-C to MagSafe 3 Cable (2 m)"
             ],
             "type": "ota",
-            "host": [
+            "links": [
                 {
-                    "value": "https://updates.cdn-apple.com",
-                    "properties": [
-                        "preferred",
-                        "active"
-                    ]
+                    "url": "https://updates.cdn-apple.com/2022/patches/071-95277/79D527B1-1006-473E-8545-EA87E4786427/com_apple_MobileAsset_UARP_A2363/57b73922adc582ec74e16afc4aa0b9995905d0db.zip",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2022/patches/071-95277/79D527B1-1006-473E-8545-EA87E4786427/com_apple_MobileAsset_UARP_A2363/57b73922adc582ec74e16afc4aa0b9995905d0db.zip",
+                    "preferred": false,
+                    "active": true
                 }
-            ],
-            "path": "/2022/patches/071-95277/79D527B1-1006-473E-8545-EA87E4786427/com_apple_MobileAsset_UARP_A2363/57b73922adc582ec74e16afc4aa0b9995905d0db.zip"
+            ]
         }
     ]
 }
