@@ -16,7 +16,7 @@ module.exports = {
     type: "Mixed",
     latestVer: "0.6.2",
     color: "#800080",
-    firmwares: ["5.3","7.8"]
+    firmwares: ["5.3","7.9"]
   },
   compatibility: [
     {

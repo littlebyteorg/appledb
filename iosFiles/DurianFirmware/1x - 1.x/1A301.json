@@ -14,16 +14,18 @@
                 "afw1,5"
             ],
             "type": "ota",
-            "host": [
+            "links": [
                 {
-                    "value": "https://updates.cdn-apple.com",
-                    "properties": [
-                        "preferred",
-                        "active"
-                    ]
+                    "url": "https://updates.cdn-apple.com/2022/patches/002-05730/DF7D3451-2BF1-4838-BAC7-3375875D92C9/com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware/e5586353aa73569d288bb32ccdd4c52f24287d1d.zip",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2022/patches/002-05730/DF7D3451-2BF1-4838-BAC7-3375875D92C9/com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware/e5586353aa73569d288bb32ccdd4c52f24287d1d.zip",
+                    "preferred": false,
+                    "active": true
                 }
-            ],
-            "path": "/2022/patches/002-05730/DF7D3451-2BF1-4838-BAC7-3375875D92C9/com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware/e5586353aa73569d288bb32ccdd4c52f24287d1d.zip"
+            ]
         }
     ]
 }
