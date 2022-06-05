@@ -7,9 +7,9 @@ module.exports = {
       url: "https://github.com/zachary7829/openpwnage/",
       external: true
     },
-    latestVer: "Alpha Build 4",
+    latestVer: "Alpha Build 5",
     color: "#faf4f7",
-    notes: "Does not install bootstrap currently.",
+    notes: "If first time jailbreaking, you currently can't install tweaks due to an error with cydo.",
     type: "Semi-untethered",
     firmwares: ["9.0b1","9.3.6"]
   },
