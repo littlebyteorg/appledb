@@ -1,7 +1,7 @@
 module.exports = {
   name: "Phœnix",
   alias: "Phoenix",
-  priority: 0,
+  priority: 4,
   info: {
     website: {
       name: "phoenixpwn.com",

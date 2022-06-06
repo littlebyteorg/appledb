@@ -124,14 +124,12 @@ iosFiles = iosFiles.map(function(ver) {
       const source = ver.sources.filter(y => y.deviceMap.includes(x))[0]
       if (!source) return
       const type = source.type
-      const hostArr = source.host
-      const propertyArr = hostArr.filter(x => x.hasOwnProperty('properties')).map(x => x.properties).flat()
-      const host = hostArr.filter(x => {
-        if (propertyArr.includes('preferred')) return x.properties.includes('preferred')
+      const linksArr = source.links
+      const link = linksArr.filter(x => {
+        if (linksArr.some(x => x.preferred)) return x.preferred
         else return true
-      })[0].value
-      const path = host + source.path
-      obj[x][type] = path
+      })[0].url
+      obj[x][type] = link
     })
     return obj
   }

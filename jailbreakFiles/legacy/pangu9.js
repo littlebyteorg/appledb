@@ -1,6 +1,6 @@
 module.exports = {
   name: "Pangu9",
-  priority: 3,
+  priority: 0,
   info: {
     website: {
       name: "en.9.pangu.io (archive.org)",

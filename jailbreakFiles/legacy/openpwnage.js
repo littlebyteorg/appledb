@@ -1,20 +1,65 @@
 module.exports = {
   name: "openpwnage",
-  priority: 3,
+  priority: 6,
   info: {
     website: {
       name: "github.com/zachary7829/openpwnage/",
       url: "https://github.com/zachary7829/openpwnage/",
       external: true
     },
-    latestVer: "1.0",
-    color: "#202020",
+    latestVer: "Beta Build 6",
+    color: "#faf4f7",
     type: "Semi-untethered",
-    firmwares: ["9.3.5","9.3.6"]
+    firmwares: ["9.0b1","9.3.6"]
   },
   compatibility: [
     {
       firmwares: [
+        "13A4254v", // 9.0 Beta
+        "13A4280e", // 9.0 Beta 2
+        "13A4293g", // 9.0 Beta 3
+        "13A4305g", // 9.0 Beta 4
+        "13A4325c", // 9.0 Beta 5
+        "13A340", // 9.0 GM
+        "13A344", // 9.0
+        "13A404", // 9.0.1
+        "13A452", // 9.0.2
+        "13B5110e", // 9.1 Beta
+        "13B5119e", // 9.1 Beta 2
+        "13B5130b", // 9.1 Beta 3
+        "13B136", // 9.1 Beta 4
+        "13B137", // 9.1 Beta 5
+        "13B143", // 9.1
+        "13C5055d", // 9.2 Beta
+        "13C5060d", // 9.2 Beta 2
+        "13C71", // 9.2 Beta 3
+        "13C75", // 9.2 / 9.2 Beta 4
+        "13D11", // 9.2.1 Beta
+        "13D14", // 9.2.1 Beta 2
+        "13D15", // 9.2.1
+        "13E5181d", // 9.3 Beta 1
+        "13E5181f", // 9.3 Beta 1.1
+        "13E5191d", // 9.3 Beta 2
+        "13E5200d", // 9.3 Beta 3
+        "13E5214d", // 9.3 Beta 4
+        "13E5225a", // 9.3 Beta 5
+        "13E5231a", // 9.3 Beta 6
+        "13E5233a", // 9.3 Beta 7
+        "13E233", // 9.3
+        "13E236", // 9.3 (iPad 2 Wi-Fi + 3G)
+        "13E237", // 9.3 (other)
+        "13E238", // 9.3.1
+        "13F51a", // 9.3.2 Beta 1
+        "13F61", // 9.3.2 Beta 2
+        "13F65", // 9.3.2 Beta 3
+        "13F68", // 9.3.2 Beta 4
+        "13F69", // 9.3.2
+        "13G12", // 9.3.3 Beta 1
+        "13G21", // 9.3.3 Beta 2
+        "13G29", // 9.3.3 Beta 3
+        "13G33", // 9.3.3 Beta 4
+        "13G34", // 9.3.3 / 9.3.3 Beta 5
+        "13G35", // 9.3.4
         "13G36", // 9.3.5
         "13G37", // 9.3.6
       ],

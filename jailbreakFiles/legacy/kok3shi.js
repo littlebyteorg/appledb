@@ -1,7 +1,7 @@
 module.exports = {
   name: "kok3shi",
   alias: ["kokeshi", "kok3shiJB", "kokeshiJB"],
-  priority: 2,
+  priority: 5,
   info: {
     website: {
       name: "dora2ios.web.app/kokeshiJB.html",
