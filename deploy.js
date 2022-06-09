@@ -51,7 +51,6 @@ var iosFiles          = requireAll('iosFiles', '.json'),
 
 deviceFiles = deviceFiles.map(function(dev) {
   if (!dev.identifier) dev.identifier = dev.name
-  if (!dev.key) dev.key = dev.name
   if (dev.model && !Array.isArray(dev.model)) dev.model = [dev.model]
   if (dev.board && !Array.isArray(dev.board)) dev.board = [dev.board]
   if (!dev.model) dev.model = []
@@ -76,7 +75,7 @@ deviceGroupFiles = deviceGroupFiles.map(g => {
   return g
 }).sort((a,b) => {
   function getReleased(dev) {
-    let ret = deviceFiles.filter(x => x.key == dev)[0].released
+    let ret = deviceFiles.filter(x => x.identifier == dev)[0].released
     if (!Array.isArray(ret)) ret = [ret]
     return new Date(ret[0]).valueOf()
   }
@@ -205,7 +204,7 @@ var filesWritten = 0
 writeJson('ios', iosFiles, 'uniqueBuild')
 writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
-writeJson('device', deviceFiles, 'key')
+writeJson('device', deviceFiles, 'identifier')
 writeJson('bypass', bypassApps, 'bundleId')
 
 write(path.join(p, 'main.json'), JSON.stringify(main))
