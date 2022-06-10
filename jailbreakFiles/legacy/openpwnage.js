@@ -7,8 +7,16 @@ module.exports = {
       url: "https://github.com/zachary7829/openpwnage/",
       external: true
     },
+    guide: [
+      {
+        name: "Installing openpwnage",
+        url: "/installing-openpwnage/",
+        pkgman: "cydia",
+      }
+    ],
     latestVer: "Beta Build 6",
     color: "#faf4f7",
+    jailbreaksmeapp: true,
     type: "Semi-untethered",
     firmwares: ["9.0b1","9.3.6"]
   },
