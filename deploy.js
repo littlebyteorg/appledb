@@ -89,6 +89,18 @@ deviceGroupFiles = deviceGroupFiles.map(g => {
   return 0
 })
 
+const deviceGroupKeyArr = deviceGroupFiles.map(x => x.devices).flat()
+const devicesWithNoGroup = deviceFiles.filter(x => !deviceGroupKeyArr.includes(x.key) && x.group !== false)
+const nowPutThemInGroups = devicesWithNoGroup.map(x => {
+  return {
+    name: x.name,
+    type: x.type,
+    devices: [x.key]
+  }
+})
+
+deviceGroupFiles = deviceGroupFiles.concat(nowPutThemInGroups)
+
 let counter = 0
 let lastDevType = ''
 for (const group of deviceGroupFiles) {
