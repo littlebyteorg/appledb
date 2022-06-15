@@ -7,7 +7,6 @@ from urllib.parse import urlparse
 
 import requests
 
-
 THREAD_COUNT = 16
 
 # Preferred -> other variants
@@ -110,6 +109,13 @@ class ProcessFileThread(threading.Thread):
                         print(f"Unknown status code: {resp.status_code}")
 
                     success_map[url] = link["active"] = successful_hit
+
+                    if successful_hit:
+                        for hdr, lcl in [("x-amz-meta-digest-sha256", "sha2-256"), ("x-amz-meta-digest-sh1", "sha1")]:
+                            if hdr not in resp.headers:
+                                continue
+
+                            source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
                     # self.print_queue.put("Processed a link")
 
                 source["links"] = new_links
