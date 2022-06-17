@@ -6,6 +6,10 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+import urllib3
+
+# Disable SSL warnings, because Apple's SSL is broken
+urllib3.disable_warnings()
 
 THREAD_COUNT = 16
 
@@ -98,15 +102,19 @@ class ProcessFileThread(threading.Thread):
 
                     successful_hit = False
 
-                    resp = self.session_map.setdefault(urlparse(url).netloc, requests.Session()).get(url, headers={"Range": "bytes=0-1023"})
+                    resp = self.session_map.setdefault(urlparse(url).netloc, requests.Session()).get(
+                        url, headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"}, verify=False, stream=True
+                    )
 
-                    if resp.status_code == 206:  # All hosts should support partial content
+                    if resp.status_code == 200:
                         successful_hit = True
                     elif resp.status_code == 403 or resp.status_code == 404:
                         # Dead link
                         successful_hit = False
                     else:  # We haven't hit this yet
                         print(f"Unknown status code: {resp.status_code}")
+
+                    resp.close()
 
                     success_map[url] = link["active"] = successful_hit
 
@@ -116,6 +124,11 @@ class ProcessFileThread(threading.Thread):
                                 continue
 
                             source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
+
+                        if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
+                            print(f"Warning: {ios_file.name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}")
+
+                        source["size"] = int(resp.headers["Content-Length"])
                     # self.print_queue.put("Processed a link")
 
                 source["links"] = new_links
