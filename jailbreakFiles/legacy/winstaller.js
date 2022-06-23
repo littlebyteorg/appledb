@@ -6,5 +6,17 @@ module.exports = {
       url: "https://code.google.com/archive/p/winstaller/",
       external: true
     },
+    type: "Untethered",
+    firmwares: ["1.0.2"]
   },
+  compatibility: [
+    {
+      firmwares: [
+        "1C28", // 1.0.2
+      ],
+      devices: [
+        "iPhone1,1", // iPhone
+      ]
+    },
+  ]
 }
