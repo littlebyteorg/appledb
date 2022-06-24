@@ -1,6 +1,6 @@
 module.exports = {
   name: "TaiG",
-  priority: 0,
+  priority: 10,
   info: {
     wiki: {
       name: "theiphonewiki.com/wiki/TaiG",
