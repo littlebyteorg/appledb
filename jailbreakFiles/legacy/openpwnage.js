@@ -23,7 +23,8 @@ module.exports = {
     color: "#faf4f7",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
-    firmwares: ["8.4b4","9.3.6"]
+    firmwares: ["8.4b4","9.3.6"],
+    notes: "Substrate only works on iOS 9"
   },
   compatibility: [
     {
