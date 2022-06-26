@@ -19,7 +19,7 @@ module.exports = {
         pkgman: "cydia",
       }
     ],
-    latestVer: "Beta Build 7",
+    latestVer: "Beta Build 8",
     color: "#faf4f7",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
