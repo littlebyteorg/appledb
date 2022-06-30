@@ -12,11 +12,13 @@ module.exports = {
       external: true
     },
     type: "(Safari) Semi-untethered",
-    firmwares: ["9.3","9.3.3"]
+    firmwares: ["9.2","9.3.3"]
   },
   compatibility: [
     {
       firmwares: [
+        "13C75", // 9.2
+        "13D15", // 9.2.1
         "13E233", // 9.3
         "13E234", // 9.3, iPhone 6s, iPad Pro (9.7-inch) only
         "13E237", // 9.3
