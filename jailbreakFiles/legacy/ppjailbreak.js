@@ -1,5 +1,6 @@
 module.exports = {
   name: "PPJailbreak",
+  priority: 7,
   info: {
     wiki: {
       name: "theiphonewiki.com/wiki/PPJailbreak",
@@ -7,7 +8,8 @@ module.exports = {
       external: true
     },
     type: "Untethered",
-    firmwares: ["8.0","8.4"]
+    firmwares: ["8.0","8.4"],
+    notes: "Not Functional on OTA updated devices"
   },
   compatibility: [
     {

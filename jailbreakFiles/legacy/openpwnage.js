@@ -7,6 +7,11 @@ module.exports = {
       url: "https://github.com/zachary7829/openpwnage/",
       external: true
     },
+    wiki: {
+      name: "theiphonewiki.com/wiki/openpwnage",
+      url: "https://www.theiphonewiki.com/wiki/openpwnage",
+      external: true
+    },
     guide: [
       {
         name: "Installing openpwnage",
@@ -14,15 +19,21 @@ module.exports = {
         pkgman: "cydia",
       }
     ],
-    latestVer: "Beta Build 6",
+    latestVer: "Beta Build 8",
     color: "#faf4f7",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
-    firmwares: ["9.0b1","9.3.6"]
+    firmwares: ["8.4b4","9.3.6"],
+    notes: "Substrate only works on iOS 9"
   },
   compatibility: [
     {
       firmwares: [
+        "12H4125a", // 8.4 Beta 4
+        "12H143", // 8.4
+        "12H304", // 8.4.1 Beta
+        "12H318", // 8.4.1 Beta 2
+        "12H321", // 8.4.1
         "13A4254v", // 9.0 Beta
         "13A4280e", // 9.0 Beta 2
         "13A4293g", // 9.0 Beta 3

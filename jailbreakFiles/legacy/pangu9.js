@@ -12,6 +12,13 @@ module.exports = {
       url: "https://www.theiphonewiki.com/wiki/Pangu9",
       external: true
     },
+    guide: [
+      {
+        name: "Installing Pangu9",
+        url: "/installing-pangu9/",
+        pkgman: "cydia",
+      }
+    ],
     type: "Untethered",
     firmwares: ["9.0","9.1"],
     latestVer: "1.3.2 (Windows)\n1.1.1 (macOS)\n1.0.0 (Apple TV 4)",
