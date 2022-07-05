@@ -19,7 +19,7 @@ module.exports = {
         pkgman: "sileo",
       }
     ],
-    latestVer: "1.1.4",
+    latestVer: "1.1.5",
     color: "#6742cd",
     icon: "/assets/images/jb-icons/taurine.png",
     notes: "Can obtain a permanently signed version after initially jailbreaking by installing `taurine-permanent` from the Odyssey Repo",
