@@ -26,6 +26,7 @@ module.exports = {
       ],
       devices: [
         "iPhone1,1", // iPhone
+        "iPhone1,2", // iPhone 3G
         "iPod1,1", // iPod touch
         "iPod2,1", // iPod touch (2nd generation)
       ]

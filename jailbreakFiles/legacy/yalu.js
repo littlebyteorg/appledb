@@ -60,7 +60,6 @@ module.exports = {
         "14B72c", // 10.1, iPhone 7 and iPhone 7 Plus only
         "14B100", // 10.1.1
         "14B150", // 10.1.1
-        "14C92", // 10.2
       ],
       devices: [
         "iPhone9,1", // iPhone 7 (Global), A10
