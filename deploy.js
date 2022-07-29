@@ -1,4 +1,5 @@
 const cname = 'api.appledb.dev'
+const { create } = require('domain')
 const fs = require('fs')
 const path = require('path')
 
@@ -114,7 +115,24 @@ for (const group of deviceGroupFiles) {
   }
 }
 
-iosFiles = iosFiles.map(function(ver) {
+let createDuplicateEntriesArray = []
+
+for (let i of iosFiles) {
+  if (!i.hasOwnProperty('createDuplicateEntries')) continue
+  for (const entry of i.createDuplicateEntries) {
+    let ver = { ...i }
+    delete ver.createDuplicateEntries
+    for (const property in entry) {
+      ver[property] = entry[property]
+    }
+    createDuplicateEntriesArray.push(ver)
+  }
+  delete i.createDuplicateEntries
+}
+
+iosFiles = iosFiles
+.concat(createDuplicateEntriesArray)
+.map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
   if (!ver.beta) ver.beta = false
   if (!ver.sortVersion) {
