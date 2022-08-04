@@ -19,5 +19,8 @@ jobs:
           node-version: 16
           cache: npm
 
+      - name: Run NPM to install dependencies
+        run: npm install
+
       - name: Run Package Tests
         run: npm test
