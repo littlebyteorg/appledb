@@ -104,3 +104,5 @@ This repository is provided by `littlebyteorg`.
 
 Portions of the data have been sourced from [`hack-different/apple-knowledge`](https://github.com/hack-different/apple-knowledge)
 and the [`apple-data` node package](https://www.npmjs.com/package/apple-data)
+
+Portions of the data have been sourced from [theiphonewiki.com](https://www.theiphonewiki.com)
