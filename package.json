@@ -5,7 +5,8 @@
   "scripts": {
     "deploy": "deploy.js",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "is-ci || husky install",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,12 @@
   },
   "homepage": "https://github.com/littlebyteorg/appledb#readme",
   "devDependencies": {
+    "@eslint/create-config": "^0.3.0",
     "@types/jest": "^28.1.6",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
     "apple-data": "^1.0.482",
+    "eslint": "^8.21.0",
     "glob": "^8.0.3",
     "grunt": "^1.5.3",
     "husky": "^8.0.1",
