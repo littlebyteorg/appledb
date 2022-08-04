@@ -9,10 +9,10 @@ test('all JSON files are valid', async () => {
     const search = path.resolve(root_dir, "**/*.json")
     console.log(`searchPath: ${search}`)
 
-    let files = await promisify(glob)(search)
+    const files = await promisify(glob)(search)
 
     await Promise.all(files.map(async file => {
-        let content = await util.promisify(fs.readFile)(file, "utf-8")
+        const content = await util.promisify(fs.readFile)(file, "utf-8")
         expect(content).toBeTruthy()
     }))
 })

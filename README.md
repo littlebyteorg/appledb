@@ -6,52 +6,103 @@ This is intended for use in [appledb.dev](https://appledb.dev/) and [ios.cfw.gui
 
 ## Website/API structure
 
-The `index.json` file contains a list of all the names of `.json` files in each folder.
+The site is a set of static `js`/`json` files that are hosted on the API endpoint.  Updates to these files after a push
+will cause them to be built and deployed to the GitHub pages hosting.
 
-The `main.json` file contains all the information in a folder.
+File structure is broken up like follows:
 
+```text
+
+.github/
+    This folder contains various definitions for GitHub actions and Issues
+   
+.husky/
+    This is a helper tool to make sure your changes are "clean" before a `git commit`.  More can be leaned
+    about husky at https://typicode.github.io/husky/#/
+
+appledb-web/
+
+bypassApps/
+    *define me*
+
+bypassTweaks/
+    *define me*
+
+chipFiles/
+    Each of these files describes a particular Apple designed processor (such as the M1, A15, etc).
+
+deviceFiles/
+    Each of these files describes an Apple device (such as the iPhone 13 Pro Max, iPad Air, etc).
+
+deviceGroupFiles/
+    These files group related devices in to related groups (iPhone 12, iPhone 13 are both iPhones).
+
+iosFiles/
+    These are files that describe a particular iOS software bundles (sometimes called an IPSW)
+
+jailbreakFiles/
+    These describe particular tools for achieving a jailbreak on a device.
+
+node_modules/
+    Third party code that isn't checked into the repository that helps with the deploy, testing etc of this repo.
+
+tests/
+    These are bits of TypeScript/JavaScript that ensure that there are no errors like missing quotation marks or such
+    in the files before trying to deploy them.
+
+.eslintrc.js
+    This provides EcmaScript/JavaScript/TypeScript style and warnings when you run `npm run lint`
+
+.gitignore
+    These are files that are never checked into the GitHub copy
+    
+deploy.js
+    *legacy deploy code* - Will move to grunt
+
+jest.config.json
+    Configuration for the `jest` test runner for the files in `tests/`
+
+LICENSE
+
+package.json
+    Declares the various tools and commands that the repo uses such as `npm test`
+
+package-lock.json
+    A set of the correct versions of tools to install to `node_modules/` - Do not hand edit
+
+README.md
+    This File
+    
+tsconfig.json
+    Configuration to allow for the use of TypeScript as well as JavaScript
+    
+update_links.py
+    *legacy link updater* - Move to grunt task
 ```
-main.json
-bypass/
-  index.json
-  main.json
-  Citibank.UAE.json
-  ae.healthshield.app.ios.json
-  ...
-compat/
-  AppleTV1,1/
-    8N5107.json
-    8N5622.json
-    8N5880.json
-    ...
-  AppleTV2,1/
-    10A406e.json
-    10A831.json
-    10B144b.json
-    ...
-  ...
-device/
-  index.json
-  main.json
-  AppleTV1,1.json
-  AppleTV2,1.json
-  ...
-group/
-  index.json
-  main.json
-  Apple TV (1st generation).json
-  Apple TV (2nd generation).json
-  ...
-ios/
-  index.json
-  main.json
-  10A403.json
-  10A405.json
-  ...
-jailbreak/
-  index.json
-  main.json
-  4039.json
-  Absinthe.json
-  ...
-```
+
+## Contributing
+
+First fork the repository
+
+Perform a `git clone` to your own computer and ensure you have NodeJS (https://nodejs.org/en/) installed.
+
+In the working directory run `npm install` which will bring down the tools to check the code or to perform a build or
+other automated task.
+
+Make edits
+
+Run a `git add . && git commit` to save your work, and then `git push` to your fork.  After
+that go to GitHub and open a Pull Request.
+
+## License
+
+The data here is provided under a MIT license as described in the `LICENSE` file.
+
+## Credits
+
+This repository is provided by `littlebyteorg`.
+
+Portions of the data have been sourced from [`hack-different/apple-knowledge`](https://github.com/hack-different/apple-knowledge)
+and the [`apple-data` node package](https://www.npmjs.com/package/apple-data)
+
+Portions of the data have been sourced from [theiphonewiki.com](https://www.theiphonewiki.com)
