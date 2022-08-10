@@ -23,11 +23,15 @@ function requireAll(p, fileType) {
 }
 
 function mkdir(p) {
-  if (!fs.existsSync(p)) fs.mkdirSync(p)
+  if (!fs.existsSync(p)) {
+    fs.mkdirSync(p)
+    return true
+  }
+  else return false
 }
 
 function write(p, f) {
-  fs.writeFileSync(p, f)
+  //fs.writeFile(p, f, (err) => { if (err) console.log(err) })
   filesWritten++
 }
 
