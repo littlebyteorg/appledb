@@ -184,7 +184,7 @@ module.exports = {
         "iBridge2,21",
         "iBridge2,22"
       ]
-    }
+    },
     {
       firmwares: [
         "16A366-GM", // 12.0 GM
