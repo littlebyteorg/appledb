@@ -1,42 +1,28 @@
 module.exports = {
-  name: "h3lix",
-  alias: "h3lix",
-  priority: 1,
+  name: "kok3shiX",
+  alias: "kok3shiX",
+  priority: 0,
   info: {
     website: {
-      name: "h3lix.tihmstar.net",
-      url: "https://h3lix.tihmstar.net/",
-      external: true
-    },
-    wiki: {
-      name: "theiphonewiki.com/wiki/h3lix",
-      url: "https://www.theiphonewiki.com/wiki/h3lix",
+      name: "dora2ios.web.app/kokeshiX.html",
+      url: "https://dora2ios.web.app/kokeshiX.html",
       external: true
     },
     guide: [
       {
-        name: "Installing h3lix",
-        url: "/installing-h3lix/",
+        name: "Installing kok3shiX",
+        url: "/installing-kok3shiX/",
         pkgman: "cydia",
       }
     ],
-    latestVer: "RC6",
+    latestVer: "1.0alpha",
     color: "#ffffff",
-    icon: "/assets/images/jb-icons/h3lix.png",
     type: "Semi-untethered",
-    firmwares: ["10.0","10.3.4"]
+    firmwares: ["10.3","10.3.4"]
   },
   compatibility: [
     {
       firmwares: [
-        "14A346", // 10.0
-        "14A403", // 10.0.1
-        "14A456", // 10.0.2
-        "14B72", // 10.1
-        "14B100", // 10.1.1
-        "14B150", // 10.1.1
-        "14C92", // 10.2
-        "14D27", // 10.2.1
         "14E277", // 10.3
         "14E304", // 10.3.1
         "14F89", // 10.3.2
