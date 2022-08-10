@@ -165,7 +165,7 @@ iosFiles = iosFiles
 
   ver.devices = getLegacyDevicesObjectArray()
 
-  ver.appledburl = encodeURI(`https://appledb.dev/firmware/${ver.osStr}/${ver.uniqueBuild}}`)
+  ver.appledburl = encodeURI(`https://appledb.dev/firmware/${ver.osStr}/${ver.uniqueBuild}`)
 
   return ver
 })
