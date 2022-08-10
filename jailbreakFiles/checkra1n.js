@@ -161,7 +161,7 @@ module.exports = {
         "14Y664",
         "14Y661",
         "14Y502",
-        "14Y36"
+        "14Y363",
       ],
       devices: [
         "iBridge1,1",
