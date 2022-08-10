@@ -21,6 +21,8 @@ module.exports = {
     ],
     latestVer: "Beta Build 9",
     color: "#faf4f7",
+    icon: "/assets/images/jb-icons/openpwnage.png",
+    notes: "iOS 8.4.1 can be optionally untethered via etason untether package",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
     firmwares: ["8.4b4","9.3.6"]
