@@ -126,6 +126,7 @@ module.exports = {
     },
     {
       firmwares: [
+        "18P4759a",
         "18P4663",
         "18P4556",
         "18P4347",
