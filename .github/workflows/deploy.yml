@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: M1
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -23,6 +23,10 @@ jobs:
         with:
           # choose node.js version to use
           node-version: '16'
+
+      # install dependencies
+      - name: Install dependencies
+        run: yarn
 
       # run build script
       - name: Build json files

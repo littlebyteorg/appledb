@@ -2,6 +2,7 @@ const cname = 'api.appledb.dev'
 const { create } = require('domain')
 const fs = require('fs')
 const path = require('path')
+const hash = require('object-hash')
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
@@ -23,7 +24,11 @@ function requireAll(p, fileType) {
 }
 
 function mkdir(p) {
-  if (!fs.existsSync(p)) fs.mkdirSync(p)
+  if (!fs.existsSync(p)) {
+    fs.mkdirSync(p)
+    return true
+  }
+  else return false
 }
 
 function write(p, f) {
@@ -131,6 +136,7 @@ iosFiles = iosFiles
 .concat(createDuplicateEntriesArray)
 .map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
+  if (!ver.key) ver.key = ver.osStr + ';' + ver.uniqueBuild
   if (!ver.beta) ver.beta = false
   if (!ver.sortVersion) {
     if (ver.iosVersion) ver.sortVersion = ver.iosVersion
@@ -164,7 +170,7 @@ iosFiles = iosFiles
 
   ver.devices = getLegacyDevicesObjectArray()
 
-  ver.appledburl = encodeURI(`https://appledb.dev/firmware.html?os=${ver.osStr}&build=${ver.uniqueBuild}}`)
+  ver.appledburl = encodeURI(`https://appledb.dev/firmware/${ver.osStr}/${ver.uniqueBuild}`)
 
   return ver
 })
@@ -187,23 +193,6 @@ jailbreakFiles = jailbreakFiles.map(function(jb) {
   }
   return jb
 })
-
-const buildArr = iosFiles.map(x => x.uniqueBuild)
-const uniqueBuildArr = new Set(buildArr)
-const duplicateBuildArr = buildArr.filter(x => {
-  if (uniqueBuildArr.has(x)) {
-    uniqueBuildArr.delete(x);
-  } else {
-    return x;
-  }
-})
-
-for (i of duplicateBuildArr) {
-  var getObjArr = iosFiles.filter(x => x.uniqueBuild == i)
-  for (j of getObjArr) {
-    j.uniqueBuild += '-' + j.osType
-  }
-}
 
 bypassApps = bypassApps.map(function(app) {
   if (!app.bypasses) return JSON.stringify(app)
@@ -229,13 +218,14 @@ fs.writeFileSync(`${p}/CNAME`, cname)
 var main = {}
 var filesWritten = 0
 
-writeJson('ios', iosFiles, 'uniqueBuild')
+writeJson('ios', iosFiles, 'key')
 writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'key')
 writeJson('bypass', bypassApps, 'bundleId')
 
 write(path.join(p, 'main.json'), JSON.stringify(main))
+write(path.join(p, 'hash'), hash(main))
 
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
