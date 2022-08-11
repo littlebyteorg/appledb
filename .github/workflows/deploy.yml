@@ -24,6 +24,10 @@ jobs:
           # choose node.js version to use
           node-version: '16'
 
+      # install dependencies
+      - name: Install dependencies
+        run: yarn
+
       # run build script
       - name: Build json files
         run: node deploy.js
