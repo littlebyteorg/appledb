@@ -35,10 +35,10 @@ deviceFiles/
     Each of these files describes an Apple device (such as the iPhone 13 Pro Max, iPad Air, etc).
 
 deviceGroupFiles/
-    These files group related devices in to related groups (iPhone 12, iPhone 13 are both iPhones).
+    These files group related devices in to related groups (e.g. Cellular and Wi-Fi models of iPads are grouped together).
 
 iosFiles/
-    These are files that describe a particular iOS software bundles (sometimes called an IPSW)
+    These are files that describe a particular OS software bundles - despite the name of the folder, it includes more than iOS versions
 
 jailbreakFiles/
     These describe particular tools for achieving a jailbreak on a device.
