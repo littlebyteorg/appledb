@@ -1,6 +1,6 @@
 const cname = 'api.appledb.dev'
 const { create } = require('domain')
-const fs = require('graceful-fs')
+const fs = require('fs')
 const path = require('path')
 const hash = require('object-hash')
 
