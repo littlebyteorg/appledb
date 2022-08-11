@@ -1,8 +1,11 @@
 const { getData } = require('apple-data')
 const fs = require('fs')
+const path = require('path')
 
 function update_cores()
 {
+    this.async()
+    const root_folder = path.resolve(__dirname, '../')
     const cores_data = getData('cores')
         .then(data => data.chip_ids)
         .then(data => {
@@ -68,7 +71,7 @@ function update_cores()
                     info: objData
                 }
 
-                fs.writeFile(`./deviceFiles/Chip/${core}.json`, JSON.stringify(retObj, null, 2), (err) => {
+                fs.writeFile(path.join(root_folder, `./deviceFiles/Chip/${core}.json`), JSON.stringify(retObj, null, 2), (err) => {
                     if (err) console.log(err)
                 })
             }
