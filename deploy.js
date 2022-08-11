@@ -31,7 +31,7 @@ function mkdir(p) {
 }
 
 function write(p, f) {
-  //fs.writeFile(p, f, (err) => { if (err) console.log(err) })
+  fs.writeFile(p, f, (err) => { if (err) console.log(err) })
   filesWritten++
 }
 
