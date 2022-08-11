@@ -1,7 +1,8 @@
 const cname = 'api.appledb.dev'
 const { create } = require('domain')
-const fs = require('fs')
+const fs = require('graceful-fs')
 const path = require('path')
+const hash = require('object-hash')
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
@@ -31,7 +32,7 @@ function mkdir(p) {
 }
 
 function write(p, f) {
-  fs.writeFile(p, f, (err) => { if (err) console.log(err) })
+  fs.writeFileSync(p, f)
   filesWritten++
 }
 
@@ -224,6 +225,7 @@ writeJson('device', deviceFiles, 'key')
 writeJson('bypass', bypassApps, 'bundleId')
 
 write(path.join(p, 'main.json'), JSON.stringify(main))
+write(path.join(p, 'hash'), hash(main))
 
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
