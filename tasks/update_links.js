@@ -16,6 +16,6 @@ function updateLinks() {
 
 }
 
-export default function register(grunt) {
+module.exports = function register(grunt) {
     grunt.registerTask('update', 'update links', updateLinks)
 }

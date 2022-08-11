@@ -5,7 +5,7 @@ const path = require('path')
 global.filesWritten = 0;
 global.main = []
 
-function getAllFiles(dirPath, arrayOfFiles?: [string]) {
+function getAllFiles(dirPath, arrayOfFiles) {
     let files = fs.readdirSync(dirPath)
 
     files.forEach(function(file) {
@@ -255,6 +255,7 @@ function deploy() {
     console.log('Files Written:', filesWritten)
 }
 
-export default function register(grunt) {
+module.exports = function register(grunt) {
     grunt.registerTask('deploy', 'deploy the API', deploy);
+
 }
