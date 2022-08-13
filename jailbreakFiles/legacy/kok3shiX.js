@@ -15,7 +15,7 @@ module.exports = {
         pkgman: "cydia",
       }
     ],
-    latestVer: "1.0alpha",
+    latestVer: "1.0 alpha 2",
     color: "#ffffff",
     type: "Semi-untethered",
     firmwares: ["10.3","10.3.4"]
