@@ -76,6 +76,8 @@ deviceFiles = deviceFiles.map(function(dev) {
 
 deviceGroupFiles = deviceGroupFiles.map(g => {
   if (!g.hideChildren) g.hideChildren = false
+  if (!g.key) g.key = g.name
+
   return g
 }).sort((a,b) => {
   function getReleased(dev) {
