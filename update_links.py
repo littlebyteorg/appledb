@@ -1,15 +1,18 @@
 import json
 import queue
+import string
 import threading
 import time
 from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+import requests.adapters
 import urllib3
 
 # Disable SSL warnings, because Apple's SSL is broken
 urllib3.disable_warnings()
+# urllib3.add_stderr_logger()
 
 THREAD_COUNT = 16
 
@@ -19,13 +22,16 @@ rewrite_map_v2 = {
     "https://mesu.apple.com/": ["http://mesu.apple.com/"],
     "https://secure-appldnld.apple.com/": ["http://appldnld.apple.com/", "http://appldnld.apple.com.edgesuite.net/content.info.apple.com/"],
     "https://download.developer.apple.com/": ["http://adcdownload.apple.com/"],
+    "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
 }
-
 
 rewrite_map_v2_groups = [([preferred_url] + other_urls) for preferred_url, other_urls in rewrite_map_v2.items()]
 
 # Domains that need auth
 needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com"]
+
+# Domains that do not reliably support HEAD requests
+no_head = ["secure-appldnld.apple.com"]
 
 success_map = {}
 
@@ -54,7 +60,11 @@ class ProcessFileThread(threading.Thread):
     def __init__(self, file_queue: queue.Queue, print_queue: queue.Queue, name=None):
         self.file_queue: queue.Queue = file_queue
         self.print_queue: queue.Queue = print_queue
-        self.session_map: dict[str, requests.Session] = {}
+        self.session = requests.Session()
+        adapter = requests.adapters.HTTPAdapter(max_retries=10, pool_connections=16)
+        self.session.mount("https://", adapter)
+        self.session.mount("http://", adapter)
+        # self.session_map: dict[str, requests.Session] = {}
         super().__init__(name=name)
 
     def run(self):
@@ -102,19 +112,33 @@ class ProcessFileThread(threading.Thread):
 
                     successful_hit = False
 
-                    resp = self.session_map.setdefault(urlparse(url).netloc, requests.Session()).get(
-                        url, headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"}, verify=False, stream=True
-                    )
+                    resp = None
+
+                    for _ in range(10):
+                        try:
+                            if urlparse(url).hostname in no_head:
+                                resp = self.session.get(url, headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"}, verify=False, stream=True)
+                            else:
+                                resp = self.session.head(url, headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"}, verify=False, allow_redirects=True)
+                        except requests.ConnectionError:
+                            print("Warning: retrying connection error")
+                            time.sleep(1)
+                            continue
+                        else:
+                            break
+                    else:
+                        raise Exception(f"Failed to connect to {url}")
+
+                    if urlparse(url).hostname in no_head:
+                        resp.close()
 
                     if resp.status_code == 200:
                         successful_hit = True
                     elif resp.status_code == 403 or resp.status_code == 404:
                         # Dead link
                         successful_hit = False
-                    else:  # We haven't hit this yet
-                        print(f"Unknown status code: {resp.status_code}")
-
-                    resp.close()
+                    else:  # Leave it be
+                        raise Exception(f"Unknown status code: {resp.status_code}")                        
 
                     success_map[url] = link["active"] = successful_hit
 
@@ -124,6 +148,13 @@ class ProcessFileThread(threading.Thread):
                                 continue
 
                             source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
+
+                        if "ETag" in resp.headers:
+                            potential_hash = resp.headers["ETag"][1:-1]
+                            if len(potential_hash) == 32 and all(c in string.hexdigits for c in potential_hash):
+                                source.setdefault("hashes", {})["md5"] = potential_hash
+                            else:
+                                print(f"Unknown ETag type: {resp.headers['ETag']}, ignoring")
 
                         if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
                             print(f"Warning: {ios_file.name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}")
