@@ -1,21 +1,23 @@
 {
-    "name": "iPhone 14 Plus",
-    "soc": "A15",
+    "name": "iPhone 14 Pro Max",
+    "identifier": "iPhone15,3",
+    "soc": "A16",
     "arch": "arm64e",
     "type": "iPhone",
-    "released": "2022-10-07",
+    "board": "D74AP",
+    "released": "2022-09-16",
     "info": [
         {
             "type": "SoC",
-            "SoC": "A15",
+            "SoC": "A16",
             "Architecture": "arm64e (64-bit)",
-            "Manufacturing_Process": "5nm"
+            "Manufacturing_Process": "4nm"
         },
         {
             "type": "Cores",
             "CPU_Core_Count": 6,
-            "Performance_Cores": "2 @ 3.23 GHz",
-            "Efficiency_Cores": "4 @ 1.82 GHz",
+            "Performance_Cores": 2,
+            "Efficiency_Cores": 4,
             "GPU_Core_Count": 5,
             "Neural_Engine_Core_Count": 16
         },
@@ -24,19 +26,21 @@
             "Storage": [
                 "128GB",
                 "256GB",
-                "512GB"
-            ]
+                "512GB",
+                "1TB"
+            ],
+            "RAM": "6GB"
         },
         {
             "type": "Power",
-            "Battery_Life": "26 hours",
+            "Battery_Life": "29 hours",
             "Charger": "20W Lightning"
         },
         {
             "type": "Connectivity",
             "Ports": "1x Lightning",
             "Cellular": [
-                "5G (sub-6 GHz and mmWave) with 4x4 MIMO7",
+                "5G (sub‑6 GHz and mmWave) with 4x4 MIMO",
                 "Gigabit LTE with 4x4 MIMO and LAA"
             ],
             "Wi-Fi": "Wi‑Fi 6 (802.11ax) with 2x2 MIMO",
@@ -50,22 +54,33 @@
                 "ƒ/1.9 aperture",
                 "Autofocus"
             ],
-            "Back_Camera": [
-                "12MP Wide camera",
-                "26mm sensor",
-                "ƒ/1.5 aperture",
-                "1.9 μm pixels",
+            "Telephoto_Camera": [
+                "12MP Telephoto camera",
+                "77mm sensor",
+                "ƒ/2.8 aperture",
+                "3x optical zoom in",
+                "Optical image stabilization"
+            ],
+            "Wide_Camera": [
+                "48MP Wide camera",
+                "24mm sensor",
+                "ƒ/1.78 aperture",
+                "2.44 μm quad-pixel-size",
                 "Optical image stabilization"
             ],
             "Ultawide_Camera": [
                 "12MP Ultrawide camera",
                 "13mm sensor",
-                "ƒ/2.4 aperture",
+                "ƒ/2.2 aperture",
                 "Optical image stabilization"
+            ],
+            "TrueDepth_Camera": [
+                "12MP LiDAR sensor",
+                "ƒ/1.9 aperture"
             ],
             "Biometrics": "Face ID sensor",
             "Other": [
-                "Ambient Light Sensor",
+                "Dual Ambient Light Sensors",
                 "High-g accelerometer",
                 "Proximity sensor",
                 "High dynamic range gyroscope",
@@ -82,14 +97,15 @@
         {
             "type": "Display",
             "Resolution": {
-                "x": 1284,
-                "y": 2778
+                "x": 1290,
+                "y": 2796
             },
             "Screen_Size": "6.7\"",
-            "Refresh_Rate": "60 Hz",
+            "Refresh_Rate": "120 Hz",
             "Peak_Brightness": [
-                "800 nits",
-                "1200 nits (HDR)"
+                "1000 nits",
+                "1600 nits (HDR)",
+                "2000 nits (outdoor)"
             ],
             "Color_Gamut": "P3",
             "True_Tone": true,
