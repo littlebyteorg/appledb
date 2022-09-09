@@ -145,7 +145,7 @@ iosFiles = iosFiles
     else ver.sortVersion = ver.version
   }
   if (!ver.deviceMap) ver.deviceMap = []
-  if (!ver.released) ver.released = -1
+  if (!ver.released) ver.released = ''
   
   ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
