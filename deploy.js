@@ -53,12 +53,12 @@ var iosFiles          = requireAll('iosFiles', '.json'),
     bypassApps        = requireAll('bypassApps', '.json')
 
 deviceFiles = deviceFiles.map(function(dev) {
-  if (!dev.identifier) dev.identifier = dev.name
-  if (!dev.key) dev.key = dev.identifier
-  if (dev.model && !Array.isArray(dev.model)) dev.model = [dev.model]
-  if (dev.board && !Array.isArray(dev.board)) dev.board = [dev.board]
-  if (!dev.model) dev.model = []
-  if (!dev.board) dev.board = []
+  for (const p of ['model','board','identifier']) {
+    if (!dev[p]) dev[p] = []
+    if (!Array.isArray(dev[p])) dev[p] = [dev[p]]
+  }
+
+  if (!dev.key) dev.key = dev.name || dev.identifier[0]
 
   if (dev.info) dev.info = dev.info.map(o => {
     if (o.type != 'Display') return o
