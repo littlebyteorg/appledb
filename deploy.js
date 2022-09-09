@@ -58,7 +58,7 @@ deviceFiles = deviceFiles.map(function(dev) {
     if (!Array.isArray(dev[p])) dev[p] = [dev[p]]
   }
 
-  if (!dev.key) dev.key = dev.name || dev.identifier[0]
+  if (!dev.key) dev.key = dev.identifier[0] || dev.name
 
   if (dev.info) dev.info = dev.info.map(o => {
     if (o.type != 'Display') return o
