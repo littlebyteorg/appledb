@@ -147,9 +147,9 @@ iosFiles = iosFiles
   if (!ver.deviceMap) ver.deviceMap = []
   if (!ver.released) ver.released = ''
   
-  /*ver.osType = ver.osStr
+  ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
-  if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'*/
+  if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
 
   function getLegacyDevicesObjectArray() {
     let obj = {}
