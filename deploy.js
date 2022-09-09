@@ -149,7 +149,7 @@ iosFiles = iosFiles
   
   /*ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
-  if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
+  if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'*/
 
   function getLegacyDevicesObjectArray() {
     let obj = {}
@@ -170,7 +170,7 @@ iosFiles = iosFiles
     return obj
   }
 
-  ver.devices = getLegacyDevicesObjectArray()*/
+  ver.devices = getLegacyDevicesObjectArray()
 
   ver.appledburl = encodeURI(`https://appledb.dev/firmware/${ver.osStr.replace(/ /g,'-')}/${ver.uniqueBuild}`)
 
