@@ -140,14 +140,14 @@ iosFiles = iosFiles
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
   if (!ver.key) ver.key = ver.osStr + ';' + ver.uniqueBuild
   if (!ver.beta) ver.beta = false
-  if (!ver.sortVersion) {
+  /*if (!ver.sortVersion) {
     if (ver.iosVersion) ver.sortVersion = ver.iosVersion
     else ver.sortVersion = ver.version
-  }
+  }*/
   if (!ver.deviceMap) ver.deviceMap = []
   if (!ver.released) ver.released = ''
   
-  ver.osType = ver.osStr
+  /*ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
 
@@ -170,7 +170,7 @@ iosFiles = iosFiles
     return obj
   }
 
-  ver.devices = getLegacyDevicesObjectArray()
+  ver.devices = getLegacyDevicesObjectArray()*/
 
   ver.appledburl = encodeURI(`https://appledb.dev/firmware/${ver.osStr.replace(/ /g,'-')}/${ver.uniqueBuild}`)
 
