@@ -74,12 +74,7 @@ deviceFiles = deviceFiles.map(function(dev) {
   return dev
 })
 
-deviceGroupFiles = deviceGroupFiles.map(g => {
-  if (!g.hideChildren) g.hideChildren = false
-  if (!g.key) g.key = g.name
-
-  return g
-}).sort((a,b) => {
+deviceGroupFiles = deviceGroupFiles.sort((a,b) => {
   function getReleased(dev) {
     let ret = deviceFiles.filter(x => x.key == dev)[0].released
     if (!Array.isArray(ret)) ret = [ret]
@@ -104,7 +99,12 @@ const nowPutThemInGroups = devicesWithNoGroup.map(x => {
   }
 })
 
-deviceGroupFiles = deviceGroupFiles.concat(nowPutThemInGroups)
+deviceGroupFiles = deviceGroupFiles.concat(nowPutThemInGroups).map(g => {
+  if (!g.hideChildren) g.hideChildren = false
+  if (!g.key) g.key = g.name
+
+  return g
+})
 
 let counter = 0
 let lastDevType = ''
