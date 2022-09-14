@@ -74,21 +74,6 @@ deviceFiles = deviceFiles.map(function(dev) {
   return dev
 })
 
-deviceGroupFiles = deviceGroupFiles.sort((a,b) => {
-  function getReleased(dev) {
-    let ret = deviceFiles.filter(x => x.key == dev)[0].released
-    if (!Array.isArray(ret)) ret = [ret]
-    return new Date(ret[0]).valueOf()
-  }
-  const released = [a,b].map(x => getReleased(x.devices[0]))
-  const type = [a,b].map(x => x.type)
-  if (type[0] < type[1]) return -1
-  if (type[0] > type[1]) return 1
-  if (released[0] < released[1]) return -1
-  if (released[0] > released[1]) return 1
-  return 0
-})
-
 const deviceGroupKeyArr = deviceGroupFiles.map(x => x.devices).flat()
 const devicesWithNoGroup = deviceFiles.filter(x => !deviceGroupKeyArr.includes(x.key) && x.group !== false)
 const nowPutThemInGroups = devicesWithNoGroup.map(x => {
@@ -104,6 +89,19 @@ deviceGroupFiles = deviceGroupFiles.concat(nowPutThemInGroups).map(g => {
   if (!g.key) g.key = g.name
 
   return g
+}).sort((a,b) => {
+  function getReleased(dev) {
+    let ret = deviceFiles.filter(x => x.key == dev)[0].released
+    if (!Array.isArray(ret)) ret = [ret]
+    return new Date(ret[0]).valueOf()
+  }
+  const released = [a,b].map(x => getReleased(x.devices[0]))
+  const type = [a,b].map(x => x.type)
+  if (type[0] < type[1]) return -1
+  if (type[0] > type[1]) return 1
+  if (released[0] < released[1]) return -1
+  if (released[0] > released[1]) return 1
+  return 0
 })
 
 let counter = 0
