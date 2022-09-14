@@ -135,7 +135,7 @@ for (let i of iosFiles) {
 iosFiles = iosFiles
 .concat(createDuplicateEntriesArray)
 .map(function(ver) {
-  if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
+  if (!ver.uniqueBuild) ver.uniqueBuild = ver.build || ver.version
   if (!ver.key) ver.key = ver.osStr + ';' + ver.uniqueBuild
   if (!ver.beta) ver.beta = false
   /*if (!ver.sortVersion) {
