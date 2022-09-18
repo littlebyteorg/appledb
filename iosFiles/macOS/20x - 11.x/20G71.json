@@ -3,6 +3,14 @@
     "version": "11.5",
     "build": "20G71",
     "released": "2021-07-21",
+    "createDuplicateEntries": [
+        {
+            "version": "11.5 RC",
+            "uniqueBuild": "20G71-RC",
+            "released": "2021-07-19",
+            "beta": true
+        }
+    ],
     "deviceMap": [
         "MacBookAir10,1",
         "MacBookPro17,1",
@@ -12,6 +20,7 @@
     ],
     "sources": [
         {
+            "type": "ipsw",
             "deviceMap": [
                 "MacBookAir10,1",
                 "MacBookPro17,1",
@@ -19,11 +28,6 @@
                 "iMac21,1",
                 "iMac21,2"
             ],
-            "type": "ipsw",
-            "size": 13964047163,
-            "hashes": {
-                "sha2-256": "7f926ba7f6e536cb0a09ac7dc4ab1faf174ddb4d5344c6135aca23e75a38800a"
-            },
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/071-71365/F9BFCEFA-87EB-4B03-A983-6DD23940414B/UniversalMac_11.5_20G71_Restore.ipsw",
@@ -35,15 +39,11 @@
                     "preferred": false,
                     "active": true
                 }
-            ]
-        }
-    ],
-    "createDuplicateEntries": [
-        {
-            "version": "11.5 RC",
-            "uniqueBuild": "20G71-RC",
-            "released": "2021-07-19",
-            "beta": true
+            ],
+            "hashes": {
+                "sha2-256": "7f926ba7f6e536cb0a09ac7dc4ab1faf174ddb4d5344c6135aca23e75a38800a"
+            },
+            "size": 13964047163
         }
     ]
 }

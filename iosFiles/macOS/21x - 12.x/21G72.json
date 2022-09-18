@@ -3,6 +3,14 @@
     "version": "12.5",
     "build": "21G72",
     "released": "2022-07-20",
+    "createDuplicateEntries": [
+        {
+            "version": "12.5 RC 2",
+            "uniqueBuild": "21G72-RC",
+            "released": "2022-07-18",
+            "beta": true
+        }
+    ],
     "releaseNotes": "https://support.apple.com/HT212585#macos125",
     "securityNotes": "https://support.apple.com/HT213345",
     "deviceMap": [
@@ -10,24 +18,12 @@
         "Mac13,2",
         "Mac14,2",
         "Mac14,7",
-        "MacBookAir10,1",
-        "MacBookPro17,1",
-        "MacBookPro18,1",
-        "MacBookPro18,2",
-        "MacBookPro18,3",
-        "MacBookPro18,4",
-        "Macmini9,1",
-        "iMac21,1",
-        "iMac21,2",
-        "VirtualMac2,1",
-        "MacPro6,1",
-        "MacPro7,1",
-        "MacPro7,1-Rack",
         "MacBook9,1",
         "MacBook10,1",
         "MacBookAir8,1",
         "MacBookAir8,2",
         "MacBookAir9,1",
+        "MacBookAir10,1",
         "MacBookPro11,4",
         "MacBookPro11,5",
         "MacBookPro12,1",
@@ -38,18 +34,28 @@
         "MacBookPro14,2",
         "MacBookPro14,3",
         "MacBookPro15,1-2018",
-        "MacBookPro15,2-2018",
-        "MacBookPro15,3-2018",
         "MacBookPro15,1-2019",
+        "MacBookPro15,2-2018",
         "MacBookPro15,2-2019",
+        "MacBookPro15,3-2018",
         "MacBookPro15,3-2019",
         "MacBookPro15,4",
         "MacBookPro16,1",
         "MacBookPro16,2",
         "MacBookPro16,3",
         "MacBookPro16,4",
+        "MacBookPro17,1",
+        "MacBookPro18,1",
+        "MacBookPro18,2",
+        "MacBookPro18,3",
+        "MacBookPro18,4",
+        "MacPro6,1",
+        "MacPro7,1",
+        "MacPro7,1-Rack",
         "Macmini7,1",
         "Macmini8,1",
+        "Macmini9,1",
+        "VirtualMac2,1",
         "iMac15,1-Mid-2015",
         "iMac16,1",
         "iMac16,2",
@@ -62,10 +68,13 @@
         "iMac19,2",
         "iMac20,1",
         "iMac20,2",
+        "iMac21,1",
+        "iMac21,2",
         "iMacPro1,1"
     ],
     "sources": [
         {
+            "type": "ipsw",
             "deviceMap": [
                 "Mac13,1",
                 "Mac13,2",
@@ -82,12 +91,6 @@
                 "iMac21,1",
                 "iMac21,2"
             ],
-            "type": "ipsw",
-            "size": 14084058716,
-            "hashes": {
-                "sha1": "c61f6d5411a5ce703fde89c07d6a963863e4cf67",
-                "sha2-256": "49eb74f3313b0b0c22d4c055f56722143fdae1e5ccb1dcbf779a1a4c4dcbc42b"
-            },
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-42731/BD9917E0-262C-41C5-A69F-AC316A534A39/UniversalMac_12.5_21G72_Restore.ipsw",
@@ -99,15 +102,12 @@
                     "preferred": false,
                     "active": true
                 }
-            ]
-        }
-    ],
-    "createDuplicateEntries": [
-        {
-            "version": "12.5 RC 2",
-            "uniqueBuild": "21G72-RC",
-            "released": "2022-07-18",
-            "beta": true
+            ],
+            "hashes": {
+                "sha1": "c61f6d5411a5ce703fde89c07d6a963863e4cf67",
+                "sha2-256": "49eb74f3313b0b0c22d4c055f56722143fdae1e5ccb1dcbf779a1a4c4dcbc42b"
+            },
+            "size": 14084058716
         }
     ]
 }

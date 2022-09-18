@@ -3,27 +3,23 @@
     "version": "12.1",
     "build": "21C52",
     "released": "2021-12-13",
+    "createDuplicateEntries": [
+        {
+            "version": "12.1 RC 2",
+            "uniqueBuild": "21C52-RC",
+            "released": "2021-12-10",
+            "beta": true
+        }
+    ],
     "releaseNotes": "https://support.apple.com/HT212585#macos121",
     "securityNotes": "https://support.apple.com/HT212978",
     "deviceMap": [
-        "MacBookAir10,1",
-        "MacBookPro17,1",
-        "MacBookPro18,1",
-        "MacBookPro18,2",
-        "MacBookPro18,3",
-        "MacBookPro18,4",
-        "Macmini9,1",
-        "iMac21,1",
-        "iMac21,2",
-        "VirtualMac2,1",
-        "MacPro6,1",
-        "MacPro7,1",
-        "MacPro7,1-Rack",
         "MacBook9,1",
         "MacBook10,1",
         "MacBookAir8,1",
         "MacBookAir8,2",
         "MacBookAir9,1",
+        "MacBookAir10,1",
         "MacBookPro11,4",
         "MacBookPro11,5",
         "MacBookPro12,1",
@@ -34,18 +30,28 @@
         "MacBookPro14,2",
         "MacBookPro14,3",
         "MacBookPro15,1-2018",
-        "MacBookPro15,2-2018",
-        "MacBookPro15,3-2018",
         "MacBookPro15,1-2019",
+        "MacBookPro15,2-2018",
         "MacBookPro15,2-2019",
+        "MacBookPro15,3-2018",
         "MacBookPro15,3-2019",
         "MacBookPro15,4",
         "MacBookPro16,1",
         "MacBookPro16,2",
         "MacBookPro16,3",
         "MacBookPro16,4",
+        "MacBookPro17,1",
+        "MacBookPro18,1",
+        "MacBookPro18,2",
+        "MacBookPro18,3",
+        "MacBookPro18,4",
+        "MacPro6,1",
+        "MacPro7,1",
+        "MacPro7,1-Rack",
         "Macmini7,1",
         "Macmini8,1",
+        "Macmini9,1",
+        "VirtualMac2,1",
         "iMac15,1-Mid-2015",
         "iMac16,1",
         "iMac16,2",
@@ -58,10 +64,13 @@
         "iMac19,2",
         "iMac20,1",
         "iMac20,2",
+        "iMac21,1",
+        "iMac21,2",
         "iMacPro1,1"
     ],
     "sources": [
         {
+            "type": "ipsw",
             "deviceMap": [
                 "MacBookAir10,1",
                 "MacBookPro17,1",
@@ -70,17 +79,10 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
+                "VirtualMac2,1",
                 "iMac21,1",
-                "iMac21,2",
-                "VirtualMac2,1"
+                "iMac21,2"
             ],
-            "type": "ipsw",
-            "size": 14141114913,
-            "hashes": {
-                "sha1": "04421498d4e6e031f2269c988a2663ebacb774e4",
-                "sha2-256": "8d3863cd4a09d5cfd75c4a3e61f7605d800f653b5ecd6e8628b19a44de6a67b0",
-                "sha2-512": "504027e596714bfd04b54dda99518e417c1e117c14ef66f39716f377587e484454d9f790e9ca5f1aa6728ecebe5768be0d141237fe8763b0fe7089e7ef7cdc6a"
-            },
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FCSWinter/fullrestores/002-42433/F3F6D5CD-67FE-449C-9212-F7409808B6C4/UniversalMac_12.1_21C52_Restore.ipsw",
@@ -92,15 +94,13 @@
                     "preferred": false,
                     "active": true
                 }
-            ]
-        }
-    ],
-    "createDuplicateEntries": [
-        {
-            "version": "12.1 RC 2",
-            "uniqueBuild": "21C52-RC",
-            "released": "2021-12-10",
-            "beta": true
+            ],
+            "hashes": {
+                "sha1": "04421498d4e6e031f2269c988a2663ebacb774e4",
+                "sha2-256": "8d3863cd4a09d5cfd75c4a3e61f7605d800f653b5ecd6e8628b19a44de6a67b0",
+                "sha2-512": "504027e596714bfd04b54dda99518e417c1e117c14ef66f39716f377587e484454d9f790e9ca5f1aa6728ecebe5768be0d141237fe8763b0fe7089e7ef7cdc6a"
+            },
+            "size": 14141114913
         }
     ]
 }
