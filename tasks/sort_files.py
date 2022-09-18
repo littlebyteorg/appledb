@@ -46,7 +46,7 @@ def sort_file(file_path: Optional[Path], raw_data=None):
     if not file_path and not raw_data:
         raise ValueError("Must provide either a file path or raw data")
 
-    data = copy.deepcopy(raw_data) or json.load(file_path.open())
+    data = copy.deepcopy(raw_data) or json.load(file_path.open())  # type: ignore
     data = dict(sorted(data.items(), key=lambda item: key_order.index(item[0]) if item[0] in key_order else len(key_order)))
 
     for i, duplicate_entry in enumerate(data.get("createDuplicateEntries", [])):
@@ -65,7 +65,7 @@ def sort_file(file_path: Optional[Path], raw_data=None):
     data.get("sources", []).sort(key=lambda source: device_sort(source["deviceMap"][0]))
 
     if not raw_data:
-        json.dump(data, file_path.open("w", newline="\n"), indent=4)
+        json.dump(data, file_path.open("w", newline="\n"), indent=4)  # type: ignore
     else:
         return data
 

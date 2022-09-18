@@ -165,7 +165,7 @@ if __name__ == "__main__":
     else:
         try:
             while True:
-                ipsw_url = input("Enter IPSW URL: ").strip()
-                import_ipsw(ipsw_url)
+                url = input("Enter IPSW URL: ").strip()
+                import_ipsw(url)
         except KeyboardInterrupt:
             pass
