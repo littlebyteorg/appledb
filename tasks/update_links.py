@@ -4,6 +4,7 @@ import string
 import threading
 import time
 from pathlib import Path
+from typing import Collection
 from urllib.parse import urlparse
 
 import requests
@@ -57,9 +58,10 @@ for preferred_hosts, other_hosts in rewrite_map_v2.items():
 
 
 class ProcessFileThread(threading.Thread):
-    def __init__(self, file_queue: queue.Queue, print_queue: queue.Queue, name=None):
+    def __init__(self, file_queue: queue.Queue, print_queue: queue.Queue, use_network=True, name=None):
         self.file_queue: queue.Queue = file_queue
         self.print_queue: queue.Queue = print_queue
+        self.use_network = use_network
         self.session = requests.Session()
         adapter = requests.adapters.HTTPAdapter(max_retries=10, pool_connections=16)
         self.session.mount("https://", adapter)
@@ -107,6 +109,11 @@ class ProcessFileThread(threading.Thread):
 
                     if urlparse(url).hostname in needs_auth:
                         # We don't have credentials for this host, so we'll assume it's active and skip it
+                        link["active"] = True
+                        continue
+
+                    if not self.use_network:
+                        # Network disabled, assume all links are active
                         link["active"] = True
                         continue
 
@@ -178,14 +185,18 @@ class PrintThread(threading.Thread):
 
     def run(self):
         while not self.stop_event.is_set():
-            self.count += 1
-            print(self.print_queue.get() or f"Processed {self.count}/{self.total} ({self.count/self.total*100}%) files")
+            try:
+                item = self.print_queue.get(block=False)
+                self.count += 1
+                print(item or f"Processed {self.count}/{self.total} ({self.count/self.total*100}%) files")
+            except queue.Empty:
+                pass
 
     def stop(self):
         self.stop_event.set()
 
 
-def update_links(files: list[Path]):
+def update_links(files: Collection[Path], use_network=True):
     file_queue = queue.Queue()
     for i in files:
         file_queue.put(i)
@@ -197,7 +208,7 @@ def update_links(files: list[Path]):
     printer_thread = PrintThread(print_queue, len(files), "Printer Thread")
     printer_thread.start()
 
-    threads = [ProcessFileThread(file_queue, print_queue, name=f"Thread {i}") for i in range(THREAD_COUNT)]
+    threads = [ProcessFileThread(file_queue, print_queue, use_network, name=f"Thread {i}") for i in range(min(len(files), THREAD_COUNT))]
     for thread in threads:
         thread.start()
 

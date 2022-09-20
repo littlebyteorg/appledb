@@ -10,10 +10,10 @@ import packaging.version
 import remotezip
 import requests
 
-from tasks.sort_files import sort_file
-from tasks.update_links import update_links
+from sort_files import sort_file
+from update_links import update_links
 
-FULL_SELF_DRIVING = True
+FULL_SELF_DRIVING = False
 
 OS_MAP = [
     ("iPod", "iOS"),
@@ -26,15 +26,15 @@ OS_MAP = [
     ("iBridge", "bridgeOS"),
 ]
 
+SESSION = requests.Session()
+
 
 def import_ipsw(ipsw_url):
     # Check if a BuildManifest.plist exists at the same parent directory as the IPSW
     build_manifest_url = ipsw_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
-    build_manifest_response = requests.get(build_manifest_url)
+    build_manifest_response = SESSION.get(build_manifest_url)
 
     build_manifest = None
-
-    ipsw = remotezip.RemoteZip(ipsw_url)
 
     try:
         build_manifest_response.raise_for_status()
@@ -45,6 +45,7 @@ def import_ipsw(ipsw_url):
 
     if not build_manifest:
         # Get it via remotezip
+        ipsw = remotezip.RemoteZip(ipsw_url)
         print("\tGetting BuildManifest.plist via remotezip")
         build_manifest = plistlib.loads(ipsw.read("BuildManifest.plist"))
 
@@ -54,11 +55,11 @@ def import_ipsw(ipsw_url):
     supported_devices = build_manifest["SupportedProductTypes"]
 
     # Get Restore.plist from the IPSW
-    restore = plistlib.loads(ipsw.read("Restore.plist"))
+    # restore = plistlib.loads(ipsw.read("Restore.plist"))
 
-    assert restore["ProductBuildVersion"] == build
-    assert restore["ProductVersion"] == version
-    assert restore["SupportedProductTypes"] == supported_devices
+    # assert restore["ProductBuildVersion"] == build
+    # assert restore["ProductVersion"] == version
+    # assert restore["SupportedProductTypes"] == supported_devices
 
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "ADP3,1"]]
 
@@ -66,6 +67,7 @@ def import_ipsw(ipsw_url):
         if any(prod.startswith(product_prefix) for prod in supported_devices):
             if os_str == "iPadOS" and packaging.version.parse(version) < packaging.version.parse("13.0"):
                 os_str = "iOS"
+            print(f"\t{os_str} {version} ({build})")
             break
     else:
         if FULL_SELF_DRIVING:
@@ -147,7 +149,12 @@ def import_ipsw(ipsw_url):
     if FULL_SELF_DRIVING:
         print("\tRunning update links on file")
         update_links([db_file])
+    else:
+        # Save the network access for the end, that way we can run it once per file instead of once per ipsw
+        # and we can use threads to speed it up
+        update_links([db_file], False)
     print(f"\tSanity check the file{', run update_links.py, ' if not FULL_SELF_DRIVING else ''}and then commit it\n")
+    return db_file
 
 
 if __name__ == "__main__":
@@ -156,12 +163,17 @@ if __name__ == "__main__":
 
     bulk_mode = input("Bulk mode - read URLs from import.txt? [y/n]: ").strip().lower() == "y"
     if bulk_mode:
+        files_processed = set()
+
         if not FULL_SELF_DRIVING:
             print("Warning: you still need to be present, as this script will ask for input!")
         urls = [i.strip() for i in Path("import.txt").read_text().splitlines() if i.strip()]
         for url in urls:
             print(f"Importing {url}")
-            import_ipsw(url)
+            files_processed.add(import_ipsw(url))
+
+        print("Checking processed files for alive/hashes...")
+        update_links(files_processed)
     else:
         try:
             while True:
