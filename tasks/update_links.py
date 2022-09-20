@@ -138,7 +138,7 @@ class ProcessFileThread(threading.Thread):
                         # Dead link
                         successful_hit = False
                     else:  # Leave it be
-                        raise Exception(f"Unknown status code: {resp.status_code}")                        
+                        raise Exception(f"Unknown status code: {resp.status_code}")
 
                     success_map[url] = link["active"] = successful_hit
 
@@ -185,29 +185,33 @@ class PrintThread(threading.Thread):
         self.stop_event.set()
 
 
-files = list(Path("iosFiles").rglob("*.json"))
-file_queue = queue.Queue()
-for i in files:
-    file_queue.put(i)
+def update_links(files: list[Path]):
+    file_queue = queue.Queue()
+    for i in files:
+        file_queue.put(i)
 
-print_queue = queue.Queue()
+    print_queue = queue.Queue()
 
-start = time.time()
+    start = time.time()
 
-printer_thread = PrintThread(print_queue, len(files), "Printer Thread")
-printer_thread.start()
+    printer_thread = PrintThread(print_queue, len(files), "Printer Thread")
+    printer_thread.start()
 
-threads = [ProcessFileThread(file_queue, print_queue, name=f"Thread {i}") for i in range(THREAD_COUNT)]
-for thread in threads:
-    thread.start()
+    threads = [ProcessFileThread(file_queue, print_queue, name=f"Thread {i}") for i in range(THREAD_COUNT)]
+    for thread in threads:
+        thread.start()
 
-for thread in threads:
-    thread.join()
+    for thread in threads:
+        thread.join()
 
-end = time.time()
+    end = time.time()
 
-# Done checking
-printer_thread.stop()
-printer_thread.join()
+    # Done checking
+    printer_thread.stop()
+    printer_thread.join()
 
-print(f"Processed {len(files)} files in {end-start} seconds")
+    print(f"Processed {len(files)} files in {end-start} seconds")
+
+
+if __name__ == "__main__":
+    update_links(list(Path("iosFiles").rglob("*.json")))
