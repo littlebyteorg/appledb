@@ -144,6 +144,9 @@ iosFiles = iosFiles
   }*/
   if (!ver.deviceMap) ver.deviceMap = []
   if (!ver.released) ver.released = ''
+
+  if (ver.preinstalled === true) ver.preinstalled = ver.deviceMap
+  else if (!ver.preinstalled) ver.preinstalled = []
   
   ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
