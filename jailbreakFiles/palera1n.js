@@ -14,7 +14,12 @@ module.exports = {
   compatibility: [
     {
       devices: [
-        "iPhone8,1"
+        "iPhone8,1",
+        "iPhone8,2",
+        "iPhone9,1",
+        "iPhone9,2",
+        "iPhone9,3",
+        "iPhone9,4"
       ],
       firmwares: [
         "19D52",
