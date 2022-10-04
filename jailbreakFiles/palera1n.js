@@ -21,7 +21,11 @@ module.exports = {
         "iPhone9,2",
         "iPhone9,3",
         "iPhone9,4",
+        "iPhone10,1",
+        "iPhone10,2",
         "iPhone10,3",
+        "iPhone10,4",
+        "iPhone10,5",
         "iPhone10,6",
         "iPod9,1"
       ],
