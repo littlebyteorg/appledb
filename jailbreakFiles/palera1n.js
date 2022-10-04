@@ -7,6 +7,13 @@ module.exports = {
       url: "https://github.com/palera1n/palera1n/tree/tweaks",
       external: true
     },
+    guide: [
+      {
+        name: "Installing palera1n",
+        url: "/installing-palera1n/",
+        pkgman: "sileo",
+      }
+    ],
     latestVer: "1.0.0",
     type: "Tethered",
     firmwares: ["15.0","15.3.1"]
