@@ -35,6 +35,16 @@ module.exports = {
         "iPhone10,4",
         "iPhone10,5",
         "iPhone10,6",
+        "iPad5,1",
+        "iPad5,2",
+        "iPad5,3",
+        "iPad5,4",
+        "iPad6,11",
+        "iPad6,12",
+        "iPad7,5",
+        "iPad7,6",
+        "iPad7,11",
+        "iPad7,12",
         "iPod9,1"
       ],
       firmwares: [
