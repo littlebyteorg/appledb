@@ -19,7 +19,9 @@ module.exports = {
         "iPhone9,1",
         "iPhone9,2",
         "iPhone9,3",
-        "iPhone9,4"
+        "iPhone9,4",
+        "iPhone10,3",
+        "iPhone10,6"
       ],
       firmwares: [
         "19D52",
