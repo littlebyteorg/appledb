@@ -45,7 +45,7 @@ function writeJson(dirName, arr, property) {
   main[dirName] = arr
 }
 
-var iosFiles          = requireAll('iosFiles', '.json'),
+var osFiles          = requireAll('osFiles', '.json'),
     jailbreakFiles    = requireAll('jailbreakFiles', '.js'),
     deviceGroupFiles  = requireAll('deviceGroupFiles', '.json'),
     deviceFiles       = requireAll('deviceFiles', '.json'),
@@ -119,7 +119,7 @@ for (const group of deviceGroupFiles) {
 
 let createDuplicateEntriesArray = []
 
-for (let i of iosFiles) {
+for (let i of osFiles) {
   if (!i.hasOwnProperty('createDuplicateEntries')) continue
   for (const entry of i.createDuplicateEntries) {
     let ver = { ...i }
@@ -132,7 +132,7 @@ for (let i of iosFiles) {
   delete i.createDuplicateEntries
 }
 
-iosFiles = iosFiles
+osFiles = osFiles
 .concat(createDuplicateEntriesArray)
 .map(function(ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build || ver.version
@@ -221,7 +221,7 @@ fs.writeFileSync(`${p}/CNAME`, cname)
 var main = {}
 var filesWritten = 0
 
-writeJson('ios', iosFiles, 'key')
+writeJson('ios', osFiles, 'key')
 writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'key')
@@ -232,7 +232,7 @@ write(path.join(p, 'hash'), hash(main))
 
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
-iosFiles.map(function(fw) {
+osFiles.map(function(fw) {
   if (fw.deviceMap) fw.deviceMap.map(function(dev) {
     mkdir(path.join(dirName, dev))
     var jb = jailbreakFiles.filter(function(x) {

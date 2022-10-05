@@ -225,4 +225,4 @@ def update_links(files: Collection[Path], use_network=True):
 
 
 if __name__ == "__main__":
-    update_links(list(Path("iosFiles").rglob("*.json")))
+    update_links(list(Path("osFiles").rglob("*.json")))

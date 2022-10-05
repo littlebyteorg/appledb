@@ -37,7 +37,7 @@ deviceFiles/
 deviceGroupFiles/
     These files group related devices in to related groups (e.g. Cellular and Wi-Fi models of iPads are grouped together).
 
-iosFiles/
+osFiles/
     These are files that describe a particular OS software bundles - despite the name of the folder, it includes more than iOS versions
 
 jailbreakFiles/

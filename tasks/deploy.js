@@ -43,7 +43,7 @@ function writeJson(p, dirName, arr, property) {
 }
 
 function deploy() {
-    var iosFiles = requireAll('iosFiles', '.json'),
+    var osFiles = requireAll('osFiles', '.json'),
         jailbreakFiles = requireAll('jailbreakFiles', '.js'),
         deviceGroupFiles = requireAll('deviceGroupFiles', '.json'),
         deviceFiles = requireAll('deviceFiles', '.json'),
@@ -117,7 +117,7 @@ function deploy() {
 
     let createDuplicateEntriesArray = []
 
-    for (let i of iosFiles) {
+    for (let i of osFiles) {
         if (!i.hasOwnProperty('createDuplicateEntries')) continue
         for (const entry of i.createDuplicateEntries) {
             let ver = {...i}
@@ -130,7 +130,7 @@ function deploy() {
         delete i.createDuplicateEntries
     }
 
-    iosFiles = iosFiles
+    osFiles = osFiles
         .concat(createDuplicateEntriesArray)
         .map(function (ver) {
             if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
@@ -189,7 +189,7 @@ function deploy() {
         return jb
     })
 
-    const buildArr = iosFiles.map(x => x.uniqueBuild)
+    const buildArr = osFiles.map(x => x.uniqueBuild)
     const uniqueBuildArr = new Set(buildArr)
     const duplicateBuildArr = buildArr.filter(x => {
         if (uniqueBuildArr.has(x)) {
@@ -200,7 +200,7 @@ function deploy() {
     })
 
     for (let i of duplicateBuildArr) {
-        var getObjArr = iosFiles.filter(x => x.uniqueBuild == i)
+        var getObjArr = osFiles.filter(x => x.uniqueBuild == i)
         for (let j of getObjArr) {
             j.uniqueBuild += '-' + j.osType
         }
@@ -230,7 +230,7 @@ function deploy() {
     var main = {}
     var filesWritten = 0
 
-    writeJson(p, 'ios', iosFiles, 'uniqueBuild')
+    writeJson(p, 'ios', osFiles, 'uniqueBuild')
     writeJson(p, 'jailbreak', jailbreakFiles, 'name')
     writeJson(p, 'group', deviceGroupFiles, 'name')
     writeJson(p, 'device', deviceFiles, 'key')
@@ -240,7 +240,7 @@ function deploy() {
 
     var dirName = path.join(p, 'compat')
     mkdir(dirName)
-    iosFiles.map(function (fw) {
+    osFiles.map(function (fw) {
         if (fw.deviceMap) fw.deviceMap.map(function (dev) {
             mkdir(path.join(dirName, dev))
             var jb = jailbreakFiles.filter(function (x) {

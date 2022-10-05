@@ -71,5 +71,5 @@ def sort_file(file_path: Optional[Path], raw_data=None):
 
 
 if __name__ == "__main__":
-    for file in Path("iosFiles").rglob("*.json"):
+    for file in Path("osFiles").rglob("*.json"):
         sort_file(file)

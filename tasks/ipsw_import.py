@@ -83,7 +83,7 @@ def import_ipsw(ipsw_url):
     major_version = ".".join(version.split(".")[:1]) + ".x"
     version_dir = f"{kern_version}x - {major_version}"
 
-    db_file = Path(f"iosFiles/{os_str}/{version_dir}/{build}.json")
+    db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
     if db_file.exists():
         print("\tFile already exists, not replacing")
     else:

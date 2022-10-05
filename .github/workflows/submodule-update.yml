@@ -22,7 +22,7 @@ jobs:
         $diff = git diff --name-only HEAD^ HEAD
 
         # Check if a file under docs/ or with the .md extension has changed (added, modified, deleted)
-        $SourceDiff = $diff | Where-Object { $_ -match '^appledb-web/' -or $_ -match '^deviceFiles/' -or $_ -match '^deviceGroupFiles/' -or $_ -match '^iosFiles/' -or $_ -match '^jailbreakFiles/' }
+        $SourceDiff = $diff | Where-Object { $_ -match '^appledb-web/' -or $_ -match '^deviceFiles/' -or $_ -match '^deviceGroupFiles/' -or $_ -match '^osFiles/' -or $_ -match '^jailbreakFiles/' }
         $HasDiff = $SourceDiff.Length -gt 0
 
         # Set the output named "docs_changed"
