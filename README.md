@@ -4,10 +4,7 @@ Hosted at [api.appledb.dev](https://api.appledb.dev/).
 
 This is intended for use in [appledb.dev](https://appledb.dev/) and [ios.cfw.guide](https://ios.cfw.guide), however you may also use this information in your projects.
 
-## Website/API structure
-
-The site is a set of static `js`/`json` files that are hosted on the API endpoint.  Updates to these files after a push
-will cause them to be built and deployed to the GitHub pages hosting.
+## Repo structure
 
 File structure is broken up like follows:
 
@@ -38,7 +35,7 @@ deviceGroupFiles/
     These files group related devices in to related groups (e.g. Cellular and Wi-Fi models of iPads are grouped together).
 
 osFiles/
-    These are files that describe a particular OS software bundles - despite the name of the folder, it includes more than iOS versions
+    These are files that describe a particular OS software bundles.
 
 jailbreakFiles/
     These describe particular tools for achieving a jailbreak on a device.
