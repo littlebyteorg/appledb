@@ -14,7 +14,7 @@ module.exports = {
         pkgman: "sileo",
       }
     ],
-    latestVer: "1.1.0",
+    latestVer: "1.1.1",
     type: "Tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
     firmwares: ["15.0","15.3.1"]
