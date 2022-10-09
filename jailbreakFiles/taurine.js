@@ -14,94 +14,15 @@ module.exports = {
     },
     guide: [
       {
-        text: "Guide (Normal)",
         name: "Installing Taurine",
         url: "/installing-taurine/",
         pkgman: "sileo",
-      },
-      {
-        text: "Guide (TrollStore)",
-        name: "Installing Taurine (TrollStore)",
-        url: "/installing-taurine-trollstore/",
-        pkgman: "sileo",
-        firmwares: [
-          "18A5301v", // 14.0 beta
-          "18A5319i", // 14.0 beta 2
-          "18A5332f", // 14.0 beta 3
-          "18A5342e", // 14.0 beta 4
-          "18A5351d", // 14.0 beta 5
-          "18A5357e", // 14.0 beta 6
-          "18A5369b", // 14.0 beta 7
-          "18A5373a", // 14.0 beta 8
-          "18A373-GM", // 14.0 GM
-          "18A373", // 14.0
-          "18A393", // 14.0.1
-          "18A8395-GM", // 14.1 GM
-          "18A8395", // 14.1
-          "18B5052h", // 14.2 beta
-          "18B5052i", // 14.2 beta
-          "18B5061e", // 14.2 beta 2
-          "18B5072f", // 14.2 beta 3
-          "18B5083a", // 14.2 beta 4
-          "18B91", // 14.2 RC
-          "18B92", // 14.2
-          "18B111", // 14.2, iPhone 12 and 12 Pro only
-          "18B121", // 14.2.1, iPhone 12 and 12 Pro only
-          "18C5044f", // 14.3 beta
-          "18C5054c", // 14.3 beta 2
-          "18C5061a", // 14.3 beta 3
-          "18C65", // 14.3 RC
-          "18C66-RC", // 14.3 RC 2
-          "18C66", // 14.3
-        ],
-        devices: [
-          "iPhone11,2", // iPhone XS, A12
-          "iPhone11,4", // iPhone XS Max (China mainland), A12
-          "iPhone11,6", // iPhone XS Max, A12
-          "iPhone11,8", // iPhone XR, A12
-          "iPhone12,1", // iPhone 11, A13
-          "iPhone12,3", // iPhone 11 Pro, A13
-          "iPhone12,5", // iPhone 11 Pro Max, A13
-          "iPhone12,8", // iPhone SE (2nd generation), A13
-          "iPhone13,1", // iPhone 12 mini, A14
-          "iPhone13,2", // iPhone 12, A14
-          "iPhone13,3", // iPhone 12 Pro, A14
-          "iPhone13,4", // iPhone 12 Pro Max, A14
-          "iPad8,1", // iPad Pro 11-inch Wi-Fi, A12X
-          "iPad8,2", // iPad Pro 11-inch Wi-Fi (1TB), A12X
-          "iPad8,3", // iPad Pro 11-inch Wi-Fi + Cellular, A12X
-          "iPad8,4", // iPad Pro 11-inch Wi-Fi + Cellular (1TB), A12X
-          "iPad8,5", // iPad Pro 12.9-inch (3rd generation) Wi-Fi, A12X
-          "iPad8,6", // iPad Pro 12.9-inch (3rd generation) Wi-Fi (1TB), A12X
-          "iPad8,7", // iPad Pro 12.9-inch (3rd generation) Wi-Fi + Cellular, A12X
-          "iPad8,8", // iPad Pro 12.9-inch (3rd generation) Wi-Fi + Cellular (1TB), A12X // iPad Pro 12.9-inch (3rd generation) Wi-Fi + Cellular (1TB), A12X
-          "iPad8,9", // iPad Pro 11-inch (2nd generation) Wi-Fi, A12Z
-          "iPad8,10", // iPad Pro 11-inch (2nd generation) Wi-Fi + Cellular, A12Z
-          "iPad8,11", // iPad Pro 12.9-inch (4th generation) Wi-Fi, A12Z
-          "iPad8,12", // iPad Pro 12.9-inch (4th generation) Wi-Fi + Cellular, A12Z
-          "iPad11,1", // iPad mini (5th generation) Wi-Fi, A12
-          "iPad11,2", // iPad mini (5th generation) Wi-Fi + Cellular, A12
-          "iPad11,3", // iPad Air (3rd generation) Wi-Fi, A12
-          "iPad11,4", // iPad Air (3rd generation) Wi-Fi + Cellular, A12
-          "iPad11,6", // iPad (8th generation) Wi-Fi, A12
-          "iPad11,7", // iPad (8th generation) Wi-Fi + Cellular, A12
-          "iPad13,1", // iPad Air (4th generation) Wi-Fi, A14
-          "iPad13,2", // iPad Air (4th generation) Wi-Fi + Cellular, A14
-          "iPad13,4", // iPad Pro 11-inch (3rd generation) Wi-Fi, M1
-          "iPad13,5", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular with mmWave, M1
-          "iPad13,6", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular, M1
-          "iPad13,7", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular (China mainland), M1
-          "iPad13,8", // iPad Pro 12.9-inch (5th generation) Wi-Fi, M1
-          "iPad13,9", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular with mmWave, M1
-          "iPad13,10", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular, M1
-          "iPad13,11", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular (China mainland), M1
-        ]
-      },
+      }
     ],
     latestVer: "1.1.6",
     color: "#6742cd",
     icon: "/assets/images/jb-icons/taurine.png",
-    notes: "Can obtain a permanently signed version after initially jailbreaking by installing `taurine-permanent` from the Odyssey Repo. TrollStore method requires an A12+ device.",
+    notes: "Can obtain a permanently signed version after initially jailbreaking by installing `taurine-permanent` from the Odyssey Repo",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
     firmwares: ["14.0","14.3"]
