@@ -47,6 +47,8 @@ module.exports = {
         "iPad6,12",
         "iPad7,1",
         "iPad7,2",
+        "iPad7,3",
+        "iPad7,4",
         "iPad7,5",
         "iPad7,6",
         "iPad7,11",
