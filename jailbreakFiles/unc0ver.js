@@ -21,6 +21,109 @@ module.exports = {
         pkgman: "cydia",
       },
       {
+        text: "Guide (TrollStore)",
+        name: "Installing unc0ver (TrollStore)",
+        url: "/installing-unc0ver-trollstore/",
+        pkgman: "cydia",
+        firmwares: [
+          "18A5301v", // 14.0 beta
+          "18A5319i", // 14.0 beta 2
+          "18A5332f", // 14.0 beta 3
+          "18A5342e", // 14.0 beta 4
+          "18A5351d", // 14.0 beta 5
+          "18A5357e", // 14.0 beta 6
+          "18A5369b", // 14.0 beta 7
+          "18A5373a", // 14.0 beta 8
+          "18A373-GM", // 14.0 GM
+          "18A373", // 14.0
+          "18A393", // 14.0.1
+          "18A8395-GM", // 14.1 GM
+          "18A8395", // 14.1
+          "18B5052h", // 14.2 beta
+          "18B5052i", // 14.2 beta
+          "18B5061e", // 14.2 beta 2
+          "18B5072f", // 14.2 beta 3
+          "18B5083a", // 14.2 beta 4
+          "18B91", // 14.2 RC
+          "18B92", // 14.2
+          "18B111", // 14.2, iPhone 12 and 12 Pro only
+          "18B121", // 14.2.1, iPhone 12 and 12 Pro only
+          "18C5044f", // 14.3 beta
+          "18C5054c", // 14.3 beta 2
+          "18C5061a", // 14.3 beta 3
+          "18C65", // 14.3 RC
+          "18C66-RC", // 14.3 RC 2
+          "18C66", // 14.3
+        ],
+        devices: [
+          "iPhone11,2", // iPhone XS, A12
+          "iPhone11,4", // iPhone XS Max (China mainland), A12
+          "iPhone11,6", // iPhone XS Max, A12
+          "iPhone11,8", // iPhone XR, A12
+          "iPhone12,1", // iPhone 11, A13
+          "iPhone12,3", // iPhone 11 Pro, A13
+          "iPhone12,5", // iPhone 11 Pro Max, A13
+          "iPhone12,8", // iPhone SE (2nd generation), A13
+          "iPhone13,1", // iPhone 12 mini, A14
+          "iPhone13,2", // iPhone 12, A14
+          "iPhone13,3", // iPhone 12 Pro, A14
+          "iPhone13,4", // iPhone 12 Pro Max, A14
+          "iPad8,1",
+          "iPad8,2",
+          "iPad8,3",
+          "iPad8,4",
+          "iPad8,5",
+          "iPad8,6",
+          "iPad8,7",
+          "iPad8,8",
+          "iPad8,9",
+          "iPad8,10",
+          "iPad8,11",
+          "iPad8,12",
+          "iPad11,1", // iPad mini (5th generation) Wi-Fi, A12
+          "iPad11,2", // iPad mini (5th generation) Wi-Fi + Cellular, A12
+          "iPad11,3", // iPad Air (3rd generation) Wi-Fi, A12
+          "iPad11,4", // iPad Air (3rd generation) Wi-Fi + Cellular, A12
+          "iPad11,6", // iPad (8th generation) Wi-Fi, A12
+          "iPad11,7", // iPad (8th generation) Wi-Fi + Cellular, A12
+          "iPad13,1", // iPad Air (4th generation) Wi-Fi, A14
+          "iPad13,2", // iPad Air (4th generation) Wi-Fi + Cellular, A14
+        ]
+      },
+      {
+        text: "Guide (TrollStore)",
+        name: "Installing unc0ver (TrollStore)",
+        url: "/installing-unc0ver-trollstore/",
+        pkgman: "cydia",
+        firmwares: [
+          "18F5046f", // 14.6 beta
+          "18F5055b", // 14.6 beta 2
+          "18F5065a", // 14.6 beta 3
+          "18F71", // 14.6 RC
+          "18F72-RC", // 14.6 RC 2
+          "18F72", // 14.6
+          "18G5023c", // 14.7 beta
+          "18G5033e", // 14.7 beta 2
+          "18G5042c", // 14.7 beta 3
+          "18G5052d", // 14.7 beta 4
+          "18G5063a", // 14.7 beta 5
+          "18G68", // 14.7 RC
+          "18G69", // 14.7
+          "18G82", // 14.7.1
+          "18H17", // 14.8
+        ],
+        devices: [
+          "iPhone11,2", // iPhone XS, A12
+          "iPhone11,4", // iPhone XS Max (China mainland), A12
+          "iPhone11,6", // iPhone XS Max, A12
+          "iPhone11,8", // iPhone XR, A12
+          "iPhone12,1", // iPhone 11, A13
+          "iPhone12,3", // iPhone 11 Pro, A13
+          "iPhone12,5", // iPhone 11 Pro Max, A13
+          "iPhone12,8", // iPhone SE (2nd generation), A13
+        ]
+      },
+      {
         text: "Guide (14.3 to 14.5.1)",
         name: "Installing unc0ver (Fugu14)",
         url: "/installing-unc0ver-fugu14/",
@@ -493,8 +596,7 @@ module.exports = {
         "18G69", // 14.7
         "18G82", // 14.7.1
         "18H17", // 14.8
-        
-    ],
+      ],
       devices: [
         "iPhone11,2", // iPhone XS, A12
         "iPhone11,4", // iPhone XS Max (China mainland), A12
