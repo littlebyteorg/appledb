@@ -19,20 +19,16 @@ module.exports = {
         pkgman: "sileo",
         updateLink: [
           {
-            text: 'Updating to 12.5.5',
-            link: '/updating-to-12-5-5/'
+            text: 'Updating to 12.5.6',
+            link: '/updating-to-12-5-6/'
           },
-          {
-            text: 'Updating to 12.5.4',
-            link: '/updating-to-12-5-4-(blobless)/'
-          }
         ]
       }
     ],
     latestVer: "1.6.4",
     color: "#deeded",
     icon: "/assets/images/jb-icons/chimera.png",
-    notes: "A12 support is only available on iOS 12.0 - 12.1.2.",
+    notes: "A12 support is only available on iOS 12.0 - 12.1.2. 12.5.6 support requires ChimeraFix",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
     firmwares: ["12.0","12.5.5"],
@@ -118,6 +114,7 @@ module.exports = {
         "16H41", // 12.5.3
         "16H50", // 12.5.4
         "16H62", // 12.5.5
+        "16H71",
       ],
       devices: [
         "iPhone6,1", // iPhone 5s (GSM), A7
@@ -251,6 +248,7 @@ module.exports = {
         "16H41", // 12.5.3
         "16H50", // 12.5.4
         "16H62", // 12.5.5
+        "16H71",
       ],
       devices: [
         "iPhone7,1", // iPhone 6 Plus, A8
