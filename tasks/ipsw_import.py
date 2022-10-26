@@ -28,8 +28,86 @@ OS_MAP = [
 
 SESSION = requests.Session()
 
+"""
+JSON import sample:
 
-def import_ipsw(ipsw_url):
+{
+    "osStr": "macOS",
+    "version": "13.1 beta",
+    "released": "2022-10-25",
+    "build": "22C5033e",
+    "links": [
+        {
+            "device": "Mac computers with Apple silicon", (unused field)
+            "url": "https://updates.cdn-apple.com/2022FallSeed/fullrestores/012-82062/10E6B723-51B8-4B2C-BA3B-12A18ED4E719/UniversalMac_13.1_22C5033e_Restore.ipsw",
+            "build": "22C5033e" (unused field)
+        }
+    ]
+}
+"""
+
+
+def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None):
+    assert version or recommended_version, "Must have either version or recommended_version"
+
+    kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
+    assert kern_version
+    kern_version = kern_version.group()
+
+    major_version = ".".join((version or recommended_version).split(".")[:1]) + ".x"  # type: ignore
+    version_dir = f"{kern_version}x - {major_version}"
+
+    db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
+    if db_file.exists():
+        print("\tFile already exists, not replacing")
+    else:
+        print(f"\tNo file found for build {build}, creating new file")
+        if not db_file.parent.exists() and not db_file.parent.parent.exists():
+            raise RuntimeError(f"Couldn't find a subdirectory in {os_str} for build {build} (major {version_dir})")
+        elif not db_file.parent.exists():
+            print(f"Warning: no subdirectory found for major {version_dir} in {os_str}, creating new one")
+            db_file.parent.mkdir()
+
+        db_file.touch()
+        print(f"\tCurrent version is: {version or recommended_version}")
+
+        if version:
+            friendly_version = version
+        elif FULL_SELF_DRIVING:
+            friendly_version = f"{recommended_version} (FIXME)"
+        else:
+            friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
+            if not friendly_version:
+                friendly_version = version or recommended_version
+        json.dump({"osStr": os_str, "version": friendly_version, "build": build}, db_file.open("w", encoding="utf-8", newline="\n"), indent=4)
+
+    db_data = json.load(db_file.open(encoding="utf-8"))
+
+    if not db_data.get("released"):
+        print("\tMissing release date")
+        if released:
+            print(f"\tRelease date is: {released}")
+            db_data["released"] = released
+        elif FULL_SELF_DRIVING:
+            print("\tUsing placeholder for date")
+            db_data["released"] = "YYYY-MM-DD"  # Should fail CI
+            # db_data["released"] = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+        else:
+            use_today = bool(input("\tUse today's date (today in Cupertino time)? [y/n]: ").strip().lower() == "y")
+            if use_today:
+                db_data["released"] = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+            else:
+                db_data["released"] = input("\tEnter release date (YYYY-MM-DD): ").strip()
+
+    if "beta" not in db_data and (beta or "beta" in db_data["version"].lower() or "rc" in db_data["version"].lower()) or build.endswith(tuple(string.ascii_lowercase)):
+        db_data["beta"] = True
+
+    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4)
+
+    return db_file
+
+
+def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None):
     # Check if a BuildManifest.plist exists at the same parent directory as the IPSW
     build_manifest_url = ipsw_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
     build_manifest_response = SESSION.get(build_manifest_url)
@@ -39,7 +117,7 @@ def import_ipsw(ipsw_url):
     try:
         build_manifest_response.raise_for_status()
     except requests.exceptions.HTTPError:
-        print("\tBuildManifest.plist not found at {}, using remotezip".format(build_manifest_url))
+        print(f"\tBuildManifest.plist not found at {build_manifest_url}, using remotezip")
     else:
         build_manifest = plistlib.loads(build_manifest_response.content)
 
@@ -50,8 +128,8 @@ def import_ipsw(ipsw_url):
         build_manifest = plistlib.loads(ipsw.read("BuildManifest.plist"))
 
     # Get the build, version, and supported devices
-    build = build_manifest["ProductBuildVersion"]
-    version = build_manifest["ProductVersion"]
+    build = build or build_manifest["ProductBuildVersion"]
+    recommended_version = recommended_version or build_manifest["ProductVersion"]
     supported_devices = build_manifest["SupportedProductTypes"]
 
     # Get Restore.plist from the IPSW
@@ -63,63 +141,27 @@ def import_ipsw(ipsw_url):
 
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "ADP3,1"]]
 
-    for product_prefix, os_str in OS_MAP:
-        if any(prod.startswith(product_prefix) for prod in supported_devices):
-            if os_str == "iPadOS" and packaging.version.parse(version) < packaging.version.parse("13.0"):
-                os_str = "iOS"
-            print(f"\t{os_str} {version} ({build})")
-            break
-    else:
-        if FULL_SELF_DRIVING:
-            raise RuntimeError(f"Couldn't match product types to any known OS: {supported_devices}")
+    if not os_str:
+        for product_prefix, os_str in OS_MAP:
+            if any(prod.startswith(product_prefix) for prod in supported_devices):
+                if os_str == "iPadOS" and packaging.version.parse(recommended_version) < packaging.version.parse("13.0"):
+                    os_str = "iOS"
+                print(f"\t{os_str} {recommended_version} ({build})")
+                break
         else:
-            print(f"\tCouldn't match product types to any known OS: {supported_devices}")
-            os_str = input("\tEnter OS name: ").strip()
-
-    kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
-    assert kern_version
-    kern_version = kern_version.group()
-
-    major_version = ".".join(version.split(".")[:1]) + ".x"
-    version_dir = f"{kern_version}x - {major_version}"
-
-    db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
-    if db_file.exists():
-        print("\tFile already exists, not replacing")
-    else:
-        print("\tNo file found for build {}, creating new file".format(build))
-        if not db_file.parent.exists():
-            raise RuntimeError(f"Couldn't find a subdirectory in {os_str} for build {build} (major {version_dir})")
-
-        db_file.touch()
-        print(f"\tCurrent version is: {version}")
-
-        if FULL_SELF_DRIVING:
-            friendly_version = f"{version} (FIXME)"
-        else:
-            friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
-            if not friendly_version:
-                friendly_version = version
-
-        json.dump({"osStr": os_str, "version": friendly_version, "build": build}, db_file.open("w", newline="\n"), indent=4)
-
-    db_data = json.load(db_file.open())
-
-    if not db_data.get("released"):
-        print("\tMissing release date")
-        if FULL_SELF_DRIVING:
-            print("\tUsing placeholder for date")
-            db_data["released"] = "YYYY-MM-DD"  # Should fail CI
-            db_data["released"] = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
-        else:
-            use_today = bool(input("\tUse today's date? [y/n]: ").strip().lower() == "y")
-            if use_today:
-                db_data["released"] = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+            if FULL_SELF_DRIVING:
+                raise RuntimeError(f"Couldn't match product types to any known OS: {supported_devices}")
             else:
-                db_data["released"] = input("\tEnter release date (YYYY-MM-DD): ").strip()
+                print(f"\tCouldn't match product types to any known OS: {supported_devices}")
+                os_str = input("\tEnter OS name: ").strip()
 
-    if "beta" not in db_data and ("beta" in version.lower() or "rc" in version.lower()) or build.endswith(tuple(string.ascii_lowercase)):
-        db_data["beta"] = True
+    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta)
+
+    db_data = json.load(
+        db_file.open(
+            encoding="utf-8",
+        )
+    )
 
     db_data.setdefault("deviceMap", []).extend(supported_devices)
 
@@ -127,7 +169,7 @@ def import_ipsw(ipsw_url):
     for source in db_data.setdefault("sources", []):
         for link in source["links"]:
             if link["url"] == ipsw_url:
-                print("\tIPSW URL already exists in sources")
+                print("\tURL already exists in sources")
                 found_source = True
                 source.setdefault("deviceMap", []).extend(supported_devices)
 
@@ -145,7 +187,7 @@ def import_ipsw(ipsw_url):
 
         db_data["sources"].append(source)
 
-    json.dump(sort_file(None, db_data), db_file.open("w", newline="\n"), indent=4)
+    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4)
     if FULL_SELF_DRIVING:
         print("\tRunning update links on file")
         update_links([db_file])
@@ -159,18 +201,48 @@ def import_ipsw(ipsw_url):
 
 if __name__ == "__main__":
     if FULL_SELF_DRIVING:
-        print("Full self-driving mode enabled")
+        print("Full self-driving mode enabled. Make sure to verify data before committing.")
 
-    bulk_mode = input("Bulk mode - read URLs from import.txt? [y/n]: ").strip().lower() == "y"
+    bulk_mode = input("Bulk mode - read data from import.json/import.txt? [y/n]: ").strip().lower() == "y"
     if bulk_mode:
         files_processed = set()
 
         if not FULL_SELF_DRIVING:
             print("Warning: you still need to be present, as this script will ask for input!")
-        urls = [i.strip() for i in Path("import.txt").read_text().splitlines() if i.strip()]
-        for url in urls:
-            print(f"Importing {url}")
-            files_processed.add(import_ipsw(url))
+
+        if Path("import.json").exists():
+            print("Reading versions from import.json")
+            versions = json.load(
+                Path("import.json").open(
+                    encoding="utf-8",
+                )
+            )
+
+            for version in versions:
+                print(f"Importing {version['osStr']} {version['version']}")
+                if "links" not in version:
+                    files_processed.add(create_file(version["osStr"], version["build"], version=version["version"], released=version["released"]))
+                else:
+                    for link in version["links"]:
+                        files_processed.add(import_ipsw(link["url"], version=version["version"], released=version["released"]))
+
+        elif Path("import.txt").exists():
+            print("Reading URLs from import.txt")
+
+            urls = [
+                i.strip()
+                for i in Path("import.txt")
+                .read_text(
+                    encoding="utf-8",
+                )
+                .splitlines()
+                if i.strip()
+            ]
+            for url in urls:
+                print(f"Importing {url}")
+                files_processed.add(import_ipsw(url))
+        else:
+            raise RuntimeError("No import file found")
 
         print("Checking processed files for alive/hashes...")
         update_links(files_processed)
