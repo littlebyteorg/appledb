@@ -16,7 +16,7 @@ module.exports = {
         "iPhone8,1",
       ],
       firmwares: [
-        "19H117	"
+        "19H117"
       ]
     }
   ]
