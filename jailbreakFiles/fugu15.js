@@ -1,5 +1,6 @@
 module.exports = {
   name: "Fugu15",
+  hideFromGuide: true,
   info: {
     website: {
       name: "github.com/pinauten/Fugu15",

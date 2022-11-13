@@ -1,6 +1,7 @@
 module.exports = {
   name: "palera1n",
   alias: ["palerain"],
+  priority: 0,
   info: {
     website: {
       name: "github.com/palera1n/palera1n/tree/tweaks",

@@ -1,5 +1,6 @@
 module.exports = {
   name: "ayakurume",
+  hideFromGuide: true,
   info: {
     website: {
       name: "github.com/dora2-iOS/ayakurume",
