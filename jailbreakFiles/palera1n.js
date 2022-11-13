@@ -14,10 +14,10 @@ module.exports = {
         pkgman: "sileo",
       }
     ],
-    latestVer: "1.1.1",
+    latestVer: "1.3.0",
     type: "Semi-Tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
-    firmwares: ["15.0","15.3.1"]
+    firmwares: ["15.0","15.7.1"]
   },
   compatibility: [
     {
@@ -84,7 +84,28 @@ module.exports = {
         "19C5050b",
         "19D5026g",
         "19D5040e",
-        "19D49"
+        "19D49",
+        "19E5225g",
+        "19E5235a",
+        "19E5241a",
+        "19E241",
+        "19E258",
+        "19F5047e",
+        "19F5057e",
+        "19F5062g",
+        "19F5070b",
+        "19F77",
+        "19G5027e",
+        "19G5037d",
+        "19G5046d",
+        "19G5056c",
+        "19G5063a",
+        "19G69",
+        "19G71",
+        "19G82",
+        "19H12",
+        "19H115",
+        "19H117"
       ]
     }
   ]
