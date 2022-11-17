@@ -13,6 +13,12 @@ module.exports = {
         name: "Installing palera1n",
         url: "/installing-palera1n/",
         pkgman: "sileo",
+        updateLink: [
+          {
+            text: 'Updating to 15.7.1',
+            link: '/updating-to-15-7-1/'
+          },
+        ]
       }
     ],
     latestVer: "1.3.0",
