@@ -24,7 +24,7 @@ module.exports = {
     latestVer: "1.3.0",
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
-    notes: "Semi-tethered support limited to non-16GB devices with more than 10GB of free space. Semi-tethered option not recommended for iPhone 7(+) or iPhone 8(+).",
+    notes: "Compatible with A8(X) - A11 devices. A10(X) and A11 devices on cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state. Semi-tethered support limited to non-16GB devices with more than 10GB of free space. Semi-tethered option not recommended for iPhone 7(+) or iPhone 8(+).",
     firmwares: ["15.0","15.7.1"]
   },
   compatibility: [
