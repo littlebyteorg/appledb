@@ -16,8 +16,9 @@ module.exports = {
       }
     ],
     latestVer: "1.3.0",
-    type: "Semi-Tethered",
+    type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
+    notes: "Semi-tethered support limited to non-16GB devices with more than 10GB of free space. Semi-tethered option not recommended for iPhone 7(+) or iPhone 8(+).",
     firmwares: ["15.0","15.7.1"]
   },
   compatibility: [
