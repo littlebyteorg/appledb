@@ -12,8 +12,10 @@ key_order = [
     "build",
     "uniqueBuild",
     "released",
+    "rc",
     "beta",
     "hideFromLatestVersions",
+    "preinstalled",
     "createDuplicateEntries",
     "notes",
     "releaseNotes",
@@ -61,7 +63,6 @@ def sort_file(file_path: Optional[Path], raw_data=None):
         data["sources"][i]["deviceMap"] = device_map_sort(source["deviceMap"])
         for j, link in enumerate(source.get("links", [])):
             data["sources"][i]["links"][j] = dict(sorted(link.items(), key=lambda item: links_key_order.index(item[0]) if item[0] in links_key_order else len(links_key_order)))
-
     data.get("sources", []).sort(key=lambda source: device_sort(source["deviceMap"][0]))
 
     if not raw_data:

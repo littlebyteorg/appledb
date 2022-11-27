@@ -28,6 +28,29 @@ OS_MAP = [
 
 SESSION = requests.Session()
 
+VARIANTS = {}
+
+for device in Path("deviceFiles").rglob("*.json"):
+    device_data = json.load(device.open(encoding="utf-8"))
+    name = device_data["name"]
+    identifiers = device_data.get("identifier", [])
+    if isinstance(identifiers, str):
+        identifiers = [identifiers]
+    if not identifiers:
+        identifiers = [name]
+    key = device_data.get("key", identifiers[0] if identifiers else name)
+
+    for identifier in identifiers:
+        VARIANTS.setdefault(identifier, set()).add(key)
+
+
+def augment_with_keys(identifiers):
+    new_identifiers = []
+    for identifier in identifiers:
+        new_identifiers.extend(VARIANTS.get(identifier, []))
+    return new_identifiers
+
+
 """
 JSON import sample:
 
@@ -47,7 +70,7 @@ JSON import sample:
 """
 
 
-def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None):
+def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None):
     assert version or recommended_version, "Must have either version or recommended_version"
 
     kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
@@ -102,15 +125,18 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             else:
                 db_data["released"] = input("\tEnter release date (YYYY-MM-DD): ").strip()
 
-    if "beta" not in db_data and (beta or "beta" in db_data["version"].lower() or "rc" in db_data["version"].lower()) or build.endswith(tuple(string.ascii_lowercase)):
+    if "beta" not in db_data and (beta or "beta" in db_data["version"].lower()) or build.endswith(tuple(string.ascii_lowercase)):
         db_data["beta"] = True
+
+    if "rc" not in db_data and (rc or "rc" in db_data["version"].lower()):
+        db_data["rc"] = True
 
     json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4)
 
     return db_file
 
 
-def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None):
+def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None):
     # Check if a BuildManifest.plist exists at the same parent directory as the IPSW
     build_manifest_url = ipsw_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
     build_manifest_response = SESSION.get(build_manifest_url)
@@ -128,7 +154,15 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
         # Get it via remotezip
         ipsw = remotezip.RemoteZip(ipsw_url)
         print("\tGetting BuildManifest.plist via remotezip")
+
+        # Commented out because IPSWs should always have the BuildManifest in the root
+
+        # manifest_paths = [file for file in ipsw.namelist() if file.endswith("BuildManifest.plist")]
+        # assert len(manifest_paths) == 1, f"Expected 1 BuildManifest.plist, got {len(manifest_paths)}: {manifest_paths}"
+        # build_manifest = plistlib.loads(ipsw.read(manifest_paths[0]))
+
         build_manifest = plistlib.loads(ipsw.read("BuildManifest.plist"))
+        ipsw.close()
 
     # Get the build, version, and supported devices
     build = build or build_manifest["ProductBuildVersion"]
@@ -158,7 +192,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta)
+    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
 
     db_data = json.load(
         db_file.open(
@@ -166,7 +200,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
         )
     )
 
-    db_data.setdefault("deviceMap", []).extend(supported_devices)
+    db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
 
     found_source = False
     for source in db_data.setdefault("sources", []):
@@ -174,12 +208,12 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
             if link["url"] == ipsw_url:
                 print("\tURL already exists in sources")
                 found_source = True
-                source.setdefault("deviceMap", []).extend(supported_devices)
+                source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
 
     if not found_source:
         print("\tAdding new source")
         source = {
-            "deviceMap": supported_devices,
+            "deviceMap": augment_with_keys(supported_devices),
             "type": "ipsw",
             "links": [
                 {
