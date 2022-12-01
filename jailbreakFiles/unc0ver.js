@@ -161,7 +161,7 @@ module.exports = {
           "iPad8,5", // iPad Pro 12.9-inch (3rd generation) Wi-Fi, A12X
           "iPad8,6", // iPad Pro 12.9-inch (3rd generation) Wi-Fi (1TB), A12X
           "iPad8,7", // iPad Pro 12.9-inch (3rd generation) Wi-Fi + Cellular, A12X
-          "iPad8,8", // iPad Pro 12.9-inch (3rd generation) Wi-Fi + Cellular (1TB), A12X // iPad Pro 12.9-inch (3rd generation) Wi-Fi + Cellular (1TB), A12X
+          "iPad8,8", // iPad Pro 12.9-inch (3rd generation) Wi-Fi + Cellular (1TB), A12X 
           "iPad8,9", // iPad Pro 11-inch (2nd generation) Wi-Fi, A12Z
           "iPad8,10", // iPad Pro 11-inch (2nd generation) Wi-Fi + Cellular, A12Z
           "iPad8,11", // iPad Pro 12.9-inch (4th generation) Wi-Fi, A12Z
