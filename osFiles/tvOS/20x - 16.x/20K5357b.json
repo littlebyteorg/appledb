@@ -1,14 +1,39 @@
 {
-  "osStr": "tvOS",
-  "version": "16.2 beta 4",
-  "build": "20K5357b",
-  "released": "2022-12-01",
-  "beta": true,
-  "deviceMap": [
-    "AppleTV5,3",
-    "AppleTV6,2",
-    "AppleTV11,1",
-    "AppleTV14,1",
-    "AppleTV14,1-wifi"
-  ]
+    "osStr": "tvOS",
+    "version": "16.2 beta 4",
+    "build": "20K5357b",
+    "released": "2022-12-01",
+    "beta": true,
+    "deviceMap": [
+        "AppleTV5,3",
+        "AppleTV6,2",
+        "AppleTV11,1",
+        "AppleTV14,1",
+        "AppleTV14,1-wifi"
+    ],
+    "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "AppleTV5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallSeed/fullrestores/032-07487/1C95BDE3-698B-4E95-B094-DB1E9816E281/AppleTV5,3_16.2_20K5357b_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2022FallSeed/fullrestores/032-07487/1C95BDE3-698B-4E95-B094-DB1E9816E281/AppleTV5,3_16.2_20K5357b_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "7666355a83a1b6a921d3d1e7e8da4b8c6c930e75d36249dd2f703e4653ff836d",
+                "sha1": "359e067af18b0b307b892d1591c94ccd8cf3dd34"
+            },
+            "size": 3706327988
+        }
+    ]
 }
