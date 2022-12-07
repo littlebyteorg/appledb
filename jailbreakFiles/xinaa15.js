@@ -3,8 +3,8 @@ module.exports = {
   hideFromGuide: true,
   info: {
     website: {
-      name: "xina.ss03.cn",
-      url: "https://xina.ss03.cn/#",
+      name: "github.com/jacksight/xina520_official_jailbreak",
+      url: "https://github.com/jacksight/xina520_official_jailbreak/",
       external: true
     },
     latestVer: "1.1.3.6",
