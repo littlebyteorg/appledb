@@ -1,12 +1,19 @@
 module.exports = {
   name: "XinaA15",
-  hideFromGuide: true,
+  hideFromGuide: false,
   info: {
     website: {
       name: "github.com/jacksight/xina520_official_jailbreak",
       url: "https://github.com/jacksight/xina520_official_jailbreak/",
       external: true
     },
+    guide: [
+      {
+        name: "Installing XinaA15",
+        url: "/installing-xinaa15/",
+        pkgman: "sileo",
+      }
+    ],
     latestVer: "1.1.3.6",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.1.1"]
