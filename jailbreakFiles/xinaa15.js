@@ -2,6 +2,11 @@ module.exports = {
   name: "XinaA15",
   hideFromGuide: true,
   info: {
+    website: {
+      name: "xina.ss03.cn",
+      url: "https://xina.ss03.cn/#",
+      external: true
+    },
     latestVer: "1.1.3.6",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.1.1"]
