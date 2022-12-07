@@ -3,6 +3,7 @@
     "version": "15.7.2 RC",
     "build": "19H218",
     "released": "2022-12-07",
+    "rc": true,
     "deviceMap": [
         "iPad5,1",
         "iPad5,2",
@@ -56,5 +57,33 @@
         "iPad13,17",
         "iPad14,1",
         "iPad14,2"
+    ],
+    "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad5,1",
+                "iPad5,2",
+                "iPad5,3",
+                "iPad5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-91738/9BE0A8A9-C322-4A55-98DE-FD4E373D0C36/iPad_64bit_TouchID_15.7.2_19H218_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2022FallFCS/fullrestores/012-91738/9BE0A8A9-C322-4A55-98DE-FD4E373D0C36/iPad_64bit_TouchID_15.7.2_19H218_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "a6a02c5d4a7d84e642e0cff2cee78e60c212b7672d034bf2207c9e9ed0b514d2",
+                "sha1": "7730d1a2c2f63a4e71a2c4e3d53b7d48e451b03d"
+            },
+            "size": 5053464553
+        }
     ]
 }
