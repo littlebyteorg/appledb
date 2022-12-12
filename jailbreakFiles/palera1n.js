@@ -21,11 +21,11 @@ module.exports = {
         ]
       }
     ],
-    latestVer: "1.3.0",
+    latestVer: "1.4.0",
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
-    notes: "Compatible with A8(X) - A11 devices. A10(X) and A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state. Semi-tethered support limited to non-16GB devices with more than 10GB of free space. Semi-tethered option not recommended for iPhone 7(+) or iPhone 8(+).",
-    firmwares: ["15.0","15.7.1"]
+    notes: "Compatible with A8(X) - A11 devices. A10(X) and A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16. Semi-tethered support limited to non-16GB devices with more than 10GB of free space. Semi-tethered option not recommended for iPhone 7(+) or iPhone 8(+).",
+    firmwares: ["15.0","16.1.2"]
   },
   compatibility: [
     {
@@ -114,7 +114,35 @@ module.exports = {
         "19H12",
         "19H115",
         "19H117",
-        "19H218"
+        "19H218",
+        "20A5283p",
+        "20A5303i",
+        "20A5312g",
+        "20A5312j",
+        "20A5328h",
+        "20A5339d",
+        "20A5349b",
+        "20A5356a",
+        "20A5358a",
+        "20A362",
+        "20B5045d",
+        "20A371",
+        "20A357",
+        "20B5050f",
+        "20A380",
+        "20B5056e",
+        "20B5064c",
+        "20A392",
+        "20B5072b",
+        "20B79",
+        "20B82",
+        "20C5032e",
+        "20C5043e",
+        "20B101",
+        "20C5049e",
+        "20B110",
+        "20C5058d",
+        "20C65"
       ]
     }
   ]
