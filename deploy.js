@@ -138,6 +138,7 @@ osFiles = osFiles
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build || ver.version
   if (!ver.key) ver.key = ver.osStr + ';' + ver.uniqueBuild
   if (!ver.beta) ver.beta = false
+  if (!ver.rc) ver.rc = false
   /*if (!ver.sortVersion) {
     if (ver.iosVersion) ver.sortVersion = ver.iosVersion
     else ver.sortVersion = ver.version
