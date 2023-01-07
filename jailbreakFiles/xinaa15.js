@@ -3,18 +3,17 @@ module.exports = {
   hideFromGuide: false,
   info: {
     website: {
-      name: "github.com/jacksight/xina520_official_jailbreak",
-      url: "https://github.com/jacksight/xina520_official_jailbreak/",
+      name: "xina.ss03.cn",
+      url: "https://xina.ss03.cn/",
       external: true
     },
     guide: [
       {
         name: "Installing XinaA15",
         url: "/installing-xinaa15/",
-        pkgman: "sileo",
       }
     ],
-    latestVer: "1.1.5",
+    latestVer: "1.1.6.2",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.1.1"]
   },
