@@ -2,6 +2,15 @@
     "osStr": "iPadOS",
     "version": "14.0",
     "build": "18A373",
+    "createDuplicateEntries": [
+        {
+
+            "version": "14.0 GM",
+            "uniqueBuild": "18A373-GM",
+            "released": "2020-09-15",
+            "rc": true
+        }
+    ],
     "released": "2020-09-16",
     "deviceMap": [
         "iPad5,1",
@@ -37,7 +46,11 @@
         "iPad11,1",
         "iPad11,2",
         "iPad11,3",
-        "iPad11,4"
+        "iPad11,4",
+        "iPad11,6",
+        "iPad11,7",
+        "iPad13,1",
+        "iPad13,2"
     ],
     "sources": [
         {
@@ -285,7 +298,48 @@
             ],
             "hashes": {
                 "sha2-256": "cdac14734a50a7e6061486683fabc11d9ae20860141a504a16dbd7c9da5bcfb3"
-            }
+            },
+            "size": 4874150871
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad11,6",
+                "iPad11,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/fullrestores/001-46712/ED3528C6-2034-481F-90D9-58D231CE3B3C/iPad_Educational_2020_14.0_18A373_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2020SummerFCS/fullrestores/001-46712/ED3528C6-2034-481F-90D9-58D231CE3B3C/iPad_Educational_2020_14.0_18A373_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "size": 4730351188
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad13,1",
+                "iPad13,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/fullrestores/001-46801/1BBA59CA-BFCB-4936-8A98-FCC3511F8DE3/iPad_Fall_2020_14.0_18A373_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2020SummerFCS/fullrestores/001-46801/1BBA59CA-BFCB-4936-8A98-FCC3511F8DE3/iPad_Fall_2020_14.0_18A373_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "size": 4567673337
         }
     ]
 }
