@@ -107,7 +107,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
             if not friendly_version:
                 friendly_version = version or recommended_version
-        json.dump({"osStr": os_str, "version": friendly_version, "build": build}, db_file.open("w", encoding="utf-8", newline="\n"), indent=4)
+        json.dump({"osStr": os_str, "version": friendly_version, "build": build}, db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
     db_data = json.load(db_file.open(encoding="utf-8"))
 
@@ -133,7 +133,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     if "rc" not in db_data and (rc or "rc" in db_data["version"].lower()):
         db_data["rc"] = True
 
-    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4)
+    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
     return db_file
 
@@ -226,7 +226,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
 
         db_data["sources"].append(source)
 
-    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4)
+    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     if FULL_SELF_DRIVING:
         print("\tRunning update links on file")
         update_links([db_file])
