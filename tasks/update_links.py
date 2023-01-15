@@ -173,7 +173,7 @@ class ProcessFileThread(threading.Thread):
 
                 source["links"] = new_links
 
-            json.dump(data, ios_file.open("w", newline="\n"), indent=4, ensure_ascii=False)
+            json.dump(data, ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             self.print_queue.put(False)
 
 

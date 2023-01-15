@@ -16,6 +16,8 @@ key_order = [
     "released",
     "rc",
     "beta",
+    "rsr",
+    "internal",
     "hideFromLatestVersions",
     "preinstalled",
     "createDuplicateEntries",
@@ -68,7 +70,7 @@ def sort_file(file_path: Optional[Path], raw_data=None):
     data.get("sources", []).sort(key=lambda source: device_sort(source["deviceMap"][0]))
 
     if not raw_data:
-        json.dump(data, file_path.open("w", newline="\n"), indent=4)  # type: ignore
+        json.dump(data, file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)  # type: ignore
     else:
         return data
 
