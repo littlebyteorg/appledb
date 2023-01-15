@@ -168,6 +168,9 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
 
     # Get the build, version, and supported devices
     build = build or build_manifest["ProductBuildVersion"]
+    # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
+    # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
+    # Check by substring first?
     recommended_version = recommended_version or build_manifest["ProductVersion"]
     supported_devices = build_manifest["SupportedProductTypes"]
 
