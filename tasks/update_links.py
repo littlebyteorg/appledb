@@ -23,7 +23,7 @@ THREAD_COUNT = 16
 rewrite_map_v2 = {
     "https://updates.cdn-apple.com/": ["http://updates-http.cdn-apple.com/"],
     "https://mesu.apple.com/": ["http://mesu.apple.com/"],
-    "https://secure-appldnld.apple.com/": ["http://appldnld.apple.com/", "http://appldnld.apple.com.edgesuite.net/content.info.apple.com/"],
+    "https://secure-appldnld.apple.com/": ["http://appldnld.apple.com/"],
     "https://download.developer.apple.com/": ["http://adcdownload.apple.com/"],
     "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
 }
