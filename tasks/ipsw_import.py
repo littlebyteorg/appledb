@@ -7,8 +7,8 @@ import re
 import string
 import zoneinfo
 from pathlib import Path
-import packaging.version
 
+import packaging.version
 import remotezip
 import requests
 
