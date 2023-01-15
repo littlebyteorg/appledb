@@ -12,7 +12,7 @@ import packaging.version
 import remotezip
 import requests
 
-from sort_files import sort_file
+from sort_os_files import sort_os_file
 from update_links import update_links
 
 FULL_SELF_DRIVING = False
@@ -133,12 +133,12 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     if "rc" not in db_data and (rc or "rc" in db_data["version"].lower()):
         db_data["rc"] = True
 
-    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
     return db_file
 
 
-def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None):
+def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True):
     # Check if a BuildManifest.plist exists at the same parent directory as the IPSW
     build_manifest_url = ipsw_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
     build_manifest_response = SESSION.get(build_manifest_url)
@@ -229,15 +229,15 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
 
         db_data["sources"].append(source)
 
-    json.dump(sort_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-    if FULL_SELF_DRIVING:
+    json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    if use_network:
         print("\tRunning update links on file")
         update_links([db_file])
     else:
         # Save the network access for the end, that way we can run it once per file instead of once per ipsw
         # and we can use threads to speed it up
         update_links([db_file], False)
-    print(f"\tSanity check the file{', run update_links.py, ' if not FULL_SELF_DRIVING else ''}and then commit it\n")
+    print(f"\tSanity check the file{', run update_links.py, ' if not use_network else ''}and then commit it\n")
     return db_file
 
 
@@ -266,7 +266,7 @@ if __name__ == "__main__":
                     files_processed.add(create_file(version["osStr"], version["build"], version=version["version"], released=version["released"]))
                 else:
                     for link in version["links"]:
-                        files_processed.add(import_ipsw(link["url"], version=version["version"], released=version["released"]))
+                        files_processed.add(import_ipsw(link["url"], version=version["version"], released=version["released"], use_network=False))
 
         elif Path("import.txt").exists():
             print("Reading URLs from import.txt")
@@ -282,7 +282,7 @@ if __name__ == "__main__":
             ]
             for url in urls:
                 print(f"Importing {url}")
-                files_processed.add(import_ipsw(url))
+                files_processed.add(import_ipsw(url, use_network=False))
         else:
             raise RuntimeError("No import file found")
 

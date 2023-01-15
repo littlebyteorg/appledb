@@ -48,7 +48,7 @@ def device_map_sort(device_map):
     return sorted(set(device_map), key=device_sort)
 
 
-def sort_file(file_path: Optional[Path], raw_data=None):
+def sort_os_file(file_path: Optional[Path], raw_data=None):
     if not file_path and not raw_data:
         raise ValueError("Must provide either a file path or raw data")
 
@@ -56,7 +56,7 @@ def sort_file(file_path: Optional[Path], raw_data=None):
     data = dict(sorted(data.items(), key=lambda item: key_order.index(item[0]) if item[0] in key_order else len(key_order)))
 
     for i, duplicate_entry in enumerate(data.get("createDuplicateEntries", [])):
-        data["createDuplicateEntries"][i] = sort_file(None, duplicate_entry)
+        data["createDuplicateEntries"][i] = sort_os_file(None, duplicate_entry)
     data.get("createDuplicateEntries", []).sort(key=lambda x: x["released"])
 
     if "deviceMap" in data:
@@ -77,4 +77,4 @@ def sort_file(file_path: Optional[Path], raw_data=None):
 
 if __name__ == "__main__":
     for file in Path("osFiles").rglob("*.json"):
-        sort_file(file)
+        sort_os_file(file)

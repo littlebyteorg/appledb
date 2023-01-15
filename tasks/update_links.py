@@ -17,6 +17,7 @@ import urllib3
 urllib3.disable_warnings()
 # urllib3.add_stderr_logger()
 
+# TODO: Make this configurable
 THREAD_COUNT = 16
 
 # Preferred -> other variants

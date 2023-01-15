@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import json
 import os
 import re
@@ -10,6 +12,8 @@ import lxml.html
 import requests
 from lxml.etree import _Element as Element  # pylint: disable=no-name-in-module
 
+# TODO: Probably put import.txt/import.json/import_raw.html in a folder, and put it in .gitignore
+
 # If you have a proxy to access the dev portal, pass it on the command line, set the DEV_PORTAL_PROXY environment variable, or set it here
 # Otherwise, leave it blank and save the HTML to import_raw.html
 if sys.argv[1:]:
@@ -17,7 +21,7 @@ if sys.argv[1:]:
 elif os.environ.get("DEV_PORTAL_PROXY"):
     DEV_PORTAL_PROXY = os.environ["DEV_PORTAL_PROXY"].strip()
 else:
-    DEV_PORTAL_PROXY = ""
+    DEV_PORTAL_PROXY = ""  # Set your proxy here
 
 if DEV_PORTAL_PROXY:
     result = requests.get(DEV_PORTAL_PROXY, timeout=30)
