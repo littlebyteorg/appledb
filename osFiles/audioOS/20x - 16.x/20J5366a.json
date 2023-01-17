@@ -8,5 +8,30 @@
         "AudioAccessory1,1",
         "AudioAccessory1,2",
         "AudioAccessory5,1"
+    ],
+    "sources": [
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AudioAccessory1,1",
+                "AudioAccessory1,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-55669/FE162465-1235-4BA4-8118-DD37FDA74986/com_apple_MobileAsset_SoftwareUpdate/9cbd40ffbb197163ad90d70088f1f9faafad605e.zip"
+                }
+            ]
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AudioAccessory5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-55655/156EDBF7-C99D-40EA-92AD-3490BC79D573/com_apple_MobileAsset_SoftwareUpdate/8ad833044d0c35a3027d5b80507ed033512338ba.zip"
+                }
+            ]
+        }
     ]
 }
