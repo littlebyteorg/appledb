@@ -49,7 +49,7 @@ for device in Path("deviceFiles").rglob("*.json"):
 def augment_with_keys(identifiers):
     new_identifiers = []
     for identifier in identifiers:
-        new_identifiers.extend(VARIANTS.get(identifier, []))
+        new_identifiers.extend(VARIANTS.get(identifier, [identifier]))
     return new_identifiers
 
 
