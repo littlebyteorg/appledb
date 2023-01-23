@@ -209,7 +209,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
 
     found_source = False
     for source in db_data.setdefault("sources", []):
-        for link in source["links"]:
+        for link in source.get("links", []):
             if link["url"] == ipsw_url:
                 print("\tURL already exists in sources")
                 found_source = True

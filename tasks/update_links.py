@@ -83,7 +83,7 @@ class ProcessFileThread(threading.Thread):
             data = json.load(ios_file.open())
 
             for source in data.get("sources", []):
-                links = source["links"]
+                links = source.setdefault("links", [])
 
                 # print(f"Processing source {j+1}/{len(data['sources'])} ({((j)/len(data['sources']) * 100):.2f}%)")
 
