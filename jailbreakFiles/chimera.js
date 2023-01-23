@@ -248,7 +248,8 @@ module.exports = {
         "16H41", // 12.5.3
         "16H50", // 12.5.4
         "16H62", // 12.5.5
-        "16H71",
+        "16H71", // 12.5.6 (ChimeraFix)
+        "16H81" // 12.5.7 (ChimeraFix)
       ],
       devices: [
         "iPhone7,1", // iPhone 6 Plus, A8
