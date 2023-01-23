@@ -28,10 +28,10 @@ module.exports = {
     latestVer: "1.6.4",
     color: "#deeded",
     icon: "/assets/images/jb-icons/chimera.png",
-    notes: "A12 support is only available on iOS 12.0 - 12.1.2. 12.5.6 support requires ChimeraFix",
+    notes: "A12 support is only available on iOS 12.0 - 12.1.2. 12.5.6-12.5.7 support requires ChimeraFix",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
-    firmwares: ["12.0","12.5.6"],
+    firmwares: ["12.0","12.5.7"],
   },
   compatibility: [
     {
