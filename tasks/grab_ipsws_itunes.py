@@ -40,4 +40,5 @@ for version_group in plist["MobileDeviceSoftwareVersionsByVersion"].values():
                     continue
                 ipsws_set.add(variant["FirmwareURL"])
 
+[i.unlink() for i in Path.cwd().glob("import*") if i.is_file()]
 Path("import.txt").write_text("\n".join(sorted(ipsws_set)), "utf-8", newline="\n")

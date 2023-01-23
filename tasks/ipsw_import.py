@@ -15,6 +15,8 @@ import requests
 from sort_os_files import sort_os_file
 from update_links import update_links
 
+# TODO: createAdditionalEntries support (would only work with JSON tho)
+
 FULL_SELF_DRIVING = False
 
 OS_MAP = [

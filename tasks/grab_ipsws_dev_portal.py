@@ -76,7 +76,7 @@ for group in element.xpath(".//h3/.."):
             data.setdefault("links", []).append({"device": device, "url": url, "build": build})
     except IndexError:
         assert data["osStr"] == "watchOS" or (
-            ("macappstore" in group.find(".//a").get("href") or "apps.apple.com" in group.find(".//a").get("href"))  # type: ignore
+            any(("macappstore" in i.get("href") or "apps.apple.com" in i.get("href")) for i in group.findall(".//a"))  # type: ignore
             and data["osStr"] == "macOS"
             and "beta" not in data["version"].lower()
         )
@@ -86,5 +86,5 @@ for group in element.xpath(".//h3/.."):
 
     out.append(data)
 
-
+[i.unlink() for i in Path.cwd().glob("import*") if i.is_file()]
 json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
