@@ -218,6 +218,7 @@ bypassApps = bypassApps.map(x => JSON.parse(x)) // This is extremely dumb but ne
 const p = 'out'
 mkdir(p)
 fs.writeFileSync(`${p}/CNAME`, cname)
+fs.writeFileSync(`${p}/.nojekyll`, '')
 
 var main = {}
 var filesWritten = 0
