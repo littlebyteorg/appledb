@@ -3,8 +3,8 @@ module.exports = {
   priority: 0,
   info: {
     website: {
-      name: "mineek.github.io/mineekJB/"
-      url: "https://mineek.github.io/mineekJB/"
+      name: "mineek.github.io/mineekJB/",
+      url: "https://mineek.github.io/mineekJB/",
       external: true
     },
     latestVer: "1.0",
