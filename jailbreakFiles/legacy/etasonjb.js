@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/EtasonJB",
-      url: "https://www.theiphonewiki.com/wiki/EtasonJB",
+      name: "theapplewiki.com/wiki/EtasonJB",
+      url: "https://www.theapplewiki.com/wiki/EtasonJB",
       external: true
     },
     guide: [

@@ -3,8 +3,8 @@ module.exports = {
   alias: "unthredehail",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Unthredera1n#unthredeh4il",
-      url: "https://www.theiphonewiki.com/wiki/Unthredera1n#unthredeh4il",
+      name: "theapplewiki.com/wiki/Unthredera1n#unthredeh4il",
+      url: "https://www.theapplewiki.com/wiki/Unthredera1n#unthredeh4il",
       external: true
     },
     type: "Untethered",

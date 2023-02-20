@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Unc0verTV",
-      url: "https://www.theiphonewiki.com/wiki/Unc0verTV",
+      name: "theapplewiki.com/wiki/Unc0verTV",
+      url: "https://www.theapplewiki.com/wiki/Unc0verTV",
       external: true
     },
     latestVer: "5.3.0",

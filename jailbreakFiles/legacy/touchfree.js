@@ -2,8 +2,8 @@ module.exports = {
   name: "touchFree",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/TouchFree",
-      url: "https://www.theiphonewiki.com/wiki/TouchFree",
+      name: "theapplewiki.com/wiki/TouchFree",
+      url: "https://www.theapplewiki.com/wiki/TouchFree",
       external: true
     },
     type: "Untethered",

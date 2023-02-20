@@ -2,8 +2,8 @@ module.exports = {
   name: "opensn0w",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Opensn0w",
-      url: "https://www.theiphonewiki.com/wiki/Opensn0w",
+      name: "theapplewiki.com/wiki/Opensn0w",
+      url: "https://www.theapplewiki.com/wiki/Opensn0w",
       external: true
     },
     type: "Tethered",

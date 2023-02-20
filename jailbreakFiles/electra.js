@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Electra",
-      url: "https://www.theiphonewiki.com/wiki/Electra",
+      name: "theapplewiki.com/wiki/Electra",
+      url: "https://www.theapplewiki.com/wiki/Electra",
       external: true
     },
     guide: [

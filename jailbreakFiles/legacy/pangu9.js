@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Pangu9",
-      url: "https://www.theiphonewiki.com/wiki/Pangu9",
+      name: "theapplewiki.com/wiki/Pangu9",
+      url: "https://www.theapplewiki.com/wiki/Pangu9",
       external: true
     },
     guide: [

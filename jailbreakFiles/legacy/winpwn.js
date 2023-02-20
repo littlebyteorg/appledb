@@ -2,8 +2,8 @@ module.exports = {
   name: "WinPwn",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/WinPwn",
-      url: "https://www.theiphonewiki.com/wiki/WinPwn",
+      name: "theapplewiki.com/wiki/WinPwn",
+      url: "https://www.theapplewiki.com/wiki/WinPwn",
       external: true
     },
     type: "Untethered",

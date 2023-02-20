@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Odyssey",
-      url: "https://www.theiphonewiki.com/wiki/Odyssey",
+      name: "theapplewiki.com/wiki/Odyssey",
+      url: "https://www.theapplewiki.com/wiki/Odyssey",
       external: true
     },
     guide: [

@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/TotallyNotSpyware",
-      url: "https://www.theiphonewiki.com/wiki/TotallyNotSpyware",
+      name: "theapplewiki.com/wiki/TotallyNotSpyware",
+      url: "https://www.theapplewiki.com/wiki/TotallyNotSpyware",
       external: true
     },
     guide: [

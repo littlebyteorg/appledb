@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Taurine",
-      url: "https://www.theiphonewiki.com/wiki/Taurine",
+      name: "theapplewiki.com/wiki/Taurine",
+      url: "https://www.theapplewiki.com/wiki/Taurine",
       external: true
     },
     guide: [

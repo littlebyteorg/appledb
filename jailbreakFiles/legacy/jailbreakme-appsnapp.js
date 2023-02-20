@@ -2,8 +2,8 @@ module.exports = {
   name: "JailbreakMe AppSnapp",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/AppSnapp",
-      url: "https://www.theiphonewiki.com/wiki/AppSnapp",
+      name: "theapplewiki.com/wiki/AppSnapp",
+      url: "https://www.theapplewiki.com/wiki/AppSnapp",
       external: true
     },
     type: "(Safari) Untethered",

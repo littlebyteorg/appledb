@@ -3,8 +3,8 @@ module.exports = {
   priority: 3,
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/PwnageTool",
-      url: "https://www.theiphonewiki.com/wiki/PwnageTool",
+      name: "theapplewiki.com/wiki/PwnageTool",
+      url: "https://www.theapplewiki.com/wiki/PwnageTool",
       external: true
     },
     guide: [

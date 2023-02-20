@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Unc0ver",
-      url: "https://www.theiphonewiki.com/wiki/Unc0ver",
+      name: "theapplewiki.com/wiki/Unc0ver",
+      url: "https://www.theapplewiki.com/wiki/Unc0ver",
       external: true
     },
     guide: [

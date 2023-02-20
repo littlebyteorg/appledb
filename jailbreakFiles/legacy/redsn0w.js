@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Redsn0w",
-      url: "https://www.theiphonewiki.com/wiki/Redsn0w",
+      name: "theapplewiki.com/wiki/Redsn0w",
+      url: "https://www.theapplewiki.com/wiki/Redsn0w",
       external: true
     },
     latestVer: "0.9.15b",

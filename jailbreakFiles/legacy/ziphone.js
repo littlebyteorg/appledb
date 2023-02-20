@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/ZiPhone",
-      url: "https://www.theiphonewiki.com/wiki/ZiPhone",
+      name: "theapplewiki.com/wiki/ZiPhone",
+      url: "https://www.theapplewiki.com/wiki/ZiPhone",
       external: true
     },
     type: "Untethered",

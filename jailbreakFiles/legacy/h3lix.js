@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/h3lix",
-      url: "https://www.theiphonewiki.com/wiki/h3lix",
+      name: "theapplewiki.com/wiki/h3lix",
+      url: "https://www.theapplewiki.com/wiki/h3lix",
       external: true
     },
     guide: [

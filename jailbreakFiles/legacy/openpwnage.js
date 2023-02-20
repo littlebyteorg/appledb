@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/openpwnage",
-      url: "https://www.theiphonewiki.com/wiki/openpwnage",
+      name: "theapplewiki.com/wiki/openpwnage",
+      url: "https://www.theapplewiki.com/wiki/openpwnage",
       external: true
     },
     guide: [

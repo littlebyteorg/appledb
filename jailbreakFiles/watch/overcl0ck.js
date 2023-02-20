@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Overcl0ck",
-      url: "https://www.theiphonewiki.com/wiki/Overcl0ck",
+      name: "theapplewiki.com/wiki/Overcl0ck",
+      url: "https://www.theapplewiki.com/wiki/Overcl0ck",
       external: true
     },
     firmwares: ["3.0","3.2.3"]

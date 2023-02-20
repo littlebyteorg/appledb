@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Yalu",
-      url: "https://www.theiphonewiki.com/wiki/Yalu",
+      name: "theapplewiki.com/wiki/Yalu",
+      url: "https://www.theapplewiki.com/wiki/Yalu",
       external: true
     },
     type: "Semi-untethered",

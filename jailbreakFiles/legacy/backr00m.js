@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Backr00m",
-      url: "https://www.theiphonewiki.com/wiki/Backr00m",
+      name: "theapplewiki.com/wiki/Backr00m",
+      url: "https://www.theapplewiki.com/wiki/Backr00m",
       external: true
     },
     type: "Semi-untethered",

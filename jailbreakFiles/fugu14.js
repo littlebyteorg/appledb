@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Fugu14",
-      url: "https://www.theiphonewiki.com/wiki/Fugu14",
+      name: "theapplewiki.com/wiki/Fugu14",
+      url: "https://www.theapplewiki.com/wiki/Fugu14",
       external: true
     },
     type: "Untethered",
