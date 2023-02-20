@@ -3,8 +3,8 @@ module.exports = {
   priority: 6,
   info: {
     website: {
-      name: "github.com/zachary7829/openpwnage/",
-      url: "https://github.com/zachary7829/openpwnage/",
+      name: "github.com/0xilis/openpwnage/",
+      url: "https://github.com/0xilis/openpwnage/",
       external: true
     },
     wiki: {
