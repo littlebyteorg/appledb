@@ -10,7 +10,7 @@ module.exports = {
     },
     latestVer: "2.3.0",
     type: "Semi-tethered",
-    firmwares: ["15.0","16.3"]
+    firmwares: ["15.0","16.3.1"]
   },
   compatibility: [
     {
