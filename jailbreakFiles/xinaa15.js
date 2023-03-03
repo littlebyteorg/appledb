@@ -13,7 +13,7 @@ module.exports = {
         url: "/installing-xinaa15/",
       }
     ],
-    latestVer: "1.1.7.1",
+    latestVer: "1.1.7.2",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.1.1"]
   },
