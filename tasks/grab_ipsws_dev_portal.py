@@ -86,5 +86,6 @@ for group in element.xpath(".//h3/.."):
 
     out.append(data)
 
+print([f"{d['osStr']} {d['version']}" for d in out])
 [i.unlink() for i in Path.cwd().glob("import*") if i.is_file()]
 json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
