@@ -3,8 +3,8 @@ module.exports = {
   priority: 10,
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/TaiG",
-      url: "https://www.theiphonewiki.com/wiki/TaiG",
+      name: "theapplewiki.com/wiki/TaiG",
+      url: "https://www.theapplewiki.com/wiki/TaiG",
       external: true
     },
     type: "Untethered",

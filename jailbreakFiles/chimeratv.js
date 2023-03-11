@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Chimera",
-      url: "https://www.theiphonewiki.com/wiki/Chimera#tvOS",
+      name: "theapplewiki.com/wiki/Chimera",
+      url: "https://www.theapplewiki.com/wiki/Chimera#tvOS",
       external: true
     },
     latestVer: "1.3.9",

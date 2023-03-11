@@ -3,8 +3,8 @@ module.exports = {
   alias: ["SoftUpgrade", "Soft_Upgrade", "Soft-Upgrade"],
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Soft_Upgrade",
-      url: "https://www.theiphonewiki.com/wiki/Soft_Upgrade",
+      name: "theapplewiki.com/wiki/Soft_Upgrade",
+      url: "https://www.theapplewiki.com/wiki/Soft_Upgrade",
       external: true
     },
     type: "Untethered",

@@ -38,9 +38,9 @@ function write(p, f) {
 
 function writeJson(dirName, arr, property) {
   mkdir(path.join(p, dirName))
-  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property]), null, 2))
-  write(path.join(p, dirName, 'main.json'), JSON.stringify(arr, null, 2))
-  arr.map(function(x) { write(path.join(p, dirName, x[property].replace('/','%2F') + '.json'), JSON.stringify(x, null, 2))})
+  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property])))
+  write(path.join(p, dirName, 'main.json'), JSON.stringify(arr))
+  arr.map(function(x) { write(path.join(p, dirName, x[property].replace('/','%2F') + '.json'), JSON.stringify(x))})
 
   main[dirName] = arr
 }
@@ -218,6 +218,7 @@ bypassApps = bypassApps.map(x => JSON.parse(x)) // This is extremely dumb but ne
 const p = 'out'
 mkdir(p)
 fs.writeFileSync(`${p}/CNAME`, cname)
+fs.writeFileSync(`${p}/.nojekyll`, '')
 
 var main = {}
 var filesWritten = 0
@@ -241,7 +242,7 @@ osFiles.map(function(fw) {
         return y.devices.includes(dev) && y.firmwares.includes(fw.uniqueBuild)
       }).length > 0
     }).sort((a,b) => a.priority - b.priority)
-    write(path.join(dirName, dev, fw.uniqueBuild + '.json'), JSON.stringify(jb, null, 2))
+    write(path.join(dirName, dev, fw.uniqueBuild + '.json'), JSON.stringify(jb))
   })
 })
 

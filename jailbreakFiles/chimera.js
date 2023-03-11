@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Chimera",
-      url: "https://www.theiphonewiki.com/wiki/Chimera",
+      name: "theapplewiki.com/wiki/Chimera",
+      url: "https://www.theapplewiki.com/wiki/Chimera",
       external: true
     },
     guide: [
@@ -28,10 +28,10 @@ module.exports = {
     latestVer: "1.6.4",
     color: "#deeded",
     icon: "/assets/images/jb-icons/chimera.png",
-    notes: "A12 support is only available on iOS 12.0 - 12.1.2. 12.5.6 support requires ChimeraFix",
+    notes: "A12 support is only available on iOS 12.0 - 12.1.2. 12.5.6-12.5.7 support requires ChimeraFix",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
-    firmwares: ["12.0","12.5.6"],
+    firmwares: ["12.0","12.5.7"],
   },
   compatibility: [
     {
@@ -248,7 +248,8 @@ module.exports = {
         "16H41", // 12.5.3
         "16H50", // 12.5.4
         "16H62", // 12.5.5
-        "16H71",
+        "16H71", // 12.5.6 (ChimeraFix)
+        "16H81" // 12.5.7 (ChimeraFix)
       ],
       devices: [
         "iPhone7,1", // iPhone 6 Plus, A8

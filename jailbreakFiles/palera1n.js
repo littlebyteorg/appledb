@@ -4,8 +4,8 @@ module.exports = {
   priority: 0,
   info: {
     website: {
-      name: "github.com/palera1n/palera1n/tree/tweaks",
-      url: "https://github.com/palera1n/palera1n/tree/tweaks",
+      name: "github.com/palera1n/palera1n",
+      url: "https://github.com/palera1n/palera1n",
       external: true
     },
     guide: [
@@ -15,8 +15,12 @@ module.exports = {
         pkgman: "sileo",
         updateLink: [
           {
-            text: 'Updating to 15.7.1',
-            link: '/updating-to-15-7-1/'
+            text: 'Updating to 15.7.3',
+            link: '/updating-to-15-7-3/'
+          },
+          {
+            text: 'Updating to 16.3.1',
+            link: '/updating-to-16-3-1/'
           },
         ]
       }
@@ -24,8 +28,8 @@ module.exports = {
     latestVer: "1.4.1",
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
-    notes: "Compatible with A8(X) - A11 devices. A10(X) and A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16. Semi-tethered support limited to non-16GB devices with more than 10GB of free space.",
-    firmwares: ["15.0","16.3 Beta 2"]
+    notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16. Rootful support limited to either iOS 15 devices with more than 3GB of free space or iOS 16 devices with more than 10GB of free space.",
+    firmwares: ["15.0","16.3.1"]
   },
   compatibility: [
     {
@@ -115,6 +119,7 @@ module.exports = {
         "19H115",
         "19H117",
         "19H218",
+        "19H307",
         "20A5283p",
         "20A5303i",
         "20A5312g",
@@ -144,7 +149,9 @@ module.exports = {
         "20C5058d",
         "20C65",
         "20D5024e",
-        "20D5035i"
+        "20D5035i",
+        "20D47",
+        "20D67"
       ]
     }
   ]

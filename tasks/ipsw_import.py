@@ -154,6 +154,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
     else:
         build_manifest = plistlib.loads(build_manifest_response.content)
 
+    ipsw = None
     if not build_manifest:
         # Get it via remotezip
         ipsw = remotezip.RemoteZip(ipsw_url)
@@ -166,6 +167,15 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
         # build_manifest = plistlib.loads(ipsw.read(manifest_paths[0]))
 
         build_manifest = plistlib.loads(ipsw.read("BuildManifest.plist"))
+
+    platform_support = None
+    if os_str == "macOS" or "UniversalMac" in ipsw_url:
+        if not ipsw:
+            ipsw = remotezip.RemoteZip(ipsw_url)
+        print("\tGetting PlatformSupport.plist via remotezip")
+        platform_support = plistlib.loads(ipsw.read("PlatformSupport.plist"))
+
+    if ipsw:
         ipsw.close()
 
     # Get the build, version, and supported devices
@@ -174,7 +184,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
     # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
     # Check by substring first?
     recommended_version = recommended_version or build_manifest["ProductVersion"]
-    supported_devices = build_manifest["SupportedProductTypes"]
+    supported_devices = build_manifest["SupportedProductTypes"] + (platform_support["SupportedModelProperties"] if platform_support else [])
 
     # Get Restore.plist from the IPSW
     # restore = plistlib.loads(ipsw.read("Restore.plist"))
@@ -208,6 +218,10 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
     )
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
+
+    if os_str == "tvOS" and db_data["version"].startswith("16."):
+        # Ensure supported_devices has these devices
+        db_data["deviceMap"] = list(set(db_data["deviceMap"] + ["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"]))
 
     found_source = False
     for source in db_data.setdefault("sources", []):

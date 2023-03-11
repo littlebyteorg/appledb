@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/p0sixspwn",
-      url: "https://www.theiphonewiki.com/wiki/p0sixspwn",
+      name: "theapplewiki.com/wiki/p0sixspwn",
+      url: "https://www.theapplewiki.com/wiki/p0sixspwn",
       external: true
     },
     guide: [

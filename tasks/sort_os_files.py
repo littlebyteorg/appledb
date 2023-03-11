@@ -24,6 +24,7 @@ key_order = [
     "notes",
     "releaseNotes",
     "securityNotes",
+    "ipd",
     "deviceMap",
     "sources",
 ]

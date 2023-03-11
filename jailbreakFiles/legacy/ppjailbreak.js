@@ -3,8 +3,8 @@ module.exports = {
   priority: 7,
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/PPJailbreak",
-      url: "https://www.theiphonewiki.com/wiki/PPJailbreak",
+      name: "theapplewiki.com/wiki/PPJailbreak",
+      url: "https://www.theapplewiki.com/wiki/PPJailbreak",
       external: true
     },
     type: "Untethered",

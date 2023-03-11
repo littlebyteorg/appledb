@@ -2,8 +2,8 @@ module.exports = {
   name: "QuickPwn",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/QuickPwn",
-      url: "https://www.theiphonewiki.com/wiki/QuickPwn",
+      name: "theapplewiki.com/wiki/QuickPwn",
+      url: "https://www.theapplewiki.com/wiki/QuickPwn",
       external: true
     },
     type: "Untethered",

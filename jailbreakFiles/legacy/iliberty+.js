@@ -4,8 +4,8 @@ module.exports = {
   priority: 0,
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/ILiberty+",
-      url: "https://www.theiphonewiki.com/wiki/ILiberty%2B",
+      name: "theapplewiki.com/wiki/ILiberty+",
+      url: "https://www.theapplewiki.com/wiki/ILiberty%2B",
       external: true
     },
     type: "Untethered",

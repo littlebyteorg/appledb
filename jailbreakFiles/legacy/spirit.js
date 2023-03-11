@@ -2,8 +2,8 @@ module.exports = {
   name: "Spirit",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Spirit",
-      url: "https://www.theiphonewiki.com/wiki/Spirit",
+      name: "theapplewiki.com/wiki/Spirit",
+      url: "https://www.theapplewiki.com/wiki/Spirit",
       external: true
     },
     type: "Untethered",

@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/INdependence",
-      url: "https://www.theiphonewiki.com/wiki/INdependence",
+      name: "theapplewiki.com/wiki/INdependence",
+      url: "https://www.theapplewiki.com/wiki/INdependence",
       external: true
     },
     type: "Untethered",

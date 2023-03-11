@@ -2,13 +2,13 @@ module.exports = {
   name: "iBrickr",
   info: {
     website: {
-      name: "theiphonewiki.com/wiki/IBrickr",
-      url: "https://www.theiphonewiki.com/wiki/IBrickr",
+      name: "theapplewiki.com/wiki/IBrickr",
+      url: "https://www.theapplewiki.com/wiki/IBrickr",
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/iBrickr",
-      url: "https://www.theiphonewiki.com/wiki/iBrickr",
+      name: "theapplewiki.com/wiki/iBrickr",
+      url: "https://www.theapplewiki.com/wiki/iBrickr",
       external: true
     },
     type: "Untethered",

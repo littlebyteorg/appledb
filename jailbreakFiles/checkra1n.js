@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/checkra1n",
-      url: "https://www.theiphonewiki.com/wiki/checkra1n",
+      name: "theapplewiki.com/wiki/checkra1n",
+      url: "https://www.theapplewiki.com/wiki/checkra1n",
       external: true
     },
     guide: [
@@ -264,6 +264,7 @@ module.exports = {
         "16H50", // 12.5.4
         "16H62", // 12.5.5
         "16H71", // 12.5.6
+        "16H81", // 12.5.7
         "17A5492t", // 13.0 beta
         "17A5508m", // 13.0 beta 2
         "17A5522f", // 13.0 beta 3
@@ -666,6 +667,7 @@ module.exports = {
         "16H50", // 12.5.4
         "16H62", // 12.5.5
         "16H71", // 12.5.6
+        "16H81", // 12.5.7
       ],
       devices: [
         "iPhone7,1", // iPhone 6 Plus, A8

@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/LiberTV",
-      url: "https://www.theiphonewiki.com/wiki/LiberTV",
+      name: "theapplewiki.com/wiki/LiberTV",
+      url: "https://www.theapplewiki.com/wiki/LiberTV",
       external: true
     },
     latestVer: "1.1",

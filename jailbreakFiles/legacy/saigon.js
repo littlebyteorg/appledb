@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Saïgon",
-      url: "https://www.theiphonewiki.com/wiki/Saïgon",
+      name: "theapplewiki.com/wiki/Saïgon",
+      url: "https://www.theapplewiki.com/wiki/Saïgon",
       external: true
     },
     latestVer: "Beta 3",

@@ -4,13 +4,13 @@ module.exports = {
   priority: 0,
   info: {
     website: {
-      name: "theiphonewiki.com/wiki/Evasi0n",
-      url: "https://www.theiphonewiki.com/wiki/Evasi0n",
+      name: "theapplewiki.com/wiki/Evasi0n",
+      url: "https://www.theapplewiki.com/wiki/Evasi0n",
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Evasi0n",
-      url: "https://www.theiphonewiki.com/wiki/Evasi0n",
+      name: "theapplewiki.com/wiki/Evasi0n",
+      url: "https://www.theapplewiki.com/wiki/Evasi0n",
       external: true
     },
     guide: [

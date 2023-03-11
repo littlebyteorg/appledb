@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Jbme",
-      url: "https://www.theiphonewiki.com/wiki/Jbme",
+      name: "theapplewiki.com/wiki/Jbme",
+      url: "https://www.theapplewiki.com/wiki/Jbme",
       external: true
     },
     type: "(Safari) Semi-untethered",

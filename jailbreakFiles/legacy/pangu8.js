@@ -2,8 +2,8 @@ module.exports = {
   name: "Pangu8",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Pangu8",
-      url: "https://www.theiphonewiki.com/wiki/Pangu8",
+      name: "theapplewiki.com/wiki/Pangu8",
+      url: "https://www.theapplewiki.com/wiki/Pangu8",
       external: true
     },
     type: "Untethered",

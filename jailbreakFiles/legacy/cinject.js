@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Cinject",
-      url: "https://www.theiphonewiki.com/wiki/Cinject",
+      name: "theapplewiki.com/wiki/Cinject",
+      url: "https://www.theapplewiki.com/wiki/Cinject",
       external: true
     },
     type: "Untethered",

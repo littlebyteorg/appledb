@@ -3,8 +3,8 @@ module.exports = {
   alias: ["AppTappInstaller", "AppTapp-Installer", "AppTapp_Installer"],
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/AppTapp_Installer",
-      url: "https://www.theiphonewiki.com/wiki/AppTapp_Installer",
+      name: "theapplewiki.com/wiki/AppTapp_Installer",
+      url: "https://www.theapplewiki.com/wiki/AppTapp_Installer",
       external: true
     },
     type: "Untethered",

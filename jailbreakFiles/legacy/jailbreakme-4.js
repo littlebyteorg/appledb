@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/JailbreakMe_4.0",
-      url: "https://www.theiphonewiki.com/wiki/JailbreakMe_4.0",
+      name: "theapplewiki.com/wiki/JailbreakMe_4.0",
+      url: "https://www.theapplewiki.com/wiki/JailbreakMe_4.0",
       external: true
     },
     guide: [

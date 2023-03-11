@@ -1,12 +1,46 @@
 {
     "osStr": "audioOS",
-    "version": "16.3 RC",
+    "version": "16.3",
     "build": "20K649",
-    "released": "2023-01-18",
-    "rc": true,
+    "released": "2023-01-24",
+    "createDuplicateEntries": [
+        {
+            "version": "16.3 RC",
+            "uniqueBuild": "20K649-RC",
+            "released": "2023-01-18",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT208714#163",
     "deviceMap": [
         "AudioAccessory1,1",
         "AudioAccessory1,2",
-        "AudioAccessory5,1"
+        "AudioAccessory5,1",
+        "AudioAccessory6,1"
+    ],
+    "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "AudioAccessory5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-35433/F659D7B8-CEDE-4D75-9D96-FD1E43E73522/AudioAccessory5,1_16.3_20K649_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2023WinterFCS/fullrestores/032-35433/F659D7B8-CEDE-4D75-9D96-FD1E43E73522/AudioAccessory5,1_16.3_20K649_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "3facecd25b5fcecb4a4e6d14116f0fd3f6982b4f7fa99e270c8eff711a70b616",
+                "sha1": "ec0596e8c5b2996acc5eac9fda9b7679cbd6581c"
+            },
+            "size": 2967727606
+        }
     ]
 }
