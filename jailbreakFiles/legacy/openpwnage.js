@@ -19,7 +19,7 @@ module.exports = {
         pkgman: "cydia",
       }
     ],
-    latestVer: "Beta Build 9",
+    latestVer: "Beta Build 9.5",
     color: "#faf4f7",
     icon: "/assets/images/jb-icons/openpwnage.png",
     notes: "iOS 8.4.1 can be optionally untethered via etason untether package",
