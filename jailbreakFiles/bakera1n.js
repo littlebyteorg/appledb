@@ -10,7 +10,7 @@ module.exports = {
     },
     latestVer: "2.3.0",
     type: "Semi-tethered",
-    firmwares: ["15.0","16.3.1"]
+    firmwares: ["15.0","16.4 beta"]
   },
   compatibility: [
     {
@@ -132,7 +132,8 @@ module.exports = {
         "20D5024e",
         "20D5035i",
         "20D47",
-        "20D67"
+        "20D67",
+        "20E5212f",
       ]
     }
   ]
