@@ -1,13 +1,49 @@
 {
     "osStr": "audioOS",
-    "version": "16.4 RC",
+    "version": "16.4",
     "build": "20L497",
-    "released": "2023-03-21",
-    "rc": true,
+    "released": "2023-03-27",
+    "createDuplicateEntries": [
+        {
+            "version": "16.4 RC",
+            "uniqueBuild": "20L497-RC",
+            "released": "2023-03-21",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT208714#164",
+    "ipd": {
+        "AudioAccessory": "https://updates.cdn-apple.com/2023WinterFCS/documentation/032-65364/05B944C5-9551-4ECC-8694-A2879AA51F9D/HomePodRTF.ipd"
+    },
     "deviceMap": [
         "AudioAccessory1,1",
         "AudioAccessory1,2",
         "AudioAccessory5,1",
         "AudioAccessory6,1"
+    ],
+    "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "AudioAccessory5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-65865/EFEAB952-C4A3-45C5-824D-364CA9643753/AudioAccessory5,1_16.4_20L497_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2023WinterFCS/fullrestores/032-65865/EFEAB952-C4A3-45C5-824D-364CA9643753/AudioAccessory5,1_16.4_20L497_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "69c98580bed319f8d5effcd027c2b51b981c7091fdd00520e959fd8a3d561016",
+                "sha1": "a91d9a71e5c79e804cdd5af354b78657451f22fb"
+            },
+            "size": 3033845967
+        }
     ]
 }
