@@ -4,8 +4,8 @@ module.exports = {
   priority: 0,
   info: {
     website: {
-      name: "github.com/palera1n/palera1n",
-      url: "https://github.com/palera1n/palera1n",
+      name: "palera.in",
+      url: "palera.in",
       external: true
     },
     guide: [
