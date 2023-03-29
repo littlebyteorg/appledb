@@ -1,22 +1,22 @@
 module.exports = {
-  name: "XinaA15",
+  name: "Fugu15 Max",
   hideFromGuide: false,
-  priority: 1,
+  priority: 2,
   info: {
     website: {
-      name: "xina.ss03.cn",
-      url: "https://xina.ss03.cn/",
+      name: "github.com/opa334/Fugu15/tree/max",
+      url: "https://github.com/opa334/Fugu15/tree/max/",
       external: true
     },
     guide: [
       {
-        name: "Installing XinaA15",
-        url: "/installing-xinaa15/",
+        name: "Installing Fugu15 Max",
+        url: "/installing-fugu15max/",
       }
     ],
-    latestVer: "1.1.8",
+    latestVer: "Public Beta 1",
     type: "Semi-Untethered",
-    firmwares: ["15.0","15.1.1"]
+    firmwares: ["15.0","15.4.1"]
   },
   compatibility: [
     {
@@ -96,7 +96,28 @@ module.exports = {
         "19B5068a",
         "19B74",
         "19B75",
-        "19B81"
+        "19B81",
+        "19C5026i",
+        "19C5036e",
+        "19C5044b",
+        "19C5050b",
+        "19C56",
+        "19C57",
+        "19C63",
+        "19D49",
+        "19D50",
+        "19D5026g",
+        "19D5040e",
+        "19D52",
+        "19E241",
+        "19E258",
+        "19E5209h",
+        "19E5219e",
+        "19E5225g",
+        "19E5235a",
+        "19E5241a",
+        "19F5047e",
+        "19F5057e"
       ]
     }
   ]
