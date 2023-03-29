@@ -78,4 +78,8 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
 if __name__ == "__main__":
     for file in Path("osFiles").rglob("*.json"):
-        sort_os_file(file)
+        try:
+            sort_os_file(file)
+        except:
+            print(f"Error while processing {file}")
+            raise
