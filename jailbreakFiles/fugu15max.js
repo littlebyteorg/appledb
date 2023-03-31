@@ -5,7 +5,7 @@ module.exports = {
   info: {
     website: {
       name: "github.com/opa334/Fugu15/tree/max",
-      url: "https://github.com/opa334/Fugu15/tree/max/",
+      url: "https://github.com/opa334/Fugu15/releases",
       external: true
     },
     guide: [
@@ -14,7 +14,7 @@ module.exports = {
         url: "/installing-fugu15max/",
       }
     ],
-    latestVer: "1.0.0-beta3",
+    latestVer: "1.0.0-beta4",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
   },
