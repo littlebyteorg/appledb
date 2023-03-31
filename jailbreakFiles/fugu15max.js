@@ -14,7 +14,7 @@ module.exports = {
         url: "/installing-fugu15max/",
       }
     ],
-    latestVer: "Public Beta 1",
+    latestVer: "1.0.0-beta2",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
   },
