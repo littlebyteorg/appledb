@@ -5,7 +5,7 @@ module.exports = {
   info: {
     website: {
       name: "palera.in",
-      url: "palera.in",
+      url: "https://palera.in",
       external: true
     },
     guide: [
