@@ -15,6 +15,7 @@ module.exports = {
       }
     ],
     latestVer: "1.0.0-beta4",
+    icon: "/assets/images/jb-icons/fugu15max.png",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
   },
