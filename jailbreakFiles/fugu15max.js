@@ -4,7 +4,7 @@ module.exports = {
   priority: 2,
   info: {
     website: {
-      name: "github.com/opa334/Fugu15/tree/max",
+      name: "github.com/opa334/Fugu15",
       url: "https://github.com/opa334/Fugu15/releases",
       external: true
     },
