@@ -19,8 +19,8 @@ module.exports = {
         pkgman: "sileo",
         updateLink: [
           {
-            text: 'Updating to 12.5.6',
-            link: '/updating-to-12-5-6/'
+            text: 'Updating to 12.5.7',
+            link: '/updating-to-12-5-7/'
           },
         ]
       }
