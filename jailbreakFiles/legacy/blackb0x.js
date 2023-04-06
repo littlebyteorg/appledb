@@ -16,8 +16,7 @@ module.exports = {
     guide: [
       {
         name: "Installing Blackb0x",
-        url: "/installing-blackb0x/",
-        pkgman: "none",
+        url: "/installing-blackb0x/"
       }
     ],
     type: "Mixed",
