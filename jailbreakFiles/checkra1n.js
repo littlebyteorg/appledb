@@ -15,6 +15,28 @@ module.exports = {
     },
     guide: [
       {
+        name: "Installing checkra1n (Apple TV)",
+        url: "/installing-checkra1n-tv",
+        devices: [
+          "AppleTV5,3",
+          "AppleTV6,2"
+        ],
+        sidebarChildren: [
+          {
+            text: 'macOS',
+            link: '/installing-checkra1n-tv/macos',
+          },
+          {
+            text: 'Linux',
+            link: '/installing-checkra1n-tv/linux',
+          },
+          {
+            text: 'ChromeOS',
+            link: '/installing-checkra1n-tv/chromeos',
+          },
+        ]
+      },
+      {
         name: "Installing Odysseyra1n",
         url: "/installing-odysseyra1n/",
         pkgman: 'sileo',
@@ -27,14 +49,16 @@ module.exports = {
             text: 'Linux',
             link: '/installing-odysseyra1n/linux/',
           },
+          {
+            text: 'ChromeOS',
+            link: '/installing-odysseyra1n-chromeos/',
+          },
         ],
       },
       {
         devices: [
           "AudioAccessory1,1",
-          "AudioAccessory1,2",
-          "AppleTV5,3",
-          "AppleTV6,2"
+          "AudioAccessory1,2"
         ]
       },
       {
@@ -84,11 +108,15 @@ module.exports = {
         sidebarChildren: [
           {
             text: 'macOS',
-            link: '/installing-odysseyra1n-a9x/macos/',
+            link: '/installing-odysseyra1n-a8x-a9x/macos',
           },
           {
             text: 'Linux',
-            link: '/installing-odysseyra1n-a9x/linux/',
+            link: '/installing-odysseyra1n-a8x-a9x/linux',
+          },
+          {
+            text: 'ChromeOS',
+            link: '/installing-odysseyra1n-chromeos-a8x-a9x',
           },
         ],
       },
@@ -386,33 +414,6 @@ module.exports = {
         "18G82", // 14.7.1
         "18H17", // 14.8
         "18H107", // 14.8.1
-        "16J364", // 12.0, AppleTV
-        "16J380", // 12.0.1, AppleTV
-        "16J602", // 12.1, AppleTV
-        "16K45", // 12.1.1, AppleTV
-        "16K534", // 12.1.2, AppleTV
-        "16L226", // 12.2, AppleTV
-        "16L250", // 12.2.1, AppleTV
-        "16M153", // 12.3, AppleTV
-        "16M568", // 12.4, AppleTV
-        "16M600", // 12.4.1, AppleTV
-        "17J586", // 13.0, AppleTV
-        "17K82", // 13.2, AppleTV
-        "17K449", // 13.3, AppleTV
-        "17K795", // 13.3.1, AppleTV
-        "17L256", // 13.4, AppleTV
-        "17L562", // 13.4.5, AppleTV
-        "17L570", // 13.4.6, AppleTV
-        "17M61", // 13.4.8, AppleTV
-        "18J386", // 14.0, AppleTV
-        "18J400", // 14.0.1, AppleTV
-        "18J411", // 14.0.2, AppleTV
-        "18K57", // 14.2, AppleTV
-        "18K561", // 14.3, AppleTV
-        "18K802", // 14.4, AppleTV
-        "18L204", // 14.5, AppleTV
-        "18L569", // 14.6, AppleTV
-        "18M60", // 14.7, AppleTV
       ],
       devices: [
         "iPhone6,1", // iPhone 5s (GSM), A7
@@ -454,6 +455,40 @@ module.exports = {
         "iPad7,11", // iPad (7th generation) Wi-Fi, A10
         "iPad7,12", // iPad (7th generation) Wi-Fi + Cellular, A10
         "iPod9,1", // iPod touch (7th generation), A10
+      ]
+    },
+    {
+      priority: 1,
+      firmwares: [
+        "16J364", // 12.0, AppleTV
+        "16J380", // 12.0.1, AppleTV
+        "16J602", // 12.1, AppleTV
+        "16K45", // 12.1.1, AppleTV
+        "16K534", // 12.1.2, AppleTV
+        "16L226", // 12.2, AppleTV
+        "16L250", // 12.2.1, AppleTV
+        "16M153", // 12.3, AppleTV
+        "16M568", // 12.4, AppleTV
+        "16M600", // 12.4.1, AppleTV
+        "17J586", // 13.0, AppleTV
+        "17K82", // 13.2, AppleTV
+        "17K449", // 13.3, AppleTV
+        "17K795", // 13.3.1, AppleTV
+        "17L256", // 13.4, AppleTV
+        "17L562", // 13.4.5, AppleTV
+        "17L570", // 13.4.6, AppleTV
+        "17M61", // 13.4.8, AppleTV
+        "18J386", // 14.0, AppleTV
+        "18J400", // 14.0.1, AppleTV
+        "18J411", // 14.0.2, AppleTV
+        "18K57", // 14.2, AppleTV
+        "18K561", // 14.3, AppleTV
+        "18K802", // 14.4, AppleTV
+        "18L204", // 14.5, AppleTV
+        "18L569", // 14.6, AppleTV
+        "18M60", // 14.7, AppleTV
+      ],
+      devices: [
         "AppleTV5,3", // Apple TV HD (4th generation), A8
         "AppleTV6,2", // Apple TV 4K (1st generation), A10X
       ]

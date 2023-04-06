@@ -15,6 +15,11 @@ module.exports = {
     },
     guide: [
       {
+        devices: [
+          'AppleTV2,1'
+        ]
+      },
+      {
         name: "Installing P0sixspwn",
         url: "/installing-p0sixspwn/",
         pkgman: "cydia",

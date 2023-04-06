@@ -15,6 +15,11 @@ module.exports = {
     },
     guide: [
       {
+        devices: [
+          'AppleTV2,1'
+        ]
+      },
+      {
         name: "Installing Evasi0n6",
         url: "/installing-evasi0n6/",
         pkgman: "cydia",

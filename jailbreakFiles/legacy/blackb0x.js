@@ -1,7 +1,7 @@
 module.exports = {
   name: "Blackb0x",
   alias: "blackbox",
-  priority: 3,
+  priority: 0,
   info: {
     website: {
       name: "github.com/NSSpiral/Blackb0x",
@@ -13,6 +13,13 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/Blackb0x",
       external: true
     },
+    guide: [
+      {
+        name: "Installing Blackb0x",
+        url: "/installing-blackb0x/",
+        pkgman: "none",
+      }
+    ],
     type: "Mixed",
     latestVer: "0.6.2",
     color: "#800080",
