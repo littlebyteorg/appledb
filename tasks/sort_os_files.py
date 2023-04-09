@@ -24,7 +24,7 @@ key_order = [
     "notes",
     "releaseNotes",
     "securityNotes",
-    "appledbWebImage"
+    "appledbWebImage",
     "ipd",
     "deviceMap",
     "sources",
