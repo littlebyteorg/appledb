@@ -191,7 +191,7 @@ class PrintThread(threading.Thread):
             try:
                 item = self.print_queue.get(block=False)
                 self.count += 1
-                print(item or f"Processed {self.count}/{self.total} ({self.count/self.total*100}%) files")
+                print(item or f"Processed {self.count}/{self.total} ({self.count/self.total*100:.2f}%) files")
             except queue.Empty:
                 pass
 
