@@ -14,7 +14,7 @@ module.exports = {
         url: "/installing-fugu15max/",
       }
     ],
-    latestVer: "1.0.0-beta6",
+    latestVer: "1.0.0-beta7",
     icon: "/assets/images/jb-icons/fugu15max.png",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
