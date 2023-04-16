@@ -11,10 +11,11 @@ module.exports = {
     guide: [
       {
         name: "Installing XinaA15",
-        url: "/installing-xinaa15/",
+        url: "/xinaa15-archive/",
       }
     ],
     latestVer: "1.1.8",
+    notes: "No longer maintained, it's highly recommended to use Fugu15 Max instead",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.1.1"]
   },

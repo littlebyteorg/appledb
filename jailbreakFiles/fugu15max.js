@@ -16,6 +16,7 @@ module.exports = {
     ],
     latestVer: "1.0.0-beta7",
     icon: "/assets/images/jb-icons/fugu15max.png",
+    notes: "Must disable Wi-Fi using Airplane Mode or Settings App on iOS 15.0 to 15.3.1",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
   },
