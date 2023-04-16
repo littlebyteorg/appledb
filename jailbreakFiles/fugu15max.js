@@ -1,7 +1,7 @@
 module.exports = {
   name: "Fugu15 Max",
   hideFromGuide: false,
-  priority: 2,
+  priority: 1,
   info: {
     website: {
       name: "github.com/opa334/Fugu15",

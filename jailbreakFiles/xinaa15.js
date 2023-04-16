@@ -1,7 +1,7 @@
 module.exports = {
   name: "XinaA15",
   hideFromGuide: false,
-  priority: 1,
+  priority: 2,
   info: {
     website: {
       name: "xina.ss03.cn",
