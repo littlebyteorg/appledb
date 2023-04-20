@@ -1,5 +1,5 @@
 module.exports = {
-  name: "Fugu15 Max",
+  name: "Dopamine",
   hideFromGuide: false,
   priority: 1,
   info: {
@@ -10,7 +10,7 @@ module.exports = {
     },
     guide: [
       {
-        name: "Installing Fugu15 Max",
+        name: "Installing Dopamine",
         url: "/installing-fugu15max/",
       }
     ],
