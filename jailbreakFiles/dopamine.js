@@ -4,19 +4,19 @@ module.exports = {
   priority: 1,
   info: {
     website: {
-      name: "github.com/opa334/Fugu15",
-      url: "https://github.com/opa334/Fugu15/releases",
+      name: "ellekit.space/dopamine",
+      url: "https://ellekit.space/dopamine",
       external: true
     },
     guide: [
       {
         name: "Installing Dopamine",
-        url: "/installing-fugu15max/",
+        url: "/installing-dopamine/",
       }
     ],
-    latestVer: "1.0.0-beta8",
-    icon: "/assets/images/jb-icons/fugu15max.png",
-    notes: "Must disable Wi-Fi using Airplane Mode or Settings App on iOS 15.0 to 15.3.1",
+    latestVer: "1.0",
+    icon: "/assets/images/jb-icons/dopamine.png",
+    notes: "Formerly known as Fugu15 Max",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
   },

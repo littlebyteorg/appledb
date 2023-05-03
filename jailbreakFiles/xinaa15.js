@@ -15,7 +15,7 @@ module.exports = {
       }
     ],
     latestVer: "1.1.8",
-    notes: "No longer maintained, it's highly recommended to use Fugu15 Max instead",
+    notes: "No longer maintained, it's highly recommended to use Dopamine instead",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.1.1"]
   },
