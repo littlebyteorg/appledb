@@ -221,7 +221,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
 
     if os_str == "tvOS" and db_data["version"].startswith("16."):
         # Ensure supported_devices has these devices
-        db_data["deviceMap"] = list(set(db_data["deviceMap"] + ["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"]))
+        db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
 
     found_source = False
     for source in db_data.setdefault("sources", []):
