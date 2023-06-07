@@ -152,6 +152,7 @@ osFiles = osFiles
   ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
+  if (ver.osType == 'Mac OS X') ver.osType = 'macOS'
 
   function getLegacyDevicesObjectArray() {
     let obj = {}
