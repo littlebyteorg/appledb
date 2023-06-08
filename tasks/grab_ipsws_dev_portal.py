@@ -47,13 +47,20 @@ group: Element
 
 out = []
 
+HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
+
 for group in element.xpath(".//h3/.."):
-    name = group.find("h3", None).text.strip()
-    assert len(name.split(" ")) >= 2, "Name must have at least two parts (OS and version)"
-    os_str, version = name.split(" ", 1)
+    name: str = group.find("h3", None).text.strip()
+    match = HEADING_PATTERN.match(name)
+    if not match:
+        if name.startswith("Device Support"):
+            # Bruh
+            continue
+        assert match, "Name does not match pattern"
+    version = match.groupdict()["version"]
     if "." not in version:
-        version = "".join(j + (".0" if i == 0 else "") for i, j in enumerate(version.split(".")))
-    data = {"osStr": os_str, "version": version}
+        version += ".0"
+    data = {"osStr": match.groupdict()["os_str"], "version": version + (match.groupdict()["additional"] or "")}
 
     build_info_container: list[Element] = group.xpath("./ul[@class='version typography-caption']")
     if not build_info_container:
@@ -70,6 +77,8 @@ for group in element.xpath(".//h3/.."):
         for i in links.iterchildren(None):
             device = i.find("a", None).text.strip()
             url = i.find("a", None).attrib["href"].strip()
+            if url.startswith("/"):
+                url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
             assert build == build_info["Build"]
 
