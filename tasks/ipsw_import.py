@@ -5,19 +5,23 @@ import json
 import plistlib
 import re
 import string
+import zipfile
 import zoneinfo
 from pathlib import Path
+from urllib.parse import urlparse
 
 import packaging.version
 import remotezip
 import requests
-
 from sort_os_files import sort_os_file
 from update_links import update_links
 
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 
 FULL_SELF_DRIVING = False
+# Use local files if found
+USE_LOCAL_IF_FOUND = True
+LOCAL_IPSW_PATH = Path("ipsws")
 
 OS_MAP = [
     ("iPod", "iOS"),
@@ -31,6 +35,9 @@ OS_MAP = [
 ]
 
 SESSION = requests.Session()
+
+# Domains that need auth
+needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com"]
 
 VARIANTS = {}
 
@@ -109,7 +116,12 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
             if not friendly_version:
                 friendly_version = version or recommended_version
-        json.dump({"osStr": os_str, "version": friendly_version, "build": build}, db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        json.dump(
+            {"osStr": os_str, "version": friendly_version, "build": build},
+            db_file.open("w", encoding="utf-8", newline="\n"),
+            indent=4,
+            ensure_ascii=False,
+        )
 
     db_data = json.load(db_file.open(encoding="utf-8"))
 
@@ -140,25 +152,34 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     return db_file
 
 
-def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True):
+def import_ipsw(
+    ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True
+):
+    local_path = LOCAL_IPSW_PATH / Path(Path(ipsw_url).name)
+    local_available = USE_LOCAL_IF_FOUND and local_path.exists()
+
+    if urlparse(ipsw_url).hostname in needs_auth and not local_available:
+        raise RuntimeError(f"IPSW URL {ipsw_url} requires authentication, but no local file found")
+
     # Check if a BuildManifest.plist exists at the same parent directory as the IPSW
     build_manifest_url = ipsw_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
     build_manifest_response = SESSION.get(build_manifest_url)
 
     build_manifest = None
 
-    try:
-        build_manifest_response.raise_for_status()
-    except requests.exceptions.HTTPError:
-        print(f"\tBuildManifest.plist not found at {build_manifest_url}, using remotezip")
-    else:
-        build_manifest = plistlib.loads(build_manifest_response.content)
+    if not local_available:
+        try:
+            build_manifest_response.raise_for_status()
+        except requests.exceptions.HTTPError:
+            print(f"\tBuildManifest.plist not found at {build_manifest_url}, using remotezip")
+        else:
+            build_manifest = plistlib.loads(build_manifest_response.content)
 
     ipsw = None
     if not build_manifest:
         # Get it via remotezip
-        ipsw = remotezip.RemoteZip(ipsw_url)
-        print("\tGetting BuildManifest.plist via remotezip")
+        ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)
+        print(f"\tGetting BuildManifest.plist {'from local file' if local_available else 'via remotezip'}")
 
         # Commented out because IPSWs should always have the BuildManifest in the root
 
@@ -171,8 +192,8 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
     platform_support = None
     if os_str == "macOS" or "UniversalMac" in ipsw_url:
         if not ipsw:
-            ipsw = remotezip.RemoteZip(ipsw_url)
-        print("\tGetting PlatformSupport.plist via remotezip")
+            ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)
+        print(f"\tGetting PlatformSupport.plist {'from local file' if local_available else 'via remotezip'}")
         platform_support = plistlib.loads(ipsw.read("PlatformSupport.plist"))
 
     if ipsw:
@@ -184,7 +205,12 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
     # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
     # Check by substring first?
     recommended_version = recommended_version or build_manifest["ProductVersion"]
-    supported_devices = build_manifest["SupportedProductTypes"] + (platform_support["SupportedModelProperties"] if platform_support else [])
+    # Devices supported specifically in this source
+    supported_devices = build_manifest["SupportedProductTypes"]
+    # Devices supported in this build, but not necessarily in this source
+    build_supported_devices = set(
+        build_manifest["SupportedProductTypes"] + (platform_support["SupportedModelProperties"] if platform_support else [])
+    )
 
     # Get Restore.plist from the IPSW
     # restore = plistlib.loads(ipsw.read("Restore.plist"))
@@ -194,6 +220,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
     # assert restore["SupportedProductTypes"] == supported_devices
 
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "ADP3,1"]]
+    build_supported_devices = [i for i in build_supported_devices if i not in ["iProd99,1", "ADP3,1"]]
 
     if not os_str:
         for product_prefix, os_str in OS_MAP:
@@ -210,18 +237,13 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
                 os_str = input("\tEnter OS name: ").strip()
 
     db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
-
-    db_data = json.load(
-        db_file.open(
-            encoding="utf-8",
-        )
-    )
-
-    db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
+    db_data = json.load(db_file.open(encoding="utf-8"))
 
     if os_str == "tvOS" and db_data["version"].startswith("16."):
         # Ensure supported_devices has these devices
-        db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
+        build_supported_devices = list(set(build_supported_devices + ["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"]))
+
+    db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
 
     found_source = False
     for source in db_data.setdefault("sources", []):
@@ -233,15 +255,7 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
 
     if not found_source:
         print("\tAdding new source")
-        source = {
-            "deviceMap": augment_with_keys(supported_devices),
-            "type": "ipsw",
-            "links": [
-                {
-                    "url": ipsw_url,
-                },
-            ],
-        }
+        source = {"deviceMap": augment_with_keys(supported_devices), "type": "ipsw", "links": [{"url": ipsw_url}]}
 
         db_data["sources"].append(source)
 
@@ -270,32 +284,24 @@ if __name__ == "__main__":
 
         if Path("import.json").exists():
             print("Reading versions from import.json")
-            versions = json.load(
-                Path("import.json").open(
-                    encoding="utf-8",
-                )
-            )
+            versions = json.load(Path("import.json").open(encoding="utf-8"))
 
             for version in versions:
                 print(f"Importing {version['osStr']} {version['version']}")
                 if "links" not in version:
-                    files_processed.add(create_file(version["osStr"], version["build"], version=version["version"], released=version["released"]))
+                    files_processed.add(
+                        create_file(version["osStr"], version["build"], version=version["version"], released=version["released"])
+                    )
                 else:
                     for link in version["links"]:
-                        files_processed.add(import_ipsw(link["url"], version=version["version"], released=version["released"], use_network=False))
+                        files_processed.add(
+                            import_ipsw(link["url"], version=version["version"], released=version["released"], use_network=False)
+                        )
 
         elif Path("import.txt").exists():
             print("Reading URLs from import.txt")
 
-            urls = [
-                i.strip()
-                for i in Path("import.txt")
-                .read_text(
-                    encoding="utf-8",
-                )
-                .splitlines()
-                if i.strip()
-            ]
+            urls = [i.strip() for i in Path("import.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
                 files_processed.add(import_ipsw(url, use_network=False))
