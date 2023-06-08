@@ -8,10 +8,9 @@ module.exports = {
       url: "https://github.com/dora2-iOS/bakera1n/tree/bakera1n_ra1npoc15",
       external: true
     },
-    latestVer: "2.4.0",
+    latestVer: "2.7.0",
     type: "Semi-tethered",
-    firmwares: ["15.0","16.4"],
-    notes: "Tweak injection only works up to 16.4b1",
+    firmwares: ["15.0","17.0b1"],
   },
   compatibility: [
     {
