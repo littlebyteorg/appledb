@@ -71,6 +71,42 @@
     ],
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1",
+                "iMac21,1",
+                "iMac21,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallSeed/fullrestores/012-36748/52342C55-6598-4A86-AAB8-8901145792C8/UniversalMac_12.5_21G5063a_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2022FallSeed/fullrestores/012-36748/52342C55-6598-4A86-AAB8-8901145792C8/UniversalMac_12.5_21G5063a_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "01fa110b454ff769a7ffde85ae036622a11209692907ec601497405ceacf9561",
+                "sha1": "91865e546cc9482e0b1b502bd3d646c289121c22"
+            },
+            "size": 13938297123
+        },
+        {
             "type": "installassistant",
             "deviceMap": [
                 "Mac13,1",
@@ -136,57 +172,21 @@
             "links": [
                 {
                     "url": "https://swcdn.apple.com/content/downloads/29/36/012-37355-A_GSNBE6Q3I0/ymyjv4h9a1ottx8be1a4lssvb9tu13j1wv/InstallAssistant.pkg",
+                    "catalog": "dev-beta",
                     "preferred": true,
-                    "active": false,
-                    "catalog": "dev-beta"
+                    "active": false
                 },
                 {
                     "url": "https://swcdn.apple.com/content/downloads/29/09/012-37355-A_6M3FNSNINJ/24k17gt4in57fbyu1v6e5u1f9evz49vh76/InstallAssistant.pkg",
+                    "catalog": "public-beta",
                     "preferred": false,
-                    "active": false,
-                    "catalog": "public-beta"
+                    "active": false
                 }
             ],
             "hashes": {
                 "sha1": "b8d901b229427a5161d0aec190f5dfbc79e0d5b5"
             },
             "size": 12250830975
-        },
-        {
-            "type": "ipsw",
-            "deviceMap": [
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022FallSeed/fullrestores/012-36748/52342C55-6598-4A86-AAB8-8901145792C8/UniversalMac_12.5_21G5063a_Restore.ipsw",
-                    "preferred": true,
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022FallSeed/fullrestores/012-36748/52342C55-6598-4A86-AAB8-8901145792C8/UniversalMac_12.5_21G5063a_Restore.ipsw",
-                    "preferred": false,
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha2-256": "01fa110b454ff769a7ffde85ae036622a11209692907ec601497405ceacf9561",
-                "sha1": "91865e546cc9482e0b1b502bd3d646c289121c22"
-            },
-            "size": 13938297123
         }
     ]
 }
