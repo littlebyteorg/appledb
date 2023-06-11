@@ -1,25 +1,12 @@
 module.exports = {
-  name: "kok3shi",
-  alias: ["kokeshi", "kok3shiJB", "kokeshiJB"],
-  priority: 5,
+  name: "kok3shi9",
+  priority: 6,
   info: {
     website: {
-      name: "dora2ios.web.app/kokeshiJB.html",
-      url: "https://dora2ios.web.app/kokeshiJB.html",
+      name: "kok3shidoll.web.app/kok3shi9.html",
+      url: "https://kok3shidoll.web.app/kok3shi9.html",
       external: true
     },
-    wiki: {
-      name: "theapplewiki.com/wiki/kok3shi",
-      url: "https://www.theapplewiki.com/wiki/kok3shi",
-      external: true
-    },
-    guide: [
-      {
-        name: "Installing kok3shi",
-        url: "/installing-kok3shi/",
-        pkgman: "cydia",
-      }
-    ],
     type: "Semi-untethered",
     firmwares: ["9.3","9.3.6"],
     notes: "32-bit support only for 9.3.5 and 9.3.6",
