@@ -11,6 +11,7 @@ module.exports = {
     latestVer: "2.7.0",
     type: "Semi-tethered",
     firmwares: ["15.0","17.0 beta"],
+    notes: "This is a developer-oriented jailbreak, end users are recommended to use palera1n instead.",
   },
   compatibility: [
     {
