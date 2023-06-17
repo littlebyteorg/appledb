@@ -14,7 +14,7 @@ module.exports = {
         url: "/installing-dopamine/",
       }
     ],
-    latestVer: "1.0.5",
+    latestVer: "1.1",
     icon: "/assets/images/jb-icons/dopamine.png",
     notes: "Formerly known as Fugu15 Max",
     type: "Semi-Untethered",
@@ -77,6 +77,7 @@ module.exports = {
       ],
       firmwares: [
         "19A341",
+        "19A342",
         "19A344",
         "19A345",
         "19A346",
