@@ -1,5 +1,5 @@
 module.exports = {
-  name: "G1lbertJB",
+  name: "g1lbertJB",
   info: {
     website: {
       name: "github.com/eatingurtoes/g1lbertCFW",
