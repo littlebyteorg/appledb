@@ -1,5 +1,6 @@
 module.exports = {
   name: "rootlessJB4",
+  hideFromGuide: true,
   info: {
     website: {
       name: "github.com/BrandonPlank/rootlessJB4",

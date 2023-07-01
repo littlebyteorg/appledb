@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Meridian",
-      url: "https://www.theiphonewiki.com/wiki/Meridian",
+      name: "theapplewiki.com/wiki/Meridian",
+      url: "https://www.theapplewiki.com/wiki/Meridian",
       external: true
     },
     guide: [

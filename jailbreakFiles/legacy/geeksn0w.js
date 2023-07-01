@@ -3,8 +3,8 @@ module.exports = {
   alias: "Geeksnow",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Geeksn0w",
-      url: "https://www.theiphonewiki.com/wiki/Geeksn0w",
+      name: "theapplewiki.com/wiki/Geeksn0w",
+      url: "https://www.theapplewiki.com/wiki/Geeksn0w",
       external: true
     },
     type: "Semi-Tethered",

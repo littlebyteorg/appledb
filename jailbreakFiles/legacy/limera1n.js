@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Limera1n",
-      url: "https://www.theiphonewiki.com/wiki/Limera1n",
+      name: "theapplewiki.com/wiki/Limera1n",
+      url: "https://www.theapplewiki.com/wiki/Limera1n",
       external: true
     },
     guide: [

@@ -1,6 +1,8 @@
 const cname = 'api.appledb.dev'
+const { create } = require('domain')
 const fs = require('fs')
 const path = require('path')
+const hash = require('object-hash')
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
@@ -22,7 +24,11 @@ function requireAll(p, fileType) {
 }
 
 function mkdir(p) {
-  if (!fs.existsSync(p)) fs.mkdirSync(p)
+  if (!fs.existsSync(p)) {
+    fs.mkdirSync(p)
+    return true
+  }
+  else return false
 }
 
 function write(p, f) {
@@ -31,18 +37,15 @@ function write(p, f) {
 }
 
 function writeJson(dirName, arr, property) {
-  var obj = {}
-  arr.map(function(x) { obj[x[property]] = x })
-  
   mkdir(path.join(p, dirName))
-  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property]), null, 2))
-  write(path.join(p, dirName, 'main.json'), JSON.stringify(obj, null, 2))
-  arr.map(function(x) { write(path.join(p, dirName, x[property].replace('/','%2F') + '.json'), JSON.stringify(x, null, 2))})
+  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property])))
+  write(path.join(p, dirName, 'main.json'), JSON.stringify(arr))
+  arr.map(function(x) { write(path.join(p, dirName, x[property].replace('/','%2F') + '.json'), JSON.stringify(x))})
 
-  main[dirName] = obj
+  main[dirName] = arr
 }
 
-var iosFiles          = requireAll('iosFiles', '.json'),
+var osFiles          = requireAll('osFiles', '.json'),
     jailbreakFiles    = requireAll('jailbreakFiles', '.js'),
     deviceGroupFiles  = requireAll('deviceGroupFiles', '.json'),
     deviceFiles       = requireAll('deviceFiles', '.json'),
@@ -50,12 +53,12 @@ var iosFiles          = requireAll('iosFiles', '.json'),
     bypassApps        = requireAll('bypassApps', '.json')
 
 deviceFiles = deviceFiles.map(function(dev) {
-  if (!dev.identifier) dev.identifier = dev.name
-  if (!dev.key) dev.key = dev.identifier
-  if (dev.model && !Array.isArray(dev.model)) dev.model = [dev.model]
-  if (dev.board && !Array.isArray(dev.board)) dev.board = [dev.board]
-  if (!dev.model) dev.model = []
-  if (!dev.board) dev.board = []
+  for (const p of ['model','board','identifier']) {
+    if (!dev[p]) dev[p] = []
+    if (!Array.isArray(dev[p])) dev[p] = [dev[p]]
+  }
+
+  if (!dev.key) dev.key = dev.identifier[0] || dev.name
 
   if (dev.info) dev.info = dev.info.map(o => {
     if (o.type != 'Display') return o
@@ -71,8 +74,20 @@ deviceFiles = deviceFiles.map(function(dev) {
   return dev
 })
 
-deviceGroupFiles = deviceGroupFiles.map(g => {
+const deviceGroupKeyArr = deviceGroupFiles.map(x => x.devices).flat()
+const devicesWithNoGroup = deviceFiles.filter(x => !deviceGroupKeyArr.includes(x.key) && x.group !== false)
+const nowPutThemInGroups = devicesWithNoGroup.map(x => {
+  return {
+    name: x.name,
+    type: x.type,
+    devices: [x.key]
+  }
+})
+
+deviceGroupFiles = deviceGroupFiles.concat(nowPutThemInGroups).map(g => {
   if (!g.hideChildren) g.hideChildren = false
+  if (!g.key) g.key = g.name
+
   return g
 }).sort((a,b) => {
   function getReleased(dev) {
@@ -89,18 +104,6 @@ deviceGroupFiles = deviceGroupFiles.map(g => {
   return 0
 })
 
-const deviceGroupKeyArr = deviceGroupFiles.map(x => x.devices).flat()
-const devicesWithNoGroup = deviceFiles.filter(x => !deviceGroupKeyArr.includes(x.key) && x.group !== false)
-const nowPutThemInGroups = devicesWithNoGroup.map(x => {
-  return {
-    name: x.name,
-    type: x.type,
-    devices: [x.key]
-  }
-})
-
-deviceGroupFiles = deviceGroupFiles.concat(nowPutThemInGroups)
-
 let counter = 0
 let lastDevType = ''
 for (const group of deviceGroupFiles) {
@@ -114,19 +117,42 @@ for (const group of deviceGroupFiles) {
   }
 }
 
-iosFiles = iosFiles.map(function(ver) {
-  if (!ver.uniqueBuild) ver.uniqueBuild = ver.build
+let createDuplicateEntriesArray = []
+
+for (let i of osFiles) {
+  if (!i.hasOwnProperty('createDuplicateEntries')) continue
+  for (const entry of i.createDuplicateEntries) {
+    let ver = { ...i }
+    delete ver.createDuplicateEntries
+    for (const property in entry) {
+      ver[property] = entry[property]
+    }
+    createDuplicateEntriesArray.push(ver)
+  }
+  delete i.createDuplicateEntries
+}
+
+osFiles = osFiles
+.concat(createDuplicateEntriesArray)
+.map(function(ver) {
+  if (!ver.uniqueBuild) ver.uniqueBuild = ver.build || ver.version
+  if (!ver.key) ver.key = ver.osStr + ';' + ver.uniqueBuild
   if (!ver.beta) ver.beta = false
-  if (!ver.sortVersion) {
+  if (!ver.rc) ver.rc = false
+  /*if (!ver.sortVersion) {
     if (ver.iosVersion) ver.sortVersion = ver.iosVersion
     else ver.sortVersion = ver.version
-  }
+  }*/
   if (!ver.deviceMap) ver.deviceMap = []
-  if (!ver.released) ver.released = -1
+  if (!ver.released) ver.released = ''
+
+  if (ver.preinstalled === true) ver.preinstalled = ver.deviceMap
+  else if (!ver.preinstalled) ver.preinstalled = []
   
   ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
+  if (ver.osType == 'Mac OS X') ver.osType = 'macOS'
 
   function getLegacyDevicesObjectArray() {
     let obj = {}
@@ -149,7 +175,7 @@ iosFiles = iosFiles.map(function(ver) {
 
   ver.devices = getLegacyDevicesObjectArray()
 
-  ver.appledburl = encodeURI(`https://appledb.dev/firmware.html?os=${ver.osStr}&build=${ver.uniqueBuild}}`)
+  ver.appledburl = encodeURI(`https://appledb.dev/firmware/${ver.osStr.replace(/ /g,'-')}/${ver.uniqueBuild}`)
 
   return ver
 })
@@ -173,23 +199,6 @@ jailbreakFiles = jailbreakFiles.map(function(jb) {
   return jb
 })
 
-const buildArr = iosFiles.map(x => x.uniqueBuild)
-const uniqueBuildArr = new Set(buildArr)
-const duplicateBuildArr = buildArr.filter(x => {
-  if (uniqueBuildArr.has(x)) {
-    uniqueBuildArr.delete(x);
-  } else {
-    return x;
-  }
-})
-
-for (i of duplicateBuildArr) {
-  var getObjArr = iosFiles.filter(x => x.uniqueBuild == i)
-  for (j of getObjArr) {
-    j.uniqueBuild += '-' + j.osType
-  }
-}
-
 bypassApps = bypassApps.map(function(app) {
   if (!app.bypasses) return JSON.stringify(app)
 
@@ -210,21 +219,23 @@ bypassApps = bypassApps.map(x => JSON.parse(x)) // This is extremely dumb but ne
 const p = 'out'
 mkdir(p)
 fs.writeFileSync(`${p}/CNAME`, cname)
+fs.writeFileSync(`${p}/.nojekyll`, '')
 
 var main = {}
 var filesWritten = 0
 
-writeJson('ios', iosFiles, 'uniqueBuild')
+writeJson('ios', osFiles, 'key')
 writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'key')
 writeJson('bypass', bypassApps, 'bundleId')
 
 write(path.join(p, 'main.json'), JSON.stringify(main))
+write(path.join(p, 'hash'), hash(main))
 
 var dirName = path.join(p, 'compat')
 mkdir(dirName)
-iosFiles.map(function(fw) {
+osFiles.map(function(fw) {
   if (fw.deviceMap) fw.deviceMap.map(function(dev) {
     mkdir(path.join(dirName, dev))
     var jb = jailbreakFiles.filter(function(x) {
@@ -232,7 +243,7 @@ iosFiles.map(function(fw) {
         return y.devices.includes(dev) && y.firmwares.includes(fw.uniqueBuild)
       }).length > 0
     }).sort((a,b) => a.priority - b.priority)
-    write(path.join(dirName, dev, fw.uniqueBuild + '.json'), JSON.stringify(jb, null, 2))
+    write(path.join(dirName, dev, fw.uniqueBuild + '.json'), JSON.stringify(jb))
   })
 })
 

@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/p0sixspwn",
-      url: "https://www.theiphonewiki.com/wiki/p0sixspwn",
+      name: "theapplewiki.com/wiki/p0sixspwn",
+      url: "https://www.theapplewiki.com/wiki/p0sixspwn",
       external: true
     },
     guide: [
@@ -35,6 +35,7 @@ module.exports = {
   compatibility: [
     {
       firmwares: [
+        "10B327", // 6.1.3 (Alternate)
         "10B329", // 6.1.3
         "10B350", // 6.1.4
         "10B400", // 6.1.5

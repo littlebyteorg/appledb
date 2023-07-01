@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Home_Depot",
-      url: "https://www.theiphonewiki.com/wiki/Home_Depot",
+      name: "theapplewiki.com/wiki/Home_Depot",
+      url: "https://www.theapplewiki.com/wiki/Home_Depot",
       external: true
     },
     guide: [

@@ -3,8 +3,8 @@ module.exports = {
   alias: "purplerain",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Purplera1n",
-      url: "https://www.theiphonewiki.com/wiki/Purplera1n",
+      name: "theapplewiki.com/wiki/Purplera1n",
+      url: "https://www.theapplewiki.com/wiki/Purplera1n",
       external: true
     },
     type: "Untethered",

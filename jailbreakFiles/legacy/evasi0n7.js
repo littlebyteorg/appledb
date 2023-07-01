@@ -4,13 +4,13 @@ module.exports = {
   priority: 0,
   info: {
     website: {
-      name: "theiphonewiki.com/wiki/Evasi0n7",
-      url: "https://www.theiphonewiki.com/wiki/Evasi0n7",
+      name: "theapplewiki.com/wiki/Evasi0n7",
+      url: "https://www.theapplewiki.com/wiki/Evasi0n7",
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Evasi0n7",
-      url: "https://www.theiphonewiki.com/wiki/Evasi0n7",
+      name: "theapplewiki.com/wiki/Evasi0n7",
+      url: "https://www.theapplewiki.com/wiki/Evasi0n7",
       external: true
     },
     guide: [
@@ -33,7 +33,9 @@ module.exports = {
         "11A466", // 7.0, iPhone 5c and iPhone 5s only
         "11A470a", // 7.0.1
         "11A501", // 7.0.2
+        "11B508", // 7.0.3 (Alternate)
         "11B511", // 7.0.3
+        "11B553", // 7.0.4 (Alternate)
         "11B554a", // 7.0.4
         "11B601", // 7.0.5
         "11B651", // 7.0.6

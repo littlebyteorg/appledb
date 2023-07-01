@@ -7,8 +7,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/LiberiOS",
-      url: "https://www.theiphonewiki.com/wiki/LiberiOS",
+      name: "theapplewiki.com/wiki/LiberiOS",
+      url: "https://www.theapplewiki.com/wiki/LiberiOS",
       external: true
     },
     type: "Semi-untethered",

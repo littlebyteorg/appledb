@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Blackb0x",
-      url: "https://www.theiphonewiki.com/wiki/Blackb0x",
+      name: "theapplewiki.com/wiki/Blackb0x",
+      url: "https://www.theapplewiki.com/wiki/Blackb0x",
       external: true
     },
     type: "Mixed",

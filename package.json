@@ -1,0 +1,41 @@
+{
+  "name": "appledb",
+  "version": "1.0.0",
+  "description": "AppleDB Data API",
+  "scripts": {
+    "deploy": "deploy.js",
+    "test": "jest",
+    "prepare": "is-ci || husky install",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littlebyteorg/appledb.git"
+  },
+  "author": "littlebyteorg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/littlebyteorg/appledb/issues"
+  },
+  "homepage": "https://github.com/littlebyteorg/appledb#readme",
+  "devDependencies": {
+    "@eslint/create-config": "^0.3.0",
+    "@types/jest": "^28.1.6",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "^8.21.0",
+    "glob": "^8.0.3",
+    "graceful-fs": "^4.2.10",
+    "grunt": "^1.5.3",
+    "grunt-run": "^0.8.1",
+    "grunt-ts": "^6.0.0-beta.22",
+    "husky": "^8.0.1",
+    "jest": "^28.1.3",
+    "object-hash": "^3.0.0",
+    "ts-jest": "^28.0.7",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "apple-data": "^1.0.482"
+  }
+}

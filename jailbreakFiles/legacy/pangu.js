@@ -4,8 +4,8 @@ module.exports = {
   priority: 0,
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Pangu",
-      url: "https://www.theiphonewiki.com/wiki/Pangu",
+      name: "theapplewiki.com/wiki/Pangu",
+      url: "https://www.theapplewiki.com/wiki/Pangu",
       external: true
     },
     guide: [

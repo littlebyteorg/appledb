@@ -1,6 +1,7 @@
 module.exports = {
   name: "JailbreakMe 4.0",
   alias: ["JailbreakMe-4.0", "JailbreakMe_4.0", "JailbreakMe4.0", "JailbreakMe 4", "JailbreakMe-4", "JailbreakMe_4", "JailbreakMe4"],
+  priority: 1,
   info: {
     website: {
       name: "jailbreak.me",
@@ -8,10 +9,17 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/JailbreakMe_4.0",
-      url: "https://www.theiphonewiki.com/wiki/JailbreakMe_4.0",
+      name: "theapplewiki.com/wiki/JailbreakMe_4.0",
+      url: "https://www.theapplewiki.com/wiki/JailbreakMe_4.0",
       external: true
     },
+    guide: [
+      {
+        name: "Using JailbreakMe 4.0",
+        url: "/using-jailbreakme-4-0/",
+        pkgman: "cydia",
+      }
+    ],
     type: "(Safari) Semi-untethered",
     firmwares: ["9.1","9.3.4"]
   },

@@ -1,5 +1,6 @@
 module.exports = {
   name: "Fugu14",
+  hideFromGuide: true,
   info: {
     website: {
       name: "github.com/LinusHenze/Fugu14",
@@ -7,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Fugu14",
-      url: "https://www.theiphonewiki.com/wiki/Fugu14",
+      name: "theapplewiki.com/wiki/Fugu14",
+      url: "https://www.theapplewiki.com/wiki/Fugu14",
       external: true
     },
     type: "Untethered",
@@ -25,6 +26,7 @@ module.exports = {
         "18D52", // 14.4
         "18D61", // 14.4.1
         "18D70", // 14.4.2
+        "18E198", // 14.5 (iPhone 12/mini)
         "18E199-RC", // 14.5 RC
         "18E199", // 14.5
         "18E212", // 14.5.1

@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/kok3shi",
-      url: "https://www.theiphonewiki.com/wiki/kok3shi",
+      name: "theapplewiki.com/wiki/kok3shi",
+      url: "https://www.theapplewiki.com/wiki/kok3shi",
       external: true
     },
     guide: [
@@ -23,7 +23,7 @@ module.exports = {
     type: "Semi-untethered",
     firmwares: ["9.3","9.3.6"],
     notes: "32-bit support only for 9.3.5 and 9.3.6",
-    latestVer: "2.2.1",
+    latestVer: "3.0",
     color: "#c279a0",
     icon: "/assets/images/jb-icons/kok3shi.png",
   },

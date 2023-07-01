@@ -3,13 +3,13 @@ module.exports = {
   priority: 6,
   info: {
     website: {
-      name: "github.com/zachary7829/openpwnage/",
-      url: "https://github.com/zachary7829/openpwnage/",
+      name: "github.com/0xilis/openpwnage/",
+      url: "https://github.com/0xilis/openpwnage/",
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/openpwnage",
-      url: "https://www.theiphonewiki.com/wiki/openpwnage",
+      name: "theapplewiki.com/wiki/openpwnage",
+      url: "https://www.theapplewiki.com/wiki/openpwnage",
       external: true
     },
     guide: [
@@ -19,12 +19,13 @@ module.exports = {
         pkgman: "cydia",
       }
     ],
-    latestVer: "Beta Build 8",
+    latestVer: "Beta Build 9.5",
     color: "#faf4f7",
+    icon: "/assets/images/jb-icons/openpwnage.png",
+    notes: "iOS 8.4.1 can be optionally untethered via etason untether package",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
-    firmwares: ["8.4b4","9.3.6"],
-    notes: "Substrate only works on iOS 9"
+    firmwares: ["8.4b4","9.3.6"]
   },
   compatibility: [
     {

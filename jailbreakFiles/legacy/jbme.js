@@ -7,18 +7,20 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Jbme",
-      url: "https://www.theiphonewiki.com/wiki/Jbme",
+      name: "theapplewiki.com/wiki/Jbme",
+      url: "https://www.theapplewiki.com/wiki/Jbme",
       external: true
     },
     type: "(Safari) Semi-untethered",
-    firmwares: ["9.2","9.3.3"]
+    firmwares: ["9.2","9.3.3"],
+    notes: "Can only rejailbreak already jailbroken devices jailbroken with Pangu933 or kok3shi"
   },
   compatibility: [
     {
       firmwares: [
         "13C75", // 9.2
         "13D15", // 9.2.1
+        "13D20", // 9.2.1, (insert devices here) only
         "13E233", // 9.3
         "13E234", // 9.3, iPhone 6s, iPad Pro (9.7-inch) only
         "13E237", // 9.3

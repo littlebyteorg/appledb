@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/EtasonATV",
-      url: "https://www.theiphonewiki.com/wiki/EtasonATV",
+      name: "theapplewiki.com/wiki/EtasonATV",
+      url: "https://www.theapplewiki.com/wiki/EtasonATV",
       external: true
     },
     type: "Untethered",

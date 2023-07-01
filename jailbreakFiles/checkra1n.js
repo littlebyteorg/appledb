@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/checkra1n",
-      url: "https://www.theiphonewiki.com/wiki/checkra1n",
+      name: "theapplewiki.com/wiki/checkra1n",
+      url: "https://www.theapplewiki.com/wiki/checkra1n",
       external: true
     },
     guide: [
@@ -51,6 +51,7 @@ module.exports = {
           "18E5194a", // 14.5 beta 6
           "18E5198a", // 14.5 beta 7
           "18E5199a", // 14.5 beta 8
+          "18E198", // 14.5 (iPhone 12/mini)
           "18E199-RC", // 14.5 RC
           "18E199", // 14.5
           "18E212", // 14.5.1
@@ -122,6 +123,68 @@ module.exports = {
       devices: [
         "AudioAccessory1,1",
         "AudioAccessory1,2"
+      ]
+    },
+    {
+      firmwares: [
+        "18P4759a",
+        "18P4663",
+        "18P4556",
+        "18P4347",
+        "18P4346",
+        "18P3030",
+        "18P2561",
+        "17P6610",
+        "17P6604",
+        "17P6065",
+        "17P5300",
+        "17P5300",
+        "17P5290",
+        "17P4538",
+        "17P4281",
+        "17P4263",
+        "17P3561",
+        "17P3050",
+        "17P2551",
+        "17P1081",
+        "17P572",
+        "16P6568",
+        "16P5200",
+        "16P5125",
+        "16P4507",
+        "16P375",
+        "15P2542",
+        "16P2542",
+        "15P6613",
+        "15P6059",
+        "15P5064",
+        "14Y910",
+        "14Y908",
+        "14Y664",
+        "14Y661",
+        "14Y502",
+        "14Y363",
+      ],
+      devices: [
+        "iBridge1,1",
+        "iBridge2,1",
+        "iBridge2,3",
+        "iBridge2,4",
+        "iBridge2,5",
+        "iBridge2,6",
+        "iBridge2,7",
+        "iBridge2,8",
+        "iBridge2,10",
+        "iBridge2,11",
+        "iBridge2,12",
+        "iBridge2,13",
+        "iBridge2,14",
+        "iBridge2,15",
+        "iBridge2,16",
+        "iBridge2,19",
+        "iBridge2,20",
+        "iBridge2,21",
+        "iBridge2,22"
       ]
     },
     {
@@ -200,6 +263,8 @@ module.exports = {
         "16H41", // 12.5.3
         "16H50", // 12.5.4
         "16H62", // 12.5.5
+        "16H71", // 12.5.6
+        "16H81", // 12.5.7
         "17A5492t", // 13.0 beta
         "17A5508m", // 13.0 beta 2
         "17A5522f", // 13.0 beta 3
@@ -601,6 +666,8 @@ module.exports = {
         "16H41", // 12.5.3
         "16H50", // 12.5.4
         "16H62", // 12.5.5
+        "16H71", // 12.5.6
+        "16H81", // 12.5.7
       ],
       devices: [
         "iPhone7,1", // iPhone 6 Plus, A8

@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Greenpois0n_(jailbreak)",
-      url: "https://www.theiphonewiki.com/wiki/Greenpois0n_(jailbreak)",
+      name: "theapplewiki.com/wiki/Greenpois0n_(jailbreak)",
+      url: "https://www.theapplewiki.com/wiki/Greenpois0n_(jailbreak)",
       external: true
     },
     guide: [

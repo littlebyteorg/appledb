@@ -2,8 +2,8 @@ module.exports = {
   name: "QuickPwn",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/QuickPwn",
-      url: "https://www.theiphonewiki.com/wiki/QuickPwn",
+      name: "theapplewiki.com/wiki/QuickPwn",
+      url: "https://www.theapplewiki.com/wiki/QuickPwn",
       external: true
     },
     type: "Untethered",
@@ -26,6 +26,7 @@ module.exports = {
       ],
       devices: [
         "iPhone1,1", // iPhone
+        "iPhone1,2", // iPhone 3G
         "iPod1,1", // iPod touch
         "iPod2,1", // iPod touch (2nd generation)
       ]

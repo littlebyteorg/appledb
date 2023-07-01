@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Blackra1n",
-      url: "https://www.theiphonewiki.com/wiki/Blackra1n",
+      name: "theapplewiki.com/wiki/Blackra1n",
+      url: "https://www.theapplewiki.com/wiki/Blackra1n",
       external: true
     },
     type: "Tethered",

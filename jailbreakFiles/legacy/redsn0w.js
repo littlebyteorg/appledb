@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Redsn0w",
-      url: "https://www.theiphonewiki.com/wiki/Redsn0w",
+      name: "theapplewiki.com/wiki/Redsn0w",
+      url: "https://www.theapplewiki.com/wiki/Redsn0w",
       external: true
     },
     latestVer: "0.9.15b",
@@ -107,6 +107,7 @@ module.exports = {
         "10B141", // 6.1
         "10B144", // 6.1, iPhone 4 (GSM) and iPod touch 4 only
         "10B146", // 6.1.2
+        "10B327", // 6.1.3 (Alternate)
         "10B329", // 6.1.3
         "10B350", // 6.1.4
         "10B400", // 6.1.5

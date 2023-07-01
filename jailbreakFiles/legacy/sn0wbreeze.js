@@ -3,8 +3,8 @@ module.exports = {
   alias: "snowbreeze",
   info: {
     wiki: {
-      name: "theiphonewiki.com/wiki/Sn0wbreeze",
-      url: "https://www.theiphonewiki.com/wiki/Sn0wbreeze",
+      name: "theapplewiki.com/wiki/Sn0wbreeze",
+      url: "https://www.theapplewiki.com/wiki/Sn0wbreeze",
       external: true
     },
     type: "Untethered",
@@ -82,6 +82,7 @@ module.exports = {
         "10B141", // 6.1
         "10B144", // 6.1, iPhone 4 (GSM) and iPod touch 4 only
         "10B146", // 6.1.2
+        "10B327", // 6.1.3 (Alternate)
         "10B329", // 6.1.3
       ],
       devices: [

@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Seas0nPass",
-      url: "https://www.theiphonewiki.com/wiki/Seas0nPass",
+      name: "theapplewiki.com/wiki/Seas0nPass",
+      url: "https://www.theapplewiki.com/wiki/Seas0nPass",
       external: true
     },
     type: "Tethered",

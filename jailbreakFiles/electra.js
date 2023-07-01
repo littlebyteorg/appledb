@@ -8,8 +8,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Electra",
-      url: "https://www.theiphonewiki.com/wiki/Electra",
+      name: "theapplewiki.com/wiki/Electra",
+      url: "https://www.theapplewiki.com/wiki/Electra",
       external: true
     },
     guide: [
@@ -61,6 +61,7 @@ module.exports = {
         "15C5107a", // 11.2 beta 3
         "15C5110b", // 11.2 beta 4
         "15C5111a", // 11.2 beta 5
+        "15C113", // 11.2 (iPhone X)
         "15C114-GM", // 11.2 beta 6
         "15C114", // 11.2
         "15C153", // 11.2.1

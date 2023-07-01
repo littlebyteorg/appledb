@@ -9,8 +9,8 @@ module.exports = {
       external: true
     },
     wiki: {
-      name: "theiphonewiki.com/wiki/Phœnix",
-      url: "https://www.theiphonewiki.com/wiki/Phœnix",
+      name: "theapplewiki.com/wiki/Phœnix",
+      url: "https://www.theapplewiki.com/wiki/Phœnix",
       external: true
     },
     guide: [
