@@ -14,7 +14,7 @@ module.exports = {
         url: "/installing-dopamine/",
       }
     ],
-    latestVer: "1.1",
+    latestVer: "1.1.1",
     icon: "/assets/images/jb-icons/dopamine.png",
     notes: "Formerly known as Fugu15 Max",
     type: "Semi-Untethered",
