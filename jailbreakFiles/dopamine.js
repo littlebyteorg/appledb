@@ -16,7 +16,7 @@ module.exports = {
     ],
     latestVer: "1.1.1",
     icon: "/assets/images/jb-icons/dopamine.png",
-    notes: "Formerly known as Fugu15 Max",
+    notes: "Must be installed via TrollStore. Formerly known as Fugu15 Max.",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
   },
