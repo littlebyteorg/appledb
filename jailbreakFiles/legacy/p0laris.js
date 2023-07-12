@@ -1,7 +1,7 @@
 module.exports = {
   name: "p0laris",
   alias: "polaris",
-  priority: 3,
+  priority: 4,
   info: {
     website: {
       name: "p0laris.dev",

@@ -1,7 +1,7 @@
 module.exports = {
   name: "Phœnix",
   alias: "Phoenix",
-  priority: 4,
+  priority: 5,
   info: {
     website: {
       name: "phoenixpwn.com",
@@ -18,24 +18,6 @@ module.exports = {
         name: "Installing Phœnix",
         url: "/installing-phoenix/",
         pkgman: "cydia",
-        updateLink: [
-          {
-            text: 'Updating to 9.3.5',
-            link: '/updating-to-9-3-5/'
-          },
-          {
-            text: 'Updating to 9.3.5 (IPSW)',
-            link: '/updating-to-9-3-5-ipsw/'
-          },
-          {
-            text: 'Updating to 9.3.6',
-            link: '/updating-to-9-3-6/'
-          },
-          {
-            text: 'Updating to 9.3.6 (IPSW)',
-            link: '/updating-to-9-3-6-ipsw/'
-          },
-        ],
       }
     ],
     latestVer: "v6",

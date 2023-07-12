@@ -1,16 +1,47 @@
 module.exports = {
   name: "kok3shi9",
-  priority: 6,
+  alias: ["kok3shi", "kokeshi", "kok3shiJB", "kokeshiJB"],
+  priority: 3,
   info: {
     website: {
       name: "kok3shidoll.web.app/kok3shi9.html",
       url: "https://kok3shidoll.web.app/kok3shi9.html",
       external: true
     },
+    wiki: {
+      name: "theapplewiki.com/wiki/kok3shi",
+      url: "https://www.theapplewiki.com/wiki/kok3shi",
+      external: true
+    },
+    guide: [
+      {
+        name: "Installing kok3shi",
+        url: "/installing-kok3shi/",
+        pkgman: "cydia",
+        updateLink: [
+          {
+            text: 'Updating to 9.3.5',
+            link: '/updating-to-9-3-5/'
+          },
+          {
+            text: 'Updating to 9.3.5 (IPSW)',
+            link: '/updating-to-9-3-5-ipsw/'
+          },
+          {
+            text: 'Updating to 9.3.6',
+            link: '/updating-to-9-3-6/'
+          },
+          {
+            text: 'Updating to 9.3.6 (IPSW)',
+            link: '/updating-to-9-3-6-ipsw/'
+          },
+        ],
+      }
+    ],
     type: "Semi-untethered",
     firmwares: ["9.3","9.3.6"],
-    notes: "32-bit support only for 9.3.5 and 9.3.6",
-    latestVer: "3.0",
+    notes: "32-bit support only for 9.3.2 to 9.3.6",
+    latestVer: "4.0",
     color: "#c279a0",
     icon: "/assets/images/jb-icons/kok3shi.png",
   },
@@ -55,6 +86,9 @@ module.exports = {
     },
     {
       firmwares: [
+        "13F69", // 9.3.2
+        "13G34", // 9.3.3
+        "13G35", // 9.3.4
         "13G36", // 9.3.5
         "13G37", // 9.3.6
       ],
