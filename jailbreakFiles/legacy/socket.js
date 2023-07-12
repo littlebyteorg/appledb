@@ -13,6 +13,12 @@ module.exports = {
         name: "Installing Socket",
         url: "/installing-socket/",
         pkgman: "zebra",
+        updateLink: [
+          {
+            text: 'Updating to 10.3.4',
+            link: '/updating-to-10-3-4/'
+          },
+        ],
       }
     ],
     latestVer: "1.1",

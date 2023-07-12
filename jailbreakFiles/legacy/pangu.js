@@ -13,6 +13,12 @@ module.exports = {
         name: "Installing Pangu7",
         url: "/installing-pangu7/",
         pkgman: "cydia",
+        updateLink: [
+          {
+            text: 'Updating to 7.1.2 (IPSW)',
+            link: '/updating-to-7-1-2-ipsw/'
+          },
+        ],
       }
     ],
     type: "Untethered",

@@ -15,12 +15,12 @@ module.exports = {
         pkgman: "sileo",
         updateLink: [
           {
-            text: 'Updating to 15.7.3',
-            link: '/updating-to-15-7-3/'
+            text: 'Updating to 15.7.7',
+            link: '/updating-to-15-7-7/'
           },
           {
-            text: 'Updating to 16.3.1',
-            link: '/updating-to-16-3-1/'
+            text: 'Updating to 16.5.1',
+            link: '/updating-to-16-5-1/'
           },
         ]
       }
