@@ -15,8 +15,8 @@ module.exports = {
     },
     guide: [
       {
-        name: "Installing kok3shi",
-        url: "/installing-kok3shi/",
+        name: "Installing kok3shi9",
+        url: "/installing-kok3shi9/",
         pkgman: "cydia",
         updateLink: [
           {
