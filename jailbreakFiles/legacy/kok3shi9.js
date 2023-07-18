@@ -41,7 +41,7 @@ module.exports = {
     type: "Semi-untethered",
     firmwares: ["9.3","9.3.6"],
     notes: "32-bit support only for 9.3.2 to 9.3.6",
-    latestVer: "4.0",
+    latestVer: "4.0.1",
     color: "#c279a0",
     icon: "/assets/images/jb-icons/kok3shi.png",
   },
