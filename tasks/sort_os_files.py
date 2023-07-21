@@ -28,6 +28,7 @@ key_order = [
     "appledbWebImage",
     "ipd",
     "deviceMap",
+    "osMap",
     "sources",
 ]
 
