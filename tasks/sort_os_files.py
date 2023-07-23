@@ -32,7 +32,7 @@ key_order = [
     "sources",
 ]
 
-sources_key_order = ["type", "deviceMap", "links", "hashes", "size"]
+sources_key_order = ["type", "deviceMap", "osMap", "links", "hashes", "size"]
 
 links_key_order = ["url", "preferred", "active"]
 
