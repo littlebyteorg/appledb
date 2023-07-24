@@ -29,7 +29,7 @@ module.exports = {
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
     notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16. Rootful support limited to either iOS 15 devices with more than 3GB of free space or iOS 16 devices with more than 10GB of free space.",
-    firmwares: ["15.0","16.6 beta 2"]
+    firmwares: ["15.0","16.6"]
   },
   compatibility: [
     {
@@ -124,6 +124,7 @@ module.exports = {
         "19H332",
         "19H349",
         "19H357",
+        "19H364",
         "20A5283p",
         "20A5303i",
         "20A5312g",
@@ -152,11 +153,15 @@ module.exports = {
         "20B110",
         "20C5058d",
         "20C65",
+        "20C7750490e",
+        "20C7750490f",
         "20D5024e",
         "20D5035i",
         "20D47",
         "20D67",
         "20E5212f",
+        "20E7752230f",
+        "20E7752230g",
         "20E5223e",
         "20E5229e",
         "20E5239b",
@@ -171,6 +176,8 @@ module.exports = {
         "20F65",
         "20F66",
         "20F75",
+        "20F770750b",
+        "20F770750d",
         "20G5026e",
         "20G5037d",
       ]
