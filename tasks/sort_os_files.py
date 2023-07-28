@@ -40,8 +40,12 @@ links_key_order = ["url", "preferred", "active"]
 def device_sort(device):
     match = re.match(r"([a-zA-Z]+)(\d+),(\d+)", device)
     if not match or len(match.groups()) != 3:
-        # This is probably not a device identifier, so just return it
-        return device
+        # iMac,1 is a valid identifier; check for this and, if present, treat missing section as 0
+        match = re.match(r"([a-zA-Z]+),(\d+)", device)
+        if not match or len(match.groups()) != 2:
+            # This is probably not a device identifier, so just return it
+            return device
+        return match.groups()[0], 0, int(match.groups()[1]), device
 
     # The device at the end is for instances like "BeatsStudioBuds1,1", "BeatsStudioBuds1,1-tiger"
     # However, this will sort "MacBookPro15,1-2019" before "MacBookPro15,2-2018"
