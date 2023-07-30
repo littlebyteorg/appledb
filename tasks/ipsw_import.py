@@ -184,7 +184,8 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
     # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
     # Check by substring first?
     recommended_version = recommended_version or build_manifest["ProductVersion"]
-    supported_devices = build_manifest["SupportedProductTypes"] + (platform_support["SupportedModelProperties"] if platform_support else [])
+    source_supported_devices = [i for i in build_manifest["SupportedProductTypes"] if i not in ["iProd99,1", "ADP3,1"]]
+    supported_devices = source_supported_devices + (platform_support["SupportedModelProperties"] if platform_support else [])
 
     # Get Restore.plist from the IPSW
     # restore = plistlib.loads(ipsw.read("Restore.plist"))
@@ -219,9 +220,32 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
 
-    if os_str == "tvOS" and db_data["version"].startswith("16."):
-        # Ensure supported_devices has these devices
-        db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
+    if os_str == "tvOS": 
+        if db_data["version"].startswith("16."):
+            # Ensure supported_devices has these devices
+            db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
+        elif db_data["version"].startswith("17."):
+            # Keeping this separate in case Apple launches a new Apple TV during the tvOS 17 lifecycle
+            # Ensure supported_devices has these devices
+            db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
+    elif os_str == 'iOS' or os_str == 'iPadOS':
+        db_data['appledbWebImage'] = {
+            'id': os_str.lower() + db_data["version"].split(".", 1)[0],
+            'align': 'left'
+        }
+    elif os_str == 'macOS':
+        os_image_version_map = {
+            '11': 'Big Sur',
+            '12': 'Monterey',
+            '13': 'Ventura',
+            '14': 'Sonoma'
+        }
+        os_version_prefix = db_data["version"].split(".", 1)[0]
+        if os_image_version_map.get(os_version_prefix):
+            db_data['appledbWebImage'] = {
+                'id': os_image_version_map[os_version_prefix],
+                'align': 'left'
+            }
 
     found_source = False
     for source in db_data.setdefault("sources", []):
@@ -229,12 +253,12 @@ def import_ipsw(ipsw_url, os_str=None, build=None, recommended_version=None, ver
             if link["url"] == ipsw_url:
                 print("\tURL already exists in sources")
                 found_source = True
-                source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
+                source.setdefault("deviceMap", []).extend(augment_with_keys(source_supported_devices))
 
     if not found_source:
         print("\tAdding new source")
         source = {
-            "deviceMap": augment_with_keys(supported_devices),
+            "deviceMap": augment_with_keys(source_supported_devices),
             "type": "ipsw",
             "links": [
                 {
