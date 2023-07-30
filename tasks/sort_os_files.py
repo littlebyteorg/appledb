@@ -36,7 +36,7 @@ sources_key_order = ["type", "deviceMap", "osMap", "links", "hashes", "size"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
-source_type_order = ["ipsw", "installassistant", "ota"]
+source_type_order = ["ipsw", "installassistant", "ota", "xip", "dmg", "pkg", "bin", "tar", "exe"]
 
 
 def device_sort(device):
