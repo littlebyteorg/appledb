@@ -239,9 +239,32 @@ def import_ipsw(
     db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
-    if os_str == "tvOS" and db_data["version"].startswith("16."):
-        # Ensure supported_devices has these devices
-        build_supported_devices = list(set(build_supported_devices + ["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"]))
+    if os_str == "tvOS": 
+        if db_data["version"].startswith("16."):
+            # Ensure supported_devices has these devices
+            db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
+        elif db_data["version"].startswith("17."):
+            # Keeping this separate in case Apple launches a new Apple TV during the tvOS 17 lifecycle
+            # Ensure supported_devices has these devices
+            db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
+    elif os_str == 'iOS' or os_str == 'iPadOS':
+        db_data['appledbWebImage'] = {
+            'id': os_str.lower() + db_data["version"].split(".", 1)[0],
+            'align': 'left'
+        }
+    elif os_str == 'macOS':
+        os_image_version_map = {
+            '11': 'Big Sur',
+            '12': 'Monterey',
+            '13': 'Ventura',
+            '14': 'Sonoma'
+        }
+        os_version_prefix = db_data["version"].split(".", 1)[0]
+        if os_image_version_map.get(os_version_prefix):
+            db_data['appledbWebImage'] = {
+                'id': os_image_version_map[os_version_prefix],
+                'align': 'left'
+            }
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
 
