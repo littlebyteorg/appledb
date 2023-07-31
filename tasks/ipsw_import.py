@@ -219,8 +219,8 @@ def import_ipsw(
     # assert restore["ProductVersion"] == version
     # assert restore["SupportedProductTypes"] == supported_devices
 
-    supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "ADP3,1"]]
-    build_supported_devices = [i for i in build_supported_devices if i not in ["iProd99,1", "ADP3,1"]]
+    supported_devices = [i for i in supported_devices if i not in ["iProd99,1"]]
+    build_supported_devices = [i for i in build_supported_devices if i not in ["iProd99,1"]]
 
     if not os_str:
         for product_prefix, os_str in OS_MAP:
