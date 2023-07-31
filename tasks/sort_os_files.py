@@ -25,8 +25,8 @@ key_order = [
     "notes",
     "releaseNotes",
     "securityNotes",
-    "appledbWebImage",
     "ipd",
+    "appledbWebImage",
     "deviceMap",
     "osMap",
     "sources",
@@ -34,7 +34,9 @@ key_order = [
 
 sources_key_order = ["type", "deviceMap", "osMap", "links", "hashes", "size"]
 
-links_key_order = ["url", "preferred", "active"]
+links_key_order = ["url", "catalog", "preferred", "active"]
+
+source_type_order = ["ipsw", "installassistant", "ota", "xip", "dmg", "pkg", "bin", "tar", "exe"]
 
 
 def device_sort(device):
@@ -62,6 +64,8 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
     data = copy.deepcopy(raw_data) or json.load(file_path.open())  # type: ignore
     data = dict(sorted(data.items(), key=lambda item: key_order.index(item[0]) if item[0] in key_order else len(key_order)))
+    if set(data.keys()) - set(key_order):
+        raise ValueError(f"Unknown keys: {sorted(set(data.keys()) - set(key_order))}")
 
     for i, duplicate_entry in enumerate(data.get("createDuplicateEntries", [])):
         data["createDuplicateEntries"][i] = sort_os_file(None, duplicate_entry)
@@ -71,11 +75,26 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         data["deviceMap"] = device_map_sort(data["deviceMap"])
 
     for i, source in enumerate(data.get("sources", [])):
-        data["sources"][i] = dict(sorted(source.items(), key=lambda item: sources_key_order.index(item[0]) if item[0] in sources_key_order else len(sources_key_order)))
+        data["sources"][i] = dict(
+            sorted(
+                source.items(),
+                key=lambda item: sources_key_order.index(item[0]) if item[0] in sources_key_order else len(sources_key_order),
+            )
+        )
+        if set(data["sources"][i].keys()) - set(sources_key_order):
+            raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i].keys()) - set(sources_key_order))}")
+
         data["sources"][i]["deviceMap"] = device_map_sort(source["deviceMap"])
         for j, link in enumerate(source.get("links", [])):
-            data["sources"][i]["links"][j] = dict(sorted(link.items(), key=lambda item: links_key_order.index(item[0]) if item[0] in links_key_order else len(links_key_order)))
-    data.get("sources", []).sort(key=lambda source: device_sort(source["deviceMap"][0]))
+            data["sources"][i]["links"][j] = dict(
+                sorted(
+                    link.items(), key=lambda item: links_key_order.index(item[0]) if item[0] in links_key_order else len(links_key_order)
+                )
+            )
+            if set(data["sources"][i]["links"][j].keys()) - set(links_key_order):
+                raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i]['links'][j].keys()) - set(links_key_order))}")
+
+    data.get("sources", []).sort(key=lambda source: (device_sort(source["deviceMap"][0]), source_type_order.index(source["type"])))
 
     if not raw_data:
         json.dump(data, file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)  # type: ignore
@@ -87,6 +106,6 @@ if __name__ == "__main__":
     for file in Path("osFiles").rglob("*.json"):
         try:
             sort_os_file(file)
-        except:
+        except Exception:
             print(f"Error while processing {file}")
             raise

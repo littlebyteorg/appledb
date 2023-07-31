@@ -25,7 +25,7 @@ rewrite_map_v2 = {
     "https://updates.cdn-apple.com/": ["http://updates-http.cdn-apple.com/"],
     "https://mesu.apple.com/": ["http://mesu.apple.com/"],
     "https://secure-appldnld.apple.com/": ["http://appldnld.apple.com/"],
-    "https://download.developer.apple.com/": ["http://adcdownload.apple.com/"],
+    "https://developer.apple.com/services-account/download?path=/": ["https://download.developer.apple.com/", "http://adcdownload.apple.com/"],
     "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
 }
 

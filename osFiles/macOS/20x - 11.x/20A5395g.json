@@ -72,6 +72,25 @@
     ],
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "ADP3,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/fullrestores/001-59614/CCE1AB1C-9158-44C1-B01A-1A081C49CE91/UniversalMac_11.0_20A5395g_Restore.ipsw",
+                    "preferred": true,
+                    "active": true
+                },
+                {
+                    "url": "http://updates-http.cdn-apple.com/2020SummerSeed/fullrestores/001-59614/CCE1AB1C-9158-44C1-B01A-1A081C49CE91/UniversalMac_11.0_20A5395g_Restore.ipsw",
+                    "preferred": false,
+                    "active": true
+                }
+            ],
+            "size": 13903196759
+        },
+        {
             "type": "installassistant",
             "deviceMap": [
                 "ADP3,2",
@@ -138,40 +157,21 @@
             "links": [
                 {
                     "url": "https://swcdn.apple.com/content/downloads/59/23/001-59618-A_5738L8MC0X/gprnfxzl72ff81a690twrhri7k2vlmpkti/InstallAssistant.pkg",
+                    "catalog": "dev-beta",
                     "preferred": true,
-                    "active": false,
-                    "catalog": "dev-beta"
+                    "active": false
                 },
                 {
                     "url": "https://swcdn.apple.com/content/downloads/03/58/001-59618-A_WT9PNJX065/ccl6ljlm4gwl1lwap6xelwc7acfwtu1zhu/InstallAssistant.pkg",
+                    "catalog": "public-beta",
                     "preferred": false,
-                    "active": false,
-                    "catalog": "public-beta"
+                    "active": false
                 }
             ],
             "hashes": {
                 "sha1": "4ffa861375fb2f1b365d32fa5276fcd86ae77d50"
             },
             "size": 12211970197
-        },
-        {
-            "type": "ipsw",
-            "deviceMap": [
-                "ADP3,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/fullrestores/001-59614/CCE1AB1C-9158-44C1-B01A-1A081C49CE91/UniversalMac_11.0_20A5395g_Restore.ipsw",
-                    "preferred": true,
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2020SummerSeed/fullrestores/001-59614/CCE1AB1C-9158-44C1-B01A-1A081C49CE91/UniversalMac_11.0_20A5395g_Restore.ipsw",
-                    "preferred": false,
-                    "active": true
-                }
-            ],
-            "size": 13903196759
         }
     ]
 }
