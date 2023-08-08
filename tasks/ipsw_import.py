@@ -239,6 +239,8 @@ def import_ipsw(
     db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
+    db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
+
     if os_str == "tvOS": 
         if db_data["version"].startswith("16."):
             # Ensure supported_devices has these devices
@@ -265,8 +267,6 @@ def import_ipsw(
                 'id': os_image_version_map[os_version_prefix],
                 'align': 'left'
             }
-
-    db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
 
     found_source = False
     for source in db_data.setdefault("sources", []):
