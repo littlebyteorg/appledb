@@ -56,6 +56,13 @@ def device_sort(device):
     # However, this will sort "MacBookPro15,1-2019" before "MacBookPro15,2-2018"
     return match.groups()[0], int(match.groups()[1]), int(match.groups()[2]), device
 
+def sorted_dict_by_key(data, key_order):
+    return dict(
+        sorted(
+            data.items(),
+            key=lambda item: key_order.index(item[0]) if item[0] in key_order else len(key_order)
+        )
+    )
 
 def device_map_sort(device_map):
     return sorted(set(device_map), key=device_sort)
@@ -66,7 +73,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         raise ValueError("Must provide either a file path or raw data")
 
     data = copy.deepcopy(raw_data) or json.load(file_path.open())  # type: ignore
-    data = dict(sorted(data.items(), key=lambda item: key_order.index(item[0]) if item[0] in key_order else len(key_order)))
+    data = sorted_dict_by_key(data, key_order)
     if set(data.keys()) - set(key_order):
         raise ValueError(f"Unknown keys: {sorted(set(data.keys()) - set(key_order))}")
 
@@ -78,32 +85,19 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         data["deviceMap"] = device_map_sort(data["deviceMap"])
 
     for i, xcode in enumerate(data.get("xcodeMap", [])):
-        data["xcodeMap"][i] = dict(
-            sorted(
-                xcode.items(),
-                key=lambda item: key_order.index(item[0]) if item[0] in key_order else len(key_order),
-            )
-        )
+        data["xcodeMap"][i] = sorted_dict_by_key(xcode, key_order)
 
     data.get("xcodeMap", []).sort(key=lambda xcode: xcode['released'])
 
     for i, source in enumerate(data.get("sources", [])):
-        data["sources"][i] = dict(
-            sorted(
-                source.items(),
-                key=lambda item: sources_key_order.index(item[0]) if item[0] in sources_key_order else len(sources_key_order),
-            )
-        )
+        data["sources"][i] = sorted_dict_by_key(source, sources_key_order)
         if set(data["sources"][i].keys()) - set(sources_key_order):
             raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i].keys()) - set(sources_key_order))}")
 
         data["sources"][i]["deviceMap"] = device_map_sort(source["deviceMap"])
         for j, link in enumerate(source.get("links", [])):
-            data["sources"][i]["links"][j] = dict(
-                sorted(
-                    link.items(), key=lambda item: links_key_order.index(item[0]) if item[0] in links_key_order else len(links_key_order)
-                )
-            )
+            data["sources"][i]["links"][j] = sorted_dict_by_key(link, links_key_order)
+
             if set(data["sources"][i]["links"][j].keys()) - set(links_key_order):
                 raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i]['links'][j].keys()) - set(links_key_order))}")
 
