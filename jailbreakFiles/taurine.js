@@ -61,10 +61,10 @@ module.exports = {
     latestVer: "1.1.6",
     color: "#6742cd",
     icon: "/assets/images/jb-icons/taurine.png",
-    notes: "Can obtain a permanently signed version after initially jailbreaking by installing `taurine-permanent` from the Odyssey Repo",
+    notes: "Can obtain a permanently signed version after initially jailbreaking by installing `taurine-permanent` from the Odyssey Repo. 14.4.x support limited to A11 and earlier devices using an unofficial fork.",
     jailbreaksmeapp: true,
     type: "Semi-untethered",
-    firmwares: ["14.0","14.3"]
+    firmwares: ["14.0","14.4.2"]
   },
   compatibility: [
     {
