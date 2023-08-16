@@ -45,6 +45,21 @@ function writeJson(dirName, arr, property) {
   main[dirName] = arr
 }
 
+function handleSDKs(baseItem) {
+  var sdkEntries = []
+  if (!baseItem.hasOwnProperty('sdks')) return sdkEntries
+
+  for (var sdk of baseItem['sdks']) {
+    sdk['version'] = sdk['version'] + ' SDK'
+    sdk['uniqueBuild'] = sdk['build'] + '-SDK'
+    sdk['released'] = baseItem['released']
+    sdk['deviceMap'] = [(sdk['osStr'].indexOf('OS X') >= 0 ? 'macOS' : sdk['osStr']) + ' SDK']
+    sdkEntries.push(sdk)
+  }
+
+  return sdkEntries
+}
+
 var osFiles          = requireAll('osFiles', '.json'),
     jailbreakFiles    = requireAll('jailbreakFiles', '.js'),
     deviceGroupFiles  = requireAll('deviceGroupFiles', '.json'),
@@ -128,8 +143,11 @@ for (let i of osFiles) {
       ver[property] = entry[property]
     }
     createDuplicateEntriesArray.push(ver)
+
+    createDuplicateEntriesArray = createDuplicateEntriesArray.concat(handleSDKs(entry))
   }
   delete i.createDuplicateEntries
+  createDuplicateEntriesArray = createDuplicateEntriesArray.concat(handleSDKs(i))
 }
 
 osFiles = osFiles
@@ -152,7 +170,7 @@ osFiles = osFiles
   ver.osType = ver.osStr
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
-  if (ver.osType == 'Mac OS X') ver.osType = 'macOS'
+  if (ver.osType == 'Mac OS X' || ver.osType == 'OS X') ver.osType = 'macOS'
 
   function getLegacyDevicesObjectArray() {
     let obj = {}
