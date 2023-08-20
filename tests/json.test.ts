@@ -4,6 +4,7 @@ import { promisify } from 'util';
 import * as util from "util";
 import * as fs from 'graceful-fs';
 
+
 test('all JSON files are valid', async () => {
     const root_dir = path.resolve(__dirname, '../')
     const search = path.resolve(root_dir, "**/*.json")
