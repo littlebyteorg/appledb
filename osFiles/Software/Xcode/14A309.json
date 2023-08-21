@@ -7,7 +7,51 @@
         {
             "version": "14.0 RC",
             "released": "2022-09-07",
-            "rc": true
+            "rc": true,
+            "sdks": [
+                {
+                    "osStr": "iOS",
+                    "version": "16.0",
+                    "build": "20A360"
+                },
+                {
+                    "osStr": "macOS",
+                    "version": "12.3",
+                    "build": "21E226"
+                },
+                {
+                    "osStr": "tvOS",
+                    "version": "16.0",
+                    "build": "20J373"
+                },
+                {
+                    "osStr": "watchOS",
+                    "version": "9.0",
+                    "build": "20R362"
+                }
+            ],
+            "sources": [
+                {
+                    "type": "xip",
+                    "deviceMap": [
+                        "Xcode"
+                    ],
+                    "osMap": [
+                        "macOS 12",
+                        "macOS 13"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_14_Release_Candidate/Xcode_14_Release_Candidate.xip",
+                            "preferred": true,
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "sha1": "2bcadb56531d66d6bead152009c7f1cfda47d080"
+                    }
+                }
+            ]
         }
     ],
     "releaseNotes": "https://developer.apple.com/documentation/xcode-release-notes/xcode-14-release-notes",
@@ -17,6 +61,28 @@
     "osMap": [
         "macOS 12",
         "macOS 13"
+    ],
+    "sdks": [
+        {
+            "osStr": "iOS",
+            "version": "16.0",
+            "build": "20A360"
+        },
+        {
+            "osStr": "macOS",
+            "version": "12.3",
+            "build": "21E226"
+        },
+        {
+            "osStr": "tvOS",
+            "version": "16.0",
+            "build": "20J373"
+        },
+        {
+            "osStr": "watchOS",
+            "version": "9.0",
+            "build": "20R362"
+        }
     ],
     "sources": [
         {
@@ -34,7 +100,10 @@
                     "preferred": true,
                     "active": true
                 }
-            ]
+            ],
+            "hashes": {
+                "sha1": "2bcadb56531d66d6bead152009c7f1cfda47d080"
+            }
         }
     ]
 }

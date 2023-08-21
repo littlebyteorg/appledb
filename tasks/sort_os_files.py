@@ -15,7 +15,6 @@ key_order = [
     "build",
     "uniqueBuild",
     "released",
-    "sdk",
     "rc",
     "beta",
     "rsr",
@@ -31,7 +30,7 @@ key_order = [
     "deviceMap",
     "iPhoneMap",
     "osMap",
-    "xcodeMap",
+    "sdks",
     "sources",
 ]
 
@@ -84,10 +83,10 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
     if "deviceMap" in data:
         data["deviceMap"] = device_map_sort(data["deviceMap"])
 
-    for i, xcode in enumerate(data.get("xcodeMap", [])):
-        data["xcodeMap"][i] = sorted_dict_by_key(xcode, key_order)
+    for i, sdk in enumerate(data.get("sdks", [])):
+        data["sdks"][i] = sorted_dict_by_key(sdk, key_order)
 
-    data.get("xcodeMap", []).sort(key=lambda xcode: xcode['released'])
+    data.get("sdks", []).sort(key=lambda sdk: f"{sdk['osStr']} {sdk['version']}")
 
     for i, source in enumerate(data.get("sources", [])):
         data["sources"][i] = sorted_dict_by_key(source, sources_key_order)
