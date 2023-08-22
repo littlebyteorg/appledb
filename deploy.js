@@ -136,8 +136,8 @@ for (const group of deviceGroupFiles) {
 let createDuplicateEntriesArray = []
 
 for (let i of osFiles) {
-  if (!i.hasOwnProperty('createDuplicateEntries')) continue
-  for (const entry of i.createDuplicateEntries) {
+  if (!i.hasOwnProperty('createDuplicateEntries') && !i.hasOwnProperty('sdks')) continue
+  for (const entry of i.createDuplicateEntries || []) {
     let ver = { ...i }
     delete ver.createDuplicateEntries
     for (const property in entry) {
