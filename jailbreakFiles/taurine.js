@@ -201,7 +201,7 @@ module.exports = {
         "iPad7,11", // iPad (7th generation) Wi-Fi, A10
         "iPad7,12", // iPad (7th generation) Wi-Fi + Cellular, A10
       ]
-    },,
+    },
     {
       firmwares: [
         "18E5140j", // 14.5 beta
