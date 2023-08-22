@@ -27,7 +27,7 @@ OS_MAP = [
     ("iPod", "iOS"),
     ("iPhone", "iOS"),
     ("iPad", "iPadOS"),
-    ("AudioAccessory", "audioOS"),
+    ("AudioAccessory", "HomePod Software"),
     ("AppleTV", "tvOS"),
     ("MacBook", "macOS"),
     ("Watch", "watchOS"),
