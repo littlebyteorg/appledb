@@ -1,5 +1,6 @@
 module.exports = {
   name: "LiberTV",
+  priority: 0,
   info: {
     website: {
       name: "newosxbook.com/libertv",
@@ -11,6 +12,13 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/LiberTV",
       external: true
     },
+    guide: [
+      {
+        name: "Installing LiberTV",
+        url: "/installing-libertv/",
+        pkgman: "nito.tv",
+      }
+    ],
     latestVer: "1.1",
     type: "Semi-untethered",
     firmwares: ["11.0","11.1"],

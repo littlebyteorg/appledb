@@ -15,6 +15,11 @@ module.exports = {
     },
     guide: [
       {
+        devices: [
+          'AppleTV2,1'
+        ]
+      },
+      {
         name: "Installing greenpois0n",
         url: "/installing-greenpois0n/",
         pkgman: "cydia",

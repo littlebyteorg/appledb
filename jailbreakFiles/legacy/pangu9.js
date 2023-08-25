@@ -14,10 +14,15 @@ module.exports = {
     },
     guide: [
       {
+        devices: [
+          'AppleTV5,3'
+        ]
+      },
+      {
         name: "Installing Pangu9",
         url: "/installing-pangu9/",
         pkgman: "cydia",
-      }
+      },
     ],
     type: "Untethered",
     firmwares: ["9.0","9.1"],

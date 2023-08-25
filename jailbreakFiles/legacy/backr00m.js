@@ -12,6 +12,13 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/Backr00m",
       external: true
     },
+    guide: [
+      {
+        name: "Installing backr00m",
+        url: "/installing-backr00m/",
+        pkgman: "nito.tv",
+      }
+    ],
     type: "Semi-untethered",
     latestVer: "1.1",
     firmwares: ["10.2.2","11.1"]
