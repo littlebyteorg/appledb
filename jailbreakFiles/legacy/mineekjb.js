@@ -1,6 +1,6 @@
 module.exports = {
   name: "mineekJB",
-  priority: 0,
+  priority: 9,
   info: {
     website: {
       name: "mineek.github.io/mineekJB/",
