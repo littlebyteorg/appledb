@@ -243,15 +243,6 @@ fs.writeFileSync(`${p}/.nojekyll`, '')
 var main = {}
 var filesWritten = 0
 
-function writeJson(dirName, arr, property) {
-  mkdir(path.join(p, dirName))
-  write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property])))
-  write(path.join(p, dirName, 'main.json'), JSON.stringify(arr))
-  arr.map(function(x) { write(path.join(p, dirName, x[property].replace('/','%2F') + '.json'), JSON.stringify(x))})
-
-  main[dirName] = arr
-}
-
 writeJson('ios', osFiles, 'key')
 // Write index.json and main.json filtered by each osType
 Object.entries(osFiles.reduce(function(r, a) {
