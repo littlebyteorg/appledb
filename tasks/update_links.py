@@ -160,9 +160,17 @@ class ProcessFileThread(threading.Thread):
                             source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
 
                         if "ETag" in resp.headers:
+                            def is_hex(s):
+                                return all(c in string.hexdigits for c in s)
+            
                             potential_hash = resp.headers["ETag"][1:-1]
-                            if len(potential_hash) == 32 and all(c in string.hexdigits for c in potential_hash):
+
+                            if len(potential_hash) == 32 and is_hex(potential_hash):
                                 source.setdefault("hashes", {})["md5"] = potential_hash
+                            elif len(potential_hash) > 33 and is_hex(potential_hash[:32]) and potential_hash[32] == ":":
+                                # <md5>:<unix epoch>
+                                # Seen on download.info.apple.com (Server: AkamaiNetStorage)
+                                source.setdefault("hashes", {})["md5"] = potential_hash[:32]
                             else:
                                 print(f"Unknown ETag type: {resp.headers['ETag']}, ignoring")
 
