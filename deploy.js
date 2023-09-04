@@ -54,7 +54,6 @@ function handleSDKs(baseItem) {
     sdk['uniqueBuild'] = sdk['build'] + '-SDK'
     sdk['released'] = baseItem['released']
     sdk['deviceMap'] = [(sdk['osStr'].indexOf('OS X') >= 0 ? 'macOS' : sdk['osStr']) + ' SDK']
-    sdk['sdk'] = true
     sdkEntries.push(sdk)
   }
 
