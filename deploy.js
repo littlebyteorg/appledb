@@ -244,6 +244,17 @@ var main = {}
 var filesWritten = 0
 
 writeJson('ios', osFiles, 'key')
+// Write index.json and main.json filtered by each osType
+Object.entries(osFiles.reduce(function(r, a) {
+  r[a.osType] = r[a.osType] || []
+  r[a.osType].push(a)
+  return r
+}, {})).forEach(([osType, fws]) => {
+  mkdir(path.join(p, `ios/${osType}`))
+  write(path.join(p, `ios/${osType}/index.json`), JSON.stringify(fws.map(x => x.key)))
+  write(path.join(p, `ios/${osType}/main.json`), JSON.stringify(fws))
+})
+
 writeJson('jailbreak', jailbreakFiles, 'name')
 writeJson('group', deviceGroupFiles, 'name')
 writeJson('device', deviceFiles, 'key')
