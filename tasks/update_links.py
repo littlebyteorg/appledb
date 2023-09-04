@@ -20,17 +20,7 @@ urllib3.disable_warnings()
 # TODO: Make this configurable
 THREAD_COUNT = 16
 
-# Preferred -> other variants
-rewrite_map_v2 = {
-    "https://updates.cdn-apple.com/": ["http://updates-http.cdn-apple.com/"],
-    "https://mesu.apple.com/": ["http://mesu.apple.com/"],
-    "https://secure-appldnld.apple.com/": ["http://appldnld.apple.com/"],
-    "https://developer.apple.com/services-account/download?path=/": ["https://download.developer.apple.com/", "http://adcdownload.apple.com/"],
-    "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
-}
-
-rewrite_map_v2_groups = [([preferred_url] + other_urls) for preferred_url, other_urls in rewrite_map_v2.items()]
-
+# TODO: Move this to separate file so that all domain information is in one place
 # Domains that need auth
 needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com"]
 
@@ -38,26 +28,6 @@ needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "develope
 no_head = ["secure-appldnld.apple.com"]
 
 success_map = {}
-
-
-def unique_list(iterable):
-    return list(dict.fromkeys(iterable))
-
-
-def url_host(url):
-    return "/".join(url.split("/", 3)[:3]) + "/"
-
-
-def appendable(iterable, url):
-    if url not in iterable:
-        iterable.append(url)
-
-
-# We use this to set up the sort order for hosts (first the preferred hosts, then the other hosts in order)
-url_host_sorted = []
-for preferred_hosts, other_hosts in rewrite_map_v2.items():
-    url_host_sorted.append(preferred_hosts)
-    url_host_sorted.extend(other_hosts)
 
 
 class ProcessFileThread(threading.Thread):
@@ -84,26 +54,7 @@ class ProcessFileThread(threading.Thread):
 
             for source in data.get("sources", []):
                 links = source.setdefault("links", [])
-
-                # print(f"Processing source {j+1}/{len(data['sources'])} ({((j)/len(data['sources']) * 100):.2f}%)")
-
-                urls: list[str] = [link["url"] for link in links]
-                for url in list(urls):
-                    for host_group in rewrite_map_v2_groups:
-                        current_host = [host for host in host_group if url.startswith(host)]
-                        if current_host:
-                            current_host = current_host[0]
-                            for other_host in host_group:
-                                if other_host != current_host:
-                                    appendable(urls, url.replace(current_host, other_host))
-
-                urls.sort(
-                    key=lambda x: url_host_sorted.index(url_host(x)) if url_host(x) in url_host_sorted else len(url_host_sorted)
-                )  # Sort by host order. If not in host order, put at bottom in original order
-
-                new_links = [{"url": url, "preferred": any(url.startswith(i) for i in rewrite_map_v2), "active": False} for url in urls]
-
-                for link in new_links:
+                for link in links:
                     url = link["url"]
                     if url in success_map:
                         # Skip ones we've already processed
@@ -127,9 +78,19 @@ class ProcessFileThread(threading.Thread):
                     for _ in range(10):
                         try:
                             if urlparse(url).hostname in no_head:
-                                resp = self.session.get(url, headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"}, verify=False, stream=True)
+                                resp = self.session.get(
+                                    url,
+                                    headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
+                                    verify=False,
+                                    stream=True,
+                                )
                             else:
-                                resp = self.session.head(url, headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"}, verify=False, allow_redirects=True)
+                                resp = self.session.head(
+                                    url,
+                                    headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
+                                    verify=False,
+                                    allow_redirects=True,
+                                )
                         except requests.ConnectionError:
                             print("Warning: retrying connection error")
                             time.sleep(1)
@@ -162,7 +123,7 @@ class ProcessFileThread(threading.Thread):
                         if "ETag" in resp.headers:
                             def is_hex(s):
                                 return all(c in string.hexdigits for c in s)
-            
+
                             potential_hash = resp.headers["ETag"][1:-1]
 
                             if len(potential_hash) == 32 and is_hex(potential_hash):
@@ -175,7 +136,9 @@ class ProcessFileThread(threading.Thread):
                                 print(f"Unknown ETag type: {resp.headers['ETag']}, ignoring")
 
                         if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
-                            print(f"Warning: {ios_file.name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}")
+                            print(
+                                f"Warning: {ios_file.name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}"
+                            )
 
                         source["size"] = int(resp.headers["Content-Length"])
                     # self.print_queue.put("Processed a link")
