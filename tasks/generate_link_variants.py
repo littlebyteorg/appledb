@@ -162,5 +162,4 @@ def generate_link_variants(files: Collection[Path]):
 
 
 if __name__ == "__main__":
-    # generate_link_variants(list(Path("osFiles").rglob("*.json")))
-    generate_link_variants(list(Path("osFiles").rglob("14F27.json")))
+    generate_link_variants(list(Path("osFiles").rglob("*.json")))
