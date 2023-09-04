@@ -290,7 +290,7 @@ def import_ipsw(
         # Save the network access for the end, that way we can run it once per file instead of once per ipsw
         # and we can use threads to speed it up
         update_links([db_file], False)
-    print(f"\tSanity check the file{', run update_links.py, ' if not use_network else ''}and then commit it\n")
+    print(f"\tSanity check the file{', run update_links.py, ' if not use_network else ' '}and then commit it\n")
     return db_file
 
 
