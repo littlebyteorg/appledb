@@ -102,23 +102,6 @@ def rewrite_links(links: list[dict]):
         for host in get_host_group(link["url"]):
             appendable(new_links, {**link, "url": host + path})
 
-    for link in new_links:
-        if link["url"].startswith(get_preferred_host(link["url"])):
-            link["preferred"] = True
-            break
-
-    for link in new_links:
-        if "preferred" not in link:
-            link["preferred"] = False
-
-    if len(new_links) == 1:
-        # Only one link, set it to preferred
-        # This should not be hit, but just in case
-        assert new_links[0]["preferred"], new_links
-        new_links[0]["preferred"] = True
-
-    assert not links or len([i for i in new_links if i["preferred"]]) == 1, new_links
-
     def get_sort_order(link):
         # Sort by host order. If not in host order, put at bottom in original order
 
@@ -135,7 +118,21 @@ def rewrite_links(links: list[dict]):
         return catalog_position, host_order
 
     new_links.sort(key=get_sort_order)
-    assert new_links[0]["preferred"], new_links
+
+    for link in new_links:
+        if link["url"].startswith(get_preferred_host(link["url"])):
+            link["preferred"] = True
+            break
+
+    for link in new_links:
+        if "preferred" not in link:
+            link["preferred"] = False
+
+    if links:
+        # Top link should be preferred
+        assert new_links[0]["preferred"], new_links
+        # There should only be one preferred link
+        assert len([i for i in new_links if i["preferred"]]) == 1, new_links
 
     return new_links
 
@@ -165,4 +162,5 @@ def generate_link_variants(files: Collection[Path]):
 
 
 if __name__ == "__main__":
-    generate_link_variants(list(Path("osFiles").rglob("*.json")))
+    # generate_link_variants(list(Path("osFiles").rglob("*.json")))
+    generate_link_variants(list(Path("osFiles").rglob("14F27.json")))
