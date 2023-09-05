@@ -149,16 +149,20 @@ def process_file(ios_file: Path):
 
 
 def generate_link_variants(files: Collection[Path]):
-    total = len(files)  # pylint: disable=unused-variable  # noqa: F841
+    total = len(files)
 
     start = time.time()
     for i, file in enumerate(files):  # pylint: disable=unused-variable
-        process_file(file)
+        try:
+            process_file(file)
+        except Exception:
+            print(f"Error while processing {file}")
+            raise
         # print(f"Processed {i+1}/{total} ({(i+1)/total*100:.2f}%) files")
 
     end = time.time()
 
-    print(f"Processed {len(files)} files in {end-start} seconds")
+    print(f"Processed {total} files in {end-start} seconds")
 
 
 if __name__ == "__main__":

@@ -143,8 +143,6 @@ class ProcessFileThread(threading.Thread):
                         source["size"] = int(resp.headers["Content-Length"])
                     # self.print_queue.put("Processed a link")
 
-                source["links"] = new_links
-
             json.dump(data, ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             self.print_queue.put(False)
 
