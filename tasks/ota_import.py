@@ -171,8 +171,6 @@ def import_ota(
         info_plist = info_plist['MobileAssetProperties']
     bridge_version = None
 
-    print(info_plist.get('BridgeVersionInfo'))
-
     if info_plist.get('BridgeVersionInfo'):
         bridge_version = info_plist['BridgeVersionInfo']['BridgeVersion'].split('.')
         bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[0]}"
@@ -180,9 +178,6 @@ def import_ota(
         #     ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url)
         # print(f"\tGetting PlatformSupport.plist {'from local file' if local_available else 'via remotezip'}")
         # platform_support = plistlib.loads(ota.read("PlatformSupport.plist"))
-
-    print('bridge')
-    print(bridge_version)
 
     if ota:
         ota.close()
