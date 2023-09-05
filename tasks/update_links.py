@@ -22,7 +22,7 @@ THREAD_COUNT = 16
 
 # TODO: Move this to separate file so that all domain information is in one place
 # Domains that need auth
-needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com"]
+needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com", "apps.microsoft.com"]
 
 # Domains that do not reliably support HEAD requests
 no_head = ["secure-appldnld.apple.com"]

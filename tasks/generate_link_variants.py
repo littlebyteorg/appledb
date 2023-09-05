@@ -23,7 +23,9 @@ rewrite_map_v2 = {
     "https://support.apple.com/downloads/": ["http://support.apple.com/downloads/"],
     "https://devimages-cdn.apple.com/": ["http://devimages-cdn.apple.com/"],
     # It's archive.org
-    "https://archive.org": [],
+    "https://archive.org/": [],
+    # Placeholder because APPX links expire
+    "https://apps.microsoft.com/": [],
 }
 
 

@@ -34,11 +34,11 @@ key_order = [
     "sources",
 ]
 
-sources_key_order = ["type", "deviceMap", "osMap", "links", "hashes", "size"]
+sources_key_order = ["type", "deviceMap", "osMap", "windowsUpdateDetails", "links", "hashes", "size"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
-source_type_order = ["ipsw", "installassistant", "ota", "update", "combo", "xip", "dmg", "pkg", "bin", "tar", "exe"]
+source_type_order = ["ipsw", "installassistant", "ota", "update", "combo", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
 
 
 def device_sort(device):
