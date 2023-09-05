@@ -12,7 +12,7 @@ jobs:
     outputs:
       docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         # Checkout as many commits as needed for the diff
         fetch-depth: 2
@@ -34,7 +34,7 @@ jobs:
     if: needs.conditional_job_check_files.outputs.docs_changed == 'True'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with: 
           repository: littlebyteorg/appledb-web
           token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
@@ -57,7 +57,7 @@ jobs:
     if: needs.conditional_job_check_files.outputs.docs_changed == 'True'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with: 
           repository: cfw-guide/ios.cfw.guide
           token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}

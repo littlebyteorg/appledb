@@ -13,21 +13,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # fetch all commits to get last updated time or other git log info
           fetch-depth: 0
           submodules: recursive
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           # choose node.js version to use
           node-version: '16'
 
       # install dependencies
-      - name: Install dependencies
+      - name: Install node.js dependencies
         run: yarn
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          # choose python version to use
+          python-version: '3.x'
+          cache: 'pip'
+          cache-dependency-path: 'tasks/requirements.txt'
+      
+      - name: Install python dependencies
+        run: pip install -r tasks/requirements.txt
+
+      # generate link variants
+      - name: Generate link variants
+        run: python tasks/generate_link_variants.py
 
       # run build script
       - name: Build json files
