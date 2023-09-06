@@ -80,12 +80,21 @@ def get_board_mappings(devices):
 def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None):
     assert version or recommended_version, "Must have either version or recommended_version"
 
+    # watchOS 1 override
+    if os_str == "watchOS" and build.startswith("12"):
+        recommended_version = recommended_version.replace("8.2", "1.0")
+
     kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
     assert kern_version
     kern_version = kern_version.group()
 
+    ios_version = None
+    os_str_override = os_str
+
     major_version = ".".join((version or recommended_version).split(".")[:1]) + ".x"  # type: ignore
     if os_str == "tvOS" and int(recommended_version[0]) < 9:
+        os_str_override = "Apple TV Software"
+        ios_version = recommended_version
         version_dir = [x.path.split("/")[-1] for x in os.scandir(f"osFiles/{os_str}") if x.path.startswith(f"osFiles/{os_str}/{kern_version}x")][0]
     elif os_str == "bridgeOS":
         version_dir = f"{kern_version}x"
@@ -114,8 +123,12 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
             if not friendly_version:
                 friendly_version = version or recommended_version
+
+        json_dict = {"osStr": os_str_override, "version": friendly_version, "build": build}
+        if os_str_override == "Apple TV Software":
+            json_dict["iosVersion"] = ios_version
         json.dump(
-            {"osStr": os_str, "version": friendly_version, "build": build},
+            json_dict,
             db_file.open("w", encoding="utf-8", newline="\n"),
             indent=4,
             ensure_ascii=False,
@@ -139,7 +152,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             else:
                 db_data["released"] = input("\tEnter release date (YYYY-MM-DD): ").strip()
 
-    if "beta" not in db_data and (beta or "beta" in db_data["version"].lower()) or build.endswith(tuple(string.ascii_lowercase)):
+    if "beta" not in db_data and (beta or "beta" in db_data["version"].lower()):
         db_data["beta"] = True
 
     if "rc" not in db_data and (rc or "rc" in db_data["version"].lower()):
@@ -150,32 +163,30 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     return db_file
 
 def import_ota(
-    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True
+    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None
 ):
     local_path = LOCAL_IPSW_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
+    ota = None
+    info_plist = None
 
-    ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url)
-    print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
+    try:
+        ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url)
+        print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
 
-    # Commented out because IPSWs should always have the Info in the root
+        info_plist = plistlib.loads(ota.read("Info.plist"))
 
-    # manifest_paths = [file for file in ota.namelist() if file.endswith("Info.plist")]
-    # assert len(manifest_paths) == 1, f"Expected 1 Info.plist, got {len(manifest_paths)}: {manifest_paths}"
-    # info_plist = plistlib.loads(ota.read(manifest_paths[0]))
-
-    info_plist = plistlib.loads(ota.read("Info.plist"))
-    if info_plist.get('MobileAssetProperties'):
-        info_plist = info_plist['MobileAssetProperties']
+        if info_plist.get('MobileAssetProperties'):
+            info_plist = info_plist['MobileAssetProperties']
+    except:
+        if not build:
+            raise
+        info_plist = {}
     bridge_version = None
 
     if info_plist.get('BridgeVersionInfo'):
         bridge_version = info_plist['BridgeVersionInfo']['BridgeVersion'].split('.')
         bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[0]}"
-        # if not ota:
-        #     ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url)
-        # print(f"\tGetting PlatformSupport.plist {'from local file' if local_available else 'via remotezip'}")
-        # platform_support = plistlib.loads(ota.read("PlatformSupport.plist"))
 
     if ota:
         ota.close()
@@ -184,9 +195,9 @@ def import_ota(
     if (ota_url.endswith(".ipsw")):
         build = build or info_plist["TargetUpdate"]
         recommended_version = recommended_version or info_plist["ProductVersion"]
-        supported_devices = [info_plist["ProductType"]]
+        supported_devices = supported_devices or [info_plist["ProductType"]]
         bridge_devices = []
-        prerequisite_builds = info_plist.get('BaseUpdate')
+        prerequisite_builds = prerequisite_builds or info_plist.get('BaseUpdate')
     else:
         build = build or info_plist["Build"]
         # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
@@ -194,14 +205,17 @@ def import_ota(
         # Check by substring first?
         recommended_version = recommended_version or info_plist["OSVersion"].removeprefix("9.9.")
         # Devices supported specifically in this source
-        if info_plist.get('SupportedDevices'):
+        if device_map:
+            supported_devices = device_map
+            bridge_devices = []
+        elif info_plist.get('SupportedDevices'):
             supported_devices = info_plist['SupportedDevices']
             bridge_devices = []
         else:
             supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
             print(bridge_devices)
 
-        prerequisite_builds = info_plist.get('PrerequisiteBuild', '').split(';')
+        prerequisite_builds = prerequisite_builds or info_plist.get('PrerequisiteBuild', '').split(';')
         if len(prerequisite_builds) == 1:
             prerequisite_builds = prerequisite_builds[0]
         elif len(prerequisite_builds) > 1:
@@ -289,6 +303,7 @@ if __name__ == "__main__":
 
     bulk_mode = input("Bulk mode - read data from import.json/import.txt? [y/n]: ").strip().lower() == "y"
     if bulk_mode:
+        failed_links = []
         files_processed = set()
 
         if not FULL_SELF_DRIVING:
@@ -306,9 +321,12 @@ if __name__ == "__main__":
                     )
                 else:
                     for link in version["links"]:
-                        files_processed.add(
-                            import_ota(link["url"], version=version["version"], released=version["released"], use_network=False)
-                        )
+                        try:
+                            files_processed.add(
+                                import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version["released"], use_network=False, build=version["build"], prerequisite_builds=version.get("prerequisite"), device_map=version["deviceMap"])
+                            )
+                        except Exception:
+                            failed_links.append(link["url"])
 
         elif Path("import.txt").exists():
             print("Reading URLs from import.txt")
@@ -316,18 +334,19 @@ if __name__ == "__main__":
             urls = [i.strip() for i in Path("import.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
-                files_processed.add(import_ota(url, use_network=False))
+                try:
+                    files_processed.add(import_ota(url, use_network=False))
+                except Exception:
+                    failed_links.append(url)
         else:
             raise RuntimeError("No import file found")
 
         print("Checking processed files for alive/hashes...")
         update_links(files_processed)
+        print(f"Failed links: {failed_links}")
     else:
-        try:
-            while True:
-                url = input("Enter OTA URL: ").strip()
-                if not url:
-                    break
-                import_ota(url)
-        except KeyboardInterrupt:
-            pass
+        while True:
+            url = input("Enter OTA URL (enter to exit): ").strip()
+            if not url:
+                break
+            import_ota(url)
