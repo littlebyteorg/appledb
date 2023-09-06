@@ -86,8 +86,6 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 
     major_version = ".".join((version or recommended_version).split(".")[:1]) + ".x"  # type: ignore
     if os_str == "tvOS" and int(recommended_version[0]) < 9:
-        # if
-        # http://appldnld.apple.com/AppleTV/041-7287.20121128.Bbet4/com_apple_MobileAsset_SoftwareUpdate/0817a56af7664b994e55b9f0fb0c2149bab3931f.zip
         version_dir = [x.path.split("/")[-1] for x in os.scandir(f"osFiles/{os_str}") if x.path.startswith(f"osFiles/{os_str}/{kern_version}x")][0]
     elif os_str == "bridgeOS":
         version_dir = f"{kern_version}x"
