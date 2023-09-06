@@ -226,7 +226,7 @@ def import_ota(
     if not os_str:
         for product_prefix, os_str in OS_MAP:
             if any(prod.startswith(product_prefix) for prod in supported_devices):
-                if os_str == "iPadOS" and packaging.version.parse(recommended_version) < packaging.version.parse("13.0"):
+                if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("13.0"):
                     os_str = "iOS"
                 print(f"\t{os_str} {recommended_version} ({build})")
                 break
