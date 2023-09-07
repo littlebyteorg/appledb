@@ -213,7 +213,6 @@ def import_ota(
             bridge_devices = []
         else:
             supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
-            print(bridge_devices)
 
         prerequisite_builds = prerequisite_builds or info_plist.get('PrerequisiteBuild', '').split(';')
         if len(prerequisite_builds) == 1:
@@ -229,6 +228,7 @@ def import_ota(
                 if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("13.0"):
                     os_str = "iOS"
                 print(f"\t{os_str} {recommended_version} ({build})")
+                print(f"\t{prerequisite_builds}")
                 break
         else:
             if FULL_SELF_DRIVING:
