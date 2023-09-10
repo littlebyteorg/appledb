@@ -34,7 +34,7 @@ key_order = [
     "sources",
 ]
 
-sources_key_order = ["type", "deviceMap", "osMap", "links", "hashes", "size"]
+sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "osMap", "links", "hashes", "size"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
@@ -103,7 +103,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             if set(data["sources"][i]["links"][j].keys()) - set(links_key_order):
                 raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i]['links'][j].keys()) - set(links_key_order))}")
 
-    data.get("sources", []).sort(key=lambda source: (device_sort(source["deviceMap"][0]), source_type_order.index(source["type"])))
+    data.get("sources", []).sort(key=lambda source: (device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), source.get("prerequisite", "00A000")))
 
     if not raw_data:
         json.dump(data, file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)  # type: ignore
