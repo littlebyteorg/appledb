@@ -33,6 +33,7 @@ OS_MAP = [
     ("Mac", "macOS"),
     ("Watch", "watchOS"),
     ("iBridge", "bridgeOS"),
+    ("RealityDevice", "visionOS"),
 ]
 
 SESSION = requests.Session()
@@ -102,7 +103,11 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     else:
         version_dir = f"{kern_version}x - {major_version}"
 
-    db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
+    if os_str == "visionOS":
+        db_file = Path(f"osFiles/{os_str}/{build}.json")
+    else:    
+        db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
+
     if db_file.exists():
         print("\tFile already exists, not replacing")
     else:
