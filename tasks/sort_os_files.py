@@ -112,17 +112,17 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             data["sources"][i]["prerequisiteBuild"].sort(key=build_number_sort)
 
     def source_sort(source):
-        prerequsite_order = None
+        prerequisite_order = None
         if "prerequisiteBuild" not in source:
             # Goes at the top
-            prerequsite_order = ""
+            prerequisite_order = ""
         elif isinstance(source["prerequisiteBuild"], str):
-            prerequsite_order = source["prerequisiteBuild"]
+            prerequisite_order = source["prerequisiteBuild"]
         else:
             # Already sorted previously
-            prerequsite_order = source["prerequisiteBuild"][0]
+            prerequisite_order = source["prerequisiteBuild"][0]
 
-        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), prerequsite_order
+        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), prerequisite_order
 
     data.get("sources", []).sort(key=source_sort)
 
