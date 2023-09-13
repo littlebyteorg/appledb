@@ -13,7 +13,7 @@ import json
 import tempfile
 import textwrap
 from pathlib import Path
-from typing import Optional, cast
+from typing import Optional
 from xml.etree import ElementTree as ET
 
 import requests
@@ -211,10 +211,8 @@ SB/c9O+lxbtVGjhjhE63bK2VVOxlIhBJF7jAHscPrFRH
 """.strip()
 
 windows_update_session = requests.Session()
-temp_cert = cast(
-    tempfile._TemporaryFileWrapper,  # pylint: disable=protected-access
-    tempfile.NamedTemporaryFile("w", suffix=".pem", delete=False).write(WINDOWS_UPDATE_CERT),
-)
+temp_cert = tempfile.NamedTemporaryFile("w", suffix=".pem", delete=False)
+temp_cert.write(WINDOWS_UPDATE_CERT)
 atexit.register(temp_cert.close)
 windows_update_session.verify = temp_cert.name
 windows_update_session.headers.update(
