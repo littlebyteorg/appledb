@@ -68,6 +68,12 @@ def device_map_sort(device_map):
     return sorted(set(device_map), key=device_sort)
 
 
+def build_number_sort(build_number):
+    match = re.match(r"(\d+)([A-Z])(\d+)([A-Z])?", build_number)
+    assert match
+    return int(match.groups()[0]), match.groups()[1], int(match.groups()[2]), match.groups()[3]
+
+
 def sort_os_file(file_path: Optional[Path], raw_data=None):
     if not file_path and not raw_data:
         raise ValueError("Must provide either a file path or raw data")
@@ -102,8 +108,23 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
             if set(data["sources"][i]["links"][j].keys()) - set(links_key_order):
                 raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i]['links'][j].keys()) - set(links_key_order))}")
+        if isinstance(source.get("prerequisiteBuild"), list):
+            data["sources"][i]["prerequisiteBuild"].sort(key=build_number_sort)
 
-    data.get("sources", []).sort(key=lambda source: (device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), source.get("prerequisiteBuild", "00A000") if isinstance(source.get("prerequisiteBuild", "00A000"), str) else source["prerequisiteBuild"][0]))
+    def source_sort(source):
+        prerequisite_order = None
+        if "prerequisiteBuild" not in source:
+            # Goes at the top
+            prerequisite_order = ""
+        elif isinstance(source["prerequisiteBuild"], str):
+            prerequisite_order = source["prerequisiteBuild"]
+        else:
+            # Already sorted previously
+            prerequisite_order = source["prerequisiteBuild"][0]
+
+        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), prerequisite_order
+
+    data.get("sources", []).sort(key=source_sort)
 
     if not raw_data:
         json.dump(data, file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)  # type: ignore
