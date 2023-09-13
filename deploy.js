@@ -239,6 +239,21 @@ const p = 'out'
 mkdir(p)
 fs.writeFileSync(`${p}/CNAME`, cname)
 fs.writeFileSync(`${p}/.nojekyll`, '')
+fs.writeFileSync(`${p}/index.html`, `
+<!DOCTYPE HTML>                                                                
+<html lang="en">                                                                
+    <head>                                                                      
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="0;url=https://github.com/littlebyteorg/appledb/blob/main/API.md" />      
+        <link rel="canonical" href="https://github.com/littlebyteorg/appledb/blob/main/API.md" />                    
+    </head>                                                                                                                                                                  
+    <body>                                                                      
+        <h1>                                                                    
+            Redirecting to <a href="https://github.com/littlebyteorg/appledb/blob/main/API.md">https://github.com/littlebyteorg/appledb/blob/main/API.md</a>
+        </h1>                                                                  
+    </body>                                                                    
+</html>
+`)
 
 var main = {}
 var filesWritten = 0
