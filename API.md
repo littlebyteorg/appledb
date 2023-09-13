@@ -48,7 +48,7 @@ To stay updated on changes to the API (and AppleDB development in general), you 
 
 <!---
 
-I'm not sure if we should include this granular information as it may change rapidly and is somewhat self evident if you just look at the files.
+I'm not sure if we should include this granular information as it is somewhat self evident if you just look at the files, especially since you don't need to pass parameters or data to get the information.
 
 ### `/bypass/`
 
