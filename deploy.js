@@ -150,7 +150,7 @@ for (let i of osFiles) {
   delete i.createDuplicateEntries
   createDuplicateEntriesArray = createDuplicateEntriesArray.concat(handleSDKs(i))
 }
-
+let filterOTAsArray = ["audioOS", "tvOS", "watchOS", "iOS", "HomePod Software"];
 osFiles = osFiles
 .concat(createDuplicateEntriesArray)
 .map(function(ver) {
@@ -172,6 +172,8 @@ osFiles = osFiles
   if (ver.osType == 'iPhoneOS' || ver.osType == 'iPadOS') ver.osType = 'iOS'
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
   if (ver.osType == 'Mac OS X' || ver.osType == 'OS X') ver.osType = 'macOS'
+
+  if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources) ver.sources = ver.sources.filter(source => (source.type != 'ota'))
 
   function getLegacyDevicesObjectArray() {
     let obj = {}
