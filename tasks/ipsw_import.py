@@ -27,7 +27,7 @@ OS_MAP = [
     ("iPod", "iOS"),
     ("iPhone", "iOS"),
     ("iPad", "iPadOS"),
-    ("AudioAccessory", "HomePod Software"),
+    ("AudioAccessory", "audioOS"),
     ("AppleTV", "tvOS"),
     ("MacBook", "macOS"),
     ("Watch", "watchOS"),
@@ -219,8 +219,8 @@ def import_ipsw(
     # assert restore["ProductVersion"] == version
     # assert restore["SupportedProductTypes"] == supported_devices
 
-    supported_devices = [i for i in supported_devices if i not in ["iProd99,1"]]
-    build_supported_devices = [i for i in build_supported_devices if i not in ["iProd99,1"]]
+    supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "iFPGA"]]
+    build_supported_devices = [i for i in build_supported_devices if i not in ["iProd99,1", "iFPGA"]]
 
     if not os_str:
         for product_prefix, os_str in OS_MAP:
@@ -267,11 +267,15 @@ def import_ipsw(
                 'id': os_image_version_map[os_version_prefix],
                 'align': 'left'
             }
+    elif os_str == "audioOS" and packaging.version.parse(recommended_version) >= packaging.version.parse("13.4"):
+        # Apple renamed it, but we still use the old name
+        os_str = "HomePod Software"
 
     found_source = False
     for source in db_data.setdefault("sources", []):
         for link in source.get("links", []):
             if link["url"] == ipsw_url:
+                # TODO: FIX
                 print("\tURL already exists in sources")
                 found_source = True
                 source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
