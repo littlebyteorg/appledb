@@ -4,6 +4,8 @@ Hosted at [api.appledb.dev](https://api.appledb.dev/).
 
 This is intended for use in [appledb.dev](https://appledb.dev/) and [ios.cfw.guide](https://ios.cfw.guide), however you may also use this information in your projects.
 
+For more API usage information, see [this page](API.md).
+
 ## Repo structure
 
 File structure is broken up like follows:
