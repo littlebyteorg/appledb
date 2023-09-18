@@ -1,9 +1,32 @@
 {
     "osStr": "watchOS",
-    "version": "10.0 Release Candidate Simulator",
+    "version": "10.0 Simulator",
     "build": "21R355",
     "uniqueBuild": "21R355-sim",
-    "released": "2023-09-12",
+    "released": "2023-09-18",
+    "createDuplicateEntries": [
+        {
+            "version": "10.0 RC Simulator",
+            "uniqueBuild": "21R355-RC-sim",
+            "released": "2023-09-12",
+            "rc": true,
+            "sources": [
+                {
+                    "type": "dmg",
+                    "deviceMap": [
+                        "watchOS Simulator"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/watchOS_10_Simulator_Runtime_Release_Candidate/watchOS_10_Simulator_Runtime_Release_Candidate.dmg",
+                            "active": true
+                        }
+                    ],
+                    "size": 4023631243
+                }
+            ]
+        }
+    ],
     "deviceMap": [
         "watchOS Simulator"
     ],
@@ -15,8 +38,7 @@
             ],
             "links": [
                 {
-                    "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/watchOS_10_Simulator_Runtime_Release_Candidate/watchOS_10_Simulator_Runtime_Release_Candidate.dmg",
-                    "preferred": true,
+                    "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/watchOS_10_Simulator_Runtime/watchOS_10_Simulator_Runtime.dmg",
                     "active": true
                 }
             ],
