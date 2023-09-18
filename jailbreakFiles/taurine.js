@@ -50,6 +50,14 @@ module.exports = {
           "iPad11,7", // iPad (8th generation) Wi-Fi + Cellular, A12
           "iPad13,1", // iPad Air (4th generation) Wi-Fi, A14
           "iPad13,2", // iPad Air (4th generation) Wi-Fi + Cellular, A14
+          "iPad13,4", // iPad Pro 11-inch (3rd generation) Wi-Fi, M1
+          "iPad13,5", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular with mmWave, M1
+          "iPad13,6", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular, M1
+          "iPad13,7", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular (China mainland), M1
+          "iPad13,8", // iPad Pro 12.9-inch (5th generation) Wi-Fi, M1
+          "iPad13,9", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular with mmWave, M1
+          "iPad13,10", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular, M1
+          "iPad13,11", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular (China mainland), M1
         ]
       },
       {
@@ -192,6 +200,14 @@ module.exports = {
         "iPad11,7", // iPad (8th generation) Wi-Fi + Cellular, A12
         "iPad13,1", // iPad Air (4th generation) Wi-Fi, A14
         "iPad13,2", // iPad Air (4th generation) Wi-Fi + Cellular, A14
+        "iPad13,4", // iPad Pro 11-inch (3rd generation) Wi-Fi, M1
+        "iPad13,5", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular with mmWave, M1
+        "iPad13,6", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular, M1
+        "iPad13,7", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular (China mainland), M1
+        "iPad13,8", // iPad Pro 12.9-inch (5th generation) Wi-Fi, M1
+        "iPad13,9", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular with mmWave, M1
+        "iPad13,10", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular, M1
+        "iPad13,11", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular (China mainland), M1
         "iPod9,1", // iPod touch (7th generation), A8
       ]
     },
@@ -262,6 +278,14 @@ module.exports = {
         "iPad11,7", // iPad (8th generation) Wi-Fi + Cellular, A12
         "iPad13,1", // iPad Air (4th generation) Wi-Fi, A14
         "iPad13,2", // iPad Air (4th generation) Wi-Fi + Cellular, A14
+        "iPad13,4", // iPad Pro 11-inch (3rd generation) Wi-Fi, M1
+        "iPad13,5", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular with mmWave, M1
+        "iPad13,6", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular, M1
+        "iPad13,7", // iPad Pro 11-inch (3rd generation) Wi-Fi + Cellular (China mainland), M1
+        "iPad13,8", // iPad Pro 12.9-inch (5th generation) Wi-Fi, M1
+        "iPad13,9", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular with mmWave, M1
+        "iPad13,10", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular, M1
+        "iPad13,11", // iPad Pro 12.9-inch (5th generation) Wi-Fi + Cellular (China mainland), M1
         "iPod9,1", // iPod touch (7th generation), A8
       ]
     }
