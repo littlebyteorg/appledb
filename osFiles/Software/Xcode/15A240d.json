@@ -1,9 +1,60 @@
 {
     "osStr": "Xcode",
-    "version": "15.0 RC",
+    "version": "15.0",
     "build": "15A240d",
-    "released": "2023-09-12",
-    "rc": true,
+    "released": "2023-09-18",
+    "createDuplicateEntries": [
+        {
+            "version": "15.0 RC",
+            "uniqueBuild": "15A240d-RC",
+            "released": "2023-09-12",
+            "rc": true,
+            "sdks": [
+                {
+                    "osStr": "iOS",
+                    "version": "17.0",
+                    "build": "21A325"
+                },
+                {
+                    "osStr": "macOS",
+                    "version": "14.0",
+                    "build": "23A334"
+                },
+                {
+                    "osStr": "tvOS",
+                    "version": "17.0",
+                    "build": "21J351"
+                },
+                {
+                    "osStr": "watchOS",
+                    "version": "10.0",
+                    "build": "21R354"
+                }
+            ],
+            "sources": [
+                {
+                    "type": "xip",
+                    "deviceMap": [
+                        "Xcode"
+                    ],
+                    "osMap": [
+                        "macOS 13",
+                        "macOS 14"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_15_Release_Candidate/Xcode_15_Release_Candidate.xip",
+                            "preferred": true,
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "sha1": "eb46cd5bc039d713729b2715734da308908334b1"
+                    }
+                }
+            ]
+        }
+    ],
     "releaseNotes": "https://developer.apple.com/documentation/xcode-release-notes/xcode-15-release-notes",
     "deviceMap": [
         "Xcode"
@@ -46,7 +97,7 @@
             ],
             "links": [
                 {
-                    "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_15_Release_Candidate/Xcode_15_Release_Candidate.xip",
+                    "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_15/Xcode_15.xip",
                     "preferred": true,
                     "active": true
                 }
