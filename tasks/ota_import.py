@@ -5,10 +5,10 @@ import json
 import os
 import plistlib
 import re
-import string
 import zipfile
 import zoneinfo
 from pathlib import Path
+import argparse
 
 import packaging.version
 import remotezip
@@ -34,6 +34,7 @@ OS_MAP = [
     ("Watch", "watchOS"),
     ("iBridge", "bridgeOS"),
     ("RealityDevice", "visionOS"),
+    ("AppleDisplay", "Studio Display Firmware"),
 ]
 
 SESSION = requests.Session()
@@ -177,7 +178,7 @@ def import_ota(
     info_plist = None
 
     try:
-        ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url)
+        ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
         print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
 
         info_plist = plistlib.loads(ota.read("Info.plist"))
@@ -253,6 +254,8 @@ def import_ota(
             'id': os_str.lower() + db_data["version"].split(".", 1)[0],
             'align': 'left'
         }
+        if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("16.0"):
+            db_data['appledbWebImage']['id'] = 'ios' + db_data["version"].split(".", 1)[0]
     elif os_str == 'macOS':
         os_image_version_map = {
             '11': 'Big Sur',
@@ -301,13 +304,21 @@ def import_ota(
         db_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], recommended_version=bridge_version, released=db_data["released"], beta=beta, rc=rc)
         db_data = json.load(db_file.open(encoding="utf-8"))
         db_data["deviceMap"] = bridge_devices
-        db_data["macosVersion"] = macos_version
+        if packaging.version.parse(db_data.get("macosVersion", "0").split(" ")[0]) < packaging.version.parse(macos_version.split(" ")[0]):
+            db_data["macosVersion"] = macos_version
         json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     return db_file
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-b', '--bulk-mode', action='store_true')
+    parser.add_argument('-s', '--full-self-driving', action='store_true')
+    args = parser.parse_args()
 
-    bulk_mode = input("Bulk mode - read data from import.json/import.txt? [y/n]: ").strip().lower() == "y"
+    if args.full_self_driving:
+        FULL_SELF_DRIVING = True
+
+    bulk_mode = args.bulk_mode or input("Bulk mode - read data from import-ota.json/import-ota.txt? [y/n]: ").strip().lower() == "y"
     if bulk_mode:
         failed_links = []
         files_processed = set()
@@ -315,9 +326,9 @@ if __name__ == "__main__":
         if not FULL_SELF_DRIVING:
             print("Warning: you still need to be present, as this script will ask for input!")
 
-        if Path("import.json").exists():
-            print("Reading versions from import.json")
-            versions = json.load(Path("import.json").open(encoding="utf-8"))
+        if Path("import-ota.json").exists():
+            print("Reading versions from import-ota.json")
+            versions = json.load(Path("import-ota.json").open(encoding="utf-8"))
 
             for version in versions:
                 print(f"Importing {version['osStr']} {version['version']}")
@@ -334,10 +345,10 @@ if __name__ == "__main__":
                         except Exception:
                             failed_links.append(link["url"])
 
-        elif Path("import.txt").exists():
-            print("Reading URLs from import.txt")
+        elif Path("import-ota.txt").exists():
+            print("Reading URLs from import-ota.txt")
 
-            urls = [i.strip() for i in Path("import.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
+            urls = [i.strip() for i in Path("import-ota.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
                 try:
