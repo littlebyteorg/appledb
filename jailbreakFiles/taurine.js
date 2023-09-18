@@ -263,6 +263,7 @@ module.exports = {
         "iPad13,1", // iPad Air (4th generation) Wi-Fi, A14
         "iPad13,2", // iPad Air (4th generation) Wi-Fi + Cellular, A14
         "iPod9,1", // iPod touch (7th generation), A8
+      ]
     }
   ]
 }
