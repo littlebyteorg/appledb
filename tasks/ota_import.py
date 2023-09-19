@@ -80,7 +80,7 @@ def get_board_mappings(devices):
     return identifiers, bridge_identifiers
 
 
-def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None):
+def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None, rsr=False):
     assert version or recommended_version, "Must have either version or recommended_version"
 
     # watchOS 1 override
@@ -106,7 +106,9 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 
     if os_str == "visionOS":
         db_file = Path(f"osFiles/{os_str}/{build}.json")
-    else:    
+    elif rsr:
+        db_file = Path(f"osFiles/Rapid Security Responses/{os_str}/{build}.json")
+    else:
         db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
 
     if db_file.exists():
@@ -134,6 +136,10 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
         json_dict = {"osStr": os_str_override, "version": friendly_version, "build": build}
         if os_str_override == "Apple TV Software":
             json_dict["iosVersion"] = ios_version
+
+        if rsr:
+            json_dict["rsr"] = True
+
         json.dump(
             json_dict,
             db_file.open("w", encoding="utf-8", newline="\n"),
@@ -170,7 +176,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     return db_file
 
 def import_ota(
-    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None
+    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None, rsr=False
 ):
     local_path = LOCAL_IPSW_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -185,6 +191,9 @@ def import_ota(
 
         if info_plist.get('MobileAssetProperties'):
             info_plist = info_plist['MobileAssetProperties']
+
+        if info_plist.get('SplatOnly'):
+            rsr = True
     except:
         if not build:
             raise
@@ -211,6 +220,8 @@ def import_ota(
         # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
         # Check by substring first?
         recommended_version = recommended_version or info_plist["OSVersion"].removeprefix("9.9.")
+        if rsr:
+            recommended_version = recommended_version + (f" {info_plist['ProductVersionExtra']}" if info_plist.get('ProductVersionExtra') else '')
         # Devices supported specifically in this source
         if device_map:
             supported_devices = device_map
@@ -235,7 +246,8 @@ def import_ota(
                 if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("13.0"):
                     os_str = "iOS"
                 print(f"\t{os_str} {recommended_version} ({build})")
-                print(f"\t{prerequisite_builds}")
+                print(f"\tPrerequisite: {prerequisite_builds}")
+                print(f"\tDevice Support: {supported_devices}")
                 break
         else:
             if FULL_SELF_DRIVING:
@@ -244,7 +256,7 @@ def import_ota(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
+    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
