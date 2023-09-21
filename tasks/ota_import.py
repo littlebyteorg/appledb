@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import datetime
 import json
 import os
@@ -8,11 +9,11 @@ import re
 import zipfile
 import zoneinfo
 from pathlib import Path
-import argparse
 
 import packaging.version
 import remotezip
 import requests
+from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
 
@@ -284,11 +285,10 @@ def import_ota(
 
     found_source = False
     for source in db_data.setdefault("sources", []):
-        for link in source.get("links", []):
-            if link["url"] == ota_url:
-                print("\tURL already exists in sources")
-                found_source = True
-                source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
+        if source_has_link(source, ota_url):
+            print("\tURL already exists in sources")
+            found_source = True
+            source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
 
     if not found_source:
         print("\tAdding new source")

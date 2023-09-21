@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 import packaging.version
 import remotezip
 import requests
+from link_info import needs_auth, source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
 
@@ -35,9 +36,6 @@ OS_MAP = [
 ]
 
 SESSION = requests.Session()
-
-# Domains that need auth
-needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com"]
 
 VARIANTS = {}
 
@@ -273,12 +271,10 @@ def import_ipsw(
 
     found_source = False
     for source in db_data.setdefault("sources", []):
-        for link in source.get("links", []):
-            if link["url"] == ipsw_url:
-                # TODO: FIX
-                print("\tURL already exists in sources")
-                found_source = True
-                source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
+        if source_has_link(source, ipsw_url):
+            print("\tURL already exists in sources")
+            found_source = True
+            source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
 
     if not found_source:
         print("\tAdding new source")

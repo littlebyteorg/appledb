@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
+from link_info import needs_auth, no_head
 
 # Disable SSL warnings, because Apple's SSL is broken
 urllib3.disable_warnings()
@@ -20,12 +21,6 @@ urllib3.disable_warnings()
 # TODO: Make this configurable
 THREAD_COUNT = 16
 
-# TODO: Move this to separate file so that all domain information is in one place
-# Domains that need auth
-needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com", "apps.microsoft.com"]
-
-# Domains that do not reliably support HEAD requests
-no_head = ["secure-appldnld.apple.com"]
 
 success_map = {}
 
@@ -67,8 +62,8 @@ class ProcessFileThread(threading.Thread):
                         continue
 
                     if not self.use_network:
-                        # Network disabled, assume all links are active
-                        link["active"] = True
+                        # Network disabled, don't touch active status
+                        # link["active"] = True
                         continue
 
                     successful_hit = False
@@ -121,6 +116,7 @@ class ProcessFileThread(threading.Thread):
                             source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
 
                         if "ETag" in resp.headers:
+                            # TODO: Document what server each ETag format is from
                             def is_hex(s):
                                 return all(c in string.hexdigits for c in s)
 

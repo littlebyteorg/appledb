@@ -30,7 +30,7 @@ RELEASE_TYPE = release_types["Retail"]
 
 
 windows_store_session = requests.Session()
-WINDOWS_STORE_SEARCH_PRODUCTS_V9 = "https://storeedgefd.dsx.mp.microsoft.com/v9.0/search?appVersion=22203.1401.0.0&market=US&locale=en-US&deviceFamily=windows.desktop&query={query}&mediaType=apps&productFamilies=apps"
+WINDOWS_STORE_SEARCH_PRODUCTS_V9 = "https://storeedgefd.dsx.mp.microsoft.com/v9.0/search?appVersion=22203.1401.0.0&market=US&locale=en-US&deviceFamily=windows.desktop&query={query}&mediaType=apps&productFamilies=apps"  # pylint: disable=line-too-long  # noqa: E501
 WINDOWS_STORE_GET_PRODUCTS_V9 = (
     "https://storeedgefd.dsx.mp.microsoft.com/v9.0/products/{product_id}?market=US&locale=en-US&deviceFamily=windows.desktop"
 )
