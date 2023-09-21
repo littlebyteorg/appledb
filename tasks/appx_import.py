@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+import dateutil.parser
 import remotezip
 import requests
 from sort_os_files import sort_os_file
@@ -61,7 +62,7 @@ def import_appx(store_id, released, files, update_ids):
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     if not db_data.get("released"):
-        db_data["released"] = released
+        db_data["released"] = dateutil.parser.parse(released).strftime("%Y-%m-%d")
 
     for update_id, revision in update_ids:
         for source in db_data.setdefault("sources", []):
