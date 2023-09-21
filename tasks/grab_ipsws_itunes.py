@@ -2,6 +2,7 @@
 
 import plistlib
 from pathlib import Path
+import random
 
 import requests
 
@@ -22,7 +23,7 @@ urls = [
 ipsws_set = set()
 
 for url in urls:
-    response = requests.get(url, timeout=30)
+    response = requests.get(url + f"?cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     plist = plistlib.loads(response.content)
