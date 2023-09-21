@@ -252,6 +252,8 @@ def import_ipsw(
             'id': os_str.lower() + db_data["version"].split(".", 1)[0],
             'align': 'left'
         }
+        if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("16.0"):
+            db_data['appledbWebImage']['id'] = 'ios' + db_data["version"].split(".", 1)[0]
     elif os_str == 'macOS':
         os_image_version_map = {
             '11': 'Big Sur',
