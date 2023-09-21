@@ -249,7 +249,7 @@ def import_ipsw(
             db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
     elif os_str == 'iOS' or os_str == 'iPadOS':
         db_data['appledbWebImage'] = {
-            'id': os_str.lower() + db_data["version"].split(".", 1)[0],
+            'id': 'ios' + db_data["version"].split(".", 1)[0],
             'align': 'left'
         }
     elif os_str == 'macOS':

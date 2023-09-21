@@ -264,7 +264,7 @@ def import_ota(
 
     if os_str == 'iOS' or os_str == 'iPadOS':
         db_data['appledbWebImage'] = {
-            'id': os_str.lower() + db_data["version"].split(".", 1)[0],
+            'id': 'ios' + db_data["version"].split(".", 1)[0],
             'align': 'left'
         }
         if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("16.0"):
