@@ -13,6 +13,7 @@ import requests
 import requests.adapters
 import urllib3
 from link_info import needs_auth, no_head
+from sort_os_files import sort_os_file
 
 # Disable SSL warnings, because Apple's SSL is broken
 urllib3.disable_warnings()
@@ -139,7 +140,7 @@ class ProcessFileThread(threading.Thread):
                         source["size"] = int(resp.headers["Content-Length"])
                     # self.print_queue.put("Processed a link")
 
-            json.dump(data, ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+            json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             self.print_queue.put(False)
 
 
