@@ -80,7 +80,7 @@ def import_appx(store_id, released, files, update_ids):
                 "deviceMap": [os_str],
                 "type": "appx",
                 "links": [{"url": f"https://apps.microsoft.com/store/detail/{store_id}", "active": True}],
-                "size": file["size"],
+                "size": int(file["size"]),
                 "hashes": {},
             }
 

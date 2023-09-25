@@ -441,7 +441,7 @@ def get_update_info(cookie: str, cookie_expiration: str, category_id: str, relea
                     "installer_specific_identifier": file.attrib.get("InstallerSpecificIdentifier"),
                     "digest": base64.b64decode(file.attrib["Digest"]).hex(),
                     "digest_type": file.attrib["DigestAlgorithm"],
-                    "size": file.attrib["Size"],
+                    "size": int(file.attrib["Size"]),
                 }
 
                 additional_digest = file.find("./AdditionalDigest")
