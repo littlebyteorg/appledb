@@ -6,6 +6,7 @@
     "deploy": "deploy.js",
     "test": "jest",
     "prepare": "is-ci || husky install",
+    "sort-os-files": "./tasks/sort_os_files.py",
     "lint": "eslint ."
   },
   "repository": {
@@ -31,11 +32,15 @@
     "grunt-ts": "^6.0.0-beta.22",
     "husky": "^8.0.1",
     "jest": "^28.1.3",
+    "lint-staged": "^14.0.1",
     "object-hash": "^3.0.0",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "apple-data": "^1.0.482"
+  },
+  "lint-staged": {
+    "osFiles/**/*.json": "npm run sort-os-files --"
   }
 }

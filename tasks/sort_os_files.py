@@ -3,6 +3,7 @@
 import copy
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -56,8 +57,8 @@ def device_sort(device):
     return match.groups()[0], int(match.groups()[1]), int(match.groups()[2]), device
 
 
-def sorted_dict_by_key(data, key_order):
-    return dict(sorted(data.items(), key=lambda item: key_order.index(item[0]) if item[0] in key_order else len(key_order)))
+def sorted_dict_by_key(data, order):
+    return dict(sorted(data.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order)))
 
 
 def sorted_dict_by_alphasort(data):
@@ -119,7 +120,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         elif isinstance(source["prerequisiteBuild"], str):
             prerequisite_order = source["prerequisiteBuild"]
         else:
-            # Already sorted previously
+            # This is a list which was already sorted previously
             prerequisite_order = source["prerequisiteBuild"][0]
 
         return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), prerequisite_order
@@ -133,9 +134,17 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
 
 if __name__ == "__main__":
-    for file in Path("osFiles").rglob("*.json"):
-        try:
-            sort_os_file(file)
-        except Exception:
-            print(f"Error while processing {file}")
-            raise
+    if len(sys.argv) > 1:
+        for file in sys.argv[1:]:
+            try:
+                sort_os_file(Path(file))
+            except Exception:
+                print(f"Error while processing {file}")
+                raise
+    else:
+        for file in Path("osFiles").rglob("*.json"):
+            try:
+                sort_os_file(file)
+            except Exception:
+                print(f"Error while processing {file}")
+                raise
