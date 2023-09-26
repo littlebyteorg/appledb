@@ -135,13 +135,16 @@ for (osStr, builds) in parsed_args.items():
 
             devices[source['deviceMap'][-1]]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
-            for build, version in devices[source['deviceMap'][-1]]['builds'].items():
+            for prerequisiteBuild, version in devices[source['deviceMap'][-1]]['builds'].items():
                 if isinstance(devices[source['deviceMap'][-1]]['board'], list):
                     for board in devices[source['deviceMap'][-1]]['board']:
-                        ota_links.update(call_pallas(source['deviceMap'][-1], board, version, build, osStr))
+                        ota_links.update(call_pallas(source['deviceMap'][-1], board, version, prerequisiteBuild, osStr))
                 else:
-                    ota_links.update(call_pallas(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, build, osStr))
-        if not devices:
+                    ota_links.update(call_pallas(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, prerequisiteBuild, osStr))
+        if devices:
+            for key, value in devices.items():
+                ota_links.update(call_pallas(key, value['board'], build_data['version'].split(' ')[0], build, osStr))
+        else:
             for device in build_data['deviceMap']:
                 ota_links.update(call_pallas(device, get_board_id(device), get_build_version(osStr, build), build, osStr))
 
