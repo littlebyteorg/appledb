@@ -292,7 +292,7 @@ def import_ota(
 
     if not found_source:
         print("\tAdding new source")
-        source = {"deviceMap": augment_with_keys(supported_devices), "type": "ota", "links": [{"url": ota_url}]}
+        source = {"deviceMap": augment_with_keys(supported_devices), "type": "ota", "links": [{"url": ota_url, "active": True}]}
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
 

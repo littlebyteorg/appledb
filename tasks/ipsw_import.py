@@ -280,7 +280,7 @@ def import_ipsw(
 
     if not found_source:
         print("\tAdding new source")
-        source = {"deviceMap": augment_with_keys(supported_devices), "type": "ipsw", "links": [{"url": ipsw_url}]}
+        source = {"deviceMap": augment_with_keys(supported_devices), "type": "ipsw", "links": [{"url": ipsw_url, "active": True}]}
 
         db_data["sources"].append(source)
 
