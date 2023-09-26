@@ -19,6 +19,13 @@ asset_audiences = {
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
     },
+    'iPadOS': {
+        '15beta': 'ce48f60c-f590-4157-a96f-41179ca08278',
+        '16beta': 'a6050bca-50d8-4e45-adc2-f7333396a42c',
+        '17beta': '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
+        'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
+        'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
+    },
     'macOS': {
         '12beta': '298e518d-b45e-4d36-94be-34a63d6777ec',
         '13beta': '683e9586-8a82-4e5f-b0e7-767541864b8b',
