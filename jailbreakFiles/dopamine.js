@@ -76,6 +76,7 @@ module.exports = {
         "iPad14,2",
       ],
       firmwares: [
+        "19A340",
         "19A341",
         "19A342",
         "19A344",
