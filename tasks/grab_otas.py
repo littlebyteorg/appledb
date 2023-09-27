@@ -11,15 +11,16 @@ urllib3.disable_warnings()
 
 session = requests.session()
 
+skip_builds = [
+    '19A340' # this build is listed as a possible prerequisite in OTAs, but Pallas doesn't advertise deltas from it
+]
+
+asset_audiences_overrides = {
+    'iPadOS': 'iOS'
+}
+
 asset_audiences = {
     'iOS': {
-        '15beta': 'ce48f60c-f590-4157-a96f-41179ca08278',
-        '16beta': 'a6050bca-50d8-4e45-adc2-f7333396a42c',
-        '17beta': '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
-        'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
-        'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
-    },
-    'iPadOS': {
         '15beta': 'ce48f60c-f590-4157-a96f-41179ca08278',
         '16beta': 'a6050bca-50d8-4e45-adc2-f7333396a42c',
         '17beta': '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
@@ -96,7 +97,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience='re
     request = {
         "ClientVersion": 2,
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
-        "AssetAudience": asset_audiences[osStr][audience],
+        "AssetAudience": asset_audiences[asset_audiences_overrides.get(osStr, osStr)][audience],
         "ProductType": device_name,
         "HWModelStr": board_id,
         "ProductVersion": os_version,
@@ -133,7 +134,7 @@ for (osStr, builds) in parsed_args.items():
 
             prerequisite_build = source['prerequisiteBuild']
             if isinstance(prerequisite_build, list):
-                prerequisite_build = prerequisite_build[0]
+                prerequisite_build = [x for x in prerequisite_build if x not in skip_builds][0]
 
             devices.setdefault(source['deviceMap'][-1], {
                 'board': get_board_id(source['deviceMap'][-1]),
