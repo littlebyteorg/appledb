@@ -21,9 +21,7 @@ asset_audiences_overrides = {
 
 asset_audiences = {
     'iOS': {
-        '15beta': 'ce48f60c-f590-4157-a96f-41179ca08278',
-        '16beta': 'a6050bca-50d8-4e45-adc2-f7333396a42c',
-        '17beta': '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
+        'beta': '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
     },
@@ -34,15 +32,15 @@ asset_audiences = {
         'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
     },
     'tvOS': {
-        '17beta': '61693fed-ab18-49f3-8983-7c3adf843913',
+        'beta': '61693fed-ab18-49f3-8983-7c3adf843913',
         'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
     },
     'watchOS': {
-        '10beta': '7ae7f3b9-886a-437f-9b22-e9f017431b0e',
+        'beta': '7ae7f3b9-886a-437f-9b22-e9f017431b0e',
         'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
     },
     'audioOS': {
-        '17beta': '17536d4c-1a9d-4169-bc62-920a3873f7a5',
+        'beta': '17536d4c-1a9d-4169-bc62-920a3873f7a5',
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
     'visionOS': {
@@ -56,6 +54,8 @@ asset_audiences = {
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--os', required=True, action='append', choices=['audioOS', 'iOS', 'iPadOS', 'macOS', 'tvOS', 'watchOS', 'Studio Display Firmware'])
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
+parser.add_argument('-a', '--audience', default='release')
+parser.add_argument('-r', '--rsr', action='store_true')
 args = parser.parse_args()
 
 parsed_args = dict(zip(args.os, args.build))
@@ -84,7 +84,7 @@ def get_build_version(osStr, build):
 
     return build_versions[f"{osStr}-{build}"]
 
-def call_pallas(device_name, board_id, os_version, os_build, osStr, audience='release', is_rsr=False):
+def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr):
     asset_type = 'SoftwareUpdate'
     if is_rsr:
         asset_type = 'Splat' + asset_type
@@ -94,11 +94,16 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience='re
     if osStr == 'Studio Display Firmware':
         asset_type = 'DarwinAccessoryUpdate.A2525'
 
+    # iOS and iPadOS use the same asset audiences
+    # Allow for someone to pass in a specific asset audience UUID
+    asset_audience = asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience, audience)
+
     request = {
         "ClientVersion": 2,
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
-        "AssetAudience": asset_audiences[asset_audiences_overrides.get(osStr, osStr)][audience],
-        "ProductType": device_name,
+        "AssetAudience": asset_audience,
+        # Device name might have an AppleDB-specific suffix; remove this when calling Pallas
+        "ProductType": device_name.split("-")[0],
         "HWModelStr": board_id,
         "ProductVersion": os_version,
         "Build": os_build,
@@ -121,13 +126,20 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience='re
 
 ota_links = set()
 for (osStr, builds) in parsed_args.items():
+    print(f"Checking {osStr}")
     for build in builds:
+        print(f"\tChecking {build}")
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
         build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
         devices = {}
-        build_data = json.load(build_path.open())
+        build_data = {}
+        try:
+            build_data = json.load(build_path.open())
+        except:
+            print(f"Bad path - {build_path}")
+            continue
         for source in build_data.get("sources", []):
             if not source.get('prerequisiteBuild'):
                 continue
@@ -146,15 +158,15 @@ for (osStr, builds) in parsed_args.items():
             for prerequisiteBuild, version in devices[source['deviceMap'][-1]]['builds'].items():
                 if isinstance(devices[source['deviceMap'][-1]]['board'], list):
                     for board in devices[source['deviceMap'][-1]]['board']:
-                        ota_links.update(call_pallas(source['deviceMap'][-1], board, version, prerequisiteBuild, osStr))
+                        ota_links.update(call_pallas(source['deviceMap'][-1], board, version, prerequisiteBuild, osStr, args.audience, args.rsr))
                 else:
-                    ota_links.update(call_pallas(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, prerequisiteBuild, osStr))
+                    ota_links.update(call_pallas(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, prerequisiteBuild, osStr, args.audience, args.rsr))
         if devices:
             for key, value in devices.items():
-                ota_links.update(call_pallas(key, value['board'], build_data['version'].split(' ')[0], build, osStr))
+                ota_links.update(call_pallas(key, value['board'], build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
         else:
             for device in build_data['deviceMap']:
-                ota_links.update(call_pallas(device, get_board_id(device), get_build_version(osStr, build), build, osStr))
+                ota_links.update(call_pallas(device, get_board_id(device), get_build_version(osStr, build), build, osStr, args.audience, args.rsr))
 
 [i.unlink() for i in Path.cwd().glob("import-ota") if i.is_file()]
 Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8", newline="\n")
