@@ -107,8 +107,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         "HWModelStr": board_id,
         "ProductVersion": os_version,
         "Build": os_build,
-        "BuildVersion": os_build,
-        "CompatibilityVersion": 20
+        "BuildVersion": os_build
     }
     if is_rsr:
         request['RestoreVersion'] = '0.0.0.0.0,0'
@@ -118,10 +117,20 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
-    assets = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))['Assets']
+    parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
+    assets = parsed_response.get('Assets', [])
     links = set()
     for asset in assets:
         links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
+    return links
+
+def pallas_call_wrapper(device_name, board_id, os_version, os_build, osStr, audience, is_rsr):
+    links = set()
+    if isinstance(board_id, list):
+        for board in board_id:
+            links.update(call_pallas(device_name, board, os_version, os_build, osStr, audience, is_rsr))
+    else:
+        links.update(call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr))
     return links
 
 ota_links = set()
@@ -156,17 +165,13 @@ for (osStr, builds) in parsed_args.items():
             devices[source['deviceMap'][-1]]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
             for prerequisiteBuild, version in devices[source['deviceMap'][-1]]['builds'].items():
-                if isinstance(devices[source['deviceMap'][-1]]['board'], list):
-                    for board in devices[source['deviceMap'][-1]]['board']:
-                        ota_links.update(call_pallas(source['deviceMap'][-1], board, version, prerequisiteBuild, osStr, args.audience, args.rsr))
-                else:
-                    ota_links.update(call_pallas(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, prerequisiteBuild, osStr, args.audience, args.rsr))
+                ota_links.update(pallas_call_wrapper(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, prerequisiteBuild, osStr, args.audience, args.rsr))
         if devices:
             for key, value in devices.items():
-                ota_links.update(call_pallas(key, value['board'], build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
+                ota_links.update(pallas_call_wrapper(key, devices[source['deviceMap'][-1]]['board'], build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
         else:
             for device in build_data['deviceMap']:
-                ota_links.update(call_pallas(device, get_board_id(device), get_build_version(osStr, build), build, osStr, args.audience, args.rsr))
+                ota_links.update(pallas_call_wrapper(device, get_board_id(device), get_build_version(osStr, build), build, osStr, args.audience, args.rsr))
 
 [i.unlink() for i in Path.cwd().glob("import-ota") if i.is_file()]
-Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8", newline="\n")
+Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
