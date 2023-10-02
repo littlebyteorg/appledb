@@ -22,7 +22,7 @@ from update_links import update_links
 FULL_SELF_DRIVING = False
 # Use local files if found
 USE_LOCAL_IF_FOUND = True
-LOCAL_IPSW_PATH = Path("ipsws")
+LOCAL_OTA_PATH = Path("otas")
 
 OS_MAP = [
     ("iPod", "iOS"),
@@ -179,7 +179,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 def import_ota(
     ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None, rsr=False
 ):
-    local_path = LOCAL_IPSW_PATH / Path(Path(ota_url).name)
+    local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
     ota = None
     info_plist = None
@@ -303,7 +303,7 @@ def import_ota(
         print("\tRunning update links on file")
         update_links([db_file])
     else:
-        # Save the network access for the end, that way we can run it once per file instead of once per ipsw
+        # Save the network access for the end, that way we can run it once per file instead of once per OTA
         # and we can use threads to speed it up
         update_links([db_file], False)
     print(f"\tSanity check the file{', run update_links.py, ' if not use_network else ' '}and then commit it\n")
