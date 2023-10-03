@@ -52,7 +52,7 @@ asset_audiences = {
 }
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-o', '--os', required=True, action='append', choices=['audioOS', 'iOS', 'iPadOS', 'macOS', 'tvOS', 'watchOS', 'Studio Display Firmware'])
+parser.add_argument('-o', '--os', required=True, action='append', choices=['audioOS', 'iOS', 'iPadOS', 'macOS', 'tvOS', 'visionOS', 'watchOS', 'Studio Display Firmware'])
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
 parser.add_argument('-a', '--audience', default='release')
 parser.add_argument('-r', '--rsr', action='store_true')
@@ -112,8 +112,10 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     if is_rsr:
         request['RestoreVersion'] = '0.0.0.0.0,0'
 
-    if str(build[-1]).islower():
-        request['ReleaseType'] = 'Beta'
+    # if str(build[-1]).islower():
+    #     request['ReleaseType'] = 'Beta'
+
+    print(request)
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
@@ -141,7 +143,10 @@ for (osStr, builds) in parsed_args.items():
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
-        build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
+        if osStr == 'visionOS':
+            build_path = Path(f"osFiles/{osStr}/{build}.json")
+        else:
+            build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
         devices = {}
         build_data = {}
         try:
@@ -149,6 +154,12 @@ for (osStr, builds) in parsed_args.items():
         except:
             print(f"Bad path - {build_path}")
             continue
+        for device in build_data['deviceMap']:
+            devices.setdefault(device, {
+                'board': get_board_id(device),
+                'builds': {}
+            })
+
         for source in build_data.get("sources", []):
             if not source.get('prerequisiteBuild'):
                 continue
@@ -157,18 +168,13 @@ for (osStr, builds) in parsed_args.items():
             if isinstance(prerequisite_build, list):
                 prerequisite_build = [x for x in prerequisite_build if x not in skip_builds][0]
 
-            devices.setdefault(source['deviceMap'][-1], {
-                'board': get_board_id(source['deviceMap'][-1]),
-                'builds': {}
-            })
-
             devices[source['deviceMap'][-1]]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
             for prerequisiteBuild, version in devices[source['deviceMap'][-1]]['builds'].items():
                 ota_links.update(pallas_call_wrapper(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, prerequisiteBuild, osStr, args.audience, args.rsr))
         if devices:
             for key, value in devices.items():
-                ota_links.update(pallas_call_wrapper(key, devices[source['deviceMap'][-1]]['board'], build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
+                ota_links.update(pallas_call_wrapper(key, value['board'], build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
         else:
             for device in build_data['deviceMap']:
                 ota_links.update(pallas_call_wrapper(device, get_board_id(device), get_build_version(osStr, build), build, osStr, args.audience, args.rsr))
