@@ -115,8 +115,6 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     # if str(build[-1]).islower():
     #     request['ReleaseType'] = 'Beta'
 
-    print(request)
-
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
