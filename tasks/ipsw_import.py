@@ -239,15 +239,7 @@ def import_ipsw(
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
 
-    if os_str == "tvOS": 
-        if db_data["version"].startswith("16."):
-            # Ensure supported_devices has these devices
-            db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
-        elif db_data["version"].startswith("17."):
-            # Keeping this separate in case Apple launches a new Apple TV during the tvOS 17 lifecycle
-            # Ensure supported_devices has these devices
-            db_data["deviceMap"] = list(set(db_data["deviceMap"] + augment_with_keys(["AppleTV6,2", "AppleTV11,1", "AppleTV14,1"])))
-    elif os_str == 'iOS' or os_str == 'iPadOS':
+    if os_str == 'iOS' or os_str == 'iPadOS':
         db_data['appledbWebImage'] = {
             'id': os_str.lower() + db_data["version"].split(".", 1)[0],
             'align': 'left'

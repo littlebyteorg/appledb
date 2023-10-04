@@ -96,7 +96,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     os_str_override = os_str
 
     major_version = ".".join((version or recommended_version).split(".")[:1]) + ".x"  # type: ignore
-    if os_str == "tvOS" and int(recommended_version[0]) < 9:
+    if os_str == "tvOS" and int(kern_version) <= 12:
         os_str_override = "Apple TV Software"
         ios_version = recommended_version
         version_dir = [x.path.split("/")[-1] for x in os.scandir(f"osFiles/{os_str}") if x.path.startswith(f"osFiles/{os_str}/{kern_version}x")][0]
@@ -104,6 +104,9 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
         version_dir = f"{kern_version}x"
     else:
         version_dir = f"{kern_version}x - {major_version}"
+
+    if os_str == "audioOS" and packaging.version.parse(recommended_version.split(" ")[0]) >= packaging.version.parse("13.4"):
+        os_str_override = 'HomePod Software'
 
     if os_str == "visionOS":
         db_file = Path(f"osFiles/{os_str}/{build}.json")
