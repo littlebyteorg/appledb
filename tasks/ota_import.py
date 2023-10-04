@@ -175,6 +175,9 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     if "rc" not in db_data and (rc or "rc" in db_data["version"].lower()):
         db_data["rc"] = True
 
+    if "internal" in db_data:
+        del db_data["internal"]
+
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
     return db_file
