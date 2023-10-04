@@ -11,8 +11,10 @@ urllib3.disable_warnings()
 
 session = requests.session()
 
-skip_builds = [
-    '19A340' # this build is listed as a possible prerequisite in OTAs, but Pallas doesn't advertise deltas from it
+skip_builds = [    
+    '19A340', # this build is listed as a possible prerequisite in OTAs, but Pallas doesn't advertise deltas from it
+    '19A344',
+    '19C56'
 ]
 
 asset_audiences_overrides = {
