@@ -112,7 +112,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     if is_rsr:
         request['RestoreVersion'] = '0.0.0.0.0,0'
 
-    if str(build[-1]).islower() and osStr in ['visionOS']:
+    if str(build[-1]).islower() and osStr in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
