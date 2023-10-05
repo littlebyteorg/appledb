@@ -74,7 +74,7 @@ parsed_args = dict(zip(args.os, args.build))
 board_ids = {}
 build_versions = {}
 
-def get_board_id(identifier):
+def get_board_ids(identifier):
     global board_ids
     if not board_ids.get(identifier):
         device_path = list(Path('deviceFiles').rglob(f"{identifier}.json"))[0]
@@ -83,7 +83,10 @@ def get_board_id(identifier):
         if device_data.get('iBridge'):
             device_path = Path(f"deviceFiles/iBridge/{device_data['iBridge']}.json")
             device_data = json.load(device_path.open())
-        board_ids[identifier] = device_data['board']
+        if isinstance(device_data['board'], list):
+            board_ids[identifier] = device_data['board']
+        else:
+            board_ids[identifier] = [device_data['board']]
     return board_ids[identifier]
 
 def get_build_version(osStr, build):
@@ -135,15 +138,6 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
     return links
 
-def pallas_call_wrapper(device_name, board_id, os_version, os_build, osStr, audience, is_rsr):
-    links = set()
-    if isinstance(board_id, list):
-        for board in board_id:
-            links.update(call_pallas(device_name, board, os_version, os_build, osStr, audience, is_rsr))
-    else:
-        links.update(call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr))
-    return links
-
 ota_links = set()
 for (osStr, builds) in parsed_args.items():
     print(f"Checking {osStr}")
@@ -165,37 +159,36 @@ for (osStr, builds) in parsed_args.items():
             continue
         for device in build_data['deviceMap']:
             devices.setdefault(device, {
-                'board': get_board_id(device),
+                'boards': get_board_ids(device),
                 'builds': {}
             })
 
-        for source in build_data.get("sources", []):
-            if not source.get('prerequisiteBuild'):
-                continue
+        # RSRs are only for the latest version
+        if not args.rsr:
+            for source in build_data.get("sources", []):
+                if not source.get('prerequisiteBuild'):
+                    continue
 
-            current_device = source['deviceMap'][-1]
+                current_device = source['deviceMap'][-1]
 
-            prerequisite_builds = source['prerequisiteBuild']
-            if isinstance(prerequisite_builds, list):
-                for prerequisite_build_option in prerequisite_builds:
-                    if skip_builds.get(prerequisite_build_option) is not None:
-                        if len(skip_builds[prerequisite_build_option]) == 0 or current_device in skip_builds[prerequisite_build_option]:
-                            continue
-                    prerequisite_build = prerequisite_build_option
-                    break
-            else:
-                prerequisite_build = prerequisite_builds
+                prerequisite_builds = source['prerequisiteBuild']
+                if isinstance(prerequisite_builds, list):
+                    for prerequisite_build_option in prerequisite_builds:
+                        if skip_builds.get(prerequisite_build_option) is not None:
+                            if len(skip_builds[prerequisite_build_option]) == 0 or current_device in skip_builds[prerequisite_build_option]:
+                                continue
+                        prerequisite_build = prerequisite_build_option
+                        break
+                else:
+                    prerequisite_build = prerequisite_builds
 
-            devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
+                devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
-            for prerequisiteBuild, version in devices[current_device]['builds'].items():
-                ota_links.update(pallas_call_wrapper(current_device, devices[current_device]['board'], version, prerequisiteBuild, osStr, args.audience, args.rsr))
-        if devices:
-            for key, value in devices.items():
-                ota_links.update(pallas_call_wrapper(key, value['board'], build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
-        else:
-            for device in build_data['deviceMap']:
-                ota_links.update(pallas_call_wrapper(device, get_board_id(device), get_build_version(osStr, build), build, osStr, args.audience, args.rsr))
+        for key, value in devices.items():
+            for board in value['boards']:
+                for prerequisite_build, version in value['builds'].items():
+                    ota_links.update(call_pallas(key, board, version, prerequisite_build, osStr, args.audience, args.rsr))
+                ota_links.update(call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
 
 [i.unlink() for i in Path.cwd().glob("import-ota") if i.is_file()]
 Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
