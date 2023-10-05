@@ -67,6 +67,7 @@ parser.add_argument('-o', '--os', required=True, action='append', choices=['audi
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
 parser.add_argument('-a', '--audience', default='release')
 parser.add_argument('-r', '--rsr', action='store_true')
+parser.add_argument('-d', '--devices', nargs='+')
 args = parser.parse_args()
 
 parsed_args = dict(zip(args.os, args.build))
@@ -158,6 +159,8 @@ for (osStr, builds) in parsed_args.items():
             print(f"Bad path - {build_path}")
             continue
         for device in build_data['deviceMap']:
+            if args.devices and device not in args.devices:
+                continue
             devices.setdefault(device, {
                 'boards': get_board_ids(device),
                 'builds': {}
@@ -170,6 +173,8 @@ for (osStr, builds) in parsed_args.items():
                     continue
 
                 current_device = source['deviceMap'][-1]
+                if args.devices and current_device not in args.devices:
+                    continue
 
                 prerequisite_builds = source['prerequisiteBuild']
                 if isinstance(prerequisite_builds, list):
