@@ -11,11 +11,20 @@ urllib3.disable_warnings()
 
 session = requests.session()
 
-skip_builds = [    
-    '19A340', # this build is listed as a possible prerequisite in OTAs, but Pallas doesn't advertise deltas from it
-    '19A344',
-    '19C56'
-]
+# Some builds show up as prerequisites in the zip file, but don't give a response from Pallas in some cases; skip those
+skip_builds = {
+    '19A340': [],
+    '19A344': [],
+    '19B74': [
+        'iPad14,1'
+    ],
+    '19C56': [
+        'iPhone14,2',
+        'iPhone14,3',
+        'iPhone14,4',
+        'iPhone14,5'
+    ]
+}
 
 asset_audiences_overrides = {
     'iPadOS': 'iOS'
@@ -164,14 +173,23 @@ for (osStr, builds) in parsed_args.items():
             if not source.get('prerequisiteBuild'):
                 continue
 
-            prerequisite_build = source['prerequisiteBuild']
-            if isinstance(prerequisite_build, list):
-                prerequisite_build = [x for x in prerequisite_build if x not in skip_builds][0]
+            current_device = source['deviceMap'][-1]
 
-            devices[source['deviceMap'][-1]]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
+            prerequisite_builds = source['prerequisiteBuild']
+            if isinstance(prerequisite_builds, list):
+                for prerequisite_build_option in prerequisite_builds:
+                    if skip_builds.get(prerequisite_build_option) is not None:
+                        if len(skip_builds[prerequisite_build_option]) == 0 or current_device in skip_builds[prerequisite_build_option]:
+                            continue
+                    prerequisite_build = prerequisite_build_option
+                    break
+            else:
+                prerequisite_build = prerequisite_builds
 
-            for prerequisiteBuild, version in devices[source['deviceMap'][-1]]['builds'].items():
-                ota_links.update(pallas_call_wrapper(source['deviceMap'][-1], devices[source['deviceMap'][-1]]['board'], version, prerequisiteBuild, osStr, args.audience, args.rsr))
+            devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
+
+            for prerequisiteBuild, version in devices[current_device]['builds'].items():
+                ota_links.update(pallas_call_wrapper(current_device, devices[current_device]['board'], version, prerequisiteBuild, osStr, args.audience, args.rsr))
         if devices:
             for key, value in devices.items():
                 ota_links.update(pallas_call_wrapper(key, value['board'], build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
