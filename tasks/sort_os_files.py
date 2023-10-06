@@ -35,7 +35,7 @@ key_order = [
     "sources",
 ]
 
-sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "osMap", "windowsUpdateDetails", "links", "hashes", "size"]
+sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "osMap", "windowsUpdateDetails", "links", "hashes", "skipUpdateLinks", "size"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 

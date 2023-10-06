@@ -22,13 +22,23 @@ rewrite_map_v2 = {
 
 # Domains that need auth
 needs_auth = [
-    "adcdownload.apple.com",
-    "download.developer.apple.com",
-    "developer.apple.com",
     # The following don't need auth, but aren't direct download links
     "archive.org",
     "apps.microsoft.com",
 ]
+
+# Domains that need auth, but can use the token
+needs_apple_auth = [
+    "adcdownload.apple.com",
+    "download.developer.apple.com",
+    "developer.apple.com",
+]
+
+try:
+    with open("apple_token.txt", "r") as token_file:
+        apple_auth_token = token_file.readline()
+except:
+    apple_auth_token = ""
 
 # Domains that do not reliably support HEAD requests
 no_head = ["secure-appldnld.apple.com"]

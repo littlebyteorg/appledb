@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
-from link_info import needs_auth, no_head
+from link_info import needs_auth, needs_apple_auth, no_head, apple_auth_token
 from sort_os_files import sort_os_file
 
 # Disable SSL warnings, because Apple's SSL is broken
@@ -32,6 +32,11 @@ class ProcessFileThread(threading.Thread):
         self.print_queue: queue.Queue = print_queue
         self.use_network = use_network
         self.session = requests.Session()
+        self.has_apple_auth = apple_auth_token != ''
+        if self.has_apple_auth:
+            self.session.headers = {
+                "cookie": f"ADCDownloadAuth={apple_auth_token}"
+            }
         adapter = requests.adapters.HTTPAdapter(max_retries=10, pool_connections=16)
         self.session.mount("https://", adapter)
         self.session.mount("http://", adapter)
@@ -49,6 +54,8 @@ class ProcessFileThread(threading.Thread):
             data = json.load(ios_file.open())
 
             for source in data.get("sources", []):
+                if source.get("skipUpdateLinks"):
+                    continue
                 links = source.setdefault("links", [])
                 for link in links:
                     url = link["url"]
@@ -57,7 +64,7 @@ class ProcessFileThread(threading.Thread):
                         link["active"] = success_map[url]
                         continue
 
-                    if urlparse(url).hostname in needs_auth:
+                    if urlparse(url).hostname in needs_auth or (urlparse(url).hostname in needs_apple_auth and not self.has_apple_auth):
                         # We don't have credentials for this host, so we'll assume it's active and skip it
                         link["active"] = True
                         continue
@@ -82,7 +89,7 @@ class ProcessFileThread(threading.Thread):
                                 )
                             else:
                                 resp = self.session.head(
-                                    url,
+                                    url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
                                     headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
                                     verify=False,
                                     allow_redirects=True,

@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 import packaging.version
 import remotezip
 import requests
-from link_info import needs_auth, source_has_link
+from link_info import needs_apple_auth, source_has_link, apple_auth_token
 from sort_os_files import sort_os_file
 from update_links import update_links
 
@@ -156,12 +156,18 @@ def import_ipsw(
     local_path = LOCAL_IPSW_PATH / Path(Path(ipsw_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
 
-    if urlparse(ipsw_url).hostname in needs_auth and not local_available:
-        raise RuntimeError(f"IPSW URL {ipsw_url} requires authentication, but no local file found")
+    if urlparse(ipsw_url).hostname in needs_apple_auth and not (local_available or apple_auth_token):
+        raise RuntimeError(f"IPSW URL {ipsw_url} requires authentication, but no local file or auth token found")
 
     # Check if a BuildManifest.plist exists at the same parent directory as the IPSW
+    headers = {}
+    if urlparse(ipsw_url).hostname in needs_apple_auth and not local_available:
+        ipsw_url = ipsw_url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com')
+        headers = {
+            "cookie": f"ADCDownloadAuth={apple_auth_token}"
+        }
     build_manifest_url = ipsw_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
-    build_manifest_response = SESSION.get(build_manifest_url)
+    build_manifest_response = SESSION.get(build_manifest_url, headers=headers)
 
     build_manifest = None
 
@@ -176,7 +182,7 @@ def import_ipsw(
     ipsw = None
     if not build_manifest:
         # Get it via remotezip
-        ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)
+        ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url, headers=headers)
         print(f"\tGetting BuildManifest.plist {'from local file' if local_available else 'via remotezip'}")
 
         # Commented out because IPSWs should always have the BuildManifest in the root
@@ -331,6 +337,8 @@ if __name__ == "__main__":
         try:
             while True:
                 url = input("Enter IPSW URL: ").strip()
+                if not url:
+                    break
                 import_ipsw(url)
         except KeyboardInterrupt:
             pass
