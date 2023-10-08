@@ -43,6 +43,102 @@ class ProcessFileThread(threading.Thread):
         # self.session_map: dict[str, requests.Session] = {}
         super().__init__(name=name)
 
+    def process_sources(self, sources, file_name):
+        for source in sources:
+            if source.get("skipUpdateLinks"):
+                continue
+            links = source.setdefault("links", [])
+            for link in links:
+                url = link["url"]
+                if url in success_map:
+                    # Skip ones we've already processed
+                    link["active"] = success_map[url]
+                    continue
+
+                if urlparse(url).hostname in needs_auth or (urlparse(url).hostname in needs_apple_auth and not self.has_apple_auth):
+                    # We don't have credentials for this host, so we'll assume it's active and skip it
+                    link["active"] = True
+                    continue
+
+                if not self.use_network:
+                    # Network disabled, don't touch active status
+                    # link["active"] = True
+                    continue
+
+                successful_hit = False
+
+                resp = None
+
+                for _ in range(10):
+                    try:
+                        if urlparse(url).hostname in no_head:
+                            resp = self.session.get(
+                                url,
+                                headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
+                                verify=False,
+                                stream=True,
+                            )
+                        else:
+                            resp = self.session.head(
+                                url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
+                                headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
+                                verify=False,
+                                allow_redirects=True,
+                            )
+                    except requests.ConnectionError:
+                        print("Warning: retrying connection error")
+                        time.sleep(1)
+                        continue
+                    else:
+                        break
+                else:
+                    raise Exception(f"Failed to connect to {url}")
+
+                if urlparse(url).hostname in no_head:
+                    resp.close()
+
+                if resp.status_code == 200:
+                    successful_hit = True
+                elif resp.status_code == 403 or resp.status_code == 404:
+                    # Dead link
+                    successful_hit = False
+                else:  # Leave it be
+                    raise Exception(f"Unknown status code: {resp.status_code}")
+
+                success_map[url] = link["active"] = successful_hit
+
+                if successful_hit:
+                    for hdr, lcl in [("x-amz-meta-digest-sha256", "sha2-256"), ("x-amz-meta-digest-sh1", "sha1")]:
+                        if hdr not in resp.headers:
+                            continue
+
+                        source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
+
+                    if "ETag" in resp.headers:
+                        # TODO: Document what server each ETag format is from
+                        def is_hex(s):
+                            return all(c in string.hexdigits for c in s)
+
+                        potential_hash = resp.headers["ETag"][1:-1]
+
+                        if len(potential_hash) == 32 and is_hex(potential_hash):
+                            source.setdefault("hashes", {})["md5"] = potential_hash
+                        elif len(potential_hash) > 33 and is_hex(potential_hash[:32]) and potential_hash[32] == ":":
+                            # <md5>:<unix epoch>
+                            # Seen on download.info.apple.com (Server: AkamaiNetStorage)
+                            source.setdefault("hashes", {})["md5"] = potential_hash[:32]
+                        else:
+                            print(f"Unknown ETag type: {resp.headers['ETag']}, ignoring")
+
+                    if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
+                        print(
+                            f"Warning: {file_name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}"
+                        )
+
+                    source["size"] = int(resp.headers["Content-Length"])
+                # self.print_queue.put("Processed a link")
+        return sources
+
     def run(self):
         while not self.file_queue.empty():
             try:
@@ -53,99 +149,12 @@ class ProcessFileThread(threading.Thread):
 
             data = json.load(ios_file.open())
 
-            for source in data.get("sources", []):
-                if source.get("skipUpdateLinks"):
-                    continue
-                links = source.setdefault("links", [])
-                for link in links:
-                    url = link["url"]
-                    if url in success_map:
-                        # Skip ones we've already processed
-                        link["active"] = success_map[url]
-                        continue
+            if data.get('sources', []):
+                data['sources'] = self.process_sources(data['sources'], ios_file.name)
 
-                    if urlparse(url).hostname in needs_auth or (urlparse(url).hostname in needs_apple_auth and not self.has_apple_auth):
-                        # We don't have credentials for this host, so we'll assume it's active and skip it
-                        link["active"] = True
-                        continue
-
-                    if not self.use_network:
-                        # Network disabled, don't touch active status
-                        # link["active"] = True
-                        continue
-
-                    successful_hit = False
-
-                    resp = None
-
-                    for _ in range(10):
-                        try:
-                            if urlparse(url).hostname in no_head:
-                                resp = self.session.get(
-                                    url,
-                                    headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
-                                    verify=False,
-                                    stream=True,
-                                )
-                            else:
-                                resp = self.session.head(
-                                    url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
-                                    headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
-                                    verify=False,
-                                    allow_redirects=True,
-                                )
-                        except requests.ConnectionError:
-                            print("Warning: retrying connection error")
-                            time.sleep(1)
-                            continue
-                        else:
-                            break
-                    else:
-                        raise Exception(f"Failed to connect to {url}")
-
-                    if urlparse(url).hostname in no_head:
-                        resp.close()
-
-                    if resp.status_code == 200:
-                        successful_hit = True
-                    elif resp.status_code == 403 or resp.status_code == 404:
-                        # Dead link
-                        successful_hit = False
-                    else:  # Leave it be
-                        raise Exception(f"Unknown status code: {resp.status_code}")
-
-                    success_map[url] = link["active"] = successful_hit
-
-                    if successful_hit:
-                        for hdr, lcl in [("x-amz-meta-digest-sha256", "sha2-256"), ("x-amz-meta-digest-sh1", "sha1")]:
-                            if hdr not in resp.headers:
-                                continue
-
-                            source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
-
-                        if "ETag" in resp.headers:
-                            # TODO: Document what server each ETag format is from
-                            def is_hex(s):
-                                return all(c in string.hexdigits for c in s)
-
-                            potential_hash = resp.headers["ETag"][1:-1]
-
-                            if len(potential_hash) == 32 and is_hex(potential_hash):
-                                source.setdefault("hashes", {})["md5"] = potential_hash
-                            elif len(potential_hash) > 33 and is_hex(potential_hash[:32]) and potential_hash[32] == ":":
-                                # <md5>:<unix epoch>
-                                # Seen on download.info.apple.com (Server: AkamaiNetStorage)
-                                source.setdefault("hashes", {})["md5"] = potential_hash[:32]
-                            else:
-                                print(f"Unknown ETag type: {resp.headers['ETag']}, ignoring")
-
-                        if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
-                            print(
-                                f"Warning: {ios_file.name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}"
-                            )
-
-                        source["size"] = int(resp.headers["Content-Length"])
-                    # self.print_queue.put("Processed a link")
+            for entry in data.get("createDuplicateEntries", []):
+                if entry.get('sources', []):
+                    entry['sources'] = self.process_sources(entry['sources'], ios_file.name)
 
             json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             self.print_queue.put(False)

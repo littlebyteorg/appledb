@@ -29,13 +29,6 @@ rewrite_map_v2 = {
 }
 
 
-# Domains that need auth
-needs_auth = ["adcdownload.apple.com", "download.developer.apple.com", "developer.apple.com", "archive.org"]
-
-# Domains that do not reliably support HEAD requests
-no_head = ["secure-appldnld.apple.com"]
-
-
 def appendable(iterable, link):
     # Only append if it's not already in the list
 
@@ -146,6 +139,12 @@ def process_file(ios_file: Path):
         links = source.setdefault("links", [])
         new_links = rewrite_links(links)
         source["links"] = new_links
+
+    for entry in data.get("createDuplicateEntries", []):
+        for source in entry.get("sources", []):
+            links = source.setdefault("links", [])
+            new_links = rewrite_links(links)
+            source["links"] = new_links
 
     json.dump(sort_os_file(None, raw_data=data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
