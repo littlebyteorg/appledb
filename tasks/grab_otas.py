@@ -3,6 +3,7 @@ import re
 import argparse
 import base64
 import json
+import uuid
 import requests
 import urllib3
 
@@ -65,7 +66,7 @@ asset_audiences = {
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--os', required=True, action='append', choices=['audioOS', 'iOS', 'iPadOS', 'macOS', 'tvOS', 'visionOS', 'watchOS', 'Studio Display Firmware'])
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
-parser.add_argument('-a', '--audience', default='release')
+parser.add_argument('-a', '--audience', default='release', nargs="+")
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
 args = parser.parse_args()
@@ -109,9 +110,18 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     if osStr == 'Studio Display Firmware':
         asset_type = 'DarwinAccessoryUpdate.A2525'
 
+    links = set()
+    additional_audiences = set()
+
     # iOS and iPadOS use the same asset audiences
     # Allow for someone to pass in a specific asset audience UUID
     asset_audience = asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience, audience)
+
+    try:
+        uuid.UUID(asset_audience)
+    except:
+        print(f"Bad asset audience - {asset_audience}")
+        return links
 
     request = {
         "ClientVersion": 2,
@@ -134,9 +144,14 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     assets = parsed_response.get('Assets', [])
-    links = set()
     for asset in assets:
+        if asset.get("AlternateAssetAudienceUUID"):
+            additional_audiences.add(asset["AlternateAssetAudienceUUID"])
+
         links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
+
+    for additional_audience in additional_audiences:
+        links.update(call_pallas(device_name, board_id, os_version, os_build, osStr, additional_audience, is_rsr))
     return links
 
 ota_links = set()
@@ -189,11 +204,15 @@ for (osStr, builds) in parsed_args.items():
 
                 devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
-        for key, value in devices.items():
-            for board in value['boards']:
-                for prerequisite_build, version in value['builds'].items():
-                    ota_links.update(call_pallas(key, board, version, prerequisite_build, osStr, args.audience, args.rsr))
-                ota_links.update(call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, args.audience, args.rsr))
+        for audience in args.audience:
+            if (audience == 'beta' and osStr == 'macOS') or (audience.endswith('beta') and audience != 'beta' and osStr != 'macOS'):
+                # bad combination
+                continue
+            for key, value in devices.items():
+                for board in value['boards']:
+                    for prerequisite_build, version in value['builds'].items():
+                        ota_links.update(call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr))
+                    ota_links.update(call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, audience, args.rsr))
 
 [i.unlink() for i in Path.cwd().glob("import-ota") if i.is_file()]
 Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
