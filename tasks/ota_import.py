@@ -13,6 +13,7 @@ from pathlib import Path
 import packaging.version
 import remotezip
 import requests
+import time
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
@@ -190,21 +191,27 @@ def import_ota(
     ota = None
     info_plist = None
 
-    try:
-        ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
-        print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
+    counter = 0
+    while True:
+        try:
+            ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
+            print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
 
-        info_plist = plistlib.loads(ota.read("Info.plist"))
+            info_plist = plistlib.loads(ota.read("Info.plist"))
 
-        if info_plist.get('MobileAssetProperties'):
-            info_plist = info_plist['MobileAssetProperties']
+            if info_plist.get('MobileAssetProperties'):
+                info_plist = info_plist['MobileAssetProperties']
 
-        if info_plist.get('SplatOnly'):
-            rsr = True
-    except:
-        if not build:
-            raise
-        info_plist = {}
+            if info_plist.get('SplatOnly'):
+                rsr = True
+            break
+        except:
+            if not build:
+                time.sleep(1+counter)
+                counter += 1
+                if counter > 5:
+                    raise
+            info_plist = {}
     bridge_version = None
 
     if info_plist.get('BridgeVersionInfo'):

@@ -69,6 +69,7 @@ parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
+parser.add_argument('-n', '--no-prerequisites', action='store_true')
 args = parser.parse_args()
 
 parsed_args = dict(zip(args.os, args.build))
@@ -182,7 +183,7 @@ for (osStr, builds) in parsed_args.items():
             })
 
         # RSRs are only for the latest version
-        if not args.rsr:
+        if not args.rsr and not args.no_prerequisites:
             for source in build_data.get("sources", []):
                 if not source.get('prerequisiteBuild'):
                     continue
@@ -210,8 +211,9 @@ for (osStr, builds) in parsed_args.items():
                 continue
             for key, value in devices.items():
                 for board in value['boards']:
-                    for prerequisite_build, version in value['builds'].items():
-                        ota_links.update(call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr))
+                    if not args.no_prerequisites:
+                        for prerequisite_build, version in value['builds'].items():
+                            ota_links.update(call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr))
                     ota_links.update(call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, audience, args.rsr))
 
 [i.unlink() for i in Path.cwd().glob("import-ota") if i.is_file()]
