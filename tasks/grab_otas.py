@@ -66,7 +66,7 @@ asset_audiences = {
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--os', required=True, action='append', choices=['audioOS', 'iOS', 'iPadOS', 'macOS', 'tvOS', 'visionOS', 'watchOS', 'Studio Display Firmware'])
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
-parser.add_argument('-a', '--audience', default='release', nargs="+")
+parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
 args = parser.parse_args()
