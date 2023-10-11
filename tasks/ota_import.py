@@ -311,6 +311,9 @@ def import_ota(
 
         db_data["sources"].append(source)
 
+    if bridge_version:
+        db_data['bridgeOSBuild'] = info_plist['BridgeVersionInfo']['BridgeProductBuildVersion']
+
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     if use_network:
         print("\tRunning update links on file")
@@ -329,8 +332,6 @@ def import_ota(
         db_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], recommended_version=bridge_version, released=db_data["released"], beta=beta, rc=rc)
         db_data = json.load(db_file.open(encoding="utf-8"))
         db_data["deviceMap"] = bridge_devices
-        if packaging.version.parse(db_data.get("macosVersion", "0").split(" ")[0]) < packaging.version.parse(macos_version.split(" ")[0]):
-            db_data["macosVersion"] = macos_version
         json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     return db_file
 

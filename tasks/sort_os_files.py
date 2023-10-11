@@ -10,11 +10,11 @@ from typing import Optional
 key_order = [
     "osStr",
     "version",
-    "macosVersion",
     "iosVersion",
     "sortVersion",
     "build",
     "uniqueBuild",
+    "bridgeOSBuild",
     "released",
     "rc",
     "beta",
