@@ -310,6 +310,35 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "21F79",
+            "deviceMap": [
+                "Mac13,1",
+                "Mac13,2",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1",
+                "iMac21,1",
+                "iMac21,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25603/4883C78C-6BE9-4469-9737-5CCBFA307728/com_apple_MobileAsset_MacSoftwareUpdate/775934d57a488d709da1ea03ebf8df59e78dda5e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "46c11b3e5394849bb3c5f91a0372bb5caa5d3576",
+                "sha2-256": "0f75058262034148ab6ce10e38577d65834871aa6b6c272cec1d2384c7ba0f6e"
+            },
+            "size": 6430030015
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "21F2081",
             "deviceMap": [
                 "Mac13,1",
@@ -341,10 +370,12 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21F79",
+            "prerequisiteBuild": "21G72",
             "deviceMap": [
                 "Mac13,1",
                 "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
                 "MacBookAir10,1",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
@@ -358,15 +389,46 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25603/4883C78C-6BE9-4469-9737-5CCBFA307728/com_apple_MobileAsset_MacSoftwareUpdate/775934d57a488d709da1ea03ebf8df59e78dda5e.zip",
+                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25627/F65EE09D-B25F-42C5-BA4E-BB1594F37E7B/com_apple_MobileAsset_MacSoftwareUpdate/44a64c383463d578ffa442ce3a7a82d19615aac6.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "46c11b3e5394849bb3c5f91a0372bb5caa5d3576",
-                "sha2-256": "0f75058262034148ab6ce10e38577d65834871aa6b6c272cec1d2384c7ba0f6e"
+                "sha1": "91cab3ccd6f838dcac2f00a7150aa90ff1fc8518",
+                "sha2-256": "213f58eb0000ebef0a51377e9173de6c7b85aa034c1bcf87124f7d28f2426945"
             },
-            "size": 6430030015
+            "size": 6281150271
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21G83",
+            "deviceMap": [
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1",
+                "iMac21,1",
+                "iMac21,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25652/2D83BA60-D180-4334-B991-9C26FC262233/com_apple_MobileAsset_MacSoftwareUpdate/4aa8abf29571cbb2563348a3050418c1b1c87d69.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a8aacf913187847dbcd46408370119e935e780bb",
+                "sha2-256": "fdf5e29decff52690d4cca9a388ad67fb3dea6341d90503bee3cf46c303be257"
+            },
+            "size": 6281269939
         },
         {
             "type": "ota",
@@ -618,37 +680,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21G72",
-            "deviceMap": [
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25627/F65EE09D-B25F-42C5-BA4E-BB1594F37E7B/com_apple_MobileAsset_MacSoftwareUpdate/44a64c383463d578ffa442ce3a7a82d19615aac6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "91cab3ccd6f838dcac2f00a7150aa90ff1fc8518",
-                "sha2-256": "213f58eb0000ebef0a51377e9173de6c7b85aa034c1bcf87124f7d28f2426945"
-            },
-            "size": 6281150271
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21G724",
             "deviceMap": [
                 "Mac13,1",
@@ -677,37 +708,6 @@
                 "sha2-256": "6768489e5d9022faf4e19178362c7b7bc841141b484d6f966dcbda3f911ac802"
             },
             "size": 6274206614
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21G83",
-            "deviceMap": [
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25652/2D83BA60-D180-4334-B991-9C26FC262233/com_apple_MobileAsset_MacSoftwareUpdate/4aa8abf29571cbb2563348a3050418c1b1c87d69.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a8aacf913187847dbcd46408370119e935e780bb",
-                "sha2-256": "fdf5e29decff52690d4cca9a388ad67fb3dea6341d90503bee3cf46c303be257"
-            },
-            "size": 6281269939
         },
         {
             "type": "ota",
@@ -1026,48 +1026,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "22G5072a",
-            "deviceMap": [
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25635/E326D046-417E-448C-996C-B7B8C63F1010/com_apple_MobileAsset_MacSoftwareUpdate/d3c15331a3df33a695a4c5a549be462a0c6aa30b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5201604ca6e0ff42ed3d0595d8a9b366b6b2126a",
-                "sha2-256": "b2803765fdb1555736d89759d4396a191ba194665c50d5f7eacb970a30deff6d"
-            },
-            "size": 1178059501
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "22G74",
             "deviceMap": [
                 "Mac13,1",
@@ -1107,6 +1065,48 @@
                 "sha2-256": "bdd474f541e43a8b06d981e59c40a96e535cead637ad1e1443db4919091fed89"
             },
             "size": 717375764
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22G5072a",
+            "deviceMap": [
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1",
+                "iMac21,1",
+                "iMac21,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25635/E326D046-417E-448C-996C-B7B8C63F1010/com_apple_MobileAsset_MacSoftwareUpdate/d3c15331a3df33a695a4c5a549be462a0c6aa30b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5201604ca6e0ff42ed3d0595d8a9b366b6b2126a",
+                "sha2-256": "b2803765fdb1555736d89759d4396a191ba194665c50d5f7eacb970a30deff6d"
+            },
+            "size": 1178059501
         },
         {
             "type": "ota",
@@ -1372,6 +1372,98 @@
                 "sha2-256": "d81a96afdd9feec7471b1cbe5859511898bd0da4499be386e8344d43dba08b29"
             },
             "size": 4587041549
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21G72",
+            "deviceMap": [
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "MacPro7,1",
+                "MacPro7,1-Rack",
+                "Macmini8,1",
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25588/8D99D674-57F7-4EAF-8E44-6600094170CC/com_apple_MobileAsset_MacSoftwareUpdate/7976a0f0690b395fa5e8fdccf71a585f4903a6fb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b0b650353555bc6ca8dec99f00a698c522d43f22",
+                "sha2-256": "db4f1a6ffc9ea52c4ba81ba35eaa8aaa7190e99741d1a00eb64273da67ac4fad"
+            },
+            "size": 4439591117
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21G83",
+            "deviceMap": [
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "MacPro7,1",
+                "MacPro7,1-Rack",
+                "Macmini8,1",
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25620/0F82F442-7ED0-4C80-9F6E-909CC922AF7B/com_apple_MobileAsset_MacSoftwareUpdate/8a24505dced746827aeab61a6b011a7172d76e3f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "90383a871f920c7d27eb5a8e33cf86f9458285e3",
+                "sha2-256": "89e6a8f40223dc657fec72b459ef12ac9c7e6f9578e55bac655205846f20252b"
+            },
+            "size": 4439901870
         },
         {
             "type": "ota",
@@ -1743,52 +1835,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21G72",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25588/8D99D674-57F7-4EAF-8E44-6600094170CC/com_apple_MobileAsset_MacSoftwareUpdate/7976a0f0690b395fa5e8fdccf71a585f4903a6fb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b0b650353555bc6ca8dec99f00a698c522d43f22",
-                "sha2-256": "db4f1a6ffc9ea52c4ba81ba35eaa8aaa7190e99741d1a00eb64273da67ac4fad"
-            },
-            "size": 4439591117
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21G724",
             "deviceMap": [
                 "MacBook10,1",
@@ -1832,52 +1878,6 @@
                 "sha2-256": "e3a9c38ccb6a0acd1a4fbfa58108433380875215e0e5a2b6a6ab253401467033"
             },
             "size": 4432942435
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21G83",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25620/0F82F442-7ED0-4C80-9F6E-909CC922AF7B/com_apple_MobileAsset_MacSoftwareUpdate/8a24505dced746827aeab61a6b011a7172d76e3f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "90383a871f920c7d27eb5a8e33cf86f9458285e3",
-                "sha2-256": "89e6a8f40223dc657fec72b459ef12ac9c7e6f9578e55bac655205846f20252b"
-            },
-            "size": 4439901870
         },
         {
             "type": "ota",
@@ -2295,52 +2295,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "22G5072a",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25587/9B897954-88AD-4CFC-9C38-698794BD37A7/com_apple_MobileAsset_MacSoftwareUpdate/c78435790658d301e6572f6aabede6d6029240c4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8d2da0f538db0d5ba82759dd946255d155c7af85",
-                "sha2-256": "811a962572889753df152cb70a6e7d8eac2a7928015039443f5ca37994544782"
-            },
-            "size": 752292762
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "22G74",
             "deviceMap": [
                 "MacBook10,1",
@@ -2384,6 +2338,52 @@
                 "sha2-256": "f18ad336d0aa0420848f898ebafbedf53e51cd7db3d52c5183f90dc296a1db05"
             },
             "size": 475924507
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22G5072a",
+            "deviceMap": [
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "MacPro7,1",
+                "MacPro7,1-Rack",
+                "Macmini8,1",
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerFCS/patches/042-25587/9B897954-88AD-4CFC-9C38-698794BD37A7/com_apple_MobileAsset_MacSoftwareUpdate/c78435790658d301e6572f6aabede6d6029240c4.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8d2da0f538db0d5ba82759dd946255d155c7af85",
+                "sha2-256": "811a962572889753df152cb70a6e7d8eac2a7928015039443f5ca37994544782"
+            },
+            "size": 752292762
         }
     ]
 }

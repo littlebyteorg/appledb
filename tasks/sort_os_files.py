@@ -71,7 +71,8 @@ def device_map_sort(device_map):
 
 def build_number_sort(build_number):
     match = re.match(r"(\d+)([A-Z])(\d+)([A-Z])?", build_number)
-    assert match
+    if not match:
+        return 0, "A", 0, "a"
     return int(match.groups()[0]), match.groups()[1], int(match.groups()[2]), match.groups()[3]
 
 
@@ -123,7 +124,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             # This is a list which was already sorted previously
             prerequisite_order = source["prerequisiteBuild"][0]
 
-        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), prerequisite_order
+        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), build_number_sort(prerequisite_order)
 
     data.get("sources", []).sort(key=source_sort)
 
