@@ -19,8 +19,8 @@ module.exports = {
             link: '/updating-to-15-7-9/'
           },
           {
-            text: 'Updating to 16.7',
-            link: '/updating-to-16-7/'
+            text: 'Updating to 16.7.1',
+            link: '/updating-to-16-7-1/'
           },
         ]
       }
@@ -29,7 +29,7 @@ module.exports = {
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
     notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16.",
-    firmwares: ["15.0","16.7"]
+    firmwares: ["15.0","16.7.1"]
   },
   compatibility: [
     {
@@ -188,6 +188,7 @@ module.exports = {
         "20G81",
         "20H18",
         "20H19",
+        "20H30",
       ]
     }
   ]
