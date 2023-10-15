@@ -43,6 +43,7 @@ SESSION = requests.Session()
 
 VARIANTS = {}
 BOARD_IDS = {}
+MULTI_BOARD_IDS = {}
 
 for device in Path("deviceFiles").rglob("*.json"):
     device_data = json.load(device.open(encoding="utf-8"))
@@ -57,8 +58,13 @@ for device in Path("deviceFiles").rglob("*.json"):
     for identifier in identifiers:
         VARIANTS.setdefault(identifier, set()).add(key)
         if device_data.get('board'):
-            board = device_data['board'][0] if isinstance(device_data['board'], list) else device_data['board']
-            BOARD_IDS.setdefault(board.upper() if device_data.get("type") == "iBridge" else board, set()).add(key)
+            if isinstance(device_data['board'], list):
+                if "-" not in device_data['board'][0]:
+                    MULTI_BOARD_IDS[key] = set(device_data['board'])
+                for board in device_data['board']:
+                    BOARD_IDS.setdefault(board.upper() if device_data.get("type") == "iBridge" else board, set()).add(key)
+            else:
+                BOARD_IDS.setdefault(device_data['board'].upper() if device_data.get("type") == "iBridge" else device_data['board'], set()).add(key)
 
 
 def augment_with_keys(identifiers):
@@ -190,6 +196,7 @@ def import_ota(
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
     ota = None
     info_plist = None
+    board = None
 
     counter = 0
     while True:
@@ -254,6 +261,10 @@ def import_ota(
 
         supported_devices = [i for i in supported_devices if i not in ["iProd99,1"]]
 
+        if len(supported_devices) == 1 and MULTI_BOARD_IDS.get(supported_devices[0]):
+            if MULTI_BOARD_IDS[supported_devices[0]].intersection(set(info_plist['SupportedDeviceModels'])):
+                board = info_plist['SupportedDeviceModels'][0]
+
     if not os_str:
         for product_prefix, os_str in OS_MAP:
             if any(prod.startswith(product_prefix) for prod in supported_devices):
@@ -308,6 +319,8 @@ def import_ota(
         source = {"deviceMap": augment_with_keys(supported_devices), "type": "ota", "links": [{"url": ota_url, "active": True}]}
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
+        if board:
+            source["board"] = board
 
         db_data["sources"].append(source)
 
