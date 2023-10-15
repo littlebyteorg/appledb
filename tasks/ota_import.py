@@ -262,7 +262,7 @@ def import_ota(
         supported_devices = [i for i in supported_devices if i not in ["iProd99,1"]]
 
         if len(supported_devices) == 1 and MULTI_BOARD_IDS.get(supported_devices[0]):
-            if MULTI_BOARD_IDS[supported_devices[0]].intersection(set(info_plist['SupportedDeviceModels'])):
+            if MULTI_BOARD_IDS[supported_devices[0]].intersection(set(info_plist['SupportedDeviceModels'])) != MULTI_BOARD_IDS[supported_devices[0]]:
                 board = info_plist['SupportedDeviceModels'][0]
 
     if not os_str:
