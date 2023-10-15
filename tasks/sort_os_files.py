@@ -38,7 +38,7 @@ key_order = [
     "sources",
 ]
 
-sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "osMap", "windowsUpdateDetails", "links", "hashes", "skipUpdateLinks", "size"]
+sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "board", "osMap", "windowsUpdateDetails", "links", "hashes", "skipUpdateLinks", "size"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
@@ -162,7 +162,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         else:
             sorted_os_item = (-1, 0)
 
-        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), sorted_os_item, build_number_sort(prerequisite_order)
+        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), sorted_os_item, build_number_sort(prerequisite_order), source.get('board')
 
     data.get("sources", []).sort(key=source_sort)
 
