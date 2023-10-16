@@ -19,8 +19,10 @@
         "iPad6,4",
         "iPad6,7",
         "iPad6,8",
-        "iPad6,11",
-        "iPad6,12",
+        "iPad6,11-S8000",
+        "iPad6,11-S8003",
+        "iPad6,12-S8000",
+        "iPad6,12-S8003",
         "iPad7,1",
         "iPad7,2",
         "iPad7,3",
@@ -530,8 +532,10 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12",
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003",
                 "iPad7,5",
                 "iPad7,6"
             ],
@@ -554,8 +558,10 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12",
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003",
                 "iPad7,5",
                 "iPad7,6"
             ],
@@ -579,9 +585,8 @@
                 "18F72"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97943/F3B07CB5-5C69-46E1-970C-78D6E0358851/com_apple_MobileAsset_SoftwareUpdate/77557bd1e2ffcbfd7dc80ca0fe1de8b96e5a26b3.zip",
@@ -597,14 +602,34 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
+                "18G69",
+                "18G82"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97859/A07BF016-DF2F-4DFA-9D8B-0E2DDF9B28BB/com_apple_MobileAsset_SoftwareUpdate/d7bbda3d8a90e1953444445d2c21b5c6f0e4fc05.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3439feecaa2c0e7f63306e0cb2498f9cf9359d36",
+                "sha2-256": "ce6acdb44ccbbdd0b4932a49fcb7a1b29810252fa254b8b449b929a9f7099d46"
+            },
+            "size": 308181840
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
                 "18E199",
                 "18E212",
                 "18F72"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98035/8FCE00BC-43A6-48B6-836D-0FC6152CCA52/com_apple_MobileAsset_SoftwareUpdate/f6d69e1201038b9f67cace1e143c53d80939cbed.zip",
@@ -624,31 +649,8 @@
                 "18G82"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97859/A07BF016-DF2F-4DFA-9D8B-0E2DDF9B28BB/com_apple_MobileAsset_SoftwareUpdate/d7bbda3d8a90e1953444445d2c21b5c6f0e4fc05.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3439feecaa2c0e7f63306e0cb2498f9cf9359d36",
-                "sha2-256": "ce6acdb44ccbbdd0b4932a49fcb7a1b29810252fa254b8b449b929a9f7099d46"
-            },
-            "size": 308181840
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18G69",
-                "18G82"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97861/6AB49E14-7ADF-4935-A5FA-AA579601BA6B/com_apple_MobileAsset_SoftwareUpdate/a90c4b513db2a5ad2eb26163fe3798517c9b0bae.zip",
@@ -669,9 +671,8 @@
                 "18F72"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98096/AC34089B-AB19-4206-868D-8F3DED52AD3A/com_apple_MobileAsset_SoftwareUpdate/40e38a609d6439baf8baa80955f0eda707a802fd.zip",
@@ -687,14 +688,34 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
+                "18G69",
+                "18G82"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98171/8D46135B-AACD-435B-A35C-73E53C9701C0/com_apple_MobileAsset_SoftwareUpdate/95fbca6f6d44f14f15f974b05cce7e94abe27bb6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "163088c90e8dba0104a66a888506092ed22e0093",
+                "sha2-256": "871ab05f8c76710a0d1ba5cda8ca4641b064ad31609b8e855375394d9bdb6e06"
+            },
+            "size": 308131004
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
                 "18E199",
                 "18E212",
                 "18F72"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98036/AF631016-F908-4170-8833-067E055CEF85/com_apple_MobileAsset_SoftwareUpdate/80aacb4f680d50e5ef6fd02a3622c7da66cca745.zip",
@@ -714,31 +735,8 @@
                 "18G82"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98171/8D46135B-AACD-435B-A35C-73E53C9701C0/com_apple_MobileAsset_SoftwareUpdate/95fbca6f6d44f14f15f974b05cce7e94abe27bb6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "163088c90e8dba0104a66a888506092ed22e0093",
-                "sha2-256": "871ab05f8c76710a0d1ba5cda8ca4641b064ad31609b8e855375394d9bdb6e06"
-            },
-            "size": 308131004
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18G69",
-                "18G82"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97935/A552976D-B8B2-4CC1-9A25-7D9CBC1D4E4A/com_apple_MobileAsset_SoftwareUpdate/aa86ffefccf39c4a02d8eb13072bc21f219ac4fb.zip",

@@ -26,8 +26,10 @@
         "iPad6,4",
         "iPad6,7",
         "iPad6,8",
-        "iPad6,11",
-        "iPad6,12",
+        "iPad6,11-S8000",
+        "iPad6,11-S8003",
+        "iPad6,12-S8000",
+        "iPad6,12-S8003",
         "iPad7,1",
         "iPad7,2",
         "iPad7,3",
@@ -1262,8 +1264,10 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12",
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003",
                 "iPad7,5",
                 "iPad7,6"
             ],
@@ -1285,9 +1289,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56428/4BD264A7-26F7-40A9-BDD1-CC9E94814758/com_apple_MobileAsset_SoftwareUpdate/d04201ecdde103079e923ce5f1467cddb423b0cb.zip",
@@ -1298,10 +1301,138 @@
         },
         {
             "type": "ota",
-            "deviceMap": [
-                "iPad6,11"
+            "prerequisiteBuild": [
+                "17A844",
+                "17A854",
+                "17A860",
+                "17A878"
             ],
-            "board": "J71tAP",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56465/5B8ADB6E-2B2E-4906-9856-5726B46D9B0A/com_apple_MobileAsset_SoftwareUpdate/5d499bb53c8238e862ff12c981cb8779c5b186a1.zip",
+                    "active": true
+                }
+            ],
+            "size": 2381412617
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "17B84",
+                "17B102",
+                "17B111"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56798/3D161D26-C7B2-455C-B0AD-CEAB1C379964/com_apple_MobileAsset_SoftwareUpdate/48e73e6fb89f8a2a2481772960d27f5a5fc2b878.zip",
+                    "active": true
+                }
+            ],
+            "size": 2298292061
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "17C54",
+                "17D50",
+                "17E255",
+                "17E262"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56534/D6C6F569-11D4-483D-A5D7-67E0DEE2FF5B/com_apple_MobileAsset_SoftwareUpdate/40e3f40345a563568cf9b555b0ba6577e6e4d834.zip",
+                    "active": true
+                }
+            ],
+            "size": 2317008944
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "17F75",
+                "17F80"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56633/3C5F3147-BE6A-41A4-BF03-78FB844A8A74/com_apple_MobileAsset_SoftwareUpdate/bcd4067777a80d1dfb7198041d1f9980b8ce2c33.zip",
+                    "active": true
+                }
+            ],
+            "size": 2244534679
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17G68",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56748/740A541C-391D-40E0-881A-4AD093F33208/com_apple_MobileAsset_SoftwareUpdate/e19e637445747bf56835b4024eada72b779abb7d.zip",
+                    "active": true
+                }
+            ],
+            "size": 2238094891
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17G80",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56270/E05F7817-E229-4CE9-9A80-0E600C3E95B5/com_apple_MobileAsset_SoftwareUpdate/320920f347f8f815814dcc03bd121bf3db423795.zip",
+                    "active": true
+                }
+            ],
+            "size": 2238087983
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18A373",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56523/494FB42B-E4AE-4976-9061-AD9E4ACE62E9/com_apple_MobileAsset_SoftwareUpdate/53fa1b4dab572eeee7aea00a8ed18bae545ebd8f.zip",
+                    "active": true
+                }
+            ],
+            "size": 312280963
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18A393",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56731/A5A4470A-D75C-4C3B-92FD-1221E6459028/com_apple_MobileAsset_SoftwareUpdate/f252bb8dd6e01fabcc3a390d24465cf16699cd5d.zip",
+                    "active": true
+                }
+            ],
+            "size": 309654157
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,11-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56401/F868B114-C19D-4C09-9A97-D68917BEC388/com_apple_MobileAsset_SoftwareUpdate/04c80ca2f9e76f8f65781eb8c8411b1c7113f8c2.zip",
@@ -1319,29 +1450,8 @@
                 "17A878"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56465/5B8ADB6E-2B2E-4906-9856-5726B46D9B0A/com_apple_MobileAsset_SoftwareUpdate/5d499bb53c8238e862ff12c981cb8779c5b186a1.zip",
-                    "active": true
-                }
-            ],
-            "size": 2381412617
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17A844",
-                "17A854",
-                "17A860",
-                "17A878"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56808/9ABE991C-6AB6-4B9E-96C7-FB5825CB9622/com_apple_MobileAsset_SoftwareUpdate/89c396fb1884546099153094b8cce0b80081cea8.zip",
@@ -1358,28 +1468,8 @@
                 "17B111"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56798/3D161D26-C7B2-455C-B0AD-CEAB1C379964/com_apple_MobileAsset_SoftwareUpdate/48e73e6fb89f8a2a2481772960d27f5a5fc2b878.zip",
-                    "active": true
-                }
-            ],
-            "size": 2298292061
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17B84",
-                "17B102",
-                "17B111"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56649/2679CCDF-639B-4153-B2D2-FAF3B267CB32/com_apple_MobileAsset_SoftwareUpdate/9c6d33219c99e6a2df6b557459d5189b9af2f071.zip",
@@ -1397,29 +1487,8 @@
                 "17E262"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56534/D6C6F569-11D4-483D-A5D7-67E0DEE2FF5B/com_apple_MobileAsset_SoftwareUpdate/40e3f40345a563568cf9b555b0ba6577e6e4d834.zip",
-                    "active": true
-                }
-            ],
-            "size": 2317008944
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17C54",
-                "17D50",
-                "17E255",
-                "17E262"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56062/1734E3F3-DB13-432C-B820-98141992840C/com_apple_MobileAsset_SoftwareUpdate/c800716241861717cbf0cb5f1132b1ad108ac3b4.zip",
@@ -1435,27 +1504,8 @@
                 "17F80"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56633/3C5F3147-BE6A-41A4-BF03-78FB844A8A74/com_apple_MobileAsset_SoftwareUpdate/bcd4067777a80d1dfb7198041d1f9980b8ce2c33.zip",
-                    "active": true
-                }
-            ],
-            "size": 2244534679
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17F75",
-                "17F80"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56734/A58FC765-C95D-46D3-861E-298BBA9A747E/com_apple_MobileAsset_SoftwareUpdate/685e0b3953ae6195009bba592418fe417dfe643a.zip",
@@ -1468,24 +1518,8 @@
             "type": "ota",
             "prerequisiteBuild": "17G68",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56748/740A541C-391D-40E0-881A-4AD093F33208/com_apple_MobileAsset_SoftwareUpdate/e19e637445747bf56835b4024eada72b779abb7d.zip",
-                    "active": true
-                }
-            ],
-            "size": 2238094891
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17G68",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56274/B8A1769D-A6F2-4AD4-A6F0-288BFB20F717/com_apple_MobileAsset_SoftwareUpdate/35146e3a6172177d93df965f77aac0eab2aaf374.zip",
@@ -1498,24 +1532,8 @@
             "type": "ota",
             "prerequisiteBuild": "17G80",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56270/E05F7817-E229-4CE9-9A80-0E600C3E95B5/com_apple_MobileAsset_SoftwareUpdate/320920f347f8f815814dcc03bd121bf3db423795.zip",
-                    "active": true
-                }
-            ],
-            "size": 2238087983
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17G80",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56438/10BFF886-AF66-4910-BFF7-AED3C0483EF8/com_apple_MobileAsset_SoftwareUpdate/e6832dbd63fe949d7aa7ee5e84157c321e727f9c.zip",
@@ -1528,24 +1546,8 @@
             "type": "ota",
             "prerequisiteBuild": "18A373",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56523/494FB42B-E4AE-4976-9061-AD9E4ACE62E9/com_apple_MobileAsset_SoftwareUpdate/53fa1b4dab572eeee7aea00a8ed18bae545ebd8f.zip",
-                    "active": true
-                }
-            ],
-            "size": 312280963
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18A373",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56747/B6B1C1C1-EC81-4D8F-AF52-B926CE135EA4/com_apple_MobileAsset_SoftwareUpdate/877016038f5142661c448257b7d6ec6f916ef586.zip",
@@ -1558,24 +1560,8 @@
             "type": "ota",
             "prerequisiteBuild": "18A393",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56731/A5A4470A-D75C-4C3B-92FD-1221E6459028/com_apple_MobileAsset_SoftwareUpdate/f252bb8dd6e01fabcc3a390d24465cf16699cd5d.zip",
-                    "active": true
-                }
-            ],
-            "size": 309654157
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18A393",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56058/9BD2D3A9-E82E-4941-93EA-1B08C05DC36F/com_apple_MobileAsset_SoftwareUpdate/26d8b6c3f2e6732337d01b501d413b30a3a98554.zip",
@@ -1587,9 +1573,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56771/486A18F0-F845-46E4-859B-C58370754E5C/com_apple_MobileAsset_SoftwareUpdate/31fa9c2b0a6243765c2eb04d2fa4d31f3bf96317.zip",
@@ -1600,10 +1585,138 @@
         },
         {
             "type": "ota",
-            "deviceMap": [
-                "iPad6,12"
+            "prerequisiteBuild": [
+                "17A844",
+                "17A854",
+                "17A860",
+                "17A878"
             ],
-            "board": "J72tAP",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56406/81190E4E-CE3B-4D03-8354-D14B7610E71F/com_apple_MobileAsset_SoftwareUpdate/9b9e0374dfedd2cc922bf5cc3fecb87b54e41343.zip",
+                    "active": true
+                }
+            ],
+            "size": 2381357828
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "17B84",
+                "17B102",
+                "17B111"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56833/1431FC98-9B11-4DDE-9856-23F1BC391DC9/com_apple_MobileAsset_SoftwareUpdate/100d4f428653b436e0a23def8fb5a696d0fe3fcd.zip",
+                    "active": true
+                }
+            ],
+            "size": 2298239460
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "17C54",
+                "17D50",
+                "17E255",
+                "17E262"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56473/6B36515F-4093-4B85-9428-CE9FCABF3BBE/com_apple_MobileAsset_SoftwareUpdate/3c6ada9235d210a7a702c57efbae5d085a303ac1.zip",
+                    "active": true
+                }
+            ],
+            "size": 2316956273
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "17F75",
+                "17F80"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56591/B9D71BCC-2A6F-4327-9693-15C36828AD71/com_apple_MobileAsset_SoftwareUpdate/607a12056109a7f2c204106ece6891c017cec8ef.zip",
+                    "active": true
+                }
+            ],
+            "size": 2244478477
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17G68",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56425/C307613E-2FDD-4BD8-B58F-01FEF050AD49/com_apple_MobileAsset_SoftwareUpdate/3d30770653d5d11a51403c689ddaaf6bd89a5fa1.zip",
+                    "active": true
+                }
+            ],
+            "size": 2238040035
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17G80",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56110/2446F3F6-4849-4B37-99C7-580447A86C0A/com_apple_MobileAsset_SoftwareUpdate/eea73481515952fab83844696e6513b37442d349.zip",
+                    "active": true
+                }
+            ],
+            "size": 2238032738
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18A373",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56482/8FB4F75C-6599-499F-ACD2-598394D3F7AA/com_apple_MobileAsset_SoftwareUpdate/5e762b26da345e255910721bbdb65f346982a8f6.zip",
+                    "active": true
+                }
+            ],
+            "size": 312227756
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18A393",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56064/4B295D79-C131-4309-829E-A6180DDB6E49/com_apple_MobileAsset_SoftwareUpdate/2a6d24de45ab8def73e1da4dd220ea5e132faa1d.zip",
+                    "active": true
+                }
+            ],
+            "size": 309601542
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56533/5493C110-C216-4105-8E8F-5F57D1AA5B6F/com_apple_MobileAsset_SoftwareUpdate/593abb294703b6aeb77f4b968bfe883b6f73dbb1.zip",
@@ -1621,29 +1734,8 @@
                 "17A878"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56406/81190E4E-CE3B-4D03-8354-D14B7610E71F/com_apple_MobileAsset_SoftwareUpdate/9b9e0374dfedd2cc922bf5cc3fecb87b54e41343.zip",
-                    "active": true
-                }
-            ],
-            "size": 2381357828
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17A844",
-                "17A854",
-                "17A860",
-                "17A878"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56670/548CE068-958D-492E-9170-FD94C20B1A76/com_apple_MobileAsset_SoftwareUpdate/d8b79d61547ba3cecd02fe0c20c08ff0bfb6919d.zip",
@@ -1660,28 +1752,8 @@
                 "17B111"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56833/1431FC98-9B11-4DDE-9856-23F1BC391DC9/com_apple_MobileAsset_SoftwareUpdate/100d4f428653b436e0a23def8fb5a696d0fe3fcd.zip",
-                    "active": true
-                }
-            ],
-            "size": 2298239460
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17B84",
-                "17B102",
-                "17B111"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56786/C7B29893-03EC-4BE2-81FB-FBF876902137/com_apple_MobileAsset_SoftwareUpdate/115957f7796844228fe341dafa82cf97c93b8ff2.zip",
@@ -1699,29 +1771,8 @@
                 "17E262"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56473/6B36515F-4093-4B85-9428-CE9FCABF3BBE/com_apple_MobileAsset_SoftwareUpdate/3c6ada9235d210a7a702c57efbae5d085a303ac1.zip",
-                    "active": true
-                }
-            ],
-            "size": 2316956273
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17C54",
-                "17D50",
-                "17E255",
-                "17E262"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56158/43A4056D-0C3E-4AF7-BDEC-1355EBD32F47/com_apple_MobileAsset_SoftwareUpdate/f8aa6f79ba70e8891ea7b89f8a28d4f519f5c15a.zip",
@@ -1737,27 +1788,8 @@
                 "17F80"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56591/B9D71BCC-2A6F-4327-9693-15C36828AD71/com_apple_MobileAsset_SoftwareUpdate/607a12056109a7f2c204106ece6891c017cec8ef.zip",
-                    "active": true
-                }
-            ],
-            "size": 2244478477
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "17F75",
-                "17F80"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56280/71134B93-2B95-4218-91D4-63AE094B0699/com_apple_MobileAsset_SoftwareUpdate/4a358e46ad94f5e84bae3158a758ce9408522144.zip",
@@ -1770,24 +1802,8 @@
             "type": "ota",
             "prerequisiteBuild": "17G68",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56425/C307613E-2FDD-4BD8-B58F-01FEF050AD49/com_apple_MobileAsset_SoftwareUpdate/3d30770653d5d11a51403c689ddaaf6bd89a5fa1.zip",
-                    "active": true
-                }
-            ],
-            "size": 2238040035
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17G68",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56663/552C108C-8DF2-44DB-91AD-F497906176D1/com_apple_MobileAsset_SoftwareUpdate/55f050041eb424c2ba11c7b33980f44f8c10e707.zip",
@@ -1800,24 +1816,8 @@
             "type": "ota",
             "prerequisiteBuild": "17G80",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56110/2446F3F6-4849-4B37-99C7-580447A86C0A/com_apple_MobileAsset_SoftwareUpdate/eea73481515952fab83844696e6513b37442d349.zip",
-                    "active": true
-                }
-            ],
-            "size": 2238032738
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17G80",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56098/8941B337-A00D-4CA5-82BF-7814E2462243/com_apple_MobileAsset_SoftwareUpdate/866713831c38a7225369bfb2ca3f489720c86bef.zip",
@@ -1830,24 +1830,8 @@
             "type": "ota",
             "prerequisiteBuild": "18A373",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56482/8FB4F75C-6599-499F-ACD2-598394D3F7AA/com_apple_MobileAsset_SoftwareUpdate/5e762b26da345e255910721bbdb65f346982a8f6.zip",
-                    "active": true
-                }
-            ],
-            "size": 312227756
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18A373",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56585/D46575B7-DB5A-48A1-8F63-630FCC440592/com_apple_MobileAsset_SoftwareUpdate/36b60c249755abfdb24189c019ec04103d081050.zip",
@@ -1860,24 +1844,8 @@
             "type": "ota",
             "prerequisiteBuild": "18A393",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56064/4B295D79-C131-4309-829E-A6180DDB6E49/com_apple_MobileAsset_SoftwareUpdate/2a6d24de45ab8def73e1da4dd220ea5e132faa1d.zip",
-                    "active": true
-                }
-            ],
-            "size": 309601542
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18A393",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerFCS/patches/001-56245/4B6EC690-D763-49B4-AA1B-C7B91EBF6D1F/com_apple_MobileAsset_SoftwareUpdate/42ad03dc08ca783798b02196767ab17a47a512bb.zip",

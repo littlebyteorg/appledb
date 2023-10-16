@@ -27,8 +27,10 @@
         "iPad6,4",
         "iPad6,7",
         "iPad6,8",
-        "iPad6,11",
-        "iPad6,12",
+        "iPad6,11-S8000",
+        "iPad6,11-S8003",
+        "iPad6,12-S8000",
+        "iPad6,12-S8003",
         "iPad7,1",
         "iPad7,2",
         "iPad7,3",
@@ -39,9 +41,12 @@
         "iPhone6,2",
         "iPhone7,1",
         "iPhone7,2",
-        "iPhone8,1",
-        "iPhone8,2",
-        "iPhone8,4",
+        "iPhone8,1-S8000",
+        "iPhone8,1-S8003",
+        "iPhone8,2-S8000",
+        "iPhone8,2-S8003",
+        "iPhone8,4-S8000",
+        "iPhone8,4-S8003",
         "iPhone9,1",
         "iPhone9,2",
         "iPhone9,3",
@@ -191,8 +196,10 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12",
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003",
                 "iPad7,5",
                 "iPad7,6"
             ],
@@ -232,7 +239,8 @@
             "deviceMap": [
                 "iPhone6,1",
                 "iPhone6,2",
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -249,7 +257,8 @@
             "type": "ipsw",
             "deviceMap": [
                 "iPhone7,1",
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -282,7 +291,8 @@
             "type": "ipsw",
             "deviceMap": [
                 "iPhone7,2",
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -331,9 +341,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018/iosseed/091-92835-20180705-9BA485AC-7BA5-11E8-84CF-AD86DA3C085A/com_apple_MobileAsset_SoftwareUpdate/e1af25c775e0f690da47cbf238944ca04fa101f7.zip",
@@ -348,9 +357,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018/iosseed/091-92695-20180705-1B0D675C-7BA4-11E8-9BD6-3781DA3C085A/com_apple_MobileAsset_SoftwareUpdate/5a06ec7685b6877ac4bdb82f6edd0ccb8158172d.zip",
@@ -364,28 +372,10 @@
         },
         {
             "type": "ota",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018/iosseed/091-92849-20180705-9FC40F62-7BA6-11E8-94C2-BA87DA3C085A/com_apple_MobileAsset_SoftwareUpdate/6b9b6540f0743391de3c4ecce2a1f3037c0fb9d5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "7eadd8679a37620bc92a5cb339f25d9d"
-            },
-            "size": 2151789979
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15G5077a",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018/iosseed/091-94037-20180705-0C685FC8-7BBC-11E8-A481-90B9DA3C085A/com_apple_MobileAsset_SoftwareUpdate/31f3d3f16fd4f37b4ca33c6858a0a7fa6e0076a0.zip",
@@ -396,6 +386,22 @@
                 "md5": "50da7ffea6b0141316eeb9218cc4eb52"
             },
             "size": 1206719232
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018/iosseed/091-92849-20180705-9FC40F62-7BA6-11E8-94C2-BA87DA3C085A/com_apple_MobileAsset_SoftwareUpdate/6b9b6540f0743391de3c4ecce2a1f3037c0fb9d5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "7eadd8679a37620bc92a5cb339f25d9d"
+            },
+            "size": 2151789979
         },
         {
             "type": "ipsw",

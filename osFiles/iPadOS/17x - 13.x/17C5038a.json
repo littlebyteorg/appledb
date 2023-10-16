@@ -18,8 +18,10 @@
         "iPad6,4",
         "iPad6,7",
         "iPad6,8",
-        "iPad6,11",
-        "iPad6,12",
+        "iPad6,11-S8000",
+        "iPad6,11-S8003",
+        "iPad6,12-S8000",
+        "iPad6,12-S8003",
         "iPad7,1",
         "iPad7,2",
         "iPad7,3",
@@ -438,8 +440,10 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12",
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003",
                 "iPad7,5",
                 "iPad7,6"
             ],
@@ -461,9 +465,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47492/103B07B4-0274-11EA-A7F0-A479AEB318DB/com_apple_MobileAsset_SoftwareUpdate/ac6979396b2137ec64b303ea40fa7d4db411b918.zip",
@@ -474,10 +477,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "17B5084a",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71tAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47541/139CF80E-0274-11EA-B57B-DFC84C54FD3B/com_apple_MobileAsset_SoftwareUpdate/e68dd8ae812f8690a6f71d91c65bc0bd92e54f23.zip",
+                    "active": true
+                }
+            ],
+            "size": 366179602
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17C5032d",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47867/144976CE-0274-11EA-95B4-F19BEFFDF554/com_apple_MobileAsset_SoftwareUpdate/5e92efa7961d85492a6ff3fcbf01800fd871c3c4.zip",
+                    "active": true
+                }
+            ],
+            "size": 249627321
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,11-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47523/1A64A132-0274-11EA-BB22-B59DE3A6D67F/com_apple_MobileAsset_SoftwareUpdate/d9cc74d6f6cbbbcf5fa89f593738afbc77848fe7.zip",
@@ -490,24 +520,8 @@
             "type": "ota",
             "prerequisiteBuild": "17B5084a",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47541/139CF80E-0274-11EA-B57B-DFC84C54FD3B/com_apple_MobileAsset_SoftwareUpdate/e68dd8ae812f8690a6f71d91c65bc0bd92e54f23.zip",
-                    "active": true
-                }
-            ],
-            "size": 366179602
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17B5084a",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47454/1BCE5E28-0274-11EA-958B-E82203D5077D/com_apple_MobileAsset_SoftwareUpdate/9328d5411cc50ab39dec8122b199124c517079dc.zip",
@@ -520,24 +534,8 @@
             "type": "ota",
             "prerequisiteBuild": "17C5032d",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47867/144976CE-0274-11EA-95B4-F19BEFFDF554/com_apple_MobileAsset_SoftwareUpdate/5e92efa7961d85492a6ff3fcbf01800fd871c3c4.zip",
-                    "active": true
-                }
-            ],
-            "size": 249627321
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17C5032d",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47845/1E0EB868-0274-11EA-8B8C-AD490C88A2F9/com_apple_MobileAsset_SoftwareUpdate/2b37e2480bf7096a11746f4fc8c352fe1be4f53b.zip",
@@ -549,9 +547,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47588/2912EDE2-0274-11EA-A409-B10CBFD38D07/com_apple_MobileAsset_SoftwareUpdate/137c178deca5aa1226e05358cb5cbd4a7fb7289d.zip",
@@ -562,10 +559,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "17B5084a",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72tAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47409/33C46EB4-0274-11EA-BDAA-F5ECCDEBFE93/com_apple_MobileAsset_SoftwareUpdate/908abbc746839abec7cd2da4e6672808c1cf4b7d.zip",
+                    "active": true
+                }
+            ],
+            "size": 366126628
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17C5032d",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47825/369A2F8E-0274-11EA-A6BA-8A2DF5D52AA4/com_apple_MobileAsset_SoftwareUpdate/1d70b2ee466132543fc447edcf00489623b72fa1.zip",
+                    "active": true
+                }
+            ],
+            "size": 249572836
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47428/38153F84-0274-11EA-BF97-F7425EA8A87E/com_apple_MobileAsset_SoftwareUpdate/fb47caa6e50bda63cef32567e30f133ceb9d4505.zip",
@@ -578,24 +602,8 @@
             "type": "ota",
             "prerequisiteBuild": "17B5084a",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47409/33C46EB4-0274-11EA-BDAA-F5ECCDEBFE93/com_apple_MobileAsset_SoftwareUpdate/908abbc746839abec7cd2da4e6672808c1cf4b7d.zip",
-                    "active": true
-                }
-            ],
-            "size": 366126628
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17B5084a",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47490/3CC59380-0274-11EA-B64A-99532883A0DF/com_apple_MobileAsset_SoftwareUpdate/78b166ec4f2deacf2fde5b9bce34867e55e526e5.zip",
@@ -608,24 +616,8 @@
             "type": "ota",
             "prerequisiteBuild": "17C5032d",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47825/369A2F8E-0274-11EA-A6BA-8A2DF5D52AA4/com_apple_MobileAsset_SoftwareUpdate/1d70b2ee466132543fc447edcf00489623b72fa1.zip",
-                    "active": true
-                }
-            ],
-            "size": 249572836
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17C5032d",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2019FallSeed/patches/061-47837/3CE902FC-0274-11EA-8DCE-DFFE9BAFC595/com_apple_MobileAsset_SoftwareUpdate/f54b6fc54fcf4225d7d731d2e753e6e0b79d4239.zip",

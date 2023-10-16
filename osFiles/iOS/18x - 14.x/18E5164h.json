@@ -10,9 +10,12 @@
         "align": "left"
     },
     "deviceMap": [
-        "iPhone8,1",
-        "iPhone8,2",
-        "iPhone8,4",
+        "iPhone8,1-S8000",
+        "iPhone8,1-S8003",
+        "iPhone8,2-S8000",
+        "iPhone8,2-S8003",
+        "iPhone8,4-S8000",
+        "iPhone8,4-S8003",
         "iPhone9,1",
         "iPhone9,2",
         "iPhone9,3",
@@ -41,7 +44,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -61,7 +65,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -75,9 +80,8 @@
             "type": "ota",
             "prerequisiteBuild": "18D5043d",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10581/A3264924-D788-4AFF-B121-CA6F118A0427/com_apple_MobileAsset_SoftwareUpdate/fb23a1aa25bd96c24d90f34ac402f234b729992f.zip",
@@ -88,11 +92,24 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "18E5154f",
+            "deviceMap": [
+                "iPhone8,1-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10635/7188F23E-1719-40E4-BCB8-D873D996E590/com_apple_MobileAsset_SoftwareUpdate/4280364e0f8e4e46d82c49aee94a7aaf1c820b7d.zip",
+                    "active": true
+                }
+            ],
+            "size": 399748784
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "18D5043d",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10704/DAE7895A-AEFC-4362-86DD-10690D648A8D/com_apple_MobileAsset_SoftwareUpdate/6243f4caf8af644253cd604159edc0afe7dcb050.zip",
@@ -105,24 +122,8 @@
             "type": "ota",
             "prerequisiteBuild": "18E5154f",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10635/7188F23E-1719-40E4-BCB8-D873D996E590/com_apple_MobileAsset_SoftwareUpdate/4280364e0f8e4e46d82c49aee94a7aaf1c820b7d.zip",
-                    "active": true
-                }
-            ],
-            "size": 399748784
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18E5154f",
-            "deviceMap": [
-                "iPhone8,1"
-            ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10547/3E60B053-B4DE-4684-BFEB-72C787364297/com_apple_MobileAsset_SoftwareUpdate/dbe0632ed29cbcc6c671daa574a548344c772202.zip",
@@ -134,7 +135,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -154,7 +156,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -168,9 +171,8 @@
             "type": "ota",
             "prerequisiteBuild": "18D5043d",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10561/15885C60-6E36-4248-9662-2F8F65B00914/com_apple_MobileAsset_SoftwareUpdate/d794a7a4ca6c6b964f0e2aff4989e701c7b17273.zip",
@@ -181,11 +183,24 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "18E5154f",
+            "deviceMap": [
+                "iPhone8,2-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10535/F7170C38-CF9E-48E7-A847-19D9FC48D1D3/com_apple_MobileAsset_SoftwareUpdate/218b59e9a931912d020240cd00d8a0c1d9bab8cb.zip",
+                    "active": true
+                }
+            ],
+            "size": 401041221
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "18D5043d",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10612/188ACD74-4F33-4D78-8DA2-D0088BE26C7C/com_apple_MobileAsset_SoftwareUpdate/13fcbab90175b93829643ed1cd32f9703bbca683.zip",
@@ -198,24 +213,8 @@
             "type": "ota",
             "prerequisiteBuild": "18E5154f",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10535/F7170C38-CF9E-48E7-A847-19D9FC48D1D3/com_apple_MobileAsset_SoftwareUpdate/218b59e9a931912d020240cd00d8a0c1d9bab8cb.zip",
-                    "active": true
-                }
-            ],
-            "size": 401041221
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18E5154f",
-            "deviceMap": [
-                "iPhone8,2"
-            ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10641/33ED355A-D587-430F-8B22-748FA1F0A9E5/com_apple_MobileAsset_SoftwareUpdate/e5e344f462284383646854e38463beb025b76c3b.zip",
@@ -227,7 +226,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -247,7 +247,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -261,24 +262,8 @@
             "type": "ota",
             "prerequisiteBuild": "18D5043d",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10570/9D4901FB-0219-4DDA-9D13-915583AFF711/com_apple_MobileAsset_SoftwareUpdate/4b623320e407c6ceabe95ec2215ddfb6fc678538.zip",
-                    "active": true
-                }
-            ],
-            "size": 1005886392
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18D5043d",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10589/5FD23629-8DD5-49C9-8C0B-D9F4040F57FD/com_apple_MobileAsset_SoftwareUpdate/848c2f3c8eb2bc389eaaaa9886dbc760207f19bc.zip",
@@ -291,24 +276,8 @@
             "type": "ota",
             "prerequisiteBuild": "18E5154f",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10719/2FC898BB-9A00-449A-9931-C45D0B7A097A/com_apple_MobileAsset_SoftwareUpdate/61e0694655b3b70e4465dbdf27c54bd162118a88.zip",
-                    "active": true
-                }
-            ],
-            "size": 396274859
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18E5154f",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10624/EBD61DBC-3D42-4C51-8514-85876253513E/com_apple_MobileAsset_SoftwareUpdate/ae0e755a3f06cdf871262f8580435307be09160c.zip",
@@ -316,6 +285,34 @@
                 }
             ],
             "size": 396286419
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18D5043d",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10570/9D4901FB-0219-4DDA-9D13-915583AFF711/com_apple_MobileAsset_SoftwareUpdate/4b623320e407c6ceabe95ec2215ddfb6fc678538.zip",
+                    "active": true
+                }
+            ],
+            "size": 1005886392
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18E5154f",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/071-10719/2FC898BB-9A00-449A-9931-C45D0B7A097A/com_apple_MobileAsset_SoftwareUpdate/61e0694655b3b70e4465dbdf27c54bd162118a88.zip",
+                    "active": true
+                }
+            ],
+            "size": 396274859
         },
         {
             "type": "ipsw",

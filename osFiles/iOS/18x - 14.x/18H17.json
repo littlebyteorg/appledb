@@ -11,9 +11,12 @@
         "align": "left"
     },
     "deviceMap": [
-        "iPhone8,1",
-        "iPhone8,2",
-        "iPhone8,4",
+        "iPhone8,1-S8000",
+        "iPhone8,1-S8003",
+        "iPhone8,2-S8000",
+        "iPhone8,2-S8003",
+        "iPhone8,4-S8000",
+        "iPhone8,4-S8003",
         "iPhone9,1",
         "iPhone9,2",
         "iPhone9,3",
@@ -42,7 +45,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -63,7 +67,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -85,9 +90,8 @@
                 "18F72"
             ],
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98105/90362A8E-E742-48F8-A41E-904D8C857FF8/com_apple_MobileAsset_SoftwareUpdate/b52476d8d4c2c9092462a5c7b4e51558e792029d.zip",
@@ -103,14 +107,34 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
+                "18G69",
+                "18G82"
+            ],
+            "deviceMap": [
+                "iPhone8,1-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98006/E4443440-1758-4F33-A9C5-7E418D507DAB/com_apple_MobileAsset_SoftwareUpdate/6d7bd42d3a5c0707fe9734a167048ad0cd556a81.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "80838faaf035cb72517b83b4a193a9542e6254f8",
+                "sha2-256": "11c8c2bc2f83c6d31f21618b312ea7baa5b4928fae835e47689cfe2361e53e15"
+            },
+            "size": 293236579
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
                 "18E199",
                 "18E212",
                 "18F72"
             ],
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97874/E9C9008C-4954-4850-B7BC-DF93FB40FD0A/com_apple_MobileAsset_SoftwareUpdate/d72e439b69f5bf5fef97fd4db66b5eeaec84b299.zip",
@@ -130,31 +154,8 @@
                 "18G82"
             ],
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98006/E4443440-1758-4F33-A9C5-7E418D507DAB/com_apple_MobileAsset_SoftwareUpdate/6d7bd42d3a5c0707fe9734a167048ad0cd556a81.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "80838faaf035cb72517b83b4a193a9542e6254f8",
-                "sha2-256": "11c8c2bc2f83c6d31f21618b312ea7baa5b4928fae835e47689cfe2361e53e15"
-            },
-            "size": 293236579
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18G69",
-                "18G82"
-            ],
-            "deviceMap": [
-                "iPhone8,1"
-            ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97948/22646B6E-50A5-43BE-9863-B0DF2E79B74B/com_apple_MobileAsset_SoftwareUpdate/5a41aaed1c7f449f43bd20a263a2da5833144709.zip",
@@ -170,7 +171,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -191,7 +193,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -213,9 +216,8 @@
                 "18F72"
             ],
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98005/9FC2ED1A-03F8-40B0-97B1-82BD8FFF4C38/com_apple_MobileAsset_SoftwareUpdate/b4a92b727453713fd291e74577ac2bbccecc41e6.zip",
@@ -231,14 +233,34 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
+                "18G69",
+                "18G82"
+            ],
+            "deviceMap": [
+                "iPhone8,2-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98007/4C5CE005-B987-4603-8604-DE5B5C702C89/com_apple_MobileAsset_SoftwareUpdate/2a8e811508057ba136b17e4a749f8330a52eff45.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5ee415b2bbe4673e8eabacb2b5de216401cc4f31",
+                "sha2-256": "c0728def253d07d884fbcf811443bd01b3bc4ab0d748ddb8a629019d0f354fc9"
+            },
+            "size": 294113702
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
                 "18E199",
                 "18E212",
                 "18F72"
             ],
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97839/E90DA62F-A89B-4EF7-9206-8C633C7E1229/com_apple_MobileAsset_SoftwareUpdate/4e5fea080039d79d784b77e8c441eb601f7a073e.zip",
@@ -258,31 +280,8 @@
                 "18G82"
             ],
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98007/4C5CE005-B987-4603-8604-DE5B5C702C89/com_apple_MobileAsset_SoftwareUpdate/2a8e811508057ba136b17e4a749f8330a52eff45.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5ee415b2bbe4673e8eabacb2b5de216401cc4f31",
-                "sha2-256": "c0728def253d07d884fbcf811443bd01b3bc4ab0d748ddb8a629019d0f354fc9"
-            },
-            "size": 294113702
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18G69",
-                "18G82"
-            ],
-            "deviceMap": [
-                "iPhone8,2"
-            ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97953/314A6FD4-1D6D-4802-A8E6-9F6AD2D8F947/com_apple_MobileAsset_SoftwareUpdate/140cadb7f6ce82c9bfa06529531d9e445386d785.zip",
@@ -298,7 +297,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -319,7 +319,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -341,32 +342,8 @@
                 "18F72"
             ],
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97996/638F7D96-F160-4310-826E-0D869DCED323/com_apple_MobileAsset_SoftwareUpdate/f7d77895b6531518a5bb56aac1853b965a86a933.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0c1c8c49b41858df2785a09c2ad15d7502078383",
-                "sha2-256": "4d00a03c6aaca0ae2dcf053ca195f2e91c58244189a8322813a2ee07a924df4a"
-            },
-            "size": 829235284
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18E199",
-                "18E212",
-                "18F72"
-            ],
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98109/261FD923-1DFA-4886-B225-6CA79271C5A4/com_apple_MobileAsset_SoftwareUpdate/9498dd3cdf83e909556ef138c00a33be1416090a.zip",
@@ -386,31 +363,8 @@
                 "18G82"
             ],
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98145/F29A0E8B-04AF-4A64-8619-EDB6EC4B7B1E/com_apple_MobileAsset_SoftwareUpdate/3b29ca462a815982f2ea90e6e0316003fab0d470.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "69318e7bfb82946acea17f9aee14ca370a79da4c",
-                "sha2-256": "f084112b280c7ee431fa5cdbab492b4537248b5c11281f094093bbb5bc44a82d"
-            },
-            "size": 315635441
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18G69",
-                "18G82"
-            ],
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97858/F75E2B87-5362-4F8A-ADA5-69F0FCFFAFDA/com_apple_MobileAsset_SoftwareUpdate/8541e7ccac7f00fd528edd2e1c7c9fbfdebb085b.zip",
@@ -422,6 +376,49 @@
                 "sha2-256": "b0a427752bd9fab3a7a2e1191583b3eb9c35d9521bdb80873c62aa12ac630570"
             },
             "size": 315648074
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "18E199",
+                "18E212",
+                "18F72"
+            ],
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-97996/638F7D96-F160-4310-826E-0D869DCED323/com_apple_MobileAsset_SoftwareUpdate/f7d77895b6531518a5bb56aac1853b965a86a933.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0c1c8c49b41858df2785a09c2ad15d7502078383",
+                "sha2-256": "4d00a03c6aaca0ae2dcf053ca195f2e91c58244189a8322813a2ee07a924df4a"
+            },
+            "size": 829235284
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "18G69",
+                "18G82"
+            ],
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021FallFCS/patches/071-98145/F29A0E8B-04AF-4A64-8619-EDB6EC4B7B1E/com_apple_MobileAsset_SoftwareUpdate/3b29ca462a815982f2ea90e6e0316003fab0d470.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "69318e7bfb82946acea17f9aee14ca370a79da4c",
+                "sha2-256": "f084112b280c7ee431fa5cdbab492b4537248b5c11281f094093bbb5bc44a82d"
+            },
+            "size": 315635441
         },
         {
             "type": "ipsw",

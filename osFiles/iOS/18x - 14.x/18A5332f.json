@@ -10,9 +10,12 @@
         "align": "left"
     },
     "deviceMap": [
-        "iPhone8,1",
-        "iPhone8,2",
-        "iPhone8,4",
+        "iPhone8,1-S8000",
+        "iPhone8,1-S8003",
+        "iPhone8,2-S8000",
+        "iPhone8,2-S8003",
+        "iPhone8,4-S8000",
+        "iPhone8,4-S8003",
         "iPhone9,1",
         "iPhone9,2",
         "iPhone9,3",
@@ -37,7 +40,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -57,9 +61,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30294/3FCF4EF1-6D5C-4962-92A0-A6182FE21086/com_apple_MobileAsset_SoftwareUpdate/ca15ee5e2b361f33338eda11949607a0d93bedf3.zip",
@@ -70,10 +73,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "17G5059c",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71mAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30086/9140210D-2FA5-46CF-A257-398AB5123892/com_apple_MobileAsset_SoftwareUpdate/ff5ebf6e3ff274b30498afda94c48c7f69f6ce44.zip",
+                    "active": true
+                }
+            ],
+            "size": 2388354238
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18A5319i",
+            "deviceMap": [
+                "iPhone8,1-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30073/B5924BB3-B5EA-4FE4-9D8C-0540E485E010/com_apple_MobileAsset_SoftwareUpdate/f3f8e3765aabb6e48982413b452844bc3f4332cb.zip",
+                    "active": true
+                }
+            ],
+            "size": 586694127
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,1-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30214/0346FE88-350C-4A1C-A9AB-70A792971771/com_apple_MobileAsset_SoftwareUpdate/f342d4eeacd8d9941efccab10ab3e35b2d07073f.zip",
@@ -86,24 +116,8 @@
             "type": "ota",
             "prerequisiteBuild": "17G5059c",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30086/9140210D-2FA5-46CF-A257-398AB5123892/com_apple_MobileAsset_SoftwareUpdate/ff5ebf6e3ff274b30498afda94c48c7f69f6ce44.zip",
-                    "active": true
-                }
-            ],
-            "size": 2388354238
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17G5059c",
-            "deviceMap": [
-                "iPhone8,1"
-            ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30104/189C4B9A-3ECC-4F39-AF9C-CBC46329D957/com_apple_MobileAsset_SoftwareUpdate/c60985deb81cb21429eabf7a0ae168849dca2488.zip",
@@ -116,24 +130,8 @@
             "type": "ota",
             "prerequisiteBuild": "18A5319i",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30073/B5924BB3-B5EA-4FE4-9D8C-0540E485E010/com_apple_MobileAsset_SoftwareUpdate/f3f8e3765aabb6e48982413b452844bc3f4332cb.zip",
-                    "active": true
-                }
-            ],
-            "size": 586694127
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18A5319i",
-            "deviceMap": [
-                "iPhone8,1"
-            ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30291/0CC20728-0FAB-4ABB-81DF-4943BE436186/com_apple_MobileAsset_SoftwareUpdate/caafd9c6dd457043a4f0519bdb0da047cb7fd807.zip",
@@ -145,7 +143,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -165,9 +164,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30111/03A7010E-B924-44D3-8B4A-0CF482D2FC8E/com_apple_MobileAsset_SoftwareUpdate/9ac8e911ac6256f342fd7f04b180ad2c8f7a8d4d.zip",
@@ -178,10 +176,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "17G5059c",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66mAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30207/CC8EE4F9-3743-4F09-A5A7-DA9416A49CC9/com_apple_MobileAsset_SoftwareUpdate/d4224a11a6dac10a1e46d202de6120b9e9bde0c1.zip",
+                    "active": true
+                }
+            ],
+            "size": 2485800625
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18A5319i",
+            "deviceMap": [
+                "iPhone8,2-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30143/31FD29F8-40BB-44D3-9EA1-1CC0FAF4D762/com_apple_MobileAsset_SoftwareUpdate/5985c281ccd09bb94597615ef3ca16fec90dae1d.zip",
+                    "active": true
+                }
+            ],
+            "size": 592200914
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,2-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30316/FEEF6758-E80A-4674-896B-69ECD8A30FE3/com_apple_MobileAsset_SoftwareUpdate/941fcb1e3a1a34b4032091d214395b3a9a0e959e.zip",
@@ -194,24 +219,8 @@
             "type": "ota",
             "prerequisiteBuild": "17G5059c",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30207/CC8EE4F9-3743-4F09-A5A7-DA9416A49CC9/com_apple_MobileAsset_SoftwareUpdate/d4224a11a6dac10a1e46d202de6120b9e9bde0c1.zip",
-                    "active": true
-                }
-            ],
-            "size": 2485800625
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17G5059c",
-            "deviceMap": [
-                "iPhone8,2"
-            ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30059/DC27555C-FADF-46CC-B160-23063C81D56B/com_apple_MobileAsset_SoftwareUpdate/daf5681e30a2a34d5f9b3cd47bd8d6affcc9f812.zip",
@@ -224,24 +233,8 @@
             "type": "ota",
             "prerequisiteBuild": "18A5319i",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30143/31FD29F8-40BB-44D3-9EA1-1CC0FAF4D762/com_apple_MobileAsset_SoftwareUpdate/5985c281ccd09bb94597615ef3ca16fec90dae1d.zip",
-                    "active": true
-                }
-            ],
-            "size": 592200914
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18A5319i",
-            "deviceMap": [
-                "iPhone8,2"
-            ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30171/6B22558F-4B11-4469-AD02-1026D6441BBE/com_apple_MobileAsset_SoftwareUpdate/5752e08e5aa8f9fe044a8f885673e0e8dc79b6ce.zip",
@@ -253,7 +246,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -273,23 +267,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30232/94147801-BC96-4E60-8B23-98064F7F1585/com_apple_MobileAsset_SoftwareUpdate/a64ce8dc68f55f6f8ecf33281619074202658e77.zip",
-                    "active": true
-                }
-            ],
-            "size": 3445023853
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30278/7B10E5DC-7706-408D-B837-F86EBE706441/com_apple_MobileAsset_SoftwareUpdate/3cd6fc7efc30c047ecc423a3dcd774e0a7dc3587.zip",
@@ -302,24 +281,8 @@
             "type": "ota",
             "prerequisiteBuild": "17G5059c",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30084/5B1D7F2A-5188-4B6C-BB8C-E6383CBC22D1/com_apple_MobileAsset_SoftwareUpdate/71540a82af3d996b52ddd20821d21cc317e0bd2e.zip",
-                    "active": true
-                }
-            ],
-            "size": 2371676898
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17G5059c",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30176/7EED4F45-9455-43FD-BA7F-D1CC2630AD69/com_apple_MobileAsset_SoftwareUpdate/ebce1e203bf8064330d6c283eb1c6f61b25906de.zip",
@@ -332,24 +295,8 @@
             "type": "ota",
             "prerequisiteBuild": "18A5319i",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30164/44347F6A-96B0-4438-B3C4-C5BD3194CA2F/com_apple_MobileAsset_SoftwareUpdate/df1c87c6722f5c4d9a99302a4a07ecb131a0dc6f.zip",
-                    "active": true
-                }
-            ],
-            "size": 582291106
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "18A5319i",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30189/9BEAD799-232E-41BC-8859-A5FA91D19FF1/com_apple_MobileAsset_SoftwareUpdate/45869364e6eac365f89220a180c99f139419679f.zip",
@@ -357,6 +304,47 @@
                 }
             ],
             "size": 582302169
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30232/94147801-BC96-4E60-8B23-98064F7F1585/com_apple_MobileAsset_SoftwareUpdate/a64ce8dc68f55f6f8ecf33281619074202658e77.zip",
+                    "active": true
+                }
+            ],
+            "size": 3445023853
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17G5059c",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30084/5B1D7F2A-5188-4B6C-BB8C-E6383CBC22D1/com_apple_MobileAsset_SoftwareUpdate/71540a82af3d996b52ddd20821d21cc317e0bd2e.zip",
+                    "active": true
+                }
+            ],
+            "size": 2371676898
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "18A5319i",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020SummerSeed/patches/001-30164/44347F6A-96B0-4438-B3C4-C5BD3194CA2F/com_apple_MobileAsset_SoftwareUpdate/df1c87c6722f5c4d9a99302a4a07ecb131a0dc6f.zip",
+                    "active": true
+                }
+            ],
+            "size": 582291106
         },
         {
             "type": "ipsw",

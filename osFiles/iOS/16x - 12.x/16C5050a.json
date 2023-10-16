@@ -27,8 +27,10 @@
         "iPad6,4",
         "iPad6,7",
         "iPad6,8",
-        "iPad6,11",
-        "iPad6,12",
+        "iPad6,11-S8000",
+        "iPad6,11-S8003",
+        "iPad6,12-S8000",
+        "iPad6,12-S8003",
         "iPad7,1",
         "iPad7,2",
         "iPad7,3",
@@ -47,9 +49,12 @@
         "iPhone6,2",
         "iPhone7,1",
         "iPhone7,2",
-        "iPhone8,1",
-        "iPhone8,2",
-        "iPhone8,4",
+        "iPhone8,1-S8000",
+        "iPhone8,1-S8003",
+        "iPhone8,2-S8000",
+        "iPhone8,2-S8003",
+        "iPhone8,4-S8000",
+        "iPhone8,4-S8003",
         "iPhone9,1",
         "iPhone9,2",
         "iPhone9,3",
@@ -859,8 +864,10 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12",
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003",
                 "iPad7,5",
                 "iPad7,6"
             ],
@@ -882,9 +889,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24736/5F74056E-E782-11E8-80BA-B545A0427E47/com_apple_MobileAsset_SoftwareUpdate/3018e880bd9f4521d362e149db5c1180882c5dd9.zip",
@@ -895,10 +901,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71tAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24812/16259272-E784-11E8-9215-C1A53F97FA9A/com_apple_MobileAsset_SoftwareUpdate/eb01424c6c24ff5014e762c1fc9ec3e5310944e1.zip",
+                    "active": true
+                }
+            ],
+            "size": 324850415
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16C5043b",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24854/78EBBC56-E784-11E8-9511-835F5BE45AF6/com_apple_MobileAsset_SoftwareUpdate/79ba1b1682887f9f80158be1c670fdae795bab09.zip",
+                    "active": true
+                }
+            ],
+            "size": 66917118
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,11-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24861/413CD444-E783-11E8-9A23-997B85667A37/com_apple_MobileAsset_SoftwareUpdate/a594df9704f55575454eb4f7ecd0927e6c9914c7.zip",
@@ -911,24 +944,8 @@
             "type": "ota",
             "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24812/16259272-E784-11E8-9215-C1A53F97FA9A/com_apple_MobileAsset_SoftwareUpdate/eb01424c6c24ff5014e762c1fc9ec3e5310944e1.zip",
-                    "active": true
-                }
-            ],
-            "size": 324850415
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16B5089b",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24664/17CCE1AC-E784-11E8-9411-E3D2CF41C429/com_apple_MobileAsset_SoftwareUpdate/7e8d755bd54eef0482cb377fcb12401bd5bc0dff.zip",
@@ -941,24 +958,8 @@
             "type": "ota",
             "prerequisiteBuild": "16C5043b",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24854/78EBBC56-E784-11E8-9511-835F5BE45AF6/com_apple_MobileAsset_SoftwareUpdate/79ba1b1682887f9f80158be1c670fdae795bab09.zip",
-                    "active": true
-                }
-            ],
-            "size": 66917118
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16C5043b",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24865/791676DA-E784-11E8-9B73-8EA514B61A96/com_apple_MobileAsset_SoftwareUpdate/ec362c013be26fcb1639de5ff1fc7e509deee217.zip",
@@ -970,9 +971,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24698/5E921F0E-E783-11E8-BF44-D008CF957B87/com_apple_MobileAsset_SoftwareUpdate/69b529e2493799b74af0b8e90c30531fc86b79b8.zip",
@@ -983,10 +983,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72tAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24819/244C4F8A-E784-11E8-B7D2-C3BC0E361779/com_apple_MobileAsset_SoftwareUpdate/56e9bed44d11d0ba4eb757c5c6cf3761db9b469c.zip",
+                    "active": true
+                }
+            ],
+            "size": 324799343
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16C5043b",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24832/793B73A4-E784-11E8-99DA-DE859DEF101B/com_apple_MobileAsset_SoftwareUpdate/cba76dd7370346120e7e04188699dc6a06e7ec0c.zip",
+                    "active": true
+                }
+            ],
+            "size": 66866687
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24937/6B377A42-E783-11E8-9205-ADDF1DCD07A3/com_apple_MobileAsset_SoftwareUpdate/c20747ae92ce3f49158349ad738293b8b1a5b855.zip",
@@ -999,24 +1026,8 @@
             "type": "ota",
             "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24819/244C4F8A-E784-11E8-B7D2-C3BC0E361779/com_apple_MobileAsset_SoftwareUpdate/56e9bed44d11d0ba4eb757c5c6cf3761db9b469c.zip",
-                    "active": true
-                }
-            ],
-            "size": 324799343
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16B5089b",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24744/24B61F96-E784-11E8-AE5E-D4530F6B8407/com_apple_MobileAsset_SoftwareUpdate/fd5bd09896e8764411c4a681b97df7c6a2558771.zip",
@@ -1029,24 +1040,8 @@
             "type": "ota",
             "prerequisiteBuild": "16C5043b",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24832/793B73A4-E784-11E8-99DA-DE859DEF101B/com_apple_MobileAsset_SoftwareUpdate/cba76dd7370346120e7e04188699dc6a06e7ec0c.zip",
-                    "active": true
-                }
-            ],
-            "size": 66866687
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16C5043b",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24828/794007C0-E784-11E8-BAF4-81ACF10A1E69/com_apple_MobileAsset_SoftwareUpdate/6015039becfae0ec510df55cf92b1ccd7f292de1.zip",
@@ -1572,7 +1567,8 @@
             "deviceMap": [
                 "iPhone6,1",
                 "iPhone6,2",
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -1675,7 +1671,8 @@
             "type": "ipsw",
             "deviceMap": [
                 "iPhone7,1",
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -1737,7 +1734,8 @@
             "type": "ipsw",
             "deviceMap": [
                 "iPhone7,2",
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -1798,9 +1796,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24745/C8A9E8F4-E783-11E8-9215-9680A437CD1E/com_apple_MobileAsset_SoftwareUpdate/2b4baa7acd43eb192fa147dafaeb494468927b17.zip",
@@ -1811,10 +1808,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71mAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24716/4C1F8CFC-E784-11E8-A6A7-96E1BC732E57/com_apple_MobileAsset_SoftwareUpdate/79aebc0a62d046310f5263d5c05536dcfdf64c92.zip",
+                    "active": true
+                }
+            ],
+            "size": 314782877
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16C5043b",
+            "deviceMap": [
+                "iPhone8,1-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24712/8EA73386-E784-11E8-AD4C-F0FD536C7B89/com_apple_MobileAsset_SoftwareUpdate/a7a8896fabdbba369030b0957262c59dd33423f6.zip",
+                    "active": true
+                }
+            ],
+            "size": 68283923
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,1-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24822/C8A5A6F4-E783-11E8-9C90-BAF4F579A2FA/com_apple_MobileAsset_SoftwareUpdate/ddb71b057e81279bfb27bfcc3ccd28b28e53849a.zip",
@@ -1827,24 +1851,8 @@
             "type": "ota",
             "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24716/4C1F8CFC-E784-11E8-A6A7-96E1BC732E57/com_apple_MobileAsset_SoftwareUpdate/79aebc0a62d046310f5263d5c05536dcfdf64c92.zip",
-                    "active": true
-                }
-            ],
-            "size": 314782877
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16B5089b",
-            "deviceMap": [
-                "iPhone8,1"
-            ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24695/4CB6F1BE-E784-11E8-9034-B7FA76BFACF4/com_apple_MobileAsset_SoftwareUpdate/8f520d75d1128ab3dbd49bc30673572a1b37b31f.zip",
@@ -1857,24 +1865,8 @@
             "type": "ota",
             "prerequisiteBuild": "16C5043b",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24712/8EA73386-E784-11E8-AD4C-F0FD536C7B89/com_apple_MobileAsset_SoftwareUpdate/a7a8896fabdbba369030b0957262c59dd33423f6.zip",
-                    "active": true
-                }
-            ],
-            "size": 68283923
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16C5043b",
-            "deviceMap": [
-                "iPhone8,1"
-            ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24719/8EB8F792-E784-11E8-8615-813A0FC149D6/com_apple_MobileAsset_SoftwareUpdate/51543810181976b444b64883b444a46b35f5dc7b.zip",
@@ -1886,9 +1878,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66AP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24810/C7414570-E783-11E8-8538-C9C8275C917E/com_apple_MobileAsset_SoftwareUpdate/e7edab144428545d657d48940343a66ffa310968.zip",
@@ -1899,10 +1890,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66mAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24788/477628B4-E784-11E8-8C35-92609CA89EF9/com_apple_MobileAsset_SoftwareUpdate/1ce7b6475adc9092915c8720d0ba02eae1f1a93c.zip",
+                    "active": true
+                }
+            ],
+            "size": 316404873
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16C5043b",
+            "deviceMap": [
+                "iPhone8,2-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24797/8DDDAD36-E784-11E8-B5F7-CD4C21083754/com_apple_MobileAsset_SoftwareUpdate/7175df26b50c66bd5209af8d5e46656e6b555a4b.zip",
+                    "active": true
+                }
+            ],
+            "size": 69029161
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,2-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24708/C8A1043C-E783-11E8-B7A8-81A15955A3B3/com_apple_MobileAsset_SoftwareUpdate/5b7667b7e3bcac7d91c1a00e3db22bcaae9ec0a2.zip",
@@ -1915,24 +1933,8 @@
             "type": "ota",
             "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24788/477628B4-E784-11E8-8C35-92609CA89EF9/com_apple_MobileAsset_SoftwareUpdate/1ce7b6475adc9092915c8720d0ba02eae1f1a93c.zip",
-                    "active": true
-                }
-            ],
-            "size": 316404873
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16B5089b",
-            "deviceMap": [
-                "iPhone8,2"
-            ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24913/4801C360-E784-11E8-8210-9116D28BE7C2/com_apple_MobileAsset_SoftwareUpdate/a07c7ae4fd4868b265e06fbaee4b8f4fb55e60f6.zip",
@@ -1945,24 +1947,8 @@
             "type": "ota",
             "prerequisiteBuild": "16C5043b",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24797/8DDDAD36-E784-11E8-B5F7-CD4C21083754/com_apple_MobileAsset_SoftwareUpdate/7175df26b50c66bd5209af8d5e46656e6b555a4b.zip",
-                    "active": true
-                }
-            ],
-            "size": 69029161
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16C5043b",
-            "deviceMap": [
-                "iPhone8,2"
-            ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24665/8DEA5874-E784-11E8-94A2-D5B6A63FDFA7/com_apple_MobileAsset_SoftwareUpdate/cdee138512989e9da6b5471760b7e8cb3ffa9381.zip",
@@ -1974,23 +1960,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24918/C8A6302E-E783-11E8-8373-A72FC109F361/com_apple_MobileAsset_SoftwareUpdate/65645c08a12c897e55c7f43029ec614c37c90b55.zip",
-                    "active": true
-                }
-            ],
-            "size": 2267296453
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24845/C8A1DA6A-E783-11E8-B3E9-D319ABF91BB2/com_apple_MobileAsset_SoftwareUpdate/3c1e2582c9f0b3fdede80e65b60ab76f1a6ec9c7.zip",
@@ -2003,24 +1974,8 @@
             "type": "ota",
             "prerequisiteBuild": "16B5089b",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24707/4910087A-E784-11E8-86ED-9BBA8384C733/com_apple_MobileAsset_SoftwareUpdate/a4ee42af26a2ad06ed314d8803f3447ff8d37f45.zip",
-                    "active": true
-                }
-            ],
-            "size": 305252487
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16B5089b",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24673/4AA5CFBC-E784-11E8-92B7-DC38A28C9CF6/com_apple_MobileAsset_SoftwareUpdate/fd943b254e7e9785551eb7dd9c15925cd574bdd7.zip",
@@ -2033,24 +1988,8 @@
             "type": "ota",
             "prerequisiteBuild": "16C5043b",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24705/8E412FC8-E784-11E8-9ACC-A06ABCC08F0E/com_apple_MobileAsset_SoftwareUpdate/a7bf8f5798b1b0f3da868e9d4a3394188f97e9e7.zip",
-                    "active": true
-                }
-            ],
-            "size": 69807178
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16C5043b",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24871/8E4CD832-E784-11E8-8B42-D6499FD5F1A9/com_apple_MobileAsset_SoftwareUpdate/fec5f6ddf06d8a7062a974c8d5d5423ba2302b75.zip",
@@ -2058,6 +1997,47 @@
                 }
             ],
             "size": 69877326
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24918/C8A6302E-E783-11E8-8373-A72FC109F361/com_apple_MobileAsset_SoftwareUpdate/65645c08a12c897e55c7f43029ec614c37c90b55.zip",
+                    "active": true
+                }
+            ],
+            "size": 2267296453
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16B5089b",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24707/4910087A-E784-11E8-86ED-9BBA8384C733/com_apple_MobileAsset_SoftwareUpdate/a4ee42af26a2ad06ed314d8803f3447ff8d37f45.zip",
+                    "active": true
+                }
+            ],
+            "size": 305252487
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16C5043b",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2018FallSeed/patches/041-24705/8E412FC8-E784-11E8-9ACC-A06ABCC08F0E/com_apple_MobileAsset_SoftwareUpdate/a7bf8f5798b1b0f3da868e9d4a3394188f97e9e7.zip",
+                    "active": true
+                }
+            ],
+            "size": 69807178
         },
         {
             "type": "ipsw",

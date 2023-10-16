@@ -18,8 +18,10 @@
         "iPad6,4",
         "iPad6,7",
         "iPad6,8",
-        "iPad6,11",
-        "iPad6,12",
+        "iPad6,11-S8000",
+        "iPad6,11-S8003",
+        "iPad6,12-S8000",
+        "iPad6,12-S8003",
         "iPad7,1",
         "iPad7,2",
         "iPad7,3",
@@ -438,8 +440,10 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12",
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003",
                 "iPad7,5",
                 "iPad7,6"
             ],
@@ -461,9 +465,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69990/01C3508F-66C4-475A-918F-B19A01F5C5B3/com_apple_MobileAsset_SoftwareUpdate/b227ff7e09c4d77090cc041afb707789be7012b0.zip",
@@ -474,10 +477,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "17C5053a",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
-            "board": "J71tAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69896/1FA296D9-724B-497C-AD42-F98E520E721F/com_apple_MobileAsset_SoftwareUpdate/5ac18b5627d8539b3d8da037dc34fd682c6af7e8.zip",
+                    "active": true
+                }
+            ],
+            "size": 190761629
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17D5044a",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69998/CA2EB72C-769E-44F9-8CED-B760C1A0A2F6/com_apple_MobileAsset_SoftwareUpdate/151ab98d806e99b116b8454babe757c8c18383ea.zip",
+                    "active": true
+                }
+            ],
+            "size": 116562111
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,11-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69920/1E72D603-CD16-4B39-A040-4953526CC49C/com_apple_MobileAsset_SoftwareUpdate/ae20e1edf71294ff9b560e2ddcf3d4e20723b5ec.zip",
@@ -490,24 +520,8 @@
             "type": "ota",
             "prerequisiteBuild": "17C5053a",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69896/1FA296D9-724B-497C-AD42-F98E520E721F/com_apple_MobileAsset_SoftwareUpdate/5ac18b5627d8539b3d8da037dc34fd682c6af7e8.zip",
-                    "active": true
-                }
-            ],
-            "size": 190761629
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17C5053a",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69851/987783C3-32B6-4902-A19E-FBDBCBED0FFF/com_apple_MobileAsset_SoftwareUpdate/46c695c5d90e10143617aa00fbb75e03953950b4.zip",
@@ -520,24 +534,8 @@
             "type": "ota",
             "prerequisiteBuild": "17D5044a",
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
-            "board": "J71sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69998/CA2EB72C-769E-44F9-8CED-B760C1A0A2F6/com_apple_MobileAsset_SoftwareUpdate/151ab98d806e99b116b8454babe757c8c18383ea.zip",
-                    "active": true
-                }
-            ],
-            "size": 116562111
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17D5044a",
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "board": "J71tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69949/0A59B5AF-00B6-47AD-A7D1-E1592BC693BA/com_apple_MobileAsset_SoftwareUpdate/091da71e7eb8da3e1d224f7c8c64f4a378d024b6.zip",
@@ -549,9 +547,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72sAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69993/E0FFA445-914F-496A-895B-0EA02553AD6E/com_apple_MobileAsset_SoftwareUpdate/06a3493db8b8bed3f1e8d6d6b35434c5335cc55a.zip",
@@ -562,10 +559,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "17C5053a",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
-            "board": "J72tAP",
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69929/2ECE9EBF-3568-4C6A-93AD-D00F330D3DDD/com_apple_MobileAsset_SoftwareUpdate/8a04d58152d9f9d6b5f0bddedd519a4df328d2dc.zip",
+                    "active": true
+                }
+            ],
+            "size": 190708535
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "17D5044a",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69787/F6089F7D-7935-4BAD-9B29-051733683308/com_apple_MobileAsset_SoftwareUpdate/439910c56cc031ef59e1a1374d7f95134d656727.zip",
+                    "active": true
+                }
+            ],
+            "size": 116510720
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69792/7143790F-CE73-4F62-814A-12D96118B466/com_apple_MobileAsset_SoftwareUpdate/536a7aa697f82013dff1579424e9ac7724ba564a.zip",
@@ -578,24 +602,8 @@
             "type": "ota",
             "prerequisiteBuild": "17C5053a",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69929/2ECE9EBF-3568-4C6A-93AD-D00F330D3DDD/com_apple_MobileAsset_SoftwareUpdate/8a04d58152d9f9d6b5f0bddedd519a4df328d2dc.zip",
-                    "active": true
-                }
-            ],
-            "size": 190708535
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17C5053a",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69839/3F171C5F-FF52-464C-A1D3-8685D01ED05F/com_apple_MobileAsset_SoftwareUpdate/dfcde61a7d9967169be93c9c4aec02ffe4ce41cc.zip",
@@ -608,24 +616,8 @@
             "type": "ota",
             "prerequisiteBuild": "17D5044a",
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
-            "board": "J72sAP",
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69787/F6089F7D-7935-4BAD-9B29-051733683308/com_apple_MobileAsset_SoftwareUpdate/439910c56cc031ef59e1a1374d7f95134d656727.zip",
-                    "active": true
-                }
-            ],
-            "size": 116510720
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "17D5044a",
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "board": "J72tAP",
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2020WinterSeed/patches/061-69950/E7637BD8-F9F3-4101-B5B0-C0F62454FA16/com_apple_MobileAsset_SoftwareUpdate/1650235e4380af2f77f82075dac20da15a83f437.zip",

@@ -38,9 +38,12 @@
         "iPhone6,2",
         "iPhone7,1",
         "iPhone7,2",
-        "iPhone8,1",
-        "iPhone8,2",
-        "iPhone8,4",
+        "iPhone8,1-S8000",
+        "iPhone8,1-S8003",
+        "iPhone8,2-S8000",
+        "iPhone8,2-S8003",
+        "iPhone8,4-S8000",
+        "iPhone8,4-S8003",
         "iPod7,1"
     ],
     "sources": [
@@ -1070,7 +1073,8 @@
             "type": "ipsw",
             "deviceMap": [
                 "iPhone7,1",
-                "iPhone8,2"
+                "iPhone8,2-S8000",
+                "iPhone8,2-S8003"
             ],
             "links": [
                 {
@@ -1125,7 +1129,8 @@
             "type": "ipsw",
             "deviceMap": [
                 "iPhone7,2",
-                "iPhone8,1"
+                "iPhone8,1-S8000",
+                "iPhone8,1-S8003"
             ],
             "links": [
                 {
@@ -1179,9 +1184,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71AP",
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67028-20160718-6B4AE780-4A14-11E6-9852-94F0CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/cd2bd4078e60ed19a915d0f04750cd51fb2049b3.zip",
@@ -1195,10 +1199,26 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "14A5297c",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8000"
             ],
-            "board": "N71mAP",
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/ios10.0/031-66998-20160718-20FEDE96-4A07-11E6-A9B4-83E2CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/86df07637225f7ddb19257606b60f2927b4061cc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "1b45e1907c8b4f0ca1ccb170e047a597"
+            },
+            "size": 341638111
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,1-S8003"
+            ],
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67023-20160718-6C9FF026-4A14-11E6-8C07-AFF0CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/9cd6e7ec204fdea94a8d806b13fb5b224aaed035.zip",
@@ -1214,27 +1234,8 @@
             "type": "ota",
             "prerequisiteBuild": "14A5297c",
             "deviceMap": [
-                "iPhone8,1"
+                "iPhone8,1-S8003"
             ],
-            "board": "N71AP",
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/ios10.0/031-66998-20160718-20FEDE96-4A07-11E6-A9B4-83E2CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/86df07637225f7ddb19257606b60f2927b4061cc.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "1b45e1907c8b4f0ca1ccb170e047a597"
-            },
-            "size": 341638111
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "14A5297c",
-            "deviceMap": [
-                "iPhone8,1"
-            ],
-            "board": "N71mAP",
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67152-20160718-21AD0D7C-4A07-11E6-99E7-A6E2CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/d7223488dc0ac46d520a07fb3fcb64e1cacef84a.zip",
@@ -1249,9 +1250,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66AP",
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67005-20160718-6382F696-4A14-11E6-A0ED-1AF0CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/77aa03ff4273929643d46989255cc821345b6724.zip",
@@ -1265,10 +1265,26 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "14A5297c",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8000"
             ],
-            "board": "N66mAP",
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/ios10.0/031-67008-20160718-1D781300-4A07-11E6-AB6A-91E1CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/00757b046746b306267231e42661efe3b00b8dee.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "d4477384030b479b6aeee86c0f518e01"
+            },
+            "size": 372853399
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,2-S8003"
+            ],
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67027-20160718-647A455E-4A14-11E6-BA39-33F0CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/fef9e01fcc4b2baec1b19b50e093f64184d4f313.zip",
@@ -1284,27 +1300,8 @@
             "type": "ota",
             "prerequisiteBuild": "14A5297c",
             "deviceMap": [
-                "iPhone8,2"
+                "iPhone8,2-S8003"
             ],
-            "board": "N66AP",
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/ios10.0/031-67008-20160718-1D781300-4A07-11E6-AB6A-91E1CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/00757b046746b306267231e42661efe3b00b8dee.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "d4477384030b479b6aeee86c0f518e01"
-            },
-            "size": 372853399
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "14A5297c",
-            "deviceMap": [
-                "iPhone8,2"
-            ],
-            "board": "N66mAP",
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67058-20160718-1F21B5C6-4A07-11E6-9EE9-C1E1CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/892698e4e97e0a3ea417c33de3aed183008419d9.zip",
@@ -1319,7 +1316,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000",
+                "iPhone8,4-S8003"
             ],
             "links": [
                 {
@@ -1340,26 +1338,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/ios10.0/031-66994-20160718-683AD67C-4A14-11E6-A5B6-4DF0CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/c79d319859e914886c2b3251ad3582a2a956244b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "74fb21e1b695f835d9faf47320729258"
-            },
-            "size": 1702091512
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67042-20160718-6AC3EB54-4A14-11E6-8F1D-80F0CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/d7563df1a7f63b0f11aaf3a400dc85a56721f7e7.zip",
@@ -1375,27 +1355,8 @@
             "type": "ota",
             "prerequisiteBuild": "14A5297c",
             "deviceMap": [
-                "iPhone8,4"
+                "iPhone8,4-S8000"
             ],
-            "board": "N69AP",
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/ios10.0/031-67018-20160718-1FC4589E-4A07-11E6-94AC-08E2CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/2c504b27c89ffba12fdd207dbef39ab2f7586a24.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "338d35b18bcdf870c39f2a79f6df319a"
-            },
-            "size": 311156755
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "14A5297c",
-            "deviceMap": [
-                "iPhone8,4"
-            ],
-            "board": "N69uAP",
             "links": [
                 {
                     "url": "http://appldnld.apple.com/ios10.0/031-67064-20160718-201D9C7E-4A07-11E6-8964-27E2CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/3c9b474e3680d426525ce188131a9db5392fb988.zip",
@@ -1406,6 +1367,39 @@
                 "md5": "f9e5a4fcfe34211d1c25f3f64eae7336"
             },
             "size": 311229055
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/ios10.0/031-66994-20160718-683AD67C-4A14-11E6-A5B6-4DF0CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/c79d319859e914886c2b3251ad3582a2a956244b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "74fb21e1b695f835d9faf47320729258"
+            },
+            "size": 1702091512
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "14A5297c",
+            "deviceMap": [
+                "iPhone8,4-S8003"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/ios10.0/031-67018-20160718-1FC4589E-4A07-11E6-94AC-08E2CF9F5A9B/com_apple_MobileAsset_SoftwareUpdate/2c504b27c89ffba12fdd207dbef39ab2f7586a24.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "338d35b18bcdf870c39f2a79f6df319a"
+            },
+            "size": 311156755
         },
         {
             "type": "ipsw",
