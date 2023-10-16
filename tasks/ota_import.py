@@ -41,9 +41,16 @@ OS_MAP = [
 
 SESSION = requests.Session()
 
+VARIANT_EXCEPTIONS = [
+    "iPhone8,1",
+    "iPhone8,2",
+    "iPhone8,4",
+    "iPad6,11",
+    "iPad6,12"
+]
+
 VARIANTS = {}
 BOARD_IDS = {}
-MULTI_BOARD_IDS = {}
 
 for device in Path("deviceFiles").rglob("*.json"):
     device_data = json.load(device.open(encoding="utf-8"))
@@ -56,11 +63,11 @@ for device in Path("deviceFiles").rglob("*.json"):
     key = device_data.get("key", identifiers[0] if identifiers else name)
 
     for identifier in identifiers:
-        VARIANTS.setdefault(identifier, set()).add(key)
+        VARIANTS.setdefault(identifier, set())
+        if identifier not in VARIANT_EXCEPTIONS:
+            VARIANTS[identifier].add(key)
         if device_data.get('board'):
             if isinstance(device_data['board'], list):
-                if "-" not in device_data['board'][0]:
-                    MULTI_BOARD_IDS[key] = set(device_data['board'])
                 for board in device_data['board']:
                     BOARD_IDS.setdefault(board.upper() if device_data.get("type") == "iBridge" else board, set()).add(key)
             else:
@@ -194,7 +201,6 @@ def import_ota(
     ota = None
     info_plist = None
     build_manifest = None
-    board = None
 
     counter = 0
     while True:
@@ -255,11 +261,11 @@ def import_ota(
         if device_map:
             supported_devices = device_map
             bridge_devices = []
-        elif info_plist.get('SupportedDevices'):
+        elif info_plist.get('SupportedDeviceModels'):
+            supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
+        else:
             supported_devices = info_plist['SupportedDevices']
             bridge_devices = []
-        else:
-            supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
 
         prerequisite_builds = prerequisite_builds or info_plist.get('PrerequisiteBuild', '').split(';')
         if len(prerequisite_builds) == 1:
@@ -268,10 +274,6 @@ def import_ota(
             prerequisite_builds.sort()
 
         supported_devices = [i for i in supported_devices if i not in ["iProd99,1"]]
-
-        if len(supported_devices) == 1 and MULTI_BOARD_IDS.get(supported_devices[0]):
-            if MULTI_BOARD_IDS[supported_devices[0]].intersection(set(info_plist['SupportedDeviceModels'])) != MULTI_BOARD_IDS[supported_devices[0]]:
-                board = info_plist['SupportedDeviceModels'][0]
 
     if not os_str:
         for product_prefix, os_str in OS_MAP:
@@ -327,13 +329,13 @@ def import_ota(
         source = {"deviceMap": augment_with_keys(supported_devices), "type": "ota", "links": [{"url": ota_url, "active": True}]}
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
-        if board:
-            source["board"] = board
 
         db_data["sources"].append(source)
 
     if bridge_version:
         db_data['bridgeOSBuild'] = info_plist['BridgeVersionInfo']['BridgeProductBuildVersion']
+
+    print(supported_devices)
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     if use_network:
