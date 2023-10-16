@@ -335,8 +335,6 @@ def import_ota(
     if bridge_version:
         db_data['bridgeOSBuild'] = info_plist['BridgeVersionInfo']['BridgeProductBuildVersion']
 
-    print(supported_devices)
-
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     if use_network:
         print("\tRunning update links on file")
