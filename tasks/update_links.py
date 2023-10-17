@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import json
 import queue
 import string
@@ -210,4 +211,11 @@ def update_links(files: Collection[Path], use_network=True):
 
 
 if __name__ == "__main__":
-    update_links(list(Path("osFiles").rglob("*.json")))
+    files = []
+    if len(sys.argv) > 1:
+        for path in sys.argv[1:]:
+            files.extend(list(Path(f"osFiles/{path}").rglob("*.json")))
+    else:
+        files.extend(list(Path("osFiles").rglob("*.json")))
+    
+    update_links(files)
