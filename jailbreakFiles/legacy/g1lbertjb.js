@@ -11,7 +11,7 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/g1lbertJB",
       external: true
     },
-    latestVer: "1.0",
+    latestVer: "1.0.1",
     type: "Untethered",
     firmwares: ["5.0", "6.1.2"],
   },
@@ -51,6 +51,7 @@ module.exports = {
         "iPhone4,1", // iPhone 4S, A5
         "iPhone5,1", // iPhone 5 (GSM), A6
         "iPhone5,2", // iPhone 5 (CDMA), A6
+        "iPad1,1", // iPad
         "iPad2,1", // iPad 2 Wi-Fi, A5
         "iPad2,2", // iPad 2 Wi-Fi + 3G (GSM), A5
         "iPad2,3", // iPad 2 Wi-Fi + 3G (CDMA), A5
@@ -64,6 +65,7 @@ module.exports = {
         "iPad3,4", // iPad (4th generation) Wi-Fi, A6X
         "iPad3,5", // iPad (4th generation) Wi-Fi + Cellular, A6X
         "iPad3,6", // iPad (4th generation) Wi-Fi + Cellular (MM), A6X
+        "iPod3,1", // iPod touch (3rd generation)
         "iPod4,1", // iPod touch (4th generation)
         "iPod5,1", // iPod touch (5th generation), A5
       ]
