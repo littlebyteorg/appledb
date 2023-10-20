@@ -41,6 +41,7 @@ links_key_order = ["url", "catalog", "preferred", "active"]
 
 source_type_order = ["ipsw", "installassistant", "ota", "update", "combo", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
 
+os_prefix_order = ['Mac OS', 'Mac OS X', 'OS X', 'macOS', 'Windows']
 
 def device_sort(device):
     match = re.match(r"([a-zA-Z]+)(\d+),(\d+)", device)
@@ -57,6 +58,25 @@ def device_sort(device):
     return match.groups()[0], int(match.groups()[1]), int(match.groups()[2]), device
 
 
+def os_sort(os):
+    if os.startswith('Windows'):
+        os_split = os.split(" ", 1)
+        os_remains_mapping = {
+            '2000': '5',
+            'XP': '5.1',
+            'XP SP2': '5.2',
+            'XP SP3': '5.3',
+            'Vista': '6'
+        }
+        os_split[1] = os_remains_mapping.get(os_split[1], os_split[1])
+    else:
+        os_split = os.rsplit(" ", 1)
+        if os_split[1].startswith("10"):
+            os_split[1] = ".".join([f"{int(x):02d}" for x in os_split[1].split(".")])
+
+    return os_prefix_order.index(os_split[0]), float(os_split[1])
+
+
 def sorted_dict_by_key(data, order):
     return dict(sorted(data.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order)))
 
@@ -67,6 +87,10 @@ def sorted_dict_by_alphasort(data):
 
 def device_map_sort(device_map):
     return sorted(set(device_map), key=device_sort)
+
+
+def os_map_sort(os_map):
+    return sorted(set(os_map), key=os_sort)
 
 
 def build_number_sort(build_number):
@@ -92,6 +116,9 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
     if "deviceMap" in data:
         data["deviceMap"] = device_map_sort(data["deviceMap"])
 
+    if "osMap" in data:
+        data["osMap"] = os_map_sort(data["osMap"])
+
     for i, sdk in enumerate(data.get("sdks", [])):
         data["sdks"][i] = sorted_dict_by_key(sdk, key_order)
 
@@ -103,6 +130,8 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i].keys()) - set(sources_key_order))}")
 
         data["sources"][i]["deviceMap"] = device_map_sort(source["deviceMap"])
+        if source.get("osMap"):
+            data["sources"][i]["osMap"] = os_map_sort(source["osMap"])
         if "hashes" in source:
             data["sources"][i]["hashes"] = sorted_dict_by_alphasort(source["hashes"])
         for j, link in enumerate(source.get("links", [])):
@@ -124,7 +153,12 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             # This is a list which was already sorted previously
             prerequisite_order = source["prerequisiteBuild"][0]
 
-        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), build_number_sort(prerequisite_order)
+        if source.get("osMap"):
+            sorted_os_item = os_sort(source["osMap"][0])
+        else:
+            sorted_os_item = (-1, 0)
+
+        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), sorted_os_item, build_number_sort(prerequisite_order)
 
     data.get("sources", []).sort(key=source_sort)
 
