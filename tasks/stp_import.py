@@ -62,7 +62,11 @@ for mac_version in mac_versions:
     for product in plist.values():
         if "SafariTechPreview" not in product.get("ServerMetadataURL", ""):
             continue
-        if product['PostDate'].date() != properties['Posted']:
+
+        dist_response = requests.get(product['Distributions']['English']).text
+        dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
+        if dist_version != properties['Release']:
+            print(f'Version mismatch - macOS {mac_version}')
             continue
         catalog_safari = product
         break
@@ -97,8 +101,7 @@ for package_type, type_sources in sources.items():
             "links": [{"url": link}]
         })
 stp_file = Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json")
-json.dump(sort_os_file(None, source), stp_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+if not stp_file.exists():
+    json.dump(sort_os_file(None, source), stp_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
-update_links([stp_file])
-# print(sources)
-# print(properties)
+    update_links([stp_file])
