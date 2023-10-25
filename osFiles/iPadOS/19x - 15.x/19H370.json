@@ -1,9 +1,20 @@
 {
     "osStr": "iPadOS",
-    "version": "15.8 RC",
+    "version": "15.8",
     "build": "19H370",
-    "released": "2023-10-18",
-    "rc": true,
+    "released": "2023-10-25",
+    "createDuplicateEntries": [
+        {
+            "version": "15.8 RC",
+            "uniqueBuild": "19H370-RC",
+            "released": "2023-10-18",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT212789#158",
+    "ipd": {
+        "iPad": "https://updates.cdn-apple.com/2023FallFCS/documentation/012-93833/5D345347-7DB9-4FCE-AC18-B3DA43E44E6E/iPadSecShortRTF.ipd"
+    },
     "appledbWebImage": {
         "id": "ios15",
         "align": "left"
@@ -15,6 +26,26 @@
         "iPad5,4"
     ],
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad5,1",
+                "iPad5,2",
+                "iPad5,3",
+                "iPad5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-76437/E826C2CC-D34C-405F-B582-3F877988C052/iPad_64bit_TouchID_15.8_19H370_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1871dece87f78204b4a6de00415ad7ec1bdb8109",
+                "sha2-256": "fc0a677af490e488b855850b0e2a1288a876737be0c0aa75477243cec3ab6956"
+            },
+            "size": 5053548756
+        },
         {
             "type": "ota",
             "deviceMap": [

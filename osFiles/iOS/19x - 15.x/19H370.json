@@ -1,9 +1,21 @@
 {
     "osStr": "iOS",
-    "version": "15.8 RC",
+    "version": "15.8",
     "build": "19H370",
-    "released": "2023-10-18",
-    "rc": true,
+    "released": "2023-10-25",
+    "createDuplicateEntries": [
+        {
+            "version": "15.8 RC",
+            "uniqueBuild": "19H370-RC",
+            "released": "2023-10-18",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT212788#158",
+    "ipd": {
+        "iPhone": "https://updates.cdn-apple.com/2023FallSeed/documentation/042-84083/15E6053F-D6E3-48A6-8F22-503227554CB3/iPhoneiOSSecShortRTF.ipd",
+        "iPod": "https://updates.cdn-apple.com/2023FallSeed/documentation/042-84084/02290940-56D5-4345-A665-3237CAA060B4/iPodtouchiOSSecShortRTF.ipd"
+    },
     "appledbWebImage": {
         "id": "ios15",
         "align": "left"
@@ -20,6 +32,23 @@
     ],
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone8,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-76337/06663E02-EF9F-465C-A958-AA7F3B238C2A/iPhone_4.7_15.8_19H370_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8c2691a5845fbb3be110730f4a0359bd943305d9",
+                "sha2-256": "0a57a67127f283a86c99f8aab49f4818d051df3822b5218b465be63c1f7d4d6b"
+            },
+            "size": 5277524496
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "iPhone8,1"
@@ -35,6 +64,23 @@
                 "sha2-256": "371ab2f7df906530600e337e39afe01bac4605dbb879dd2796d02165e343324a"
             },
             "size": 4101094374
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone8,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-76338/0D898C88-1E03-42FD-A160-93DDEDD358FA/iPhone_5.5_15.8_19H370_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "35c4377214fabaa2878925e7724acadff8a20e20",
+                "sha2-256": "8fe6c5d524f18755cdd8e6505bf417fc3ceb83afa8bcc35461953749b0f603d2"
+            },
+            "size": 5434834594
         },
         {
             "type": "ota",
@@ -54,6 +100,23 @@
             "size": 4253667509
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone8,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-76384/1169EC5F-D667-4CD9-B1EB-8ACAC3B14F89/iPhone_4.0_64bit_15.8_19H370_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c4668a350a94cfbfb43389122fce27df4a747699",
+                "sha2-256": "54fa6dc08bb273beef680faace6813cf29d32cb96997864fa53f445e2f5f16bc"
+            },
+            "size": 5236251093
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "iPhone8,4"
@@ -69,6 +132,24 @@
                 "sha2-256": "5b1582aba8723abb8651fd255ce6d5b9e82a75820074ac68af08e1026e1cd7e1"
             },
             "size": 4063831890
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone9,1",
+                "iPhone9,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-76317/60642D20-45C8-4BEB-83C9-898F5B5FB257/iPhone_4.7_P3_15.8_19H370_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a3bea9e09025ccb8af1abcf30d48d2c51b8a0c4d",
+                "sha2-256": "2734587852570ace3005f13903fc7563d9178f35a5b00c42cad2f01a3b992357"
+            },
+            "size": 5402488227
         },
         {
             "type": "ota",
@@ -89,6 +170,24 @@
             "size": 4223796136
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone9,2",
+                "iPhone9,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-76582/616E5E74-0792-4444-B8C9-FF0BFA54B3CC/iPhone_5.5_P3_15.8_19H370_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0935fd29c1f77dd328b1bbdcf5e6b077e1501223",
+                "sha2-256": "8bb031d15548a504b4d5788416741df899858a98104b51030e1c4876c3581619"
+            },
+            "size": 5563419863
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "iPhone9,2",
@@ -105,6 +204,23 @@
                 "sha2-256": "07ea5e1fc0ea8ff2fc016795706c0b0e5c5b44b1c11b28e86a64aa3e66093e94"
             },
             "size": 4377015544
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPod9,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-76365/3FAD7473-B248-49F4-9660-92AD1051EBEC/iPodtouch_7_15.8_19H370_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "22eef8432a2e915f2f572bc9a7c9d3dd88396fcf",
+                "sha2-256": "d233dfdab8df49dd0489a63d4e1635fa7480ba3b5d7fd007d5dc66b38f48dbe4"
+            },
+            "size": 5021378515
         },
         {
             "type": "ota",
