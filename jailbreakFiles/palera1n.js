@@ -25,11 +25,11 @@ module.exports = {
         ]
       }
     ],
-    latestVer: "2.0.0b7",
+    latestVer: "2.0.0b8",
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
-    notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16.",
-    firmwares: ["15.0","16.7.1"]
+    notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16. Compatible with checkm8 capable iPads on iOS 17.",
+    firmwares: ["15.0","17.1"]
   },
   compatibility: [
     {
@@ -189,6 +189,39 @@ module.exports = {
         "20H18",
         "20H19",
         "20H30",
+      ]
+    },
+    {
+      devices: [
+        "iPad7,1",
+        "iPad7,2",
+        "iPad7,3",
+        "iPad7,4",
+        "iPad7,5",
+        "iPad7,6",
+        "iPad7,11",
+        "iPad7,12",
+      ],
+      firmwares: [
+        "21A5248v",
+        "21A5268h",
+        "21A5277h",
+        "21A5277h",
+        "21A5277j",
+        "21A5291h",
+        "21A5291j",
+        "21A5303d",
+        "21A5312c",
+        "21A5319a",
+        "21A5326a",
+        "21A329",
+        "21A340",
+        "21A351",
+        "21B5045h",
+        "21B5056e",
+        "21A360",
+        "21B5066a",
+        "21B74"
       ]
     }
   ]
