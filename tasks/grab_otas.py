@@ -24,7 +24,8 @@ skip_builds = {
         'iPhone14,3',
         'iPhone14,4',
         'iPhone14,5'
-    ]
+    ],
+    '21A326': []
 }
 
 asset_audiences_overrides = {
