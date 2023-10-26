@@ -188,9 +188,14 @@ for (osStr, builds) in parsed_args.items():
                 if not source.get('prerequisiteBuild'):
                     continue
 
-                current_device = source['deviceMap'][-1]
-                if args.devices and current_device not in args.devices:
-                    continue
+                if args.devices:
+                    current_device = set(args.devices).intersection(set(source['deviceMap']))
+                    if current_device:
+                        current_device = list(current_device)[-1]
+                    else:
+                        continue
+                else:
+                    current_device = source['deviceMap'][-1]
 
                 prerequisite_builds = source['prerequisiteBuild']
                 if isinstance(prerequisite_builds, list):
