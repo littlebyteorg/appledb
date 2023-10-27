@@ -57,6 +57,7 @@ asset_audiences = {
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
     'visionOS': {
+        'beta': '4d282764-95fe-4e0e-b7da-ea218fd1f75a',
         'release': 'c59ff9d1-5468-4f6c-9e54-f68d5eeab93b'
     },
     'Studio Display Firmware': {
