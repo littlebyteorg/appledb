@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import json
 import plistlib
 from pathlib import Path
@@ -38,11 +39,6 @@ for link in links:
     mac_versions.add(span_text)
     sources['dmg'][span_text] = a_tag.attrib.get("href")
 
-# mac_versions = sorted(list(mac_versions))
-mac_versions = list(mac_versions)
-
-# sources['dmg'] = {x: sources['dmg'][x] for x in mac_versions}
-
 properties = {}
 property_name = ""
 for cell in table:
@@ -51,7 +47,13 @@ for cell in table:
     else:
         properties[property_name] = cell.text
 
-properties['Posted'] = dateutil.parser.parse(properties["Posted"]).date() #.strftime("%Y-%m-%d")
+if Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json").exists():
+    print(f"{properties['Release']}.json already exists, exiting...")
+    sys.exit(0)
+
+properties['Posted'] = dateutil.parser.parse(properties["Posted"]).date()
+
+mac_versions = list(mac_versions)
 
 for mac_version in mac_versions:
     raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog')
