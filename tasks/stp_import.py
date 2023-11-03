@@ -77,11 +77,14 @@ for mac_version in mac_versions:
         print(f'Missing Safari Tech Preview for macOS {mac_version}')
         continue
 
+    safari_metadata = plistlib.loads(requests.get(catalog_safari['ServerMetadataURL']).content)
+    safari_version = safari_metadata['CFBundleShortVersionString']
     sources['pkg'][mac_version] = catalog_safari['Packages'][0]['URL']
 
 source = {
     "osStr": "Safari Technology Preview",
     "version": properties["Release"],
+    "safariVersion": safari_version,
     "released": properties["Posted"].strftime("%Y-%m-%d"),
     "beta": True,
     "releaseNotes": f"https://developer.apple.com/documentation/safari-technology-preview-release-notes/stp-release-{properties['Release']}",

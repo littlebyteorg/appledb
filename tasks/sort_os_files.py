@@ -11,6 +11,7 @@ key_order = [
     "osStr",
     "version",
     "iosVersion",
+    "safariVersion",
     "sortVersion",
     "build",
     "uniqueBuild",
