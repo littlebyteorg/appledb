@@ -43,6 +43,9 @@ except:
 # Domains that do not reliably support HEAD requests
 no_head = ["secure-appldnld.apple.com"]
 
+# Domains that have long caching on inactive links
+no_active_false_to_true = ["swcdn.apple.com"]
+
 
 def parse_link(url: str):
     for preferred_host, alternative_hosts in rewrite_map_v2.items():
