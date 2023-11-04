@@ -40,7 +40,7 @@ module.exports = {
         "12F69", // 8.3, iPad and iPod only
         "12F70", // 8.3, iPhone only
         "12H143", // 8.4
-        "12H143", // 8.4.1
+        "12H321", // 8.4.1
       ],
       devices: [
         "iPhone6,1", // iPhone 5s (GSM), A7
