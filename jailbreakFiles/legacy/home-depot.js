@@ -21,8 +21,8 @@ module.exports = {
       }
     ],
     type: "Semi-untethered",
-    firmwares: ["9.1", "9.3.4"],
-    notes: "Untethered through add-on package, also compatible with iOS 8.4.1",
+    firmwares: ["8.0", "9.3.4"],
+    notes: "Untethered through add-on package, also compatible with A5(X) devices on iOS 8.4.1, also compatible with A5(X) devices on iOS 8.0 to 8.4 with the use of a patching script",
     latestVer: "1.1 beta 1",
     color: "#ba8eb6",
     icon: "/assets/images/jb-icons/homedepot.png",
@@ -30,7 +30,6 @@ module.exports = {
   compatibility: [
     {
       firmwares: [
-        "12H321", // 8.4.1
         "13B143", // 9.1
         "13C75", // 9.2
         "13D15", // 9.2.1
@@ -61,6 +60,37 @@ module.exports = {
         "iPad3,4", // iPad (4th generation) Wi-Fi, A6X
         "iPad3,5", // iPad (4th generation) Wi-Fi + Cellular, A6X
         "iPad3,6", // iPad (4th generation) Wi-Fi + Cellular (MM), A6X
+        "iPod5,1", // iPod touch (5th generation), A5
+      ]
+    },
+    {
+      firmwares: [
+        "12A365", // 8.0
+        "12A402", // 8.0.1
+        "12A405", // 8.0.2
+        "12B410", // 8.1, iPad only
+        "12B411", // 8.1, iPhone and iPod only
+        "12B435", // 8.1.1
+        "12B440", // 8.1.2
+        "12B466", // 8.1.3
+        "12D508", // 8.2
+        "12F69", // 8.3, iPad and iPod only
+        "12F70", // 8.3, iPhone only
+        "12H143", // 8.4
+        "12H321", // 8.4.1
+      ],
+      devices: [
+        "iPhone4,1", // iPhone 4S, A5
+        "iPad2,1", // iPad 2 Wi-Fi, A5
+        "iPad2,2", // iPad 2 Wi-Fi + 3G (GSM), A5
+        "iPad2,3", // iPad 2 Wi-Fi + 3G (CDMA), A5
+        "iPad2,4", // iPad 2 Wi-Fi (Mid 2012), A5
+        "iPad2,5", // iPad mini Wi-Fi, A5
+        "iPad2,6", // iPad mini Wi-Fi + Cellular, A5
+        "iPad2,7", // iPad mini Wi-Fi + Cellular (MM), A5
+        "iPad3,1", // iPad (3rd generation) Wi-Fi, A5X
+        "iPad3,2", // iPad (3rd generation) Wi-Fi + Cellular (VZ), A5X
+        "iPad3,3", // iPad (3rd generation) Wi-Fi + Cellular, A5X
         "iPod5,1", // iPod touch (5th generation), A5
       ]
     },
