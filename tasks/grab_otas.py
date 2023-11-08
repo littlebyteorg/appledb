@@ -102,6 +102,8 @@ def get_board_ids(identifier):
         if device_data.get('iBridge'):
             device_path = Path(f"deviceFiles/iBridge/{device_data['iBridge']}.json")
             device_data = json.load(device_path.open())
+            # iBridge board IDs need to be upper-cased
+            device_data['board'] = device_data['board'].upper()
         if isinstance(device_data['board'], list):
             board_ids[identifier] = device_data['board']
         else:
