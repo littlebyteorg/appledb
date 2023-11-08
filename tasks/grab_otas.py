@@ -28,6 +28,14 @@ skip_builds = {
     '21A326': []
 }
 
+ignore_asset_builds = [
+    '16U693',
+    '19U512',
+    '20G1427',
+    '20H115',
+    '20U502'
+]
+
 asset_audiences_overrides = {
     'iPadOS': 'iOS'
 }
@@ -150,6 +158,8 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     for asset in assets:
         if asset.get("AlternateAssetAudienceUUID"):
             additional_audiences.add(asset["AlternateAssetAudienceUUID"])
+        if asset.get('Build') in ignore_asset_builds:
+            continue
 
         links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
 
