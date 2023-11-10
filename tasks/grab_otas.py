@@ -34,14 +34,6 @@ skip_builds = {
     ]
 }
 
-ignore_asset_builds = [
-    '16U693',
-    '19U512',
-    '20G1427',
-    '20H115',
-    '20U502'
-]
-
 asset_audiences_overrides = {
     'iPadOS': 'iOS'
 }
@@ -130,6 +122,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         asset_type = 'DarwinAccessoryUpdate.A2525'
 
     links = set()
+    newly_discovered_versions = {}
     additional_audiences = set()
 
     # iOS and iPadOS use the same asset audiences
@@ -140,7 +133,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         uuid.UUID(asset_audience)
     except:
         print(f"Bad asset audience - {asset_audience}")
-        return links
+        return links, {}
 
     request = {
         "ClientVersion": 2,
@@ -166,14 +159,18 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     for asset in assets:
         if asset.get("AlternateAssetAudienceUUID"):
             additional_audiences.add(asset["AlternateAssetAudienceUUID"])
-        if asset.get('Build') in ignore_asset_builds:
+        if build_versions.get(f"{osStr}-{asset['Build']}"):
             continue
+
+        newly_discovered_versions[asset['Build']] = asset['OSVersion'].removeprefix('9.9.')
 
         links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
 
     for additional_audience in additional_audiences:
-        links.update(call_pallas(device_name, board_id, os_version, os_build, osStr, additional_audience, is_rsr))
-    return links
+        additional_links, additional_versions = call_pallas(device_name, board_id, os_version, os_build, osStr, additional_audience, is_rsr)
+        links.update(additional_links)
+        newly_discovered_versions |= additional_versions
+    return links, newly_discovered_versions
 
 ota_links = set()
 for (osStr, builds) in parsed_args.items():
@@ -194,6 +191,7 @@ for (osStr, builds) in parsed_args.items():
         except:
             print(f"Bad path - {build_path}")
             continue
+        build_versions[f"{osStr}-{build}"] = build_data['version'].split(' ')[0]
         for device in build_data['deviceMap']:
             if args.devices and device not in args.devices:
                 continue
@@ -209,13 +207,13 @@ for (osStr, builds) in parsed_args.items():
                     continue
 
                 if args.devices:
-                    current_device = set(args.devices).intersection(set(source['deviceMap']))
-                    if current_device:
-                        current_device = list(current_device)[-1]
+                    current_devices = set(args.devices).intersection(set(source['deviceMap']))
+                    if current_devices:
+                        current_devices = list(current_devices)
                     else:
                         continue
                 else:
-                    current_device = source['deviceMap'][-1]
+                    current_devices = source['deviceMap']
 
                 prerequisite_builds = source['prerequisiteBuild']
                 if isinstance(prerequisite_builds, list):
@@ -228,18 +226,29 @@ for (osStr, builds) in parsed_args.items():
                 else:
                     prerequisite_build = prerequisite_builds
 
-                devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
+                for current_device in current_devices:
+                    devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
         for audience in args.audience:
             if (audience == 'beta' and osStr == 'macOS') or (audience.endswith('beta') and audience != 'beta' and osStr != 'macOS'):
                 # bad combination
                 continue
             for key, value in devices.items():
+                new_versions = {}
                 for board in value['boards']:
                     if not args.no_prerequisites:
                         for prerequisite_build, version in value['builds'].items():
-                            ota_links.update(call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr))
-                    ota_links.update(call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, audience, args.rsr))
+                            new_links, newly_discovered_versions = call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr)
+                            ota_links.update(new_links)
+                            new_versions |= newly_discovered_versions
+                    new_links, newly_discovered_versions = call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, audience, args.rsr)
+                    ota_links.update(new_links)
+                    new_versions |= newly_discovered_versions
+
+                    new_version_builds = sorted(new_versions.keys())[:-1]
+                    for new_build in new_version_builds:
+                        new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, osStr, audience, args.rsr)
+                        ota_links.update(new_links)
 
 [i.unlink() for i in Path.cwd().glob("import-ota") if i.is_file()]
 Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
