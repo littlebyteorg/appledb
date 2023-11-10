@@ -95,7 +95,7 @@ def os_map_sort(os_map):
 
 
 def build_number_sort(build_number):
-    match = re.match(r"(\d+)([A-Z])(\d+)([A-Z])?", build_number)
+    match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
     if not match:
         return 0, "A", 0, "a"
     return int(match.groups()[0]), match.groups()[1], int(match.groups()[2]), match.groups()[3]

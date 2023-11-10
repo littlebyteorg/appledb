@@ -2,6 +2,7 @@
 
 import json
 import plistlib
+import random
 import subprocess
 import shutil
 from pathlib import Path
@@ -52,7 +53,7 @@ if args.beta:
 SAFARI_DETAILS = {}
 
 for mac_version in mac_versions:
-    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog')
+    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content)['Products']
@@ -118,23 +119,25 @@ for mac_version in mac_versions:
 
         if is_beta:
             SAFARI_DETAILS[safari_build]['beta'] = True
-            SAFARI_DETAILS[safari_build]["sources"].append({
-                "type": "dmg",
-                "deviceMap": [
-                    "Safari (macOS)"
-                ],
-                "osMap": [
-                    f"macOS {mac_version}"
-                ],
-                "links": [
-                    {
-                        "url": f'https://developer.apple.com/services-account/download?path=/Safari/{safari_subfolder}/{get_beta_filename(dist_version)}'
-                    }
-                ]
-            })
 
 
     SAFARI_DETAILS[safari_build]["osMap"].append(f"macOS {mac_version}")
+
+    if is_beta:
+        SAFARI_DETAILS[safari_build]["sources"].append({
+            "type": "dmg",
+            "deviceMap": [
+                "Safari (macOS)"
+            ],
+            "osMap": [
+                f"macOS {mac_version}"
+            ],
+            "links": [
+                {
+                    "url": f'https://developer.apple.com/services-account/download?path=/Safari/{safari_subfolder}/{get_beta_filename(dist_version)}'
+                }
+            ]
+        })
 
     SAFARI_DETAILS[safari_build]["sources"].append({
         "type": "pkg",
