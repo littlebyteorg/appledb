@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import hashlib
 import json
 import plistlib
 import random
@@ -73,11 +74,23 @@ for mac_version in mac_versions:
 
     safari_destination_path = f'out/Safari_{dist_version.replace(" ", "_")}_{mac_version}'
     plist_path = ''
+    file_hashes = {}
+    sha1 = hashlib.sha1()
+    md5 = hashlib.md5()
+    sha256 = hashlib.sha256()
 
     with open(f'{safari_destination_path}.pkg', 'wb') as pkg_file:
-        pkg_file.write(SESSION.get(catalog_safari['Packages'][0]['URL']).content)
+        data = SESSION.get(catalog_safari['Packages'][0]['URL']).content
+        pkg_file.write(data)
+        sha1.update(data)
+        sha256.update(data)
+        md5.update(data)
         pkgutil_response = subprocess.run(['pkgutil', '--expand', f'{safari_destination_path}.pkg', f'{safari_destination_path}'])
         pkgutil_response.check_returncode()
+
+        file_hashes['sha1'] = sha1.hexdigest()
+        file_hashes['sha256'] = sha256.hexdigest()
+        file_hashes['md5'] = md5.hexdigest()
 
         with open(f'{safari_destination_path}/Payload', 'rb') as payload_file:
             if mac_version <= 12:
@@ -147,6 +160,7 @@ for mac_version in mac_versions:
         "osMap": [
             f"macOS {mac_version}"
         ],
+        "hashes": file_hashes,
         "links": [
             {
                 "url": catalog_safari['Packages'][0]['URL']
