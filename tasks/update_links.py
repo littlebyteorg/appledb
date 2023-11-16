@@ -99,7 +99,7 @@ class ProcessFileThread(threading.Thread):
                     resp.close()
 
                 if resp.status_code == 200:
-                    successful_hit = True
+                    successful_hit = 'unauthorized' not in resp.url
                 elif resp.status_code == 403 or resp.status_code == 404:
                     # Dead link
                     successful_hit = False
