@@ -14,7 +14,7 @@ module.exports = {
         url: "/installing-dopamine/",
       }
     ],
-    latestVer: "1.1.9",
+    latestVer: "1.1.11",
     icon: "/assets/images/jb-icons/dopamine.png",
     notes: "Must be installed via TrollStore. Formerly known as Fugu15 Max.",
     type: "Semi-Untethered",
