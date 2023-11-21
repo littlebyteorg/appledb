@@ -1,5 +1,4 @@
 const cname = 'api.appledb.dev'
-const { create } = require('domain')
 const fs = require('fs')
 const path = require('path')
 const hash = require('object-hash')
@@ -293,5 +292,16 @@ osFiles.map(function(fw) {
     write(path.join(dirName, dev, fw.uniqueBuild + '.json'), JSON.stringify(jb))
   })
 })
+
+// home page json
+
+let homePage = require('./appledb-web/homePage.json')
+homePage.softwareCount = osFiles.length
+homePage.deviceCount = deviceFiles.length
+
+mkdir('./out/appledb-web')
+write('./out/appledb-web/homePage.json', JSON.stringify(homePage))
+
+// finish
 
 console.log('Files Written:', filesWritten)
