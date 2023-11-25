@@ -40,7 +40,7 @@ sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "osMap", "windows
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
-source_type_order = ["ipsw", "installassistant", "ota", "update", "combo", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
+source_type_order = ["kdk", "ipsw", "installassistant", "ota", "update", "combo", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
 
 os_prefix_order = ['Mac OS', 'Mac OS X', 'OS X', 'macOS', 'Windows']
 
