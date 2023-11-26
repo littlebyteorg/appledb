@@ -12,6 +12,7 @@ module.exports = {
       {
         name: "Installing XinaA15",
         url: "/installing-xinaa15/",
+        pkgman: "sileo"
       }
     ],
     latestVer: "2.0.8",
