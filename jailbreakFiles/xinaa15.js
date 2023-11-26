@@ -4,20 +4,19 @@ module.exports = {
   priority: 2,
   info: {
     website: {
-      name: "xina.ss03.cn",
-      url: "https://xina.ss03.cn/",
+      name: "apt.xina.vip",
+      url: "https://apt.xina.vip/",
       external: true
     },
     guide: [
       {
         name: "Installing XinaA15",
-        url: "/xinaa15-archive/",
+        url: "/installing-xinaa15/",
       }
     ],
-    latestVer: "1.1.8",
-    notes: "No longer maintained, it's highly recommended to use Dopamine instead",
+    latestVer: "2.0.8",
     type: "Semi-Untethered",
-    firmwares: ["15.0","15.1.1"]
+    firmwares: ["15.0","15.4.1"]
   },
   compatibility: [
     {
@@ -75,7 +74,9 @@ module.exports = {
         "iPad14,2",
       ],
       firmwares: [
+        "19A340",
         "19A341",
+        "19A342",
         "19A344",
         "19A345",
         "19A346",
@@ -96,7 +97,28 @@ module.exports = {
         "19B5068a",
         "19B74",
         "19B75",
-        "19B81"
+        "19B81",
+        "19C5026i",
+        "19C5036e",
+        "19C5044b",
+        "19C5050b",
+        "19C56",
+        "19C57",
+        "19C63",
+        "19D49",
+        "19D50",
+        "19D5026g",
+        "19D5040e",
+        "19D52",
+        "19E241",
+        "19E258",
+        "19E5209h",
+        "19E5219e",
+        "19E5225g",
+        "19E5235a",
+        "19E5241a",
+        "19F5047e",
+        "19F5057e"
       ]
     }
   ]
