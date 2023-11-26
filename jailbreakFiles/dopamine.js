@@ -12,6 +12,7 @@ module.exports = {
       {
         name: "Installing Dopamine",
         url: "/installing-dopamine/",
+        pkgman: "sileo"
       }
     ],
     latestVer: "1.1.11",
