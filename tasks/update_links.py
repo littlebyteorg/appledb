@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import random
 import sys
 import json
 import queue
@@ -13,7 +14,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
-from link_info import needs_auth, needs_apple_auth, no_head, apple_auth_token, no_active_false_to_true
+from link_info import needs_auth, needs_apple_auth, no_head, needs_cache_bust, apple_auth_token, no_active_false_to_true
 from sort_os_files import sort_os_file
 
 # Disable SSL warnings, because Apple's SSL is broken
@@ -80,8 +81,12 @@ class ProcessFileThread(threading.Thread):
                                 stream=True,
                             )
                         else:
+                            if urlparse(url).hostname in needs_cache_bust:
+                                suffix = f'?cachebust{random.randint(100, 1000)}'
+                            else:
+                                suffix = ''
                             resp = self.session.head(
-                                url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
+                                f"{url}{suffix}".replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
                                 headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
                                 verify=False,
                                 allow_redirects=True,

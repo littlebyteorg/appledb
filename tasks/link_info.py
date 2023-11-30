@@ -34,6 +34,10 @@ needs_apple_auth = [
     "developer.apple.com",
 ]
 
+needs_cache_bust = [
+    "swcdn.apple.com"
+]
+
 try:
     with open("apple_token.txt", "r") as token_file:
         apple_auth_token = token_file.readline()
