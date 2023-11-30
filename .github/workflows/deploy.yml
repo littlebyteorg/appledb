@@ -48,6 +48,9 @@ jobs:
       - name: Build json files
         run: node deploy.js
 
+      - name: Generate appledb-web page data|
+        run: node generatePageData/index.js
+
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
       - name: Deploy to GitHub Pages
