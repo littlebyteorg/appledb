@@ -26,6 +26,12 @@ skip_builds = {
         'iPhone14,5'
     ],
     '21A326': [],
+    '21A340': [
+        'iPhone15,4',
+        'iPhone15,5',
+        'iPhone16,1',
+        'iPhone16,2',
+    ],
     '21A351': [
         'iPhone15,4',
         'iPhone15,5',
