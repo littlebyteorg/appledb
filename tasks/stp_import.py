@@ -3,6 +3,7 @@
 import sys
 import json
 import plistlib
+import random
 from pathlib import Path
 import html
 
@@ -14,7 +15,7 @@ import requests
 from sort_os_files import sort_os_file
 from update_links import update_links
 
-result = requests.get("https://developer.apple.com/safari/resources/")
+result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}")
 result.raise_for_status()
 element = lxml.html.fromstring(result.text)
 
@@ -56,7 +57,7 @@ properties['Posted'] = dateutil.parser.parse(properties["Posted"]).date()
 mac_versions = list(mac_versions)
 
 for mac_version in mac_versions:
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog')
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?cachebust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content)['Products']
