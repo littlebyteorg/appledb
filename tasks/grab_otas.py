@@ -46,6 +46,8 @@ asset_audiences_overrides = {
 
 asset_audiences = {
     'iOS': {
+        '15beta': 'ce48f60c-f590-4157-a96f-41179ca08278',
+        '16beta': 'a6050bca-50d8-4e45-adc2-f7333396a42c',
         'beta': '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
@@ -236,7 +238,7 @@ for (osStr, builds) in parsed_args.items():
                     devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
         for audience in args.audience:
-            if (audience == 'beta' and osStr == 'macOS') or (audience.endswith('beta') and audience != 'beta' and osStr != 'macOS'):
+            if not asset_audiences.get(asset_audiences_overrides.get(osStr, osStr), {}).get(audience) and 'beta' in audience:
                 # bad combination
                 continue
             for key, value in devices.items():
