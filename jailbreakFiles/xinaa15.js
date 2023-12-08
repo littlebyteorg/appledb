@@ -15,7 +15,7 @@ module.exports = {
         pkgman: "sileo"
       }
     ],
-    latestVer: "2.0.18",
+    latestVer: "2.0.19.1",
     type: "Semi-Untethered",
     firmwares: ["15.0","15.4.1"]
   },
