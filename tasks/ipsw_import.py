@@ -245,7 +245,7 @@ def import_ipsw(
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
 
-    if os_str == 'iOS' or os_str == 'iPadOS':
+    if os_str in ('audioOS', 'iOS', 'iPadOS', 'tvOS', 'watchOS'):
         db_data['appledbWebImage'] = {
             'id': os_str.lower() + db_data["version"].split(".", 1)[0],
             'align': 'left'
