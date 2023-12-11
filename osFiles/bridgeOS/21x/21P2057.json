@@ -1,9 +1,16 @@
 {
     "osStr": "bridgeOS",
-    "version": "8.2 RC",
+    "version": "8.2",
     "build": "21P2057",
-    "released": "2023-12-05",
-    "rc": true,
+    "released": "2023-12-11",
+    "createDuplicateEntries": [
+        {
+            "version": "8.2 RC",
+            "uniqueBuild": "21P2057-RC",
+            "released": "2023-12-05",
+            "rc": true
+        }
+    ],
     "deviceMap": [
         "iBridge2,1",
         "iBridge2,3",
@@ -25,6 +32,38 @@
         "iBridge2,22"
     ],
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iBridge2,1",
+                "iBridge2,3",
+                "iBridge2,4",
+                "iBridge2,5",
+                "iBridge2,6",
+                "iBridge2,7",
+                "iBridge2,8",
+                "iBridge2,10",
+                "iBridge2,12",
+                "iBridge2,14",
+                "iBridge2,15",
+                "iBridge2,16",
+                "iBridge2,19",
+                "iBridge2,20",
+                "iBridge2,21",
+                "iBridge2,22"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-38594/710CDE6E-D9E7-42E9-A6E2-85722491DEF7/iBridge2,1,iBridge2,10,iBridge2,12,iBridge2,14,iBridge2,15,iBridge2,16,iBridge2,19,iBridge2,20,iBridge2,21,iBridge2,22,iBridge2,3,iBridge2,4,iBridge2,5,iBridge2,6,iBridge2,7,iBridge2,8_8.2_21P2057_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e83802c197de118684abe05aee4e0f2b3c8887b6",
+                "sha2-256": "4b4ce01be0907f5c586b5daaabd3dc9798b7da28b63e54bed724d83cfd141e23"
+            },
+            "size": 704618178
+        },
         {
             "type": "pkg",
             "deviceMap": [
