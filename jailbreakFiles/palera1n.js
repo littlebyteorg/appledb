@@ -1,7 +1,7 @@
 module.exports = {
   name: "palera1n",
   alias: ["palerain"],
-  priority: 0,
+  priority: 1,
   info: {
     website: {
       name: "palera.in",
@@ -19,12 +19,12 @@ module.exports = {
             link: '/updating-to-15-8/'
           },
           {
-            text: 'Updating to 16.7.2',
-            link: '/updating-to-16-7-2/'
+            text: 'Updating to 16.7.3',
+            link: '/updating-to-16-7-3/'
           },
           {
-            text: 'Updating to 17.1',
-            link: '/updating-to-17-1/'
+            text: 'Updating to 17.2',
+            link: '/updating-to-17-2/'
           },
         ]
       }
@@ -33,7 +33,7 @@ module.exports = {
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
     notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16.",
-    firmwares: ["15.0","17.2b2"]
+    firmwares: ["15.0","17.2"]
   },
   compatibility: [
     {
