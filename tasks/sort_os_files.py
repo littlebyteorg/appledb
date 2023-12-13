@@ -15,6 +15,7 @@ key_order = [
     "sortVersion",
     "build",
     "uniqueBuild",
+    "embeddedOSBuild",
     "bridgeOSBuild",
     "released",
     "rc",
