@@ -15,7 +15,7 @@ module.exports = {
         pkgman: "sileo",
       }
     ],
-    latestVer: "1.1.1-beta",
+    latestVer: "1.1.2-beta",
     type: "Semi-untethered",
     notes: "Compatible with A9(X) - A11 devices. **Requires having jailbroken with palera1n before**.",
     firmwares: ["15.0","15.7.6"]
