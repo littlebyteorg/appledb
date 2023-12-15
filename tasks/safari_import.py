@@ -16,16 +16,15 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 
 parser = argparse.ArgumentParser()
+parser.add_argument('-v', '--version', type=int, default=17)
 parser.add_argument('-b', '--beta', action='store_true')
 args = parser.parse_args()
-
-SAFARI_VERSION = 17
 
 SESSION = requests.session()
 
 mac_versions = [
-    SAFARI_VERSION - 5,
-    SAFARI_VERSION - 4
+    args.version - 5,
+    args.version - 4
 ]
 
 mac_codenames = {
@@ -60,7 +59,7 @@ for mac_version in mac_versions:
     plist = plistlib.loads(raw_sucatalog.content)['Products']
     catalog_safari = None
     for product in plist.values():
-        if f"Safari{SAFARI_VERSION}" not in product.get("ServerMetadataURL", ""):
+        if f"Safari{args.version}" not in product.get("ServerMetadataURL", ""):
             continue
 
         dist_response = requests.get(product['Distributions']['English']).text
@@ -172,6 +171,6 @@ for mac_version in mac_versions:
     shutil.rmtree(safari_destination_path)
 
 for build, details in SAFARI_DETAILS.items():
-    safari_file = Path(f'osFiles/Software/Safari/{SAFARI_VERSION}.x/{build}.json')
+    safari_file = Path(f'osFiles/Software/Safari/{args.version}.x/{build}.json')
     json.dump(sort_os_file(None, details), safari_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     update_links([safari_file])
