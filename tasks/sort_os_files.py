@@ -141,7 +141,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
             if set(data["sources"][i]["links"][j].keys()) - set(links_key_order):
                 raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i]['links'][j].keys()) - set(links_key_order))}")
-        data["sources"][i]["links"].sort(key=lambda x: x.get('catalog'))
+        data["sources"][i]["links"].sort(key=lambda x: x.get('catalog', ''))
         if isinstance(source.get("prerequisiteBuild"), list):
             data["sources"][i]["prerequisiteBuild"].sort(key=build_number_sort)
 
