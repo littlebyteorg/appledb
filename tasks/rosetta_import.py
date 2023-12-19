@@ -4,6 +4,7 @@ from datetime import timezone
 import re
 import json
 import plistlib
+import random
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -12,7 +13,7 @@ import requests
 from sort_os_files import sort_os_file
 from update_links import update_links
 
-result = requests.get("https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog")
+result = requests.get(f"https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog?cachebust{random.randint(100, 1000)}")
 result.raise_for_status()
 
 plist = plistlib.loads(result.content)['Products']
