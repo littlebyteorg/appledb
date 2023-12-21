@@ -17,7 +17,7 @@ module.exports = {
     ],
     latestVer: "1.1.2-beta",
     type: "Semi-untethered",
-    notes: "Compatible with A9(X) - A11 devices. **Requires having jailbroken with palera1n before**.",
+    notes: "Compatible with A11 and earlier devices. **Requires having jailbroken with palera1n before**.",
     firmwares: ["15.0","15.7.6"]
   },
   compatibility: [
@@ -36,6 +36,10 @@ module.exports = {
         "iPhone10,4",
         "iPhone10,5",
         "iPhone10,6",
+        "iPad5,1",
+        "iPad5,2",
+        "iPad5,3",
+        "iPad5,4",
         "iPad6,3",
         "iPad6,4",
         "iPad6,7",
