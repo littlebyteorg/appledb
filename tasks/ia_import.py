@@ -2,6 +2,7 @@
 
 import argparse
 import datetime
+import hashlib
 import json
 import plistlib
 import re
@@ -52,18 +53,20 @@ def augment_with_keys(identifiers):
 
 
 def get_board_mappings(devices):
-    identifiers = []
+    mac_identifiers = []
+    bridge_identifiers = []
     for device in devices:
         device_mappings = list(BOARD_IDS.get(device, {}))
         if not device_mappings:
             continue
         if device_mappings[0].startswith("iBridge"):
-            continue
-        identifiers.extend(device_mappings)
-    return identifiers
+            bridge_identifiers.extend(device_mappings)
+        else:
+            mac_identifiers.extend(device_mappings)
+    return mac_identifiers, bridge_identifiers
 
 
-def create_file(build, recommended_version=None, version=None, released=None, beta=None, rc=None, rsr=False):
+def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None, rsr=False):
     assert version or recommended_version, "Must have either version or recommended_version"
 
     kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
@@ -71,9 +74,13 @@ def create_file(build, recommended_version=None, version=None, released=None, be
     kern_version = kern_version.group()
 
     major_version = ".".join((version or recommended_version).split(".")[:1]) + ".x"  # type: ignore
-    version_dir = f"{kern_version}x - {major_version}"
 
-    db_file = Path(f"osFiles/macOS/{version_dir}/{build}.json")
+    if os_str == "bridgeOS":
+        version_dir = f"{kern_version}x"
+    else:
+        version_dir = f"{kern_version}x - {major_version}"
+
+    db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
 
     if db_file.exists():
         print("\tFile already exists, not replacing")
@@ -97,7 +104,7 @@ def create_file(build, recommended_version=None, version=None, released=None, be
             if not friendly_version:
                 friendly_version = version or recommended_version
 
-        json_dict = {"osStr": "macOS", "version": friendly_version, "build": build}
+        json_dict = {"osStr": os_str, "version": friendly_version, "build": build}
 
         json.dump(
             json_dict,
@@ -161,17 +168,23 @@ def import_ia(
         else:
             info_plist = plistlib.loads(info_plist_response.content).get('MobileAssetProperties')
 
+    bridge_version = None
+
+    if info_plist.get('BridgeVersionInfo'):
+        bridge_version = info_plist['BridgeVersionInfo']['BridgeVersion'].split('.')
+        bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[0]}"
+
     # Get the build, version, and supported devices
     build = build or info_plist["Build"]
     # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
     # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
     # Check by substring first?
     recommended_version = recommended_version or info_plist["OSVersion"]
-    supported_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
+    supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
 
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "iFPGA", "iSim1,1"]]
 
-    db_file = create_file(build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
+    db_file = create_file("macOS", build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
@@ -203,8 +216,11 @@ def import_ia(
                 source['links'].append(new_link)
 
     if not found_source:
+        file_data = SESSION.get(ia_url).content
+        sha1 = hashlib.sha1()
+        sha1.update(file_data)
         print("\tAdding new source")
-        source = {"deviceMap": augment_with_keys(supported_devices), "type": "installassistant", "links": [{"url": ia_url, "active": True}]}
+        source = {"deviceMap": augment_with_keys(supported_devices), "type": "installassistant", "links": [{"url": ia_url, "active": True}], "hashes": {"sha1": sha1.hexdigest()}}
 
         if catalog_name:
             source['links'][0]['catalog'] = catalog_name
@@ -220,6 +236,15 @@ def import_ia(
         # and we can use threads to speed it up
         update_links([db_file], False)
     print(f"\tSanity check the file{', run update_links.py, ' if not use_network else ' '}and then commit it\n")
+
+    if bridge_version and bridge_devices:
+        macos_version = db_data["version"]
+        bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
+        print(bridge_version)
+        bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], recommended_version=bridge_version, released=db_data["released"])
+        bridge_data = json.load(bridge_file.open(encoding="utf-8"))
+        bridge_data["deviceMap"] = bridge_devices
+        json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     return db_file
 
 if __name__ == "__main__":
