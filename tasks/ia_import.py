@@ -75,10 +75,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 
     major_version = ".".join((version or recommended_version).split(".")[:1]) + ".x"  # type: ignore
 
-    if os_str == "bridgeOS":
-        version_dir = f"{kern_version}x"
-    else:
-        version_dir = f"{kern_version}x - {major_version}"
+    version_dir = f"{kern_version}x - {major_version}"
 
     db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
 

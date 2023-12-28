@@ -40,7 +40,7 @@ for product in plist.values():
     url = product['ServerMetadataURL'].replace('.smd', '.pkg')
     build = convertVersionToBuild(product['ExtendedMetaInfo']['BridgeOSPredicateProductOrdering'])
     print(build)
-    file_location = Path(f'osFiles/bridgeOS/{build[0:2]}x/{build}.json')
+    file_location = Path(f'osFiles/bridgeOS/{build[0:2]}x - {int(build[0:2] - 13)}.x/{build}.json')
     if not file_location.exists():
         print('File missing, import macOS OTAs first')
         continue

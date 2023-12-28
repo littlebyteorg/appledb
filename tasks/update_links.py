@@ -14,7 +14,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
-from link_info import needs_auth, needs_apple_auth, no_head, needs_cache_bust, apple_auth_token, no_active_false_to_true
+from link_info import needs_auth, needs_apple_auth, no_head, needs_cache_bust, apple_auth_token
 from sort_os_files import sort_os_file
 
 # Disable SSL warnings, because Apple's SSL is broken
@@ -110,14 +110,8 @@ class ProcessFileThread(threading.Thread):
                     successful_hit = False
                 else:  # Leave it be
                     raise Exception(f"Unknown status code: {resp.status_code}")
-                
-                if urlparse(url).hostname in no_active_false_to_true:
-                    if successful_hit and link.get('active') == False:
-                        success_map[url] = link["active"] = False
-                    else:
-                        success_map[url] = link["active"] = successful_hit
-                else:
-                    success_map[url] = link["active"] = successful_hit
+
+                success_map[url] = link["active"] = successful_hit
 
                 if successful_hit:
                     for hdr, lcl in [("x-amz-meta-digest-sha256", "sha2-256"), ("x-amz-meta-digest-sh1", "sha1")]:
@@ -139,6 +133,9 @@ class ProcessFileThread(threading.Thread):
                             # <md5>:<unix epoch>
                             # Seen on download.info.apple.com (Server: AkamaiNetStorage)
                             source.setdefault("hashes", {})["md5"] = potential_hash[:32]
+                        elif len(potential_hash) > 33 and potential_hash[32] == "-":
+                            # skip noise when processing large numbers of files
+                            pass
                         else:
                             print(f"Unknown ETag type: {resp.headers['ETag']}, ignoring")
 
