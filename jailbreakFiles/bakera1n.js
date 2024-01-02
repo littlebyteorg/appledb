@@ -4,7 +4,7 @@ module.exports = {
   hideFromGuide: true,
   info: {
     website: {
-      name: "https://kok3shidoll.web.app/bakera1n.html",
+      name: "bakera1n.html",
       url: "https://kok3shidoll.web.app/bakera1n.html",
       external: true
     },
