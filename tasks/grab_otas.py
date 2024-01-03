@@ -194,10 +194,7 @@ for (osStr, builds) in parsed_args.items():
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
-        if osStr == 'visionOS':
-            build_path = Path(f"osFiles/{osStr}/{build}.json")
-        else:
-            build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
+        build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
         devices = {}
         build_data = {}
         try:
