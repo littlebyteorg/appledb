@@ -213,11 +213,8 @@ def import_ia(
                 source['links'].append(new_link)
 
     if not found_source:
-        file_data = SESSION.get(ia_url).content
-        sha1 = hashlib.sha1()
-        sha1.update(file_data)
         print("\tAdding new source")
-        source = {"deviceMap": augment_with_keys(supported_devices), "type": "installassistant", "links": [{"url": ia_url, "active": True}], "hashes": {"sha1": sha1.hexdigest()}}
+        source = {"deviceMap": augment_with_keys(supported_devices), "type": "installassistant", "links": [{"url": ia_url, "active": True}]}
 
         if catalog_name:
             source['links'][0]['catalog'] = catalog_name
@@ -237,7 +234,6 @@ def import_ia(
     if bridge_version and bridge_devices:
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
-        print(bridge_version)
         bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], recommended_version=bridge_version, released=db_data["released"])
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
         bridge_data["deviceMap"] = bridge_devices
