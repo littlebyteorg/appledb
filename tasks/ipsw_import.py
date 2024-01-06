@@ -79,7 +79,7 @@ JSON import sample:
 """
 
 
-def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None):
+def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None, buildtrain=None):
     assert version or recommended_version, "Must have either version or recommended_version"
 
     kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
@@ -112,7 +112,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             if not friendly_version:
                 friendly_version = version or recommended_version
         json.dump(
-            {"osStr": os_str, "version": friendly_version, "build": build},
+            {"osStr": os_str, "version": friendly_version, "build": build, "buildTrain": buildtrain},
             db_file.open("w", encoding="utf-8", newline="\n"),
             indent=4,
             ensure_ascii=False,
@@ -202,6 +202,7 @@ def import_ipsw(
 
     # Get the build, version, and supported devices
     build = build or build_manifest["ProductBuildVersion"]
+    buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
     # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
     # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
     # Check by substring first?
@@ -237,7 +238,7 @@ def import_ipsw(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
+    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))

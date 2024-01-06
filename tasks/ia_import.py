@@ -66,7 +66,7 @@ def get_board_mappings(devices):
     return mac_identifiers, bridge_identifiers
 
 
-def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None, rsr=False):
+def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None, buildtrain=None):
     assert version or recommended_version, "Must have either version or recommended_version"
 
     kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
@@ -101,7 +101,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             if not friendly_version:
                 friendly_version = version or recommended_version
 
-        json_dict = {"osStr": os_str, "version": friendly_version, "build": build}
+        json_dict = {"osStr": os_str, "version": friendly_version, "build": build, "buildTrain": buildtrain}
 
         json.dump(
             json_dict,
@@ -181,7 +181,9 @@ def import_ia(
 
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "iFPGA", "iSim1,1"]]
 
-    db_file = create_file("macOS", build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc)
+    buildtrain = info_plist['TrainName']
+
+    db_file = create_file("macOS", build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
