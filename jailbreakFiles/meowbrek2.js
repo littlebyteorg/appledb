@@ -14,6 +14,12 @@ module.exports = {
         name: "Installing meowbrek2",
         url: "/installing-meowbrek2/",
         pkgman: "sileo",
+        updateLink: [
+          {
+            text: 'Updating to 15.8',
+            link: '/updating-to-15-8/'
+          },
+        ]
       },
       {
         text: "Guide (TrollStore)",
