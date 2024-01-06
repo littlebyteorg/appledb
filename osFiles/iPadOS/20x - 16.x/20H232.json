@@ -26,8 +26,10 @@
         "iPad6,4",
         "iPad6,7",
         "iPad6,8",
-        "iPad6,11",
-        "iPad6,12"
+        "iPad6,11-S8000",
+        "iPad6,11-S8003",
+        "iPad6,12-S8000",
+        "iPad6,12-S8003"
     ],
     "sources": [
         {
@@ -1313,8 +1315,10 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12"
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003"
             ],
             "links": [
                 {
@@ -1331,8 +1335,10 @@
         {
             "type": "ota",
             "deviceMap": [
-                "iPad6,11",
-                "iPad6,12"
+                "iPad6,11-S8000",
+                "iPad6,11-S8003",
+                "iPad6,12-S8000",
+                "iPad6,12-S8003"
             ],
             "links": [
                 {
@@ -1354,7 +1360,7 @@
                 "18F72"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8000"
             ],
             "links": [
                 {
@@ -1371,12 +1377,292 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
+                "18G69",
+                "18G82",
+                "18H17",
+                "18H107"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00378/4EAF6B09-9BC0-4BA5-B6F6-CAA01478E6FF/com_apple_MobileAsset_SoftwareUpdate/97555e3974d954bd223dc68d6b353bf73ae64de2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b1a4913785c7262f43f8234544b8527e1d8c9778",
+                "sha2-256": "de7a5d5051b76fdd50e6900018f33eff1f3f5192b72996a30d75771def025062"
+            },
+            "size": 3195845347
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19A340",
+                "19A344",
+                "19A346",
+                "19A348",
+                "19A404"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01386/C93492B2-4801-4ACD-BB65-17627C5B0D47/com_apple_MobileAsset_SoftwareUpdate/270728c970d834193838af810056ebc85af9ee1a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "95ad688b39cf723c5b063037506755d6e7390b30",
+                "sha2-256": "3beac2cfc45edc18468ef991c776dab468e562c691d123c5e8cdc26e62a83ce3"
+            },
+            "size": 2823714692
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19B74",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01730/7E119E12-CC3D-4683-8B23-FF220A2CF09C/com_apple_MobileAsset_SoftwareUpdate/45fe707d36eb5dc0ab7d629580aa27f68695ac32.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e9b5b30d4e648e42238ee32dc4a8339ab1ce8957",
+                "sha2-256": "376b925a81ca51b8e2ccc7cf3032f1164d7d85400f890c208dc49b682a69e494"
+            },
+            "size": 2772956124
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19C56",
+                "19C63"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00856/9C8BD08B-C037-49D9-8077-D0450DF23815/com_apple_MobileAsset_SoftwareUpdate/f168aa6327b4e4f93819bdc3fb3334e114af688d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3881bfe84c34a7c64452acc57bdeda881ea09e7f",
+                "sha2-256": "79af03705dfabe384c5fc681ce564440420f477112b5f219ac42661b8584b354"
+            },
+            "size": 2763364414
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19D50",
+                "19D52",
+                "19E241",
+                "19E258"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01623/7165643A-D01B-476A-B6EF-50573B428381/com_apple_MobileAsset_SoftwareUpdate/cdfe305a3c24ece3c3da252bfc13daae29bf3f25.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f6317a9a4da745f924d967bfccfaa022b341d40c",
+                "sha2-256": "8aa59449b6ad12fefd1226a04b10c94a84501328eabaa39f09a977021a29c74d"
+            },
+            "size": 2797070832
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19F77",
+                "19G71",
+                "19G82"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01579/9EDD6242-4BC5-4DF3-8671-A42AD90E316B/com_apple_MobileAsset_SoftwareUpdate/8b99bcaffcd0f8e739d2dca221abc55ef205d37c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5f3910655c852706a24a1179affaa605a8569409",
+                "sha2-256": "bf3455d56304dcdb7bc553b5e79db5eccab8aac3191a1a431c9cb91a616f82d1"
+            },
+            "size": 2737650474
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19H12",
+                "19H117",
+                "19H218"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01151/3DE21C25-E597-4680-87EF-7EA11965A2AD/com_apple_MobileAsset_SoftwareUpdate/3be6dd69d9a5f47f0f1ba02332262eab6ef0d821.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d4b160d0b759d01c0cd20afb3662c462c8967da8",
+                "sha2-256": "2d535e867321011d4f32147a933790f534422fbf9cb488e4fbc9f5f5a4633341"
+            },
+            "size": 2728205271
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20B82",
+                "20B101"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00697/252C2328-C028-4291-AFF8-EC29ECFFBAE2/com_apple_MobileAsset_SoftwareUpdate/4225fcbd111af84549323c5a2e5f54e1d72689b5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cdb074e67e59c682b44c9eeca492ec76484dfe2a",
+                "sha2-256": "666d9a4b26d48a1ed45c9609b9bf6f23b820df3bdb3e5514ad9ce272f7f94208"
+            },
+            "size": 1398827145
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20C65",
+                "20D47",
+                "20D67"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00540/710FEC90-3248-46A4-830A-CC0FAE0CE761/com_apple_MobileAsset_SoftwareUpdate/8b25f9fdef2843b7e8cd922135e7db6efc3fc9a9.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d4383dbf0b9536b4a247e30209cd4d7b5c7e27f2",
+                "sha2-256": "2b0e6eb3f06bd0b456dfff6e9ed744974bc253bc0d1864b2d81ce864ff7140e2"
+            },
+            "size": 1575655216
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20E246",
+                "20E252"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00862/6545C278-5870-42DF-9A0E-E608E352A586/com_apple_MobileAsset_SoftwareUpdate/db9acc4ad47ee89410ab5fa4b05095039c4c9beb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "57a6082e0f186ba1437ba509917b4bbb68385ada",
+                "sha2-256": "cb3b49af464e9332938f0c7f2eee89588107ad76385fd93da98e61587125fa14"
+            },
+            "size": 534579251
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20F66",
+                "20F75"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00969/29D592B9-D427-4B8E-A758-D2F810E4ECDA/com_apple_MobileAsset_SoftwareUpdate/f8853aedfe71b2918e65e71c93e10fce8975e00b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c0a96cec6e304ee8e1c1ba212a08244ee73f9e83",
+                "sha2-256": "53f4817ee6a46f305a77df9a12cb5cd90ef38a9b5bb81d93c8f20c04506c0570"
+            },
+            "size": 427867971
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20G75",
+                "20G81",
+                "20H18",
+                "20H19",
+                "20H30"
+            ],
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00478/8873A67A-2715-45DA-9487-A84A28F1DA5F/com_apple_MobileAsset_SoftwareUpdate/5761232df4f325e2848028eac8dc34ba2989cf04.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a5714afe91fd33cd4c58def54408a0428aebae80",
+                "sha2-256": "e3e0ea054691f77e6d6c81add09e8ca9994bb6dfdd3626b943db9cbcad27f5fd"
+            },
+            "size": 533769644
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20H115",
+            "deviceMap": [
+                "iPad6,11-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-02101/9E8E5323-0443-40D8-9D72-8B9E8228BF8B/com_apple_MobileAsset_SoftwareUpdate/1476868c74fc6edf959ff600f40b4efe95c2dbc0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "60df3d9f4f7f5b3541220c14fb06d0fca94d2af1",
+                "sha2-256": "46e6ba628bea6bacb97e214dcd3c88a37a6d94cc0020bd7bdf092db2e40652b3"
+            },
+            "size": 227469874
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
                 "18E199",
                 "18E212",
                 "18F72"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1399,30 +1685,7 @@
                 "18H107"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00378/4EAF6B09-9BC0-4BA5-B6F6-CAA01478E6FF/com_apple_MobileAsset_SoftwareUpdate/97555e3974d954bd223dc68d6b353bf73ae64de2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b1a4913785c7262f43f8234544b8527e1d8c9778",
-                "sha2-256": "de7a5d5051b76fdd50e6900018f33eff1f3f5192b72996a30d75771def025062"
-            },
-            "size": 3195845347
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18G69",
-                "18G82",
-                "18H17",
-                "18H107"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1446,7 +1709,7 @@
                 "19A404"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1462,51 +1725,9 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": [
-                "19A340",
-                "19A344",
-                "19A346",
-                "19A348",
-                "19A404"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01386/C93492B2-4801-4ACD-BB65-17627C5B0D47/com_apple_MobileAsset_SoftwareUpdate/270728c970d834193838af810056ebc85af9ee1a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "95ad688b39cf723c5b063037506755d6e7390b30",
-                "sha2-256": "3beac2cfc45edc18468ef991c776dab468e562c691d123c5e8cdc26e62a83ce3"
-            },
-            "size": 2823714692
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19B74",
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01730/7E119E12-CC3D-4683-8B23-FF220A2CF09C/com_apple_MobileAsset_SoftwareUpdate/45fe707d36eb5dc0ab7d629580aa27f68695ac32.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e9b5b30d4e648e42238ee32dc4a8339ab1ce8957",
-                "sha2-256": "376b925a81ca51b8e2ccc7cf3032f1164d7d85400f890c208dc49b682a69e494"
-            },
-            "size": 2772956124
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19B74",
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1527,28 +1748,7 @@
                 "19C63"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00856/9C8BD08B-C037-49D9-8077-D0450DF23815/com_apple_MobileAsset_SoftwareUpdate/f168aa6327b4e4f93819bdc3fb3334e114af688d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3881bfe84c34a7c64452acc57bdeda881ea09e7f",
-                "sha2-256": "79af03705dfabe384c5fc681ce564440420f477112b5f219ac42661b8584b354"
-            },
-            "size": 2763364414
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "19C56",
-                "19C63"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1571,7 +1771,7 @@
                 "19E258"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1588,35 +1788,12 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
-                "19D50",
-                "19D52",
-                "19E241",
-                "19E258"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01623/7165643A-D01B-476A-B6EF-50573B428381/com_apple_MobileAsset_SoftwareUpdate/cdfe305a3c24ece3c3da252bfc13daae29bf3f25.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f6317a9a4da745f924d967bfccfaa022b341d40c",
-                "sha2-256": "8aa59449b6ad12fefd1226a04b10c94a84501328eabaa39f09a977021a29c74d"
-            },
-            "size": 2797070832
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
                 "19F77",
                 "19G71",
                 "19G82"
             ],
             "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1633,56 +1810,12 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
-                "19F77",
-                "19G71",
-                "19G82"
-            ],
-            "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01579/9EDD6242-4BC5-4DF3-8671-A42AD90E316B/com_apple_MobileAsset_SoftwareUpdate/8b99bcaffcd0f8e739d2dca221abc55ef205d37c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5f3910655c852706a24a1179affaa605a8569409",
-                "sha2-256": "bf3455d56304dcdb7bc553b5e79db5eccab8aac3191a1a431c9cb91a616f82d1"
-            },
-            "size": 2737650474
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
                 "19H12",
                 "19H117",
                 "19H218"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01151/3DE21C25-E597-4680-87EF-7EA11965A2AD/com_apple_MobileAsset_SoftwareUpdate/3be6dd69d9a5f47f0f1ba02332262eab6ef0d821.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d4b160d0b759d01c0cd20afb3662c462c8967da8",
-                "sha2-256": "2d535e867321011d4f32147a933790f534422fbf9cb488e4fbc9f5f5a4633341"
-            },
-            "size": 2728205271
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "19H12",
-                "19H117",
-                "19H218"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1703,28 +1836,7 @@
                 "20B101"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00697/252C2328-C028-4291-AFF8-EC29ECFFBAE2/com_apple_MobileAsset_SoftwareUpdate/4225fcbd111af84549323c5a2e5f54e1d72689b5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cdb074e67e59c682b44c9eeca492ec76484dfe2a",
-                "sha2-256": "666d9a4b26d48a1ed45c9609b9bf6f23b820df3bdb3e5514ad9ce272f7f94208"
-            },
-            "size": 1398827145
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "20B82",
-                "20B101"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1746,29 +1858,7 @@
                 "20D67"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00540/710FEC90-3248-46A4-830A-CC0FAE0CE761/com_apple_MobileAsset_SoftwareUpdate/8b25f9fdef2843b7e8cd922135e7db6efc3fc9a9.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d4383dbf0b9536b4a247e30209cd4d7b5c7e27f2",
-                "sha2-256": "2b0e6eb3f06bd0b456dfff6e9ed744974bc253bc0d1864b2d81ce864ff7140e2"
-            },
-            "size": 1575655216
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "20C65",
-                "20D47",
-                "20D67"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1789,28 +1879,7 @@
                 "20E252"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00862/6545C278-5870-42DF-9A0E-E608E352A586/com_apple_MobileAsset_SoftwareUpdate/db9acc4ad47ee89410ab5fa4b05095039c4c9beb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "57a6082e0f186ba1437ba509917b4bbb68385ada",
-                "sha2-256": "cb3b49af464e9332938f0c7f2eee89588107ad76385fd93da98e61587125fa14"
-            },
-            "size": 534579251
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "20E246",
-                "20E252"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1831,28 +1900,7 @@
                 "20F75"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00969/29D592B9-D427-4B8E-A758-D2F810E4ECDA/com_apple_MobileAsset_SoftwareUpdate/f8853aedfe71b2918e65e71c93e10fce8975e00b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c0a96cec6e304ee8e1c1ba212a08244ee73f9e83",
-                "sha2-256": "53f4817ee6a46f305a77df9a12cb5cd90ef38a9b5bb81d93c8f20c04506c0570"
-            },
-            "size": 427867971
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "20F66",
-                "20F75"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1876,31 +1924,7 @@
                 "20H30"
             ],
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00478/8873A67A-2715-45DA-9487-A84A28F1DA5F/com_apple_MobileAsset_SoftwareUpdate/5761232df4f325e2848028eac8dc34ba2989cf04.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a5714afe91fd33cd4c58def54408a0428aebae80",
-                "sha2-256": "e3e0ea054691f77e6d6c81add09e8ca9994bb6dfdd3626b943db9cbcad27f5fd"
-            },
-            "size": 533769644
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "20G75",
-                "20G81",
-                "20H18",
-                "20H19",
-                "20H30"
-            ],
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1918,25 +1942,7 @@
             "type": "ota",
             "prerequisiteBuild": "20H115",
             "deviceMap": [
-                "iPad6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-02101/9E8E5323-0443-40D8-9D72-8B9E8228BF8B/com_apple_MobileAsset_SoftwareUpdate/1476868c74fc6edf959ff600f40b4efe95c2dbc0.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "60df3d9f4f7f5b3541220c14fb06d0fca94d2af1",
-                "sha2-256": "46e6ba628bea6bacb97e214dcd3c88a37a6d94cc0020bd7bdf092db2e40652b3"
-            },
-            "size": 227469874
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20H115",
-            "deviceMap": [
-                "iPad6,11"
+                "iPad6,11-S8003"
             ],
             "links": [
                 {
@@ -1958,7 +1964,7 @@
                 "18F72"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -1975,58 +1981,13 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
-                "18E199",
-                "18E212",
-                "18F72"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01415/8A5D8D9B-9DCD-4DFC-8A7C-65D3B0433BC0/com_apple_MobileAsset_SoftwareUpdate/7bc8075d157070accd9f3ef63828e0c3290b5140.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "eebd243d398333b2bbd7a491e631d4249904858a",
-                "sha2-256": "0047b3dad9ca8ad69c724d2555c1354335bab9d92496597e783ccec0360efee5"
-            },
-            "size": 3238087827
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
                 "18G69",
                 "18G82",
                 "18H17",
                 "18H107"
             ],
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00989/152D8C2A-A5BB-439D-AE7D-FDA0987D0AE9/com_apple_MobileAsset_SoftwareUpdate/b624b775c038e4994cd673141c1008fd821cf931.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3017fe6a0b1c723396966d2eb59687692fbf6146",
-                "sha2-256": "2a9fd63b35868b040e6f6e2f60b3ee91ed79a2ccb0e8a2d520a3560c6d455bd5"
-            },
-            "size": 3222065029
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "18G69",
-                "18G82",
-                "18H17",
-                "18H107"
-            ],
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2050,31 +2011,7 @@
                 "19A404"
             ],
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00680/000EC63C-8649-4420-BEDD-93006B9E3125/com_apple_MobileAsset_SoftwareUpdate/a66b1566855ddcfe47bfb58214f9c482ce53f551.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f527334f0be8eb90d9f8252aacb3563c9ce53914",
-                "sha2-256": "671def145ee27ba065d9bde5c30a6d1b18a94dc42c0cf57ac12d5284c19b02b3"
-            },
-            "size": 2849934724
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "19A340",
-                "19A344",
-                "19A346",
-                "19A348",
-                "19A404"
-            ],
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2092,25 +2029,7 @@
             "type": "ota",
             "prerequisiteBuild": "19B74",
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00526/F4920D10-2F02-4D2A-AED7-7D861F77A5DA/com_apple_MobileAsset_SoftwareUpdate/e89023d02d3396c229e1fb3eab46bea3e4a1b58f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "00f243391125436fda95f11908d5f365b96f3b4b",
-                "sha2-256": "506cbafab3f6b0bc4fac656e8c512c6cda3fff438744100dbe04bd0f4120039a"
-            },
-            "size": 2799172885
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19B74",
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2131,7 +2050,7 @@
                 "19C63"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2148,57 +2067,13 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
-                "19C56",
-                "19C63"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01870/D3982579-44E7-4957-893B-520B6BB7A240/com_apple_MobileAsset_SoftwareUpdate/e502fd167e39bf0a5a6fda1288efab24844c4a93.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1fccd7bd8334eef1e7cb72aa8857295fa2a92fe6",
-                "sha2-256": "e3bcd7e7ca1f02a95f24ab8d996cd5f9eee852379e7bf34780c6b88be908c228"
-            },
-            "size": 2789584545
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
                 "19D50",
                 "19D52",
                 "19E241",
                 "19E258"
             ],
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01323/9E9097EE-2321-4FAD-8C69-4E835D687000/com_apple_MobileAsset_SoftwareUpdate/86e283dd681d1ba02d7a1174232bd2123ae4a8f0.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d15944cb236ecf6d5d9b5bbc34de8d002f0711bc",
-                "sha2-256": "188320a21663d2a1a727a7d73d124b6f0d39c1464033213084542af0b3b92fb9"
-            },
-            "size": 2823293302
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "19D50",
-                "19D52",
-                "19E241",
-                "19E258"
-            ],
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2220,29 +2095,7 @@
                 "19G82"
             ],
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00611/6143A6B5-640F-47D6-854F-2801F33835C1/com_apple_MobileAsset_SoftwareUpdate/def7f8fdb62993958f6bfee30c6fa52acfd22f8e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "80ba7bc6a13c14ec735634e81e400d9f0a455d2e",
-                "sha2-256": "9616d1ef413ee493e815a6fd1002225d546aed6ed7cd92a84557c2b71745cf3a"
-            },
-            "size": 2763868213
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "19F77",
-                "19G71",
-                "19G82"
-            ],
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2264,29 +2117,7 @@
                 "19H218"
             ],
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01102/65CF7DFB-92CC-40E7-B683-65D0B7D5C906/com_apple_MobileAsset_SoftwareUpdate/26ec9fe223108c72f0363b0e5dc9e861afa3fc5b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ec9a2ec0528900d31df7971e24827bc2ebc4ef72",
-                "sha2-256": "53c7946fa2cd6fb2ac6f0e60990eac60b0ebd7fc98b033e95523a41376d98eb7"
-            },
-            "size": 2754422736
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "19H12",
-                "19H117",
-                "19H218"
-            ],
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2307,7 +2138,7 @@
                 "20B101"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2324,33 +2155,12 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
-                "20B82",
-                "20B101"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01849/D8CB8082-1E1D-4498-A072-354D708F2DFC/com_apple_MobileAsset_SoftwareUpdate/564fabc84897a3b62b445b8b5d83cb2447c5abab.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "fb3ad84f3c8b3e9d570ad78fbf89e5c8f9167e46",
-                "sha2-256": "f0ae2bda79b354d4779d168e59b273383fc0a91d7dbc7b6abde601b4ba7bb808"
-            },
-            "size": 1425048750
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
                 "20C65",
                 "20D47",
                 "20D67"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2367,33 +2177,11 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
-                "20C65",
-                "20D47",
-                "20D67"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01714/F92B46B4-950A-47D1-8CD8-33E8CD6FAB38/com_apple_MobileAsset_SoftwareUpdate/cb8d020e5be509820006faf8aa6c99cc952fe383.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "638ce98f9bc4bce1104f977560f36351ef3d465f",
-                "sha2-256": "0f5e2bbdfd7e35d748dff4a262c77ff1c7849d653d7a39da1ff99d75aea60d7f"
-            },
-            "size": 1601879481
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
                 "20E246",
                 "20E252"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2410,53 +2198,11 @@
         {
             "type": "ota",
             "prerequisiteBuild": [
-                "20E246",
-                "20E252"
-            ],
-            "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01745/815A4F3D-44C2-41BD-8D90-270BD894EF27/com_apple_MobileAsset_SoftwareUpdate/ccb1acbdfa0e7f79510505ab6f961df2e634bd35.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bed1b5e635f3c470e5ca006ebfbce3fb6b9c5445",
-                "sha2-256": "898a2da6d510409ed7820f28267a6498d6b7cd3cb2150f0ef1d9486cbba4ba1b"
-            },
-            "size": 560794130
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
                 "20F66",
                 "20F75"
             ],
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00389/DF7A8FC5-72DD-4B87-AC16-3E3FD5DB6DB5/com_apple_MobileAsset_SoftwareUpdate/ecef6d98a7fce962ec1380cde03d900b1996c215.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a12e72b11c7ef61e0d35886b8a0a0776cfca53ce",
-                "sha2-256": "e3912b7026cb53cae19996638f28863005d0863eaed6129017ed5d7f0f030b9b"
-            },
-            "size": 454080640
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": [
-                "20F66",
-                "20F75"
-            ],
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2480,7 +2226,7 @@
                 "20H30"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8000"
             ],
             "links": [
                 {
@@ -2496,6 +2242,284 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "20H115",
+            "deviceMap": [
+                "iPad6,12-S8000"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-02094/CE030548-77E4-4D52-8C1C-E6E3BB19A799/com_apple_MobileAsset_SoftwareUpdate/2d387f0c0b55a03c1b3181c2127f9cf826040369.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4f0d01d8b3aeb1b9cf704b1a4faead9f6109a047",
+                "sha2-256": "05f74cd153fb0953cc7064b1f734a067dec70148023674ed3bb3f98cde4c8f32"
+            },
+            "size": 253730130
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "18E199",
+                "18E212",
+                "18F72"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01415/8A5D8D9B-9DCD-4DFC-8A7C-65D3B0433BC0/com_apple_MobileAsset_SoftwareUpdate/7bc8075d157070accd9f3ef63828e0c3290b5140.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "eebd243d398333b2bbd7a491e631d4249904858a",
+                "sha2-256": "0047b3dad9ca8ad69c724d2555c1354335bab9d92496597e783ccec0360efee5"
+            },
+            "size": 3238087827
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "18G69",
+                "18G82",
+                "18H17",
+                "18H107"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00989/152D8C2A-A5BB-439D-AE7D-FDA0987D0AE9/com_apple_MobileAsset_SoftwareUpdate/b624b775c038e4994cd673141c1008fd821cf931.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3017fe6a0b1c723396966d2eb59687692fbf6146",
+                "sha2-256": "2a9fd63b35868b040e6f6e2f60b3ee91ed79a2ccb0e8a2d520a3560c6d455bd5"
+            },
+            "size": 3222065029
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19A340",
+                "19A344",
+                "19A346",
+                "19A348",
+                "19A404"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00680/000EC63C-8649-4420-BEDD-93006B9E3125/com_apple_MobileAsset_SoftwareUpdate/a66b1566855ddcfe47bfb58214f9c482ce53f551.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f527334f0be8eb90d9f8252aacb3563c9ce53914",
+                "sha2-256": "671def145ee27ba065d9bde5c30a6d1b18a94dc42c0cf57ac12d5284c19b02b3"
+            },
+            "size": 2849934724
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19B74",
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00526/F4920D10-2F02-4D2A-AED7-7D861F77A5DA/com_apple_MobileAsset_SoftwareUpdate/e89023d02d3396c229e1fb3eab46bea3e4a1b58f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "00f243391125436fda95f11908d5f365b96f3b4b",
+                "sha2-256": "506cbafab3f6b0bc4fac656e8c512c6cda3fff438744100dbe04bd0f4120039a"
+            },
+            "size": 2799172885
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19C56",
+                "19C63"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01870/D3982579-44E7-4957-893B-520B6BB7A240/com_apple_MobileAsset_SoftwareUpdate/e502fd167e39bf0a5a6fda1288efab24844c4a93.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1fccd7bd8334eef1e7cb72aa8857295fa2a92fe6",
+                "sha2-256": "e3bcd7e7ca1f02a95f24ab8d996cd5f9eee852379e7bf34780c6b88be908c228"
+            },
+            "size": 2789584545
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19D50",
+                "19D52",
+                "19E241",
+                "19E258"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01323/9E9097EE-2321-4FAD-8C69-4E835D687000/com_apple_MobileAsset_SoftwareUpdate/86e283dd681d1ba02d7a1174232bd2123ae4a8f0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d15944cb236ecf6d5d9b5bbc34de8d002f0711bc",
+                "sha2-256": "188320a21663d2a1a727a7d73d124b6f0d39c1464033213084542af0b3b92fb9"
+            },
+            "size": 2823293302
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19F77",
+                "19G71",
+                "19G82"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00611/6143A6B5-640F-47D6-854F-2801F33835C1/com_apple_MobileAsset_SoftwareUpdate/def7f8fdb62993958f6bfee30c6fa52acfd22f8e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "80ba7bc6a13c14ec735634e81e400d9f0a455d2e",
+                "sha2-256": "9616d1ef413ee493e815a6fd1002225d546aed6ed7cd92a84557c2b71745cf3a"
+            },
+            "size": 2763868213
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "19H12",
+                "19H117",
+                "19H218"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01102/65CF7DFB-92CC-40E7-B683-65D0B7D5C906/com_apple_MobileAsset_SoftwareUpdate/26ec9fe223108c72f0363b0e5dc9e861afa3fc5b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ec9a2ec0528900d31df7971e24827bc2ebc4ef72",
+                "sha2-256": "53c7946fa2cd6fb2ac6f0e60990eac60b0ebd7fc98b033e95523a41376d98eb7"
+            },
+            "size": 2754422736
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20B82",
+                "20B101"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01849/D8CB8082-1E1D-4498-A072-354D708F2DFC/com_apple_MobileAsset_SoftwareUpdate/564fabc84897a3b62b445b8b5d83cb2447c5abab.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fb3ad84f3c8b3e9d570ad78fbf89e5c8f9167e46",
+                "sha2-256": "f0ae2bda79b354d4779d168e59b273383fc0a91d7dbc7b6abde601b4ba7bb808"
+            },
+            "size": 1425048750
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20C65",
+                "20D47",
+                "20D67"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01714/F92B46B4-950A-47D1-8CD8-33E8CD6FAB38/com_apple_MobileAsset_SoftwareUpdate/cb8d020e5be509820006faf8aa6c99cc952fe383.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "638ce98f9bc4bce1104f977560f36351ef3d465f",
+                "sha2-256": "0f5e2bbdfd7e35d748dff4a262c77ff1c7849d653d7a39da1ff99d75aea60d7f"
+            },
+            "size": 1601879481
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20E246",
+                "20E252"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-01745/815A4F3D-44C2-41BD-8D90-270BD894EF27/com_apple_MobileAsset_SoftwareUpdate/ccb1acbdfa0e7f79510505ab6f961df2e634bd35.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bed1b5e635f3c470e5ca006ebfbce3fb6b9c5445",
+                "sha2-256": "898a2da6d510409ed7820f28267a6498d6b7cd3cb2150f0ef1d9486cbba4ba1b"
+            },
+            "size": 560794130
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": [
+                "20F66",
+                "20F75"
+            ],
+            "deviceMap": [
+                "iPad6,12-S8003"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-00389/DF7A8FC5-72DD-4B87-AC16-3E3FD5DB6DB5/com_apple_MobileAsset_SoftwareUpdate/ecef6d98a7fce962ec1380cde03d900b1996c215.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a12e72b11c7ef61e0d35886b8a0a0776cfca53ce",
+                "sha2-256": "e3912b7026cb53cae19996638f28863005d0863eaed6129017ed5d7f0f030b9b"
+            },
+            "size": 454080640
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": [
                 "20G75",
                 "20G81",
@@ -2504,7 +2528,7 @@
                 "20H30"
             ],
             "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
             "links": [
                 {
@@ -2522,25 +2546,7 @@
             "type": "ota",
             "prerequisiteBuild": "20H115",
             "deviceMap": [
-                "iPad6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/052-02094/CE030548-77E4-4D52-8C1C-E6E3BB19A799/com_apple_MobileAsset_SoftwareUpdate/2d387f0c0b55a03c1b3181c2127f9cf826040369.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4f0d01d8b3aeb1b9cf704b1a4faead9f6109a047",
-                "sha2-256": "05f74cd153fb0953cc7064b1f734a067dec70148023674ed3bb3f98cde4c8f32"
-            },
-            "size": 253730130
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20H115",
-            "deviceMap": [
-                "iPad6,12"
+                "iPad6,12-S8003"
             ],
             "links": [
                 {
