@@ -12,8 +12,6 @@ import requests
 from sort_os_files import sort_os_file
 
 docs = {}
-for target_build in sys.argv[1:]:
-    docs[target_build] = {}
 
 response = requests.get(f"https://itunes.apple.com/WebObjects/MZStore.woa/wa/com.apple.jingle.appserver.client.MZITunesClientCheck/version?cachebust{random.randint(100, 1000)}", timeout=30)
 response.raise_for_status()
@@ -35,7 +33,7 @@ for version_group in plist["MobileDeviceSoftwareVersionsByVersion"].values():
                 if not variant.get("DocumentationURL"):
                     continue
                 if variant.get('BuildVersion') not in (docs.keys()):
-                    continue
+                    docs[variant['BuildVersion']] = {}
 
                 doc_filename = variant['DocumentationURL'].split('/')[-1]
 
