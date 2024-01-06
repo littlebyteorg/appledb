@@ -82,7 +82,7 @@ def get_board_mappings(devices):
     return identifiers, bridge_identifiers
 
 
-def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None, rsr=False):
+def create_file(os_str, build, recommended_version=None, version=None, released=None, beta=None, rc=None, rsr=False, buildtrain=None):
     assert version or recommended_version, "Must have either version or recommended_version"
 
     # watchOS 1 override
@@ -135,7 +135,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             if not friendly_version:
                 friendly_version = version or recommended_version
 
-        json_dict = {"osStr": os_str_override, "version": friendly_version, "build": build}
+        json_dict = {"osStr": os_str_override, "version": friendly_version, "build": build, "buildTrain": buildtrain}
         if os_str_override == "Apple TV Software":
             json_dict["iosVersion"] = ios_version
 
@@ -187,6 +187,7 @@ def import_ota(
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
     ota = None
     info_plist = None
+    build_manifest = None
 
     counter = 0
     while True:
@@ -195,6 +196,14 @@ def import_ota(
             print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
 
             info_plist = plistlib.loads(ota.read("Info.plist"))
+            # manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
+            # print(manifest_paths)
+            # build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+
+            if (ota_url.endswith(".ipsw")):
+                build_manifest = plistlib.loads(ota.read("boot/BuildManifest.plist"))
+            else:
+                build_manifest = plistlib.loads(ota.read("AssetData/boot/BuildManifest.plist"))
 
             if info_plist.get('MobileAssetProperties'):
                 info_plist = info_plist['MobileAssetProperties']
@@ -219,10 +228,12 @@ def import_ota(
         ota.close()
 
     # Get the build, version, and supported devices
+    buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
     if (ota_url.endswith(".ipsw")):
+        print(info_plist)
         build = build or info_plist["TargetUpdate"]
         recommended_version = recommended_version or info_plist["ProductVersion"]
-        supported_devices = supported_devices or [info_plist["ProductType"]]
+        supported_devices = [info_plist["ProductType"]]
         bridge_devices = []
         prerequisite_builds = prerequisite_builds or info_plist.get('BaseUpdate')
     else:
@@ -267,7 +278,7 @@ def import_ota(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr)
+    db_file = create_file(os_str, build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))

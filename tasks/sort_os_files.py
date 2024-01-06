@@ -17,6 +17,7 @@ key_order = [
     "uniqueBuild",
     "embeddedOSBuild",
     "bridgeOSBuild",
+    "buildTrain",
     "released",
     "rc",
     "beta",

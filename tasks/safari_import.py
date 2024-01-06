@@ -101,6 +101,9 @@ for mac_version in mac_versions:
     
     safari_plist = plistlib.loads(Path(f'{safari_destination_path}/{plist_path}').read_bytes())
     safari_build = safari_plist['ProductBuildVersion']
+    safari_buildtrain = None
+    if plist_path.endswith('BuildManifest.plist'):
+        safari_buildtrain = safari_plist['BuildIdentities'][0]['Info']['BuildTrain']
 
     is_beta = 'beta' in dist_version
     safari_subfolder = ''
@@ -134,6 +137,9 @@ for mac_version in mac_versions:
 
 
     SAFARI_DETAILS[safari_build]["osMap"].append(f"macOS {mac_version}")
+
+    if safari_buildtrain and not SAFARI_DETAILS[safari_build].get('buildTrain'):
+        SAFARI_DETAILS[safari_build]['buildTrain'] = safari_buildtrain
 
     if is_beta:
         SAFARI_DETAILS[safari_build]["sources"].append({
