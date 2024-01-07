@@ -68,7 +68,7 @@ for build, doc_links in docs.items():
         
         file_contents = json.load(file_path.open())
         file_contents.setdefault('ipd', {})
-        if file_contents['ipd'].get(title):
+        if file_contents['ipd'].get(title, '') == link:
             continue
         file_contents['ipd'][title] = link
         json.dump(sort_os_file(None, file_contents), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
