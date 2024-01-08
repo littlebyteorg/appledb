@@ -35,10 +35,6 @@ class ProcessFileThread(threading.Thread):
         self.use_network = use_network
         self.session = requests.Session()
         self.has_apple_auth = apple_auth_token != ''
-        if self.has_apple_auth:
-            self.session.headers = {
-                "cookie": f"ADCDownloadAuth={apple_auth_token}"
-            }
         adapter = requests.adapters.HTTPAdapter(max_retries=10, pool_connections=16)
         self.session.mount("https://", adapter)
         self.session.mount("http://", adapter)
@@ -80,13 +76,23 @@ class ProcessFileThread(threading.Thread):
                                 verify=False,
                                 stream=True,
                             )
+                        elif urlparse(url).hostname in needs_apple_auth:
+                            resp = self.session.head(
+                                url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
+                                headers={
+                                    "User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0",
+                                    "cookie": f"ADCDownloadAuth={apple_auth_token}"
+                                },
+                                verify=False,
+                                allow_redirects=True,
+                            )
                         else:
                             if urlparse(url).hostname in needs_cache_bust:
                                 suffix = f'?cachebust{random.randint(100, 1000)}'
                             else:
                                 suffix = ''
                             resp = self.session.head(
-                                f"{url}{suffix}".replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
+                                f"{url}{suffix}",
                                 headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
                                 verify=False,
                                 allow_redirects=True,
