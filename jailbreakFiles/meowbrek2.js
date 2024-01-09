@@ -114,7 +114,7 @@ module.exports = {
         ]
       },
     ],
-    latestVer: "1.1.4-beta",
+    latestVer: "1.1.5-beta",
     type: "Semi-untethered",
     notes: "Compatible with A11 and earlier devices. Requires TrollStore.",
     firmwares: ["15.0","15.8"]
