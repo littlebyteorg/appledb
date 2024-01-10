@@ -196,14 +196,8 @@ def import_ota(
             print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
 
             info_plist = plistlib.loads(ota.read("Info.plist"))
-            # manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
-            # print(manifest_paths)
-            # build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
-
-            if (ota_url.endswith(".ipsw")):
-                build_manifest = plistlib.loads(ota.read("boot/BuildManifest.plist"))
-            else:
-                build_manifest = plistlib.loads(ota.read("AssetData/boot/BuildManifest.plist"))
+            manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
+            build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
 
             if info_plist.get('MobileAssetProperties'):
                 info_plist = info_plist['MobileAssetProperties']
