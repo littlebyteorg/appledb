@@ -155,7 +155,9 @@ def import_ia(
         catalog_name = url_split[1]
 
     info_plist_url = ia_url.rsplit("/", 1)[0] + "/Info.plist"
+    build_manifest_plist_url = ia_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
     info_plist_response = SESSION.get(info_plist_url, headers={})
+    build_manifest_plist_response = SESSION.get(build_manifest_plist_url, headers={})
 
     if not local_available:
         try:
@@ -164,6 +166,13 @@ def import_ia(
             print(f"\tInfo.plist not found at {info_plist_url}")
         else:
             info_plist = plistlib.loads(info_plist_response.content).get('MobileAssetProperties')
+
+        try:
+            build_manifest_plist_response.raise_for_status()
+        except requests.exceptions.HTTPError:
+            print(f"\tBuildManifest.plist not found at {build_manifest_plist_url}")
+        else:
+            build_manifest = plistlib.loads(build_manifest_plist_response.content)
 
     bridge_version = None
 
@@ -181,7 +190,9 @@ def import_ia(
 
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "iFPGA", "iSim1,1"]]
 
-    buildtrain = info_plist['TrainName']
+    buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+    # if not buildtrain:
+    #     print(build)
 
     db_file = create_file("macOS", build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))
