@@ -1,6 +1,6 @@
 module.exports = {
   name: "etasonJB",
-  priority: 1,
+  priority: 0,
   info: {
     website: {
       name: "etasonjb.tihmstar.net",
