@@ -41,6 +41,13 @@ asset_types = {
     'Beats': {
         'A2048': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2048_EA',
         'A2577': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2577_EA'
+    },
+    'Keyboards': {
+        'A2520': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_10',
+        'A2450': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_8',
+        'A2449': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_6',
+        'A1644': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_5',
+        'A1843': 'com_apple_MobileAsset_MobileAccessoryUpdate_ExternalKeyboardFirmware'
     }
 }
 
@@ -48,6 +55,7 @@ os_str_map = {
     'AirPods': 'Bluetooth Headset Firmware',
     'AirTags': 'Durian Firmware',
     'Beats': 'Bluetooth Headset Firmware',
+    'Keyboards': 'Keyboard Firmware'
 }
 
 release_notes_map = {
@@ -56,6 +64,12 @@ release_notes_map = {
 }
 
 device_map = {
+    'A1644': [
+        'Magic Keyboard (1st generation)'
+    ],
+    'A1843': [
+        'Magic Keyboard with Numeric Keypad'
+    ],
     'A2032': [
         "AirPods2,1-left",
         "AirPods2,1-right"
@@ -78,6 +92,15 @@ device_map = {
     ],
     'A2187': [
         "AirTag1,1"
+    ],
+    'A2449': [
+        'Magic Keyboard with Touch ID'
+    ],
+    'A2450': [
+        'Magic Keyboard (2nd generation)'
+    ],
+    'A2520': [
+        'Magic Keyboard with Touch ID and Numeric Keypad'
     ],
     'A2564': [
         "Audio2,1-left",
@@ -115,6 +138,7 @@ for asset_type, assets in asset_types.items():
         try:
             asset_response.raise_for_status()
         except:
+            print(asset_url)
             print(f"Skipping {asset}...")
             continue
         asset_plist = plistlib.loads(asset_response.content)
@@ -123,6 +147,8 @@ for asset_type, assets in asset_types.items():
             file_path = f"osFiles/{os_str_map[asset_type]}/{kern_version}x/{asset['Build']}.json"
 
             if not Path(file_path).exists():
+                if not Path(file_path).parent.exists():
+                    Path(file_path).parent.mkdir()
                 with remotezip.RemoteZip(f"{asset['__BaseURL']}{asset['__RelativePath']}") as file:
                     manifest_paths = [f for f in file.namelist() if f.endswith("BuildManifest.plist")]
                     buildtrain = None
