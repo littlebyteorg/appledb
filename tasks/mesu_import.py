@@ -138,7 +138,6 @@ for asset_type, assets in asset_types.items():
         try:
             asset_response.raise_for_status()
         except:
-            print(asset_url)
             print(f"Skipping {asset}...")
             continue
         asset_plist = plistlib.loads(asset_response.content)
