@@ -10,6 +10,7 @@ import dateutil.parser
 import lxml.etree
 import lxml.html
 import requests
+import lxml.etree
 from lxml.etree import _Element as Element  # pylint: disable=no-name-in-module
 
 # TODO: Probably put import.txt/import.json/import_raw.html in a folder, and put it in .gitignore
@@ -72,8 +73,11 @@ for group in element.xpath(".//h3/.."):
     if "released" in data:
         data["released"] = dateutil.parser.parse(data["released"]).strftime("%Y-%m-%d")
 
+    direct_download = group.xpath("..//a[@class='button direct-download']")
+    has_profile_download = bool(direct_download)
+
     try:
-        links: Element = group.xpath("./div/ul/li/a/../..")[0]
+        links: Element = group.xpath(".//div/ul/li/a/../..")[0]
         for i in links.iterchildren(None):
             device = i.find("a", None).text.strip()
             url = i.find("a", None).attrib["href"].strip()
@@ -84,17 +88,22 @@ for group in element.xpath(".//h3/.."):
 
             data.setdefault("links", []).append({"device": device, "url": url, "build": build})
     except IndexError:
-        assert data["osStr"] == "watchOS" or (
-            any(("macappstore" in i.get("href") or "apps.apple.com" in i.get("href")) for i in group.findall(".//a"))  # type: ignore
-            and data["osStr"] == "macOS"
-            and "beta" not in data["version"].lower()
-        )
+        if direct_download and direct_download[0].attrib["href"].endswith('.ipsw'):
+            has_profile_download = False
+            data.setdefault("links", []).append({"device": 'Mac computers with Apple Silicon', "url": direct_download[0].attrib["href"], "build": build})
+        else:
+            assert data["osStr"] == "watchOS" or (
+                any(("macappstore" in i.get("href") or "apps.apple.com" in i.get("href")) for i in group.findall(".//a"))  # type: ignore
+                and data["osStr"] == "macOS"
+                and "beta" not in data["version"].lower()
+            )
 
-    direct_download = group.xpath("..//a[@class='button direct-download']")
-    data["profile_link"] = direct_download[0].attrib["href"] if direct_download else None
+    
+    if has_profile_download:
+        data["profile_link"] = direct_download[0].attrib["href"]
 
     out.append(data)
 
 print([f"{d['osStr']} {d['version']}" for d in out])
-[i.unlink() for i in Path.cwd().glob("import*") if i.is_file()]
+[i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
 json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
