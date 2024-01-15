@@ -9,5 +9,32 @@
         "AudioAccessory1,1",
         "AudioAccessory1,2",
         "AudioAccessory5,1"
+    ],
+    "sources": [
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AudioAccessory1,1",
+                "AudioAccessory1,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021SummerSeed/patches/071-89464/A072485F-FB3A-47A9-A411-1C3F4AD5B1AB/com_apple_MobileAsset_SoftwareUpdate/7e4ad57410d518c47a509503f95622f4970fce38.zip",
+                    "active": false
+                }
+            ]
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AudioAccessory5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021SummerSeed/patches/071-89457/9B52F0E2-C79C-408D-8877-22AEF9C212CD/com_apple_MobileAsset_SoftwareUpdate/7657e36c557562ef85af2c0fea06740b1449502b.zip",
+                    "active": false
+                }
+            ]
+        }
     ]
 }
