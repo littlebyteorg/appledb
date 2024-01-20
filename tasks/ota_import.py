@@ -181,7 +181,7 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     return db_file
 
 def import_ota(
-    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None, rsr=False
+    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None, rsr=False, known_invalid_url=False
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -190,7 +190,7 @@ def import_ota(
     build_manifest = None
 
     counter = 0
-    while True:
+    while not known_invalid_url:
         try:
             ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
             print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
@@ -205,16 +205,19 @@ def import_ota(
             if info_plist.get('SplatOnly'):
                 rsr = True
             break
-        except:
+        except remotezip.RemoteIOError as e:
             if not build:
+                if e.args[0].startswith('403 Client Error'):
+                    print('No file')
+                    raise e
                 time.sleep(1+counter)
                 counter += 1
-                if counter > 5:
-                    raise
+                if counter > 10:
+                    raise e
             info_plist = {}
     bridge_version = None
 
-    if info_plist.get('BridgeVersionInfo'):
+    if info_plist and info_plist.get('BridgeVersionInfo'):
         bridge_version = info_plist['BridgeVersionInfo']['BridgeVersion'].split('.')
         bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[0]}"
 
@@ -222,14 +225,15 @@ def import_ota(
         ota.close()
 
     # Get the build, version, and supported devices
-    buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+    buildtrain = None
+    if build_manifest:
+        buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
     if (ota_url.endswith(".ipsw")):
-        print(info_plist)
         build = build or info_plist["TargetUpdate"]
         recommended_version = recommended_version or info_plist["ProductVersion"]
         supported_devices = [info_plist["ProductType"]]
         bridge_devices = []
-        prerequisite_builds = prerequisite_builds or info_plist.get('BaseUpdate')
+        prerequisite_builds = prerequisite_builds or (info_plist.get('BaseUpdate') if info_plist else [])
     else:
         build = build or info_plist["Build"]
         # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
@@ -248,7 +252,7 @@ def import_ota(
         else:
             supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
 
-        prerequisite_builds = prerequisite_builds or info_plist.get('PrerequisiteBuild', '').split(';')
+        prerequisite_builds = prerequisite_builds or (info_plist.get('PrerequisiteBuild', '').split(';') if info_plist else [])
         if len(prerequisite_builds) == 1:
             prerequisite_builds = prerequisite_builds[0]
         elif len(prerequisite_builds) > 1:
@@ -366,7 +370,7 @@ if __name__ == "__main__":
                     for link in version["links"]:
                         try:
                             files_processed.add(
-                                import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version["released"], use_network=False, build=version["build"], prerequisite_builds=version.get("prerequisite"), device_map=version["deviceMap"])
+                                import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=version.get("prerequisite", []), device_map=version["deviceMap"], known_invalid_url=version.get("bad_link", False))
                             )
                         except Exception:
                             failed_links.append(link["url"])
