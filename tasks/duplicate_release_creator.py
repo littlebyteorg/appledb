@@ -8,6 +8,7 @@ from sort_os_files import sort_os_file
 
 supported_subfolders = [
     'audioOS',
+    'bridgeOS',
     'iOS',
     'iPadOS',
     'macOS',
