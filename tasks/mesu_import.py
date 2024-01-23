@@ -187,11 +187,14 @@ for asset_type, assets in asset_types.items():
             if release_date != file_data['released']:
                 extended_items = []
                 extended_item_processed = False
+                extended_item_changed = False
                 for item in file_data.get('createDuplicateEntries', []):
                     if item.get('released', file_data['released']) == release_date:
                         extended_item_processed = True
-                        item['deviceMap'].extend(device_map[model])
-                        item.setdefault('sources', []).append(source)
+                        if device_map[model][0] not in item['deviceMap']:
+                            item['deviceMap'].extend(device_map[model])
+                            item.setdefault('sources', []).append(source)
+                            extended_item_changed = True
                     extended_items.append(item)
                 
                 if not extended_item_processed:
@@ -201,6 +204,9 @@ for asset_type, assets in asset_types.items():
                         'deviceMap': device_map[model],
                         'sources': [source]
                     })
+                    extended_item_changed = True
+                if not extended_item_changed:
+                    continue
                 file_data['createDuplicateEntries'] = extended_items
             else:
                 file_data['deviceMap'].extend(device_map[model])
