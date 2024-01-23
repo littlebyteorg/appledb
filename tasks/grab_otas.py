@@ -50,34 +50,54 @@ asset_audiences_overrides = {
     'iPadOS': 'iOS'
 }
 
+kernel_marketing_version_offset_map = {
+    'macOS': 9,
+    'watchOS': 11,
+    'visionOS': 20
+}
+
+default_kernel_marketing_version_offset = 4
+
 asset_audiences = {
     'iOS': {
-        '15beta': 'ce48f60c-f590-4157-a96f-41179ca08278',
-        '16beta': 'a6050bca-50d8-4e45-adc2-f7333396a42c',
-        'beta': '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
+        'beta': {
+            15: 'ce48f60c-f590-4157-a96f-41179ca08278',
+            16: 'a6050bca-50d8-4e45-adc2-f7333396a42c',
+            17: '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
+        },
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
     },
     'macOS': {
-        '12beta': '298e518d-b45e-4d36-94be-34a63d6777ec',
-        '13beta': '683e9586-8a82-4e5f-b0e7-767541864b8b',
-        '14beta': '77c3bd36-d384-44e8-b550-05122d7da438',
+        'beta': {
+            12: '298e518d-b45e-4d36-94be-34a63d6777ec',
+            13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
+            14: '77c3bd36-d384-44e8-b550-05122d7da438',
+        },
         'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
     },
     'tvOS': {
-        'beta': '61693fed-ab18-49f3-8983-7c3adf843913',
+        'beta': {
+            17: '61693fed-ab18-49f3-8983-7c3adf843913'
+        },
         'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
     },
     'watchOS': {
-        'beta': '7ae7f3b9-886a-437f-9b22-e9f017431b0e',
+        'beta': {
+            10: '7ae7f3b9-886a-437f-9b22-e9f017431b0e'
+        },
         'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
     },
     'audioOS': {
-        'beta': '17536d4c-1a9d-4169-bc62-920a3873f7a5',
+        'beta': {
+            17: '17536d4c-1a9d-4169-bc62-920a3873f7a5'
+        },
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
     'visionOS': {
-        'beta': '4d282764-95fe-4e0e-b7da-ea218fd1f75a',
+        'beta': {
+            1: '4d282764-95fe-4e0e-b7da-ea218fd1f75a'
+        },
         'release': 'c59ff9d1-5468-4f6c-9e54-f68d5eeab93b'
     },
     'Studio Display Firmware': {
@@ -139,20 +159,10 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     newly_discovered_versions = {}
     additional_audiences = set()
 
-    # iOS and iPadOS use the same asset audiences
-    # Allow for someone to pass in a specific asset audience UUID
-    asset_audience = asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience, audience)
-
-    try:
-        uuid.UUID(asset_audience)
-    except:
-        print(f"Bad asset audience - {asset_audience}")
-        return links, {}
-
     request = {
         "ClientVersion": 2,
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
-        "AssetAudience": asset_audience,
+        "AssetAudience": audience,
         # Device name might have an AppleDB-specific suffix; remove this when calling Pallas
         "ProductType": device_name.split("-")[0],
         "HWModelStr": board_id,
@@ -194,6 +204,17 @@ for (osStr, builds) in parsed_args.items():
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
+        audiences = []
+        for audience in args.audience:
+            try:
+                # Allow for someone to pass in a specific asset audience UUID
+                uuid.UUID(audience)
+                audiences.append(audience)
+            except:
+                if audience == 'beta':
+                    audiences.extend({k:v for k,v in asset_audiences[asset_audiences_overrides.get(osStr, osStr)]['beta'].items() if int(kern_version) - kernel_marketing_version_offset_map.get(osStr, default_kernel_marketing_version_offset) <= k}.values())
+                else:
+                    audiences.append(asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience, audience))
         build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
         devices = {}
         build_data = {}
@@ -240,10 +261,7 @@ for (osStr, builds) in parsed_args.items():
                 for current_device in current_devices:
                     devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
-        for audience in args.audience:
-            if not asset_audiences.get(asset_audiences_overrides.get(osStr, osStr), {}).get(audience) and 'beta' in audience:
-                # bad combination
-                continue
+        for audience in audiences:
             for key, value in devices.items():
                 new_versions = {}
                 for board in value['boards']:
