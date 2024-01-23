@@ -141,6 +141,7 @@ for asset_type, assets in asset_types.items():
             print(f"Skipping {asset}...")
             continue
         asset_plist = plistlib.loads(asset_response.content)
+        release_date = datetime.strptime(asset_response.headers.get("Last-Modified").replace(" GMT", ""), '%a, %d %b %Y %H:%M:%S').replace(tzinfo=timezone.utc).astimezone(zoneinfo.ZoneInfo('America/Los_Angeles')).strftime("%Y-%m-%d")
         for asset in asset_plist['Assets']:
             kern_version = re.search(r"\d+(?=[a-zA-Z])", asset['Build']).group()
             file_path = f"osFiles/{os_str_map[asset_type]}/{kern_version}x/{asset['Build']}.json"
@@ -156,7 +157,6 @@ for asset_type, assets in asset_types.items():
                         build_manifest = plistlib.loads(file.read(manifest_paths[0]))
                         buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
                         version = build_manifest['ProductVersion']
-                    release_date = datetime.strptime(asset_response.headers.get("Last-Modified").replace(" GMT", ""), '%a, %d %b %Y %H:%M:%S').replace(tzinfo=timezone.utc).astimezone(zoneinfo.ZoneInfo('America/Los_Angeles')).strftime("%Y-%m-%d")
                     if os_str_map[asset_type] == 'Bluetooth Headset Firmware' and not version:
                         if asset['FirmwareVersionMinor'] > 1000:
                             version = '.'.join(str(asset['FirmwareVersionMajor']))
@@ -183,9 +183,28 @@ for asset_type, assets in asset_types.items():
             file_data = json.load(Path(file_path).open(encoding="utf-8"))
             if device_map[model][0] in file_data['deviceMap']:
                 continue
-            file_data['deviceMap'].extend(device_map[model])
             source = {"deviceMap": device_map[model], "type": "ota", "links": [{"url": f"{asset['__BaseURL']}{asset['__RelativePath']}", "active": True}]}
-            file_data.setdefault('sources', []).append(source)
+            if release_date != file_data['released']:
+                extended_items = []
+                extended_item_processed = False
+                for item in file_data.get('createDuplicateEntries', []):
+                    if item.get('released', file_data['released']) == release_date:
+                        extended_item_processed = True
+                        item['deviceMap'].extend(device_map[model])
+                        item.setdefault('sources', []).append(source)
+                    extended_items.append(item)
+                
+                if not extended_item_processed:
+                    extended_items.append({
+                        'uniqueBuild': f"{file_data['build']}-{model}",
+                        'released': release_date,
+                        'deviceMap': device_map[model],
+                        'sources': [source]
+                    })
+                file_data['createDuplicateEntries'] = extended_items
+            else:
+                file_data['deviceMap'].extend(device_map[model])
+                file_data.setdefault('sources', []).append(source)
 
             json.dump(sort_os_file(None, file_data), Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
