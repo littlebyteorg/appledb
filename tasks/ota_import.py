@@ -14,6 +14,7 @@ import packaging.version
 import remotezip
 import requests
 import time
+from image_info import get_image
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
@@ -281,26 +282,9 @@ def import_ota(
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
 
-    if os_str in ('audioOS', 'iOS', 'iPadOS', 'tvOS', 'watchOS'):
-        db_data['appledbWebImage'] = {
-            'id': os_str.lower() + db_data["version"].split(".", 1)[0],
-            'align': 'left'
-        }
-        if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("16.0"):
-            db_data['appledbWebImage']['id'] = 'ios' + db_data["version"].split(".", 1)[0]
-    elif os_str == 'macOS':
-        os_image_version_map = {
-            '11': 'Big Sur',
-            '12': 'Monterey',
-            '13': 'Ventura',
-            '14': 'Sonoma'
-        }
-        os_version_prefix = db_data["version"].split(".", 1)[0]
-        if os_image_version_map.get(os_version_prefix):
-            db_data['appledbWebImage'] = {
-                'id': os_image_version_map[os_version_prefix],
-                'align': 'left'
-            }
+    web_image = get_image(os_str, db_data["version"])
+    if web_image:
+        db_data['appledbWebImage'] = web_image
 
     found_source = False
     for source in db_data.setdefault("sources", []):

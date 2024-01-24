@@ -5,6 +5,7 @@ from pathlib import Path
 import random
 
 import requests
+from urllib.parse import unquote
 
 # other links:
 # http://ax.phobos.apple.com.edgesuite.net/WebObjects/MZStore.woa/wa/com.apple.jingle.appserver.client.MZITunesClientCheck/version
@@ -46,7 +47,7 @@ for url in urls:
                         continue
                     if not variant["FirmwareURL"].startswith("http"):
                         continue
-                    ipsws_set.add(variant["FirmwareURL"])
+                    ipsws_set.add(unquote(variant["FirmwareURL"]))
 
 [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
 Path("import.txt").write_text("\n".join(sorted(ipsws_set)), "utf-8", newline="\n")

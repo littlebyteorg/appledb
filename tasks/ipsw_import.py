@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 import packaging.version
 import remotezip
 import requests
+from image_info import get_image
 from link_info import needs_apple_auth, source_has_link, apple_auth_token
 from sort_os_files import sort_os_file
 from update_links import update_links
@@ -243,27 +244,11 @@ def import_ipsw(
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
 
-    if os_str in ('audioOS', 'iOS', 'iPadOS', 'tvOS', 'watchOS'):
-        db_data['appledbWebImage'] = {
-            'id': os_str.lower() + db_data["version"].split(".", 1)[0],
-            'align': 'left'
-        }
-        if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("16.0"):
-            db_data['appledbWebImage']['id'] = 'ios' + db_data["version"].split(".", 1)[0]
-    elif os_str == 'macOS':
-        os_image_version_map = {
-            '11': 'Big Sur',
-            '12': 'Monterey',
-            '13': 'Ventura',
-            '14': 'Sonoma'
-        }
-        os_version_prefix = db_data["version"].split(".", 1)[0]
-        if os_image_version_map.get(os_version_prefix):
-            db_data['appledbWebImage'] = {
-                'id': os_image_version_map[os_version_prefix],
-                'align': 'left'
-            }
-    elif os_str == "audioOS" and packaging.version.parse(recommended_version) >= packaging.version.parse("13.4"):
+    web_image = get_image(os_str, db_data["version"])
+    if web_image:
+        db_data['appledbWebImage'] = web_image
+
+    if os_str == "audioOS" and packaging.version.parse(recommended_version) >= packaging.version.parse("13.4"):
         # Apple renamed it, but we still use the old name
         os_str = "HomePod Software"
 

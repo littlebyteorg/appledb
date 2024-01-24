@@ -186,6 +186,12 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         if build_versions.get(f"{osStr}-{asset['Build']}"):
             continue
 
+        # ensure deltas from beta builds to release builds are properly filtered out as noise as well if the target build is known
+        delta_from_beta = re.search(r"(6\d{3})", asset['Build'])
+        if delta_from_beta:
+            if build_versions.get(f"{osStr}-{asset['Build'].replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))}"):
+                continue
+
         newly_discovered_versions[asset['Build']] = asset['OSVersion'].removeprefix('9.9.')
 
         links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
