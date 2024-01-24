@@ -90,6 +90,11 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
     major_version = ".".join((version or recommended_version).split(".")[:1]) + ".x"  # type: ignore
     version_dir = f"{kern_version}x - {major_version}"
 
+    os_str_override = os_str
+
+    if os_str == "audioOS" and packaging.version.parse(recommended_version.split(" ")[0]) >= packaging.version.parse("13.4"):
+        os_str_override = 'HomePod Software'
+
     db_file = Path(f"osFiles/{os_str}/{version_dir}/{build}.json")
     if db_file.exists():
         print("\tFile already exists, not replacing")
@@ -112,8 +117,14 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
             friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
             if not friendly_version:
                 friendly_version = version or recommended_version
+        json_dict = {"osStr": os_str_override, "version": friendly_version, "build": build, "buildTrain": buildtrain}
+
+        web_image = get_image(os_str, friendly_version)
+        if web_image:
+            json_dict['appledbWebImage'] = web_image
+
         json.dump(
-            {"osStr": os_str, "version": friendly_version, "build": build, "buildTrain": buildtrain},
+            json_dict,
             db_file.open("w", encoding="utf-8", newline="\n"),
             indent=4,
             ensure_ascii=False,
@@ -243,14 +254,6 @@ def import_ipsw(
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(build_supported_devices))
-
-    web_image = get_image(os_str, db_data["version"])
-    if web_image:
-        db_data['appledbWebImage'] = web_image
-
-    if os_str == "audioOS" and packaging.version.parse(recommended_version) >= packaging.version.parse("13.4"):
-        # Apple renamed it, but we still use the old name
-        os_str = "HomePod Software"
 
     found_source = False
     for source in db_data.setdefault("sources", []):

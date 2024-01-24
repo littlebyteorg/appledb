@@ -104,6 +104,10 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 
         json_dict = {"osStr": os_str, "version": friendly_version, "build": build, "buildTrain": buildtrain}
 
+        web_image = get_image(os_str, friendly_version)
+        if web_image:
+            json_dict['appledbWebImage'] = web_image
+
         json.dump(
             json_dict,
             db_file.open("w", encoding="utf-8", newline="\n"),

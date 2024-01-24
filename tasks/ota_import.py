@@ -143,6 +143,10 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
         if rsr:
             json_dict["rsr"] = True
 
+        web_image = get_image(os_str, friendly_version)
+        if web_image:
+            json_dict['appledbWebImage'] = web_image
+
         json.dump(
             json_dict,
             db_file.open("w", encoding="utf-8", newline="\n"),
@@ -281,10 +285,6 @@ def import_ota(
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
-
-    web_image = get_image(os_str, db_data["version"])
-    if web_image:
-        db_data['appledbWebImage'] = web_image
 
     found_source = False
     for source in db_data.setdefault("sources", []):
