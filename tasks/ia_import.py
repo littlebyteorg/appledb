@@ -12,6 +12,7 @@ from pathlib import Path
 import requests
 from image_info import get_image
 from link_info import source_has_link
+from support_page_info import get_release_notes_link
 from sort_os_files import sort_os_file
 from update_links import update_links
 
@@ -138,6 +139,11 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 
     if "rc" not in db_data and (rc or "rc" in db_data["version"].lower()):
         db_data["rc"] = True
+
+    if "releaseNotes" not in db_data and not db_data.get("beta") and not db_data.get("rc"):
+        release_notes_link = get_release_notes_link(db_data["osStr"], db_data["version"])
+        if release_notes_link:
+            db_data["releaseNotes"] = release_notes_link
 
     if "internal" in db_data:
         del db_data["internal"]
