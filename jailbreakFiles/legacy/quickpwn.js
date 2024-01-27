@@ -21,14 +21,12 @@ module.exports = {
         "5F136", // 2.1
         "5F137", // 2.1
         "5G77", // 2.2
-        "5G77a", // 2.2, iPod touch (2nd gen) only
         "5H11", // 2.2.1
       ],
       devices: [
         "iPhone1,1", // iPhone
         "iPhone1,2", // iPhone 3G
         "iPod1,1", // iPod touch
-        "iPod2,1", // iPod touch (2nd generation)
       ]
     },
   ]
