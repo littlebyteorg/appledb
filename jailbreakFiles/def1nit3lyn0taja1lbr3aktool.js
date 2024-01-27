@@ -15,10 +15,10 @@ module.exports = {
         pkgman: "sileo",
       },
     ],
-    latestVer: "1.0.0b1",
+    latestVer: "1.0.0",
     type: "Semi-untethered",
     notes: "Compatible with A11 and earlier devices. Requires TrollStore.",
-    firmwares: ["16.0","16.5"]
+    firmwares: ["16.0","16.6.1"]
   },
   compatibility: [
     {
@@ -94,17 +94,17 @@ module.exports = {
         "20F5050f",
         "20F5059a",
         "20F65",
-        "20F66"
-//        "20F75",
-//        "20F770750b",
-//        "20F770750d",
-//        "20G5026e",
-//        "20G5037d",
-//        "20G5047d",
-//        "20G5058d",
-//        "20G5070a",
-//        "20G75",
-//        "20G81"
+        "20F66",
+        "20F75",
+        "20F770750b",
+        "20F770750d",
+        "20G5026e",
+        "20G5037d",
+        "20G5047d",
+        "20G5058d",
+        "20G5070a",
+        "20G75",
+        "20G81"
       ]
     }
   ]
