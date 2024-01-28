@@ -62,7 +62,7 @@ for mac_version in mac_versions:
         if f"Safari{args.version}" not in product.get("ServerMetadataURL", ""):
             continue
 
-        dist_response = requests.get(product['Distributions']['English']).text
+        dist_response = SESSION.get(product['Distributions']['English']).text
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0].replace('Seed', 'beta')
         catalog_safari = product
         break
