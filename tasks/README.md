@@ -59,6 +59,9 @@ Arguments:
 1. `-b`, `--bulk-mode`: Automatically run the import in bulk mode, importing from `import-ota.json`, if it exists, or `import-ota.txt`. If this is not passed in, a prompt at execution will ask which mode to proceed in
 2. `-s`, `--fule-self-driving`: No prompts for release dates or version numbers. `(FIXME)` will be added as a suffix to any new version numbers and any release dates will be `YYYY-MM-DD`, forcing a CI failure if pushed to the repo.
 
+## Importing bridgeOS from update catalog
+Run `bridge_pkg_import.py`. Passing in `-b` (`--beta`) will check for beta versions instead of release versions.
+
 ## Importing firmware for other devices
 Run `mesu_import.py`. Passing in `-b` (`--beta`) will only check AirPods, with the `AirPods2022Seed` prefix applied to the URL for the beta builds. This currently supports AirPods, Beats, and Keyboards.
 
