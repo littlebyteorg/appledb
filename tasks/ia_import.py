@@ -118,6 +118,9 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 
     db_data = json.load(db_file.open(encoding="utf-8"))
 
+    if buildtrain != db_data['buildTrain']:
+        db_data['buildTrain'] = buildtrain
+
     if not db_data.get("released"):
         print("\tMissing release date")
         if released:
@@ -202,8 +205,6 @@ def import_ia(
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "iFPGA", "iSim1,1"]]
 
     buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
-    # if not buildtrain:
-    #     print(build)
 
     db_file = create_file("macOS", build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))

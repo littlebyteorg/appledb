@@ -133,6 +133,9 @@ def create_file(os_str, build, recommended_version=None, version=None, released=
 
     db_data = json.load(db_file.open(encoding="utf-8"))
 
+    if buildtrain != db_data['buildTrain']:
+        db_data['buildTrain'] = buildtrain
+
     if not db_data.get("released"):
         print("\tMissing release date")
         if released:
