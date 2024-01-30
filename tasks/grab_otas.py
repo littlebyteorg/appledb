@@ -47,10 +47,10 @@ skip_builds = {
 }
 
 default_mac_devices = [
-    'MacbookAir7,1',    # Intel, only supports up to Monterey
+    'MacBookAir7,1',    # Intel, only supports up to Monterey
     'iMac18,1',         # Intel, only supports up to Ventura
     'MacPro7,1',        # Intel, supports Sonoma
-    'MacbookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
+    'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
     'Mac13,1',          # Covers Mac Studio forked build
     'Mac14,2',          # Covers WWDC 2022 forked builds
     'Mac14,6',          # Covers Ventura 13.0 forked builds
