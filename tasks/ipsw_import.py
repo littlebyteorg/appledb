@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import datetime
 import json
 import plistlib
@@ -290,10 +291,18 @@ def import_ipsw(
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-b', '--bulk-mode', action='store_true')
+    parser.add_argument('-s', '--full-self-driving', action='store_true')
+    args = parser.parse_args()
+
+    if args.full_self_driving:
+        FULL_SELF_DRIVING = True
+
+    bulk_mode = args.bulk_mode or input("Bulk mode - read data from import.json/import.txt? [y/n]: ").strip().lower() == "y"
+
     if FULL_SELF_DRIVING:
         print("Full self-driving mode enabled. Make sure to verify data before committing.")
-
-    bulk_mode = input("Bulk mode - read data from import.json/import.txt? [y/n]: ").strip().lower() == "y"
     if bulk_mode:
         files_processed = set()
 

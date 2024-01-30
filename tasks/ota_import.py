@@ -342,6 +342,9 @@ if __name__ == "__main__":
         FULL_SELF_DRIVING = True
 
     bulk_mode = args.bulk_mode or input("Bulk mode - read data from import-ota.json/import-ota.txt? [y/n]: ").strip().lower() == "y"
+
+    if FULL_SELF_DRIVING:
+        print("Full self-driving mode enabled. Make sure to verify data before committing.")
     if bulk_mode:
         failed_links = []
         files_processed = set()

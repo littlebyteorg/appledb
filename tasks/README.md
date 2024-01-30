@@ -9,7 +9,11 @@ Run `grab_ipsws_dev_portal.py`. This takes in a positional argument for a dev po
 Run `grab_ipsws_itunes.py`. This script will check the iTunes plist for most OSes, and will also check for macOS and bridgeOS IPSWs in their respective locations. This script outputs links to `import.txt`
 
 ### Importing grabbed links into AppleDB
-Run `ipsw_import.py`. This script has two modes, a bulk import mode that will run through `import.json` or, if that's not present, `import.txt`. Otherwise, passing one IPSW URL in at a time through prompts will get them all imported. The execution mode is controlled by a prompt when the script first runs.
+Run `ipsw_import.py`.
+
+Arguments:
+1. `-b`, `--bulk-mode`: Automatically run the import in bulk mode, importing from `import.json`, if it exists, or `import.txt`. If this is not passed in, a prompt at execution will ask which mode to proceed in. If not running in bulk mode, this script will ask for links one at a time.
+2. `-s`, `--fule-self-driving`: No prompts for release dates or version numbers. `(FIXME)` will be added as a suffix to any new version numbers and any release dates will be `YYYY-MM-DD`, forcing a CI failure if pushed to the repo.
 
 ## Importing InstallAssistant.pkg files
 ### Grabbing InstallAssistant links from Apple catalogs
@@ -22,7 +26,7 @@ Arguments:
 Run `ia_import.py`.
 
 Arguments:
-1. `-b`, `--bulk-mode`: Automatically run the import in bulk mode, importing from `import-ia.json`, if it exists, or `import-ia.txt`. If this is not passed in, a prompt at execution will ask which mode to proceed in
+1. `-b`, `--bulk-mode`: Automatically run the import in bulk mode, importing from `import-ia.json`, if it exists, or `import-ia.txt`. If this is not passed in, a prompt at execution will ask which mode to proceed in. If not running in bulk mode, this script will ask for links one at a time.
 2. `-s`, `--fule-self-driving`: No prompts for release dates or version numbers. `(FIXME)` will be added as a suffix to any new version numbers and any release dates will be `YYYY-MM-DD`, forcing a CI failure if pushed to the repo.
 
 ## Importing Over-the-Air (OTA) files
@@ -56,7 +60,7 @@ Caveats:
 Run `ota_import.py`.
 
 Arguments:
-1. `-b`, `--bulk-mode`: Automatically run the import in bulk mode, importing from `import-ota.json`, if it exists, or `import-ota.txt`. If this is not passed in, a prompt at execution will ask which mode to proceed in
+1. `-b`, `--bulk-mode`: Automatically run the import in bulk mode, importing from `import-ota.json`, if it exists, or `import-ota.txt`. If this is not passed in, a prompt at execution will ask which mode to proceed in. If not running in bulk mode, this script will ask for links one at a time.
 2. `-s`, `--fule-self-driving`: No prompts for release dates or version numbers. `(FIXME)` will be added as a suffix to any new version numbers and any release dates will be `YYYY-MM-DD`, forcing a CI failure if pushed to the repo.
 
 ## Importing bridgeOS from update catalog
