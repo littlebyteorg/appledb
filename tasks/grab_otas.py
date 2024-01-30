@@ -46,6 +46,18 @@ skip_builds = {
     ]
 }
 
+default_mac_devices = [
+    'MacbookAir7,1',    # Intel, only supports up to Monterey
+    'iMac18,1',         # Intel, only supports up to Ventura
+    'MacPro7,1',        # Intel, supports Sonoma
+    'MacbookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
+    'Mac13,1',          # Covers Mac Studio forked build
+    'Mac14,2',          # Covers WWDC 2022 forked builds
+    'Mac14,6',          # Covers Ventura 13.0 forked builds
+    'Mac14,15',         # Covers WWDC 2023 forked builds
+    'Mac15,3'           # Covers M3 forked builds (Ventura and Sonoma)
+]
+
 asset_audiences_overrides = {
     'iPadOS': 'iOS'
 }
@@ -233,6 +245,8 @@ for (osStr, builds) in parsed_args.items():
         for device in build_data['deviceMap']:
             if args.devices and device not in args.devices:
                 continue
+            if osStr == 'macOS' and not args.devices and device not in default_mac_devices:
+                continue
             devices.setdefault(device, {
                 'boards': get_board_ids(device),
                 'builds': {}
@@ -246,6 +260,12 @@ for (osStr, builds) in parsed_args.items():
 
                 if args.devices:
                     current_devices = set(args.devices).intersection(set(source['deviceMap']))
+                    if current_devices:
+                        current_devices = list(current_devices)
+                    else:
+                        continue
+                elif osStr == 'macOS':
+                    current_devices = set(default_mac_devices).intersection(set(source['deviceMap']))
                     if current_devices:
                         current_devices = list(current_devices)
                     else:
