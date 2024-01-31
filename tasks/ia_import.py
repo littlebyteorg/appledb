@@ -205,6 +205,8 @@ def import_ia(
     supported_devices = [i for i in supported_devices if i not in ["iProd99,1", "iFPGA", "iSim1,1"]]
 
     buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+    print(f"\tmacOS {recommended_version} ({build})")
+    print(f"\tDevice Support: {supported_devices}")
 
     db_file = create_file("macOS", build, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))
