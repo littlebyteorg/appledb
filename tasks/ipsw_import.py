@@ -36,6 +36,7 @@ OS_MAP = [
     ("Mac", "macOS"),
     ("Watch", "watchOS"),
     ("iBridge", "bridgeOS"),
+    ("RealityDevice", "visionOS"),
 ]
 
 SESSION = requests.Session()
