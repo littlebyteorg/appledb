@@ -17,6 +17,7 @@ supported_product_list = [
     'macOS',
     'Safari',
     'tvOS',
+    'visionOS',
     'watchOS',
     'Xcode',
 ]
@@ -32,6 +33,7 @@ build_prefix_offset = {
     'macOS': 9,
     'Safari': 0,
     'tvOS': 4,
+    'visionOS': 20,
     'watchOS': 11,
     'Xcode': 0,
 }
