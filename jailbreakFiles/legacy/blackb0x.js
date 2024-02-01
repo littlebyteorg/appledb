@@ -29,11 +29,20 @@ module.exports = {
       firmwares: [
         "11A470e", // 6.0, AppleTV
         "11A502", // 6.0, AppleTV
+        "11B508", // 6.0.1, AppleTV
         "11B511d", // 6.0.1, AppleTV
-        "11B554a-TV", // 6.0.2, AppleTV
-        "11B651-TV", // 6.0.2, AppleTV
+        "11B553", // 6.0.2, AppleTV
+        "11B554a", // 6.0.2, AppleTV
+        "11B651", // 6.0.2, AppleTV
+        "11D159", // 6.1, AppleTV
+        "11D167", // 6.1, AppleTV
         "11D169b", // 6.1, AppleTV
+        "11D201", // 6.1.1, AppleTV
+        "11D201b", // 6.1.1, AppleTV
         "11D201c", // 6.1.1, AppleTV
+        "11D257", // 6.2, AppleTV
+        "11D257a", // 6.2, AppleTV
+        "11D257b", // 6.2, AppleTV
         "11D257c", // 6.2, AppleTV
         "12H523", // 7.2.1, AppleTV
         "12H606", // 7.2.2, AppleTV

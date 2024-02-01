@@ -69,6 +69,7 @@ module.exports = {
     {
       firmwares: [
         "10B329a", // 5.2.1, AppleTV
+        "10B806", // 5.3, AppleTV
         "10B809", // 5.3, AppleTV
       ],
       devices: [

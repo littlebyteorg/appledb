@@ -76,6 +76,8 @@ module.exports = {
     },
     {
       firmwares: [
+        "10A402", // 5.1, AppleTV
+        "10A403", // 5.1, AppleTV
         "10A406e", // 5.1, AppleTV
         "10A831", // 5.1.1, AppleTV
         "10B144b", // 5.2, AppleTV

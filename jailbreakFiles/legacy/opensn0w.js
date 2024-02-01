@@ -23,13 +23,22 @@ module.exports = {
         "11D169", // 7.1, iPhone 4 (GSM) and iPhone 4 (GSM, 2012) only
         "11D201", // 7.1.1
         "11D257", // 7.1.2
+        "11A465", // 6.0, Apple TV 2nd Gen
+        "11A469a", // 6.0, Apple TV 2nd Gen
         "11A470e", // 6.0, Apple TV 2nd Gen
         "11A502", // 6.0, Apple TV 2nd Gen
         "11B511d", // 6.0.1, Apple TV 2nd Gen
         "11B554a", // 6.0.2, Apple TV 2nd Gen
         "11B651", // 6.0.2, Apple TV 2nd Gen
+        "11D159", // 6.1, Apple TV 2nd Gen
+        "11D167", // 6.1, Apple TV 2nd Gen
         "11D169b", // 6.1, Apple TV 2nd Gen
+        "11D201", // 6.1.1, Apple TV 2nd Gen
+        "11D201b", // 6.1.1, Apple TV 2nd Gen
         "11D201c", // 6.1.1, Apple TV 2nd Gen
+        "11D257", // 6.2, Apple TV 2nd Gen
+        "11D257a", // 6.2, Apple TV 2nd Gen
+        "11D257b", // 6.2, Apple TV 2nd Gen
         "11D257c", // 6.2, Apple TV 2nd Gen
         "11D258" // 6.2.1, Apple TV 2nd Gen
         
@@ -39,7 +48,6 @@ module.exports = {
         "iPhone3,2", // iPhone 4 (GSM, 2012), A4
         "iPhone3,3", // iPhone 4 (CDMA), A4
         "AppleTV2,1" // Apple TV 2nd Gen, A4
-        
       ]
     },
   ]
