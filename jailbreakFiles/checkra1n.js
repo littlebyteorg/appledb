@@ -84,11 +84,11 @@ module.exports = {
         sidebarChildren: [
           {
             text: 'macOS',
-            link: '/installing-odysseyra1n-a9x/macos/',
+            link: '/installing-odysseyra1n-a8x-a9x/macos/',
           },
           {
             text: 'Linux',
-            link: '/installing-odysseyra1n-a9x/linux/',
+            link: '/installing-odysseyra1n-a8x-a9x/linux/',
           },
         ],
       },
