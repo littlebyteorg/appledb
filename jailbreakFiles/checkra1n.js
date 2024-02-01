@@ -1,7 +1,7 @@
 module.exports = {
   name: "checkra1n",
   alias: ["checkrain", "odysseyra1n", "odysseyrain"],
-  priority: 3,
+  priority: 99, // temporary, will revert to 3 when sane Apple TV guide layout is added to this js
   info: {
     website: {
       name: "checkra.in",

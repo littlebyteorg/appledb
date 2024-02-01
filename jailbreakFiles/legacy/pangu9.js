@@ -36,8 +36,8 @@ module.exports = {
         "13A405", // 9.0.1, iPhone 6s only
         "13A452", // 9.0.2
 
-        "13T396", // 9.0, AppleTV
-        "13T402", // 9.0.1, AppleTV
+       // "13T396", // 9.0, AppleTV
+       // "13T402", // 9.0.1, AppleTV
       ],
       devices: [
         "iPhone4,1", // iPhone 4S, A5
@@ -80,7 +80,7 @@ module.exports = {
         "iPod5,1", // iPod touch (5th generation), A5
         "iPod7,1", // iPod touch (6th generation), A8
         
-        "AppleTV5,3", // Apple TV HD (4th generation), A8
+       // "AppleTV5,3", // Apple TV HD (4th generation), A8
       ]
     },
     {
