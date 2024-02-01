@@ -1,11 +1,18 @@
 module.exports = {
   name: "Patchstick",
+  priority: 0,
   info: {
     wiki: {
       name: "wiki.awkwardtv.org/wiki/Patchstick",
       url: "https://wiki.awkwardtv.org/wiki/Patchstick",
       external: true
     },
+    guide: [
+      {
+        name: "Installing Patchstick",
+        url: "/installing-patchstick/",
+      }
+    ],
   },
   compatibility: [
     {

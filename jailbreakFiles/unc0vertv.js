@@ -1,6 +1,7 @@
 module.exports = {
   name: "unc0verTV",
   alias: "uncoverTV",
+  priority: 3,
   info: {
     website: {
       name: "unc0ver.dev/tvos",
@@ -12,6 +13,12 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/Unc0verTV",
       external: true
     },
+    guide: [
+      {
+        name: "Installing unc0verTV",
+        url: "/installing-unc0vertv/",
+      }
+    ],
     latestVer: "5.3.0",
     color: "#111111",
     icon: "/assets/images/jb-icons/unc0ver.png",

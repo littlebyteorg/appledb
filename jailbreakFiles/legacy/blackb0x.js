@@ -13,6 +13,12 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/Blackb0x",
       external: true
     },
+    guide: [
+      {
+        name: "Installing Blackb0x",
+        url: "/installing-blackb0x/",
+      }
+    ],
     type: "Mixed",
     latestVer: "0.6.2",
     color: "#800080",

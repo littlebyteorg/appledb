@@ -1,5 +1,6 @@
 module.exports = {
   name: "ChimeraTV",
+  priority: 0,
   info: {
     website: {
       name: "chimera.coolstar.org",
@@ -11,6 +12,12 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/Chimera#tvOS",
       external: true
     },
+    guide: [
+      {
+        name: "Installing ChimeraTV",
+        url: "/installing-chimeratv/",
+      }
+    ],
     latestVer: "1.3.9",
     color: "#deeded",
     icon: "/assets/images/jb-icons/chimera.png",

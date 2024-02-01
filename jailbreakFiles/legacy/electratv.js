@@ -1,5 +1,6 @@
 module.exports = {
   name: "ElectraTV",
+  priority: 0,
   info: {
     website: {
       name: "coolstar.org/electra",
@@ -11,6 +12,12 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/Electra",
       external: true
     },
+    guide: [
+      {
+        name: "Installing ElectraTV",
+        url: "/installing-electratv/",
+      }
+    ],
     type: "Semi-untethered",
     latestVer: "1.3.2",
     color: "#deeded",
