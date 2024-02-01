@@ -77,6 +77,11 @@ asset_audiences = {
             16: 'a6050bca-50d8-4e45-adc2-f7333396a42c',
             17: '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
         },
+        'public': {
+            15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
+            16: '7466521f-cc37-4267-8f46-78033fa700c2',
+            17: '48407998-4446-46b0-9f57-f76b935dc223',
+        },
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
     },
@@ -86,11 +91,19 @@ asset_audiences = {
             13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
             14: '77c3bd36-d384-44e8-b550-05122d7da438',
         },
+        'public': {
+            12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
+            13: '800034a9-994c-4ecc-af4d-7b3b2ee0a5a6',
+            14: '707ddc61-9c3d-4040-a3d0-2a6521b1c2df',
+        },
         'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
     },
     'tvOS': {
         'beta': {
             17: '61693fed-ab18-49f3-8983-7c3adf843913'
+        },
+        'public': {
+            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e'
         },
         'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
     },
@@ -98,11 +111,17 @@ asset_audiences = {
         'beta': {
             10: '7ae7f3b9-886a-437f-9b22-e9f017431b0e'
         },
+        'public': {
+            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b'
+        },
         'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
     },
     'audioOS': {
         'beta': {
             17: '17536d4c-1a9d-4169-bc62-920a3873f7a5'
+        },
+        'public': {
+            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108'
         },
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
@@ -229,8 +248,8 @@ for (osStr, builds) in parsed_args.items():
                 uuid.UUID(audience)
                 audiences.append(audience)
             except:
-                if audience == 'beta':
-                    audiences.extend({k:v for k,v in asset_audiences[asset_audiences_overrides.get(osStr, osStr)]['beta'].items() if int(kern_version) - kernel_marketing_version_offset_map.get(osStr, default_kernel_marketing_version_offset) <= k}.values())
+                if audience in ['beta', 'public']:
+                    audiences.extend({k:v for k,v in asset_audiences[asset_audiences_overrides.get(osStr, osStr)][audience].items() if int(kern_version) - kernel_marketing_version_offset_map.get(osStr, default_kernel_marketing_version_offset) <= k}.values())
                 else:
                     audiences.append(asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience, audience))
         build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
