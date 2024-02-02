@@ -9,7 +9,7 @@ import requests
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
-from common_update_import import augment_with_keys, create_file, get_board_mappings, FILTERED_OUT_DEVICES
+from common_update_import import create_file, get_board_mappings
 
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 

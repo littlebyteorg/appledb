@@ -64,8 +64,8 @@ def get_board_mappings(devices):
         if device_mappings[0].startswith("iBridge"):
             bridge_identifiers.extend(device_mappings)
         else:
-            identifiers.extend(device_mappings)
-    return augment_with_keys(identifiers), bridge_identifiers
+            identifiers.extend(augment_with_keys(device_mappings))
+    return identifiers, bridge_identifiers
 
 def create_file(os_str, build, full_self_driving, recommended_version=None, version=None, released=None, beta=None, rc=None, buildtrain=None, rsr=False):
     assert version or recommended_version, "Must have either version or recommended_version"

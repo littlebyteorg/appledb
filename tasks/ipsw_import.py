@@ -13,7 +13,7 @@ import requests
 from link_info import needs_apple_auth, source_has_link, apple_auth_token
 from sort_os_files import sort_os_file
 from update_links import update_links
-from common_update_import import augment_with_keys, create_file, FILTERED_OUT_DEVICES, OS_MAP
+from common_update_import import augment_with_keys, create_file, OS_MAP
 
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 

@@ -89,10 +89,10 @@ def import_ota(
             recommended_version = recommended_version + (f" {info_plist['ProductVersionExtra']}" if info_plist.get('ProductVersionExtra') else '')
         # Devices supported specifically in this source
         if device_map:
-            supported_devices = device_map
+            supported_devices = augment_with_keys(device_map)
             bridge_devices = []
         elif info_plist.get('SupportedDevices'):
-            supported_devices = info_plist['SupportedDevices']
+            supported_devices = augment_with_keys(info_plist['SupportedDevices'])
             bridge_devices = []
         else:
             supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
@@ -102,8 +102,6 @@ def import_ota(
             prerequisite_builds = prerequisite_builds[0]
         elif len(prerequisite_builds) > 1:
             prerequisite_builds.sort()
-
-        supported_devices = [i for i in supported_devices if i not in ["iProd99,1"]]
 
     if not os_str:
         for product_prefix, os_str in OS_MAP:
@@ -124,18 +122,18 @@ def import_ota(
     db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
-    db_data.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
+    db_data.setdefault("deviceMap", []).extend(supported_devices)
 
     found_source = False
     for source in db_data.setdefault("sources", []):
         if source_has_link(source, ota_url):
             print("\tURL already exists in sources")
             found_source = True
-            source.setdefault("deviceMap", []).extend(augment_with_keys(supported_devices))
+            source.setdefault("deviceMap", []).extend(supported_devices)
 
     if not found_source:
         print("\tAdding new source")
-        source = {"deviceMap": augment_with_keys(supported_devices), "type": "ota", "links": [{"url": ota_url, "active": True}]}
+        source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
 
