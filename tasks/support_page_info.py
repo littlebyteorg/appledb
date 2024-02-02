@@ -17,6 +17,9 @@ release_notes_ids = {
     },
     'Studio Display Firmware': 'HT213110',
     'tvOS': 'HT207936',
+    'visionOS': {
+        1: 'HT214071'
+    },
     'watchOS': {
         9: 'HT213436',
         10: 'HT213782',
@@ -36,6 +39,9 @@ release_note_settings = {
     },
     'Studio Display Firmware': {
         'use_anchors': False
+    },
+    'visionOS': {
+        'include_trailing_zero': True
     },
     'tvOS': {
         'use_anchors': False
