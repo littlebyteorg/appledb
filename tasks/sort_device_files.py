@@ -43,7 +43,6 @@ info_type_order = ["SoC", "Cores", "Memory", "Power", "Connectivity", "Expansion
 list_fields = [
     "released",
     "model",
-    "identifier",
     "soc",
     "board",
     "alias"
