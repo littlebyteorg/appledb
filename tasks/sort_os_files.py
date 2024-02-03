@@ -32,7 +32,6 @@ key_order = [
     "ipd",
     "appledbWebImage",
     "deviceMap",
-    "iPhoneMap",
     "osMap",
     "sdks",
     "sources",
