@@ -27,11 +27,7 @@ mac_versions = [
     args.version - 4
 ]
 
-mac_codenames = {
-    11: 'Big Sur',
-    12: 'Monterey',
-    13: 'Ventura'
-}
+mac_codenames = json.load(Path("tasks/macos_codenames.json").open(encoding="utf-8"))
 
 def get_beta_path_parent(version_string):
     version_string_split = version_string.split(" ")
@@ -110,11 +106,8 @@ for mac_version in mac_versions:
     if is_beta:
         safari_subfolder = get_beta_path_parent(dist_version)
     if not SAFARI_DETAILS.get(safari_build):
-        if is_beta:
-            release_notes_link = f'https://developer.apple.com/services-account/download?path=/Safari/{safari_subfolder}/Safari_{dist_version.title().replace(" ", "_")}.pdf'
-        elif len(dist_version.split('.')) > 2:
-            release_notes_link = ''
-        else:
+        release_notes_link = ''
+        if not is_beta and len(dist_version.split('.')) <= 2:
             release_notes_link = f'https://developer.apple.com/documentation/safari-release-notes/safari-{dist_version.removesuffix(".0").replace(".", "_")}-release-notes'
 
         SAFARI_DETAILS[safari_build] = {
@@ -140,22 +133,6 @@ for mac_version in mac_versions:
 
     if safari_buildtrain and not SAFARI_DETAILS[safari_build].get('buildTrain'):
         SAFARI_DETAILS[safari_build]['buildTrain'] = safari_buildtrain
-
-    if is_beta:
-        SAFARI_DETAILS[safari_build]["sources"].append({
-            "type": "dmg",
-            "deviceMap": [
-                "Safari (macOS)"
-            ],
-            "osMap": [
-                f"macOS {mac_version}"
-            ],
-            "links": [
-                {
-                    "url": f'https://developer.apple.com/services-account/download?path=/Safari/{safari_subfolder}/{get_beta_filename(dist_version)}'
-                }
-            ]
-        })
 
     SAFARI_DETAILS[safari_build]["sources"].append({
         "type": "pkg",

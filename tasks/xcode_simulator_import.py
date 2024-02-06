@@ -63,7 +63,7 @@ for xcode_version in xcode_response:
                 sdk_mapping = sdk_mapping[0]
                 sdk['beta'] = True
                 sdk['version'] += ' beta'
-                if sdk_mapping['seedNumber'] > 1:
+                if int(sdk_mapping['seedNumber']) > 1:
                     sdk['version'] += f" {sdk_mapping['seedNumber']}"
 
             formatted_sdks.append(sdk)
