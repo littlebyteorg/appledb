@@ -143,6 +143,7 @@ parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
+parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
 args = parser.parse_args()
 
 parsed_args = dict(zip(args.os, args.build))
@@ -176,7 +177,7 @@ def get_build_version(osStr, build):
 
     return build_versions[f"{osStr}-{build}"]
 
-def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr):
+def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr, time_delay):
     asset_type = 'SoftwareUpdate'
     if is_rsr:
         asset_type = 'Splat' + asset_type
@@ -207,6 +208,11 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     if str(build[-1]).islower() and osStr in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
 
+    if time_delay > 0:
+        request['DelayPeriod'] = time_delay
+        request['DelayRequested'] = True
+        request['Supervised'] = True
+
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
@@ -228,7 +234,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
 
     for additional_audience in additional_audiences:
-        additional_links, additional_versions = call_pallas(device_name, board_id, os_version, os_build, osStr, additional_audience, is_rsr)
+        additional_links, additional_versions = call_pallas(device_name, board_id, os_version, os_build, osStr, additional_audience, is_rsr, time_delay)
         links.update(additional_links)
         newly_discovered_versions |= additional_versions
     return links, newly_discovered_versions
@@ -312,16 +318,16 @@ for (osStr, builds) in parsed_args.items():
                 for board in value['boards']:
                     if not args.no_prerequisites:
                         for prerequisite_build, version in value['builds'].items():
-                            new_links, newly_discovered_versions = call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr)
+                            new_links, newly_discovered_versions = call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr, args.time_delay)
                             ota_links.update(new_links)
                             new_versions |= newly_discovered_versions
-                    new_links, newly_discovered_versions = call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, audience, args.rsr)
+                    new_links, newly_discovered_versions = call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, audience, args.rsr, args.time_delay)
                     ota_links.update(new_links)
                     new_versions |= newly_discovered_versions
 
                     new_version_builds = sorted(new_versions.keys())[:-1]
                     for new_build in new_version_builds:
-                        new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, osStr, audience, args.rsr)
+                        new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, osStr, audience, args.rsr, args.time_delay)
                         ota_links.update(new_links)
 
 [i.unlink() for i in Path.cwd().glob("import-ota") if i.is_file()]
