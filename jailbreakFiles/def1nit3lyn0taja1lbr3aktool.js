@@ -15,7 +15,7 @@ module.exports = {
         pkgman: "sileo",
       },
     ],
-    latestVer: "1.0.0",
+    latestVer: "1.0.1",
     type: "Semi-untethered",
     notes: "Compatible with A11 and earlier devices. Requires TrollStore.",
     firmwares: ["16.0","16.6.1"]
