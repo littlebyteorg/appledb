@@ -119,6 +119,7 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
             db_data['appledbWebImage'] = web_image
 
     if buildtrain and buildtrain != db_data.get('buildTrain'):
+        file_updated = True
         db_data['buildTrain'] = buildtrain
 
     if not db_data.get("released"):
