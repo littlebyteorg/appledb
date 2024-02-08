@@ -2,7 +2,10 @@
 rewrite_map_v2 = {
     "https://updates.cdn-apple.com/": ["http://updates-http.cdn-apple.com/"],
     "https://mesu.apple.com/": ["http://mesu.apple.com/"],
-    "https://secure-appldnld.apple.com/": ["http://appldnld.apple.com/", "http://appldnld.apple.com.edgesuite.net/content.info.apple.com/"],
+    "https://secure-appldnld.apple.com/": [
+        "http://appldnld.apple.com/",
+        "http://appldnld.apple.com.edgesuite.net/content.info.apple.com/"
+    ],
     # This top link prompts for auth, the latter two don't
     "https://developer.apple.com/services-account/download?path=/": [
         "https://download.developer.apple.com/",

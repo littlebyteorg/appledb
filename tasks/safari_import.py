@@ -29,19 +29,6 @@ mac_versions = [
 
 mac_codenames = json.load(Path("tasks/macos_codenames.json").open(encoding="utf-8"))
 
-def get_beta_path_parent(version_string):
-    version_string_split = version_string.split(" ")
-    parts = []
-
-    for mac_version in sorted(mac_versions, reverse=True):
-        parts.append(f'Safari_{version_string_split[0]}_for_macOS_{mac_codenames[mac_version]}')
-
-    return f"{'_and_'.join(parts)}_beta_{version_string_split[2]}"
-
-def get_beta_filename(version_string):
-    version_string_split = version_string.split(" ")
-    return f'Safari_{version_string_split[0]}_for_macOS_{mac_codenames[mac_version]}_beta_{version_string_split[2]}.dmg'
-
 MAC_CATALOG_SUFFIX = ''
 if args.beta:
     MAC_CATALOG_SUFFIX = 'seed'
@@ -97,14 +84,13 @@ for mac_version in mac_versions:
     
     safari_plist = plistlib.loads(Path(f'{safari_destination_path}/{plist_path}').read_bytes())
     safari_build = safari_plist['ProductBuildVersion']
+    print(mac_codenames[str(mac_version)])
+    print(safari_build)
     safari_buildtrain = None
     if plist_path.endswith('BuildManifest.plist'):
         safari_buildtrain = safari_plist['BuildIdentities'][0]['Info']['BuildTrain']
 
     is_beta = 'beta' in dist_version
-    safari_subfolder = ''
-    if is_beta:
-        safari_subfolder = get_beta_path_parent(dist_version)
     if not SAFARI_DETAILS.get(safari_build):
         release_notes_link = ''
         if not is_beta and len(dist_version.split('.')) <= 2:
@@ -155,5 +141,17 @@ for mac_version in mac_versions:
 
 for build, details in SAFARI_DETAILS.items():
     safari_file = Path(f'osFiles/Software/Safari/{args.version}.x/{build}.json')
+    if safari_file.exists():
+        parsed_safari_file = json.load(safari_file.open(encoding="utf-8"))
+        if parsed_safari_file['version'] != details['version'] or parsed_safari_file['osMap'] != details['osMap']:
+            build_suffix = details['version'].split(" ", 1)[1].replace(" ", "")
+            safari_file = Path(f"osFiles/Software/Safari/{args.version}.x/{build}-{build_suffix}.json")
+            details['uniqueBuild'] = f"{build}-{build_suffix}"
+            if safari_file.exists():
+                print(f"Skipping {build} for {', '.join(details['osMap'])}")
+                continue
+        else:
+            print(f"Skipping {build} for {', '.join(details['osMap'])}")
+            continue
     json.dump(sort_os_file(None, details), safari_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     update_links([safari_file])

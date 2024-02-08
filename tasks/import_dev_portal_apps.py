@@ -78,11 +78,11 @@ for download in downloads:
                 candidate_data["releaseNotes"] = release_notes_link
                 for os_item in candidate_data["osMap"]:
                     os_version = os_item.split(" ")[-1]
-                    download_details = [item for item in download['files'] if macos_codenames[os_version] in item['filename']][0]
+                    download_details = [item for item in download['files'] if macos_codenames[str(os_version)] in item['filename']][0]
                     existing_source = [source for source in candidate_data.get('sources', []) if source['type'] == 'dmg' and source['osMap'] == [os_item]]
                     if existing_source:
                         continue
-                    os_item['sources'].add({
+                    candidate_data['sources'].append({
                         "type": "dmg",
                         "deviceMap": [
                             "Safari (macOS)"
@@ -92,11 +92,11 @@ for download in downloads:
                         ],
                         "links": [
                             {
-                                "url": LINK_PREFIX + download_details[0]['remotePath'],
+                                "url": LINK_PREFIX + download_details['remotePath'],
                                 "active": True
                             }
                         ],
-                        "size": download_details[0]['fileSize']
+                        "size": download_details['fileSize']
                     })
                     json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     elif download_name.startswith("Command Line Tools") and process_downloads["Command Line Tools"]:
