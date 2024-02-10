@@ -144,7 +144,10 @@ for build, details in SAFARI_DETAILS.items():
     if safari_file.exists():
         parsed_safari_file = json.load(safari_file.open(encoding="utf-8"))
         if parsed_safari_file['version'] != details['version'] or parsed_safari_file['osMap'] != details['osMap']:
-            build_suffix = details['version'].split(" ", 1)[1].replace(" ", "")
+            if details.get('beta'):
+                build_suffix = details['version'].split(" ", 1)[1].replace(" ", "")
+            else:
+                build_suffix = mac_codenames[details['osMap'][0].split(" ", 1)[1]].replace(" ", "").lower()
             safari_file = Path(f"osFiles/Software/Safari/{args.version}.x/{build}-{build_suffix}.json")
             details['uniqueBuild'] = f"{build}-{build_suffix}"
             if safari_file.exists():
