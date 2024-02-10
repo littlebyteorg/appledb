@@ -144,15 +144,21 @@ for build, details in SAFARI_DETAILS.items():
     if safari_file.exists():
         parsed_safari_file = json.load(safari_file.open(encoding="utf-8"))
         if parsed_safari_file['version'] != details['version'] or parsed_safari_file['osMap'] != details['osMap']:
-            if details.get('beta'):
-                build_suffix = details['version'].split(" ", 1)[1].replace(" ", "")
+            if parsed_safari_file.get('beta') and not details.get('beta'):
+                build_suffix = parsed_safari_file['version'].split(" ", 1)[1].replace(" ", "")
+                parsed_safari_file['uniqueBuild'] = f"{build}-{build_suffix}"
+                old_safari_file = Path(f"osFiles/Software/Safari/{args.version}.x/{build}-{build_suffix}.json")
+                json.dump(sort_os_file(None, parsed_safari_file), old_safari_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             else:
-                build_suffix = mac_codenames[details['osMap'][0].split(" ", 1)[1]].replace(" ", "").lower()
-            safari_file = Path(f"osFiles/Software/Safari/{args.version}.x/{build}-{build_suffix}.json")
-            details['uniqueBuild'] = f"{build}-{build_suffix}"
-            if safari_file.exists():
-                print(f"Skipping {build} for {', '.join(details['osMap'])}")
-                continue
+                if details.get('beta'):
+                    build_suffix = details['version'].split(" ", 1)[1].replace(" ", "")
+                else:
+                    build_suffix = mac_codenames[details['osMap'][0].split(" ", 1)[1]].replace(" ", "").lower()
+                safari_file = Path(f"osFiles/Software/Safari/{args.version}.x/{build}-{build_suffix}.json")
+                details['uniqueBuild'] = f"{build}-{build_suffix}"
+                if safari_file.exists():
+                    print(f"Skipping {build} for {', '.join(details['osMap'])}")
+                    continue
         else:
             print(f"Skipping {build} for {', '.join(details['osMap'])}")
             continue
