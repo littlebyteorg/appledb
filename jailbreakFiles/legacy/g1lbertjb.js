@@ -11,7 +11,7 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/g1lbertJB",
       external: true
     },
-    latestVer: "1.0.1",
+    latestVer: "1.0.3",
     type: "Untethered",
     firmwares: ["5.0", "6.1.2"],
   },
@@ -25,6 +25,7 @@ module.exports = {
         "9B179", // 5.1, iPhone 4s only
         "9B206", // 5.1.1
         "9B208", // 5.1.1, iPhone 4 (GSM) only
+        "10A402",
         "10A403", // 6.0
         "10A405", // 6.0, iPhone 5 only
         "10A406", // 6.0, iPad mini and iPod touch 5 only
@@ -35,6 +36,7 @@ module.exports = {
         "10A550", // 6.0.2, iPad mini (WiFi) only
         "10A551", // 6.0.2, iPhone 5 only
         "10A8500", // 6.0.2, iPad mini only
+        "10B137",
         "10B141", // 6.1
         "10B142", // 6.1, iPhone 4s only
         "10B143", // 6.1, iPhone 5 only
