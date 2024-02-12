@@ -2,6 +2,8 @@ const cname = 'api.appledb.dev'
 const fs = require('fs')
 const path = require('path')
 const hash = require('object-hash')
+const zlib = require('zlib');
+const lzma = require('node-liblzma');
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
@@ -35,13 +37,19 @@ function write(p, f) {
   filesWritten++
 }
 
-function writeJson(dirName, arr, property) {
+function writeCompressed(p, f) {
+  write(p + '.gz', zlib.gzipSync(f))
+  write(p + '.xz', lzma.xzSync(f))
+}
+
+function writeJson(dirName, arr, property, makeSmaller = (data) => data) {
   mkdir(path.join(p, dirName))
   write(path.join(p, dirName, 'index.json'), JSON.stringify(arr.map(x => x[property])))
-  write(path.join(p, dirName, 'main.json'), JSON.stringify(arr))
+  write(path.join(p, dirName, 'main.json'), JSON.stringify(makeSmaller(arr)))
+  writeCompressed(path.join(p, dirName, 'main.json'), JSON.stringify(arr))
   arr.map(function(x) { write(path.join(p, dirName, x[property].replace('/','%2F') + '.json'), JSON.stringify(x))})
 
-  main[dirName] = arr
+  main[dirName] = makeSmaller(arr)
 }
 
 function handleSDKs(baseItem) {
@@ -172,7 +180,7 @@ osFiles = osFiles
   if (ver.osType == 'Apple TV Software') ver.osType = 'tvOS'
   if (ver.osType == 'Mac OS X' || ver.osType == 'OS X') ver.osType = 'macOS'
 
-  if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources) ver.sources = ver.sources.filter(source => (source.type != 'ota'))
+  // if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources) ver.sources = ver.sources.filter(source => (source.type != 'ota'))
 
   function getLegacyDevicesObjectArray() {
     let obj = {}
@@ -259,7 +267,14 @@ fs.writeFileSync(`${p}/index.html`, `
 var main = {}
 var filesWritten = 0
 
-writeJson('ios', osFiles, 'key')
+function filterOTAs(ver) {
+  ver = { ...ver }
+  if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources) ver.sources = ver.sources.filter(source => (source.type != 'ota'))
+  return ver
+}
+
+writeJson('ios', osFiles, 'key', data => data.map(filterOTAs))
+
 // Write index.json and main.json filtered by each osType
 Object.entries(osFiles.reduce(function(r, a) {
   r[a.osType] = r[a.osType] || []
@@ -268,7 +283,8 @@ Object.entries(osFiles.reduce(function(r, a) {
 }, {})).forEach(([osType, fws]) => {
   mkdir(path.join(p, `ios/${osType}`))
   write(path.join(p, `ios/${osType}/index.json`), JSON.stringify(fws.map(x => x.key)))
-  write(path.join(p, `ios/${osType}/main.json`), JSON.stringify(fws))
+  write(path.join(p, `ios/${osType}/main.json`), JSON.stringify(fws.map(filterOTAs)))
+  writeCompressed(path.join(p, `ios/${osType}/main.json`), JSON.stringify(fws))
 })
 
 writeJson('jailbreak', jailbreakFiles, 'name')
@@ -277,6 +293,7 @@ writeJson('device', deviceFiles, 'key')
 writeJson('bypass', bypassApps, 'bundleId')
 
 write(path.join(p, 'main.json'), JSON.stringify(main))
+writeCompressed(path.join(p, 'main.json'), JSON.stringify(main))
 write(path.join(p, 'hash'), hash(main))
 
 var dirName = path.join(p, 'compat')
