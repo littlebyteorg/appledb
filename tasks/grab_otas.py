@@ -46,6 +46,14 @@ skip_builds = {
     ]
 }
 
+# Ensure known versions of watchOS don't get included in import-ota.txt.
+# Update this dictionary in case Apple updates watchOS for iPhones that don't support latest iOS.
+latest_watch_compatibility_versions = {
+    12: '5.3.9',
+    18: '8.8.1',
+    20: '9.6.3'
+}
+
 default_mac_devices = [
     'MacBookAir7,1',    # Intel, only supports up to Monterey
     'iMac18,1',         # Intel, only supports up to Ventura
@@ -150,6 +158,29 @@ parsed_args = dict(zip(args.os, args.build))
 
 board_ids = {}
 build_versions = {}
+restore_versions = {}
+
+def generate_restore_version(build_number):
+    global restore_versions
+    if not restore_versions.get(build_number):
+        match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
+        match_groups = match.groups()
+        kernel_version = int(match_groups[0])
+        build_letter = match_groups[1]
+        build_iteration = int(match_groups[2])
+        build_suffix = match_groups[3]
+
+        restore_pieces = []
+
+        restore_pieces.append(kernel_version)
+        restore_pieces.append(ord(build_letter) - 64)
+        restore_pieces.append(build_iteration % 1000)
+        restore_pieces.append(int(build_iteration / 1000))
+        restore_pieces.append(ord(build_suffix) - 96 if build_suffix else '0')
+
+        restore_versions[build_number] = f"{'.'.join([str(piece) for piece in restore_pieces])},0"
+
+    return restore_versions[build_number]
 
 def get_board_ids(identifier):
     global board_ids
@@ -173,11 +204,11 @@ def get_build_version(osStr, build):
     if not build_versions.get(f"{osStr}-{build}"):
         build_path = list(Path(f'osFiles/{osStr}').rglob(f'{build}.json'))[0]
         build_data = json.load(build_path.open())
-        build_versions[f"{osStr}-{build}"] = build_data['version'].split(' ')[0]
+        build_versions[f"{osStr}-{build}"] = build_data['version']
 
     return build_versions[f"{osStr}-{build}"]
 
-def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr, time_delay):
+def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr, time_delay, counter=5):
     asset_type = 'SoftwareUpdate'
     if is_rsr:
         asset_type = 'Splat' + asset_type
@@ -198,14 +229,15 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         # Device name might have an AppleDB-specific suffix; remove this when calling Pallas
         "ProductType": device_name.split("-")[0],
         "HWModelStr": board_id,
-        "ProductVersion": os_version,
+        # Ensure no beta suffix is included
+        "ProductVersion": os_version.split(" ")[0],
         "Build": os_build,
         "BuildVersion": os_build
     }
-    if is_rsr:
-        request['RestoreVersion'] = '0.0.0.0.0,0'
+    if osStr in ['iOS', 'iPadOS', 'macOS']:
+        request['RestoreVersion'] = generate_restore_version(os_build)
 
-    if str(build[-1]).islower() and osStr in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
+    if "beta" in os_version.lower() and osStr in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
 
     if time_delay > 0:
@@ -215,19 +247,22 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
+    try:
+        response.raise_for_status()
+    except:
+        if counter == 0:
+            print(request)
+            raise
+        return call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr, time_delay, counter - 1)
+
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     assets = parsed_response.get('Assets', [])
     for asset in assets:
         if asset.get("AlternateAssetAudienceUUID"):
             additional_audiences.add(asset["AlternateAssetAudienceUUID"])
-        if build_versions.get(f"{osStr}-{asset['Build']}"):
-            continue
 
-        # ensure deltas from beta builds to release builds are properly filtered out as noise as well if the target build is known
-        delta_from_beta = re.search(r"(6\d{3})", asset['Build'])
-        if delta_from_beta:
-            if build_versions.get(f"{osStr}-{asset['Build'].replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))}"):
-                continue
+        if osStr == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == asset['OSVersion'].removeprefix('9.9.'):
+            continue
 
         newly_discovered_versions[asset['Build']] = asset['OSVersion'].removeprefix('9.9.')
 
@@ -266,7 +301,7 @@ for (osStr, builds) in parsed_args.items():
         except:
             print(f"Bad path - {build_path}")
             continue
-        build_versions[f"{osStr}-{build}"] = build_data['version'].split(' ')[0]
+        build_versions[f"{osStr}-{build}"] = build_data['version']
         for device in build_data['deviceMap']:
             if args.devices and device not in args.devices:
                 continue
@@ -321,7 +356,7 @@ for (osStr, builds) in parsed_args.items():
                             new_links, newly_discovered_versions = call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr, args.time_delay)
                             ota_links.update(new_links)
                             new_versions |= newly_discovered_versions
-                    new_links, newly_discovered_versions = call_pallas(key, board, build_data['version'].split(' ')[0], build, osStr, audience, args.rsr, args.time_delay)
+                    new_links, newly_discovered_versions = call_pallas(key, board, build_data['version'], build, osStr, audience, args.rsr, args.time_delay)
                     ota_links.update(new_links)
                     new_versions |= newly_discovered_versions
 
