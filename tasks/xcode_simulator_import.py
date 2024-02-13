@@ -6,6 +6,7 @@ import plistlib
 from pathlib import Path
 import re
 import zoneinfo
+import random
 
 import dateutil.parser
 import requests
@@ -14,7 +15,7 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 
 xcode_response = requests.get('https://xcodereleases.com/data.json').json()
-simulator_response = plistlib.loads(requests.get('https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex').content)
+simulator_response = plistlib.loads(requests.get(f'https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex?cachebust{random.randint(100, 1000)}').content)
 
 sdk_platform_mapping = {
     'iOS': 'iphoneos',
