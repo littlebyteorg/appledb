@@ -1,7 +1,7 @@
 module.exports = {
   name: "meowbrek2",
   alias: ["meowbrek2"],
-  priority: 0,
+  priority: 1,
   info: {
     website: {
       name: "kok3shidoll.github.io/download/secret/meowbrek2.txt",

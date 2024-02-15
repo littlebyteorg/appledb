@@ -1,7 +1,7 @@
 module.exports = {
   name: "Def1nit3lyN0tAJa1lbr3akTool",
   alias: ["Def1nit3lyN0tAJa1lbr3akTool", "dnajt", "notajb"],
-  priority: 0,
+  priority: 1,
   info: {
     website: {
       name: "github.com/KpwnZ/Def1nit3lyN0tAJa1lbr3akTool",
