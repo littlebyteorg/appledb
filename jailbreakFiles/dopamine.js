@@ -15,7 +15,7 @@ module.exports = {
         pkgman: "sileo"
       }
     ],
-    latestVer: "2.0",
+    latestVer: "2.0.4",
     icon: "/assets/images/jb-icons/dopamine.png",
     notes: "Supports A9(X) and later devices on 15.0 to 16.5. Supports A9(X) - A14 and M1 devices on 16.5.1. Supports A9(X) - A11 devices on 16.6 to 16.6.1",
     type: "Semi-Untethered",
