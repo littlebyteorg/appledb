@@ -1,0 +1,118 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Apple OS",
+    "description": "Description of an Apple operating system release",
+
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+        "osStr":        {"type": "string"},
+        "version":      {"type": "string"},
+        "build":        {"type": "string"},
+        "uniqueBuild":  {"type": "string"},
+        "buildTrain":   {"type": "string"},
+        "sortVersion":  {"type": "string"},
+
+        "iosVersion":       {"type": "string"},
+        "bridgeOSBuild":    {"type": "string"},
+        "embeddedOSBuild":  {"type": "string"},
+
+        "released":     {"type": "string"},
+        "beta":         {"type": "boolean"},
+        "rc":           {"type": "boolean"},
+        "internal":     {"type": "boolean"},
+        "hideFromLatestVersions": {"type": "boolean"},
+        "releaseNotes": {"type": "string", "format": "uri"},
+        "securityNotes":{"type": "string", "format": "uri"},
+
+        "preinstalled": {
+            "anyOf": [
+                {"type": "boolean"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        },
+        "deviceMap": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "ipd": {
+            "type": "object",
+            "properties": {
+                "AudioAccessory": {"type": "string", "format": "uri"},
+                "AppleTV":  {"type": "string", "format": "uri"},
+                "iPhone":   {"type": "string", "format": "uri"},
+                "iPad":     {"type": "string", "format": "uri"},
+                "iPod":     {"type": "string", "format": "uri"}
+            },
+            "additionalProperties": {"type": "string", "format": "uri"}
+        },
+        "createDuplicateEntries": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "allOf": [
+                    {"$ref": "#"},
+                    {"properties": {"createDuplicateEntries": false}}
+                ]
+            }
+        },
+        "appledbWebImage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {"type": "string"},
+                "align": {"type": "string"}
+            }
+        },
+        "sources": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["type", "links", "deviceMap"],
+                "properties": {
+                    "type": {"enum": ["ipsw", "ota", "update", "kdk", "installassistant", "combo", "pkg"]},
+                    "deviceMap": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "minItems": 1,
+                        "uniqueItems": true
+                    },
+                    "hashes": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "md5":      { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+                            "sha1":     { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+                            "sha2-256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+                            "sha2-512": { "type": "string", "pattern": "^[0-9a-f]{128}$" }
+                        }
+                    },
+                    "links": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": ["url", "active"],
+                            "properties": {
+                                "url": {"type": "string", "format": "uri"},
+                                "active": {"type": "boolean"},
+                                "catalog": {"enum": ["dev-beta", "public-beta"]}
+                            }
+                        }
+                    },
+                    "prerequisiteBuild": {
+                        "anyOf": [
+                            {"type": "string"},
+                            {"type": "array", "minItems": 1, "items": {"type": "string"}}
+                        ]
+                    },
+                    "size": {"type": "integer"}
+                }
+            }
+        }
+    }
+}
