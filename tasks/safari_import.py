@@ -71,7 +71,7 @@ for mac_version in mac_versions:
         pkgutil_response.check_returncode()
 
         file_hashes['sha1'] = sha1.hexdigest()
-        file_hashes['sha256'] = sha256.hexdigest()
+        file_hashes['sha2-256'] = sha256.hexdigest()
         file_hashes['md5'] = md5.hexdigest()
 
         with open(f'{safari_destination_path}/Payload', 'rb') as payload_file:
