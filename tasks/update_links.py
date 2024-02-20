@@ -14,7 +14,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
-from link_info import needs_auth, needs_apple_auth, no_head, needs_cache_bust, apple_auth_token
+from link_info import needs_auth, needs_apple_auth, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token
 from sort_os_files import sort_os_file
 
 # Disable SSL warnings, because Apple's SSL is broken
@@ -109,7 +109,9 @@ class ProcessFileThread(threading.Thread):
                 if urlparse(url).hostname in no_head:
                     resp.close()
 
-                if resp.status_code == 200:
+                if not link["active"] and urlparse(url).hostname in stop_remaking_active:
+                    successful_hit = False
+                elif resp.status_code == 200:
                     successful_hit = 'unauthorized' not in resp.url
                 elif resp.status_code == 403 or resp.status_code == 404:
                     # Dead link

@@ -42,9 +42,14 @@ needs_cache_bust = [
     "swcdn.apple.com"
 ]
 
+# Domains that regularly flip-flop from available to unavailable as it leaves the CDN
+stop_remaking_active = [
+    "swcdn.apple.com"
+]
+
 try:
     with open("apple_token.txt", "r") as token_file:
-        apple_auth_token = token_file.readline()
+        apple_auth_token = token_file.readline().strip()
 except:
     apple_auth_token = ""
 
