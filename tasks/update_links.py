@@ -109,7 +109,7 @@ class ProcessFileThread(threading.Thread):
                 if urlparse(url).hostname in no_head:
                     resp.close()
 
-                if not link["active"] and urlparse(url).hostname in stop_remaking_active:
+                if not link.get("active", True) and urlparse(url).hostname in stop_remaking_active:
                     successful_hit = False
                 elif resp.status_code == 200:
                     successful_hit = 'unauthorized' not in resp.url
