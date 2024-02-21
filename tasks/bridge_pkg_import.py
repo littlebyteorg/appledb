@@ -17,6 +17,7 @@ from update_links import update_links
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--version', default=14)
 parser.add_argument('-b', '--beta', action='store_true')
+parser.add_argument('-p', '--public-beta', action='store_true')
 args = parser.parse_args()
 
 SESSION = requests.session()
@@ -24,6 +25,8 @@ SESSION = requests.session()
 MAC_CATALOG_SUFFIX = ''
 if args.beta:
     MAC_CATALOG_SUFFIX = 'seed'
+elif args.public_beta:
+    MAC_CATALOG_SUFFIX = 'beta'
 
 raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
 raw_sucatalog.raise_for_status()
