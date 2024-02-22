@@ -50,5 +50,5 @@ for mac_version in mac_versions:
             else:
                 links.add(f"{base_url}/InstallAssistant.pkg")
 
-[i.unlink() for i in Path.cwd().glob("import-ia") if i.is_file()]
+[i.unlink() for i in Path.cwd().glob("import-ia.*") if i.is_file()]
 Path("import-ia.txt").write_text("\n".join(sorted(links)), "utf-8")

@@ -187,18 +187,19 @@ if __name__ == "__main__":
 
             for version in versions:
                 print(f"Importing {version['osStr']} {version['version']}")
-                if "links" not in version:
+                if "sources" not in version:
                     files_processed.add(
                         create_file(version["osStr"], version["build"], FULL_SELF_DRIVING, version=version["version"], released=version["released"])
                     )
                 else:
-                    for link in version["links"]:
-                        try:
-                            files_processed.add(
-                                import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=version.get("prerequisite", []), device_map=version["deviceMap"], known_invalid_url=version.get("bad_link", False))
-                            )
-                        except Exception:
-                            failed_links.append(link["url"])
+                    for source in version['sources']:
+                        for link in source.get('links', []):
+                            try:
+                                files_processed.add(
+                                    import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), device_map=source["deviceMap"], known_invalid_url=version.get("bad_link", False))
+                                )
+                            except Exception:
+                                failed_links.append(link["url"])
 
         elif Path("import-ota.txt").exists():
             print("Reading URLs from import-ota.txt")
