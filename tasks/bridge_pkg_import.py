@@ -50,16 +50,43 @@ for product in plist.values():
     db_data = json.load(file_location.open(encoding="utf-8"))
     found_source = False
 
+    new_sources = []
+
+    file_size = int(SESSION.head(url).headers["Content-Length"])
+    
+
     for source in db_data.setdefault("sources", []):
         if source_has_link(source, url):
             found_source = True
             print("\tURL already exists in sources")
+        elif source['size'] == file_size:
+            new_link = {
+                'url': url,
+                'active': True
+            }
+            if args.beta:
+                new_link['catalog'] = 'dev-beta'
+            elif args.public_beta:
+                new_link['catalog'] = 'public-beta'
+
+            source['links'].append(new_link)
+            found_source = True
+        new_sources.append(source)
     if not found_source:
         file_data = SESSION.get(url).content
         sha1 = hashlib.sha1()
         sha1.update(file_data)
-        source = {"deviceMap": db_data['deviceMap'], "type": "pkg", "links": [{"url": url, "active": True}], "hashes": {"sha1": sha1.hexdigest()}}
-        db_data['sources'].append(source)
+        new_link = {
+            'url': url,
+            'active': True
+        }
+        if args.beta:
+            new_link['catalog'] = 'dev-beta'
+        elif args.public_beta:
+            new_link['catalog'] = 'public-beta'
+        source = {"deviceMap": db_data['deviceMap'], "type": "pkg", "links": [new_link], "hashes": {"sha1": sha1.hexdigest()}}
+        new_sources.append(source)
+    db_data['sources'] = new_sources
     json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     updated_files.add(file_location)
 
