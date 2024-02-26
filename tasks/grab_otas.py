@@ -224,6 +224,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
 
     request = {
         "ClientVersion": 2,
+        "CertIssuanceDay": "2023-12-10",
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
         "AssetAudience": audience,
         # Device name might have an AppleDB-specific suffix; remove this when calling Pallas
