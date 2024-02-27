@@ -10,7 +10,11 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-14, macos-13, macos-12, macos-11]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
