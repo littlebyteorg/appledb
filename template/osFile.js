@@ -20,7 +20,7 @@ module.exports = function (json) {
     },
     key: {
       type: String,
-      method: (t) => json.osStr + ";" + t.get("uniqueBuild"),
+      default: (t) => json.osStr + ";" + t.get("uniqueBuild"),
     },
     embeddedOSBuild: {
       type: String,
