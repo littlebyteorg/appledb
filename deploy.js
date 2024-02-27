@@ -4,7 +4,6 @@ const path = require("path");
 const hash = require("object-hash");
 const zlib = require("zlib");
 const lzma = require("node-liblzma");
-const osFileTemplate = require("./template/osFile.js");
 
 function getAllFiles(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath);
@@ -181,8 +180,7 @@ for (let i of osFiles) {
   );
 }
 let filterOTAsArray = ["audioOS", "tvOS", "watchOS", "iOS", "HomePod Software"];
-let osFileFieldArr = [];
-osFiles = osFiles.concat(createDuplicateEntriesArray).map((ver) => {
+osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build || ver.version;
   if (!ver.key) ver.key = ver.osStr + ";" + ver.uniqueBuild;
   if (!ver.beta) ver.beta = false;
@@ -197,14 +195,14 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map((ver) => {
   if (ver.preinstalled === true) ver.preinstalled = ver.deviceMap;
   else if (!ver.preinstalled) ver.preinstalled = [];
 
-  /*ver.osType = ver.osStr;
+  ver.osType = ver.osStr;
   if (ver.osType == "iPhoneOS" || ver.osType == "iPadOS") ver.osType = "iOS";
   if (ver.osType == "Apple TV Software") ver.osType = "tvOS";
-  if (ver.osType == "Mac OS X" || ver.osType == "OS X") ver.osType = "macOS";*/
+  if (ver.osType == "Mac OS X" || ver.osType == "OS X") ver.osType = "macOS";
 
   // if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources) ver.sources = ver.sources.filter(source => (source.type != 'ota'))
 
-  /*function getLegacyDevicesObjectArray() {
+  function getLegacyDevicesObjectArray() {
     let obj = {};
     ver.deviceMap.map((x) => (obj[x] = {}));
     if (!ver.sources) return obj;
@@ -223,57 +221,13 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map((ver) => {
     return obj;
   }
 
-  ver.devices = getLegacyDevicesObjectArray();*/
+  ver.devices = getLegacyDevicesObjectArray();
 
   ver.appledburl = encodeURI(
     `https://appledb.dev/firmware/${ver.osStr.replace(/ /g, "-")}/${ver.uniqueBuild}`,
   );
 
   return ver;
-
-  /*let file = {};
-  let currentTemplate = osFileTemplate(ver);
-  const fieldArray = Object.keys(currentTemplate);
-
-  for (let field of fieldArray) {
-    if (!currentTemplate[field].hasOwnProperty("default")) {
-      let fileType = currentTemplate[field].type;
-      currentTemplate[field].default = () => {
-        switch (fileType) {
-          case String:
-            return "";
-          case Number:
-            return 0;
-          case Boolean:
-            return false;
-          case Array:
-            return [];
-          case Object:
-            return {};
-          default:
-            return undefined;
-        }
-      };
-    }
-  }
-
-  for (let field of fieldArray) {
-    if (!currentTemplate[field].hasOwnProperty("method"))
-      currentTemplate[field].method = (currentTemplate) => {
-        let currentValue = ver[field];
-        if (currentValue !== undefined) return currentValue;
-        return currentTemplate[field].default(currentTemplate);
-      };
-  }
-
-  currentTemplate.get = (property) =>
-    currentTemplate[property].method(currentTemplate);
-
-  for (let field of fieldArray) {
-    let data = currentTemplate.get(field);
-    if (data !== undefined) file[field] = currentTemplate.get(field);
-  }
-  return file;*/
 });
 
 jailbreakFiles = jailbreakFiles.map(function (jb) {
