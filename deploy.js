@@ -33,13 +33,13 @@ function mkdir(p) {
 }
 
 function write(p, f) {
-  //fs.writeFileSync(p, f);
+  fs.writeFileSync(p, f);
   filesWritten++;
 }
 
 function writeCompressed(p, f) {
-  //write(p + ".gz", zlib.gzipSync(f));
-  //write(p + ".xz", lzma.xzSync(f));
+  write(p + ".gz", zlib.gzipSync(f));
+  write(p + ".xz", lzma.xzSync(f));
 }
 
 function writeJson(dirName, arr, property, makeSmaller = (data) => data) {
