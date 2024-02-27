@@ -61,7 +61,7 @@ for group in element.xpath(".//h3/.."):
     version = match.groupdict()["version"]
     if "." not in version:
         version += ".0"
-    data = {"osStr": match.groupdict()["os_str"], "version": version + (match.groupdict()["additional"] or "")}
+    data = {"osStr": match.groupdict()["os_str"], "version": version + (match.groupdict()["additional"] or "").replace("Release Candidate", "RC")}
 
     build_info_container: list[Element] = group.xpath("./ul[@class='version typography-caption']")
     if not build_info_container:
