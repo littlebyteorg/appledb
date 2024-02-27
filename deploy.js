@@ -33,13 +33,13 @@ function mkdir(p) {
 }
 
 function write(p, f) {
-  fs.writeFileSync(p, f);
+  //fs.writeFileSync(p, f);
   filesWritten++;
 }
 
 function writeCompressed(p, f) {
-  write(p + ".gz", zlib.gzipSync(f));
-  write(p + ".xz", lzma.xzSync(f));
+  //write(p + ".gz", zlib.gzipSync(f));
+  //write(p + ".xz", lzma.xzSync(f));
 }
 
 function writeJson(dirName, arr, property, makeSmaller = (data) => data) {
@@ -190,27 +190,23 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map((ver, index) => {
   for (let field of fieldArray) {
     if (!currentTemplate[field].hasOwnProperty("default")) {
       let fileType = currentTemplate[field].type;
-      let data;
-      switch (fileType) {
-        case String:
-          data = "";
-          break;
-        case Number:
-          data = 0;
-          break;
-        case Boolean:
-          data = false;
-          break;
-        case Array:
-          data = [];
-          break;
-        case Object:
-          data = {};
-          break;
-        default:
-          data = undefined;
-      }
-      currentTemplate[field].default = () => data;
+      currentTemplate[field].default = () => {
+        return "DONOTPRINT";
+        switch (fileType) {
+          case String:
+            return "";
+          case Number:
+            return 0;
+          case Boolean:
+            return false;
+          case Array:
+            return [];
+          case Object:
+            return {};
+          default:
+            return undefined;
+        }
+      };
     }
   }
 
@@ -226,7 +222,10 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map((ver, index) => {
   currentTemplate.get = (property) =>
     currentTemplate[property].method(currentTemplate);
 
-  for (let field of fieldArray) file[field] = currentTemplate.get(field);
+  for (let field of fieldArray) {
+    let data = currentTemplate.get(field);
+    if (data !== "DONOTPRINT") file[field] = currentTemplate.get(field);
+  }
   return file;
 });
 
