@@ -143,7 +143,7 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         file_updated = True
         db_data["beta"] = True
 
-    if "rc" not in db_data and (rc or "rc" in db_data["version"].lower()):
+    if "rc" not in db_data and (rc or "rc" in db_data["version"].lower() or "Release Candidate" in db_data["version"].lower()):
         file_updated = True
         db_data["rc"] = True
 
