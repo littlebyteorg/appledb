@@ -5,6 +5,7 @@ import json
 import zoneinfo
 
 from sort_os_files import sort_os_file
+from support_page_info import get_release_notes_link
 
 supported_subfolders = [
     'audioOS',
@@ -73,6 +74,9 @@ for (osStr, builds) in parsed_builds.items():
                     link['url'] = link['url'].replace('_Release_Candidate', '')
         duplicate_entry['released'] = file_data['released']
         file_data['released'] = datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+        release_notes_link = get_release_notes_link(file_data["osStr"], file_data["version"])
+        if release_notes_link:
+            file_data["releaseNotes"] = release_notes_link
 
         if args.exclude_devices:
             excluded_devices = list(set(args.exclude_devices).intersection(set(file_data['deviceMap'])))
