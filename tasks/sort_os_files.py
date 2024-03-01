@@ -10,9 +10,7 @@ from typing import Optional
 key_order = [
     "osStr",
     "version",
-    "iosVersion",
     "safariVersion",
-    "sortVersion",
     "build",
     "uniqueBuild",
     "embeddedOSBuild",
