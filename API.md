@@ -42,6 +42,10 @@ URLs are case sensitive.
 
 To stay updated on changes to the API (and AppleDB development in general), you can join our [Discord](https://discord.gg/QBj8pBa).
 
+### 2024-03-01
+
+- Remove iosVersion and sortVersion
+
 ### 2024-02-01
 
 - Add compressed endpoints for `main.json`
