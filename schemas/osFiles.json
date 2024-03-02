@@ -6,20 +6,29 @@
     "type": "object",
     "additionalProperties": true,
     "properties": {
-        "osStr":        {"type": "string"},
-        "version":      {"type": "string"},
-        "build":        {"type": "string"},
-        "uniqueBuild":  {"type": "string"},
-        "buildTrain":   {"type": "string"},
+        "osStr":         {"type": "string"},
+        "version":       {"type": "string"},
+        "safariVersion": {
+            "anyOf": [
+                {"type": "string"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        }
+        "build":         {"type": "string"},
+        "uniqueBuild":   {"type": "string"},
+        "key":           {"type": "string"},
         
         "bridgeOSBuild":    {"type": "string"},
         "embeddedOSBuild":  {"type": "string"},
+        "buildTrain":    {"type": "string"},
 
         "released":     {"type": "string"},
-        "beta":         {"type": "boolean"},
         "rc":           {"type": "boolean"},
+        "beta":         {"type": "boolean"},
+        "rsr":          {"type": "boolean"},
         "internal":     {"type": "boolean"},
         "hideFromLatestVersions": {"type": "boolean"},
+        "notes":        {"type": "string"},
         "releaseNotes": {"type": "string", "format": "uri"},
         "securityNotes":{"type": "string", "format": "uri"},
 
@@ -30,6 +39,12 @@
             ]
         },
         "deviceMap": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "osMap": {
             "type": "array",
             "items": {"type": "string"},
             "minItems": 1,
@@ -64,6 +79,7 @@
                 "align": {"type": "string"}
             }
         },
+        "appledbUrl": {"type": "string"},
         "sources": {
             "type": "array",
             "items": {
