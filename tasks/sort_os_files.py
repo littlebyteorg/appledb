@@ -12,7 +12,7 @@ key_order = [
     "version",
     "safariVersion",
     "build",
-    "uniqueBuild",
+    "key",
     "embeddedOSBuild",
     "bridgeOSBuild",
     "buildTrain",
