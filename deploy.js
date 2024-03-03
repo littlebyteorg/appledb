@@ -181,8 +181,7 @@ for (let i of osFiles) {
 }
 let filterOTAsArray = ["audioOS", "tvOS", "watchOS", "iOS", "HomePod Software"];
 osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
-  if (!ver.key) ver.key = ver.build || ver.version;
-  if (!ver.key) ver.key = ver.osStr + ";" + ver.key;
+  if (!ver.key) ver.key = ver.osStr + ";" + (ver.build || ver.version);
   if (!ver.beta) ver.beta = false;
   if (!ver.rc) ver.rc = false;
   /*if (!ver.sortVersion) {
