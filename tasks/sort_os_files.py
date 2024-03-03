@@ -35,7 +35,7 @@ key_order = [
     "sources",
 ]
 
-sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "osMap", "windowsUpdateDetails", "links", "hashes", "skipUpdateLinks", "size"]
+sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "boardMap", "osMap", "windowsUpdateDetails", "links", "hashes", "skipUpdateLinks", "size"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
@@ -89,6 +89,10 @@ def device_map_sort(device_map):
     return sorted(set(device_map), key=device_sort)
 
 
+def board_map_sort(board_map):
+    return sorted(set(board_map))
+
+
 def os_map_sort(os_map):
     return sorted(set(os_map), key=os_sort)
 
@@ -130,6 +134,8 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i].keys()) - set(sources_key_order))}")
 
         data["sources"][i]["deviceMap"] = device_map_sort(source["deviceMap"])
+        if source.get("boardMap"):
+            data["sources"][i]["boardMap"] = board_map_sort(source["boardMap"])
         if source.get("osMap"):
             data["sources"][i]["osMap"] = os_map_sort(source["osMap"])
         if "hashes" in source:
@@ -154,12 +160,18 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             # This is a list which was already sorted previously
             prerequisite_order = source["prerequisiteBuild"][0]
 
+        if "boardMap" not in source:
+            board_order = ""
+        else:
+            # This is a list which was already sorted previously
+            board_order = source["boardMap"][0]
+
         if source.get("osMap"):
             sorted_os_item = os_sort(source["osMap"][0])
         else:
             sorted_os_item = (-1, 0)
 
-        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), sorted_os_item, build_number_sort(prerequisite_order)
+        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), sorted_os_item, build_number_sort(prerequisite_order), board_order
 
     data.get("sources", []).sort(key=source_sort)
 

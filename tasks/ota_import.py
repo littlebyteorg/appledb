@@ -13,7 +13,7 @@ import time
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
-from common_update_import import augment_with_keys, create_file, get_board_mappings, OS_MAP
+from common_update_import import all_boards_covered, augment_with_keys, create_file, get_board_mappings, BOARD_IDS, OS_MAP
 
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 
@@ -88,11 +88,19 @@ def import_ota(
         if rsr:
             recommended_version = recommended_version + (f" {info_plist['ProductVersionExtra']}" if info_plist.get('ProductVersionExtra') else '')
         # Devices supported specifically in this source
+        supported_boards = []
         if device_map:
             supported_devices = augment_with_keys(device_map)
             bridge_devices = []
         elif info_plist.get('SupportedDevices'):
             supported_devices = augment_with_keys(info_plist['SupportedDevices'])
+
+            include_board_map = all_boards_covered(info_plist['SupportedDevices'], info_plist['SupportedDeviceModels'])
+
+            if include_board_map:
+                boards = info_plist['SupportedDeviceModels']
+
+            print(get_board_mappings(info_plist['SupportedDeviceModels']))
             bridge_devices = []
         else:
             supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
@@ -109,8 +117,11 @@ def import_ota(
                 if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("13.0"):
                     os_str = "iOS"
                 print(f"\t{os_str} {recommended_version} ({build})")
-                print(f"\tPrerequisite: {prerequisite_builds}")
+                if prerequisite_builds:
+                    print(f"\tPrerequisite: {prerequisite_builds}")
                 print(f"\tDevice Support: {supported_devices}")
+                if supported_boards:
+                    print(f"\tBoard Support: {supported_boards}")
                 break
         else:
             if FULL_SELF_DRIVING:
@@ -136,6 +147,8 @@ def import_ota(
         source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
+        if supported_boards:
+            source["boardMap"] = supported_boards
 
         db_data["sources"].append(source)
 
