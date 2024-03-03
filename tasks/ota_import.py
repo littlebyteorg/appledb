@@ -95,12 +95,10 @@ def import_ota(
         elif info_plist.get('SupportedDevices'):
             supported_devices = augment_with_keys(info_plist['SupportedDevices'])
 
-            include_board_map = all_boards_covered(info_plist['SupportedDevices'], info_plist['SupportedDeviceModels'])
+            exclude_board_map = all_boards_covered(info_plist['SupportedDevices'], info_plist['SupportedDeviceModels'])
 
-            if include_board_map:
-                boards = info_plist['SupportedDeviceModels']
-
-            print(get_board_mappings(info_plist['SupportedDeviceModels']))
+            if not exclude_board_map:
+                supported_boards = info_plist['SupportedDeviceModels']
             bridge_devices = []
         else:
             supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
