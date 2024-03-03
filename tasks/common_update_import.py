@@ -29,6 +29,8 @@ FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1"]
 VARIANTS = {}
 BOARD_IDS = {}
 
+MULTI_BOARD_DEVICES = {}
+
 for device in Path("deviceFiles").rglob("*.json"):
     device_data = json.load(device.open(encoding="utf-8"))
     name = device_data["name"]
@@ -42,9 +44,12 @@ for device in Path("deviceFiles").rglob("*.json"):
     for identifier in identifiers:
         VARIANTS.setdefault(identifier, set()).add(key)
         if device_data.get('board'):
-            board = device_data['board'][0] if isinstance(device_data['board'], list) else device_data['board']
+            if isinstance(device_data['board'], list):
+                board = device_data['board'][0]
+                MULTI_BOARD_DEVICES[key] = device_data['board']
+            else:
+                board = device_data['board']
             BOARD_IDS.setdefault(board.upper() if device_data.get("type") == "iBridge" else board, set()).add(key)
-
 
 def augment_with_keys(identifiers):
     new_identifiers = []
@@ -66,6 +71,12 @@ def get_board_mappings(devices):
         else:
             identifiers.extend(augment_with_keys(device_mappings))
     return identifiers, bridge_identifiers
+
+def all_boards_covered(identifiers, boards):
+    has_boards = True
+    for identifier in identifiers:
+        if MULTI_BOARD_DEVICES.get(identifier):
+            has_boards = has_boards and set(MULTI_BOARD_DEVICES[identifier]).intersection(boards) == set(MULTI_BOARD_DEVICES[identifier])
 
 def create_file(os_str, build, full_self_driving, recommended_version=None, version=None, released=None, beta=None, rc=None, buildtrain=None, rsr=False):
     assert version or recommended_version, "Must have either version or recommended_version"
