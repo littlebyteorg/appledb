@@ -116,7 +116,7 @@
                         "additionalProperties": false,
                         "properties": {
                             "updateId": {"type": "string", "format": "uuid"},
-                            "revisionId": {"type": "string", "format": "number"}
+                            "revisionId": {"type": "string", "pattern": "^\\w+$"}
                         }
                     },
                     "hashes": {
