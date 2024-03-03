@@ -4,7 +4,7 @@
     "description": "Description of an Apple operating system release",
 
     "type": "object",
-    "additionalProperties": true,
+    "additionalProperties": false,
     "properties": {
         "osStr":         {"type": "string"},
         "version":       {"type": "string"},
@@ -71,6 +71,20 @@
                 ]
             }
         },
+        "sdks": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "beta": {"type": "boolean"},
+                    "build": {"type": "string"},
+                    "osStr": {"type": "string"},
+                    "version": {"type": "string"}
+                }
+            }
+        },
         "appledbWebImage": {
             "type": "object",
             "additionalProperties": false,
@@ -87,12 +101,17 @@
                 "additionalProperties": false,
                 "required": ["type", "links", "deviceMap"],
                 "properties": {
-                    "type": {"enum": ["ipsw", "ota", "update", "kdk", "installassistant", "combo", "pkg"]},
-                    "deviceMap": {
-                        "type": "array",
-                        "items": {"type": "string"},
-                        "minItems": 1,
-                        "uniqueItems": true
+                    "type": {"enum": ["ipsw", "ota", "update", "kdk", "installassistant", "combo", "pkg", "dmg", "exe", "appx", "xip", "tar", "bin"]},
+                    "deviceMap": {"$ref": "#/properties/deviceMap"},
+                    "osMap": {"$ref": "#/properties/osMap"},
+                    "skipUpdateLinks": {"type": "boolean"},
+                    "windowsUpdateDetails": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "updateId": {"type": "string", "format": "uuid"},
+                            "revisionId": {"type": "string", "format": "number"}
+                        }
                     },
                     "hashes": {
                         "type": "object",
