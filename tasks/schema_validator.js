@@ -2,6 +2,8 @@ const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
 const glob = require("glob");
 
+process.chdir(__dirname);
+
 const ajv = new Ajv();
 addFormats(ajv);
 
@@ -9,7 +11,7 @@ const schema = require("../schemas/osFiles.json");
 const validator = ajv.compile(schema);
 
 const filesToValidate = [
-    "./osFiles/**/*.json"
+    "../osFiles/**/*.json"
 ]
 
 var total = 0, failed = 0;
