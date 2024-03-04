@@ -10,7 +10,11 @@
         "align": "left"
     },
     "deviceMap": [
-        "AppleTV5,3"
+        "AppleTV5,3",
+        "AppleTV6,2",
+        "AppleTV11,1",
+        "AppleTV14,1",
+        "AppleTV14,1-wifi"
     ],
     "sources": [
         {
@@ -29,6 +33,87 @@
                 "sha2-256": "bb98202e441fd59d079144620de3ba863bd0499a3d77f533eca68ab64d9012b3"
             },
             "size": 4391644267
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AppleTV5,3"
+            ],
+            "boardMap": [
+                "J42dAP"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterFCS/patches/032-53426/47ED632C-BFF8-40EF-B794-D0403260A0C9/com_apple_MobileAsset_SoftwareUpdate/683c0a8d4bf78bc367dac25f1dd8add52f63a1a9.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2bc8d9372df0bcc53a65868fcd69d35900131782",
+                "sha2-256": "905445664586241293e1844948f7ddee06b482ce23330abe478951b992a34a4c"
+            },
+            "size": 3334109020
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AppleTV6,2"
+            ],
+            "boardMap": [
+                "J105aAP"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterFCS/patches/032-53439/C2DA7518-EB6C-412E-A7CC-F4090370C139/com_apple_MobileAsset_SoftwareUpdate/bc0cbea1d6f46ff33b5404b654aed31073ab6a85.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2dd1e451659101ba66db02cabcd34185cc57a1fb",
+                "sha2-256": "cebac36c3faecaea17a5704d0febd5c5ac76d08d41a121c719902ed9127e7a73"
+            },
+            "size": 3665404962
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AppleTV11,1"
+            ],
+            "boardMap": [
+                "J305AP"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterFCS/patches/032-53462/E653C73F-03F5-4F42-8C3C-A697298B88F8/com_apple_MobileAsset_SoftwareUpdate/77b5d08ccd50ad18ae6c85bd16f7c275910b9450.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5dab3d88f050d0e41c7f63266d4751fd5c2726fb",
+                "sha2-256": "d63ba976f0c823e98c6af1a49bab9275318931cf7d469abcdb71f83ce55f9ad5"
+            },
+            "size": 3834835359
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AppleTV14,1",
+                "AppleTV14,1-wifi"
+            ],
+            "boardMap": [
+                "J255AP"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterFCS/patches/032-53413/A959FCB7-F0BA-4E8E-AC35-BAADC9653A35/com_apple_MobileAsset_SoftwareUpdate/68cfb80641c332245f874d11e4b51f0f72fdece2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cc5891929a7c1b85dae01c6d78cd67a28c8f5382",
+                "sha2-256": "9389cf637862a7ce9b49e905d5e62b5da9de89b5117d48ff844377029a2df602"
+            },
+            "size": 3886591972
         }
     ]
 }
