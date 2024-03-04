@@ -100,7 +100,7 @@ for download in downloads:
                     })
                     json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     elif download_name.startswith("Command Line Tools") and process_downloads["Command Line Tools"]:
-        clt_version = download_name.split("Xcode ")[1]
+        clt_version = download_name.split("Xcode ")[1].replace('Release Candidate', 'RC')
         clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
         target_file = Path(f"osFiles/Software/Xcode Command Line Tools/{clt_subfolder}/{clt_version}.json")
         if target_file.exists():
