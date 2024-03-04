@@ -44,7 +44,7 @@
     "sync-request": "^6.1.0"
   },
   "lint-staged": {
-    "osFiles/**/*.json": "npm run sort-os-files --",
-    "deviceFiles/**/*.json": "npm run sort-device-files --"
+    "osFiles/**/*.json": "npm run sort-os-files -- -f",
+    "deviceFiles/**/*.json": "npm run sort-device-files -- -f"
   }
 }

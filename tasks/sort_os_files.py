@@ -4,6 +4,7 @@ import copy
 import json
 import re
 import sys
+import argparse
 from pathlib import Path
 from typing import Optional
 
@@ -182,8 +183,11 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        for file in sys.argv[1:]:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--files", nargs="+")
+    args = parser.parse_args()
+    if args.files:
+        for file in args.files:
             try:
                 sort_os_file(Path(file))
             except Exception:
