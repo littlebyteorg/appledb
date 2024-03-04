@@ -13,7 +13,7 @@ import time
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
-from common_update_import import all_boards_covered, augment_with_keys, create_file, get_board_mappings, BOARD_IDS, OS_MAP
+from common_update_import import all_boards_covered, augment_with_keys, create_file, get_board_mappings, OS_MAP
 
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 
