@@ -63,7 +63,8 @@ default_mac_devices = [
     'Mac14,2',          # Covers WWDC 2022 forked builds
     'Mac14,6',          # Covers Ventura 13.0 forked builds
     'Mac14,15',         # Covers WWDC 2023 forked builds
-    'Mac15,3'           # Covers M3 forked builds (Ventura and Sonoma)
+    'Mac15,3',          # Covers M3 forked builds (Ventura and Sonoma)
+    'Mac15,12',         # Covers forked 14.3
 ]
 
 asset_audiences_overrides = {
