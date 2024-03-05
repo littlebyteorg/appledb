@@ -77,6 +77,7 @@ def all_boards_covered(identifiers, boards):
     for identifier in identifiers:
         if MULTI_BOARD_DEVICES.get(identifier):
             has_boards = has_boards and set(MULTI_BOARD_DEVICES[identifier]).intersection(boards) == set(MULTI_BOARD_DEVICES[identifier])
+    return has_boards
 
 def create_file(os_str, build, full_self_driving, recommended_version=None, version=None, released=None, beta=None, rc=None, buildtrain=None, rsr=False):
     assert version or recommended_version, "Must have either version or recommended_version"
