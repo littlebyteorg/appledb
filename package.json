@@ -8,7 +8,8 @@
     "prepare": "is-ci || husky install",
     "sort-os-files": "./tasks/sort_os_files.py",
     "sort-device-files": "./tasks/sort_device_files.py",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "validate": "node tasks/schema_validator.js"
   },
   "repository": {
     "type": "git",
