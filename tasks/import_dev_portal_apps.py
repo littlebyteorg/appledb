@@ -2,16 +2,13 @@
 
 import json
 import os
-import re
 import sys
 from pathlib import Path
 
 import dateutil.parser
-import lxml.etree
 import lxml.html
 import requests
 import lxml.etree
-from lxml.etree import _Element as Element
 
 from sort_os_files import sort_os_file  # pylint: disable=no-name-in-module
 
@@ -80,13 +77,12 @@ for download in downloads:
                     os_version = os_item.split(" ")[-1]
                     download_details = [item for item in download['files'] if macos_codenames[str(os_version)] in item['filename']][0]
                     existing_source = [source for source in candidate_data.get('sources', []) if source['type'] == 'dmg' and source['osMap'] == [os_item]]
+                    alternate_source = [source for source in candidate_data.get('sources', []) if source['type'] == 'pkg' and source['osMap'] == [os_item]][0]
                     if existing_source:
                         continue
                     candidate_data['sources'].append({
                         "type": "dmg",
-                        "deviceMap": [
-                            "Safari (macOS)"
-                        ],
+                        "deviceMap": alternate_source['deviceMap'],
                         "osMap": [
                             os_item
                         ],

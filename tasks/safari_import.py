@@ -27,6 +27,31 @@ mac_versions = [
     args.version - 4
 ]
 
+VARIANTS = {}
+
+supported_subfolders = ['iMac', 'MacBook', 'MacBook Air', 'MacBook Pro', 'Mac Pro', 'Mac Studio', 'Mac mini', 'VirtualMac']
+FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1"]
+for subfolder in supported_subfolders:
+    for device in Path(f"deviceFiles/{subfolder}").rglob("*.json"):
+        device_data = json.load(device.open(encoding="utf-8"))
+        name = device_data["name"]
+        identifiers = device_data.get("identifier", [])
+        if isinstance(identifiers, str):
+            identifiers = [identifiers]
+        if not identifiers:
+            identifiers = [name]
+        key = device_data.get("key", identifiers[0] if identifiers else name)
+
+        for identifier in identifiers:
+            VARIANTS.setdefault(identifier, set()).add(key)
+
+def augment_with_keys(identifiers):
+    new_identifiers = []
+    for identifier in identifiers:
+        if identifier in FILTERED_OUT_DEVICES: continue
+        new_identifiers.extend(VARIANTS[identifier])
+    return new_identifiers
+
 mac_codenames = json.load(Path("tasks/macos_codenames.json").open(encoding="utf-8"))
 
 MAC_CATALOG_SUFFIX = ''
@@ -87,8 +112,10 @@ for mac_version in mac_versions:
     print(mac_codenames[str(mac_version)])
     print(safari_build)
     safari_buildtrain = None
+    supported_devices = ["Safari (macOS)"]
     if plist_path.endswith('BuildManifest.plist'):
         safari_buildtrain = safari_plist['BuildIdentities'][0]['Info']['BuildTrain']
+        supported_devices.extend(augment_with_keys(safari_plist['SupportedProductTypes']))
 
     is_beta = 'beta' in dist_version
     if not SAFARI_DETAILS.get(safari_build):
@@ -101,9 +128,7 @@ for mac_version in mac_versions:
             "version": dist_version,
             "build": safari_build,
             "released": catalog_safari['PostDate'].replace(tzinfo=ZoneInfo('UTC')).astimezone(ZoneInfo('America/Los_Angeles')).strftime("%Y-%m-%d"),
-            "deviceMap": [
-                "Safari (macOS)"
-            ],
+            "deviceMap": supported_devices,
             "osMap": [],
             "sources": []
         }
@@ -122,9 +147,7 @@ for mac_version in mac_versions:
 
     SAFARI_DETAILS[safari_build]["sources"].append({
         "type": "pkg",
-        "deviceMap": [
-            "Safari (macOS)"
-        ],
+        "deviceMap": supported_devices,
         "osMap": [
             f"macOS {mac_version}"
         ],

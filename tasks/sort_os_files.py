@@ -51,7 +51,8 @@ def device_sort(device):
         match = re.match(r"([a-zA-Z]+),(\d+)", device)
         if not match or len(match.groups()) != 2:
             # This is probably not a device identifier, so just return it
-            return device
+            return "", 0, 0, device
+            # return device
         return match.groups()[0], 0, int(match.groups()[1]), device
 
     # The device at the end is for instances like "BeatsStudioBuds1,1", "BeatsStudioBuds1,1-tiger"
