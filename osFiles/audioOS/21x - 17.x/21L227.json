@@ -1,10 +1,21 @@
 {
     "osStr": "HomePod Software",
-    "version": "17.4 RC",
+    "version": "17.4",
     "build": "21L227",
     "buildTrain": "StarlightE",
-    "released": "2024-03-04",
-    "rc": true,
+    "released": "2024-03-07",
+    "createDuplicateEntries": [
+        {
+            "version": "17.4 RC",
+            "uniqueBuild": "21L227-RC",
+            "released": "2024-03-04",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT208714#174",
+    "ipd": {
+        "AudioAccessory": "https://updates.cdn-apple.com/2023SpringSeed/documentation/032-79617/714FE47B-D5D1-4C41-98E6-20B502E72E1F/HomePodRTF.ipd"
+    },
     "appledbWebImage": {
         "id": "audioos17",
         "align": "left"
@@ -31,6 +42,23 @@
                 "sha2-256": "d8d8f89bb512b673b4d7692896a0445af6fff20968f5c006143e78d18261a62e"
             },
             "size": 2599769448
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "AudioAccessory5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/032-53442/00CC3DD6-C14A-4674-BD82-5B4B4B1432C8/AudioAccessory5,1_17.4_21L227_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1fa2ba6eec63de448a76e033fc028c9025ba1dd2",
+                "sha2-256": "161a8cc261bfce69b8b3c3e3b4feff70fad5f5b50ff74101ab89b0e4715b18d3"
+            },
+            "size": 3440989049
         },
         {
             "type": "ota",
