@@ -15,17 +15,17 @@ module.exports = {
         pkgman: "sileo",
         updateLink: [
           {
-            text: 'Updating to 16.7.5',
-            link: '/updating-to-16-7-5/'
+            text: 'Updating to 16.7.6',
+            link: '/updating-to-16-7-6/'
           },
           {
-            text: 'Updating to 17.3',
-            link: '/updating-to-17-3/'
+            text: 'Updating to 17.4',
+            link: '/updating-to-17-4/'
           },
         ]
       }
     ],
-    latestVer: "2.0.0b8",
+    latestVer: "2.0.0b9.1",
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
     notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16.",
