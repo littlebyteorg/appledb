@@ -26,7 +26,7 @@ SESSION = requests.Session()
 
 
 def import_ota(
-    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None, rsr=False, known_invalid_url=False
+    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -35,7 +35,7 @@ def import_ota(
     build_manifest = None
 
     counter = 0
-    while not known_invalid_url:
+    while skip_remote:
         try:
             ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
             print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
@@ -92,6 +92,9 @@ def import_ota(
         if device_map:
             supported_devices = augment_with_keys(device_map)
             bridge_devices = []
+            exclude_board_map = all_boards_covered(device_map, board_map)
+            if not exclude_board_map:
+                supported_boards = board_map
         elif info_plist.get('SupportedDevices'):
             supported_devices = augment_with_keys(info_plist['SupportedDevices'])
 
@@ -207,7 +210,7 @@ if __name__ == "__main__":
                         for link in source.get('links', []):
                             try:
                                 files_processed.add(
-                                    import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), device_map=source["deviceMap"], known_invalid_url=version.get("bad_link", False))
+                                    import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True)
                                 )
                             except Exception:
                                 failed_links.append(link["url"])
