@@ -16,6 +16,7 @@ key_order = [
     "uniqueBuild",
     "embeddedOSBuild",
     "bridgeOSBuild",
+    "basebandVersions",
     "buildTrain",
     "released",
     "rc",
@@ -52,7 +53,6 @@ def device_sort(device):
         if not match or len(match.groups()) != 2:
             # This is probably not a device identifier, so just return it
             return "", 0, 0, device
-            # return device
         return match.groups()[0], 0, int(match.groups()[1]), device
 
     # The device at the end is for instances like "BeatsStudioBuds1,1", "BeatsStudioBuds1,1-tiger"
@@ -124,6 +124,9 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
     if "osMap" in data:
         data["osMap"] = os_map_sort(data["osMap"])
+
+    if "basebandVersions" in data:
+        data["basebandVersions"] = sorted_dict_by_key(data["basebandVersions"], data["deviceMap"])
 
     for i, sdk in enumerate(data.get("sdks", [])):
         data["sdks"][i] = sorted_dict_by_key(sdk, key_order)

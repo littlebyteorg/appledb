@@ -20,6 +20,10 @@
         
         "bridgeOSBuild":    {"type": "string"},
         "embeddedOSBuild":  {"type": "string"},
+        "basebandVersions": {
+            "type":"object",
+            "additionalProperties": true
+        },
         "buildTrain":    {"type": "string"},
 
         "released":     {"anyOf": [
