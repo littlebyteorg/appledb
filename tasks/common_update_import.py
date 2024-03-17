@@ -58,12 +58,21 @@ def augment_with_keys(identifiers):
         new_identifiers.extend(VARIANTS.get(identifier, [identifier]))
     return new_identifiers
 
+def get_board_mapping_lower_case(devices):
+    modified_mapping = {k.lower(): v for k,v in BOARD_IDS.items()}
+    identifiers = []
+    for device in devices:
+        device_mappings = list(modified_mapping.get(device, []))
+        if not device_mappings:
+            continue
+        identifiers.extend(augment_with_keys(device_mappings))
+    return identifiers
 
 def get_board_mappings(devices):
     identifiers = []
     bridge_identifiers = []
     for device in devices:
-        device_mappings = list(BOARD_IDS.get(device, {}))
+        device_mappings = list(BOARD_IDS.get(device, []))
         if not device_mappings:
             continue
         if device_mappings[0].startswith("iBridge"):
