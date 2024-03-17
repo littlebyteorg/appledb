@@ -3,6 +3,7 @@
 import argparse
 import json
 import plistlib
+import re
 import zipfile
 from pathlib import Path
 
@@ -13,7 +14,7 @@ import time
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
-from common_update_import import all_boards_covered, augment_with_keys, create_file, get_board_mappings, OS_MAP
+from common_update_import import all_boards_covered, augment_with_keys, create_file, get_board_mapping_lower_case, get_board_mappings, OS_MAP
 
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 
@@ -35,7 +36,7 @@ def import_ota(
     build_manifest = None
 
     counter = 0
-    while skip_remote:
+    while not skip_remote:
         try:
             ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
             print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
@@ -71,8 +72,20 @@ def import_ota(
 
     # Get the build, version, and supported devices
     buildtrain = None
+    baseband_map = {}
     if build_manifest:
-        buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+        # Grab baseband versions and buildtrain (both per device)
+        for identity in build_manifest['BuildIdentities']:
+            board_id = identity['Info']['DeviceClass']
+            buildtrain = buildtrain or identity['Info']['BuildTrain']
+            mapped_device = get_board_mapping_lower_case([board_id])[0]
+            if 'BasebandFirmware' in identity['Manifest']:
+                path = identity['Manifest']['BasebandFirmware']['Info']['Path']
+                baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
+                if baseband_response:
+                    baseband_map[mapped_device] = baseband_response.groups(1)[0]
+                else:
+                    print(f"MISSING BASEBAND - {path}")
     if (ota_url.endswith(".ipsw")):
         build = build or info_plist["TargetUpdate"]
         recommended_version = recommended_version or info_plist["ProductVersion"]
@@ -133,6 +146,9 @@ def import_ota(
 
     db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain)
     db_data = json.load(db_file.open(encoding="utf-8"))
+
+    if baseband_map:
+        db_data.setdefault("basebandVersions", {}).update(baseband_map)
 
     db_data.setdefault("deviceMap", []).extend(supported_devices)
 
