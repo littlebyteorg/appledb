@@ -75,7 +75,12 @@ device_map = {
         "AirPods2,1-right"
     ],
     'A2048': [
-        "PowerbeatsPro1,1",
+        "PowerbeatsPro1,1-left",
+        "PowerbeatsPro1,1-right",
+        "PowerbeatsPro2,1-left",
+        "PowerbeatsPro2,1-right",
+        "PowerbeatsPro2,1-left",
+        "PowerbeatsPro2,1-right",
         "PowerbeatsPro1,1-faze",
         "PowerbeatsPro1,1-fragment",
         "PowerbeatsPro1,1-melody",
@@ -107,7 +112,8 @@ device_map = {
         "Audio2,1-right"
     ],
     'A2577': [
-        "BeatsFitPro1,1",
+        "BeatsFitPro1,1-left",
+        "BeatsFitPro1,1-right",
         "BeatsFitPro1,1-fragment",
         "BeatsFitPro1,1-kim"
     ],
