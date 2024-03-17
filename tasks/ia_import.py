@@ -6,6 +6,7 @@ import plistlib
 from pathlib import Path
 
 import requests
+from file_downloader import handle_pkg_file
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
@@ -93,6 +94,10 @@ def import_ia(
     if not found_source:
         print("\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "installassistant", "links": [{"url": ia_url, "active": True}]}
+        
+        if input("Grab sha1? [y/n]: ").strip().lower() == "y":
+            (hashes, _) = handle_pkg_file(ia_url)
+            source['hashes'] = hashes
 
         if catalog_name:
             source['links'][0]['catalog'] = catalog_name

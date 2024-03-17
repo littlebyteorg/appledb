@@ -54,7 +54,7 @@ For example, calling this script with `-o iOS -b 21E5184i` will check pallas for
 Caveats:
 1. `-o` and `-b` must be passed in an equal number of times, with a minimum of 1. They can be passed in multiple times, but it must be an equal number.
 2. Order matters for these parameters. If checking for iOS and tvOS updates, ensure the parameters are passed in such as `-o iOS -b <iOS build> -o tvOS -b <tvOS build>`. The order of each OS doesn't matter, as long as the first instance of `-o` lines up with the builds specified in the first instance of `-b`.
-3. The `beta` audience listing is special; for example, if checking for a beta build of macOS 12, all deltas will be checked for the macOS 12, 13, and 14 beta audiences. For macOS 13, in this example, only the macOS 13 and 14 beta audiences will be checked.
+3. The `beta` and `public` audience listings are special; for example, if checking for a beta build of macOS 12, all deltas will be checked for the macOS 12, 13, and 14 beta audiences. For macOS 13, in this example, only the macOS 13 and 14 beta audiences will be checked. The `beta` audience utilizes the developer/AppleSeed beta listings, while `public` is for public betas.
 
 ### Importing grabbed links into AppleDB
 Run `ota_import.py`.
@@ -93,6 +93,9 @@ Run `stp_import.py`. No arguments are passed in, and it will only check as long 
 Run `xcode_simulator_import.py`. No arguments are passed in, but it will use the current date as the release date for any new simulator versions.
 
 ## Ancilliary scripts
+### embedded_os_import.py
+This script adds the `embeddedOSBuild` for any Monterey and Ventura OS release that would support the `MacBookPro14,1` (2017 Touchbar Mac) and grabs the embeddedOS firmware within an OTA and parses the build out of there.
+
 ### ipd_import.py
 This script populates the `ipd` section for all IPSW files referenced from the catalog utilized by iTunes. No arguments are passed in, and this will automatically update all references.
 
