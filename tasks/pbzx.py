@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# Copyright 2023 Dhinak, used with permission
+
 from pathlib import Path
 import lzma
 import argparse

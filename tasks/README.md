@@ -28,6 +28,7 @@ Run `ia_import.py`.
 Arguments:
 1. `-b`, `--bulk-mode`: Automatically run the import in bulk mode, importing from `import-ia.json`, if it exists, or `import-ia.txt`. If this is not passed in, a prompt at execution will ask which mode to proceed in. If not running in bulk mode, this script will ask for links one at a time.
 2. `-s`, `--fule-self-driving`: No prompts for release dates or version numbers. `(FIXME)` will be added as a suffix to any new version numbers and any release dates will be `YYYY-MM-DD`, forcing a CI failure if pushed to the repo.
+3. `-h`, `--add-sha1-hash`: Include grabbing the sha1 hash for the imported IAs, if they're not already in the repo. This requires downloading the full IA, and can take a significant amount of time. Defaults to false.
 
 ## Importing Over-the-Air (OTA) files
 ### Grabbing links from Pallas
