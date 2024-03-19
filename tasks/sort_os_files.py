@@ -13,6 +13,7 @@ key_order = [
     "version",
     "safariVersion",
     "build",
+    "restoreVersion",
     "uniqueBuild",
     "embeddedOSBuild",
     "bridgeOSBuild",
