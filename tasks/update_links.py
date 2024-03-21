@@ -117,7 +117,7 @@ class ProcessFileThread(threading.Thread):
                 if not link.get("active", True) and hostname in stop_remaking_active:
                     successful_hit = False
                 elif resp.status_code == 200:
-                    successful_hit = 'unauthorized' not in resp.url
+                    successful_hit = 'unauthorized' not in resp.url and not resp.url.endswith("/docs")
                 elif resp.status_code == 403 or resp.status_code == 404:
                     # Dead link
                     successful_hit = False
