@@ -45,11 +45,12 @@ for device in Path("deviceFiles").rglob("*.json"):
         VARIANTS.setdefault(identifier, set()).add(key)
         if device_data.get('board'):
             if isinstance(device_data['board'], list):
-                board = device_data['board'][0]
+                for board in device_data['board']:
+                    BOARD_IDS.setdefault(board.upper() if device_data.get("type") == "iBridge" else board, set()).add(key)
                 MULTI_BOARD_DEVICES[key] = device_data['board']
             else:
                 board = device_data['board']
-            BOARD_IDS.setdefault(board.upper() if device_data.get("type") == "iBridge" else board, set()).add(key)
+                BOARD_IDS.setdefault(board.upper() if device_data.get("type") == "iBridge" else board, set()).add(key)
 
 def augment_with_keys(identifiers):
     new_identifiers = []
