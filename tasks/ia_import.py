@@ -23,7 +23,7 @@ SESSION = requests.Session()
 
 
 def import_ia(
-    ia_url, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True
+    ia_url, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, add_sha1_hash=False
 ):
     local_path = LOCAL_IA_PATH / Path(Path(ia_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -95,7 +95,7 @@ def import_ia(
         print("\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "installassistant", "links": [{"url": ia_url, "active": True}]}
         
-        if args.add_sha1_hash:
+        if add_sha1_hash:
             (hashes, _) = handle_pkg_file(ia_url)
             source['hashes'] = hashes
 
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--bulk-mode', action='store_true')
     parser.add_argument('-s', '--full-self-driving', action='store_true')
-    parser.add_argument('-h', '--add-sha1-hash', action='store_true')
+    parser.add_argument('-a', '--add-sha1-hash', action='store_true')
     args = parser.parse_args()
 
     if args.full_self_driving:
@@ -159,7 +159,7 @@ if __name__ == "__main__":
                 else:
                     for link in version["links"]:
                         files_processed.add(
-                            import_ia(link["url"], version=version["version"], released=version["released"], use_network=False)
+                            import_ia(link["url"], version=version["version"], released=version["released"], use_network=False, add_sha1_hash=args.add_sha1_hash)
                         )
 
         elif Path("import-ia.txt").exists():
@@ -168,7 +168,7 @@ if __name__ == "__main__":
             urls = [i.strip() for i in Path("import-ia.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
-                files_processed.add(import_ia(url, use_network=False))
+                files_processed.add(import_ia(url, use_network=False, add_sha1_hash=args.add_sha1_hash))
         else:
             raise RuntimeError("No import file found")
 

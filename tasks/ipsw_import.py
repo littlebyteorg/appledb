@@ -116,10 +116,10 @@ def import_ipsw(
     for identity in build_manifest['BuildIdentities']:
         board_id = identity['Info']['DeviceClass']
         buildtrain = buildtrain or identity['Info']['BuildTrain']
-        mapped_device = get_board_mapping_lower_case([board_id])[0]
         if 'BasebandFirmware' in identity['Manifest']:
             path = identity['Manifest']['BasebandFirmware']['Info']['Path']
             baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
+            mapped_device = get_board_mapping_lower_case([board_id])[0]
             if baseband_response:
                 baseband_map[mapped_device] = baseband_response.groups(1)[0]
             else:
