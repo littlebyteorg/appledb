@@ -31,7 +31,6 @@ build_prefix_offset = {
     'iOS': 4,
     'iPadOS': 4,
     'macOS': 9,
-    'Safari': 0,
     'tvOS': 4,
     'visionOS': 20,
     'watchOS': 11,
@@ -92,6 +91,8 @@ for product in found_links.keys():
         build_subfolder = ''
         if build_prefix_offset.get(product) is not None:
             build_subfolder = f"/{parsed_version + build_prefix_offset[product]}x - {parsed_version}"
+        else:
+            build_subfolder = f"/{parsed_version}"
         build_paths = Path(f"osFiles/{product_subfolder}{build_subfolder}.x").rglob("*.json")
         for build_path in build_paths:
             build_data = json.load(build_path.open(encoding="utf-8"))
