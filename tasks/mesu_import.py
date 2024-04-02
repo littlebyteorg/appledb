@@ -108,6 +108,7 @@ device_map = {
     ],
     'A2577': [
         "BeatsFitPro1,1",
+        "BeatsFitPro1,1-alo",
         "BeatsFitPro1,1-fragment",
         "BeatsFitPro1,1-kim"
     ],
