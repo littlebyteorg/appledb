@@ -99,7 +99,7 @@ async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size
 
     return (file_hashes, manifest_content)
 
-def handle_pkg_file(url, hashes=None, extracted_manifest_path_file=None):
+def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None):
     if hashes is None:
         hashes = ['sha1']
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
@@ -110,7 +110,7 @@ def handle_pkg_file(url, hashes=None, extracted_manifest_path_file=None):
 
     try:
         (file_hashes, manifest) = loop.run_until_complete(
-            download(run, url, hashes, extracted_manifest_file_path=extracted_manifest_path_file)
+            download(run, download_link, hashes, extracted_manifest_file_path)
         )
         return (file_hashes, manifest)
     finally:
