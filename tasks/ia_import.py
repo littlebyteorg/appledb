@@ -95,9 +95,8 @@ def import_ia(
         print("\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "installassistant", "links": [{"url": ia_url, "active": True}]}
         
-        if add_sha1_hash:
-            (hashes, _) = handle_pkg_file(ia_url)
-            source['hashes'] = hashes
+        (hashes, _) = handle_pkg_file(ia_url)
+        source['hashes'] = hashes
 
         if catalog_name:
             source['links'][0]['catalog'] = catalog_name
@@ -130,7 +129,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--bulk-mode', action='store_true')
     parser.add_argument('-s', '--full-self-driving', action='store_true')
-    parser.add_argument('-a', '--add-sha1-hash', action='store_true')
     args = parser.parse_args()
 
     if args.full_self_driving:
