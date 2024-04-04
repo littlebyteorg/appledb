@@ -38,13 +38,25 @@ key_order = [
     "sources",
 ]
 
-sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "boardMap", "osMap", "windowsUpdateDetails", "links", "hashes", "skipUpdateLinks", "size"]
+sources_key_order = [
+    "type",
+    "prerequisiteBuild",
+    "deviceMap",
+    "boardMap",
+    "osMap",
+    "windowsUpdateDetails",
+    "links",
+    "hashes",
+    "skipUpdateLinks",
+    "size",
+]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
-source_type_order = ["kdk", "ipsw", "installassistant", "ota", "update", "combo", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
+source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
 
-os_prefix_order = ['Mac OS', 'Mac OS X', 'OS X', 'macOS', 'Windows']
+os_prefix_order = ["Mac OS", "Mac OS X", "OS X", "macOS", "Windows"]
+
 
 def device_sort(device):
     match = re.match(r"([a-zA-Z]+)(\d+),(\d+)", device)
@@ -62,15 +74,9 @@ def device_sort(device):
 
 
 def os_sort(os):
-    if os.startswith('Windows'):
+    if os.startswith("Windows"):
         os_split = os.split(" ", 1)
-        os_remains_mapping = {
-            '2000': '5',
-            'XP': '5.1',
-            'XP SP2': '5.2',
-            'XP SP3': '5.3',
-            'Vista': '6'
-        }
+        os_remains_mapping = {"2000": "5", "XP": "5.1", "XP SP2": "5.2", "XP SP3": "5.3", "Vista": "6"}
         os_split[1] = os_remains_mapping.get(os_split[1], os_split[1])
     else:
         os_split = os.rsplit(" ", 1)
@@ -151,7 +157,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
             if set(data["sources"][i]["links"][j].keys()) - set(links_key_order):
                 raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i]['links'][j].keys()) - set(links_key_order))}")
-        data["sources"][i]["links"].sort(key=lambda x: x.get('catalog', ''))
+        data["sources"][i]["links"].sort(key=lambda x: x.get("catalog", ""))
         if isinstance(source.get("prerequisiteBuild"), list):
             data["sources"][i]["prerequisiteBuild"].sort(key=build_number_sort)
 
@@ -177,7 +183,13 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         else:
             sorted_os_item = (-1, 0)
 
-        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), sorted_os_item, build_number_sort(prerequisite_order), board_order
+        return (
+            device_sort(source["deviceMap"][0]),
+            source_type_order.index(source["type"]),
+            sorted_os_item,
+            build_number_sort(prerequisite_order),
+            board_order,
+        )
 
     data.get("sources", []).sort(key=source_sort)
 
