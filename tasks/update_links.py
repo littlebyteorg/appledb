@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import base64
 import random
 import json
 import queue
@@ -132,6 +133,10 @@ class ProcessFileThread(threading.Thread):
                             continue
 
                         source.setdefault("hashes", {})[lcl] = resp.headers[hdr]
+
+                    if "Content-MD5" in resp.headers:
+                        # The hash is encoded as base64, we need to decode it
+                        source.setdefault("hashes", {})["md5"] = base64.b64decode(resp.headers["Content-MD5"]).hex()
 
                     if "ETag" in resp.headers:
                         # TODO: Document what server each ETag format is from
