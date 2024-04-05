@@ -29,55 +29,56 @@ def download_range(url, start, end, output):
 
 
 async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size=104857600):
-    file_size = await get_size(url)
-    chunks = range(0, file_size, chunk_size)
-
     output_path = 'out/package'
-
-    tasks = [
-        run(
-            download_range,
-            url,
-            start,
-            start + chunk_size - 1,
-            f'{output_path}.pkg.part{i}',
-        )
-        for i, start in enumerate(chunks)
-    ]
-
-    await asyncio.wait(tasks)
-
-    if 'sha1' in hashes:
-        sha1 = hashlib.sha1()
-    if 'md5' in hashes:
-        md5 = hashlib.md5()
-    if 'sha2-256' in hashes:
-        sha256 = hashlib.sha256()
 
     file_hashes = {}
 
-    with open(f'{output_path}.pkg', 'wb') as o:
-        for i in range(len(chunks)):
-            chunk_path = f'{output_path}.pkg.part{i}'
+    if url:
+        file_size = await get_size(url)
+        chunks = range(0, file_size, chunk_size)
 
-            with open(chunk_path, 'rb') as s:
-                file_contents = s.read()
-                if 'sha1' in hashes:
-                    sha1.update(file_contents)
-                if 'md5' in hashes:
-                    md5.update(file_contents)
-                if 'sha2-256' in hashes:
-                    sha256.update(file_contents)
-                o.write(file_contents)
+        tasks = [
+            run(
+                download_range,
+                url,
+                start,
+                start + chunk_size - 1,
+                f'{output_path}.pkg.part{i}',
+            )
+            for i, start in enumerate(chunks)
+        ]
 
-            Path(chunk_path).unlink()
+        await asyncio.wait(tasks)
 
-    if 'sha1' in hashes:
-        file_hashes['sha1'] = sha1.hexdigest()
-    if 'md5' in hashes:
-        file_hashes['md5'] = md5.hexdigest()
-    if 'sha2-256' in hashes:
-        file_hashes['sha2-256'] = sha256.hexdigest()
+        if 'sha1' in hashes:
+            sha1 = hashlib.sha1()
+        if 'md5' in hashes:
+            md5 = hashlib.md5()
+        if 'sha2-256' in hashes:
+            sha256 = hashlib.sha256()
+
+        with open(f'{output_path}.pkg', 'wb') as o:
+            for i in range(len(chunks)):
+                chunk_path = f'{output_path}.pkg.part{i}'
+
+                with open(chunk_path, 'rb') as s:
+                    file_contents = s.read()
+                    if 'sha1' in hashes:
+                        sha1.update(file_contents)
+                    if 'md5' in hashes:
+                        md5.update(file_contents)
+                    if 'sha2-256' in hashes:
+                        sha256.update(file_contents)
+                    o.write(file_contents)
+
+                Path(chunk_path).unlink()
+
+        if 'sha1' in hashes:
+            file_hashes['sha1'] = sha1.hexdigest()
+        if 'md5' in hashes:
+            file_hashes['md5'] = md5.hexdigest()
+        if 'sha2-256' in hashes:
+            file_hashes['sha2-256'] = sha256.hexdigest()
 
     manifest_content = {}
 
