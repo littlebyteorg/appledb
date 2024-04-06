@@ -70,6 +70,7 @@ def import_ia(
     supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
 
     buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+    restore_version = build_manifest['BuildIdentities'][0].get('Cryptex1,Version')
     print(f"\tmacOS {recommended_version} ({build})")
     print(f"\tDevice Support: {supported_devices}")
 

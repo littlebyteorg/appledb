@@ -112,10 +112,12 @@ def import_ipsw(
     ))
     # Grab baseband versions and buildtrain (both per device)
     buildtrain = None
+    restore_version = None
     baseband_map = {}
     for identity in build_manifest['BuildIdentities']:
         board_id = identity['Info']['DeviceClass']
         buildtrain = buildtrain or identity['Info']['BuildTrain']
+        restore_version = restore_version or identity['Ap,OSLongVersion']
         if 'BasebandFirmware' in identity['Manifest']:
             path = identity['Manifest']['BasebandFirmware']['Info']['Path']
             baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
@@ -139,7 +141,7 @@ def import_ipsw(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
+    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
     if baseband_map:
         db_data.setdefault("basebandVersions", {}).update(baseband_map)

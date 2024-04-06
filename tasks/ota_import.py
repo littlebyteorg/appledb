@@ -72,12 +72,14 @@ def import_ota(
 
     # Get the build, version, and supported devices
     buildtrain = None
+    restore_version = None
     baseband_map = {}
     if build_manifest:
         # Grab baseband versions and buildtrain (both per device)
         for identity in build_manifest['BuildIdentities']:
             board_id = identity['Info']['DeviceClass']
             buildtrain = buildtrain or identity['Info']['BuildTrain']
+            restore_version = restore_version or identity['Ap,OSLongVersion']
             if 'BasebandFirmware' in identity['Manifest']:
                 path = identity['Manifest']['BasebandFirmware']['Info']['Path']
                 baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
@@ -144,7 +146,10 @@ def import_ota(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain)
+    if restore_version is None and info_plist.get('RestoreVersion'):
+        restore_version = info_plist.get('RestoreVersion')
+
+    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     if baseband_map:
@@ -185,7 +190,7 @@ def import_ota(
     if bridge_version and bridge_devices:
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
-        bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"])
+        bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{info_plist['BridgeVersionInfo']['BridgeVersion']},0")
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
         bridge_data["deviceMap"] = bridge_devices
         json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)

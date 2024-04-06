@@ -89,7 +89,7 @@ def all_boards_covered(identifiers, boards):
             has_boards = has_boards and set(MULTI_BOARD_DEVICES[identifier]).intersection(boards) == set(MULTI_BOARD_DEVICES[identifier])
     return has_boards
 
-def create_file(os_str, build, full_self_driving, recommended_version=None, version=None, released=None, beta=None, rc=None, buildtrain=None, rsr=False):
+def create_file(os_str, build, full_self_driving, recommended_version=None, version=None, released=None, beta=None, rc=None, buildtrain=None, rsr=False, restore_version=None):
     assert version or recommended_version, "Must have either version or recommended_version"
 
     file_updated = False
@@ -134,7 +134,7 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
             friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
             if not friendly_version:
                 friendly_version = version or recommended_version
-        db_data = {"osStr": os_str_override, "version": friendly_version, "build": build, "buildTrain": buildtrain}
+        db_data = {"osStr": os_str_override, "version": friendly_version, "build": build}
 
         web_image = get_image(os_str, friendly_version)
         if web_image:
@@ -143,6 +143,10 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
     if buildtrain and buildtrain != db_data.get('buildTrain'):
         file_updated = True
         db_data['buildTrain'] = buildtrain
+
+    if restore_version and restore_version != db_data.get('restoreVersion'):
+        file_updated = True
+        db_data['restoreVersion'] = restore_version
 
     if not db_data.get("released"):
         file_updated = True
