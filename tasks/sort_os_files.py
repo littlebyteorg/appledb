@@ -51,6 +51,8 @@ sources_key_order = [
     "size",
 ]
 
+ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPhone", "iPod"]
+
 links_key_order = ["url", "catalog", "preferred", "active"]
 
 source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
@@ -134,6 +136,9 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
     if "basebandVersions" in data:
         data["basebandVersions"] = sorted_dict_by_key(data["basebandVersions"], data["deviceMap"])
+
+    if "ipd" in data:
+        data["ipd"] = sorted_dict_by_key(data["ipd"], ipd_key_order)
 
     for i, sdk in enumerate(data.get("sdks", [])):
         data["sdks"][i] = sorted_dict_by_key(sdk, key_order)
