@@ -79,7 +79,7 @@ def import_ota(
         for identity in build_manifest['BuildIdentities']:
             board_id = identity['Info']['DeviceClass']
             buildtrain = buildtrain or identity['Info']['BuildTrain']
-            restore_version = restore_version or identity['Ap,OSLongVersion']
+            restore_version = restore_version or identity.get('Ap,OSLongVersion')
             if 'BasebandFirmware' in identity['Manifest']:
                 path = identity['Manifest']['BasebandFirmware']['Info']['Path']
                 baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
