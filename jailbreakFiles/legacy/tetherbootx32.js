@@ -6,7 +6,12 @@ module.exports = {
       url: "https://web.archive.org/web/20210322151359/https://dora2ios.web.app/tetherbootx32/",
       external: true
     },
-    type: "Tethered",
+    wiki: {
+      name: "theapplewiki.com/wiki/Tetherbootx32",
+      url: "https://theapplewiki.com/wiki/Tetherbootx32",
+      external: true
+    },
+    type: "Semi-tethered",
     firmwares: ["10.3.4","10.3.4"],
     soc: "A6",
     notes: "Only supports iPhone 5",
