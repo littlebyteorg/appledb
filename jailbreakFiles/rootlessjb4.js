@@ -125,9 +125,8 @@ module.exports = {
         "iPad7,4", // iPad Pro 2 (10.5-inch) Wi-Fi + Cellular, A10X
         "iPad7,5", // iPad (6th generation) Wi-Fi, A10
         "iPad7,6", // iPad (6th generation) Wi-Fi + Cellular, A10
-        "iPad7,11", // iPad (7th generation) Wi-Fi, A10
-        "iPad7,12", // iPad (7th generation) Wi-Fi + Cellular, A10
         "iPod7,1", // iPod touch (6th generation), A8
+        "iPod9,1", // iPod touch (7th generation), A10
       ]
     }
   ]
