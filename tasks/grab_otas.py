@@ -171,12 +171,16 @@ def generate_restore_version(build_number):
         build_iteration = int(match_groups[2])
         build_suffix = match_groups[3]
 
+        divisor = 1000
+        if build_number.startswith('20G1'):
+            divisor = 10000
+
         restore_pieces = []
 
         restore_pieces.append(kernel_version)
         restore_pieces.append(ord(build_letter) - 64)
-        restore_pieces.append(build_iteration % 1000)
-        restore_pieces.append(int(build_iteration / 1000))
+        restore_pieces.append(build_iteration % divisor)
+        restore_pieces.append(int(build_iteration / divisor))
         restore_pieces.append(ord(build_suffix) - 96 if build_suffix else '0')
 
         restore_versions[build_number] = f"{'.'.join([str(piece) for piece in restore_pieces])},0"
