@@ -111,8 +111,16 @@ def os_map_sort(os_map):
 def build_number_sort(build_number):
     match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
     if not match:
-        return 0, "A", 0, "a"
-    return int(match.groups()[0]), match.groups()[1], int(match.groups()[2]), match.groups()[3]
+        return 0, "A", 0, 0, "a"
+    kernel_version = int(match.groups()[0])
+    build_train_version = match.groups()[1]
+    build_version = int(match.groups()[2])
+    build_prefix = 0
+    build_suffix = match.groups()[3]
+    if build_version > 1000:
+        build_prefix = int(build_version / 1000)
+        build_version = build_version % 1000
+    return kernel_version, build_train_version, build_version, build_prefix, build_suffix
 
 
 def sort_os_file(file_path: Optional[Path], raw_data=None):
