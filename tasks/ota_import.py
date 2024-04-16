@@ -146,7 +146,7 @@ def import_ota(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    if restore_version is None and info_plist.get('RestoreVersion'):
+    if restore_version is None and info_plist and info_plist.get('RestoreVersion'):
         restore_version = info_plist.get('RestoreVersion')
 
     db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain, restore_version=restore_version)
