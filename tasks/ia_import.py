@@ -158,7 +158,7 @@ if __name__ == "__main__":
                 else:
                     for link in version["links"]:
                         files_processed.add(
-                            import_ia(link["url"], version=version["version"], released=version["released"], use_network=False, add_sha1_hash=args.add_sha1_hash)
+                            import_ia(link["url"], version=version["version"], released=version["released"], use_network=False)
                         )
 
         elif Path("import-ia.txt").exists():
@@ -167,7 +167,7 @@ if __name__ == "__main__":
             urls = [i.strip() for i in Path("import-ia.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
-                files_processed.add(import_ia(url, use_network=False, add_sha1_hash=args.add_sha1_hash))
+                files_processed.add(import_ia(url, use_network=False))
         else:
             raise RuntimeError("No import file found")
 
