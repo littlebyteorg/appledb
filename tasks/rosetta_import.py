@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 from sort_os_files import sort_os_file
-from update_links import update_links
+from file_downloader import handle_pkg_file
 
 result = requests.get(f"https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog?cachebust{random.randint(100, 1000)}")
 result.raise_for_status()
@@ -47,6 +47,8 @@ for product in plist.values():
                 beta = "beta" in desired_version.lower()
                 rc = "rc" in desired_version.lower()
 
+        (hashes, _) = handle_pkg_file(product["Packages"][0]["URL"])
+
         output = {
             "osStr": "Rosetta",
             "version": desired_version or distribution_version,
@@ -67,6 +69,7 @@ for product in plist.values():
                             "active": True
                         }
                     ],
+                    "hashes": hashes,
                     "size": product["Packages"][0]["Size"]
                 }
             ]
