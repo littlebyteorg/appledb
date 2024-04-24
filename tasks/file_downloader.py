@@ -4,13 +4,13 @@ import asyncio
 import hashlib
 import concurrent.futures
 import functools
-import subprocess
 import requests
 
 import pbzx
 import plistlib
 import shutil
 from pathlib import Path
+import libarchive
 
 SESSION = requests.session()
 async def get_size(url):
@@ -83,16 +83,20 @@ async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size
     manifest_content = {}
 
     if extracted_manifest_file_path:
-        pkg_expand = subprocess.run(['pkgutil', '--expand', f'{output_path}.pkg', output_path])
-        pkg_expand.check_returncode()
         base_file = 'Payload'
+        with libarchive.Archive(f'{output_path}.pkg') as pkg_archive:
+            for entry in pkg_archive:
+                if entry.pathname == base_file:
+                    pkg_archive.readpath(f'{output_path}/{base_file}')
+                    break
         is_compressed = pbzx.extract_file(f'{output_path}/{base_file}', f'{output_path}/{base_file}_expanded')
         if is_compressed:
             base_file = f'{base_file}_expanded'
-        with open(f'{output_path}/{base_file}', 'rb') as payload_file:
-            cpio_response = subprocess.run(['cpio', '-id', f'./{extracted_manifest_file_path}'], stdin=payload_file, cwd=output_path, stderr=subprocess.DEVNULL)
-            cpio_response.check_returncode()
-
+        with libarchive.Archive(f'{output_path}/{base_file}') as payload_archive:
+            for entry in payload_archive:
+                if entry.pathname == f'./{extracted_manifest_file_path}':
+                    payload_archive.readpath(f'{output_path}/{extracted_manifest_file_path}')
+                    break
             manifest_content = plistlib.loads(Path(f'{output_path}/{extracted_manifest_file_path}').read_bytes())
         shutil.rmtree(output_path)
 
