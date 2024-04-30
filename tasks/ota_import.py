@@ -35,6 +35,10 @@ def import_ota(
     info_plist = None
     build_manifest = None
 
+    # We need per-device details anyway, grab from the full OTA
+    if skip_remote:
+        skip_remote = bool(prerequisite_builds)
+
     counter = 0
     while not skip_remote:
         try:
