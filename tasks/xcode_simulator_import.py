@@ -124,7 +124,7 @@ for simulator in simulator_response['downloadables']:
 
     new_item = {
         'osStr': os_str,
-        'version': simulator['name'].replace(f"{os_str} ", "").replace("Simulator Runtime", "Simulator"),
+        'version': simulator['name'].replace(f"{os_str} ", "").replace("Simulator Runtime", "Simulator").replace("Release Candidate", "RC"),
         'build': build,
         'uniqueBuild': f"{build}-sim",
         'released': datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"),
@@ -143,5 +143,9 @@ for simulator in simulator_response['downloadables']:
             }
         ]
     }
+    if 'beta' in new_item['version']:
+        new_item['beta'] = True
+    elif 'rc' in new_item['version']:
+        new_item['rc'] = True
     json.dump(sort_os_file(None, new_item), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     update_links([file_path])
