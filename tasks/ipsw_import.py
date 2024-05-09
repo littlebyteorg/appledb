@@ -121,9 +121,12 @@ def import_ipsw(
         if 'BasebandFirmware' in identity['Manifest']:
             path = identity['Manifest']['BasebandFirmware']['Info']['Path']
             baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
-            mapped_device = get_board_mapping_lower_case([board_id])[0]
+            mapped_device = get_board_mapping_lower_case([board_id])
+            if not mapped_device:
+                print((f"MISSING BOARD - {board_id}"))
+                continue
             if baseband_response:
-                baseband_map[mapped_device] = baseband_response.groups(1)[0]
+                baseband_map[mapped_device[0]] = baseband_response.groups(1)[0]
             else:
                 print(f"MISSING BASEBAND - {path}")
 
