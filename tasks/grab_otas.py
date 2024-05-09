@@ -361,9 +361,9 @@ for (osStr, builds) in parsed_args.items():
                 for current_device in current_devices:
                     devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
 
-        for audience in audiences:
-            for key, value in devices.items():
-                new_versions = {}
+        for key, value in devices.items():
+            new_versions = {}
+            for audience in audiences:
                 for board in value['boards']:
                     if not args.no_prerequisites:
                         for prerequisite_build, version in value['builds'].items():
