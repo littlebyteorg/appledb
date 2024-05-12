@@ -57,13 +57,13 @@ for (osStr, builds) in parsed_builds.items():
             del file_data['rc']
             duplicate_entry['version'] = file_data['version']
             file_data['version'] = file_data['version'].split(' RC')[0] + (' Simulator' if 'Simulator' in old_version else '')
-            duplicate_entry['uniqueBuild'] = file_data['build'] + '-RC'
+            duplicate_entry['uniqueBuild'] = file_data['build'] + '-RC' + ('-sim' if 'Simulator' in old_version else '')
         elif file_data.get('beta'):
             duplicate_entry['beta'] = True
             del file_data['beta']
             duplicate_entry['version'] = file_data['version']
-            file_data['version'] = file_data['version'].split(' beta')[0]
-            duplicate_entry['uniqueBuild'] = file_data['build'] + '-beta'
+            file_data['version'] = file_data['version'].split(' beta')[0] + (' Simulator' if 'Simulator' in old_version else '')
+            duplicate_entry['uniqueBuild'] = file_data['build'] + '-beta' + ('-sim' if 'Simulator' in old_version else '')
         else:
             print(f"Skipping {osStr} {build} as it's not beta or RC")
             continue
