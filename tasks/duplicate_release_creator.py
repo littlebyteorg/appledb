@@ -78,7 +78,7 @@ for (osStr, builds) in parsed_builds.items():
         duplicate_entry['released'] = file_data['released']
         file_data['released'] = datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
         if not osStr.startswith('Simulators/'):
-            release_notes_link = get_release_notes_link(file_data["osStr"], file_data["version"])
+            release_notes_link = get_release_notes_link(osStr, file_data["version"])
             if release_notes_link:
                 file_data["releaseNotes"] = release_notes_link
 

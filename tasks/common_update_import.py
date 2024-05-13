@@ -174,7 +174,7 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         db_data["rc"] = True
 
     if "releaseNotes" not in db_data and not db_data.get("beta") and not db_data.get("rc"):
-        release_notes_link = get_release_notes_link(db_data["osStr"], db_data["version"])
+        release_notes_link = get_release_notes_link(os_str, db_data["version"])
         if release_notes_link:
             file_updated = True
             db_data["releaseNotes"] = release_notes_link
