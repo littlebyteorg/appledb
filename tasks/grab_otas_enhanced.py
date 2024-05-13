@@ -320,7 +320,8 @@ for (osStr, builds) in parsed_args.items():
                 audiences.append(audience)
             except:
                 if audience in ['beta', 'public']:
-                    audiences.extend({k:v for k,v in asset_audiences[asset_audiences_overrides.get(osStr, osStr)][audience].items() if int(kern_version) - kernel_marketing_version_offset_map.get(osStr, default_kernel_marketing_version_offset) <= k}.values())
+                    if asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience):
+                        audiences.extend({k:v for k,v in asset_audiences[asset_audiences_overrides.get(osStr, osStr)][audience].items() if int(kern_version) - kernel_marketing_version_offset_map.get(osStr, default_kernel_marketing_version_offset) <= k}.values())
                 else:
                     audiences.append(asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience, audience))
         build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
