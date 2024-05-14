@@ -4,6 +4,7 @@ import argparse
 import json
 import plistlib
 import re
+import time
 import zipfile
 from pathlib import Path
 from urllib.parse import urlparse
@@ -90,8 +91,18 @@ def import_ipsw(
 
     platform_support = None
     if os_str == "macOS" or "UniversalMac" in ipsw_url:
-        if not ipsw:
-            ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)
+        while not ipsw:
+            try:
+                ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)
+            except remotezip.RemoteIOError as e:
+                if e.args[0].startswith('403 Client Error'):
+                    print('No file')
+                    raise e
+                time.sleep(1+counter)
+                counter += 1
+                if counter > 10:
+                    raise e
+        
         print(f"\tGetting PlatformSupport.plist {'from local file' if local_available else 'via remotezip'}")
         platform_support = plistlib.loads(ipsw.read("PlatformSupport.plist"))
 
