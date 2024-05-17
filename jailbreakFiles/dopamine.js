@@ -12,10 +12,16 @@ module.exports = {
       {
         name: "Installing Dopamine",
         url: "/installing-dopamine/",
-        pkgman: "sileo"
+        pkgman: "sileo",
+        updateLink: [
+          {
+            text: 'Updating to 15.8.2',
+            link: '/updating-to-15-8-2/'
+          },
+        ]
       }
     ],
-    latestVer: "2.1.1",
+    latestVer: "2.1.4",
     icon: "/assets/images/jb-icons/dopamine.png",
     notes: "Supports all devices on 15.0 to 16.5. Supports M1 devices and A14 and earlier devices on 16.5.1. Supports A11 and earlier devices on 16.6 to 16.6.1",
     type: "Semi-Untethered",

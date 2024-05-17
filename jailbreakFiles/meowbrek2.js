@@ -12,13 +12,7 @@ module.exports = {
       {
         name: "Installing meowbrek2",
         url: "/installing-meowbrek2/",
-        pkgman: "sileo",
-        updateLink: [
-          {
-            text: 'Updating to 15.8.2',
-            link: '/updating-to-15-8-2/'
-          },
-        ]
+        pkgman: "sileo"
       },
     ],
     latestVer: "1.1.7-beta",

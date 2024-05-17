@@ -15,12 +15,12 @@ module.exports = {
         pkgman: "sileo",
         updateLink: [
           {
-            text: 'Updating to 16.7.6',
-            link: '/updating-to-16-7-6/'
+            text: 'Updating to 16.7.8',
+            link: '/updating-to-16-7-8/'
           },
           {
-            text: 'Updating to 17.4',
-            link: '/updating-to-17-4/'
+            text: 'Updating to 17.5',
+            link: '/updating-to-17-5/'
           },
         ]
       }
@@ -198,6 +198,7 @@ module.exports = {
         "20H307",
         "20H320",
         "20H330",
+        "20H343",
         "21A5248v",
         "21A5268h",
         "21A5277h",
@@ -234,7 +235,12 @@ module.exports = {
         "21E217",
         "21E219",
         "21E236",
-        "21E237"
+        "21E237",
+        "21F5048f",
+        "21F5058e",
+        "21F5063f",
+        "21F5073b",
+        "21F79"
       ]
     }
   ]
