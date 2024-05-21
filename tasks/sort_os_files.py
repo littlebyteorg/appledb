@@ -69,11 +69,11 @@ def device_sort(device):
         if not match or len(match.groups()) != 2:
             # This is probably not a device identifier, so just return it
             return "", 0, 0, device
-        return match.groups()[0], 0, int(match.groups()[1]), device
+        return match.groups()[0].lower(), 0, int(match.groups()[1]), device
 
     # The device at the end is for instances like "BeatsStudioBuds1,1", "BeatsStudioBuds1,1-tiger"
     # However, this will sort "MacBookPro15,1-2019" before "MacBookPro15,2-2018"
-    return match.groups()[0], int(match.groups()[1]), int(match.groups()[2]), device
+    return match.groups()[0].lower(), int(match.groups()[1]), int(match.groups()[2]), device
 
 
 def os_sort(os):
