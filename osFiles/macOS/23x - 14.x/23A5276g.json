@@ -62,6 +62,47 @@
     ],
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerSeed/fullrestores/032-95861/67600C59-8516-4A46-B9D7-4007D395CEF5/UniversalMac_14.0_23A5276g_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9972c487807de7e176d5ed845f4a85a823aed404",
+                "sha2-256": "abd5967207cd92028dac83cc1319b3c193592055dd96aae0dd64f58a7c4b2c10"
+            },
+            "size": 14011239154
+        },
+        {
             "type": "installassistant",
             "deviceMap": [
                 "iMac19,1",
@@ -189,6 +230,50 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "22F2063",
+            "deviceMap": [
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95865/A969450D-10E6-4B47-A2C7-17D568EDFD54/com_apple_MobileAsset_MacSoftwareUpdate/498ee34272b09b3b5982bc5140510ee77389e1fb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d067e9cd027219621a9d81660b807b4c7d8fdf6f",
+                "sha2-256": "ad3d6195db91a0ed6cc26a43ea93b86bd656a08e13bc8fa6f2e4d4de32daffe7"
+            },
+            "size": 5818589470
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22F2073",
+            "deviceMap": [
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95858/35ABB693-00A5-4B67-B188-4D6C84A3686B/com_apple_MobileAsset_MacSoftwareUpdate/f4280be3c5fa55404d34f1598a7a22735ca4ca9d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "72980b8f139adf1d82d385f84f34909fb00bec79",
+                "sha2-256": "24cebef18046956232f2f88b174b85304e78a9e8319350bf7488c4f0a931ec85"
+            },
+            "size": 5818899191
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "22F82",
             "deviceMap": [
                 "iMac19,1",
@@ -225,6 +310,65 @@
                 "sha2-256": "206b6de0d63a37a9289322a8a893d4f152eb2c7e518e990269060f303ae1f886"
             },
             "size": 4040341615
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22F82",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/042-04580/5C90C24D-4B1F-4B62-961A-7242DFF38ECA/com_apple_MobileAsset_MacSoftwareUpdate/f5211b520fcc6ebe80f9a7214745176fa619a319.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "61595b9bdcde05b7a2a08890e83a3b39aac60faf",
+                "sha2-256": "b3425a0cc0d03e82acdd96509c89480c74fb2c44aedef0329788355023317c3d"
+            },
+            "size": 5888994573
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22F2083",
+            "deviceMap": [
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/042-04579/B2174D92-1EB1-42B5-99FA-E2A9935F553A/com_apple_MobileAsset_MacSoftwareUpdate/f8d3973ae2498d5a932da9ac5c33daafee634e3a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "27b16174fafc5458aaa40ae733b2d44402da8783",
+                "sha2-256": "914ee415419606837de48416f74e9853a5ed664417b7676c96fc182d47c58e0e"
+            },
+            "size": 5820334761
         },
         {
             "type": "ota",
@@ -267,6 +411,43 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "22G5038d",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95866/92215818-71B7-4D2E-931D-05689699F012/com_apple_MobileAsset_MacSoftwareUpdate/fe54e5aab46f1bfaf6823bd1ec9b7323acacf589.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9a41d234cfb92c2bdd880e71345543777f73785a",
+                "sha2-256": "c32f3be5cb1329f79267119de988402ba652866ec332cf69487d3e3526c9a232"
+            },
+            "size": 5882189846
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "22G5048d",
             "deviceMap": [
                 "iMac19,1",
@@ -303,160 +484,6 @@
                 "sha2-256": "1a2d2e3a9fc8bcff9a7c21ee0fbd1bc8731a0f346e1a45a2ab6426061430d71a"
             },
             "size": 3939265645
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23A5257q",
-            "deviceMap": [
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "Macmini8,1",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95853/62A2C008-47EF-41E1-989F-3D74B03FF3F4/com_apple_MobileAsset_MacSoftwareUpdate/af690fc9f1ff887177e23ecf1b5fdb95d6b36e15.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cd6f098b574fe44ad5f1f4af6c751a3d46c611e1",
-                "sha2-256": "5478c753fde4f2dd5ab4d6060f2fd94709787dd0187fd00021ddac992db5681d"
-            },
-            "size": 1656426732
-        },
-        {
-            "type": "ipsw",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerSeed/fullrestores/032-95861/67600C59-8516-4A46-B9D7-4007D395CEF5/UniversalMac_14.0_23A5276g_Restore.ipsw",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9972c487807de7e176d5ed845f4a85a823aed404",
-                "sha2-256": "abd5967207cd92028dac83cc1319b3c193592055dd96aae0dd64f58a7c4b2c10"
-            },
-            "size": 14011239154
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22F82",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/042-04580/5C90C24D-4B1F-4B62-961A-7242DFF38ECA/com_apple_MobileAsset_MacSoftwareUpdate/f5211b520fcc6ebe80f9a7214745176fa619a319.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "61595b9bdcde05b7a2a08890e83a3b39aac60faf",
-                "sha2-256": "b3425a0cc0d03e82acdd96509c89480c74fb2c44aedef0329788355023317c3d"
-            },
-            "size": 5888994573
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22G5038d",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95866/92215818-71B7-4D2E-931D-05689699F012/com_apple_MobileAsset_MacSoftwareUpdate/fe54e5aab46f1bfaf6823bd1ec9b7323acacf589.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9a41d234cfb92c2bdd880e71345543777f73785a",
-                "sha2-256": "c32f3be5cb1329f79267119de988402ba652866ec332cf69487d3e3526c9a232"
-            },
-            "size": 5882189846
         },
         {
             "type": "ota",
@@ -504,6 +531,45 @@
             "type": "ota",
             "prerequisiteBuild": "23A5257q",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95853/62A2C008-47EF-41E1-989F-3D74B03FF3F4/com_apple_MobileAsset_MacSoftwareUpdate/af690fc9f1ff887177e23ecf1b5fdb95d6b36e15.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cd6f098b574fe44ad5f1f4af6c751a3d46c611e1",
+                "sha2-256": "5478c753fde4f2dd5ab4d6060f2fd94709787dd0187fd00021ddac992db5681d"
+            },
+            "size": 1656426732
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "23A5257q",
+            "deviceMap": [
                 "iMac21,1",
                 "iMac21,2",
                 "Mac13,1",
@@ -541,72 +607,6 @@
                 "sha2-256": "2c6fc09ede84eaf395391b52d7daf2dbde5cf63953fd2702ff10cef943142070"
             },
             "size": 2550524877
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22F2063",
-            "deviceMap": [
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95865/A969450D-10E6-4B47-A2C7-17D568EDFD54/com_apple_MobileAsset_MacSoftwareUpdate/498ee34272b09b3b5982bc5140510ee77389e1fb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d067e9cd027219621a9d81660b807b4c7d8fdf6f",
-                "sha2-256": "ad3d6195db91a0ed6cc26a43ea93b86bd656a08e13bc8fa6f2e4d4de32daffe7"
-            },
-            "size": 5818589470
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22F2073",
-            "deviceMap": [
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/032-95858/35ABB693-00A5-4B67-B188-4D6C84A3686B/com_apple_MobileAsset_MacSoftwareUpdate/f4280be3c5fa55404d34f1598a7a22735ca4ca9d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "72980b8f139adf1d82d385f84f34909fb00bec79",
-                "sha2-256": "24cebef18046956232f2f88b174b85304e78a9e8319350bf7488c4f0a931ec85"
-            },
-            "size": 5818899191
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22F2083",
-            "deviceMap": [
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023SummerSeed/patches/042-04579/B2174D92-1EB1-42B5-99FA-E2A9935F553A/com_apple_MobileAsset_MacSoftwareUpdate/f8d3973ae2498d5a932da9ac5c33daafee634e3a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "27b16174fafc5458aaa40ae733b2d44402da8783",
-                "sha2-256": "914ee415419606837de48416f74e9853a5ed664417b7676c96fc182d47c58e0e"
-            },
-            "size": 5820334761
         }
     ]
 }

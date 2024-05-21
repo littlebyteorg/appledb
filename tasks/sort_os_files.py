@@ -117,7 +117,7 @@ def build_number_sort(build_number):
     build_train_version = match.groups()[1]
     build_version = int(match.groups()[2])
     build_prefix = 0
-    build_suffix = match.groups()[3]
+    build_suffix = match.groups()[3] or ""
     if build_version > 1000:
         build_prefix = int(build_version / 1000)
         build_version = build_version % 1000
@@ -197,11 +197,17 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         else:
             sorted_os_item = (-1, 0)
 
+        if 'mac' in data.get('osStr', '').lower():
+            return (
+                source_type_order.index(source["type"]),
+                build_number_sort(prerequisite_order),
+                device_sort(source["deviceMap"][0]),
+            )
         return (
             device_sort(source["deviceMap"][0]),
             source_type_order.index(source["type"]),
-            sorted_os_item,
             build_number_sort(prerequisite_order),
+            sorted_os_item,
             board_order,
         )
 

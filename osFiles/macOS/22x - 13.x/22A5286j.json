@@ -59,6 +59,36 @@
     ],
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/fullrestores/012-30346/9DD787A7-044B-4650-86D4-84E80B6B9C36/UniversalMac_13.0_22A5286j_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9cb5e8597b524351df4037db1514603be17dff7a",
+                "sha2-256": "338c640ce9e72553fd2529fe0e03492a9b8d1d2d4cbf26796d8488750ef2f29e"
+            },
+            "size": 12103954377
+        },
+        {
             "type": "installassistant",
             "deviceMap": [
                 "iMac18,1",
@@ -221,6 +251,56 @@
                 "sha2-256": "ed773808b8ba102480b68fedb274a60a194ce5502363c20b421007e899c6b279"
             },
             "size": 3763468625
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21F2081",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-30345/37486E02-D71B-4599-93C0-ABE1429FB203/com_apple_MobileAsset_MacSoftwareUpdate/1e657e9bba30962a76ed90c64baf214a86c9f564.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3115db183ee55ff6f0d11a274d256be052da822f",
+                "sha2-256": "c689d8f20ab647c7f03afc40897654d93b77c8062b2c79415e65d427a007984c"
+            },
+            "size": 5263413325
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21F2092",
+            "deviceMap": [
+                "Mac14,2",
+                "Mac14,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-30342/AEBC2350-98B1-428D-9CF4-CBEA81F21956/com_apple_MobileAsset_MacSoftwareUpdate/8c00eaf846a601dea03460724707dd5ad1c103a6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "07c61e503687412f6e6e3331770d1843ad5f749a",
+                "sha2-256": "0bdc84360fa2910b0d3f685bf927fd3e38e5691f11e94cd9de57d09d7e54d7fc"
+            },
+            "size": 5268427425
         },
         {
             "type": "ota",
@@ -414,86 +494,6 @@
                 }
             ],
             "size": 593956526
-        },
-        {
-            "type": "ipsw",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/fullrestores/012-30346/9DD787A7-044B-4650-86D4-84E80B6B9C36/UniversalMac_13.0_22A5286j_Restore.ipsw",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9cb5e8597b524351df4037db1514603be17dff7a",
-                "sha2-256": "338c640ce9e72553fd2529fe0e03492a9b8d1d2d4cbf26796d8488750ef2f29e"
-            },
-            "size": 12103954377
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21F2081",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-30345/37486E02-D71B-4599-93C0-ABE1429FB203/com_apple_MobileAsset_MacSoftwareUpdate/1e657e9bba30962a76ed90c64baf214a86c9f564.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3115db183ee55ff6f0d11a274d256be052da822f",
-                "sha2-256": "c689d8f20ab647c7f03afc40897654d93b77c8062b2c79415e65d427a007984c"
-            },
-            "size": 5263413325
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21F2092",
-            "deviceMap": [
-                "Mac14,2",
-                "Mac14,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-30342/AEBC2350-98B1-428D-9CF4-CBEA81F21956/com_apple_MobileAsset_MacSoftwareUpdate/8c00eaf846a601dea03460724707dd5ad1c103a6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "07c61e503687412f6e6e3331770d1843ad5f749a",
-                "sha2-256": "0bdc84360fa2910b0d3f685bf927fd3e38e5691f11e94cd9de57d09d7e54d7fc"
-            },
-            "size": 5268427425
         }
     ]
 }

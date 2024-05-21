@@ -59,6 +59,40 @@
     ],
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://developer.apple.com/services-account/download?path=/WWDC_2022/macOS_13_beta/UniversalMac_13.0_22A5266r_Restore.ipsw",
+                    "active": true
+                },
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/fullrestores/012-20268/EBB26134-9822-4379-A9E8-2E788D253B88/UniversalMac_13.0_22A5266r_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9c680adace6127463b140a5e45f181005b8dcc53",
+                "sha2-256": "d19186fd27e54525589e4a53f9ad631a7d1360897e003033df88612999cfe249"
+            },
+            "size": 12222039811
+        },
+        {
             "type": "installassistant",
             "deviceMap": [
                 "iMac18,1",
@@ -270,6 +304,37 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "21F2081",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-18262/3BD851E8-9084-4554-A17A-3DEA1AAAAF49/com_apple_MobileAsset_MacSoftwareUpdate/3d4f521f6d043b57de2e323c4de0dcddb71fc0d5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "10528ed7096d60538c09cd299205f9d639b6abba",
+                "sha2-256": "275b62e9fd21a894e385bb0b158a51519dc7cf9cb9fb1674dbdeff29238deaa8"
+            },
+            "size": 5192948258
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "21G5027d",
             "deviceMap": [
                 "iMac18,1",
@@ -414,71 +479,6 @@
                 }
             ],
             "size": 581587874
-        },
-        {
-            "type": "ipsw",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://developer.apple.com/services-account/download?path=/WWDC_2022/macOS_13_beta/UniversalMac_13.0_22A5266r_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/fullrestores/012-20268/EBB26134-9822-4379-A9E8-2E788D253B88/UniversalMac_13.0_22A5266r_Restore.ipsw",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9c680adace6127463b140a5e45f181005b8dcc53",
-                "sha2-256": "d19186fd27e54525589e4a53f9ad631a7d1360897e003033df88612999cfe249"
-            },
-            "size": 12222039811
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21F2081",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-18262/3BD851E8-9084-4554-A17A-3DEA1AAAAF49/com_apple_MobileAsset_MacSoftwareUpdate/3d4f521f6d043b57de2e323c4de0dcddb71fc0d5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "10528ed7096d60538c09cd299205f9d639b6abba",
-                "sha2-256": "275b62e9fd21a894e385bb0b158a51519dc7cf9cb9fb1674dbdeff29238deaa8"
-            },
-            "size": 5192948258
         }
     ]
 }
