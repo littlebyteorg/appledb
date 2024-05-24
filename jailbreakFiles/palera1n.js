@@ -29,7 +29,7 @@ module.exports = {
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
     notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16.",
-    firmwares: ["15.0","17.4.1"]
+    firmwares: ["15.0","17.5.1"]
   },
   compatibility: [
     {
@@ -240,7 +240,8 @@ module.exports = {
         "21F5058e",
         "21F5063f",
         "21F5073b",
-        "21F79"
+        "21F79",
+        "21F90"
       ]
     }
   ]
