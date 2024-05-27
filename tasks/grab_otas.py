@@ -266,7 +266,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
     for asset in assets:
         if asset.get("AlternateAssetAudienceUUID"):
             additional_audiences.add(asset["AlternateAssetAudienceUUID"])
-        if build_versions.get(f"{osStr}-{asset['Build']}"):
+        if build_versions.get(f"{osStr}-{asset['Build']}") or asset['Build'] in parsed_args.get(osStr, []):
             continue
 
         # ensure deltas from beta builds to release builds are properly filtered out as noise as well if the target build is known
