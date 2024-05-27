@@ -1,33 +1,36 @@
 {
     "name": "AirPort Express 802.11g",
     "type": "AirPort",
-    "model": ["A1804", "A1088"],
+    "model": [
+        "A1088",
+        "A1804"
+    ],
     "released": "2004-06-07",
     "info": [
         {
             "type": "Connectivity",
-            "Wi-Fi": "802.11a/b/g",
-            "Frequency": "2.4GHz",
+            "Concurrent Devices": 10,
             "Data Throughput": "54 Megabits per second (Mbps)",
+            "Frequency": "2.4GHz",
             "Interfaces": [
                 "1x RJ-45 connector for 10/100Mbps Ethernet WAN",
                 "USB 2.0 for Network Printing or sharing iPod Shuffle",
                 "Audio Out AUX for AirTunes"
             ],
-            "Guest Network Support": "No",
+            "MiMO": "2x2:2",
             "Security": [
                 "40-bit or 128-bit WEP encryption",
                 "WPA/WPA2"
             ],
-            "MiMO": "2x2:2",
-            "Concurrent Devices": 10
+            "Wi-Fi": "802.11a/b/g",
+            "Guest Network Support": "No"
         },
         {
-            "type": "CPU, DAC, Flash Memory & RAM",
+            "type": "CPU, RAM & Storage",
             "CPU": "Broadcom BCM4712",
-            "DAC": "Texas Instruments Burr-Browb PCM2705 16-bit",
             "Flash Memory": "4MB",
-            "RAM": "16MB"
+            "RAM": "16MB",
+            "DAC": "Texas Instruments Burr-Browb PCM2705 16-bit"
         }
     ]
 }
