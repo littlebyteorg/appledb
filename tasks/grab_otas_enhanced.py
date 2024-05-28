@@ -253,7 +253,7 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
             delta_from_beta = re.search(r"(6\d{3})", updated_build)
             if delta_from_beta:
                 updated_build = updated_build.replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))
-            if build_versions.get(f"{osStr}-{asset['Build']}") or asset['Build'] in parsed_args.get(osStr, []):
+            if build_versions.get(f"{osStr}-{updated_build}") or updated_build in parsed_args.get(osStr, []):
                 continue
 
             if osStr == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == asset['OSVersion'].removeprefix('9.9.'):
