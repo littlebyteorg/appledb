@@ -62,7 +62,7 @@ for mac_version in mac_versions:
     raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
 
-    plist = plistlib.loads(raw_sucatalog.content)['Products']
+    plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
     catalog_safari = None
     for product in plist.values():
         if f"Safari{args.version}" not in product.get("ServerMetadataURL", ""):

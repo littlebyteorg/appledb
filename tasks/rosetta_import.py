@@ -16,10 +16,9 @@ from file_downloader import handle_pkg_file
 result = requests.get(f"https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog?cachebust{random.randint(100, 1000)}")
 result.raise_for_status()
 
-plist = plistlib.loads(result.content)['Products']
+plist = plistlib.loads(result.content).get('Products', {})
 
 for product in plist.values():
-    # print(re.match())
     build = product['ExtendedMetaInfo']['BuildVersion']
     kernel_version = re.match(r"(\d+)([A-Z])(\d+)([A-Z])?", build)[1]
     current_path = Path(f'osFiles/Software/Rosetta/{kernel_version}x - {int(kernel_version) - 9}.x/{build}.json')
