@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import json
 import plistlib
 import random
 from pathlib import Path
@@ -38,7 +37,11 @@ if args.beta:
 for mac_version in mac_versions:
     for variation in variations:
         raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{variation}-1.sucatalog?cachebust{random.randint(100, 1000)}')
-        raw_sucatalog.raise_for_status()
+        try:
+            raw_sucatalog.raise_for_status()
+        except:
+            print(f"Error grabbing {mac_version}{variation}")
+            continue
 
         plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
         for product in plist.values():

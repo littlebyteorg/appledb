@@ -74,6 +74,7 @@ for product in plist.values():
         manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resources/BuildManifest.plist'
         (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path)
         db_data['buildTrain'] = manifest['BuildIdentities'][0]['Info']['BuildTrain']
+        db_data['deviceMap'].extend(manifest["SupportedProductTypes"])
         new_link = {
             'url': url,
             'active': True
