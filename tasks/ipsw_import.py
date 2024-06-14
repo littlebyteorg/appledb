@@ -91,6 +91,7 @@ def import_ipsw(
 
     platform_support = None
     if os_str == "macOS" or "UniversalMac" in ipsw_url:
+        counter = 0
         while not ipsw:
             try:
                 ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)

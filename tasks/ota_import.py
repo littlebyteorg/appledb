@@ -11,6 +11,7 @@ import packaging.version
 import remotezip
 import requests
 import time
+from file_downloader import handle_ota_file
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
@@ -27,7 +28,8 @@ SESSION = requests.Session()
 
 
 def import_ota(
-    ota_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False
+    ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, \
+        use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -37,34 +39,54 @@ def import_ota(
 
     # We need per-device details anyway, grab from the full OTA
     if skip_remote:
-        skip_remote = bool(prerequisite_builds)
+        skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
+
+    if not skip_remote and not ota_key and ota_url.endswith('.aea'):
+        ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
+
+        if not ota_key:
+            raise RuntimeError(f"Couldn't determine OS details for {ota_url}")
 
     counter = 0
-    while not skip_remote:
-        try:
-            ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
-            print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
+    if not skip_remote:
+        if ota_key:
+            if Path("aastuff").exists():
+                handle_ota_file(ota_url, ota_key)
+                extracted_path = Path(str(local_path).split(".")[0])
+                info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
+                build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
 
-            info_plist = plistlib.loads(ota.read("Info.plist"))
-            manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
-            build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+                if info_plist.get('MobileAssetProperties'):
+                    info_plist = info_plist['MobileAssetProperties']
 
-            if info_plist.get('MobileAssetProperties'):
-                info_plist = info_plist['MobileAssetProperties']
+                if info_plist.get('SplatOnly'):
+                    rsr = True
+        else:
+            while True:
+                try:
+                    ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
+                    print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
 
-            if info_plist.get('SplatOnly'):
-                rsr = True
-            break
-        except remotezip.RemoteIOError as e:
-            if not build:
-                if e.args[0].startswith('403 Client Error'):
-                    print('No file')
-                    raise e
-                time.sleep(1+counter)
-                counter += 1
-                if counter > 10:
-                    raise e
-            info_plist = {}
+                    info_plist = plistlib.loads(ota.read("Info.plist"))
+                    manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
+                    build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+
+                    if info_plist.get('MobileAssetProperties'):
+                        info_plist = info_plist['MobileAssetProperties']
+
+                    if info_plist.get('SplatOnly'):
+                        rsr = True
+                    break
+                except remotezip.RemoteIOError as e:
+                    if not build:
+                        if e.args[0].startswith('403 Client Error'):
+                            print('No file')
+                            raise e
+                        time.sleep(1+counter)
+                        counter += 1
+                        if counter > 10:
+                            raise e
+                    info_plist = {}
     bridge_version = None
 
     if info_plist and info_plist.get('BridgeVersionInfo'):
@@ -75,7 +97,6 @@ def import_ota(
         ota.close()
 
     # Get the build, version, and supported devices
-    buildtrain = None
     restore_version = None
     baseband_map = {}
     if build_manifest:
@@ -137,12 +158,6 @@ def import_ota(
             if any(prod.startswith(product_prefix) for prod in supported_devices):
                 if os_str == "iPadOS" and packaging.version.parse(recommended_version.split(" ")[0]) < packaging.version.parse("13.0"):
                     os_str = "iOS"
-                print(f"\t{os_str} {recommended_version} ({build})")
-                if prerequisite_builds:
-                    print(f"\tPrerequisite: {prerequisite_builds}")
-                print(f"\tDevice Support: {supported_devices}")
-                if supported_boards:
-                    print(f"\tBoard Support: {supported_boards}")
                 break
         else:
             if FULL_SELF_DRIVING:
@@ -150,6 +165,13 @@ def import_ota(
             else:
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
+
+    print(f"\t{os_str} {recommended_version} ({build})")
+    if prerequisite_builds:
+        print(f"\tPrerequisite: {prerequisite_builds}")
+    print(f"\tDevice Support: {supported_devices}")
+    if supported_boards:
+        print(f"\tBoard Support: {supported_boards}")
 
     if restore_version is None and info_plist and info_plist.get('RestoreVersion'):
         restore_version = info_plist.get('RestoreVersion')
@@ -229,16 +251,17 @@ if __name__ == "__main__":
                 print(f"Importing {version['osStr']} {version['version']}")
                 if "sources" not in version:
                     files_processed.add(
-                        create_file(version["osStr"], version["build"], FULL_SELF_DRIVING, version=version["version"], released=version["released"])
+                        create_file(version["osStr"], version["build"], FULL_SELF_DRIVING, version=version["version"], released=version["released"], buildtrain=version.get("buildTrain"))
                     )
                 else:
                     for source in version['sources']:
                         for link in source.get('links', []):
                             try:
                                 files_processed.add(
-                                    import_ota(link["url"], recommended_version=version["version"], version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True)
+                                    import_ota(link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"))
                                 )
                             except Exception:
+                                raise
                                 failed_links.append(link["url"])
 
         elif Path("import-ota.txt").exists():
@@ -247,8 +270,13 @@ if __name__ == "__main__":
             urls = [i.strip() for i in Path("import-ota.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
+                key = None
+                if ';' in url:
+                    url_split = url.split(';', 1)
+                    url = url_split[0]
+                    key = url_split[1]
                 try:
-                    files_processed.add(import_ota(url, use_network=False))
+                    files_processed.add(import_ota(url, ota_key=key, use_network=False))
                 except Exception:
                     failed_links.append(url)
         else:

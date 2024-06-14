@@ -134,6 +134,8 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
             friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip()
             if not friendly_version:
                 friendly_version = version or recommended_version
+        # HACK: Apple sometimes screws up in the dev portal
+        friendly_version = " ".join(filter(None, friendly_version.split(" ")))
         db_data = {"osStr": os_str_override, "version": friendly_version, "build": build}
 
         web_image = get_image(os_str, friendly_version)

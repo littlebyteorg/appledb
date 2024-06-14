@@ -11,6 +11,7 @@ import plistlib
 import shutil
 from pathlib import Path
 import libarchive
+import subprocess
 
 SESSION = requests.session()
 async def get_size(url):
@@ -28,9 +29,7 @@ def download_range(url, start, end, output):
             f.write(part)
 
 
-async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size=104857600):
-    output_path = 'out/package'
-
+async def download(run, url, hashes, output_path, chunk_size=104857600):
     file_hashes = {}
 
     if url:
@@ -43,7 +42,7 @@ async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size
                 url,
                 start,
                 start + chunk_size - 1,
-                f'{output_path}.pkg.part{i}',
+                f'{output_path}.part{i}',
             )
             for i, start in enumerate(chunks)
         ]
@@ -57,9 +56,9 @@ async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size
         if 'sha2-256' in hashes:
             sha256 = hashlib.sha256()
 
-        with open(f'{output_path}.pkg', 'wb') as o:
+        with open(output_path, 'wb') as o:
             for i in range(len(chunks)):
-                chunk_path = f'{output_path}.pkg.part{i}'
+                chunk_path = f'{output_path}.part{i}'
 
                 with open(chunk_path, 'rb') as s:
                     file_contents = s.read()
@@ -79,6 +78,46 @@ async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size
             file_hashes['md5'] = md5.hexdigest()
         if 'sha2-256' in hashes:
             file_hashes['sha2-256'] = sha256.hexdigest()
+
+    return file_hashes
+
+def handle_ota_file(download_link, key):
+    file_path = f'otas/{download_link.split('/')[-1]}'
+    output_path = file_path.split('.')[0]
+    if not Path(file_path).exists():
+        executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
+        loop = asyncio.new_event_loop()
+        run = functools.partial(loop.run_in_executor, executor)
+
+        asyncio.set_event_loop(loop)
+
+        try:
+            loop.run_until_complete(
+                download(run, download_link, [], file_path)
+            )
+        finally:
+            loop.close()
+
+    if not Path(output_path).exists():
+        subprocess.run(['./aastuff', file_path, output_path, key], check=True, stderr=subprocess.DEVNULL)
+        Path(file_path).unlink()
+
+def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None):
+    if hashes is None:
+        hashes = ['sha1']
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
+    loop = asyncio.new_event_loop()
+    run = functools.partial(loop.run_in_executor, executor)
+
+    asyncio.set_event_loop(loop)
+    output_path = 'out/package'
+
+    try:
+        file_hashes = loop.run_until_complete(
+            download(run, download_link, hashes, f"{output_path}.pkg")
+        )
+    finally:
+        loop.close()
 
     manifest_content = {}
 
@@ -101,22 +140,4 @@ async def download(run, url, hashes, extracted_manifest_file_path='', chunk_size
         shutil.rmtree(output_path)
 
     Path(f'{output_path}.pkg').unlink()
-
     return (file_hashes, manifest_content)
-
-def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None):
-    if hashes is None:
-        hashes = ['sha1']
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
-    loop = asyncio.new_event_loop()
-    run = functools.partial(loop.run_in_executor, executor)
-
-    asyncio.set_event_loop(loop)
-
-    try:
-        (file_hashes, manifest) = loop.run_until_complete(
-            download(run, download_link, hashes, extracted_manifest_file_path)
-        )
-        return (file_hashes, manifest)
-    finally:
-        loop.close()
