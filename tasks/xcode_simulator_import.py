@@ -45,6 +45,7 @@ for xcode_version in xcode_response:
     file_path = Path(f"osFiles/Software/Xcode/{build_version}x - {major_version_range}/{xcode_version['version']['build']}.json")
     os_map = [f'macOS {x}' for x in range(int(xcode_version['requires'].split(".")[0]), int(xcode_version['version']['number'].split('.')[0]))]
     if file_path.exists(): continue
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     
     formatted_sdks = []
 
@@ -121,6 +122,7 @@ for simulator in simulator_response['downloadables']:
     file_path = Path(f"osFiles/Simulators/{os_str}/{build_version}x - {major_version}.x/{build}.json")
 
     if file_path.exists(): continue
+    file_path.parent.mkdir(parents=True, exist_ok=True)
 
     new_item = {
         'osStr': os_str,
@@ -128,9 +130,10 @@ for simulator in simulator_response['downloadables']:
         'build': build,
         'uniqueBuild': f"{build}-sim",
         'released': datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"),
-        'beta': bool('beta' in simulator['name']),
-        'deviceMap': [f"{os_str} Simulator"],
-        'sources': [
+        'deviceMap': [f"{os_str} Simulator"]
+    }
+    if simulator.get('source'):
+        new_item['sources'] = [
             {
                 'type': 'dmg',
                 'deviceMap': [f"{os_str} Simulator"],
@@ -142,7 +145,6 @@ for simulator in simulator_response['downloadables']:
                 'size': simulator['fileSize']
             }
         ]
-    }
     if 'beta' in new_item['version']:
         new_item['beta'] = True
     elif 'rc' in new_item['version']:

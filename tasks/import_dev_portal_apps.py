@@ -11,6 +11,7 @@ import requests
 import lxml.etree
 
 from sort_os_files import sort_os_file  # pylint: disable=no-name-in-module
+from update_links import update_links
 
 LINK_PREFIX = 'https://developer.apple.com/services-account/download?path='
 
@@ -54,6 +55,7 @@ process_downloads = {
     "Safari": True,
     "Command Line Tools": True,
     "Kernel Debug Kit": True,
+    "Simulator": True,
 }
 
 for download in downloads:
@@ -112,7 +114,8 @@ for download in downloads:
                 "Xcode Command Line Tools"
             ],
             "osMap": [
-                "macOS 14"
+                "macOS 14",
+                "macOS 15"
             ],
             "sources": [
                 {
@@ -121,7 +124,8 @@ for download in downloads:
                         "Xcode Command Line Tools"
                     ],
                     "osMap": [
-                        "macOS 14"
+                        "macOS 14",
+                        "macOS 15"
                     ],
                     "links": [
                         {
@@ -163,3 +167,25 @@ for download in downloads:
         })
 
         json.dump(sort_os_file(None, kdk_build_data), target_file[0].open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    elif download_name.endswith('Simulator Runtime') and process_downloads['Simulator']:
+        download_name_split = download_name.split(" ")
+        subfolder_pattern = f"*x - {download_name_split[1].split('.')[0]}.x"
+        relative_path = f"osFiles/Simulators/{download_name_split[0]}"
+        for candidate_file in list(Path(relative_path).glob(subfolder_pattern))[0].glob("*.json"):
+            if int(str(candidate_file).split("/")[3].split("x")[0]) < 22: continue
+            candidate_data = json.load(candidate_file.open(encoding="utf-8"))
+            if candidate_data["version"].replace(".0", "").replace("Simulator", "Simulator Runtime") == download_name.replace(f"{candidate_data['osStr']} ", ""):
+                candidate_data['sources'] = [
+                    {
+                        'type': 'dmg',
+                        'deviceMap': [f"{download_name_split[0]} Simulator"],
+                        'links': [
+                            {
+                                'url': LINK_PREFIX + download['files'][0]['remotePath']
+                            }
+                        ],
+                        'size': download['files'][0]['fileSize']
+                    }
+                ]
+                json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                update_links([candidate_file])
