@@ -57,7 +57,8 @@ latest_watch_compatibility_versions = {
 default_mac_devices = [
     'MacBookAir7,1',    # Intel, only supports up to Monterey
     'iMac18,1',         # Intel, only supports up to Ventura
-    'MacPro7,1',        # Intel, supports Sonoma
+    'MacBookAir8,1',    # Intel, only supports up to Sonoma
+    'MacPro7,1',        # Intel, supports Sequoia
     'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
     'Mac13,1',          # Covers Mac Studio forked build
     'Mac14,2',          # Covers WWDC 2022 forked builds
@@ -85,6 +86,7 @@ asset_audiences = {
             15: 'ce48f60c-f590-4157-a96f-41179ca08278',
             16: 'a6050bca-50d8-4e45-adc2-f7333396a42c',
             17: '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
+            18: '41651cee-d0e2-442f-b786-85682ff6db86'
         },
         'public': {
             15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
@@ -99,6 +101,7 @@ asset_audiences = {
             12: '298e518d-b45e-4d36-94be-34a63d6777ec',
             13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
             14: '77c3bd36-d384-44e8-b550-05122d7da438',
+            15: '98df7800-8378-4469-93bf-5912da21a1e1'
         },
         'public': {
             12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
@@ -109,7 +112,8 @@ asset_audiences = {
     },
     'tvOS': {
         'beta': {
-            17: '61693fed-ab18-49f3-8983-7c3adf843913'
+            17: '61693fed-ab18-49f3-8983-7c3adf843913',
+            18: '98847ed4-1c37-445c-9e7b-5b95d29281f2'
         },
         'public': {
             17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e'
@@ -118,7 +122,8 @@ asset_audiences = {
     },
     'watchOS': {
         'beta': {
-            10: '7ae7f3b9-886a-437f-9b22-e9f017431b0e'
+            10: '7ae7f3b9-886a-437f-9b22-e9f017431b0e',
+            11: '23d7265b-1000-47cf-8d0a-07144942db9e'
         },
         'public': {
             10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b'
@@ -127,7 +132,8 @@ asset_audiences = {
     },
     'audioOS': {
         'beta': {
-            17: '17536d4c-1a9d-4169-bc62-920a3873f7a5'
+            17: '17536d4c-1a9d-4169-bc62-920a3873f7a5',
+            18: 'bedbd9c7-738a-4060-958b-79da54a1f7ad'
         },
         'public': {
             17: 'f7655fc0-7a0a-43fa-b781-170a834a3108'
@@ -136,7 +142,8 @@ asset_audiences = {
     },
     'visionOS': {
         'beta': {
-            1: '4d282764-95fe-4e0e-b7da-ea218fd1f75a'
+            1: '4d282764-95fe-4e0e-b7da-ea218fd1f75a',
+            2: '0bef3239-79ad-4d2a-99c3-2c05df2becf8'
         },
         'release': 'c59ff9d1-5468-4f6c-9e54-f68d5eeab93b'
     },
@@ -280,7 +287,12 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
 
         newly_discovered_versions[asset['Build']] = asset['OSVersion'].removeprefix('9.9.')
 
-        links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
+        if asset.get('ArchiveDecryptionKey'):
+            new_link = f"{asset['__BaseURL']}{asset['__RelativePath']};{asset['ArchiveDecryptionKey']}"
+        else:
+            new_link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
+
+        links.add(new_link)
 
     for additional_audience in additional_audiences:
         additional_links, additional_versions = call_pallas(device_name, board_id, os_version, os_build, osStr, additional_audience, is_rsr, time_delay)
