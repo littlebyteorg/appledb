@@ -26,7 +26,6 @@ LOCAL_OTA_PATH = Path("otas")
 
 SESSION = requests.Session()
 
-
 def import_ota(
     ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, \
         use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None
@@ -214,6 +213,9 @@ def import_ota(
         update_links([db_file], False)
     print(f"\tSanity check the file{', run update_links.py, ' if not use_network else ' '}and then commit it\n")
 
+    if bridge_version and board_map and not bridge_devices:
+        _, bridge_devices = get_board_mappings(board_map)
+
     if bridge_version and bridge_devices:
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
@@ -258,10 +260,13 @@ if __name__ == "__main__":
                         for link in source.get('links', []):
                             try:
                                 files_processed.add(
-                                    import_ota(link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"))
+                                    import_ota(
+                                        link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], \
+                                        released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), \
+                                        device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain")
+                                    )
                                 )
                             except Exception:
-                                raise
                                 failed_links.append(link["url"])
 
         elif Path("import-ota.txt").exists():
