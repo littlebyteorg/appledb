@@ -11,7 +11,6 @@ import requests
 import lxml.etree
 
 from sort_os_files import sort_os_file  # pylint: disable=no-name-in-module
-from update_links import update_links
 
 LINK_PREFIX = 'https://developer.apple.com/services-account/download?path='
 
@@ -181,11 +180,11 @@ for download in downloads:
                         'deviceMap': [f"{download_name_split[0]} Simulator"],
                         'links': [
                             {
-                                'url': LINK_PREFIX + download['files'][0]['remotePath']
+                                'url': LINK_PREFIX + download['files'][0]['remotePath'],
+                                'active': True
                             }
                         ],
                         'size': download['files'][0]['fileSize']
                     }
                 ]
                 json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-                update_links([candidate_file])
