@@ -109,7 +109,7 @@ for download in downloads:
         else:
             clt_version = download_name.split("Xcode ")[1].replace('Release Candidate', 'RC').replace(' Seed', '').replace(' seed', '').removeprefix('- ')
             clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
-        target_file = Path(f"osFiles/Software/Xcode Command Line Tools/{clt_subfolder}/{clt_version}.json")
+        target_file = Path(f"osFiles/Software/Command Line Tools for Xcode/{clt_subfolder}/{clt_version}.json")
         if target_file.exists():
             process_downloads["Command Line Tools"] = False
             continue
@@ -117,11 +117,11 @@ for download in downloads:
         
         release_date = dateutil.parser.parse(download['dateCreated'])
         json_data = {
-            "osStr": "Xcode Command Line Tools",
+            "osStr": "Command Line Tools for Xcode",
             "version": clt_version,
             "released": release_date.strftime("%Y-%m-%d"),
             "deviceMap": [
-                "Xcode Command Line Tools"
+                "Command Line Tools for Xcode"
             ],
             "osMap": [
                 "macOS 14",
@@ -131,7 +131,7 @@ for download in downloads:
                 {
                     "type": "dmg",
                     "deviceMap": [
-                        "Xcode Command Line Tools"
+                        "Command Line Tools for Xcode"
                     ],
                     "osMap": [
                         "macOS 14",
