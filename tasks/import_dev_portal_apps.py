@@ -47,6 +47,8 @@ if DEV_DATA_PROXY:
     json.dump(response, Path("import_raw.json").open("w", encoding="utf-8", newline="\n"))
 
 json_data = json.load(Path("import_raw.json").open(encoding="utf-8"))
+# deliberately imported here to grab fresh token
+from update_links import update_links
 
 downloads = sorted(json_data['downloads'], key=lambda x: dateutil.parser.parse(x['dateCreated']), reverse=True)
 
@@ -96,13 +98,22 @@ for download in downloads:
                         "size": download_details['fileSize']
                     })
                     json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                    update_links([candidate_file])
     elif download_name.startswith("Command Line Tools") and process_downloads["Command Line Tools"]:
-        clt_version = download_name.split("Xcode ")[1].replace('Release Candidate', 'RC')
-        clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
+        if download_name.split(" ")[-1].startswith("201"):
+            clt_version = download_name.split(" - ")[-1]
+            clt_subfolder = clt_version.split(" ")[-1]
+        elif " - Xcode " in download_name:
+            clt_version = download_name.split(" - Xcode ")[-1]
+            clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
+        else:
+            clt_version = download_name.split("Xcode ")[1].replace('Release Candidate', 'RC').replace(' Seed', '').replace(' seed', '').removeprefix('- ')
+            clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
         target_file = Path(f"osFiles/Software/Xcode Command Line Tools/{clt_subfolder}/{clt_version}.json")
         if target_file.exists():
             process_downloads["Command Line Tools"] = False
             continue
+        download_details = download['files'][0]
         
         release_date = dateutil.parser.parse(download['dateCreated'])
         json_data = {
@@ -128,11 +139,11 @@ for download in downloads:
                     ],
                     "links": [
                         {
-                            "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/Command_Line_Tools_for_Xcode_15.3_beta/Command_Line_Tools_for_Xcode_15.3_beta.dmg",
+                            "url": LINK_PREFIX + download_details['remotePath'],
                             "active": True
                         }
                     ],
-                    "size": 724806633
+                    "size": download_details['fileSize']
                 }
             ]
         }
@@ -142,6 +153,7 @@ for download in downloads:
             json_data["rc"] = True
 
         json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        update_links([target_file])
     elif download_name.startswith("Kernel Debug Kit") and process_downloads["Kernel Debug Kit"]:
         kdk_build = download_name.replace(" 89541", "").split(" ")[-1].split(".")[0]
         target_file = list(Path("osFiles/macOS").rglob(f"{kdk_build}.json"))
@@ -166,6 +178,7 @@ for download in downloads:
         })
 
         json.dump(sort_os_file(None, kdk_build_data), target_file[0].open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        update_links([target_file[0]])
     elif download_name.endswith('Simulator Runtime') and process_downloads['Simulator']:
         download_name_split = download_name.split(" ")
         subfolder_pattern = f"*x - {download_name_split[1].split('.')[0]}.x"
@@ -173,6 +186,7 @@ for download in downloads:
         for candidate_file in list(Path(relative_path).glob(subfolder_pattern))[0].glob("*.json"):
             if int(str(candidate_file).split("/")[3].split("x")[0]) < 22: continue
             candidate_data = json.load(candidate_file.open(encoding="utf-8"))
+            if candidate_data.get('sources'): continue
             if candidate_data["version"].replace(".0", "").replace("Simulator", "Simulator Runtime") == download_name.replace(f"{candidate_data['osStr']} ", ""):
                 candidate_data['sources'] = [
                     {
@@ -188,3 +202,4 @@ for download in downloads:
                     }
                 ]
                 json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                update_links([candidate_file])
