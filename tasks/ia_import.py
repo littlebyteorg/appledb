@@ -38,7 +38,7 @@ def import_ia(
         catalog_name = url_split[1]
 
     info_plist_url = ia_url.rsplit("/", 1)[0] + "/Info.plist"
-    build_manifest_plist_url = ia_url.rsplit("/", 1)[0] + "/InstallInfo.plist"
+    build_manifest_plist_url = ia_url.rsplit("/", 1)[0] + "/BuildManifest.plist"
     info_plist_response = SESSION.get(info_plist_url, headers={})
     build_manifest_plist_response = SESSION.get(build_manifest_plist_url, headers={})
 
@@ -61,6 +61,7 @@ def import_ia(
                 info_plist = info_plist[0]
         else:
             info_plist = plistlib.loads(info_plist_response.content).get('MobileAssetProperties')
+            supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
 
         try:
             build_manifest_plist_response.raise_for_status()
