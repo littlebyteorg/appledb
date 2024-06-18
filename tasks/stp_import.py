@@ -33,7 +33,10 @@ sources = {
 mac_versions = set()
 
 for link in links:
-    a_tag = link.xpath('a')[0]
+    try:
+        a_tag = link.xpath('a')[0]
+    except:
+        continue
     if not a_tag.attrib.get("class", ""):
         continue
     span_text = html.unescape(link.xpath('span')[0].text).split()[2]
