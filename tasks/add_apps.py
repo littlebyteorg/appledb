@@ -2,7 +2,9 @@ import json
 from pathlib import Path
 from datetime import datetime
 import zoneinfo
+import os
 from sort_os_files import sort_os_file
+from sort_device_files import sort_device_file
 
 while True:
     app_name = input("App Name: ")
@@ -17,8 +19,19 @@ while True:
         release_date = input("Enter release date (YYYY-MM-DD): ").strip()
 
     if not Path(f"osFiles/Software/{app_name}").exists():
-        print("Invalid app name, ensure app exists in AppleDB before adding new version")
-        break
+        device_file = Path(f"deviceFiles/Software/{app_name}.json")
+        device_details = {
+            'name': app_name,
+            'type': 'Software',
+            'released': release_date
+        }
+        json.dump(
+            sort_device_file(None, device_details),
+            device_file.open("w", encoding="utf-8", newline="\n"),
+            indent=4,
+            ensure_ascii=False,
+        )
+        os.makedirs(f'osFiles/Software/{app_name}', exist_ok=True)
     app_file = Path(f"osFiles/Software/{app_name}/{version}.json")
     app_details = {
         'osStr': app_name,
