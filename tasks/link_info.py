@@ -10,6 +10,7 @@ rewrite_map_v2 = {
     "https://developer.apple.com/services-account/download?path=/": [
         "https://download.developer.apple.com/",
         "http://adcdownload.apple.com/",
+        "https://developer.apple.com/devcenter/download.action?path=/",
     ],
     "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
     "http://a1408.g.akamai.net/": [],
