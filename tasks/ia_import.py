@@ -31,6 +31,7 @@ def import_ia(
     catalog_name = ''
     buildtrain = None
     restore_version = None
+    build_manifest = None
 
     if 'pkg;' in ia_url:
         url_split = ia_url.split(';', 1)
