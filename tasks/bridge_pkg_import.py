@@ -29,7 +29,7 @@ elif args.public_beta:
 
 def convert_version_to_build(version):
     version_split = version.split('.')
-    return f"{version_split[0]}{chr(int(version_split[1]) + 64)}{version_split[3] if version_split[3] != "0" else ""}{version_split[2]}{chr(int(version_split[4])+96) if version_split[4] != "0" else ""}"
+    return f"{version_split[0]}{chr(int(version_split[1]) + 64)}{version_split[3] if version_split[3] != "0" else ""}{version_split[2][-4:]}{chr(int(version_split[4])+96) if version_split[4] != "0" else ""}"
 
 updated_files = set()
 raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
