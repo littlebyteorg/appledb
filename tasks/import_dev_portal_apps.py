@@ -185,6 +185,7 @@ for download in downloads:
         for candidate_file in list(Path(relative_path).glob(subfolder_pattern))[0].glob("*.json"):
             if int(str(candidate_file).split("/")[3].split("x")[0]) < 22: continue
             candidate_data = json.load(candidate_file.open(encoding="utf-8"))
+            if candidate_data.get('internal'): continue
             if candidate_data.get('sources'): continue
             if candidate_data["version"].replace(".0", "").replace("Simulator", "Simulator Runtime") == download_name.replace(f"{candidate_data['osStr']} ", ""):
                 candidate_data['sources'] = [
