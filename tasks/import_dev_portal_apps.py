@@ -80,12 +80,11 @@ for download in downloads:
                     os_version = os_item.split(" ")[-1]
                     download_details = [item for item in download['files'] if macos_codenames[str(os_version)] in item['filename']][0]
                     existing_source = [source for source in candidate_data.get('sources', []) if source['type'] == 'dmg' and source['osMap'] == [os_item]]
-                    alternate_source = [source for source in candidate_data.get('sources', []) if source['type'] == 'pkg' and source['osMap'] == [os_item]][0]
                     if existing_source:
                         continue
                     candidate_data['sources'].append({
                         "type": "dmg",
-                        "deviceMap": alternate_source['deviceMap'],
+                        "deviceMap": ["Safari (macOS)"],
                         "osMap": [
                             os_item
                         ],
