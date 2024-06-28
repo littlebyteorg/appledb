@@ -68,7 +68,8 @@ def import_ota(
 
                     info_plist = plistlib.loads(ota.read("Info.plist"))
                     manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
-                    build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+                    if manifest_paths:
+                        build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
 
                     if info_plist.get('MobileAssetProperties'):
                         info_plist = info_plist['MobileAssetProperties']
@@ -117,6 +118,7 @@ def import_ota(
         recommended_version = recommended_version or info_plist["ProductVersion"]
         supported_devices = [info_plist["ProductType"]]
         bridge_devices = []
+        supported_boards = []
         prerequisite_builds = prerequisite_builds or (info_plist.get('BaseUpdate') if info_plist else [])
     else:
         build = build or info_plist["Build"]
