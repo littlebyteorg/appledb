@@ -223,7 +223,7 @@ def import_ota(
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
         bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{info_plist['BridgeVersionInfo']['BridgeVersion']},0")
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
-        bridge_data["deviceMap"] = bridge_devices
+        bridge_data["deviceMap"] = list(set(bridge_data.get("deviceMap", [])).union(bridge_devices))
         json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     return db_file
 
