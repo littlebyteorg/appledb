@@ -153,7 +153,7 @@ for download in downloads:
 
         json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
         update_links([target_file])
-    elif download_name.startswith("Kernel Debug Kit") and process_downloads["Kernel Debug Kit"]:
+    elif "Debug Kit" in download_name and process_downloads["Kernel Debug Kit"]:
         kdk_build = download_name.replace(" 89541", "").split(" ")[-1].split(".")[0]
         target_file = list(Path("osFiles/macOS").rglob(f"{kdk_build}.json"))
         if not target_file:
