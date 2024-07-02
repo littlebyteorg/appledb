@@ -152,8 +152,10 @@ asset_audiences = {
     }
 }
 
+choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
+
 parser = argparse.ArgumentParser()
-parser.add_argument('-o', '--os', required=True, action='append', choices=list(asset_audiences.keys()))
+parser.add_argument('-o', '--os', required=True, action='append', choices=choice_list)
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-r', '--rsr', action='store_true')
