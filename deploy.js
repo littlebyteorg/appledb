@@ -197,8 +197,9 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
 
   ver.osType = ver.osStr;
   if (ver.osType == "iPhoneOS" || ver.osType == "iPadOS") ver.osType = "iOS";
-  if (ver.osType == "Apple TV Software") ver.osType = "tvOS";
-  if (ver.osType == "Mac OS X" || ver.osType == "OS X") ver.osType = "macOS";
+  else if (ver.osType == "Apple TV Software") ver.osType = "tvOS";
+  else if (ver.osType == "audioOS") ver.osType = "HomePod Software";
+  else if (ver.osType == "Mac OS X" || ver.osType == "OS X") ver.osType = "macOS";
 
   // if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources) ver.sources = ver.sources.filter(source => (source.type != 'ota'))
 
