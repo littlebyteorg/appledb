@@ -26,7 +26,12 @@
             "type":"object",
             "additionalProperties": true
         },
-        "buildTrain":    {"type": "string"},
+        "buildTrain":    {
+            "anyOf": [
+                {"type": "string"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        },
 
         "released":     {"anyOf": [
             {"type": "string", "format": "date-time"},

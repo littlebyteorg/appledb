@@ -74,7 +74,7 @@ for download in downloads:
 
         for candidate_file in Path(f"osFiles/Software/Safari/{safari_subfolder}").glob("*.json"):
             candidate_data = json.load(candidate_file.open(encoding="utf-8"))
-            if candidate_data["version"] == safari_version:
+            if candidate_data["version"].replace(".0 ", " ") == safari_version:
                 candidate_data["releaseNotes"] = release_notes_link
                 for os_item in candidate_data["osMap"]:
                     os_version = os_item.split(" ")[-1]

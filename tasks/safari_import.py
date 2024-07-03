@@ -92,8 +92,15 @@ for mac_version in mac_versions:
 
     SAFARI_DETAILS[safari_build]["osMap"].append(f"macOS {mac_version}")
 
-    if safari_buildtrain and not SAFARI_DETAILS[safari_build].get('buildTrain'):
-        SAFARI_DETAILS[safari_build]['buildTrain'] = safari_buildtrain
+    if safari_buildtrain:
+        if SAFARI_DETAILS[safari_build].get('buildTrain'):
+            if not isinstance(SAFARI_DETAILS[safari_build]['buildTrain'], list):
+                SAFARI_DETAILS[safari_build]['buildTrain'] = [SAFARI_DETAILS[safari_build]['buildTrain']]
+            SAFARI_DETAILS[safari_build]['buildTrain'] = set(SAFARI_DETAILS[safari_build]['buildTrain'])
+            SAFARI_DETAILS[safari_build]['buildTrain'].add(safari_buildtrain)
+            SAFARI_DETAILS[safari_build]['buildTrain'] = list(SAFARI_DETAILS[safari_build]['buildTrain'])
+        else:
+            SAFARI_DETAILS[safari_build]['buildTrain'] = safari_buildtrain
 
     SAFARI_DETAILS[safari_build]["sources"].append({
         "type": "pkg",
