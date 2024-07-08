@@ -1,0 +1,62 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Apple Device",
+    "description": "Description of an Apple device",
+
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "name":           {"type": "string"},
+        "identifier":     {
+            "anyOf": [
+                {"type": "string"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        },
+        "alias":          {"type": "array", "items": {"type": "string"}},
+        "key":            {"type": "string"},
+        "soc": {
+            "anyOf": [
+                {"type": "string"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        },
+        "arch":           {"type": "string"},
+        "type":           {"type": "string"},
+        "board": {
+            "anyOf": [
+                {"type": "string"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        },
+        "iBridge":        {"type": "string"},
+        "model": {
+            "anyOf": [
+                {"type": "string"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        },
+        "internal":       {"type": "boolean"},
+        "group":          {"type": "boolean"},
+        "released": {
+            "anyOf": [
+                {"$ref": "#/definitions/partial-date"},
+                {"type": "array", "items": {"$ref": "#/definitions/partial-date"}}
+            ]
+        },
+        "discontinued":   {"type": "string", "format": "date"},
+        "info":           {"type": "array", "items": {"type": "object"}},
+        "windowsStoreId": {"type": "string"}
+    },
+    "definitions": {
+        "partial-date": {
+            "anyOf": [
+                {"type": "string", "format": "date-time"},
+                {"type": "string", "format": "date"},
+                {"type": "string", "pattern": "^\\d{4}-\\d{2}$"},
+                {"type": "string", "pattern": "^\\d{4}$"},
+                {"type": "string", "maxLength": 0}
+            ]
+        }
+    }
+}
