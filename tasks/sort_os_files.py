@@ -56,7 +56,7 @@ ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPhone", "iPod"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
-source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
+source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "aar", "dmg", "pkg", "bin", "tar", "appx", "exe"]
 
 os_prefix_order = ["Mac OS", "Mac OS X", "OS X", "macOS", "Windows"]
 
