@@ -1,11 +1,11 @@
 {
     "osStr": "tvOS",
-    "version": "17.6 beta 2",
+    "version": "17.6 beta 3",
     "build": "21M5059b",
-    "restoreVersion": "21.13.54.5.1,0",
+    "restoreVersion": "21.13.59.5.2,0",
     "buildTrain": "StarlightGSeed",
+    "released": "2024-07-09",
     "beta": true,
-    "internal": true,
     "appledbWebImage": {
         "id": "tvos17",
         "align": "left"
@@ -16,5 +16,24 @@
         "AppleTV11,1",
         "AppleTV14,1",
         "AppleTV14,1-wifi"
+    ],
+    "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "AppleTV5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SpringSeed/fullrestores/062-28724/7D8DBE89-C53A-41EC-AE5E-43EDEC7EB32B/AppleTV5,3_17.6_21M5059b_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "24def08c2d9d50162884a1086d68bdeee3196158",
+                "sha2-256": "bf31b8289a5a6b9af014495b8a9f901d89fc2812ba5bc9349409f54067253853"
+            },
+            "size": 4420082284
+        }
     ]
 }
