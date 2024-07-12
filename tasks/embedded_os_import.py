@@ -27,9 +27,16 @@ for subfolder in ['21x - 12.x', '22x - 13.x']:
 
         relevant_ota = relevant_otas[0]
 
-        with remotezip.RemoteZip(relevant_ota['links'][0]['url'], initial_buffer_size=256*1024, session=SESSION, timeout=120) as ota:
-            with open(f'out/package.pkg', 'wb') as eos_file:
-                eos_file.write(ota.read('AssetData/boot/EmbeddedOSFirmware.pkg'))
+        counter = 0
+        while not Path('out/package.pkg').exists():
+            try:
+                with remotezip.RemoteZip(relevant_ota['links'][0]['url'], initial_buffer_size=256*1024, session=SESSION, timeout=120) as ota:
+                    with open(f'out/package.pkg', 'wb') as eos_file:
+                        eos_file.write(ota.read('AssetData/boot/EmbeddedOSFirmware.pkg'))
+            except:
+                if counter >= 10:
+                    raise
+                counter += 1
 
         (_, manifest) = handle_pkg_file(hashes=[], extracted_manifest_file_path=manifest_path)
 
