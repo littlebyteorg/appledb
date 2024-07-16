@@ -92,6 +92,7 @@ asset_audiences = {
             15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
             16: '7466521f-cc37-4267-8f46-78033fa700c2',
             17: '48407998-4446-46b0-9f57-f76b935dc223',
+            18: 'c46ed8dd-1382-40bd-a153-2b6ad61292fd'
         },
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
@@ -107,6 +108,7 @@ asset_audiences = {
             12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
             13: '800034a9-994c-4ecc-af4d-7b3b2ee0a5a6',
             14: '707ddc61-9c3d-4040-a3d0-2a6521b1c2df',
+            15: 'c8ba02c8-cc63-4388-99ee-a81d5a593283'
         },
         'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
     },
@@ -116,7 +118,8 @@ asset_audiences = {
             18: '98847ed4-1c37-445c-9e7b-5b95d29281f2'
         },
         'public': {
-            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e'
+            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e',
+            18: '879ce2f8-b7d1-420f-9935-58d647d6606a'
         },
         'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
     },
@@ -126,7 +129,8 @@ asset_audiences = {
             11: '23d7265b-1000-47cf-8d0a-07144942db9e'
         },
         'public': {
-            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b'
+            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b',
+            11: '79b47e0c-cbce-4757-b84b-12a95db52f22'
         },
         'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
     },
@@ -136,7 +140,8 @@ asset_audiences = {
             18: 'bedbd9c7-738a-4060-958b-79da54a1f7ad'
         },
         'public': {
-            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108'
+            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108',
+            18: '1af931ed-e171-4dd0-b944-172cdebcd89d'
         },
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
