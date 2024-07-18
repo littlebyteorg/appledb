@@ -12,12 +12,18 @@ module.exports = {
       {
         name: "Installing Dopamine",
         url: "/installing-dopamine/",
-        pkgman: "sileo"
+        pkgman: "sileo",
+        updateLink: [
+          {
+            text: 'Updating to 15.8.2',
+            link: '/updating-to-15-8-2/'
+          },
+        ]
       }
     ],
-    latestVer: "2.0.10",
+    latestVer: "2.1.6",
     icon: "/assets/images/jb-icons/dopamine.png",
-    notes: "Supports A9(X) and later devices on 15.0 to 16.5. Supports A9(X) - A14 and M1 devices on 16.5.1. Supports A9(X) - A11 devices on 16.6 to 16.6.1",
+    notes: "Supports all devices on 15.0 to 16.5. Supports M1 devices and A14 and earlier devices on 16.5.1. Supports A11 and earlier devices on 16.6 to 16.6.1",
     type: "Semi-Untethered",
     firmwares: ["15.0","16.6.1"]
   },
@@ -58,6 +64,10 @@ module.exports = {
         "iPhone14,8",
         "iPhone15,2",
         "iPhone15,3",
+        "iPad5,1",
+        "iPad5,2",
+        "iPad5,3",
+        "iPad5,4",
         "iPad6,3",
         "iPad6,4",
         "iPad6,7",

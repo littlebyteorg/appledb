@@ -6,6 +6,7 @@ import plistlib
 from pathlib import Path
 
 import requests
+from file_downloader import handle_pkg_file
 from link_info import source_has_link
 from sort_os_files import sort_os_file
 from update_links import update_links
@@ -22,12 +23,15 @@ SESSION = requests.Session()
 
 
 def import_ia(
-    ia_url, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True
+    ia_url, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, add_sha1_hash=False
 ):
     local_path = LOCAL_IA_PATH / Path(Path(ia_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
     info_plist = None
     catalog_name = ''
+    buildtrain = None
+    restore_version = None
+    build_manifest = None
 
     if 'pkg;' in ia_url:
         url_split = ia_url.split(';', 1)
@@ -44,8 +48,21 @@ def import_ia(
             info_plist_response.raise_for_status()
         except requests.exceptions.HTTPError:
             print(f"\tInfo.plist not found at {info_plist_url}")
+            try:
+                info_plist_url = ia_url.rsplit("/", 1)[0] + "/com_apple_MobileAsset_MacSoftwareUpdate.plist"
+                info_plist_response = SESSION.get(info_plist_url, headers={})
+            except requests.exceptions.HTTPError:
+                print(f"\tcom_apple_MobileAsset_MacSoftwareUpdate.plist not found at {info_plist_url}")
+            else:
+                info_plist = plistlib.loads(info_plist_response.content)['Assets']
+                supported_device_list = []
+                for asset in info_plist:
+                    supported_device_list.extend(asset['SupportedDeviceModels'])
+                supported_devices, bridge_devices = get_board_mappings(supported_device_list)
+                info_plist = info_plist[0]
         else:
             info_plist = plistlib.loads(info_plist_response.content).get('MobileAssetProperties')
+            supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
 
         try:
             build_manifest_plist_response.raise_for_status()
@@ -66,13 +83,20 @@ def import_ia(
     # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
     # Check by substring first?
     recommended_version = recommended_version or info_plist["OSVersion"]
-    supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
 
-    buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+    if not supported_devices:
+        supported_devices, bridge_devices = get_board_mappings(info_plist['SupportedDeviceModels'])
+
+    if build_manifest:
+        buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+        restore_version = build_manifest['BuildIdentities'][0].get('Cryptex1,Version')
+    else:
+        buildtrain = info_plist['TrainName']
+        restore_version = info_plist['RestoreVersion']
     print(f"\tmacOS {recommended_version} ({build})")
     print(f"\tDevice Support: {supported_devices}")
 
-    db_file = create_file("macOS", build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
+    db_file = create_file("macOS", build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(supported_devices)
@@ -93,6 +117,9 @@ def import_ia(
     if not found_source:
         print("\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "installassistant", "links": [{"url": ia_url, "active": True}]}
+        
+        (hashes, _) = handle_pkg_file(ia_url)
+        source['hashes'] = hashes
 
         if catalog_name:
             source['links'][0]['catalog'] = catalog_name
@@ -115,9 +142,9 @@ def import_ia(
     if bridge_version and bridge_devices:
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
-        bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"])
+        bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{info_plist['BridgeVersionInfo']['BridgeVersion']},0")
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
-        bridge_data["deviceMap"] = bridge_devices
+        bridge_data.setdefault("deviceMap", []).extend(bridge_devices)
         json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     return db_file
 

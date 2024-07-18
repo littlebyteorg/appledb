@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import json
 import plistlib
 import random
 from pathlib import Path
@@ -18,6 +17,7 @@ VARIATION_CATALOG_MAPS = {
     'beta': 'public-beta'
 }
 
+max_version = int(sorted([str(x).split(" - ")[1] for x in list(Path('osFiles/macOS').glob("*"))])[-2].removesuffix('.x'))
 
 SESSION = requests.session()
 
@@ -32,7 +32,7 @@ else:
 links = set()
 
 mac_versions = [args.min_version]
-if args.beta:
+if args.beta and args.min_version < max_version:
     mac_versions.append(args.min_version + 1)
 
 for mac_version in mac_versions:
@@ -40,7 +40,7 @@ for mac_version in mac_versions:
         raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{variation}-1.sucatalog?cachebust{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
 
-        plist = plistlib.loads(raw_sucatalog.content)['Products']
+        plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
         for product in plist.values():
             if not product.get('ExtendedMetaInfo', {}).get('InstallAssistantPackageIdentifiers'):
                 continue

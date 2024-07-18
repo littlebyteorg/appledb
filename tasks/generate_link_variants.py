@@ -6,28 +6,7 @@ from pathlib import Path
 from typing import Collection
 
 from sort_os_files import sort_os_file
-
-# TODO: Move this to separate file so that all domain information is in one place
-# Preferred -> other variants
-rewrite_map_v2 = {
-    "https://updates.cdn-apple.com/": ["http://updates-http.cdn-apple.com/"],
-    "https://mesu.apple.com/": ["http://mesu.apple.com/"],
-    "https://secure-appldnld.apple.com/": ["http://appldnld.apple.com/"],
-    "https://developer.apple.com/services-account/download?path=/": [
-        "https://download.developer.apple.com/",
-        "http://adcdownload.apple.com/",
-    ],
-    "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
-    "http://a1408.g.akamai.net/": [],
-    "https://download.info.apple.com/": ["http://download.info.apple.com/"],
-    "https://support.apple.com/downloads/": ["http://support.apple.com/downloads/"],
-    "https://devimages-cdn.apple.com/": ["http://devimages-cdn.apple.com/"],
-    # It's archive.org
-    "https://archive.org/": [],
-    # Placeholder because APPX links expire
-    "https://apps.microsoft.com/": [],
-}
-
+from link_info import rewrite_map_v2
 
 def appendable(iterable, link):
     # Only append if it's not already in the list

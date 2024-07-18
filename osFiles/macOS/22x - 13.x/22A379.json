@@ -2,6 +2,7 @@
     "osStr": "macOS",
     "version": "13.0 RC",
     "build": "22A379",
+    "restoreVersion": "22.1.379.0.0,0",
     "embeddedOSBuild": "14Y910",
     "bridgeOSBuild": "20P411",
     "buildTrain": "Rome",
@@ -12,6 +13,16 @@
         "align": "left"
     },
     "deviceMap": [
+        "iMac18,1",
+        "iMac18,2",
+        "iMac18,3",
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMac21,1",
+        "iMac21,2",
+        "iMacPro1,1",
         "Mac13,1",
         "Mac13,2",
         "Mac14,2",
@@ -40,26 +51,18 @@
         "MacBookPro18,2",
         "MacBookPro18,3",
         "MacBookPro18,4",
-        "MacPro7,1",
-        "MacPro7,1-Rack",
         "Macmini8,1",
         "Macmini9,1",
-        "VirtualMac2,1",
-        "iMac18,1",
-        "iMac18,2",
-        "iMac18,3",
-        "iMac19,1",
-        "iMac19,2",
-        "iMac20,1",
-        "iMac20,2",
-        "iMac21,1",
-        "iMac21,2",
-        "iMacPro1,1"
+        "MacPro7,1",
+        "MacPro7,1-Rack",
+        "VirtualMac2,1"
     ],
     "sources": [
         {
             "type": "ipsw",
             "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -71,17 +74,11 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/071-08994/1118ADF4-1CC9-4554-9333-B1F64CF0C820/UniversalMac_13.0_22A379_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022FallFCS/fullrestores/071-08994/1118ADF4-1CC9-4554-9333-B1F64CF0C820/UniversalMac_13.0_22A379_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -94,6 +91,16 @@
         {
             "type": "ota",
             "deviceMap": [
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMac21,1",
+                "iMac21,2",
+                "iMacPro1,1",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -122,21 +129,11 @@
                 "MacBookPro18,2",
                 "MacBookPro18,3",
                 "MacBookPro18,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
                 "Macmini8,1",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMac21,1",
-                "iMac21,2",
-                "iMacPro1,1"
+                "MacPro7,1",
+                "MacPro7,1-Rack",
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -154,6 +151,54 @@
             "type": "ota",
             "prerequisiteBuild": "21G115",
             "deviceMap": [
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-71143/663712B3-D13E-48E7-89F1-059E995A277A/com_apple_MobileAsset_MacSoftwareUpdate/9979858a2a9ec4439cf72bd3f204a1289634218d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "be2e4e0c7736edd66b75df194ecca11d441da9a6",
+                "sha2-256": "9e4fc3cb0f0a5c09f0bed186a4a3273c63b8a5f70102cfe14671e7846615762c"
+            },
+            "size": 3918787406
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21G115",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -165,9 +210,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -185,6 +228,54 @@
             "type": "ota",
             "prerequisiteBuild": "21G211",
             "deviceMap": [
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-87415/64F4C7D1-8C66-46FE-BC04-B5823D2D0102/com_apple_MobileAsset_MacSoftwareUpdate/b6ba2c5af521593a726c2ee8e9d8a0afe16e9a96.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b202f47a9d574129bb0bd33f5ac520d29bb47b25",
+                "sha2-256": "d7b5aedc87099f83e2158c8529f53054fcb1b1f53f1ef3c11f7b7c05c3f8d5c2"
+            },
+            "size": 3918410271
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21G211",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -196,9 +287,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -216,6 +305,54 @@
             "type": "ota",
             "prerequisiteBuild": "21G215",
             "deviceMap": [
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-90240/999BB233-70E8-41F6-A182-60288324FACC/com_apple_MobileAsset_MacSoftwareUpdate/b16e1ee3d3b221877542fb2808d77359a277cce2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5a32d0dd4561eeb2b45b7a31fc5959ad499dd5c5",
+                "sha2-256": "3a471aab9e76dfe8cc6c979f45fd3cff2cf65b13c122e5b68ed1617e16df1db5"
+            },
+            "size": 3918501607
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21G215",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -227,9 +364,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -247,6 +382,54 @@
             "type": "ota",
             "prerequisiteBuild": "21G217",
             "deviceMap": [
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-90641/CF9C5E6F-B909-4507-87F7-9753FAA56236/com_apple_MobileAsset_MacSoftwareUpdate/1e7e8dbf3c3db39f51e0342e3314b1bbdc1dd5b6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7c0983639ad2f32b10b44fe55d76b09bf0087449",
+                "sha2-256": "542699a0a3acbc0342f6d3954e227f3fd889b8ff49220fd4c5573198cf95cfca"
+            },
+            "size": 3917629740
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21G217",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -258,9 +441,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -278,6 +459,54 @@
             "type": "ota",
             "prerequisiteBuild": "22A5365d",
             "deviceMap": [
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBook10,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro14,1",
+                "MacBookPro14,2",
+                "MacBookPro14,3",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-87416/70DE4004-80F8-43D7-AA6A-24FB3AD3402F/com_apple_MobileAsset_MacSoftwareUpdate/772e825eeac0574e72dc957f65caefbf71c41ccb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0e57e3fa0727ff5f4fdbb6390758299555886c42",
+                "sha2-256": "d53edd9caf2dd2aebc3f7bdb3a4470fb118eb7cfe6c8322f772ecaba2f9c2673"
+            },
+            "size": 806062999
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22A5365d",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -289,9 +518,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -309,37 +536,14 @@
             "type": "ota",
             "prerequisiteBuild": "22A5373b",
             "deviceMap": [
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,7",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-90242/E75810F7-3EEE-46F3-B8C6-7BC388A94FF3/com_apple_MobileAsset_MacSoftwareUpdate/5ec77f113384abd05845095a8e092aafd196abe8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6c0a0cb746ce9feb06cf75607235b7b6d41daa58",
-                "sha2-256": "1e9bff49c4cdbe9988be61edaf7290da32ef4901406b7c8a0c00a1ec0c79a5f0"
-            },
-            "size": 1073453885
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21G115",
-            "deviceMap": [
+                "iMac18,1",
+                "iMac18,2",
+                "iMac18,3",
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
                 "MacBook10,1",
                 "MacBookAir8,1",
                 "MacBookAir8,2",
@@ -358,247 +562,9 @@
                 "MacBookPro16,2",
                 "MacBookPro16,3",
                 "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
                 "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-71143/663712B3-D13E-48E7-89F1-059E995A277A/com_apple_MobileAsset_MacSoftwareUpdate/9979858a2a9ec4439cf72bd3f204a1289634218d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "be2e4e0c7736edd66b75df194ecca11d441da9a6",
-                "sha2-256": "9e4fc3cb0f0a5c09f0bed186a4a3273c63b8a5f70102cfe14671e7846615762c"
-            },
-            "size": 3918787406
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21G211",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
                 "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-87415/64F4C7D1-8C66-46FE-BC04-B5823D2D0102/com_apple_MobileAsset_MacSoftwareUpdate/b6ba2c5af521593a726c2ee8e9d8a0afe16e9a96.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b202f47a9d574129bb0bd33f5ac520d29bb47b25",
-                "sha2-256": "d7b5aedc87099f83e2158c8529f53054fcb1b1f53f1ef3c11f7b7c05c3f8d5c2"
-            },
-            "size": 3918410271
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21G215",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-90240/999BB233-70E8-41F6-A182-60288324FACC/com_apple_MobileAsset_MacSoftwareUpdate/b16e1ee3d3b221877542fb2808d77359a277cce2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5a32d0dd4561eeb2b45b7a31fc5959ad499dd5c5",
-                "sha2-256": "3a471aab9e76dfe8cc6c979f45fd3cff2cf65b13c122e5b68ed1617e16df1db5"
-            },
-            "size": 3918501607
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21G217",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-90641/CF9C5E6F-B909-4507-87F7-9753FAA56236/com_apple_MobileAsset_MacSoftwareUpdate/1e7e8dbf3c3db39f51e0342e3314b1bbdc1dd5b6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7c0983639ad2f32b10b44fe55d76b09bf0087449",
-                "sha2-256": "542699a0a3acbc0342f6d3954e227f3fd889b8ff49220fd4c5573198cf95cfca"
-            },
-            "size": 3917629740
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22A5365d",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-87416/70DE4004-80F8-43D7-AA6A-24FB3AD3402F/com_apple_MobileAsset_MacSoftwareUpdate/772e825eeac0574e72dc957f65caefbf71c41ccb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0e57e3fa0727ff5f4fdbb6390758299555886c42",
-                "sha2-256": "d53edd9caf2dd2aebc3f7bdb3a4470fb118eb7cfe6c8322f772ecaba2f9c2673"
-            },
-            "size": 806062999
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22A5373b",
-            "deviceMap": [
-                "MacBook10,1",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro14,1",
-                "MacBookPro14,2",
-                "MacBookPro14,3",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac18,1",
-                "iMac18,2",
-                "iMac18,3",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
+                "MacPro7,1-Rack"
             ],
             "links": [
                 {
@@ -611,6 +577,37 @@
                 "sha2-256": "59d0fdb63d20a1a4dcedea715a9c39e4885739c99c69765930bc0f9ad0555728"
             },
             "size": 802864422
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22A5373b",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,7",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022FallFCS/patches/012-90242/E75810F7-3EEE-46F3-B8C6-7BC388A94FF3/com_apple_MobileAsset_MacSoftwareUpdate/5ec77f113384abd05845095a8e092aafd196abe8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6c0a0cb746ce9feb06cf75607235b7b6d41daa58",
+                "sha2-256": "1e9bff49c4cdbe9988be61edaf7290da32ef4901406b7c8a0c00a1ec0c79a5f0"
+            },
+            "size": 1073453885
         }
     ]
 }

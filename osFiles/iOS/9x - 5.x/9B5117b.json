@@ -11,6 +11,7 @@
     },
     "deviceMap": [
         "iPad1,1",
+        "iPad2,1",
         "iPad2,2",
         "iPad2,3",
         "iPad3,2",
@@ -18,9 +19,35 @@
         "iPhone2,1",
         "iPhone3,1",
         "iPhone3,3",
-        "iPhone4,1"
+        "iPhone4,1",
+        "iPod3,1",
+        "iPod4,1"
     ],
+    "basebandVersions": {
+        "iPad1,1": "07.11.01",
+        "iPad2,2": "04.12.00",
+        "iPad2,3": "3.0.03",
+        "iPad3,2": "0.13.00-1",
+        "iPad3,3": "0.13.00-1",
+        "iPhone2,1": "05.16.05",
+        "iPhone3,1": "04.12.00",
+        "iPhone3,3": "3.0.03",
+        "iPhone4,1": "1.2.01-1"
+    },
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad1,1"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__ipad__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 749770920
+        },
         {
             "type": "ota",
             "prerequisiteBuild": "9A405",
@@ -39,6 +66,32 @@
             "size": 211561032
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad2,1"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__ipad_2_wifi__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 752589980
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad2,2"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__ipad_2_wifi__3g_gsm__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 761720411
+        },
+        {
             "type": "ota",
             "prerequisiteBuild": "9A405",
             "deviceMap": [
@@ -54,6 +107,19 @@
                 "md5": "0204b7e5210317867478b2e11bc0b80e"
             },
             "size": 222095258
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad2,3"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__ipad_2_wifi__3g_cdma__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 767277314
         },
         {
             "type": "ota",
@@ -107,6 +173,19 @@
             "size": 425803526
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone2,1"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__iphone_3gs__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 704274047
+        },
+        {
             "type": "ota",
             "prerequisiteBuild": "9A405",
             "deviceMap": [
@@ -122,6 +201,19 @@
                 "md5": "12f1f1cf1aed65509f86acfbf3c81a1f"
             },
             "size": 125851014
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone3,1"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__iphone_4_gsm__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 818973402
         },
         {
             "type": "ota",
@@ -141,6 +233,19 @@
             "size": 199722233
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__iphone_4_cdma__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 827160296
+        },
+        {
             "type": "ota",
             "prerequisiteBuild": "9A405",
             "deviceMap": [
@@ -158,6 +263,19 @@
             "size": 209479332
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone4,1"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__iphone_4s__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 838842013
+        },
+        {
             "type": "ota",
             "prerequisiteBuild": "9A405",
             "deviceMap": [
@@ -173,6 +291,32 @@
                 "md5": "b42891513aaf3171396532c741f4da99"
             },
             "size": 212269999
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPod3,1"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__ipod_touch_3rd_generation__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 682407463
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPod4,1"
+            ],
+            "links": [
+                {
+                    "url": "http://adcdownload.apple.com//ios/ios_5.1_beta/ios_5.1_beta__ipod_touch_4th_generation__9b5117b.dmg",
+                    "active": false
+                }
+            ],
+            "size": 815799009
         }
     ]
 }

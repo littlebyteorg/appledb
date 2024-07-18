@@ -24,7 +24,7 @@ for product in plist:
     if not target_date:
         target_date = release_date
     elif target_date != release_date:
-        break
+        continue
     dist_response = requests.get(product['Distributions']['English']).text
 
     itunes_version = [x for x in re.findall(r"(<pkg-ref.*<\/pkg-ref>)", dist_response) if 'id="iTunes' in x][0].split('version="')[1].split('"')[0]
@@ -62,6 +62,5 @@ for product in plist:
     })
 
 file_path = Path(f"osFiles/Software/iTunes/{itunes_version.split(".")[0]}.x/{itunes_version}.json")
-# osFiles/Software/iTunes/12.x/12.10.11.2.json
 json.dump(sort_os_file(None, version_details), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 update_links([file_path])

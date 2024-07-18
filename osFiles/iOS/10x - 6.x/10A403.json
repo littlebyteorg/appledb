@@ -3,7 +3,7 @@
     "version": "6.0",
     "build": "10A403",
     "buildTrain": "Sundance",
-    "released": "2012-09-14",
+    "released": "2012-09-19",
     "preinstalled": [
         "iPhone3,2"
     ],
@@ -17,6 +17,11 @@
     ],
     "releaseNotes": "https://support.apple.com/HT212584#6",
     "securityNotes": "https://support.apple.com/HT202615",
+    "ipd": {
+        "iPad": "https://secure-appldnld.apple.com/iOS6/Documentation/041-7023.20120919.KVW82/iPadiTunesUpdateReadMe_6.0.ipd",
+        "iPhone": "https://secure-appldnld.apple.com/iOS6/Documentation/041-7022.20120919.LdvHt/iPhoneiTunesUpdateReadMe_6.0.ipd",
+        "iPod": "https://secure-appldnld.apple.com/iOS6/Documentation/041-7024.20120919.OmUDy/iPodtouchiTunesUpdateReadMe_6.0.ipd"
+    },
     "appledbWebImage": {
         "id": "ios6",
         "align": "left"
@@ -38,6 +43,19 @@
         "iPhone5,2",
         "iPod4,1"
     ],
+    "basebandVersions": {
+        "iPad2,2": "04.12.02",
+        "iPad2,3": "3.0.04",
+        "iPad3,2": "2.0.02",
+        "iPad3,3": "2.0.02",
+        "iPhone2,1": "05.16.07",
+        "iPhone3,1": "04.12.02",
+        "iPhone3,2": "04.12.02",
+        "iPhone3,3": "3.0.04",
+        "iPhone4,1": "3.0.04",
+        "iPhone5,1": "1.00.15",
+        "iPhone5,2": "1.00.15"
+    },
     "sources": [
         {
             "type": "ipsw",
@@ -48,14 +66,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-0804.20120919.9SgHU/iPad2,1_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-0804.20120919.9SgHU/iPad2,1_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "a0e685753cd7e49c8717d3947ece258a",
+                "sha1": "d839f59f3f605f6d39304e44ff783758eaed7ee3",
                 "sha2-256": "e0022eb59cebab25a85fd2406eec4063844414d96d6614a6a3a3b02526d2d08f"
             },
             "size": 829223862
@@ -137,14 +152,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7165.20120919.eZTyh/iPad2,2_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7165.20120919.eZTyh/iPad2,2_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "0b9abe475b93afe31deacd9005013a87",
+                "sha1": "8635d642aee348f23de21653273046bdff635e8a",
                 "sha2-256": "8c81f429b87193dda3ec64645528654d9e532aea8f141da5aee60d67f3d4855c"
             },
             "size": 845910846
@@ -253,40 +265,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad2,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7226.20120903.vQjgw/com_apple_MobileAsset_SoftwareUpdate/6b468e308cf2faf1e2c46a5f3e7e19f8325e6912.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "6368609ec052326737fddf7aa88be209"
-            },
-            "size": 186974411
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad2,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7225.20120903.zuLcm/com_apple_MobileAsset_SoftwareUpdate/252b388b722eed8327db3935227d27d175f0f94c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "5f4868a38d88811cc128b89ffb631544"
-            },
-            "size": 194661030
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPad2,2"
@@ -320,6 +298,40 @@
             "size": 226587553
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad2,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7226.20120903.vQjgw/com_apple_MobileAsset_SoftwareUpdate/6b468e308cf2faf1e2c46a5f3e7e19f8325e6912.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "6368609ec052326737fddf7aa88be209"
+            },
+            "size": 186974411
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad2,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7225.20120903.zuLcm/com_apple_MobileAsset_SoftwareUpdate/252b388b722eed8327db3935227d27d175f0f94c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "5f4868a38d88811cc128b89ffb631544"
+            },
+            "size": 194661030
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "iPad2,3"
@@ -328,14 +340,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7167.20120919.y2ard/iPad2,3_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7167.20120919.y2ard/iPad2,3_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "ed3485c5ade954762cb973a5b896994f",
+                "sha1": "3916fdd5e6c269dc1c44ddbb1172bdb9abc8cdbc",
                 "sha2-256": "bd29e74e37f7cdc9cb64cff41efc81345c16e4775960900cc11bbdb91452b646"
             },
             "size": 843798909
@@ -444,40 +453,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad2,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7228.20120903.zu6k0/com_apple_MobileAsset_SoftwareUpdate/dbe1ca7adf03c8cd8b5a41825236c20ce934383e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "eb41e04ad2c48a07a1544273d06b2a68"
-            },
-            "size": 186462202
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad2,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7227.20120903.awldH/com_apple_MobileAsset_SoftwareUpdate/4ec8bdc94d21e8ee349d92036503f98506a0b291.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "682da99e9cf6ada396554543341bea9b"
-            },
-            "size": 193360625
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPad2,3"
@@ -511,6 +486,40 @@
             "size": 225211760
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad2,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7228.20120903.zu6k0/com_apple_MobileAsset_SoftwareUpdate/dbe1ca7adf03c8cd8b5a41825236c20ce934383e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "eb41e04ad2c48a07a1544273d06b2a68"
+            },
+            "size": 186462202
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad2,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7227.20120903.awldH/com_apple_MobileAsset_SoftwareUpdate/4ec8bdc94d21e8ee349d92036503f98506a0b291.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "682da99e9cf6ada396554543341bea9b"
+            },
+            "size": 193360625
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "iPad2,4"
@@ -519,14 +528,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-2187.20120919.vmGkW/iPad2,4_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-2187.20120919.vmGkW/iPad2,4_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "491a0c69161ce449ac9e0fbc579204f5",
+                "sha1": "a21c644c4c397823cc828f3ae8c1b37538192968",
                 "sha2-256": "a65f9c6b8bfa14de6de62c9c98fd2387e277aa7c075b99d6b1c85c81b227eaa6"
             },
             "size": 829044310
@@ -574,14 +580,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-3515.20120919.OYzOG/iPad3,1_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-3515.20120919.OYzOG/iPad3,1_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "13b22209529a8e21d5a87cc9e9e4ff3c",
+                "sha1": "242a1802392f212dc070a88480a482f4a118692c",
                 "sha2-256": "739f4e3f4b67edf0276293bdcd5793a6b9619fd4c2d462a4a2a8f4077c453c57"
             },
             "size": 1149395453
@@ -629,14 +632,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7161.20120919.5CyjO/iPad3,2_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7161.20120919.5CyjO/iPad3,2_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "3865cc2e0d5e3f6b3e4b6b08be6ae3c8",
+                "sha1": "a81a4557fbd134033c31727e0f8b0c79b15edea2",
                 "sha2-256": "d8894eea9a07114076825709c97bc2d0ad7d053520381950705668b0012152bb"
             },
             "size": 1182296996
@@ -711,40 +711,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad3,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7222.20120903.pb8yq/com_apple_MobileAsset_SoftwareUpdate/63b52f6b5d7922ad3dd98539f9fa33b85a3dc27e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "857ebfc1d0b1c0b050427a9c82312e36"
-            },
-            "size": 215124837
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad3,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7221.20120903.ndi59/com_apple_MobileAsset_SoftwareUpdate/6b54d11e5dea5d36ae240881d1c1686532e8ffd6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "bfbb60ee0852db9f44bd4292e3398b81"
-            },
-            "size": 244735467
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPad3,2"
@@ -778,6 +744,40 @@
             "size": 301372105
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad3,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7222.20120903.pb8yq/com_apple_MobileAsset_SoftwareUpdate/63b52f6b5d7922ad3dd98539f9fa33b85a3dc27e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "857ebfc1d0b1c0b050427a9c82312e36"
+            },
+            "size": 215124837
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad3,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7221.20120903.ndi59/com_apple_MobileAsset_SoftwareUpdate/6b54d11e5dea5d36ae240881d1c1686532e8ffd6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "bfbb60ee0852db9f44bd4292e3398b81"
+            },
+            "size": 244735467
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "iPad3,3"
@@ -786,14 +786,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7163.20120919.19UEI/iPad3,3_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7163.20120919.19UEI/iPad3,3_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "29264596ba19f0754f055df8173f6d1b",
+                "sha1": "02ae5aeef497d4847e836c5866b9b77d1fbac7c7",
                 "sha2-256": "e8ce5dab0760f24b759a26295728925ed690d25ab299a7350ed866d836d28904"
             },
             "size": 1182367743
@@ -868,40 +865,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad3,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7224.20120903.WWxFS/com_apple_MobileAsset_SoftwareUpdate/10c322a67670706024f7165957860c52ce2e7aed.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "3f7fd55fae8cc3f0d36e62d3098ccbbf"
-            },
-            "size": 214471528
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPad3,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7223.20120903.ORJpJ/com_apple_MobileAsset_SoftwareUpdate/775d82abf094dfd96ab80b2842f5b77f6816b810.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "e8a0442aa59aad6295e33255eccc128a"
-            },
-            "size": 245119114
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPad3,3"
@@ -935,6 +898,40 @@
             "size": 301508010
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7224.20120903.WWxFS/com_apple_MobileAsset_SoftwareUpdate/10c322a67670706024f7165957860c52ce2e7aed.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "3f7fd55fae8cc3f0d36e62d3098ccbbf"
+            },
+            "size": 214471528
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPad3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7223.20120903.ORJpJ/com_apple_MobileAsset_SoftwareUpdate/775d82abf094dfd96ab80b2842f5b77f6816b810.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "e8a0442aa59aad6295e33255eccc128a"
+            },
+            "size": 245119114
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "iPhone2,1"
@@ -943,14 +940,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7173.20120919.sDDMh/iPhone2,1_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7173.20120919.sDDMh/iPhone2,1_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "80d8c49b2587127c77d391703fbc2bba",
+                "sha1": "85963dfe1c0febf34d9871ee32b891b93d47b2b6",
                 "sha2-256": "6bc54b55617ead740dd005f323f784e6e0cc62d7e920e39df48ac8ca0bca8e19"
             },
             "size": 818338725
@@ -1059,40 +1053,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone2,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7230.20120903.USRXG/com_apple_MobileAsset_SoftwareUpdate/ec8a7025ebc3229bdf9d0cf2925b0838a9e9c6e0.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "d0bff0006cb64b9b0964b84fc3d78184"
-            },
-            "size": 183680051
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone2,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7229.20120903.DkXZM/com_apple_MobileAsset_SoftwareUpdate/dfa13c544a49edf5142ef9ea5f25cf229c4d9f65.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "645f81e5095ce7135bf6d7390e55c4aa"
-            },
-            "size": 187748432
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPhone2,1"
@@ -1126,6 +1086,40 @@
             "size": 212057172
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone2,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7230.20120903.USRXG/com_apple_MobileAsset_SoftwareUpdate/ec8a7025ebc3229bdf9d0cf2925b0838a9e9c6e0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "d0bff0006cb64b9b0964b84fc3d78184"
+            },
+            "size": 183680051
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone2,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7229.20120903.DkXZM/com_apple_MobileAsset_SoftwareUpdate/dfa13c544a49edf5142ef9ea5f25cf229c4d9f65.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "645f81e5095ce7135bf6d7390e55c4aa"
+            },
+            "size": 187748432
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "iPhone3,1"
@@ -1133,10 +1127,6 @@
             "links": [
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7175.20120919.wvv7Y/iPhone3,1_6.0_10A403_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7175.20120919.wvv7Y/iPhone3,1_6.0_10A403_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -1286,40 +1276,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone3,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7232.20120903.gYYq5/com_apple_MobileAsset_SoftwareUpdate/c421814532eb634528320a391f1408fae02c5eba.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "eb812387e7165295753359909f018de0"
-            },
-            "size": 186072885
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone3,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7231.20120903.1uiAJ/com_apple_MobileAsset_SoftwareUpdate/e182d6e81ccebb3643ca90496bac3c3de001a5d7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "0b2dc36891c87cb25fae2982a9778373"
-            },
-            "size": 194085778
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPhone3,1"
@@ -1353,6 +1309,40 @@
             "size": 234280625
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone3,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7232.20120903.gYYq5/com_apple_MobileAsset_SoftwareUpdate/c421814532eb634528320a391f1408fae02c5eba.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "eb812387e7165295753359909f018de0"
+            },
+            "size": 186072885
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone3,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7231.20120903.1uiAJ/com_apple_MobileAsset_SoftwareUpdate/e182d6e81ccebb3643ca90496bac3c3de001a5d7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "0b2dc36891c87cb25fae2982a9778373"
+            },
+            "size": 194085778
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "iPhone3,2"
@@ -1361,14 +1351,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7177.20120919.xqoqs/iPhone3,2_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7177.20120919.xqoqs/iPhone3,2_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "57206fff6428b27a62932837c18fc1cd",
+                "sha1": "4aefb7146df559d29c77f65c29c663a29cf43514",
                 "sha2-256": "d628037b4c86fedf1733f883efa481277bb6cbafc6dac267d4ca8827d6d4c451"
             },
             "size": 930555533
@@ -1399,14 +1386,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7179.20120919.bDw4g/iPhone3,3_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7179.20120919.bDw4g/iPhone3,3_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "0003dc6b9dacca06f6325a7af0334b49",
+                "sha1": "82c8774281d97cde005da969ac50827ff4fab173",
                 "sha2-256": "34cb027eff52e287bb582ae6f86538032721246481317be346032c111e6b9454"
             },
             "size": 927983821
@@ -1515,40 +1499,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone3,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7234.20120903.5mxOo/com_apple_MobileAsset_SoftwareUpdate/7032a514255b2d396e420073b77b58d49c0ee826.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "1bd1dcf6c13b9bf029bf7a01d0c868ca"
-            },
-            "size": 185585084
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone3,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7233.20120903.hefwV/com_apple_MobileAsset_SoftwareUpdate/723e2fd25bee1d345d09a70f156a85b9dea02ffe.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "d99364d659e3c800d68561981a7ebdf9"
-            },
-            "size": 192807834
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPhone3,3"
@@ -1582,6 +1532,40 @@
             "size": 224313236
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7234.20120903.5mxOo/com_apple_MobileAsset_SoftwareUpdate/7032a514255b2d396e420073b77b58d49c0ee826.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "1bd1dcf6c13b9bf029bf7a01d0c868ca"
+            },
+            "size": 185585084
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7233.20120903.hefwV/com_apple_MobileAsset_SoftwareUpdate/723e2fd25bee1d345d09a70f156a85b9dea02ffe.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "d99364d659e3c800d68561981a7ebdf9"
+            },
+            "size": 192807834
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "iPhone4,1"
@@ -1589,10 +1573,6 @@
             "links": [
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-7181.20120919.lEuOK/iPhone4,1_6.0_10A403_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-7181.20120919.lEuOK/iPhone4,1_6.0_10A403_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -1725,40 +1705,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone4,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7236.20120903.MpB2G/com_apple_MobileAsset_SoftwareUpdate/f6feb4bf6d15f773702e9c3b14b77493fca7d5cd.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "ae7d0d15dcbc278a2cc4499cd13d1f7c"
-            },
-            "size": 190650632
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "10A402",
-            "deviceMap": [
-                "iPhone4,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/iOS6/041-7235.20120903.DWMHq/com_apple_MobileAsset_SoftwareUpdate/5262d3b936459db45297708d0fe7e6c71e4fd30b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "c303c809645a11ca6728560d0c2e24cd"
-            },
-            "size": 202277627
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "10A5376e",
             "deviceMap": [
                 "iPhone4,1"
@@ -1790,6 +1736,40 @@
                 "md5": "177f6343fec396d38198d671e593d251"
             },
             "size": 265127488
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone4,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7236.20120903.MpB2G/com_apple_MobileAsset_SoftwareUpdate/f6feb4bf6d15f773702e9c3b14b77493fca7d5cd.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "ae7d0d15dcbc278a2cc4499cd13d1f7c"
+            },
+            "size": 190650632
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "10A402",
+            "deviceMap": [
+                "iPhone4,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS6/041-7235.20120903.DWMHq/com_apple_MobileAsset_SoftwareUpdate/5262d3b936459db45297708d0fe7e6c71e4fd30b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "c303c809645a11ca6728560d0c2e24cd"
+            },
+            "size": 202277627
         },
         {
             "type": "ota",
@@ -1868,14 +1848,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6/Restore/041-0807.20120919.soT6X/iPod4,1_6.0_10A403_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6/Restore/041-0807.20120919.soT6X/iPod4,1_6.0_10A403_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "21e199beb88199bb542cf48532e42d1f",
+                "sha1": "7cc754118a4a8113a67635b14abee0b247936ce8",
                 "sha2-256": "e7d79e03bcc8dd2d9c8836d555ff7ecb7739392ea754e138d572d94fb751ced6"
             },
             "size": 880768875

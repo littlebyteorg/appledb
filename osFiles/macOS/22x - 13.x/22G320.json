@@ -2,6 +2,7 @@
     "osStr": "macOS",
     "version": "13.6.2",
     "build": "22G320",
+    "restoreVersion": "22.7.320.0.0,0",
     "bridgeOSBuild": "21P1069",
     "buildTrain": "RomeSecuritySunburstB",
     "released": "2023-11-07",
@@ -22,26 +23,6 @@
     ],
     "sources": [
         {
-            "type": "kdk",
-            "deviceMap": [
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,9",
-                "Mac14,10",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4"
-            ],
-            "links": [
-                {
-                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_13.6.2_build_22G320/Kernel_Debug_Kit_13.6.2_build_22G320.dmg",
-                    "active": true
-                }
-            ],
-            "size": 459282010
-        },
-        {
             "type": "installassistant",
             "deviceMap": [
                 "Mac14,5",
@@ -56,7 +37,7 @@
             "links": [
                 {
                     "url": "https://swcdn.apple.com/content/downloads/00/25/042-95459-A_I40VT0W5FS/dvaac3ju5xee045eyi3ikm3h2nknm930is/InstallAssistant.pkg",
-                    "active": true
+                    "active": false
                 }
             ],
             "hashes": {
@@ -87,6 +68,27 @@
                 "sha2-256": "31b25c995afb6ad8420d8ed49552126665cd97442cf68c384bc25489c3a6d79f"
             },
             "size": 10455388595
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22A380",
+            "deviceMap": [
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/042-95423/25ACEC55-C31C-47F8-ACE2-3E4245C7FE40/com_apple_MobileAsset_MacSoftwareUpdate/719f23a186b232bf2d107b4a474dbff960532de5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8bb4528a60a0aa7725e27b2e6adccd4edba676f8",
+                "sha2-256": "c63d8cc0b143ec916d42a14e28ee011c2d8cec592a96cfb781119342d9587e1a"
+            },
+            "size": 3489850661
         },
         {
             "type": "ota",
@@ -129,6 +131,48 @@
                 "sha2-256": "2256094e439afe154dcfdb805cc9ccfcf87152fd6586ec17c695f0a31f70c20d"
             },
             "size": 3822307519
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22A400",
+            "deviceMap": [
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/042-95478/9A32102E-985C-4E13-9163-6C5ECD54123F/com_apple_MobileAsset_MacSoftwareUpdate/f7104fd32dc46274182723399eb1d530dc5561d7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "26290d69c85233337e26ba185bf4d36324e64030",
+                "sha2-256": "1fedb00a1c794eee9a689828e902f7d79d6e66d305c0f58ebff93f6edfdcb850"
+            },
+            "size": 3489633515
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22C65",
+            "deviceMap": [
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/042-95463/5B1BBB4F-7E41-472E-B174-EC849BA5081D/com_apple_MobileAsset_MacSoftwareUpdate/20a1b29bc6cca63971e786fe08ccb6d0dc29b912.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a53e2578bc57b7acb940dbfd69c1a0110f8cd5a1",
+                "sha2-256": "0291282973b7cabd1f30b1db8edb6ee260f096225ffb14e03583d4bf74692707"
+            },
+            "size": 3410989265
         },
         {
             "type": "ota",
@@ -431,9 +475,12 @@
             "size": 504811193
         },
         {
-            "type": "ota",
-            "prerequisiteBuild": "22A380",
+            "type": "kdk",
             "deviceMap": [
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,9",
+                "Mac14,10",
                 "MacBookPro18,1",
                 "MacBookPro18,2",
                 "MacBookPro18,3",
@@ -441,57 +488,11 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/042-95423/25ACEC55-C31C-47F8-ACE2-3E4245C7FE40/com_apple_MobileAsset_MacSoftwareUpdate/719f23a186b232bf2d107b4a474dbff960532de5.zip",
+                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_13.6.2_build_22G320/Kernel_Debug_Kit_13.6.2_build_22G320.dmg",
                     "active": true
                 }
             ],
-            "hashes": {
-                "sha1": "8bb4528a60a0aa7725e27b2e6adccd4edba676f8",
-                "sha2-256": "c63d8cc0b143ec916d42a14e28ee011c2d8cec592a96cfb781119342d9587e1a"
-            },
-            "size": 3489850661
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22A400",
-            "deviceMap": [
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/042-95478/9A32102E-985C-4E13-9163-6C5ECD54123F/com_apple_MobileAsset_MacSoftwareUpdate/f7104fd32dc46274182723399eb1d530dc5561d7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "26290d69c85233337e26ba185bf4d36324e64030",
-                "sha2-256": "1fedb00a1c794eee9a689828e902f7d79d6e66d305c0f58ebff93f6edfdcb850"
-            },
-            "size": 3489633515
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22C65",
-            "deviceMap": [
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallFCS/patches/042-95463/5B1BBB4F-7E41-472E-B174-EC849BA5081D/com_apple_MobileAsset_MacSoftwareUpdate/20a1b29bc6cca63971e786fe08ccb6d0dc29b912.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a53e2578bc57b7acb940dbfd69c1a0110f8cd5a1",
-                "sha2-256": "0291282973b7cabd1f30b1db8edb6ee260f096225ffb14e03583d4bf74692707"
-            },
-            "size": 3410989265
+            "size": 459282010
         }
     ]
 }

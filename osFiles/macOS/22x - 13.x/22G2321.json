@@ -2,6 +2,7 @@
     "osStr": "macOS",
     "version": "13.6.2",
     "build": "22G2321",
+    "restoreVersion": "22.7.321.2.0,0",
     "bridgeOSBuild": "21P1069",
     "buildTrain": "RomeSecuritySunburstBHW",
     "released": "2023-11-07",
@@ -17,21 +18,6 @@
     ],
     "sources": [
         {
-            "type": "kdk",
-            "deviceMap": [
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5"
-            ],
-            "links": [
-                {
-                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_13.6.2_build_22G2321/Kernel_Debug_Kit_13.6.2_builld_22G2321.dmg",
-                    "active": true
-                }
-            ],
-            "size": 394022088
-        },
-        {
             "type": "installassistant",
             "deviceMap": [
                 "Mac15,3",
@@ -41,7 +27,7 @@
             "links": [
                 {
                     "url": "https://swcdn.apple.com/content/downloads/21/44/042-95491-A_FOGL4I4EYF/3tg1hvswl45u0svckb2vuel8hr5eeznpid/InstallAssistant.pkg",
-                    "active": true
+                    "active": false
                 }
             ],
             "hashes": {
@@ -107,6 +93,21 @@
                 "sha2-256": "876e63aacf2b4250851c2b8c0b70bbea88eb2cb0ab5ccd0bff7cec981846473b"
             },
             "size": 843755498
+        },
+        {
+            "type": "kdk",
+            "deviceMap": [
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5"
+            ],
+            "links": [
+                {
+                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_13.6.2_build_22G2321/Kernel_Debug_Kit_13.6.2_builld_22G2321.dmg",
+                    "active": true
+                }
+            ],
+            "size": 394022088
         }
     ]
 }

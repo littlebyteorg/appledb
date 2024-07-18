@@ -8,6 +8,7 @@
     "properties": {
         "osStr":         {"type": "string"},
         "version":       {"type": "string"},
+        "iosVersion":    {"type": "string"},
         "safariVersion": {
             "anyOf": [
                 {"type": "string"},
@@ -15,12 +16,22 @@
             ]
         },
         "build":         {"type": "string"},
+        "restoreVersion": {"type": "string"},
         "uniqueBuild":   {"type": "string"},
         "key":           {"type": "string"},
         
         "bridgeOSBuild":    {"type": "string"},
         "embeddedOSBuild":  {"type": "string"},
-        "buildTrain":    {"type": "string"},
+        "basebandVersions": {
+            "type":"object",
+            "additionalProperties": true
+        },
+        "buildTrain":    {
+            "anyOf": [
+                {"type": "string"},
+                {"type": "array", "items": {"type": "string"}}
+            ]
+        },
 
         "released":     {"anyOf": [
             {"type": "string", "format": "date-time"},
@@ -107,7 +118,7 @@
                 "additionalProperties": false,
                 "required": ["type", "links", "deviceMap"],
                 "properties": {
-                    "type": {"enum": ["ipsw", "ota", "update", "kdk", "installassistant", "combo", "pkg", "dmg", "exe", "appx", "xip", "tar", "bin"]},
+                    "type": {"enum": ["ipsw", "ota", "update", "kdk", "installassistant", "combo", "pkg", "aar", "dmg", "exe", "appx", "xip", "tar", "bin"]},
                     "deviceMap": {"$ref": "#/properties/deviceMap"},
                     "boardMap": {
                         "type": "array",

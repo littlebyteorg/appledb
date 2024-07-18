@@ -2,6 +2,7 @@
     "osStr": "watchOS",
     "version": "9.1 beta 5",
     "build": "20S5072a",
+    "restoreVersion": "20.19.72.5.1,0",
     "buildTrain": "KincaidBSeed",
     "released": "2022-10-12",
     "beta": true,
@@ -40,6 +41,23 @@
         "Watch6,17",
         "Watch6,18"
     ],
+    "basebandVersions": {
+        "Watch4,3": "5.01.01",
+        "Watch4,4": "5.01.01",
+        "Watch5,3": "5.01.01",
+        "Watch5,4": "5.01.01",
+        "Watch5,11": "5.01.01",
+        "Watch5,12": "5.01.01",
+        "Watch6,3": "5.01.01",
+        "Watch6,4": "5.01.01",
+        "Watch6,8": "5.01.01",
+        "Watch6,9": "5.01.01",
+        "Watch6,12": "5.01.01",
+        "Watch6,13": "5.01.01",
+        "Watch6,16": "5.01.01",
+        "Watch6,17": "5.01.01",
+        "Watch6,18": "5.01.01"
+    },
     "sources": [
         {
             "type": "ota",
@@ -111,24 +129,6 @@
                 "sha2-256": "06273c280911b1b41e7e15bf8a789e17d2f256b8c05cb6fd19a2f79d32834b43"
             },
             "size": 1856179461
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88488/65BA2A54-D294-404C-8817-F32BF720AD74/com_apple_MobileAsset_SoftwareUpdate/f8aa477b563416c0f5014212598ccb345d69792c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4d23c74af46eba0e8677efa0ea751e8e19fdb845",
-                "sha2-256": "7808355f2a2c8ac41145475826ee1819df591ae844dfb1b91f550ee0257cf9fc"
-            },
-            "size": 1854678865
         },
         {
             "type": "ota",
@@ -222,39 +222,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch4,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88586/F8C3C4F6-844B-4836-B0B7-DEB9BBA9C12D/com_apple_MobileAsset_SoftwareUpdate/662c6b0f0a5c27db3b791ca7b893c83afc28e72d.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88488/65BA2A54-D294-404C-8817-F32BF720AD74/com_apple_MobileAsset_SoftwareUpdate/f8aa477b563416c0f5014212598ccb345d69792c.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "f85064a5214743ffd9622956a18962e36438334d",
-                "sha2-256": "bbbfd81f8066d5fc069002edd056b7abb256161a68a849fbfe4be57f8ff57ae3"
+                "sha1": "4d23c74af46eba0e8677efa0ea751e8e19fdb845",
+                "sha2-256": "7808355f2a2c8ac41145475826ee1819df591ae844dfb1b91f550ee0257cf9fc"
             },
-            "size": 634930703
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88558/95DB5A3A-257E-4E8F-AF0A-AF88266163EC/com_apple_MobileAsset_SoftwareUpdate/d0570f628cb82d29c4679698fec72e8c75f0f4c4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "13853acef86e04b14a5a432b98cb3f32e532a357",
-                "sha2-256": "f5ca549f259dd268139bb75a3f9990eaa0755175e8707e03907037028eb677b0"
-            },
-            "size": 634952601
+            "size": 1854678865
         },
         {
             "type": "ota",
@@ -381,6 +363,42 @@
                 "sha2-256": "92023bee8e40c622e33278f72968822dca250ac1b779089ee9b4b5e459e5c41a"
             },
             "size": 829091131
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88586/F8C3C4F6-844B-4836-B0B7-DEB9BBA9C12D/com_apple_MobileAsset_SoftwareUpdate/662c6b0f0a5c27db3b791ca7b893c83afc28e72d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f85064a5214743ffd9622956a18962e36438334d",
+                "sha2-256": "bbbfd81f8066d5fc069002edd056b7abb256161a68a849fbfe4be57f8ff57ae3"
+            },
+            "size": 634930703
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88558/95DB5A3A-257E-4E8F-AF0A-AF88266163EC/com_apple_MobileAsset_SoftwareUpdate/d0570f628cb82d29c4679698fec72e8c75f0f4c4.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "13853acef86e04b14a5a432b98cb3f32e532a357",
+                "sha2-256": "f5ca549f259dd268139bb75a3f9990eaa0755175e8707e03907037028eb677b0"
+            },
+            "size": 634952601
         },
         {
             "type": "ota",
@@ -527,24 +545,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88689/D605FDB9-0904-4044-9F8B-ECC780CDB186/com_apple_MobileAsset_SoftwareUpdate/0714ea7cc306b159eda20d38fe7c8d8edd7e991b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3422082032040a2d78167174d3b77ac43e4e91c8",
-                "sha2-256": "f501700706e6fb337f4b4618a5c07c220ff3f4d731a1eb96acdc0b936bb646a4"
-            },
-            "size": 1857899175
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch4,2"
@@ -635,39 +635,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch4,2"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88567/E2FACB07-F688-4910-8AE3-254A059629DF/com_apple_MobileAsset_SoftwareUpdate/3eabb1d69a570168a1a232609e498df40659892c.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88689/D605FDB9-0904-4044-9F8B-ECC780CDB186/com_apple_MobileAsset_SoftwareUpdate/0714ea7cc306b159eda20d38fe7c8d8edd7e991b.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "89ccb6712077acb99617002df29517e934792c91",
-                "sha2-256": "065d26cd7019b80ff0718f132312d931a521f9de6c0b0a4c3f5d2b4cd91892cc"
+                "sha1": "3422082032040a2d78167174d3b77ac43e4e91c8",
+                "sha2-256": "f501700706e6fb337f4b4618a5c07c220ff3f4d731a1eb96acdc0b936bb646a4"
             },
-            "size": 635020819
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88377/FA1644CA-93D4-483C-A523-197730B18215/com_apple_MobileAsset_SoftwareUpdate/a75a13e8fdc90ecb6d615c040399d9800ff73879.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0dc43a15707a102538d672c30fa574294b23f882",
-                "sha2-256": "8841c84fb403a870e27c71cb9b38752b6a09b708875cc3582daabc670a7692ab"
-            },
-            "size": 635038609
+            "size": 1857899175
         },
         {
             "type": "ota",
@@ -794,6 +776,42 @@
                 "sha2-256": "3c710e6d197d4b08999571d43490d8d7e7315f0d1ab9fe09347fa5a2975675fa"
             },
             "size": 829168525
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88567/E2FACB07-F688-4910-8AE3-254A059629DF/com_apple_MobileAsset_SoftwareUpdate/3eabb1d69a570168a1a232609e498df40659892c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "89ccb6712077acb99617002df29517e934792c91",
+                "sha2-256": "065d26cd7019b80ff0718f132312d931a521f9de6c0b0a4c3f5d2b4cd91892cc"
+            },
+            "size": 635020819
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88377/FA1644CA-93D4-483C-A523-197730B18215/com_apple_MobileAsset_SoftwareUpdate/a75a13e8fdc90ecb6d615c040399d9800ff73879.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0dc43a15707a102538d672c30fa574294b23f882",
+                "sha2-256": "8841c84fb403a870e27c71cb9b38752b6a09b708875cc3582daabc670a7692ab"
+            },
+            "size": 635038609
         },
         {
             "type": "ota",
@@ -940,24 +958,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88636/3FB9F530-ECD2-4C4C-B2DA-87BCF2B5043C/com_apple_MobileAsset_SoftwareUpdate/6d8fcc120fc410904c649ccc8424185c6b187264.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "85761bd378267045094809acde2457ed628bf30f",
-                "sha2-256": "b1130d593aa46739768c5f401b1025bf7f878e5c4e37bebc65503c73d2819f87"
-            },
-            "size": 1894390466
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch4,3"
@@ -1048,39 +1048,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch4,3"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88413/2D7C2D71-E468-4E4C-8B34-4EDFE907D732/com_apple_MobileAsset_SoftwareUpdate/b403599a4a0f1ebc421ba07e80727a7696109d79.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88636/3FB9F530-ECD2-4C4C-B2DA-87BCF2B5043C/com_apple_MobileAsset_SoftwareUpdate/6d8fcc120fc410904c649ccc8424185c6b187264.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "eeefdf7339fe6a059d9ae5a4d3c3c6e895f9a479",
-                "sha2-256": "c9bdaeaa7c8c86378ddcc9cb8b97d707a1d58fb17027a6739ed3d970abc2a91e"
+                "sha1": "85761bd378267045094809acde2457ed628bf30f",
+                "sha2-256": "b1130d593aa46739768c5f401b1025bf7f878e5c4e37bebc65503c73d2819f87"
             },
-            "size": 667638360
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88117/9C96C813-7F95-471D-8A41-91F38D2A2FF3/com_apple_MobileAsset_SoftwareUpdate/722d2be7391ea30ad4c6b0782b5b2f65122b46cf.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "aac943ef0908e33270b9ed4aa109a9a87515b4da",
-                "sha2-256": "b94875c0a7c28bf1ce8768186e817c0d2a2ef1acc0a6e6a21780f2da73c666fe"
-            },
-            "size": 667112439
+            "size": 1894390466
         },
         {
             "type": "ota",
@@ -1207,6 +1189,42 @@
                 "sha2-256": "1f40c8105a03dbc4a1db2f5ca72d5c2d0b1a3dac280d44abac8aabbb2b635b40"
             },
             "size": 861462399
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88413/2D7C2D71-E468-4E4C-8B34-4EDFE907D732/com_apple_MobileAsset_SoftwareUpdate/b403599a4a0f1ebc421ba07e80727a7696109d79.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "eeefdf7339fe6a059d9ae5a4d3c3c6e895f9a479",
+                "sha2-256": "c9bdaeaa7c8c86378ddcc9cb8b97d707a1d58fb17027a6739ed3d970abc2a91e"
+            },
+            "size": 667638360
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88117/9C96C813-7F95-471D-8A41-91F38D2A2FF3/com_apple_MobileAsset_SoftwareUpdate/722d2be7391ea30ad4c6b0782b5b2f65122b46cf.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "aac943ef0908e33270b9ed4aa109a9a87515b4da",
+                "sha2-256": "b94875c0a7c28bf1ce8768186e817c0d2a2ef1acc0a6e6a21780f2da73c666fe"
+            },
+            "size": 667112439
         },
         {
             "type": "ota",
@@ -1353,24 +1371,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88434/64F38732-6AA3-4668-AF2A-AC512D32591A/com_apple_MobileAsset_SoftwareUpdate/e0e2dff8193664764461b76e4d1364091f10cb79.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "afa2b62651de84a08407b59b313f8fe32d42868a",
-                "sha2-256": "c92fc9c9fb38538fcd2c9dcf16e963839cc52681cb2c409bcc55fac9afb92a1d"
-            },
-            "size": 1897721055
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch4,4"
@@ -1461,39 +1461,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch4,4"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88381/F9218BFB-E9AA-43F2-B185-05840A78A845/com_apple_MobileAsset_SoftwareUpdate/def31e6955d4d760437452d14a71b8ca225c379f.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88434/64F38732-6AA3-4668-AF2A-AC512D32591A/com_apple_MobileAsset_SoftwareUpdate/e0e2dff8193664764461b76e4d1364091f10cb79.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "23fa34fe2bf3a76a9bc14740f627f8b54e7534bd",
-                "sha2-256": "1a9fef12c888df5643fc2e92cea6e8ed4bb881dab3bb6b47c75618e57aa0c476"
+                "sha1": "afa2b62651de84a08407b59b313f8fe32d42868a",
+                "sha2-256": "c92fc9c9fb38538fcd2c9dcf16e963839cc52681cb2c409bcc55fac9afb92a1d"
             },
-            "size": 667761436
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88120/8D894267-463B-485E-941D-62C41C63170B/com_apple_MobileAsset_SoftwareUpdate/5aa2b0b00fb9c76f6f72e82b6ab4c8a99ee2dccd.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c5b382cddc79e124f89f73332299275fb8e4f564",
-                "sha2-256": "dc198a01c8f9ddb2ff5b7b7941153d4e31884029ff4f8aebb8717da4a5e9bce2"
-            },
-            "size": 667236022
+            "size": 1897721055
         },
         {
             "type": "ota",
@@ -1620,6 +1602,42 @@
                 "sha2-256": "5068f9ae38c3187017eff14e13e63aa1394fbfaf89d1cf100f52f0ca00aa889e"
             },
             "size": 861608222
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88381/F9218BFB-E9AA-43F2-B185-05840A78A845/com_apple_MobileAsset_SoftwareUpdate/def31e6955d4d760437452d14a71b8ca225c379f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "23fa34fe2bf3a76a9bc14740f627f8b54e7534bd",
+                "sha2-256": "1a9fef12c888df5643fc2e92cea6e8ed4bb881dab3bb6b47c75618e57aa0c476"
+            },
+            "size": 667761436
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88120/8D894267-463B-485E-941D-62C41C63170B/com_apple_MobileAsset_SoftwareUpdate/5aa2b0b00fb9c76f6f72e82b6ab4c8a99ee2dccd.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c5b382cddc79e124f89f73332299275fb8e4f564",
+                "sha2-256": "dc198a01c8f9ddb2ff5b7b7941153d4e31884029ff4f8aebb8717da4a5e9bce2"
+            },
+            "size": 667236022
         },
         {
             "type": "ota",
@@ -1766,24 +1784,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88137/33FC3622-206E-422A-963D-F6AA1C0D02C4/com_apple_MobileAsset_SoftwareUpdate/c0be5cc6ba9737c0794833de51cab79c4a60e076.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "024ebf6fa27e56a01a5c53189ae52575d890abf2",
-                "sha2-256": "cd922c85413b0794484bf673e7078b2f69079a7d97cc78d0a041230f5e8c5c22"
-            },
-            "size": 1856617538
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,1"
@@ -1874,39 +1874,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88098/8C39FB3E-8347-4B54-A74D-09DDA7D28DDA/com_apple_MobileAsset_SoftwareUpdate/ac5abd531d65eaf67d42934e9e604fd162be9dd0.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88137/33FC3622-206E-422A-963D-F6AA1C0D02C4/com_apple_MobileAsset_SoftwareUpdate/c0be5cc6ba9737c0794833de51cab79c4a60e076.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "0b86b690f1971cf2b70389007bea3c9ea31f1781",
-                "sha2-256": "0501c72d8f33faff3bcbd9fc5c663594d03e0a4e009a17cbe2fb42f982d2ca10"
+                "sha1": "024ebf6fa27e56a01a5c53189ae52575d890abf2",
+                "sha2-256": "cd922c85413b0794484bf673e7078b2f69079a7d97cc78d0a041230f5e8c5c22"
             },
-            "size": 635527640
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88336/7A4878AA-AAE2-4D1C-AE36-48C22C20FAE7/com_apple_MobileAsset_SoftwareUpdate/f1fbad739f2f350deaa7f52f1e85a4abb98af49a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2622fa236bb1165238996ae001f2b9bd783fbe43",
-                "sha2-256": "9e7d4417715a2db6c8e5e2ce5b3d80a5cc3239613b92c2cabaa5e965fcfda174"
-            },
-            "size": 635839312
+            "size": 1856617538
         },
         {
             "type": "ota",
@@ -2033,6 +2015,42 @@
                 "sha2-256": "779b6ce440763f3b090b942e07eaffc536c9ea7a17f3a152beba2d07e96e05b0"
             },
             "size": 830777141
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88098/8C39FB3E-8347-4B54-A74D-09DDA7D28DDA/com_apple_MobileAsset_SoftwareUpdate/ac5abd531d65eaf67d42934e9e604fd162be9dd0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0b86b690f1971cf2b70389007bea3c9ea31f1781",
+                "sha2-256": "0501c72d8f33faff3bcbd9fc5c663594d03e0a4e009a17cbe2fb42f982d2ca10"
+            },
+            "size": 635527640
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88336/7A4878AA-AAE2-4D1C-AE36-48C22C20FAE7/com_apple_MobileAsset_SoftwareUpdate/f1fbad739f2f350deaa7f52f1e85a4abb98af49a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2622fa236bb1165238996ae001f2b9bd783fbe43",
+                "sha2-256": "9e7d4417715a2db6c8e5e2ce5b3d80a5cc3239613b92c2cabaa5e965fcfda174"
+            },
+            "size": 635839312
         },
         {
             "type": "ota",
@@ -2179,24 +2197,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88437/A886CDD5-7BC2-4ECF-A879-FD21D75B5163/com_apple_MobileAsset_SoftwareUpdate/9100442e8c2b83014eb00d494e48cb0ff9086810.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c13884e3513ebbd842858bea8512264da155366d",
-                "sha2-256": "e615480f60ad1d546e7ea59870e25da73f0863de8aa6498945d9973115cda959"
-            },
-            "size": 1859947445
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,2"
@@ -2287,39 +2287,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,2"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88445/7FAD7950-7AA8-424C-AA9A-54336A3C11F7/com_apple_MobileAsset_SoftwareUpdate/d70695984b9c840095380203ea3f2085e2714df8.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88437/A886CDD5-7BC2-4ECF-A879-FD21D75B5163/com_apple_MobileAsset_SoftwareUpdate/9100442e8c2b83014eb00d494e48cb0ff9086810.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "84ea016c93eb511ccd6855d75949e5ad5f312e74",
-                "sha2-256": "ca2e798b469560ef3b1ad4996faa39baf7b5202a483c5043b8190acd1d9f6e6d"
+                "sha1": "c13884e3513ebbd842858bea8512264da155366d",
+                "sha2-256": "e615480f60ad1d546e7ea59870e25da73f0863de8aa6498945d9973115cda959"
             },
-            "size": 635637076
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88734/6F1B44E9-DE80-4023-903F-A2BC334D6EC0/com_apple_MobileAsset_SoftwareUpdate/c7ca3c0aa949aad72310224aa3eb35aa1670a006.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cf783926700efcb0c6c20ae134738e7cef80ea94",
-                "sha2-256": "072a5db2e035df9bb55f3b56edf967e9586c5f5e4ad9cffdf945ed30121fed3a"
-            },
-            "size": 635952595
+            "size": 1859947445
         },
         {
             "type": "ota",
@@ -2446,6 +2428,42 @@
                 "sha2-256": "04e0ecc9114deae1b2ead2ea443a49434246a169d4f5b361aca42313c8303dd4"
             },
             "size": 830864233
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88445/7FAD7950-7AA8-424C-AA9A-54336A3C11F7/com_apple_MobileAsset_SoftwareUpdate/d70695984b9c840095380203ea3f2085e2714df8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "84ea016c93eb511ccd6855d75949e5ad5f312e74",
+                "sha2-256": "ca2e798b469560ef3b1ad4996faa39baf7b5202a483c5043b8190acd1d9f6e6d"
+            },
+            "size": 635637076
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88734/6F1B44E9-DE80-4023-903F-A2BC334D6EC0/com_apple_MobileAsset_SoftwareUpdate/c7ca3c0aa949aad72310224aa3eb35aa1670a006.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cf783926700efcb0c6c20ae134738e7cef80ea94",
+                "sha2-256": "072a5db2e035df9bb55f3b56edf967e9586c5f5e4ad9cffdf945ed30121fed3a"
+            },
+            "size": 635952595
         },
         {
             "type": "ota",
@@ -2592,24 +2610,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88592/4C371916-5725-4ABA-A6B7-48A5408B6301/com_apple_MobileAsset_SoftwareUpdate/b5d3b29ce616b41d273b017dbd576c8c66ca73c3.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ea7a0964a45a9d5cc532f0d042fbe904c9ba9a31",
-                "sha2-256": "e42a35648961ae069cc1bc20363cdb2c1de2db0303d3d443f3138fbae17a2fa6"
-            },
-            "size": 1896693242
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,3"
@@ -2700,39 +2700,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,3"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88524/777C92E7-5E4A-499C-A58F-3E29CE4FC6D6/com_apple_MobileAsset_SoftwareUpdate/87afea79d1cd896e0d569379276ab1f0a89dcf91.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88592/4C371916-5725-4ABA-A6B7-48A5408B6301/com_apple_MobileAsset_SoftwareUpdate/b5d3b29ce616b41d273b017dbd576c8c66ca73c3.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "ccef8b64b82932be70ee5404a171862c5f1f196b",
-                "sha2-256": "66f17fe069d31fba4903760b3ca9cac1295a29398d57db5c3aed53e534f77c3d"
+                "sha1": "ea7a0964a45a9d5cc532f0d042fbe904c9ba9a31",
+                "sha2-256": "e42a35648961ae069cc1bc20363cdb2c1de2db0303d3d443f3138fbae17a2fa6"
             },
-            "size": 668567464
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88732/8007843D-8968-4F8D-8254-B17CE44B57DB/com_apple_MobileAsset_SoftwareUpdate/835ec3243fdb4e1935000bf375459f246b01bb29.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f0242712f1c208cd318ab8d3eb38c982795ae40b",
-                "sha2-256": "cfcf3d1da13ab816496ffa5cbd881878b38dc8ade2027f236194c419907e237d"
-            },
-            "size": 667929588
+            "size": 1896693242
         },
         {
             "type": "ota",
@@ -2859,6 +2841,42 @@
                 "sha2-256": "b5f0b839db38ae2cf6e9bc63d17ad84b0097ded1c21c6e61b36b46830f825947"
             },
             "size": 863258550
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88524/777C92E7-5E4A-499C-A58F-3E29CE4FC6D6/com_apple_MobileAsset_SoftwareUpdate/87afea79d1cd896e0d569379276ab1f0a89dcf91.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ccef8b64b82932be70ee5404a171862c5f1f196b",
+                "sha2-256": "66f17fe069d31fba4903760b3ca9cac1295a29398d57db5c3aed53e534f77c3d"
+            },
+            "size": 668567464
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88732/8007843D-8968-4F8D-8254-B17CE44B57DB/com_apple_MobileAsset_SoftwareUpdate/835ec3243fdb4e1935000bf375459f246b01bb29.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f0242712f1c208cd318ab8d3eb38c982795ae40b",
+                "sha2-256": "cfcf3d1da13ab816496ffa5cbd881878b38dc8ade2027f236194c419907e237d"
+            },
+            "size": 667929588
         },
         {
             "type": "ota",
@@ -3005,24 +3023,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88754/6B1B61B0-A56B-41FE-813A-5B5A6A7472F5/com_apple_MobileAsset_SoftwareUpdate/d5150f21eb690359cfea507ab120e9ac364c2791.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "64101dcc3e38fb9faff52455b402d1dcfd34f503",
-                "sha2-256": "9cddf2319db139135532282ba741a4477770e360200931002f4e8851e2f08c11"
-            },
-            "size": 1900152303
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,4"
@@ -3113,39 +3113,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,4"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88442/DD0A54F0-FD31-4903-8CEF-4C4196804699/com_apple_MobileAsset_SoftwareUpdate/00a95ff51e7aaf750ec75862cb9117c4c3a43180.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88754/6B1B61B0-A56B-41FE-813A-5B5A6A7472F5/com_apple_MobileAsset_SoftwareUpdate/d5150f21eb690359cfea507ab120e9ac364c2791.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "20c5320ce9320e52eed71f1a4cdd8460398523c7",
-                "sha2-256": "71ff3d9370c763b1612f48172c442782f25521ea005d96491c6b158345867ed8"
+                "sha1": "64101dcc3e38fb9faff52455b402d1dcfd34f503",
+                "sha2-256": "9cddf2319db139135532282ba741a4477770e360200931002f4e8851e2f08c11"
             },
-            "size": 668686657
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88742/7D1F6E04-523C-4C5D-B700-4D12F47F08AA/com_apple_MobileAsset_SoftwareUpdate/f4d9fcb2b818eb0c01f80d839d88bfd0123cb694.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "efc522af85c8e5c3594635b26fc7584ef2e56cfe",
-                "sha2-256": "0706fb16d6003db5be8955327d288fcd06bc7d26df78a8111c995482f95e0540"
-            },
-            "size": 668049582
+            "size": 1900152303
         },
         {
             "type": "ota",
@@ -3272,6 +3254,42 @@
                 "sha2-256": "efa21a22dd82d42d6115c22437dde72540d0af12f189967d57391243dfee6db5"
             },
             "size": 863392083
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88442/DD0A54F0-FD31-4903-8CEF-4C4196804699/com_apple_MobileAsset_SoftwareUpdate/00a95ff51e7aaf750ec75862cb9117c4c3a43180.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "20c5320ce9320e52eed71f1a4cdd8460398523c7",
+                "sha2-256": "71ff3d9370c763b1612f48172c442782f25521ea005d96491c6b158345867ed8"
+            },
+            "size": 668686657
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88742/7D1F6E04-523C-4C5D-B700-4D12F47F08AA/com_apple_MobileAsset_SoftwareUpdate/f4d9fcb2b818eb0c01f80d839d88bfd0123cb694.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "efc522af85c8e5c3594635b26fc7584ef2e56cfe",
+                "sha2-256": "0706fb16d6003db5be8955327d288fcd06bc7d26df78a8111c995482f95e0540"
+            },
+            "size": 668049582
         },
         {
             "type": "ota",
@@ -3418,24 +3436,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88184/65ECEFAD-A62F-4E5C-BE8D-B6C46B6DCF6A/com_apple_MobileAsset_SoftwareUpdate/7471e0f0dfd1354e7d8f8c06d87783dd2747c8d7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e04e56d4111355ff9ff5eac0950a0287cc98e0ad",
-                "sha2-256": "97e0875d783161fcec1a2c88e2024028520059927603540d43203cc084f39442"
-            },
-            "size": 1856319343
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,9"
@@ -3526,39 +3526,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,9"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88717/58D6A52C-0349-4643-BB0E-F18CBD2F81F8/com_apple_MobileAsset_SoftwareUpdate/367e794bd42cbaf1795d0ac2a57b6825de6fe4b7.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88184/65ECEFAD-A62F-4E5C-BE8D-B6C46B6DCF6A/com_apple_MobileAsset_SoftwareUpdate/7471e0f0dfd1354e7d8f8c06d87783dd2747c8d7.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "5e18493e49a20bac0cb7713318c1cb8d3334876c",
-                "sha2-256": "94f63fff257a83c4cc0b86030889562993b0b8e5a0c63b5d97cbc7c430a04323"
+                "sha1": "e04e56d4111355ff9ff5eac0950a0287cc98e0ad",
+                "sha2-256": "97e0875d783161fcec1a2c88e2024028520059927603540d43203cc084f39442"
             },
-            "size": 635505531
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88582/8D416E01-D75D-4588-8940-5576E974B0AE/com_apple_MobileAsset_SoftwareUpdate/bc2eb44209b3ccf043350b8b6e1f65491cf79a3c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9237d13a781ee537bec9b24c76786167e958935f",
-                "sha2-256": "f728408ab2fbe3f585e31ddcbb8d6917473052ec134f0cc0b7b2ea73fffab77c"
-            },
-            "size": 635801798
+            "size": 1856319343
         },
         {
             "type": "ota",
@@ -3685,6 +3667,42 @@
                 "sha2-256": "e856b285a0e34f58d827bd89e02c40b34bbadc8c6139f56e2af7eaa00e6d3130"
             },
             "size": 830745915
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88717/58D6A52C-0349-4643-BB0E-F18CBD2F81F8/com_apple_MobileAsset_SoftwareUpdate/367e794bd42cbaf1795d0ac2a57b6825de6fe4b7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5e18493e49a20bac0cb7713318c1cb8d3334876c",
+                "sha2-256": "94f63fff257a83c4cc0b86030889562993b0b8e5a0c63b5d97cbc7c430a04323"
+            },
+            "size": 635505531
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88582/8D416E01-D75D-4588-8940-5576E974B0AE/com_apple_MobileAsset_SoftwareUpdate/bc2eb44209b3ccf043350b8b6e1f65491cf79a3c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9237d13a781ee537bec9b24c76786167e958935f",
+                "sha2-256": "f728408ab2fbe3f585e31ddcbb8d6917473052ec134f0cc0b7b2ea73fffab77c"
+            },
+            "size": 635801798
         },
         {
             "type": "ota",
@@ -3831,24 +3849,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88259/28632C4A-4880-4CC6-913B-7A5C29B6CEF0/com_apple_MobileAsset_SoftwareUpdate/206dcaae62bb4a544326c94835e0b515fe94a063.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "67fb962b7c2810674d4104e0aec803540590f8ce",
-                "sha2-256": "e644201b30fb5361cdc0d40aedba7e334655e0d13847bdeadc660efa508337f5"
-            },
-            "size": 1859636104
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,10"
@@ -3939,39 +3939,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,10"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88299/9EC56FDB-5326-4683-B1EA-5C84DCC087A5/com_apple_MobileAsset_SoftwareUpdate/ea35f08dfb0064207668273a62ab69ba6782c51d.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88259/28632C4A-4880-4CC6-913B-7A5C29B6CEF0/com_apple_MobileAsset_SoftwareUpdate/206dcaae62bb4a544326c94835e0b515fe94a063.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "2c4611887952abd570d80cb1b1869bb53b37eead",
-                "sha2-256": "e4b48d9608fb33a94e3321e23983695b056dc014330f65f24aff7fc3a8a6f84c"
+                "sha1": "67fb962b7c2810674d4104e0aec803540590f8ce",
+                "sha2-256": "e644201b30fb5361cdc0d40aedba7e334655e0d13847bdeadc660efa508337f5"
             },
-            "size": 635606559
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88181/EB9A7E00-A141-4488-A75F-A22B3FA077AD/com_apple_MobileAsset_SoftwareUpdate/55ed861c54fbf1a1729da7d624854627f629f95e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5d15ce08de471ed90ec4b52985f417e8104b5095",
-                "sha2-256": "c8568de4ae4296d01e66921961056145d59a8b94270f4b00bfcc10c3adb30718"
-            },
-            "size": 635908131
+            "size": 1859636104
         },
         {
             "type": "ota",
@@ -4098,6 +4080,42 @@
                 "sha2-256": "340559987dc4b5ab7bcf9dfbfe529394c5fcf7bfb1c3350049280112ba41b3f2"
             },
             "size": 830828683
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88299/9EC56FDB-5326-4683-B1EA-5C84DCC087A5/com_apple_MobileAsset_SoftwareUpdate/ea35f08dfb0064207668273a62ab69ba6782c51d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2c4611887952abd570d80cb1b1869bb53b37eead",
+                "sha2-256": "e4b48d9608fb33a94e3321e23983695b056dc014330f65f24aff7fc3a8a6f84c"
+            },
+            "size": 635606559
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88181/EB9A7E00-A141-4488-A75F-A22B3FA077AD/com_apple_MobileAsset_SoftwareUpdate/55ed861c54fbf1a1729da7d624854627f629f95e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5d15ce08de471ed90ec4b52985f417e8104b5095",
+                "sha2-256": "c8568de4ae4296d01e66921961056145d59a8b94270f4b00bfcc10c3adb30718"
+            },
+            "size": 635908131
         },
         {
             "type": "ota",
@@ -4244,24 +4262,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88748/4EFBBD21-9CF4-4A32-AA34-51466048D27A/com_apple_MobileAsset_SoftwareUpdate/b238c41af122d6cd5ebff61be3d1838c67f8c4fe.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "db52823146ef91964baae3e89e0a06397bc99058",
-                "sha2-256": "c1b4956d44b1cecffde392477880a25c3c2472b6f1472476051401929a6481b8"
-            },
-            "size": 1896201482
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,11"
@@ -4352,39 +4352,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,11"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88576/2F4609B0-2F50-4A80-B445-53A49946EA10/com_apple_MobileAsset_SoftwareUpdate/3aff513bff1a4f9070421539b7d6e08a6bfd5ce3.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88748/4EFBBD21-9CF4-4A32-AA34-51466048D27A/com_apple_MobileAsset_SoftwareUpdate/b238c41af122d6cd5ebff61be3d1838c67f8c4fe.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "8d5f99d9bd516a9075561735e533784d3188a7d1",
-                "sha2-256": "4776a31f4b873b250ea1b620e8b2e8762ef8202a8f2239b203f99f193810f4ad"
+                "sha1": "db52823146ef91964baae3e89e0a06397bc99058",
+                "sha2-256": "c1b4956d44b1cecffde392477880a25c3c2472b6f1472476051401929a6481b8"
             },
-            "size": 667912372
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88402/0AE8B8AC-E616-406F-9D75-AE280AD5BEFF/com_apple_MobileAsset_SoftwareUpdate/b93ada3ed3575be53e1e877eb2488785807ab69b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "09ba431673f3eff5b1be4b3e2c92c19df85bbd44",
-                "sha2-256": "3885e34b61ccffdb731a22346299110e85a90c681f4d8322acd63cac21a54cd6"
-            },
-            "size": 667280242
+            "size": 1896201482
         },
         {
             "type": "ota",
@@ -4511,6 +4493,42 @@
                 "sha2-256": "eaeb4bba8fe7ba0f0eb0c9062dfb9052f7f9f9520629d8132e5c8a952fedcf23"
             },
             "size": 862595064
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88576/2F4609B0-2F50-4A80-B445-53A49946EA10/com_apple_MobileAsset_SoftwareUpdate/3aff513bff1a4f9070421539b7d6e08a6bfd5ce3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8d5f99d9bd516a9075561735e533784d3188a7d1",
+                "sha2-256": "4776a31f4b873b250ea1b620e8b2e8762ef8202a8f2239b203f99f193810f4ad"
+            },
+            "size": 667912372
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88402/0AE8B8AC-E616-406F-9D75-AE280AD5BEFF/com_apple_MobileAsset_SoftwareUpdate/b93ada3ed3575be53e1e877eb2488785807ab69b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "09ba431673f3eff5b1be4b3e2c92c19df85bbd44",
+                "sha2-256": "3885e34b61ccffdb731a22346299110e85a90c681f4d8322acd63cac21a54cd6"
+            },
+            "size": 667280242
         },
         {
             "type": "ota",
@@ -4657,24 +4675,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88386/BD81530F-BAD5-4CA4-A60B-FC441A760E8A/com_apple_MobileAsset_SoftwareUpdate/97cb2d4af43ea7753e030559ace2531e267a3f5a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ceed8833d73487161233ac38db76d4011efa5757",
-                "sha2-256": "270366191279c6618f1ee435aefed31901db2c3a3eea152ef24e534be5e4921f"
-            },
-            "size": 1899642377
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch5,12"
@@ -4765,39 +4765,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch5,12"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88221/069E0527-BE93-4AD3-9DC0-A319D182A786/com_apple_MobileAsset_SoftwareUpdate/21b9c6f3c1f2bc580f4af65f405b0253f4bdb889.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88386/BD81530F-BAD5-4CA4-A60B-FC441A760E8A/com_apple_MobileAsset_SoftwareUpdate/97cb2d4af43ea7753e030559ace2531e267a3f5a.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "76e6bc040b7d90c7dfe86e4562070a45684bdaba",
-                "sha2-256": "e142b99b88f14ffd35bfd1322039fe8b6e0b4f4ace7bbb616c99bccd05b906a3"
+                "sha1": "ceed8833d73487161233ac38db76d4011efa5757",
+                "sha2-256": "270366191279c6618f1ee435aefed31901db2c3a3eea152ef24e534be5e4921f"
             },
-            "size": 668046024
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88686/6AF643AE-3E29-4EF5-A745-012D74E62647/com_apple_MobileAsset_SoftwareUpdate/dfdd4a11312752c90835518a6117a94d049684e2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1763e2ad1f30517601871bf13ae10a3cbc3a6992",
-                "sha2-256": "511669bcec183d64f50fb1854ec2f46252bbb628075ff828a0ec05d86a3fd047"
-            },
-            "size": 667409265
+            "size": 1899642377
         },
         {
             "type": "ota",
@@ -4924,6 +4906,42 @@
                 "sha2-256": "0b233925d37675fd86b048d43049bad85660b228bdb306d35fadedd90adc5369"
             },
             "size": 862735279
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88221/069E0527-BE93-4AD3-9DC0-A319D182A786/com_apple_MobileAsset_SoftwareUpdate/21b9c6f3c1f2bc580f4af65f405b0253f4bdb889.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "76e6bc040b7d90c7dfe86e4562070a45684bdaba",
+                "sha2-256": "e142b99b88f14ffd35bfd1322039fe8b6e0b4f4ace7bbb616c99bccd05b906a3"
+            },
+            "size": 668046024
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88686/6AF643AE-3E29-4EF5-A745-012D74E62647/com_apple_MobileAsset_SoftwareUpdate/dfdd4a11312752c90835518a6117a94d049684e2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1763e2ad1f30517601871bf13ae10a3cbc3a6992",
+                "sha2-256": "511669bcec183d64f50fb1854ec2f46252bbb628075ff828a0ec05d86a3fd047"
+            },
+            "size": 667409265
         },
         {
             "type": "ota",
@@ -5070,24 +5088,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88612/A6B43419-2F49-4011-A0F5-DB7C98D3EC61/com_apple_MobileAsset_SoftwareUpdate/dd819d87f3d40a3cfd24392b3137f73a988c40b8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7baec58e93967cc358ceeba67273df2c89c10f47",
-                "sha2-256": "bd28d9cc0146d8f0ffc74f438abd8fd1dd79d97daa16a222368e10a6bb4c5dc7"
-            },
-            "size": 1846009326
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,1"
@@ -5178,39 +5178,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88782/45C323F4-500B-4CE1-8759-7BD2CF1693F1/com_apple_MobileAsset_SoftwareUpdate/fc1cd5d42de2bf412dd8a34afa28c713ac9cf0ad.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88612/A6B43419-2F49-4011-A0F5-DB7C98D3EC61/com_apple_MobileAsset_SoftwareUpdate/dd819d87f3d40a3cfd24392b3137f73a988c40b8.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "6b6673b4fbb83ff6b556dece57068c5234099821",
-                "sha2-256": "3a2ee4f349e36a0a292340bba17d578bae60df30e681c2aa6635497bf13df712"
+                "sha1": "7baec58e93967cc358ceeba67273df2c89c10f47",
+                "sha2-256": "bd28d9cc0146d8f0ffc74f438abd8fd1dd79d97daa16a222368e10a6bb4c5dc7"
             },
-            "size": 626243714
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88519/70462C11-53FA-4FA5-939F-0C7DE083EB11/com_apple_MobileAsset_SoftwareUpdate/acbf7fcaf8f880b6d48cb71b2c211443d58b1205.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1addf3ac42e75b75a1c43502d9ace505e0f0e454",
-                "sha2-256": "d661790f1a6a5e2f40f982867e70a8c3f9b17249e05af16cdab3abc83da8a15e"
-            },
-            "size": 626364058
+            "size": 1846009326
         },
         {
             "type": "ota",
@@ -5337,6 +5319,42 @@
                 "sha2-256": "d71e30f4fc7376defd84774f5694e24864797199174ef55c455728e3e8298c03"
             },
             "size": 821199744
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88782/45C323F4-500B-4CE1-8759-7BD2CF1693F1/com_apple_MobileAsset_SoftwareUpdate/fc1cd5d42de2bf412dd8a34afa28c713ac9cf0ad.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6b6673b4fbb83ff6b556dece57068c5234099821",
+                "sha2-256": "3a2ee4f349e36a0a292340bba17d578bae60df30e681c2aa6635497bf13df712"
+            },
+            "size": 626243714
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88519/70462C11-53FA-4FA5-939F-0C7DE083EB11/com_apple_MobileAsset_SoftwareUpdate/acbf7fcaf8f880b6d48cb71b2c211443d58b1205.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1addf3ac42e75b75a1c43502d9ace505e0f0e454",
+                "sha2-256": "d661790f1a6a5e2f40f982867e70a8c3f9b17249e05af16cdab3abc83da8a15e"
+            },
+            "size": 626364058
         },
         {
             "type": "ota",
@@ -5483,24 +5501,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88234/CA2CB600-0B6E-415E-8F8E-9381983DE0F9/com_apple_MobileAsset_SoftwareUpdate/6bb090972b33ed21186e4c6c53c42434ab60d763.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c45d9770b96473c5abbb1a0e4d48fa70c5c8e94f",
-                "sha2-256": "6cb77f180c9ff30b7190afdd2c37198dceb52aa3a62256342da6997e8896f8b9"
-            },
-            "size": 1849294083
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,2"
@@ -5591,39 +5591,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,2"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88583/F715B204-A131-42CC-9E93-6AF6C4082DD8/com_apple_MobileAsset_SoftwareUpdate/cdcf9d819771f2843d597c886ad0c580b0c55d46.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88234/CA2CB600-0B6E-415E-8F8E-9381983DE0F9/com_apple_MobileAsset_SoftwareUpdate/6bb090972b33ed21186e4c6c53c42434ab60d763.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "091af33334aeb7dc2037e265b032441ced18c759",
-                "sha2-256": "2cd735066f8037efda14bf33bd66b0b957775271577f6b38a6df736930923283"
+                "sha1": "c45d9770b96473c5abbb1a0e4d48fa70c5c8e94f",
+                "sha2-256": "6cb77f180c9ff30b7190afdd2c37198dceb52aa3a62256342da6997e8896f8b9"
             },
-            "size": 626338638
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88432/265DC75F-82FB-4103-9FDB-0061CFE2491E/com_apple_MobileAsset_SoftwareUpdate/ac16b65b34b59fe26421d792203e4aa7e40ac0cb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "762a00c2e9ff9656fd8d3301a37c181641576a29",
-                "sha2-256": "7106f21a846df8fec173873b83e51ac620795f077ee3f9359146a6a4d1c1a102"
-            },
-            "size": 626448162
+            "size": 1849294083
         },
         {
             "type": "ota",
@@ -5750,6 +5732,42 @@
                 "sha2-256": "c4c2048f0203755e3653c49ffda2c285f917a5a40da3f6e56800c0142d88accd"
             },
             "size": 821290387
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88583/F715B204-A131-42CC-9E93-6AF6C4082DD8/com_apple_MobileAsset_SoftwareUpdate/cdcf9d819771f2843d597c886ad0c580b0c55d46.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "091af33334aeb7dc2037e265b032441ced18c759",
+                "sha2-256": "2cd735066f8037efda14bf33bd66b0b957775271577f6b38a6df736930923283"
+            },
+            "size": 626338638
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88432/265DC75F-82FB-4103-9FDB-0061CFE2491E/com_apple_MobileAsset_SoftwareUpdate/ac16b65b34b59fe26421d792203e4aa7e40ac0cb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "762a00c2e9ff9656fd8d3301a37c181641576a29",
+                "sha2-256": "7106f21a846df8fec173873b83e51ac620795f077ee3f9359146a6a4d1c1a102"
+            },
+            "size": 626448162
         },
         {
             "type": "ota",
@@ -5896,24 +5914,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88129/AEAE59F5-CD42-4CB7-881B-CF001B7D6492/com_apple_MobileAsset_SoftwareUpdate/a428e16d644abf2654a46ceecd393d0d59f9f4b8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e9086c077c7295fbc1d5652014c1d74fb4326820",
-                "sha2-256": "a2c7db308bd031021949de07e62701621e32aa84eb1b3065802044161b960fa3"
-            },
-            "size": 1885518854
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,3"
@@ -6004,39 +6004,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,3"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88658/7A5EC7D0-1E0B-4DBE-8527-68FA796BF546/com_apple_MobileAsset_SoftwareUpdate/2215f41a9b50dd15ae52718fee45d315448f7610.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88129/AEAE59F5-CD42-4CB7-881B-CF001B7D6492/com_apple_MobileAsset_SoftwareUpdate/a428e16d644abf2654a46ceecd393d0d59f9f4b8.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "ffc2294ad2bb7f85705bcd7144fea78ae0a762a5",
-                "sha2-256": "a21861b7d772071a939820a8d2e20bad26e59978c5e8b39d798fecf9b54e0a8d"
+                "sha1": "e9086c077c7295fbc1d5652014c1d74fb4326820",
+                "sha2-256": "a2c7db308bd031021949de07e62701621e32aa84eb1b3065802044161b960fa3"
             },
-            "size": 657650088
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88673/83C4FB29-391A-47F5-B214-0C34BC36B734/com_apple_MobileAsset_SoftwareUpdate/00ced8836142c2698f16c60808cbae82374509c5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0765983f529176924e145d9ea5d392185e34cd43",
-                "sha2-256": "f6ac1e43b3807b926e37b970dc22ec5c5c78120085d4d795e190300c064d05a9"
-            },
-            "size": 657245926
+            "size": 1885518854
         },
         {
             "type": "ota",
@@ -6163,6 +6145,42 @@
                 "sha2-256": "5ac3b2101801138d2fce9b2fb415e79663dcfaa0371155ee8057dfec6e6bdeac"
             },
             "size": 852777523
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88658/7A5EC7D0-1E0B-4DBE-8527-68FA796BF546/com_apple_MobileAsset_SoftwareUpdate/2215f41a9b50dd15ae52718fee45d315448f7610.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ffc2294ad2bb7f85705bcd7144fea78ae0a762a5",
+                "sha2-256": "a21861b7d772071a939820a8d2e20bad26e59978c5e8b39d798fecf9b54e0a8d"
+            },
+            "size": 657650088
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88673/83C4FB29-391A-47F5-B214-0C34BC36B734/com_apple_MobileAsset_SoftwareUpdate/00ced8836142c2698f16c60808cbae82374509c5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0765983f529176924e145d9ea5d392185e34cd43",
+                "sha2-256": "f6ac1e43b3807b926e37b970dc22ec5c5c78120085d4d795e190300c064d05a9"
+            },
+            "size": 657245926
         },
         {
             "type": "ota",
@@ -6309,24 +6327,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88312/F324AC7F-583C-4656-9CA4-EB280E845641/com_apple_MobileAsset_SoftwareUpdate/a35d46d6d956fa43dc25b59c49a911fb4642c69a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a387511adbd0595cc1ea7a4390337f26d09d7e62",
-                "sha2-256": "055ce79354d890cb1978d8d58e628ee8390ce4fa207f87ad623fc49793092d84"
-            },
-            "size": 1888902530
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,4"
@@ -6417,39 +6417,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,4"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88350/07FE78B4-8D68-4E5C-9803-24BA331EADEF/com_apple_MobileAsset_SoftwareUpdate/d6e7cdbac4b5168c7aaf4c804d6d64ad70aa6c28.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88312/F324AC7F-583C-4656-9CA4-EB280E845641/com_apple_MobileAsset_SoftwareUpdate/a35d46d6d956fa43dc25b59c49a911fb4642c69a.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "8e92184ca7c25e449e5ffa39062e9ca25f2eecdc",
-                "sha2-256": "64d2565d106a4d6995afd47429b5bd7be02aca44a90f9efde7fd80804ab72e8b"
+                "sha1": "a387511adbd0595cc1ea7a4390337f26d09d7e62",
+                "sha2-256": "055ce79354d890cb1978d8d58e628ee8390ce4fa207f87ad623fc49793092d84"
             },
-            "size": 657774335
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88678/124FD1FF-E1FA-4A69-A051-17A25A89F371/com_apple_MobileAsset_SoftwareUpdate/880f87ffed8603ac19a0db9445aa5994640df351.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1414cbb9bfac0852509596a557320bfd86fa5a59",
-                "sha2-256": "9a8250137e4751d38da522235ca2e52b532411741dd22cd6fb2d4148a9554678"
-            },
-            "size": 657369916
+            "size": 1888902530
         },
         {
             "type": "ota",
@@ -6576,6 +6558,42 @@
                 "sha2-256": "238b3f1b53898686801417160be71c499c77d62e6ae8397613048a78767fd87f"
             },
             "size": 852918405
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88350/07FE78B4-8D68-4E5C-9803-24BA331EADEF/com_apple_MobileAsset_SoftwareUpdate/d6e7cdbac4b5168c7aaf4c804d6d64ad70aa6c28.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8e92184ca7c25e449e5ffa39062e9ca25f2eecdc",
+                "sha2-256": "64d2565d106a4d6995afd47429b5bd7be02aca44a90f9efde7fd80804ab72e8b"
+            },
+            "size": 657774335
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88678/124FD1FF-E1FA-4A69-A051-17A25A89F371/com_apple_MobileAsset_SoftwareUpdate/880f87ffed8603ac19a0db9445aa5994640df351.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1414cbb9bfac0852509596a557320bfd86fa5a59",
+                "sha2-256": "9a8250137e4751d38da522235ca2e52b532411741dd22cd6fb2d4148a9554678"
+            },
+            "size": 657369916
         },
         {
             "type": "ota",
@@ -6722,24 +6740,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88589/A67D2A1A-41CA-4D9B-9504-4DB2516D5D87/com_apple_MobileAsset_SoftwareUpdate/414cf0d2e5615d80b63cde9b342e1f311531f9f1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d3438f7f2364f1981b23763afd846ca5a713c703",
-                "sha2-256": "2b5d6533df9155adbc0a7bf919269110c7769bbff8b933d1a53b1abc310785d5"
-            },
-            "size": 1931837419
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,6"
@@ -6830,39 +6830,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,6"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88353/39903E11-FAEB-48EF-AF96-D31BD44144C5/com_apple_MobileAsset_SoftwareUpdate/74cd68721b8cc1d3c6384ad87eb13f7489fa348e.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88589/A67D2A1A-41CA-4D9B-9504-4DB2516D5D87/com_apple_MobileAsset_SoftwareUpdate/414cf0d2e5615d80b63cde9b342e1f311531f9f1.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "d3ed9afe28988e9cf61b1b4224a1736bc37b3060",
-                "sha2-256": "6f0d197298e6ab74b2db936cea7da32aa2accfddea919ce9f7e31195d0e31987"
+                "sha1": "d3438f7f2364f1981b23763afd846ca5a713c703",
+                "sha2-256": "2b5d6533df9155adbc0a7bf919269110c7769bbff8b933d1a53b1abc310785d5"
             },
-            "size": 625400354
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88420/FC2C65E4-1D8E-4C63-8EB3-0C33B62140D3/com_apple_MobileAsset_SoftwareUpdate/b878a0797e843fb7ffdd3b70438cf1af17596b5b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0ac56256805ca934e37964e2331ba5d517808ec7",
-                "sha2-256": "115b163eae2e6d184ba058c8605f2eaeb4b8782308efcc70053ca2c93a59c0b8"
-            },
-            "size": 625366857
+            "size": 1931837419
         },
         {
             "type": "ota",
@@ -6989,6 +6971,42 @@
                 "sha2-256": "2fa5c64001aadf7769013a3c195ce0ac08587888b0bac93cd65419fffa728fe8"
             },
             "size": 819732208
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88353/39903E11-FAEB-48EF-AF96-D31BD44144C5/com_apple_MobileAsset_SoftwareUpdate/74cd68721b8cc1d3c6384ad87eb13f7489fa348e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d3ed9afe28988e9cf61b1b4224a1736bc37b3060",
+                "sha2-256": "6f0d197298e6ab74b2db936cea7da32aa2accfddea919ce9f7e31195d0e31987"
+            },
+            "size": 625400354
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88420/FC2C65E4-1D8E-4C63-8EB3-0C33B62140D3/com_apple_MobileAsset_SoftwareUpdate/b878a0797e843fb7ffdd3b70438cf1af17596b5b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0ac56256805ca934e37964e2331ba5d517808ec7",
+                "sha2-256": "115b163eae2e6d184ba058c8605f2eaeb4b8782308efcc70053ca2c93a59c0b8"
+            },
+            "size": 625366857
         },
         {
             "type": "ota",
@@ -7135,24 +7153,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88463/5FD37F17-6902-4E0F-B785-783179D72D8D/com_apple_MobileAsset_SoftwareUpdate/7ab403fd27b814980406890c1aa69a92835f6d1c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0310710043a7a2a49f0a705c23c7a3ad46f50c15",
-                "sha2-256": "f3f35d1f70fc2430d81d8b8ebbf5edd8c0284d973792d501ca60c25f975de1ec"
-            },
-            "size": 1933119616
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,7"
@@ -7243,39 +7243,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,7"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88365/CAC7C0EE-2E8C-4B13-B19A-B10D4D6BA6FD/com_apple_MobileAsset_SoftwareUpdate/6c2d1d3012ad5599bda4adfb398195c79595a8dc.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88463/5FD37F17-6902-4E0F-B785-783179D72D8D/com_apple_MobileAsset_SoftwareUpdate/7ab403fd27b814980406890c1aa69a92835f6d1c.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "de27f5dc800b6219456a66924df38285c57654f3",
-                "sha2-256": "ae7f1cc3f99480c61c27b027c47cf05947d14d11490937726886c643c698ca01"
+                "sha1": "0310710043a7a2a49f0a705c23c7a3ad46f50c15",
+                "sha2-256": "f3f35d1f70fc2430d81d8b8ebbf5edd8c0284d973792d501ca60c25f975de1ec"
             },
-            "size": 625445387
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88575/E3FCF55F-2B1E-422C-A4E9-65C607DA7055/com_apple_MobileAsset_SoftwareUpdate/bcbc47c462e937cf9e67cc54d302ed40d187bf9d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ce6f5d94ed29bd12f92015268d52819d1e80e5a3",
-                "sha2-256": "a54b28ca74cabdb2ff8d0420225ae9dcbd9d2efd4c877f04a2b6d1cc6818f2cb"
-            },
-            "size": 625422626
+            "size": 1933119616
         },
         {
             "type": "ota",
@@ -7402,6 +7384,42 @@
                 "sha2-256": "9478d635bc80b6a3515125d14dcd3f9f8d961778ba05c6140e3b5753f1116008"
             },
             "size": 819843844
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88365/CAC7C0EE-2E8C-4B13-B19A-B10D4D6BA6FD/com_apple_MobileAsset_SoftwareUpdate/6c2d1d3012ad5599bda4adfb398195c79595a8dc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "de27f5dc800b6219456a66924df38285c57654f3",
+                "sha2-256": "ae7f1cc3f99480c61c27b027c47cf05947d14d11490937726886c643c698ca01"
+            },
+            "size": 625445387
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88575/E3FCF55F-2B1E-422C-A4E9-65C607DA7055/com_apple_MobileAsset_SoftwareUpdate/bcbc47c462e937cf9e67cc54d302ed40d187bf9d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ce6f5d94ed29bd12f92015268d52819d1e80e5a3",
+                "sha2-256": "a54b28ca74cabdb2ff8d0420225ae9dcbd9d2efd4c877f04a2b6d1cc6818f2cb"
+            },
+            "size": 625422626
         },
         {
             "type": "ota",
@@ -7548,24 +7566,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88596/3D0F587E-24BC-45A2-9DF1-BE772F897EA2/com_apple_MobileAsset_SoftwareUpdate/88a1df18198b8207796176fd25f802d915f3a432.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0e1b8c1b46631a716d1ef2cfadaef20e6d45db23",
-                "sha2-256": "b50552de82157e22058419e83bfc971480e8e05d0c37b2769eb64502b16f05b1"
-            },
-            "size": 1974647562
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,8"
@@ -7656,39 +7656,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,8"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88653/180885AB-88A0-48D4-B938-52A324EE53D3/com_apple_MobileAsset_SoftwareUpdate/605c3ab6aefe206fa49c93c02d88ec99689535b5.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88596/3D0F587E-24BC-45A2-9DF1-BE772F897EA2/com_apple_MobileAsset_SoftwareUpdate/88a1df18198b8207796176fd25f802d915f3a432.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "603c131c250a053b1ca602797958fe79ec8ff446",
-                "sha2-256": "1f33d3250903d40830676f9c99380683737226ac8a8997a75b57657cffd97544"
+                "sha1": "0e1b8c1b46631a716d1ef2cfadaef20e6d45db23",
+                "sha2-256": "b50552de82157e22058419e83bfc971480e8e05d0c37b2769eb64502b16f05b1"
             },
-            "size": 663073831
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88542/A1E59689-B60A-4682-AA60-BADBFE6EE26E/com_apple_MobileAsset_SoftwareUpdate/eedbf2e979e5014dc9d2c44572727de12c04b14e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "fd1a0bedb9858253f81517141e63c474f9f63a7c",
-                "sha2-256": "386a96e76c7e6a6973acfae32f8ebe7054a715e3f13f2b3d3db9c7a7d1bdd178"
-            },
-            "size": 662865956
+            "size": 1974647562
         },
         {
             "type": "ota",
@@ -7815,6 +7797,42 @@
                 "sha2-256": "cfecef85f93ba0d77a62781f5b0b3745d7340de569184213df3b795c8266ce21"
             },
             "size": 858153188
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88653/180885AB-88A0-48D4-B938-52A324EE53D3/com_apple_MobileAsset_SoftwareUpdate/605c3ab6aefe206fa49c93c02d88ec99689535b5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "603c131c250a053b1ca602797958fe79ec8ff446",
+                "sha2-256": "1f33d3250903d40830676f9c99380683737226ac8a8997a75b57657cffd97544"
+            },
+            "size": 663073831
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88542/A1E59689-B60A-4682-AA60-BADBFE6EE26E/com_apple_MobileAsset_SoftwareUpdate/eedbf2e979e5014dc9d2c44572727de12c04b14e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fd1a0bedb9858253f81517141e63c474f9f63a7c",
+                "sha2-256": "386a96e76c7e6a6973acfae32f8ebe7054a715e3f13f2b3d3db9c7a7d1bdd178"
+            },
+            "size": 662865956
         },
         {
             "type": "ota",
@@ -7961,24 +7979,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19U66",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88278/E8E6A675-CBBE-47B9-9B83-91CAA8427CD7/com_apple_MobileAsset_SoftwareUpdate/c2f8bc84cf85ecf8a9ce6500ef4c442e6e6dd151.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1e05da334f17fff68941cfe6db984d775fb5a110",
-                "sha2-256": "696fdc1fe54ebc6dadb2b8912fa82899dbfe96191ff3d44fc6b52577f0b358c7"
-            },
-            "size": 1976844384
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19U5027c",
             "deviceMap": [
                 "Watch6,9"
@@ -8069,39 +8069,21 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "20R361",
+            "prerequisiteBuild": "19U66",
             "deviceMap": [
                 "Watch6,9"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88273/362ABA05-BFC7-44EC-93F7-5D0F3869CFE0/com_apple_MobileAsset_SoftwareUpdate/447abd6454d8e8276a52e626304f914c10cb24e8.zip",
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88278/E8E6A675-CBBE-47B9-9B83-91CAA8427CD7/com_apple_MobileAsset_SoftwareUpdate/c2f8bc84cf85ecf8a9ce6500ef4c442e6e6dd151.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "e7c3023b99890ce245c671f3b54e5a058e10bff5",
-                "sha2-256": "2648243e78bd4b76fc4ebc33bf864c391c8f21e01d370cb2728fd54bc5b66b1e"
+                "sha1": "1e05da334f17fff68941cfe6db984d775fb5a110",
+                "sha2-256": "696fdc1fe54ebc6dadb2b8912fa82899dbfe96191ff3d44fc6b52577f0b358c7"
             },
-            "size": 663151193
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "20R383",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88780/A395A3BB-FE45-48BC-947A-64A9D3023E7A/com_apple_MobileAsset_SoftwareUpdate/0e39f8f0f7ea34a5e7f351d7561396126222c137.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6a129a8932ebefcffe7bd3bd6e2bcb6321b3432b",
-                "sha2-256": "fa6dc8c2f066f56a3f9ab8e4a8bf1982362780af06d375747891ec8c6482e1ac"
-            },
-            "size": 662947770
+            "size": 1976844384
         },
         {
             "type": "ota",
@@ -8228,6 +8210,42 @@
                 "sha2-256": "498218ff6e03f30479143bfcbc3b02f6eb96144dbb1fa1b39f476f1e12f060ca"
             },
             "size": 858243780
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R361",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88273/362ABA05-BFC7-44EC-93F7-5D0F3869CFE0/com_apple_MobileAsset_SoftwareUpdate/447abd6454d8e8276a52e626304f914c10cb24e8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e7c3023b99890ce245c671f3b54e5a058e10bff5",
+                "sha2-256": "2648243e78bd4b76fc4ebc33bf864c391c8f21e01d370cb2728fd54bc5b66b1e"
+            },
+            "size": 663151193
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "20R383",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022SummerSeed/patches/012-88780/A395A3BB-FE45-48BC-947A-64A9D3023E7A/com_apple_MobileAsset_SoftwareUpdate/0e39f8f0f7ea34a5e7f351d7561396126222c137.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6a129a8932ebefcffe7bd3bd6e2bcb6321b3432b",
+                "sha2-256": "fa6dc8c2f066f56a3f9ab8e4a8bf1982362780af06d375747891ec8c6482e1ac"
+            },
+            "size": 662947770
         },
         {
             "type": "ota",

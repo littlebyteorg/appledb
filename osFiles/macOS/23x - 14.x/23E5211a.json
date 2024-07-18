@@ -2,6 +2,7 @@
     "osStr": "macOS",
     "version": "14.4 beta 5",
     "build": "23E5211a",
+    "restoreVersion": "23.5.211.5.1,0",
     "bridgeOSBuild": "21P54220a",
     "buildTrain": "SunburstESeed",
     "released": "2024-02-27",
@@ -11,6 +12,13 @@
         "align": "left"
     },
     "deviceMap": [
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMac21,1",
+        "iMac21,2",
+        "iMacPro1,1",
         "Mac13,1",
         "Mac13,2",
         "Mac14,2",
@@ -55,91 +63,18 @@
         "MacBookPro18,2",
         "MacBookPro18,3",
         "MacBookPro18,4",
-        "MacPro7,1",
-        "MacPro7,1-Rack",
         "Macmini8,1",
         "Macmini9,1",
-        "VirtualMac2,1",
-        "iMac19,1",
-        "iMac19,2",
-        "iMac20,1",
-        "iMac20,2",
-        "iMac21,1",
-        "iMac21,2",
-        "iMacPro1,1"
+        "MacPro7,1",
+        "MacPro7,1-Rack",
+        "VirtualMac2,1"
     ],
     "sources": [
         {
-            "type": "kdk",
-            "deviceMap": [
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookAir10,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMac21,1",
-                "iMac21,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_14.4_build_23E5211a/Kernel_Debug_Kit_14.4_build_23E5211a.dmg",
-                    "active": true
-                }
-            ],
-            "size": 902922485
-        },
-        {
             "type": "ipsw",
             "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -171,9 +106,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -190,6 +123,13 @@
         {
             "type": "installassistant",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMac21,1",
+                "iMac21,2",
+                "iMacPro1,1",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -234,29 +174,22 @@
                 "MacBookPro18,2",
                 "MacBookPro18,3",
                 "MacBookPro18,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
                 "Macmini8,1",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMac21,1",
-                "iMac21,2",
-                "iMacPro1,1"
+                "MacPro7,1",
+                "MacPro7,1-Rack",
+                "VirtualMac2,1"
             ],
             "links": [
                 {
                     "url": "https://swcdn.apple.com/content/downloads/63/58/052-59960-A_3PITC0R66U/oytty81wyviflz6f2cj8sbgjvoucsoefgd/InstallAssistant.pkg",
                     "catalog": "dev-beta",
-                    "active": true
+                    "active": false
                 },
                 {
                     "url": "https://swcdn.apple.com/content/downloads/28/19/052-59960-A_YTQQPQMOHO/4c0yzh36i7npxmx8uorezn1d68mslvbxyg/InstallAssistant.pkg",
                     "catalog": "public-beta",
-                    "active": true
+                    "active": false
                 }
             ],
             "hashes": {
@@ -267,6 +200,13 @@
         {
             "type": "ota",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMac21,1",
+                "iMac21,2",
+                "iMacPro1,1",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -311,18 +251,11 @@
                 "MacBookPro18,2",
                 "MacBookPro18,3",
                 "MacBookPro18,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
                 "Macmini8,1",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMac21,1",
-                "iMac21,2",
-                "iMacPro1,1"
+                "MacPro7,1",
+                "MacPro7,1-Rack",
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -340,6 +273,47 @@
             "type": "ota",
             "prerequisiteBuild": "21H1015",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59968/DD72EA67-C34B-4B8E-84DF-86F910825636/com_apple_MobileAsset_MacSoftwareUpdate/5649bc01d70953192daa0ec35ffa788be96064a5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bf6fea95e6b4be7ed27ead7e1c4c24193eb04769",
+                "sha2-256": "325c3d5243f8f8d1d19c4a6414e85493193efe037ae43e94927313642786d0be"
+            },
+            "size": 6115592008
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21H1015",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -351,9 +325,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -371,6 +343,47 @@
             "type": "ota",
             "prerequisiteBuild": "21H1111",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59955/F494F6C0-2ABC-4A3E-AD64-7860A84A5F65/com_apple_MobileAsset_MacSoftwareUpdate/0744dc2763281a9de7549865b757ef9ee94c4ad2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0dbfcd0315dcd4efb24a3c45491a81e14ae39853",
+                "sha2-256": "21d74ee0b2d1a1fc630c09af346c6afe6773cb0d61bfdb26c88f2097c81a5475"
+            },
+            "size": 6115652900
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21H1111",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -382,9 +395,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -402,6 +413,47 @@
             "type": "ota",
             "prerequisiteBuild": "21H1121",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59983/FFB7D58F-5186-4605-9A42-1D6CEF9D63E8/com_apple_MobileAsset_MacSoftwareUpdate/82eed8eaadaf9becc7be9e7d9229155bc653616b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0ff3f438317d8fd6c18746b5c047a9f725cc8214",
+                "sha2-256": "f19e6578858a711ae3314f1a5db923ce8723439fa8fbf33d4d69216dc93ec742"
+            },
+            "size": 6116889338
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21H1121",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -413,9 +465,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -433,6 +483,47 @@
             "type": "ota",
             "prerequisiteBuild": "22G513",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59975/7FE31A7A-DD2D-49BE-BE79-18988EE554D2/com_apple_MobileAsset_MacSoftwareUpdate/a0f1ae90f44401cc7d90e8ea6153b318b927ef5f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "da483bac0dcd4a638b039a6bb558a4ff24bdfbd2",
+                "sha2-256": "2e3d02ee0869d06ee4db7fe4d1395dd58e0fe7825f73dbca427bdd7fd09f4484"
+            },
+            "size": 4870673299
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22G513",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -458,9 +549,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -478,6 +567,47 @@
             "type": "ota",
             "prerequisiteBuild": "22G610",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59962/B7E2AB22-FE81-4DC5-9EFB-6FABF7A54F2B/com_apple_MobileAsset_MacSoftwareUpdate/b7380e2392f1ccb1561977959e5637a0ea991a21.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7d85c5fa798785d4313893b52cd899639518afbb",
+                "sha2-256": "a6b680758f6ba9e98cdb5e54cc623afdd690292c24c8037fa9449687f8b5863a"
+            },
+            "size": 4870185211
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22G610",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -503,9 +633,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -523,6 +651,47 @@
             "type": "ota",
             "prerequisiteBuild": "22G619",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59987/33250369-D11F-414A-9A6E-F995076956BE/com_apple_MobileAsset_MacSoftwareUpdate/3abbc5f4f4c83424c481ada5e4d001ab49b077b0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8a0b43a123a7c8b07896ac98535ee5857309fecc",
+                "sha2-256": "0d2b424dd997880c1c4dd8e22cc222d4f588e81687c814441179bb3f0440092f"
+            },
+            "size": 4870489374
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "22G619",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -548,9 +717,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -568,6 +735,47 @@
             "type": "ota",
             "prerequisiteBuild": "23D56",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59966/8C02C147-7539-4C48-8D30-42971F79D2FF/com_apple_MobileAsset_MacSoftwareUpdate/1d6d4612f11b176213ec0c8e20511da20b22e856.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "51e84306624e06c7754d5d1ef957ca16b6a48b08",
+                "sha2-256": "8df587205b80e2df8571643d2f31f3cf4de6b5d0f36c109a02171866273e2c91"
+            },
+            "size": 2004883443
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "23D56",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -599,9 +807,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -619,6 +825,47 @@
             "type": "ota",
             "prerequisiteBuild": "23D60",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59969/6C4DB987-78C2-4A13-9312-76A33C3D6409/com_apple_MobileAsset_MacSoftwareUpdate/2d42a147ae98a94829af663d66f6c9d6cae4be84.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "64ecba4656642915bb898d1581b4e039b5d40945",
+                "sha2-256": "d72483c1065d57a86eaf345d49ba2fb7a4a3a83d18a268c3ccdc0034c7aa0d28"
+            },
+            "size": 2004173652
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "23D60",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -650,9 +897,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -670,6 +915,47 @@
             "type": "ota",
             "prerequisiteBuild": "23E5196e",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59981/14CA9D21-B686-4941-8826-24DD97D39F20/com_apple_MobileAsset_MacSoftwareUpdate/683c6ae40097a10c574da3d1e14f80f423bd2252.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9bf270f44c481d71a6f2461c457bb331ad63e52e",
+                "sha2-256": "7f6387f650797b3ee505da4866a279c577a77cd2bc23ce0a6b56cb602b794516"
+            },
+            "size": 853722481
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "23E5196e",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -701,9 +987,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -721,6 +1005,47 @@
             "type": "ota",
             "prerequisiteBuild": "23E5205c",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMacPro1,1",
+                "MacBookAir8,1",
+                "MacBookAir8,2",
+                "MacBookAir9,1",
+                "MacBookPro15,1-2018",
+                "MacBookPro15,1-2019",
+                "MacBookPro15,2-2018",
+                "MacBookPro15,2-2019",
+                "MacBookPro15,3-2018",
+                "MacBookPro15,3-2019",
+                "MacBookPro15,4",
+                "MacBookPro16,1",
+                "MacBookPro16,2",
+                "MacBookPro16,3",
+                "MacBookPro16,4",
+                "Macmini8,1",
+                "MacPro7,1",
+                "MacPro7,1-Rack"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59959/DA566915-F5B2-46BF-9F00-E3E8D362D2C2/com_apple_MobileAsset_MacSoftwareUpdate/279f247a18d3c89f514d3e572182e8733cb77e7c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a12a529e750b87891336f778b841257ba488c28e",
+                "sha2-256": "46b9148b53688350d03f51539743cb1b12340c2a905506541674f660f5fc5087"
+            },
+            "size": 558769286
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "23E5205c",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
                 "Mac13,1",
                 "Mac13,2",
                 "Mac14,2",
@@ -752,9 +1077,7 @@
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "VirtualMac2,1",
-                "iMac21,1",
-                "iMac21,2"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
@@ -769,12 +1092,43 @@
             "size": 1360005644
         },
         {
-            "type": "ota",
-            "prerequisiteBuild": "21H1015",
+            "type": "kdk",
             "deviceMap": [
+                "iMac19,1",
+                "iMac19,2",
+                "iMac20,1",
+                "iMac20,2",
+                "iMac21,1",
+                "iMac21,2",
+                "iMacPro1,1",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
                 "MacBookAir8,1",
                 "MacBookAir8,2",
                 "MacBookAir9,1",
+                "MacBookAir10,1",
                 "MacBookPro15,1-2018",
                 "MacBookPro15,1-2019",
                 "MacBookPro15,2-2018",
@@ -786,377 +1140,24 @@
                 "MacBookPro16,2",
                 "MacBookPro16,3",
                 "MacBookPro16,4",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini8,1",
+                "Macmini9,1",
                 "MacPro7,1",
                 "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
+                "VirtualMac2,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59968/DD72EA67-C34B-4B8E-84DF-86F910825636/com_apple_MobileAsset_MacSoftwareUpdate/5649bc01d70953192daa0ec35ffa788be96064a5.zip",
+                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_14.4_build_23E5211a/Kernel_Debug_Kit_14.4_build_23E5211a.dmg",
                     "active": true
                 }
             ],
-            "hashes": {
-                "sha1": "bf6fea95e6b4be7ed27ead7e1c4c24193eb04769",
-                "sha2-256": "325c3d5243f8f8d1d19c4a6414e85493193efe037ae43e94927313642786d0be"
-            },
-            "size": 6115592008
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21H1111",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59955/F494F6C0-2ABC-4A3E-AD64-7860A84A5F65/com_apple_MobileAsset_MacSoftwareUpdate/0744dc2763281a9de7549865b757ef9ee94c4ad2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0dbfcd0315dcd4efb24a3c45491a81e14ae39853",
-                "sha2-256": "21d74ee0b2d1a1fc630c09af346c6afe6773cb0d61bfdb26c88f2097c81a5475"
-            },
-            "size": 6115652900
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21H1121",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59983/FFB7D58F-5186-4605-9A42-1D6CEF9D63E8/com_apple_MobileAsset_MacSoftwareUpdate/82eed8eaadaf9becc7be9e7d9229155bc653616b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0ff3f438317d8fd6c18746b5c047a9f725cc8214",
-                "sha2-256": "f19e6578858a711ae3314f1a5db923ce8723439fa8fbf33d4d69216dc93ec742"
-            },
-            "size": 6116889338
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22G513",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59975/7FE31A7A-DD2D-49BE-BE79-18988EE554D2/com_apple_MobileAsset_MacSoftwareUpdate/a0f1ae90f44401cc7d90e8ea6153b318b927ef5f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "da483bac0dcd4a638b039a6bb558a4ff24bdfbd2",
-                "sha2-256": "2e3d02ee0869d06ee4db7fe4d1395dd58e0fe7825f73dbca427bdd7fd09f4484"
-            },
-            "size": 4870673299
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22G610",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59962/B7E2AB22-FE81-4DC5-9EFB-6FABF7A54F2B/com_apple_MobileAsset_MacSoftwareUpdate/b7380e2392f1ccb1561977959e5637a0ea991a21.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7d85c5fa798785d4313893b52cd899639518afbb",
-                "sha2-256": "a6b680758f6ba9e98cdb5e54cc623afdd690292c24c8037fa9449687f8b5863a"
-            },
-            "size": 4870185211
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22G619",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59987/33250369-D11F-414A-9A6E-F995076956BE/com_apple_MobileAsset_MacSoftwareUpdate/3abbc5f4f4c83424c481ada5e4d001ab49b077b0.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8a0b43a123a7c8b07896ac98535ee5857309fecc",
-                "sha2-256": "0d2b424dd997880c1c4dd8e22cc222d4f588e81687c814441179bb3f0440092f"
-            },
-            "size": 4870489374
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23D56",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59966/8C02C147-7539-4C48-8D30-42971F79D2FF/com_apple_MobileAsset_MacSoftwareUpdate/1d6d4612f11b176213ec0c8e20511da20b22e856.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "51e84306624e06c7754d5d1ef957ca16b6a48b08",
-                "sha2-256": "8df587205b80e2df8571643d2f31f3cf4de6b5d0f36c109a02171866273e2c91"
-            },
-            "size": 2004883443
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23D60",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59969/6C4DB987-78C2-4A13-9312-76A33C3D6409/com_apple_MobileAsset_MacSoftwareUpdate/2d42a147ae98a94829af663d66f6c9d6cae4be84.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "64ecba4656642915bb898d1581b4e039b5d40945",
-                "sha2-256": "d72483c1065d57a86eaf345d49ba2fb7a4a3a83d18a268c3ccdc0034c7aa0d28"
-            },
-            "size": 2004173652
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23E5196e",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59981/14CA9D21-B686-4941-8826-24DD97D39F20/com_apple_MobileAsset_MacSoftwareUpdate/683c6ae40097a10c574da3d1e14f80f423bd2252.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9bf270f44c481d71a6f2461c457bb331ad63e52e",
-                "sha2-256": "7f6387f650797b3ee505da4866a279c577a77cd2bc23ce0a6b56cb602b794516"
-            },
-            "size": 853722481
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23E5205c",
-            "deviceMap": [
-                "MacBookAir8,1",
-                "MacBookAir8,2",
-                "MacBookAir9,1",
-                "MacBookPro15,1-2018",
-                "MacBookPro15,1-2019",
-                "MacBookPro15,2-2018",
-                "MacBookPro15,2-2019",
-                "MacBookPro15,3-2018",
-                "MacBookPro15,3-2019",
-                "MacBookPro15,4",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,3",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
-                "Macmini8,1",
-                "iMac19,1",
-                "iMac19,2",
-                "iMac20,1",
-                "iMac20,2",
-                "iMacPro1,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-59959/DA566915-F5B2-46BF-9F00-E3E8D362D2C2/com_apple_MobileAsset_MacSoftwareUpdate/279f247a18d3c89f514d3e572182e8733cb77e7c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a12a529e750b87891336f778b841257ba488c28e",
-                "sha2-256": "46b9148b53688350d03f51539743cb1b12340c2a905506541674f660f5fc5087"
-            },
-            "size": 558769286
+            "size": 902922485
         }
     ]
 }

@@ -31,6 +31,20 @@
         "Watch6,8",
         "Watch6,9"
     ],
+    "basebandVersions": {
+        "Watch3,1": "6.20.01",
+        "Watch3,2": "6.20.01",
+        "Watch4,3": "4.02.01",
+        "Watch4,4": "4.02.01",
+        "Watch5,3": "4.02.01",
+        "Watch5,4": "4.02.01",
+        "Watch5,11": "4.02.01",
+        "Watch5,12": "4.02.01",
+        "Watch6,3": "4.02.01",
+        "Watch6,4": "4.02.01",
+        "Watch6,8": "4.02.01",
+        "Watch6,9": "4.02.01"
+    },
     "sources": [
         {
             "type": "ipsw",
@@ -40,10 +54,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79714/953EA489-927F-4AA9-A11E-DE0665AC3F62/Watch3,1_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79714/953EA489-927F-4AA9-A11E-DE0665AC3F62/Watch3,1_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -720,42 +730,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19S546",
-            "deviceMap": [
-                "Watch3,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79941/2ACA7D73-5E1D-412C-A2B6-EA7867DDA320/com_apple_MobileAsset_SoftwareUpdate/ced1a6302b5c31e4979cf42961529493faea7867.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3394700097d48307d0748bc9e220d8809c9d02e8",
-                "sha2-256": "eec5b5b39317f0a96e214e3901b25e8d4bea608fb9facfe390777a2b1ebbc584"
-            },
-            "size": 645102022
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S553",
-            "deviceMap": [
-                "Watch3,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80251/29B0BF6F-2662-46C7-8942-AC7433EB5E90/com_apple_MobileAsset_SoftwareUpdate/149d2241f1e7465b50aade7fa85e2902477ae2ce.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "244bc1703c2d69cf524b129496798519cab90433",
-                "sha2-256": "aef1818535b34cfc05c670635e91bf02ea1706347d873e8affc282459c00f334"
-            },
-            "size": 643923425
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19S5525f",
             "deviceMap": [
                 "Watch3,1"
@@ -792,21 +766,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19T242",
+            "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch3,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79329/353839C6-ED4A-44DA-8142-0BD3C2FB8A2A/com_apple_MobileAsset_SoftwareUpdate/9409362ca73e8e2c6abc64f6ada7eb0c5418e548.zip",
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79941/2ACA7D73-5E1D-412C-A2B6-EA7867DDA320/com_apple_MobileAsset_SoftwareUpdate/ced1a6302b5c31e4979cf42961529493faea7867.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "d166792249ea930a2a565f7ea812abd41e2463b1",
-                "sha2-256": "78a29a8dab0cb9d3dc179b27e700a3ceaed0dcd6feb06974bf34fd1fa0e0eae9"
+                "sha1": "3394700097d48307d0748bc9e220d8809c9d02e8",
+                "sha2-256": "eec5b5b39317f0a96e214e3901b25e8d4bea608fb9facfe390777a2b1ebbc584"
             },
-            "size": 168358782
+            "size": 645102022
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S553",
+            "deviceMap": [
+                "Watch3,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80251/29B0BF6F-2662-46C7-8942-AC7433EB5E90/com_apple_MobileAsset_SoftwareUpdate/149d2241f1e7465b50aade7fa85e2902477ae2ce.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "244bc1703c2d69cf524b129496798519cab90433",
+                "sha2-256": "aef1818535b34cfc05c670635e91bf02ea1706347d873e8affc282459c00f334"
+            },
+            "size": 643923425
         },
         {
             "type": "ota",
@@ -899,6 +891,24 @@
             "size": 227801121
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch3,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79329/353839C6-ED4A-44DA-8142-0BD3C2FB8A2A/com_apple_MobileAsset_SoftwareUpdate/9409362ca73e8e2c6abc64f6ada7eb0c5418e548.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d166792249ea930a2a565f7ea812abd41e2463b1",
+                "sha2-256": "78a29a8dab0cb9d3dc179b27e700a3ceaed0dcd6feb06974bf34fd1fa0e0eae9"
+            },
+            "size": 168358782
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch3,2"
@@ -906,10 +916,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80456/B9E3F972-3404-40AB-B2EB-100300F57B3B/Watch3,2_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80456/B9E3F972-3404-40AB-B2EB-100300F57B3B/Watch3,2_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -1586,42 +1592,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19S546",
-            "deviceMap": [
-                "Watch3,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80209/0A080FEA-2EA6-4C24-9CE2-0514A88FB262/com_apple_MobileAsset_SoftwareUpdate/8228c68d6079f1a4e22a155a3b99b8d3961087c1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "839a1325ba63a54cb3254046c179593b5962b18b",
-                "sha2-256": "49a1849b2b48a6a10bd26b7668f4cdf3a4149614923c2852e7d3ffc2152b71bd"
-            },
-            "size": 644984901
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S553",
-            "deviceMap": [
-                "Watch3,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79376/204CDB10-7AEE-44AA-ABE3-4E4DEB70AE66/com_apple_MobileAsset_SoftwareUpdate/e803fa4dea45e69690faa181a525c23bec5b6b0d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "62ba19a568f1b517085b7ca55d304e96775967ea",
-                "sha2-256": "9428e9ae754177a4a6060c8e5a7c7339b76e1ccd878892fe754127618d7a46ff"
-            },
-            "size": 643815917
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19S5525f",
             "deviceMap": [
                 "Watch3,2"
@@ -1658,21 +1628,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19T242",
+            "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch3,2"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80391/6C62061B-DC5E-48FA-B8C7-99DC82E6EDB5/com_apple_MobileAsset_SoftwareUpdate/4df0d51ea0df74e1ceed0fdcd90e09d68ba9b493.zip",
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80209/0A080FEA-2EA6-4C24-9CE2-0514A88FB262/com_apple_MobileAsset_SoftwareUpdate/8228c68d6079f1a4e22a155a3b99b8d3961087c1.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "2856e6b69872e64d9ab7e04604306819b9f42e08",
-                "sha2-256": "2c3892754fb13b54e4ab5d1953ea9e930cf8e5928adc33c6519a4902254a4046"
+                "sha1": "839a1325ba63a54cb3254046c179593b5962b18b",
+                "sha2-256": "49a1849b2b48a6a10bd26b7668f4cdf3a4149614923c2852e7d3ffc2152b71bd"
             },
-            "size": 168368146
+            "size": 644984901
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S553",
+            "deviceMap": [
+                "Watch3,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79376/204CDB10-7AEE-44AA-ABE3-4E4DEB70AE66/com_apple_MobileAsset_SoftwareUpdate/e803fa4dea45e69690faa181a525c23bec5b6b0d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "62ba19a568f1b517085b7ca55d304e96775967ea",
+                "sha2-256": "9428e9ae754177a4a6060c8e5a7c7339b76e1ccd878892fe754127618d7a46ff"
+            },
+            "size": 643815917
         },
         {
             "type": "ota",
@@ -1765,6 +1753,24 @@
             "size": 227834560
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch3,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80391/6C62061B-DC5E-48FA-B8C7-99DC82E6EDB5/com_apple_MobileAsset_SoftwareUpdate/4df0d51ea0df74e1ceed0fdcd90e09d68ba9b493.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2856e6b69872e64d9ab7e04604306819b9f42e08",
+                "sha2-256": "2c3892754fb13b54e4ab5d1953ea9e930cf8e5928adc33c6519a4902254a4046"
+            },
+            "size": 168368146
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch3,3"
@@ -1772,10 +1778,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80059/A29A2063-3348-440F-8AE9-A7A835400387/Watch3,3_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80059/A29A2063-3348-440F-8AE9-A7A835400387/Watch3,3_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -2452,42 +2454,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19S546",
-            "deviceMap": [
-                "Watch3,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79569/1F826E6B-DED1-4BB3-8E61-F7903FC31A86/com_apple_MobileAsset_SoftwareUpdate/559a954977b9ec24f91ed5f0b5aa638f1d563287.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6088e79e5f72a0bafbdf8a01701ecfca868ec1d0",
-                "sha2-256": "d270bae9d07f76b40b2936f888be147ad94026d3d4ce33c05a31e0bc0eec24cf"
-            },
-            "size": 606390813
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S553",
-            "deviceMap": [
-                "Watch3,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80100/C8A77B3E-136F-46F6-9928-AD407D989BD2/com_apple_MobileAsset_SoftwareUpdate/ea25bb597148af6bcc2c8b44f85a8f7e753559cd.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b730a56bb7287424cd3ac0f4c6fc104fc9b3f652",
-                "sha2-256": "5e30e36fc5fba4be292396fb8b6b82028e7a67bfe3960a1f6600ae0f5a122781"
-            },
-            "size": 606674842
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19S5525f",
             "deviceMap": [
                 "Watch3,3"
@@ -2524,21 +2490,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19T242",
+            "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch3,3"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79940/D857B8DD-C9FF-4879-A766-4C3DFE21320E/com_apple_MobileAsset_SoftwareUpdate/2ae65f2af76b0d5d298fa61dd847129627600b32.zip",
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79569/1F826E6B-DED1-4BB3-8E61-F7903FC31A86/com_apple_MobileAsset_SoftwareUpdate/559a954977b9ec24f91ed5f0b5aa638f1d563287.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "f5b70eda56aab3cd35f879bd3431e29073c1283b",
-                "sha2-256": "96e1c68b279c235babe528867a494be0e4e40083aca653a55033581bdef9820c"
+                "sha1": "6088e79e5f72a0bafbdf8a01701ecfca868ec1d0",
+                "sha2-256": "d270bae9d07f76b40b2936f888be147ad94026d3d4ce33c05a31e0bc0eec24cf"
             },
-            "size": 132821362
+            "size": 606390813
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S553",
+            "deviceMap": [
+                "Watch3,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80100/C8A77B3E-136F-46F6-9928-AD407D989BD2/com_apple_MobileAsset_SoftwareUpdate/ea25bb597148af6bcc2c8b44f85a8f7e753559cd.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b730a56bb7287424cd3ac0f4c6fc104fc9b3f652",
+                "sha2-256": "5e30e36fc5fba4be292396fb8b6b82028e7a67bfe3960a1f6600ae0f5a122781"
+            },
+            "size": 606674842
         },
         {
             "type": "ota",
@@ -2631,6 +2615,24 @@
             "size": 199406288
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch3,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79940/D857B8DD-C9FF-4879-A766-4C3DFE21320E/com_apple_MobileAsset_SoftwareUpdate/2ae65f2af76b0d5d298fa61dd847129627600b32.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f5b70eda56aab3cd35f879bd3431e29073c1283b",
+                "sha2-256": "96e1c68b279c235babe528867a494be0e4e40083aca653a55033581bdef9820c"
+            },
+            "size": 132821362
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch3,4"
@@ -2638,10 +2640,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79630/F0A15467-2C53-41E5-A76C-9E3BD068C50B/Watch3,4_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79630/F0A15467-2C53-41E5-A76C-9E3BD068C50B/Watch3,4_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -3318,42 +3316,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19S546",
-            "deviceMap": [
-                "Watch3,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79728/B5070EAD-2826-4A40-9A02-F81F14FAD61C/com_apple_MobileAsset_SoftwareUpdate/8a09f5d6b21804f960515f855440c600ffed6615.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e66b448034809fc9be55921745fc13384939a4bf",
-                "sha2-256": "4c1a5f3025a7e7317ae8c4952c84ad7f129172cfb223f2b805638c65739fb393"
-            },
-            "size": 606235485
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S553",
-            "deviceMap": [
-                "Watch3,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79935/E6A9AC28-3E56-4027-B900-70D0A18B5AC1/com_apple_MobileAsset_SoftwareUpdate/6eceacd49d2381c459cd50ec22f82b3e140d2f61.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d980c03fdcf1f1ac513e5f75b69e00e1a5c08041",
-                "sha2-256": "51095b23dc17cf829b7f3fcc4de0c0f9f533680a8ad3a7535ae8eb203193f032"
-            },
-            "size": 606559406
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "19S5525f",
             "deviceMap": [
                 "Watch3,4"
@@ -3390,21 +3352,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "19T242",
+            "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch3,4"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79436/2425467F-BFF8-4E94-A216-A3D9389B9EBB/com_apple_MobileAsset_SoftwareUpdate/9f61c38c1e1e890446be6679669655c3f1d0898f.zip",
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79728/B5070EAD-2826-4A40-9A02-F81F14FAD61C/com_apple_MobileAsset_SoftwareUpdate/8a09f5d6b21804f960515f855440c600ffed6615.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "f12b087cc09a57ab0526662fbf0a18747d51260a",
-                "sha2-256": "356f72c363a3700c49aa4b6d4a446501e60355995bd037a2a251276030966d2c"
+                "sha1": "e66b448034809fc9be55921745fc13384939a4bf",
+                "sha2-256": "4c1a5f3025a7e7317ae8c4952c84ad7f129172cfb223f2b805638c65739fb393"
             },
-            "size": 132830873
+            "size": 606235485
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S553",
+            "deviceMap": [
+                "Watch3,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79935/E6A9AC28-3E56-4027-B900-70D0A18B5AC1/com_apple_MobileAsset_SoftwareUpdate/6eceacd49d2381c459cd50ec22f82b3e140d2f61.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d980c03fdcf1f1ac513e5f75b69e00e1a5c08041",
+                "sha2-256": "51095b23dc17cf829b7f3fcc4de0c0f9f533680a8ad3a7535ae8eb203193f032"
+            },
+            "size": 606559406
         },
         {
             "type": "ota",
@@ -3497,6 +3477,24 @@
             "size": 199433946
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch3,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79436/2425467F-BFF8-4E94-A216-A3D9389B9EBB/com_apple_MobileAsset_SoftwareUpdate/9f61c38c1e1e890446be6679669655c3f1d0898f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f12b087cc09a57ab0526662fbf0a18747d51260a",
+                "sha2-256": "356f72c363a3700c49aa4b6d4a446501e60355995bd037a2a251276030966d2c"
+            },
+            "size": 132830873
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch4,1"
@@ -3504,10 +3502,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79786/79BE3FE8-CD54-4C4A-B0E9-42ACC6FA6ADB/Watch4,1_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79786/79BE3FE8-CD54-4C4A-B0E9-42ACC6FA6ADB/Watch4,1_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -4184,6 +4178,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79470/F6A77028-F2EE-4B78-938A-F208FC10E239/com_apple_MobileAsset_SoftwareUpdate/c32b5cd149adbf9bd017aa3deee2ec40d58def6e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "aae67b1ae7365660f49a4f973aa00b6fc119458e",
+                "sha2-256": "48513ad0ee44b4a578c5ad6f3a21e2dae248c2f31b31edcd54bad0fe82104453"
+            },
+            "size": 571743356
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79677/7D672A09-86F7-48CE-9870-C4A64F294B3B/com_apple_MobileAsset_SoftwareUpdate/b6b6df35fd1fd4c1451c1bd9776c47ddd2d79be5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "52ae59d25cd0e3a1e0d4599e12d1a0498c746b42",
+                "sha2-256": "99d9becbd712646ea161885ef5c2723ad23e31ced6d7a2e1cc91131146ebb2ea"
+            },
+            "size": 575683591
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch4,1"
@@ -4235,60 +4265,6 @@
                 "sha2-256": "e630870a6a7c2da995c9540faefd55efff18598e96a5a7b0e0d9603b7a95b34a"
             },
             "size": 570881604
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79470/F6A77028-F2EE-4B78-938A-F208FC10E239/com_apple_MobileAsset_SoftwareUpdate/c32b5cd149adbf9bd017aa3deee2ec40d58def6e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "aae67b1ae7365660f49a4f973aa00b6fc119458e",
-                "sha2-256": "48513ad0ee44b4a578c5ad6f3a21e2dae248c2f31b31edcd54bad0fe82104453"
-            },
-            "size": 571743356
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79677/7D672A09-86F7-48CE-9870-C4A64F294B3B/com_apple_MobileAsset_SoftwareUpdate/b6b6df35fd1fd4c1451c1bd9776c47ddd2d79be5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "52ae59d25cd0e3a1e0d4599e12d1a0498c746b42",
-                "sha2-256": "99d9becbd712646ea161885ef5c2723ad23e31ced6d7a2e1cc91131146ebb2ea"
-            },
-            "size": 575683591
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80030/FFCD7C33-0378-444E-8AA7-32AB0F0FB8EF/com_apple_MobileAsset_SoftwareUpdate/864ab7499311a03717940d2d75d9c6ca088f4d0c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c8ab2aa76fae6034d5c8e5a42b0b53355eaada58",
-                "sha2-256": "a4b5b2bbe0fef6bad39e712cf17d50af6ca1ba82576411b2dc0203931b3d2b30"
-            },
-            "size": 77448226
         },
         {
             "type": "ota",
@@ -4381,6 +4357,24 @@
             "size": 164691381
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80030/FFCD7C33-0378-444E-8AA7-32AB0F0FB8EF/com_apple_MobileAsset_SoftwareUpdate/864ab7499311a03717940d2d75d9c6ca088f4d0c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c8ab2aa76fae6034d5c8e5a42b0b53355eaada58",
+                "sha2-256": "a4b5b2bbe0fef6bad39e712cf17d50af6ca1ba82576411b2dc0203931b3d2b30"
+            },
+            "size": 77448226
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch4,2"
@@ -4388,10 +4382,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80355/756F3E2F-41FA-4F73-8CDE-0F15A87B2504/Watch4,2_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80355/756F3E2F-41FA-4F73-8CDE-0F15A87B2504/Watch4,2_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -5068,6 +5058,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79820/3C8E8F0B-01FF-4196-8EAA-36C90F754A62/com_apple_MobileAsset_SoftwareUpdate/43757714b092ec03104506bdf8b8352ac7afb3d6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "13dbd1bc8f2a21fc700fb1d219b69edb31ba50b6",
+                "sha2-256": "eb5dc1bb10bb1cbb5d67e9118ae40133a80cec1ce64b03119c26d5c3816b30d0"
+            },
+            "size": 571922315
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79875/5E582988-BEC1-4D7E-BFAE-771AAEF0BFD1/com_apple_MobileAsset_SoftwareUpdate/410f558961b1a26fc81096bbc83f9727e349bc0a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "902335503b90373d9f9db12adea6485e48c32217",
+                "sha2-256": "913e54ae3f3b33632afea4c8c960a426d8771f8520c276be37748a79c042cdc1"
+            },
+            "size": 575871016
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch4,2"
@@ -5119,60 +5145,6 @@
                 "sha2-256": "f4470c14dddca964e494cd6aa14a7a3ee771787acd84998cc8831d767cd4e0da"
             },
             "size": 571074014
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79820/3C8E8F0B-01FF-4196-8EAA-36C90F754A62/com_apple_MobileAsset_SoftwareUpdate/43757714b092ec03104506bdf8b8352ac7afb3d6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "13dbd1bc8f2a21fc700fb1d219b69edb31ba50b6",
-                "sha2-256": "eb5dc1bb10bb1cbb5d67e9118ae40133a80cec1ce64b03119c26d5c3816b30d0"
-            },
-            "size": 571922315
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79875/5E582988-BEC1-4D7E-BFAE-771AAEF0BFD1/com_apple_MobileAsset_SoftwareUpdate/410f558961b1a26fc81096bbc83f9727e349bc0a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "902335503b90373d9f9db12adea6485e48c32217",
-                "sha2-256": "913e54ae3f3b33632afea4c8c960a426d8771f8520c276be37748a79c042cdc1"
-            },
-            "size": 575871016
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79372/1B5D1C27-591E-43D0-AA1F-29AC3BAF97AD/com_apple_MobileAsset_SoftwareUpdate/4d6e970e86c68c8a6c0ba4c7cbb24a5436b03fac.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "65b271aab853de8c23b5256f8f31edbdeb134e04",
-                "sha2-256": "e44e6a1a2ed713b27fd2f08e227a76667efd800733169b53684f0a99d3bc578c"
-            },
-            "size": 77502766
         },
         {
             "type": "ota",
@@ -5265,6 +5237,24 @@
             "size": 164763202
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79372/1B5D1C27-591E-43D0-AA1F-29AC3BAF97AD/com_apple_MobileAsset_SoftwareUpdate/4d6e970e86c68c8a6c0ba4c7cbb24a5436b03fac.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "65b271aab853de8c23b5256f8f31edbdeb134e04",
+                "sha2-256": "e44e6a1a2ed713b27fd2f08e227a76667efd800733169b53684f0a99d3bc578c"
+            },
+            "size": 77502766
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch4,3"
@@ -5272,10 +5262,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80317/5F3535A1-6A2D-4613-9DF4-C4D56D59EFCA/Watch4,3_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80317/5F3535A1-6A2D-4613-9DF4-C4D56D59EFCA/Watch4,3_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -5952,6 +5938,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79419/6D3D4DD1-3C23-49E6-A6EF-23C06C2852E5/com_apple_MobileAsset_SoftwareUpdate/a73473cbd7bffc0fd67f055967751a887e96b3e8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4d1fef28fdbc4d35b28db21d92b32582c9788fc0",
+                "sha2-256": "62a940e4b81eb62b2b9ee191d57eb704ba7d4f2180cbadc0c749f9ab5a71bf02"
+            },
+            "size": 607038763
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80241/A214A544-B2FA-4599-8873-DB98A41E387E/com_apple_MobileAsset_SoftwareUpdate/c8c1591ff9e438acda87a89b37760fd7f8d93803.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "82ab8fae4342db67dab6a4edb354370e4b43ea39",
+                "sha2-256": "07335c1178c317e119322f38abbe0e8343be743dab5bac03cdeab17a4fdc87b7"
+            },
+            "size": 604825429
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch4,3"
@@ -6003,60 +6025,6 @@
                 "sha2-256": "4c8abaa8284d0c6fcaeacaeb6b72d999126980b38fb0d2ccfef574f8278fe886"
             },
             "size": 600292535
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79419/6D3D4DD1-3C23-49E6-A6EF-23C06C2852E5/com_apple_MobileAsset_SoftwareUpdate/a73473cbd7bffc0fd67f055967751a887e96b3e8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4d1fef28fdbc4d35b28db21d92b32582c9788fc0",
-                "sha2-256": "62a940e4b81eb62b2b9ee191d57eb704ba7d4f2180cbadc0c749f9ab5a71bf02"
-            },
-            "size": 607038763
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80241/A214A544-B2FA-4599-8873-DB98A41E387E/com_apple_MobileAsset_SoftwareUpdate/c8c1591ff9e438acda87a89b37760fd7f8d93803.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "82ab8fae4342db67dab6a4edb354370e4b43ea39",
-                "sha2-256": "07335c1178c317e119322f38abbe0e8343be743dab5bac03cdeab17a4fdc87b7"
-            },
-            "size": 604825429
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79274/D4DBFC13-FF68-4ADF-BBF6-716F0C3870B7/com_apple_MobileAsset_SoftwareUpdate/0e5e01395f0de8385d15971dcec67a2ae6b58ea1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "07da4ff35646556b928b08a514e1bfbb5c13bf3f",
-                "sha2-256": "2378b1b185b7c548e59b40c0f05f6aaa7b1734446dcc6e4038b38378c3fed72e"
-            },
-            "size": 96461592
         },
         {
             "type": "ota",
@@ -6149,6 +6117,24 @@
             "size": 185058502
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79274/D4DBFC13-FF68-4ADF-BBF6-716F0C3870B7/com_apple_MobileAsset_SoftwareUpdate/0e5e01395f0de8385d15971dcec67a2ae6b58ea1.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "07da4ff35646556b928b08a514e1bfbb5c13bf3f",
+                "sha2-256": "2378b1b185b7c548e59b40c0f05f6aaa7b1734446dcc6e4038b38378c3fed72e"
+            },
+            "size": 96461592
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch4,4"
@@ -6156,10 +6142,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79783/064C4296-6C71-42CC-BC10-4E0027F2C8CA/Watch4,4_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79783/064C4296-6C71-42CC-BC10-4E0027F2C8CA/Watch4,4_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -6836,6 +6818,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79414/02B29571-E0BE-41AC-9FE1-013EFA3078F4/com_apple_MobileAsset_SoftwareUpdate/ac20926fc666ee7bc2c39faf0c20e1583e61ed1f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d61d72f44253a8e21563042710643def73d00be5",
+                "sha2-256": "e8399ff3b91d0ce4e9c63cb11fc3cd18f948b89a87c36d353e22d8008edc553b"
+            },
+            "size": 607229165
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79645/F2C9810A-FC64-4B6E-ABC5-3F60709CC688/com_apple_MobileAsset_SoftwareUpdate/e1d006556824588972046328b25b69c7ef472a65.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2a1e704680b48aee79ed96360eb2301d151f0dad",
+                "sha2-256": "58e5353ace0e654d31f8fbafe4b08946a4384eed2ba94a1b314a2552a47d558c"
+            },
+            "size": 605011422
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch4,4"
@@ -6887,60 +6905,6 @@
                 "sha2-256": "46020c1887b6dec1fc4eac05f1c37888ea80960f9f907937ffb123eda2930f76"
             },
             "size": 600483217
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79414/02B29571-E0BE-41AC-9FE1-013EFA3078F4/com_apple_MobileAsset_SoftwareUpdate/ac20926fc666ee7bc2c39faf0c20e1583e61ed1f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d61d72f44253a8e21563042710643def73d00be5",
-                "sha2-256": "e8399ff3b91d0ce4e9c63cb11fc3cd18f948b89a87c36d353e22d8008edc553b"
-            },
-            "size": 607229165
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79645/F2C9810A-FC64-4B6E-ABC5-3F60709CC688/com_apple_MobileAsset_SoftwareUpdate/e1d006556824588972046328b25b69c7ef472a65.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2a1e704680b48aee79ed96360eb2301d151f0dad",
-                "sha2-256": "58e5353ace0e654d31f8fbafe4b08946a4384eed2ba94a1b314a2552a47d558c"
-            },
-            "size": 605011422
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79307/6E047AE7-F2B7-4B6B-9C5B-FC48EB1C83A1/com_apple_MobileAsset_SoftwareUpdate/694373c48c61152ffa6245e860d9d8c75dbef14c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a936b30dabe51a5759525b9a1bb1294920b566ca",
-                "sha2-256": "bf988cf033b40937f65e2382ba4e279f20feb9bf44f44c32230476caca1f8c9f"
-            },
-            "size": 96509813
         },
         {
             "type": "ota",
@@ -7033,6 +6997,24 @@
             "size": 185122715
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79307/6E047AE7-F2B7-4B6B-9C5B-FC48EB1C83A1/com_apple_MobileAsset_SoftwareUpdate/694373c48c61152ffa6245e860d9d8c75dbef14c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a936b30dabe51a5759525b9a1bb1294920b566ca",
+                "sha2-256": "bf988cf033b40937f65e2382ba4e279f20feb9bf44f44c32230476caca1f8c9f"
+            },
+            "size": 96509813
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,1"
@@ -7040,10 +7022,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79442/7F5DAE3A-70B2-4D7C-B691-769F55589560/Watch5,1_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79442/7F5DAE3A-70B2-4D7C-B691-769F55589560/Watch5,1_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -7630,6 +7608,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80131/31E62453-85A2-49FB-B850-3A6EE174B686/com_apple_MobileAsset_SoftwareUpdate/bdc3e49207453b16bf07f79e2b754a4bd6990d41.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "096f91fb484107bf00a882972052ef3557701ed6",
+                "sha2-256": "a5cc59949fbdc3bb6ae1338f3977d1133b18d8abd9af23fa3d89204f8327394e"
+            },
+            "size": 572264038
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79496/6C8F9146-0453-44DA-8CAD-AB9E710874B7/com_apple_MobileAsset_SoftwareUpdate/5a87ee10954d02423f4b30a83d0a151bb893dbdb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3ba042cddc0388f6fe02a0edc6b8641f713e9e08",
+                "sha2-256": "a1b4bef2126ee60868915c0800dcc624d366e6e5c01fbf0b1072fed06b47617f"
+            },
+            "size": 576101687
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,1"
@@ -7681,60 +7695,6 @@
                 "sha2-256": "abe16d68050d08cffbaf2fff3a6889d13300644c93982bf798de3ddba545d60f"
             },
             "size": 571433962
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80131/31E62453-85A2-49FB-B850-3A6EE174B686/com_apple_MobileAsset_SoftwareUpdate/bdc3e49207453b16bf07f79e2b754a4bd6990d41.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "096f91fb484107bf00a882972052ef3557701ed6",
-                "sha2-256": "a5cc59949fbdc3bb6ae1338f3977d1133b18d8abd9af23fa3d89204f8327394e"
-            },
-            "size": 572264038
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79496/6C8F9146-0453-44DA-8CAD-AB9E710874B7/com_apple_MobileAsset_SoftwareUpdate/5a87ee10954d02423f4b30a83d0a151bb893dbdb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3ba042cddc0388f6fe02a0edc6b8641f713e9e08",
-                "sha2-256": "a1b4bef2126ee60868915c0800dcc624d366e6e5c01fbf0b1072fed06b47617f"
-            },
-            "size": 576101687
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79510/3DDDBC32-4F96-4642-9469-A34DB1154460/com_apple_MobileAsset_SoftwareUpdate/4b9fa61e236c0b143a08af005e7b9465b7209d60.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1e2fa87dae5c8366ae3eecd467cf7f704841fa87",
-                "sha2-256": "4422237a3bac0c0d7fa2779529a47f2538975396870c4aa73883ce568f3fcac6"
-            },
-            "size": 77865476
         },
         {
             "type": "ota",
@@ -7827,6 +7787,24 @@
             "size": 165656094
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79510/3DDDBC32-4F96-4642-9469-A34DB1154460/com_apple_MobileAsset_SoftwareUpdate/4b9fa61e236c0b143a08af005e7b9465b7209d60.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1e2fa87dae5c8366ae3eecd467cf7f704841fa87",
+                "sha2-256": "4422237a3bac0c0d7fa2779529a47f2538975396870c4aa73883ce568f3fcac6"
+            },
+            "size": 77865476
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,2"
@@ -7834,10 +7812,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80015/C356CAB6-0A35-4DA6-8BA9-2E5ABDB14FD6/Watch5,2_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80015/C356CAB6-0A35-4DA6-8BA9-2E5ABDB14FD6/Watch5,2_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -8424,6 +8398,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80178/36345566-252E-4FAF-9CE0-047D7945A65C/com_apple_MobileAsset_SoftwareUpdate/a3aeec1dca660b2a93e1d1a7700ce57beafe2136.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9bbda504458f3078a78c61747c089ae2416f9a0e",
+                "sha2-256": "6ef598fd0a3edd8c7c8ab5d80e4102260b3bc9cf6117014dd1f7649d20a9781b"
+            },
+            "size": 572451384
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79344/FC09E28B-0089-4B8F-B480-A860056B062A/com_apple_MobileAsset_SoftwareUpdate/e95a4222b0bf5bdba3150592f1a0fe758a6adadb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0245dbf0f51333ff2e0f98646f80be403eaab3b7",
+                "sha2-256": "fc5fca284294cc06ebe75c618765de2312eb12384aa59e8d00d0e2a99a136cf4"
+            },
+            "size": 576286618
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,2"
@@ -8475,60 +8485,6 @@
                 "sha2-256": "b846b0fcdf577060612135859ebe6d6482da62950181be0b548edbcc26a0be31"
             },
             "size": 571622753
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80178/36345566-252E-4FAF-9CE0-047D7945A65C/com_apple_MobileAsset_SoftwareUpdate/a3aeec1dca660b2a93e1d1a7700ce57beafe2136.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9bbda504458f3078a78c61747c089ae2416f9a0e",
-                "sha2-256": "6ef598fd0a3edd8c7c8ab5d80e4102260b3bc9cf6117014dd1f7649d20a9781b"
-            },
-            "size": 572451384
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79344/FC09E28B-0089-4B8F-B480-A860056B062A/com_apple_MobileAsset_SoftwareUpdate/e95a4222b0bf5bdba3150592f1a0fe758a6adadb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0245dbf0f51333ff2e0f98646f80be403eaab3b7",
-                "sha2-256": "fc5fca284294cc06ebe75c618765de2312eb12384aa59e8d00d0e2a99a136cf4"
-            },
-            "size": 576286618
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79916/3B0A36E1-7ACD-483E-9542-13F4D774AF5E/com_apple_MobileAsset_SoftwareUpdate/83c4db3bdadb6a302cd8bed312c6394d7c92e562.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2ac5cdda56147df12aeb4e3280fe643f2fd7617f",
-                "sha2-256": "a363f370bbb062c16c3fdef34f3b3ee59a9d726c975555b29262db5d7fe27c4b"
-            },
-            "size": 77924364
         },
         {
             "type": "ota",
@@ -8621,6 +8577,24 @@
             "size": 165725105
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79916/3B0A36E1-7ACD-483E-9542-13F4D774AF5E/com_apple_MobileAsset_SoftwareUpdate/83c4db3bdadb6a302cd8bed312c6394d7c92e562.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2ac5cdda56147df12aeb4e3280fe643f2fd7617f",
+                "sha2-256": "a363f370bbb062c16c3fdef34f3b3ee59a9d726c975555b29262db5d7fe27c4b"
+            },
+            "size": 77924364
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,3"
@@ -8628,10 +8602,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79584/9D436548-6446-4DF3-A0D1-2193D007E921/Watch5,3_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79584/9D436548-6446-4DF3-A0D1-2193D007E921/Watch5,3_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -9218,6 +9188,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80321/745A5082-50DA-47E7-BF9F-EF79EE810166/com_apple_MobileAsset_SoftwareUpdate/0c4fb52d42f6f30352f6362ec619c86c2055eef2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3c6433eda82dd8066805dfdbf875aa36fd160d97",
+                "sha2-256": "f2498f38e9542aa7e46504a289be8025ce3870e5f855dfb2189f681b6cc78873"
+            },
+            "size": 607706089
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79929/F1489BA5-5E0E-4344-8208-7766B198AE96/com_apple_MobileAsset_SoftwareUpdate/6a8eb16ac847ff6a2f6525ef99257ed0c4d7601c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0d13cd1b5685e67498336523163076b59194cea5",
+                "sha2-256": "8c17893b6545a41fe5d831ef457c74d1ec13250369f2883f68360b88a5124810"
+            },
+            "size": 605404998
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,3"
@@ -9269,60 +9275,6 @@
                 "sha2-256": "a49b4617d7d427b88cf465b5a1838c5ea0cfc40b2f1cf42d6413d5c49a5120dd"
             },
             "size": 600710115
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80321/745A5082-50DA-47E7-BF9F-EF79EE810166/com_apple_MobileAsset_SoftwareUpdate/0c4fb52d42f6f30352f6362ec619c86c2055eef2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3c6433eda82dd8066805dfdbf875aa36fd160d97",
-                "sha2-256": "f2498f38e9542aa7e46504a289be8025ce3870e5f855dfb2189f681b6cc78873"
-            },
-            "size": 607706089
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79929/F1489BA5-5E0E-4344-8208-7766B198AE96/com_apple_MobileAsset_SoftwareUpdate/6a8eb16ac847ff6a2f6525ef99257ed0c4d7601c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0d13cd1b5685e67498336523163076b59194cea5",
-                "sha2-256": "8c17893b6545a41fe5d831ef457c74d1ec13250369f2883f68360b88a5124810"
-            },
-            "size": 605404998
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79540/0F446731-45AF-42E9-9DE8-6D5A93D4DB60/com_apple_MobileAsset_SoftwareUpdate/723c6271403fa930594ab02139552d6821eda95d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6c23a539a8c10ad76ed9acce07fb10faae47e067",
-                "sha2-256": "1a30d8e8bfa89ec4c1f65f98fb68079f69d87fd5856b52b2b7964732bcbaacc9"
-            },
-            "size": 96847086
         },
         {
             "type": "ota",
@@ -9415,6 +9367,24 @@
             "size": 184931233
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79540/0F446731-45AF-42E9-9DE8-6D5A93D4DB60/com_apple_MobileAsset_SoftwareUpdate/723c6271403fa930594ab02139552d6821eda95d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6c23a539a8c10ad76ed9acce07fb10faae47e067",
+                "sha2-256": "1a30d8e8bfa89ec4c1f65f98fb68079f69d87fd5856b52b2b7964732bcbaacc9"
+            },
+            "size": 96847086
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,4"
@@ -9422,10 +9392,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80090/5EACF8DF-A66A-4CE1-A67D-F832A6603645/Watch5,4_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80090/5EACF8DF-A66A-4CE1-A67D-F832A6603645/Watch5,4_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -10012,6 +9978,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79860/FB06459F-081E-499D-B280-4A302CB6D1FF/com_apple_MobileAsset_SoftwareUpdate/7a64490aee8ad8cdd5427b0e71799dda5f109439.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "11804edbf39bb2565660039c81d49008e2119b89",
+                "sha2-256": "3a622f3970fa26f1024809a9a2fe63c563af7b39d4629e369d2548f302a39890"
+            },
+            "size": 607892525
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79895/8B06A00F-8F31-4703-AC3D-FCF10FC9A10F/com_apple_MobileAsset_SoftwareUpdate/b075d2c346d02e1a2a8e62db78b7726470caa2c4.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4722dc6681545c9bd13d83a2440e99e4943c3d4e",
+                "sha2-256": "eb6c035674372ce881e90545c0c29ffa33dd65217b564d4975f52ae3999f49f1"
+            },
+            "size": 605584077
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,4"
@@ -10063,60 +10065,6 @@
                 "sha2-256": "79bc4e9b8a30618c254d79014c7eaba2b0362a067f81443f4b271a85c3ba9a7a"
             },
             "size": 600908911
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79860/FB06459F-081E-499D-B280-4A302CB6D1FF/com_apple_MobileAsset_SoftwareUpdate/7a64490aee8ad8cdd5427b0e71799dda5f109439.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "11804edbf39bb2565660039c81d49008e2119b89",
-                "sha2-256": "3a622f3970fa26f1024809a9a2fe63c563af7b39d4629e369d2548f302a39890"
-            },
-            "size": 607892525
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79895/8B06A00F-8F31-4703-AC3D-FCF10FC9A10F/com_apple_MobileAsset_SoftwareUpdate/b075d2c346d02e1a2a8e62db78b7726470caa2c4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4722dc6681545c9bd13d83a2440e99e4943c3d4e",
-                "sha2-256": "eb6c035674372ce881e90545c0c29ffa33dd65217b564d4975f52ae3999f49f1"
-            },
-            "size": 605584077
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80103/0268A2BE-CB61-4399-9B11-7DCFE144F885/com_apple_MobileAsset_SoftwareUpdate/530163da6218f39fce5181791bcd737a74c8edca.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4658c8f707ab15413f6ad1f85df91ee203aed010",
-                "sha2-256": "69e4bfd8940947c9ca937c413036d340c4774dac6970803ac6da7062582cd478"
-            },
-            "size": 96896867
         },
         {
             "type": "ota",
@@ -10209,6 +10157,24 @@
             "size": 185006804
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80103/0268A2BE-CB61-4399-9B11-7DCFE144F885/com_apple_MobileAsset_SoftwareUpdate/530163da6218f39fce5181791bcd737a74c8edca.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4658c8f707ab15413f6ad1f85df91ee203aed010",
+                "sha2-256": "69e4bfd8940947c9ca937c413036d340c4774dac6970803ac6da7062582cd478"
+            },
+            "size": 96896867
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,9"
@@ -10216,10 +10182,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79674/2DCCC095-2051-4578-BA01-D9FAD536C3DA/Watch5,9_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79674/2DCCC095-2051-4578-BA01-D9FAD536C3DA/Watch5,9_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -10608,6 +10570,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79519/490DE006-59FE-4B1A-BF64-B51105CD0310/com_apple_MobileAsset_SoftwareUpdate/87b6ce640d1719998411d3978054500546e6902a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "720fa6145fabacdb9a3049979ec329ff646a6742",
+                "sha2-256": "73e1c2edd231d1aaff98b4f312344dc49b7157b0e4336d6b31a98cdca05016b4"
+            },
+            "size": 572216453
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79602/88D02894-A6B3-4F7E-A9DF-95F112512761/com_apple_MobileAsset_SoftwareUpdate/e3bdea009f2ac49a3e0d08971eb45d5d8857effc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c55d94898a4fab281015978d7fc911ee5f4172c5",
+                "sha2-256": "897775d7d3d8a8c0a3aea7f82b60a88469b808c728157c1660ab4fa95b8ed4d0"
+            },
+            "size": 576052120
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,9"
@@ -10659,60 +10657,6 @@
                 "sha2-256": "b6a60201970562e08a55364eb72d663d313ea29aa6844e11f6ce2470ce3199d8"
             },
             "size": 571383468
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79519/490DE006-59FE-4B1A-BF64-B51105CD0310/com_apple_MobileAsset_SoftwareUpdate/87b6ce640d1719998411d3978054500546e6902a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "720fa6145fabacdb9a3049979ec329ff646a6742",
-                "sha2-256": "73e1c2edd231d1aaff98b4f312344dc49b7157b0e4336d6b31a98cdca05016b4"
-            },
-            "size": 572216453
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79602/88D02894-A6B3-4F7E-A9DF-95F112512761/com_apple_MobileAsset_SoftwareUpdate/e3bdea009f2ac49a3e0d08971eb45d5d8857effc.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c55d94898a4fab281015978d7fc911ee5f4172c5",
-                "sha2-256": "897775d7d3d8a8c0a3aea7f82b60a88469b808c728157c1660ab4fa95b8ed4d0"
-            },
-            "size": 576052120
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79681/10A4DBF2-4B26-46F8-BE43-77321ACB6B98/com_apple_MobileAsset_SoftwareUpdate/12b18e2a060d2a0e96e63dc88ea37c6fdb78c8ba.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "93abde6470463c30018dd4f928c84a4ce832ea40",
-                "sha2-256": "3f8516501baf4ae1826692c7e156a5918796dc2a24dc21ddd86fe65a19ade005"
-            },
-            "size": 77831668
         },
         {
             "type": "ota",
@@ -10805,6 +10749,24 @@
             "size": 165621459
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79681/10A4DBF2-4B26-46F8-BE43-77321ACB6B98/com_apple_MobileAsset_SoftwareUpdate/12b18e2a060d2a0e96e63dc88ea37c6fdb78c8ba.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "93abde6470463c30018dd4f928c84a4ce832ea40",
+                "sha2-256": "3f8516501baf4ae1826692c7e156a5918796dc2a24dc21ddd86fe65a19ade005"
+            },
+            "size": 77831668
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,10"
@@ -10812,10 +10774,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80533/5C631E96-7E9E-404A-B856-005A08C489C2/Watch5,10_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80533/5C631E96-7E9E-404A-B856-005A08C489C2/Watch5,10_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -11204,6 +11162,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79644/00826527-3434-4F6A-B957-D59AFF792F1A/com_apple_MobileAsset_SoftwareUpdate/a385ac01497f868cbb5100b028d3f387aa38751e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bfcd2149811fb6eafeefb98329f33b768a5982ac",
+                "sha2-256": "4e643891bd60d623cfe7a43f9f6fcebf6cc14f42b9163130e42e82662a9f8d8c"
+            },
+            "size": 572406312
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79358/D3084FD7-E517-4A75-8A1C-52CD9A0DAC6D/com_apple_MobileAsset_SoftwareUpdate/e2394f76eeff23a1bba922013d0af8100249e209.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9c7d6f15ed3e4bc08d0b3d37d284f3f055ccbb6b",
+                "sha2-256": "1d1aa576477a4a32558f2c12182293f564e6169ddf5d046bf7b7c374d0630ae2"
+            },
+            "size": 576241394
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,10"
@@ -11255,60 +11249,6 @@
                 "sha2-256": "2e9cb301ecf169034d4aee966461e98cc0c37dd88861b15d8a4c5cc3e2209844"
             },
             "size": 571575924
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79644/00826527-3434-4F6A-B957-D59AFF792F1A/com_apple_MobileAsset_SoftwareUpdate/a385ac01497f868cbb5100b028d3f387aa38751e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bfcd2149811fb6eafeefb98329f33b768a5982ac",
-                "sha2-256": "4e643891bd60d623cfe7a43f9f6fcebf6cc14f42b9163130e42e82662a9f8d8c"
-            },
-            "size": 572406312
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79358/D3084FD7-E517-4A75-8A1C-52CD9A0DAC6D/com_apple_MobileAsset_SoftwareUpdate/e2394f76eeff23a1bba922013d0af8100249e209.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9c7d6f15ed3e4bc08d0b3d37d284f3f055ccbb6b",
-                "sha2-256": "1d1aa576477a4a32558f2c12182293f564e6169ddf5d046bf7b7c374d0630ae2"
-            },
-            "size": 576241394
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79978/8FB688CB-8997-419C-B687-54EF5CEC960A/com_apple_MobileAsset_SoftwareUpdate/e2845f97e4b1dfce66cbe57f1d0df1b081d0eefd.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b4eb5fe15baeb915f435e64ceb86bcdbf5d82a2e",
-                "sha2-256": "9570986882962c655fc4d21658648f253c161b5b3019e546079ed25a9ca69f04"
-            },
-            "size": 77888568
         },
         {
             "type": "ota",
@@ -11401,6 +11341,24 @@
             "size": 165694037
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79978/8FB688CB-8997-419C-B687-54EF5CEC960A/com_apple_MobileAsset_SoftwareUpdate/e2845f97e4b1dfce66cbe57f1d0df1b081d0eefd.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b4eb5fe15baeb915f435e64ceb86bcdbf5d82a2e",
+                "sha2-256": "9570986882962c655fc4d21658648f253c161b5b3019e546079ed25a9ca69f04"
+            },
+            "size": 77888568
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,11"
@@ -11408,10 +11366,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79611/FC5AAD4F-8FCE-4809-922D-D2C862AE7216/Watch5,11_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79611/FC5AAD4F-8FCE-4809-922D-D2C862AE7216/Watch5,11_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -11800,6 +11754,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80301/DD61AEA4-AA47-404D-9B85-B1C18AD4FA3F/com_apple_MobileAsset_SoftwareUpdate/fe3948e3500068a0e02cc805a0da95f040d193f8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "75a2866a7122e593072c6d3f9c7687b668c551e1",
+                "sha2-256": "15a2271c1536a154784b4a929235c99f628ce8562cf43233884cbe373b737f21"
+            },
+            "size": 607027364
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79795/3044CE35-2249-4245-8495-426B02E34862/com_apple_MobileAsset_SoftwareUpdate/57396ceca01bf93cc9bac7292bfe6ab8a5b7da14.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a6e5dcd05c1e3ca35d3dc951cf3e499df719caf6",
+                "sha2-256": "dbfaa48042647a41ea7ad67c6edc5ab271454b8fdd07eea739cb3c14c6b4346b"
+            },
+            "size": 604703535
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,11"
@@ -11851,60 +11841,6 @@
                 "sha2-256": "940eaf04bdb1b175f8b0d486c1a8a5abd341c2a4c3831985cd893aa71e4a3d42"
             },
             "size": 600018401
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80301/DD61AEA4-AA47-404D-9B85-B1C18AD4FA3F/com_apple_MobileAsset_SoftwareUpdate/fe3948e3500068a0e02cc805a0da95f040d193f8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "75a2866a7122e593072c6d3f9c7687b668c551e1",
-                "sha2-256": "15a2271c1536a154784b4a929235c99f628ce8562cf43233884cbe373b737f21"
-            },
-            "size": 607027364
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79795/3044CE35-2249-4245-8495-426B02E34862/com_apple_MobileAsset_SoftwareUpdate/57396ceca01bf93cc9bac7292bfe6ab8a5b7da14.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a6e5dcd05c1e3ca35d3dc951cf3e499df719caf6",
-                "sha2-256": "dbfaa48042647a41ea7ad67c6edc5ab271454b8fdd07eea739cb3c14c6b4346b"
-            },
-            "size": 604703535
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80425/F015678B-90D3-4F68-8A3D-4C7AD8DC4D8B/com_apple_MobileAsset_SoftwareUpdate/50ee94a2f68d3af1ddbe69ece560f086d6c70a18.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5da14ef122ab0189cad973d39b1deddddbe571b8",
-                "sha2-256": "6f88e7529ddb63c045a06048b1f4a3d3e4c21e8d8c1a72f03b912f09471b1f05"
-            },
-            "size": 96165186
         },
         {
             "type": "ota",
@@ -11997,6 +11933,24 @@
             "size": 184247909
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80425/F015678B-90D3-4F68-8A3D-4C7AD8DC4D8B/com_apple_MobileAsset_SoftwareUpdate/50ee94a2f68d3af1ddbe69ece560f086d6c70a18.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5da14ef122ab0189cad973d39b1deddddbe571b8",
+                "sha2-256": "6f88e7529ddb63c045a06048b1f4a3d3e4c21e8d8c1a72f03b912f09471b1f05"
+            },
+            "size": 96165186
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch5,12"
@@ -12004,10 +11958,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80102/903E1AED-3DC2-490C-8690-EB312CAEB955/Watch5,12_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80102/903E1AED-3DC2-490C-8690-EB312CAEB955/Watch5,12_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -12396,6 +12346,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80390/092743A0-100D-414C-B04C-23DC8B8C6950/com_apple_MobileAsset_SoftwareUpdate/415002853fa67a90af36502dde72ed16707a7730.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "015c135b3ab92ea90c4648c69ac0910f44b7f718",
+                "sha2-256": "0aa47f32528a8f8b01e47b3d5f5c032f4ae97b1067fc99b8134c65a7f298e4cc"
+            },
+            "size": 607220809
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80493/AD5B6A78-D30F-486C-A19C-CEF5178DB6BF/com_apple_MobileAsset_SoftwareUpdate/62c78a2aaa5fef078bbc6efa250ed28522485a1e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "313e13cd46616e211c1376606ba1acd8a921a93b",
+                "sha2-256": "92de18781d1370415d5403874e18280d592afc04f666d18e496f9f96923ff868"
+            },
+            "size": 604890082
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch5,12"
@@ -12447,60 +12433,6 @@
                 "sha2-256": "628c43fd73be6e5c99825c997f346054c92242dbac8936628e598d8516b81063"
             },
             "size": 600216570
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80390/092743A0-100D-414C-B04C-23DC8B8C6950/com_apple_MobileAsset_SoftwareUpdate/415002853fa67a90af36502dde72ed16707a7730.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "015c135b3ab92ea90c4648c69ac0910f44b7f718",
-                "sha2-256": "0aa47f32528a8f8b01e47b3d5f5c032f4ae97b1067fc99b8134c65a7f298e4cc"
-            },
-            "size": 607220809
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80493/AD5B6A78-D30F-486C-A19C-CEF5178DB6BF/com_apple_MobileAsset_SoftwareUpdate/62c78a2aaa5fef078bbc6efa250ed28522485a1e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "313e13cd46616e211c1376606ba1acd8a921a93b",
-                "sha2-256": "92de18781d1370415d5403874e18280d592afc04f666d18e496f9f96923ff868"
-            },
-            "size": 604890082
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79587/A945B978-50E8-4AF8-A672-F65DB5C897EC/com_apple_MobileAsset_SoftwareUpdate/9991747787c15a0307f9a218aabd1049171a1624.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0afe522ba298e7ebe9f0e97ebba13bf6a189d6b1",
-                "sha2-256": "6e55329fb1e972c45ec55e5add23924222abaf2760b34d95a22d61f23c6c5fe8"
-            },
-            "size": 96224633
         },
         {
             "type": "ota",
@@ -12593,6 +12525,24 @@
             "size": 184329209
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79587/A945B978-50E8-4AF8-A672-F65DB5C897EC/com_apple_MobileAsset_SoftwareUpdate/9991747787c15a0307f9a218aabd1049171a1624.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0afe522ba298e7ebe9f0e97ebba13bf6a189d6b1",
+                "sha2-256": "6e55329fb1e972c45ec55e5add23924222abaf2760b34d95a22d61f23c6c5fe8"
+            },
+            "size": 96224633
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,1"
@@ -12600,10 +12550,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79705/ACC82968-F6EF-41F3-98BE-A6BA30966A13/Watch6,1_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79705/ACC82968-F6EF-41F3-98BE-A6BA30966A13/Watch6,1_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -12992,6 +12938,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80042/FFF395C4-B4CE-4768-BBA2-CFB797AA7E22/com_apple_MobileAsset_SoftwareUpdate/c2015bebb83342347b5a75c2e299137f6fe5c5ee.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "34cfafe09069e8818b575550cb58f66d92ae2967",
+                "sha2-256": "809f7e6cfb5a7d0a03077bb61e8065d05992ca26d88b731ab13dadb53a21d570"
+            },
+            "size": 556690826
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79426/DB536A7F-D0EF-4B8F-A1E6-705E8841814B/com_apple_MobileAsset_SoftwareUpdate/30c8f71ac14f6e01d8c054ea560a30f9164dc8d2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "02b5965fed97e1ab56ac8c25b847776a144646ac",
+                "sha2-256": "ff7c9f0486149943688e634e9fe9ad96edc9d6d897bb71b58ebddba84756fa13"
+            },
+            "size": 560531111
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,1"
@@ -13043,60 +13025,6 @@
                 "sha2-256": "36cb9ce4ec5a26d09a2ffb7652781055c9f084045942e4fb14d1878da3c90610"
             },
             "size": 555951526
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80042/FFF395C4-B4CE-4768-BBA2-CFB797AA7E22/com_apple_MobileAsset_SoftwareUpdate/c2015bebb83342347b5a75c2e299137f6fe5c5ee.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "34cfafe09069e8818b575550cb58f66d92ae2967",
-                "sha2-256": "809f7e6cfb5a7d0a03077bb61e8065d05992ca26d88b731ab13dadb53a21d570"
-            },
-            "size": 556690826
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79426/DB536A7F-D0EF-4B8F-A1E6-705E8841814B/com_apple_MobileAsset_SoftwareUpdate/30c8f71ac14f6e01d8c054ea560a30f9164dc8d2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "02b5965fed97e1ab56ac8c25b847776a144646ac",
-                "sha2-256": "ff7c9f0486149943688e634e9fe9ad96edc9d6d897bb71b58ebddba84756fa13"
-            },
-            "size": 560531111
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80345/15424552-C66B-4364-A9AA-5D733DA8D7EA/com_apple_MobileAsset_SoftwareUpdate/aba742eca46d8bdc51fbb4ec451693f08c417447.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "610b7b85ab592ddd99ec12a2dd683070cacddb0f",
-                "sha2-256": "55a6458562ce8a0c9815782058d7e9d534bf4bc996126ab40163ec755bcf0162"
-            },
-            "size": 61909865
         },
         {
             "type": "ota",
@@ -13189,6 +13117,24 @@
             "size": 148601013
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80345/15424552-C66B-4364-A9AA-5D733DA8D7EA/com_apple_MobileAsset_SoftwareUpdate/aba742eca46d8bdc51fbb4ec451693f08c417447.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "610b7b85ab592ddd99ec12a2dd683070cacddb0f",
+                "sha2-256": "55a6458562ce8a0c9815782058d7e9d534bf4bc996126ab40163ec755bcf0162"
+            },
+            "size": 61909865
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,2"
@@ -13196,10 +13142,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80436/8487D89B-5EEF-454A-BCA8-589CEB811CF7/Watch6,2_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80436/8487D89B-5EEF-454A-BCA8-589CEB811CF7/Watch6,2_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -13588,6 +13530,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79624/231FB3EB-CD5B-4A30-A93A-64A1B65140F7/com_apple_MobileAsset_SoftwareUpdate/629d1cd552445c5a4474adddb8dafcfd28c6180c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c07feba8f8390580696547cdac61286f9e566a1e",
+                "sha2-256": "62dfb5bcc7ae6b4f676a9fb7e1ce78c2cc11fe507bde543d69fbff425ee53e20"
+            },
+            "size": 556859272
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79591/1FA88177-2D6B-437A-8FAA-081B3BBA3615/com_apple_MobileAsset_SoftwareUpdate/e85bbef80c33bd97fe86fa05aa79ff0bc41cf722.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "753bf8cb5bfa869ee3fab1fbe82b6cdfdf23e78d",
+                "sha2-256": "be2e679b52067facf6c6e20bdb9e667fbd5f3088c73a04ef0950e8c7d02dc5d5"
+            },
+            "size": 560712930
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,2"
@@ -13639,60 +13617,6 @@
                 "sha2-256": "89ea80b8797dec881c403e65c4b48b1fd35bcb5bbf821881a18e6ffee961f976"
             },
             "size": 556131859
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79624/231FB3EB-CD5B-4A30-A93A-64A1B65140F7/com_apple_MobileAsset_SoftwareUpdate/629d1cd552445c5a4474adddb8dafcfd28c6180c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c07feba8f8390580696547cdac61286f9e566a1e",
-                "sha2-256": "62dfb5bcc7ae6b4f676a9fb7e1ce78c2cc11fe507bde543d69fbff425ee53e20"
-            },
-            "size": 556859272
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79591/1FA88177-2D6B-437A-8FAA-081B3BBA3615/com_apple_MobileAsset_SoftwareUpdate/e85bbef80c33bd97fe86fa05aa79ff0bc41cf722.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "753bf8cb5bfa869ee3fab1fbe82b6cdfdf23e78d",
-                "sha2-256": "be2e679b52067facf6c6e20bdb9e667fbd5f3088c73a04ef0950e8c7d02dc5d5"
-            },
-            "size": 560712930
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79743/E6BD5EFB-2954-4B27-A765-72DD84AB61AF/com_apple_MobileAsset_SoftwareUpdate/99407dd563146eb8cce38c7ee8aa19f8dff6ad7d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "06170bf75d979d801e81cf30e04c04df81168335",
-                "sha2-256": "b9fae75ad5a9f5a9b13f27d322c0b089d22ad4c8528261a011842330f1b29be3"
-            },
-            "size": 61969585
         },
         {
             "type": "ota",
@@ -13785,6 +13709,24 @@
             "size": 148684219
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79743/E6BD5EFB-2954-4B27-A765-72DD84AB61AF/com_apple_MobileAsset_SoftwareUpdate/99407dd563146eb8cce38c7ee8aa19f8dff6ad7d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "06170bf75d979d801e81cf30e04c04df81168335",
+                "sha2-256": "b9fae75ad5a9f5a9b13f27d322c0b089d22ad4c8528261a011842330f1b29be3"
+            },
+            "size": 61969585
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,3"
@@ -13792,10 +13734,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80124/0EDD73D7-4DC2-4FA8-BBF0-9719931F101C/Watch6,3_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80124/0EDD73D7-4DC2-4FA8-BBF0-9719931F101C/Watch6,3_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -14184,6 +14122,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80542/438AAEEE-ABBA-4C15-9470-E5CDAE8A8DD8/com_apple_MobileAsset_SoftwareUpdate/57fa4ad07fea2e0774378e91d823e788dd986ce1.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "088edec1e8ef9f1aa68dacdd9651e50aaa69c7a6",
+                "sha2-256": "45949ef90c627e402b21da85ec14aeb6a507ea530235b1ff3b086b12c65a9512"
+            },
+            "size": 591193186
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80447/47DAC42E-5CE4-4CD9-B29E-770010615D3E/com_apple_MobileAsset_SoftwareUpdate/5966520f9d924d510e04f34605abb8c1cdca43d0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bd2b255e697bfeb7d8599478e0e8b74e0ffc3c4b",
+                "sha2-256": "acd68920330934908a137ead1ff16a8eb6bdafc87017e886e8c79f1a149f7743"
+            },
+            "size": 589069117
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,3"
@@ -14235,60 +14209,6 @@
                 "sha2-256": "cb79f71e4b8f4dc2c1a6b2fc0304ea8df98fb915306412fed68dbddc5fc6c0c0"
             },
             "size": 584541451
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80542/438AAEEE-ABBA-4C15-9470-E5CDAE8A8DD8/com_apple_MobileAsset_SoftwareUpdate/57fa4ad07fea2e0774378e91d823e788dd986ce1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "088edec1e8ef9f1aa68dacdd9651e50aaa69c7a6",
-                "sha2-256": "45949ef90c627e402b21da85ec14aeb6a507ea530235b1ff3b086b12c65a9512"
-            },
-            "size": 591193186
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80447/47DAC42E-5CE4-4CD9-B29E-770010615D3E/com_apple_MobileAsset_SoftwareUpdate/5966520f9d924d510e04f34605abb8c1cdca43d0.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bd2b255e697bfeb7d8599478e0e8b74e0ffc3c4b",
-                "sha2-256": "acd68920330934908a137ead1ff16a8eb6bdafc87017e886e8c79f1a149f7743"
-            },
-            "size": 589069117
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79283/5E365821-B5AF-48A5-911C-089ADD4E078D/com_apple_MobileAsset_SoftwareUpdate/61336de8dab3fcd4a5504b93e9e2c0b31998704b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cb435911f288a3972d413c7932582386c4988ffd",
-                "sha2-256": "0750d296f3b84afa5e87adcbabb3d844b12db0d2048233cf0df7bd9e43f7a85e"
-            },
-            "size": 80270751
         },
         {
             "type": "ota",
@@ -14381,6 +14301,24 @@
             "size": 167870317
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79283/5E365821-B5AF-48A5-911C-089ADD4E078D/com_apple_MobileAsset_SoftwareUpdate/61336de8dab3fcd4a5504b93e9e2c0b31998704b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cb435911f288a3972d413c7932582386c4988ffd",
+                "sha2-256": "0750d296f3b84afa5e87adcbabb3d844b12db0d2048233cf0df7bd9e43f7a85e"
+            },
+            "size": 80270751
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,4"
@@ -14388,10 +14326,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79556/4481E73C-2EAF-430E-8A55-269AFF76F7A6/Watch6,4_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79556/4481E73C-2EAF-430E-8A55-269AFF76F7A6/Watch6,4_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -14780,6 +14714,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80006/14821829-1CF7-4C80-BC8A-2882C1431165/com_apple_MobileAsset_SoftwareUpdate/f3e2ce963eb0af077c9322c9fe2440e4a8195a49.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8f64ee4488a04fcb457cfd5d577cf9bed18a065a",
+                "sha2-256": "59a83d30748ef1d828931ac7d77f729ba2877b0ae273a902a1bdc4ba83f88f9b"
+            },
+            "size": 591378083
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79474/7D015356-1E6A-43A1-895D-9DD1CCF5D858/com_apple_MobileAsset_SoftwareUpdate/9804ae97df73162f06802c2ff59933cd93a6edac.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "afda63d3d42b3d758ad33b32a25bbc202c9e83cc",
+                "sha2-256": "00fab85efc72108d68fe43246b028853d835811d27222f46fb70b67af72fad32"
+            },
+            "size": 589252355
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,4"
@@ -14831,60 +14801,6 @@
                 "sha2-256": "8768d03a9e6a96539a2996e9422d7fcb99773c2391bf1bdd301a1e7ea3d9bb7f"
             },
             "size": 584733930
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80006/14821829-1CF7-4C80-BC8A-2882C1431165/com_apple_MobileAsset_SoftwareUpdate/f3e2ce963eb0af077c9322c9fe2440e4a8195a49.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8f64ee4488a04fcb457cfd5d577cf9bed18a065a",
-                "sha2-256": "59a83d30748ef1d828931ac7d77f729ba2877b0ae273a902a1bdc4ba83f88f9b"
-            },
-            "size": 591378083
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79474/7D015356-1E6A-43A1-895D-9DD1CCF5D858/com_apple_MobileAsset_SoftwareUpdate/9804ae97df73162f06802c2ff59933cd93a6edac.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "afda63d3d42b3d758ad33b32a25bbc202c9e83cc",
-                "sha2-256": "00fab85efc72108d68fe43246b028853d835811d27222f46fb70b67af72fad32"
-            },
-            "size": 589252355
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79691/FED20372-8EB0-468A-BF54-192B9B0DAD15/com_apple_MobileAsset_SoftwareUpdate/6d1543a0ac57b2ac308802965ffc2fd72393aa86.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "37b06a77490e8ec25c7e54fa0806e49f0fc3dd1e",
-                "sha2-256": "12c47f48334a9a0aeca9b3f9c8edc2925af60dcada445a8e586af5ff6bc14fe2"
-            },
-            "size": 80324237
         },
         {
             "type": "ota",
@@ -14977,6 +14893,24 @@
             "size": 167939874
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79691/FED20372-8EB0-468A-BF54-192B9B0DAD15/com_apple_MobileAsset_SoftwareUpdate/6d1543a0ac57b2ac308802965ffc2fd72393aa86.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "37b06a77490e8ec25c7e54fa0806e49f0fc3dd1e",
+                "sha2-256": "12c47f48334a9a0aeca9b3f9c8edc2925af60dcada445a8e586af5ff6bc14fe2"
+            },
+            "size": 80324237
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,6"
@@ -14984,10 +14918,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79457/0007AF8E-9901-4453-BC58-F56CD5DC4508/Watch6,6_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79457/0007AF8E-9901-4453-BC58-F56CD5DC4508/Watch6,6_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -15106,6 +15036,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79365/42F2ABA2-9690-4006-8149-AAAA50376AE9/com_apple_MobileAsset_SoftwareUpdate/ba3423c7710ea52cdba224913b3453b3f02506d3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "23f979031fec19aeda21cc9dec7c5cc555951104",
+                "sha2-256": "dc00cb7c3c3e3253f527405313d83bd9d81153faa2baf10df4138b285973c25d"
+            },
+            "size": 555234128
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79446/C5F3A97F-E42E-47AE-888C-7650E384BAC5/com_apple_MobileAsset_SoftwareUpdate/3774fca874c2b2725a6cbce58764bb33c3f3b499.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "03f8e26b1c0220a5dd615827b17efceae725730a",
+                "sha2-256": "6b188072468a6dc566b4f599652a3cc1ed764ce8a3d9a63d66fababab6c1febf"
+            },
+            "size": 555220453
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,6"
@@ -15157,60 +15123,6 @@
                 "sha2-256": "5d00ef3352bb04b53ec099bb67f6b267389454fb38cad706858ada3f932d9ed7"
             },
             "size": 550768314
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79365/42F2ABA2-9690-4006-8149-AAAA50376AE9/com_apple_MobileAsset_SoftwareUpdate/ba3423c7710ea52cdba224913b3453b3f02506d3.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "23f979031fec19aeda21cc9dec7c5cc555951104",
-                "sha2-256": "dc00cb7c3c3e3253f527405313d83bd9d81153faa2baf10df4138b285973c25d"
-            },
-            "size": 555234128
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79446/C5F3A97F-E42E-47AE-888C-7650E384BAC5/com_apple_MobileAsset_SoftwareUpdate/3774fca874c2b2725a6cbce58764bb33c3f3b499.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "03f8e26b1c0220a5dd615827b17efceae725730a",
-                "sha2-256": "6b188072468a6dc566b4f599652a3cc1ed764ce8a3d9a63d66fababab6c1febf"
-            },
-            "size": 555220453
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79357/58272F38-81F1-4939-BAE7-6C11C9896E48/com_apple_MobileAsset_SoftwareUpdate/6d7da24bd3b18052fdbc0d23da6c95226268d676.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e9ce6ec4092c24f5d8a29e0c09c50a346e9bc272",
-                "sha2-256": "d06f53259cfac6bde144be2224bf28ec7972cb39eb71f00ca61571a9ee2c7e28"
-            },
-            "size": 61999256
         },
         {
             "type": "ota",
@@ -15303,6 +15215,24 @@
             "size": 149388357
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79357/58272F38-81F1-4939-BAE7-6C11C9896E48/com_apple_MobileAsset_SoftwareUpdate/6d7da24bd3b18052fdbc0d23da6c95226268d676.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e9ce6ec4092c24f5d8a29e0c09c50a346e9bc272",
+                "sha2-256": "d06f53259cfac6bde144be2224bf28ec7972cb39eb71f00ca61571a9ee2c7e28"
+            },
+            "size": 61999256
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,7"
@@ -15310,10 +15240,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-80026/C7640DF1-5C12-418F-A47B-84320E9F664A/Watch6,7_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-80026/C7640DF1-5C12-418F-A47B-84320E9F664A/Watch6,7_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -15432,6 +15358,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79882/2470FE2E-1CE7-4D06-8437-EAA777B6D6DB/com_apple_MobileAsset_SoftwareUpdate/2301d992170bed30df6e89030c849a556fa7d3f5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "63128d768d6bbe3a75f8149e711828a84fd9ad98",
+                "sha2-256": "3e0e58a9c6dc1a85758c45eb2aae947c3a4aff9b90aed8141a269b228afe57f7"
+            },
+            "size": 555359334
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79586/9644FFE1-A042-4909-BE4B-9D2B544FD698/com_apple_MobileAsset_SoftwareUpdate/672f5a1c96dbe7537a9046db1efacad921092293.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bde47378bcf974e4de4636ff2a837295f6a9f9f6",
+                "sha2-256": "3fd81882e968ce1af065750e3b6d78ba54277dc60c1486030def78f880c02d56"
+            },
+            "size": 555356508
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,7"
@@ -15483,60 +15445,6 @@
                 "sha2-256": "56ffa30c2f5af12b15dca36a7b5b2ede94622da89f006f7826885c0c76414826"
             },
             "size": 550913339
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79882/2470FE2E-1CE7-4D06-8437-EAA777B6D6DB/com_apple_MobileAsset_SoftwareUpdate/2301d992170bed30df6e89030c849a556fa7d3f5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "63128d768d6bbe3a75f8149e711828a84fd9ad98",
-                "sha2-256": "3e0e58a9c6dc1a85758c45eb2aae947c3a4aff9b90aed8141a269b228afe57f7"
-            },
-            "size": 555359334
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79586/9644FFE1-A042-4909-BE4B-9D2B544FD698/com_apple_MobileAsset_SoftwareUpdate/672f5a1c96dbe7537a9046db1efacad921092293.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bde47378bcf974e4de4636ff2a837295f6a9f9f6",
-                "sha2-256": "3fd81882e968ce1af065750e3b6d78ba54277dc60c1486030def78f880c02d56"
-            },
-            "size": 555356508
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79298/4FDAE617-7E63-4B2F-A4BF-2F2D753C921A/com_apple_MobileAsset_SoftwareUpdate/85ab1db5dc3d775809459e4437c61b7ce6c1f95d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7d9c9f6523d85b1091d60ff3d65780373b0c8663",
-                "sha2-256": "315c22e5971f93b206191d9506eee7a05aabd0a1c8b7491ffaf1572a5a807d2a"
-            },
-            "size": 62049403
         },
         {
             "type": "ota",
@@ -15629,6 +15537,24 @@
             "size": 149447955
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79298/4FDAE617-7E63-4B2F-A4BF-2F2D753C921A/com_apple_MobileAsset_SoftwareUpdate/85ab1db5dc3d775809459e4437c61b7ce6c1f95d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7d9c9f6523d85b1091d60ff3d65780373b0c8663",
+                "sha2-256": "315c22e5971f93b206191d9506eee7a05aabd0a1c8b7491ffaf1572a5a807d2a"
+            },
+            "size": 62049403
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,8"
@@ -15636,10 +15562,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79897/E6A082CA-D341-4ACD-94E5-A2B9650362C5/Watch6,8_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79897/E6A082CA-D341-4ACD-94E5-A2B9650362C5/Watch6,8_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -15776,6 +15698,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79842/D8AABAD0-701E-4FFA-9CA5-91CE088F3EB4/com_apple_MobileAsset_SoftwareUpdate/019a7c68dde41ecef27de4c2eeee6caf4a1aa438.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f19fd4c2e98b8952bba9a52dcfadc956b08c8132",
+                "sha2-256": "b07927dbd17bfb8fc697ab0042413632596b6ab88dc870c705f147048487f6a0"
+            },
+            "size": 594185210
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80226/4C00BF3A-7551-48D9-8DFB-EA81C9B5570E/com_apple_MobileAsset_SoftwareUpdate/b453fafd84a56d0dfef12ffbf83e72abe8441d45.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "154e73c06303d7a21a0fec8fd7fbef35ad6c0ee8",
+                "sha2-256": "5274b2032cbc4f5e578ece34961748dafb7459db0b4f993c14bb59290e771b93"
+            },
+            "size": 596967136
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,8"
@@ -15827,60 +15785,6 @@
                 "sha2-256": "3ab51a5ec3ef9394f103001f96576cdf781bbd4cae70d76765fa7426ec58dc80"
             },
             "size": 592246567
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79842/D8AABAD0-701E-4FFA-9CA5-91CE088F3EB4/com_apple_MobileAsset_SoftwareUpdate/019a7c68dde41ecef27de4c2eeee6caf4a1aa438.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f19fd4c2e98b8952bba9a52dcfadc956b08c8132",
-                "sha2-256": "b07927dbd17bfb8fc697ab0042413632596b6ab88dc870c705f147048487f6a0"
-            },
-            "size": 594185210
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80226/4C00BF3A-7551-48D9-8DFB-EA81C9B5570E/com_apple_MobileAsset_SoftwareUpdate/b453fafd84a56d0dfef12ffbf83e72abe8441d45.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "154e73c06303d7a21a0fec8fd7fbef35ad6c0ee8",
-                "sha2-256": "5274b2032cbc4f5e578ece34961748dafb7459db0b4f993c14bb59290e771b93"
-            },
-            "size": 596967136
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79318/2C90D321-747F-41CC-974B-CFA43D89AD4E/com_apple_MobileAsset_SoftwareUpdate/80e39ea7a085a0b78d89f326c4dd9cc0d7a18d41.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "23997de770b20b37c1c83a4861d187cca220b81b",
-                "sha2-256": "8e4de49a5e961f603b66f0761948388aab21a2207cd685d9196e2d40eb8b84bb"
-            },
-            "size": 82120505
         },
         {
             "type": "ota",
@@ -15973,6 +15877,24 @@
             "size": 169548176
         },
         {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79318/2C90D321-747F-41CC-974B-CFA43D89AD4E/com_apple_MobileAsset_SoftwareUpdate/80e39ea7a085a0b78d89f326c4dd9cc0d7a18d41.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "23997de770b20b37c1c83a4861d187cca220b81b",
+                "sha2-256": "8e4de49a5e961f603b66f0761948388aab21a2207cd685d9196e2d40eb8b84bb"
+            },
+            "size": 82120505
+        },
+        {
             "type": "ipsw",
             "deviceMap": [
                 "Watch6,9"
@@ -15980,10 +15902,6 @@
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-79324/9CFC3EE0-DA04-4546-9FC0-AE54CDFD3FBF/Watch6,9_8.5.1_19T252_Restore.ipsw",
-                    "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2022WinterFCS/fullrestores/002-79324/9CFC3EE0-DA04-4546-9FC0-AE54CDFD3FBF/Watch6,9_8.5.1_19T252_Restore.ipsw",
                     "active": true
                 }
             ],
@@ -16120,6 +16038,42 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "19S5525f",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79572/E797F5C8-5C24-44DD-9FDC-68A5E1856DF6/com_apple_MobileAsset_SoftwareUpdate/9df1bb712ab7f9f93bac5937bb0bd6ec4cb20a5d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fd25943836b2b8a938fb367d8bbacf6932bd3eca",
+                "sha2-256": "8633b8b93d89d1226b5a7f74cd85210cf7c461b6d448175d53247ca3e9ecd686"
+            },
+            "size": 594297579
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19S5539e",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79796/18EB7103-24F1-4F7C-A582-121CABCBE501/com_apple_MobileAsset_SoftwareUpdate/2bf4e9eb424643fa32a722c8f02cf44e5a1df710.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d4f267209afa9a4d726e8f4ff2cb56b1131a6857",
+                "sha2-256": "78058a3e94f54486784b6ca86bede4152614021c1effedc9e26221fc375019f3"
+            },
+            "size": 597085760
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "19S546",
             "deviceMap": [
                 "Watch6,9"
@@ -16171,60 +16125,6 @@
                 "sha2-256": "2dbd74e436303da39eff0f900b21588517d6dfa05d10a4ce9b37993dcc1881b1"
             },
             "size": 592376709
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5525f",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79572/E797F5C8-5C24-44DD-9FDC-68A5E1856DF6/com_apple_MobileAsset_SoftwareUpdate/9df1bb712ab7f9f93bac5937bb0bd6ec4cb20a5d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "fd25943836b2b8a938fb367d8bbacf6932bd3eca",
-                "sha2-256": "8633b8b93d89d1226b5a7f74cd85210cf7c461b6d448175d53247ca3e9ecd686"
-            },
-            "size": 594297579
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19S5539e",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-79796/18EB7103-24F1-4F7C-A582-121CABCBE501/com_apple_MobileAsset_SoftwareUpdate/2bf4e9eb424643fa32a722c8f02cf44e5a1df710.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d4f267209afa9a4d726e8f4ff2cb56b1131a6857",
-                "sha2-256": "78058a3e94f54486784b6ca86bede4152614021c1effedc9e26221fc375019f3"
-            },
-            "size": 597085760
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "19T242",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80076/0429395C-853B-4FBF-98F5-D76E3513D0C3/com_apple_MobileAsset_SoftwareUpdate/04edaa15a71ffbe79bb0b074f86103e2c8aca3ee.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a0b8b3675d289bcba477ef47254accab7cb9078a",
-                "sha2-256": "42882e03614183e453025794b557ad0ce4d03247778feeb82ae0a54898bf6ea5"
-            },
-            "size": 82167503
         },
         {
             "type": "ota",
@@ -16315,6 +16215,24 @@
                 "sha2-256": "1d0e8f05b071213f5f67285483367aca584e598283898cfc1ff9fb050700b038"
             },
             "size": 169599192
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "19T242",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022WinterFCS/patches/002-80076/0429395C-853B-4FBF-98F5-D76E3513D0C3/com_apple_MobileAsset_SoftwareUpdate/04edaa15a71ffbe79bb0b074f86103e2c8aca3ee.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a0b8b3675d289bcba477ef47254accab7cb9078a",
+                "sha2-256": "42882e03614183e453025794b557ad0ce4d03247778feeb82ae0a54898bf6ea5"
+            },
+            "size": 82167503
         }
     ]
 }

@@ -9,11 +9,50 @@
             "version": "10.1 beta 5",
             "uniqueBuild": "14B72c-beta",
             "released": "2016-10-19",
-            "beta": true
+            "beta": true,
+            "sources": [
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "iPhone9,1",
+                        "iPhone9,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/ios10.1seed/031-86295-20161024-355FB886-9572-11E6-AD65-066E80A31755/iPhone_7_10.1_14B72c_Restore.ipsw",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "e89c46d7b4090017ffa43fad7cce7f67"
+                    },
+                    "size": 2450034742
+                },
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "iPhone9,2",
+                        "iPhone9,4"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/ios10.1seed/031-86287-20161024-355F73B2-9572-11E6-B967-056E80A31755/iPhone_7Plus_10.1_14B72c_Restore.ipsw",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "6dd057d77c8bb263935dbaae48893179"
+                    },
+                    "size": 2624105568
+                }
+            ]
         }
     ],
     "releaseNotes": "https://support.apple.com/HT208011#101",
     "securityNotes": "https://support.apple.com/HT207271",
+    "ipd": {
+        "iPhone": "https://secure-appldnld.apple.com/ios10.1/031-85748-20161024-A11499FA-94AC-11E6-9297-126280A31755/iPhoneiTunesUpdateReadMe_9.3.ipd"
+    },
     "appledbWebImage": {
         "id": "ios10",
         "align": "left"
@@ -24,6 +63,12 @@
         "iPhone9,3",
         "iPhone9,4"
     ],
+    "basebandVersions": {
+        "iPhone9,1": "1.25.00",
+        "iPhone9,2": "1.25.00",
+        "iPhone9,3": "1.01.13",
+        "iPhone9,4": "1.01.13"
+    },
     "sources": [
         {
             "type": "ipsw",
@@ -43,6 +88,7 @@
             ],
             "hashes": {
                 "md5": "b09984403b7721fc648273beec228bd5",
+                "sha1": "4351092b5e865244c5984b7ae663d496f9e993ec",
                 "sha2-256": "61bb21b56895888da126d9576b36d39dd1a9d9d1a35ddc7096de9cb423c7d484"
             },
             "size": 2446233482
@@ -149,6 +195,7 @@
             ],
             "hashes": {
                 "md5": "d67999bb8a78efe0dc5f5cb3f6b2923c",
+                "sha1": "049074f470e5f78fc5f075bd1c450dec4dad64d0",
                 "sha2-256": "13bebe9199200b581b2017e5c7508f5ca576424a75ed44e18229bff9abae2cc6"
             },
             "size": 2624132005

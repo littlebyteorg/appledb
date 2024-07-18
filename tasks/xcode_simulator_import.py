@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import base64
 from datetime import datetime
 import json
 import plistlib
@@ -14,8 +15,46 @@ import requests
 from sort_os_files import sort_os_file
 from update_links import update_links
 
-xcode_response = requests.get('https://xcodereleases.com/data.json').json()
-simulator_response = plistlib.loads(requests.get(f'https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex?cachebust{random.randint(100, 1000)}').content)
+session = requests.session()
+
+xcode_response = session.get('https://xcodereleases.com/data.json').json()
+simulator_response = plistlib.loads(session.get(f'https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex?cachebust{random.randint(100, 1000)}').content)
+
+simulator_pallas_mapping = {
+    'iOS': 'iOSSimulatorRuntime',
+    'tvOS': 'appleTVOSSimulatorRuntime',
+    'watchOS': 'watchOSSimulatorRuntime',
+    'visionOS': 'xrOSSimulatorRuntime'
+}
+
+def call_pallas(os, build):
+    request = {
+        "ClientVersion": 2,
+        "CertIssuanceDay": "2023-12-10",
+        "AssetType": f"com.apple.MobileAsset.{simulator_pallas_mapping[os]}",
+        "AssetAudience": "02d8e57e-dd1c-4090-aa50-b4ed2aef0062",
+        "RequestedBuild": build
+    }
+    response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
+    parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
+    asset = parsed_response.get('Assets', [])
+    if asset:
+        asset = asset[0]
+        return [
+            {
+                'type': asset['__RelativePath'].split('.')[-1],
+                'deviceMap': [f"{os} Simulator"],
+                'links': [
+                    {
+                        'url': f"{asset['__BaseURL']}{asset['__RelativePath']}"
+                    }
+                ],
+                'size': asset['_DownloadSize']
+            }
+        ]
+    else:
+        return []
+    
 
 sdk_platform_mapping = {
     'iOS': 'iphoneos',
@@ -45,6 +84,7 @@ for xcode_version in xcode_response:
     file_path = Path(f"osFiles/Software/Xcode/{build_version}x - {major_version_range}/{xcode_version['version']['build']}.json")
     os_map = [f'macOS {x}' for x in range(int(xcode_version['requires'].split(".")[0]), int(xcode_version['version']['number'].split('.')[0]))]
     if file_path.exists(): continue
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     
     formatted_sdks = []
 
@@ -121,16 +161,18 @@ for simulator in simulator_response['downloadables']:
     file_path = Path(f"osFiles/Simulators/{os_str}/{build_version}x - {major_version}.x/{build}.json")
 
     if file_path.exists(): continue
+    file_path.parent.mkdir(parents=True, exist_ok=True)
 
     new_item = {
         'osStr': os_str,
-        'version': simulator['name'].replace(f"{os_str} ", "").replace("Simulator Runtime", "Simulator"),
+        'version': simulator['name'].replace(f"{os_str} ", "").replace("Simulator Runtime", "Simulator").replace("Release Candidate", "RC"),
         'build': build,
         'uniqueBuild': f"{build}-sim",
         'released': datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"),
-        'beta': bool('beta' in simulator['name']),
-        'deviceMap': [f"{os_str} Simulator"],
-        'sources': [
+        'deviceMap': [f"{os_str} Simulator"]
+    }
+    if simulator.get('source'):
+        new_item['sources'] = [
             {
                 'type': 'dmg',
                 'deviceMap': [f"{os_str} Simulator"],
@@ -142,6 +184,13 @@ for simulator in simulator_response['downloadables']:
                 'size': simulator['fileSize']
             }
         ]
-    }
+    elif simulator.get('downloadMethod') == 'mobileAsset':
+        pallas_response = call_pallas(os_str, build)
+        if pallas_response:
+            new_item['sources'] = pallas_response
+    if 'beta' in new_item['version']:
+        new_item['beta'] = True
+    elif 'rc' in new_item['version']:
+        new_item['rc'] = True
     json.dump(sort_os_file(None, new_item), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     update_links([file_path])

@@ -4,11 +4,23 @@
     "build": "18L203",
     "buildTrain": "ArcherE",
     "released": "2021-04-26",
+    "createDuplicateEntries": [
+        {
+            "version": "14.5 RC",
+            "uniqueBuild": "18L203-RC",
+            "released": "2021-04-20",
+            "rc": true
+        }
+    ],
     "releaseNotes": "https://support.apple.com/HT208714#145",
+    "ipd": {
+        "AudioAccessory": "https://updates.cdn-apple.com/2020FallFCS/documentation/001-85231/7343DDEC-F157-48E5-9D3C-081891ED43A1/HomePodiTunesUpdateReadMe.ipd"
+    },
     "deviceMap": [
         "AudioAccessory1,1",
         "AudioAccessory1,2",
-        "AudioAccessory5,1"
+        "AudioAccessory5,1",
+        "AudioAccessory5,1-CHN"
     ],
     "sources": [
         {
@@ -208,19 +220,18 @@
         {
             "type": "ipsw",
             "deviceMap": [
-                "AudioAccessory5,1"
+                "AudioAccessory5,1",
+                "AudioAccessory5,1-CHN"
             ],
             "links": [
                 {
                     "url": "https://updates.cdn-apple.com/2021SpringFCS/fullrestores/061-87481/DD73B5B6-1416-46E0-9601-AEFCE89B8B74/AudioAccessory5,1_14.5_18L203_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://updates-http.cdn-apple.com/2021SpringFCS/fullrestores/061-87481/DD73B5B6-1416-46E0-9601-AEFCE89B8B74/AudioAccessory5,1_14.5_18L203_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
+                "md5": "73b2810f3b41e9881c30fa3c9c2cc584",
+                "sha1": "1340b4fb44a844dcf8a1d23338e3423b95e59be6",
                 "sha2-256": "846cb664840aff705dc88087e6f4ca359beda649a9b1249b70c67beb83b2f57a"
             },
             "size": 2365512371
@@ -228,7 +239,8 @@
         {
             "type": "ota",
             "deviceMap": [
-                "AudioAccessory5,1"
+                "AudioAccessory5,1",
+                "AudioAccessory5,1-CHN"
             ],
             "links": [
                 {
@@ -242,7 +254,8 @@
             "type": "ota",
             "prerequisiteBuild": "18J8394",
             "deviceMap": [
-                "AudioAccessory5,1"
+                "AudioAccessory5,1",
+                "AudioAccessory5,1-CHN"
             ],
             "links": [
                 {
@@ -256,7 +269,8 @@
             "type": "ota",
             "prerequisiteBuild": "18K563",
             "deviceMap": [
-                "AudioAccessory5,1"
+                "AudioAccessory5,1",
+                "AudioAccessory5,1-CHN"
             ],
             "links": [
                 {
@@ -270,7 +284,8 @@
             "type": "ota",
             "prerequisiteBuild": "18K802",
             "deviceMap": [
-                "AudioAccessory5,1"
+                "AudioAccessory5,1",
+                "AudioAccessory5,1-CHN"
             ],
             "links": [
                 {

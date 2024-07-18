@@ -11,8 +11,10 @@ from typing import Optional
 key_order = [
     "osStr",
     "version",
+    "iosVersion",
     "safariVersion",
     "build",
+    "restoreVersion",
     "uniqueBuild",
     "embeddedOSBuild",
     "bridgeOSBuild",
@@ -31,18 +33,33 @@ key_order = [
     "ipd",
     "appledbWebImage",
     "deviceMap",
+    "basebandVersions",
     "osMap",
     "sdks",
     "sources",
 ]
 
-sources_key_order = ["type", "prerequisiteBuild", "deviceMap", "boardMap", "osMap", "windowsUpdateDetails", "links", "hashes", "skipUpdateLinks", "size"]
+sources_key_order = [
+    "type",
+    "prerequisiteBuild",
+    "deviceMap",
+    "boardMap",
+    "osMap",
+    "windowsUpdateDetails",
+    "links",
+    "hashes",
+    "skipUpdateLinks",
+    "size",
+]
+
+ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPhone", "iPod"]
 
 links_key_order = ["url", "catalog", "preferred", "active"]
 
-source_type_order = ["kdk", "ipsw", "installassistant", "ota", "update", "combo", "xip", "dmg", "pkg", "bin", "tar", "appx", "exe"]
+source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "aar", "dmg", "pkg", "bin", "tar", "appx", "exe"]
 
-os_prefix_order = ['Mac OS', 'Mac OS X', 'OS X', 'macOS', 'Windows']
+os_prefix_order = ["Mac OS", "Mac OS X", "OS X", "macOS", "Windows"]
+
 
 def device_sort(device):
     match = re.match(r"([a-zA-Z]+)(\d+),(\d+)", device)
@@ -52,24 +69,17 @@ def device_sort(device):
         if not match or len(match.groups()) != 2:
             # This is probably not a device identifier, so just return it
             return "", 0, 0, device
-            # return device
-        return match.groups()[0], 0, int(match.groups()[1]), device
+        return match.groups()[0].lower(), 0, int(match.groups()[1]), device
 
     # The device at the end is for instances like "BeatsStudioBuds1,1", "BeatsStudioBuds1,1-tiger"
     # However, this will sort "MacBookPro15,1-2019" before "MacBookPro15,2-2018"
-    return match.groups()[0], int(match.groups()[1]), int(match.groups()[2]), device
+    return match.groups()[0].lower(), int(match.groups()[1]), int(match.groups()[2]), device
 
 
 def os_sort(os):
-    if os.startswith('Windows'):
+    if os.startswith("Windows"):
         os_split = os.split(" ", 1)
-        os_remains_mapping = {
-            '2000': '5',
-            'XP': '5.1',
-            'XP SP2': '5.2',
-            'XP SP3': '5.3',
-            'Vista': '6'
-        }
+        os_remains_mapping = {"2000": "5", "XP": "5.1", "XP SP2": "5.2", "XP SP3": "5.3", "Vista": "6"}
         os_split[1] = os_remains_mapping.get(os_split[1], os_split[1])
     else:
         os_split = os.rsplit(" ", 1)
@@ -102,8 +112,16 @@ def os_map_sort(os_map):
 def build_number_sort(build_number):
     match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
     if not match:
-        return 0, "A", 0, "a"
-    return int(match.groups()[0]), match.groups()[1], int(match.groups()[2]), match.groups()[3]
+        return 0, "A", 0, 0, "a"
+    kernel_version = int(match.groups()[0])
+    build_train_version = match.groups()[1]
+    build_version = int(match.groups()[2])
+    build_prefix = 0
+    build_suffix = match.groups()[3] or ""
+    if build_version > 1000:
+        build_prefix = int(build_version / 1000)
+        build_version = build_version % 1000
+    return kernel_version, build_train_version, build_version, build_prefix, build_suffix
 
 
 def sort_os_file(file_path: Optional[Path], raw_data=None):
@@ -124,6 +142,12 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
     if "osMap" in data:
         data["osMap"] = os_map_sort(data["osMap"])
+
+    if "basebandVersions" in data:
+        data["basebandVersions"] = sorted_dict_by_key(data["basebandVersions"], data["deviceMap"])
+
+    if "ipd" in data:
+        data["ipd"] = sorted_dict_by_key(data["ipd"], ipd_key_order)
 
     for i, sdk in enumerate(data.get("sdks", [])):
         data["sdks"][i] = sorted_dict_by_key(sdk, key_order)
@@ -147,7 +171,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
             if set(data["sources"][i]["links"][j].keys()) - set(links_key_order):
                 raise ValueError(f"Unknown keys: {sorted(set(data['sources'][i]['links'][j].keys()) - set(links_key_order))}")
-        data["sources"][i]["links"].sort(key=lambda x: x.get('catalog', ''))
+        data["sources"][i]["links"].sort(key=lambda x: x.get("catalog", ""))
         if isinstance(source.get("prerequisiteBuild"), list):
             data["sources"][i]["prerequisiteBuild"].sort(key=build_number_sort)
 
@@ -173,7 +197,19 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         else:
             sorted_os_item = (-1, 0)
 
-        return device_sort(source["deviceMap"][0]), source_type_order.index(source["type"]), sorted_os_item, build_number_sort(prerequisite_order), board_order
+        if 'mac' in data.get('osStr', '').lower():
+            return (
+                source_type_order.index(source["type"]),
+                build_number_sort(prerequisite_order),
+                device_sort(source["deviceMap"][0]),
+            )
+        return (
+            device_sort(source["deviceMap"][0]),
+            source_type_order.index(source["type"]),
+            build_number_sort(prerequisite_order),
+            sorted_os_item,
+            board_order,
+        )
 
     data.get("sources", []).sort(key=source_sort)
 

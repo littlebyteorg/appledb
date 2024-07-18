@@ -4,21 +4,151 @@
     "build": "16U611",
     "buildTrain": "GloryG",
     "released": "2019-09-26",
+    "createDuplicateEntries": [
+        {
+            "uniqueBuild": "16U611-3",
+            "released": "2019-09-30",
+            "deviceMap": [
+                "Watch3,1",
+                "Watch3,2",
+                "Watch3,3",
+                "Watch3,4"
+            ],
+            "basebandVersions": {
+                "Watch3,1": "2.60.02",
+                "Watch3,2": "2.60.02"
+            },
+            "sources": [
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch3,1"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19011/9F1A5DC4-DB58-11E9-859E-D02018E5FE37/com_apple_MobileAsset_SoftwareUpdate/d9992520665963425ba38c213cabb8edb0bf377d.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1437457919
+                },
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch3,2"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19099/9F14A1F4-DB58-11E9-A229-9EF352CB14C0/com_apple_MobileAsset_SoftwareUpdate/6cc2c7455d432ac5da0588e7105101c40681e7ff.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1444125481
+                },
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch3,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19178/9F251106-DB58-11E9-8575-82F985F75C0C/com_apple_MobileAsset_SoftwareUpdate/7d28e85109aaf39e0c59928c3eeadc90647c5eba.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1377494582
+                },
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch3,4"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19010/9F1B9EC8-DB58-11E9-816E-F68EF785E360/com_apple_MobileAsset_SoftwareUpdate/6ae126c66e73d849e51bf3989dc982fb4bf06007.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1386333134
+                }
+            ]
+        },
+        {
+            "uniqueBuild": "16U611-4",
+            "released": "2019-10-09",
+            "deviceMap": [
+                "Watch4,1",
+                "Watch4,2",
+                "Watch4,3",
+                "Watch4,4"
+            ],
+            "basebandVersions": {
+                "Watch4,3": "1.04.05",
+                "Watch4,4": "1.04.05"
+            },
+            "sources": [
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch4,1"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19560/9F2DEC04-DB58-11E9-BA52-95F13407B179/com_apple_MobileAsset_SoftwareUpdate/fbafa4a85e91d3cfe7e2fd60278aea80d0c8fff4.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1436861531
+                },
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch4,2"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19105/9F25202E-DB58-11E9-9949-A08F12E3192F/com_apple_MobileAsset_SoftwareUpdate/19e0129e2645334fee618f5e03cfa97a2674dfc9.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1398803281
+                },
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch4,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19039/9F2D123E-DB58-11E9-B775-9B1756750FFC/com_apple_MobileAsset_SoftwareUpdate/84bb01ea62dfaf2ca6bde37f8f2e77dde9bb226a.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1473675707
+                },
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "Watch4,4"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19306/9F244AB4-DB58-11E9-9813-EC593F0A2A9B/com_apple_MobileAsset_SoftwareUpdate/cfe3671dba1063cd1674d239300f4921ea0d3ef5.zip",
+                            "active": true
+                        }
+                    ],
+                    "size": 1435053666
+                }
+            ]
+        }
+    ],
     "releaseNotes": "https://support.apple.com/HT209085#532",
     "securityNotes": "https://support.apple.com/HT210588",
     "deviceMap": [
         "Watch2,3",
         "Watch2,4",
         "Watch2,6",
-        "Watch2,7",
-        "Watch3,1",
-        "Watch3,2",
-        "Watch3,3",
-        "Watch3,4",
-        "Watch4,1",
-        "Watch4,2",
-        "Watch4,3",
-        "Watch4,4"
+        "Watch2,7"
     ],
     "sources": [
         {
@@ -358,48 +488,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "16U113",
-            "deviceMap": [
-                "Watch2,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19616/25F69DFE-DB6C-11E9-9AAF-9B86F00A3551/com_apple_MobileAsset_SoftwareUpdate/38ea640f7cc12ea6cbae9064596e2505a5ded793.zip",
-                    "active": true
-                }
-            ],
-            "size": 104381655
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U569",
-            "deviceMap": [
-                "Watch2,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19156/9F1ED504-DB6A-11E9-BD5B-F6EECEBB1368/com_apple_MobileAsset_SoftwareUpdate/e81e92706fd7faccfabab06eff85c3408e1b0ef9.zip",
-                    "active": true
-                }
-            ],
-            "size": 53809260
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U600",
-            "deviceMap": [
-                "Watch2,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-18987/E08EB5AA-DB69-11E9-A8EB-BA293A1E0629/com_apple_MobileAsset_SoftwareUpdate/67252c8e471f6c54e8702ce726c6ba3482d27719.zip",
-                    "active": true
-                }
-            ],
-            "size": 48224337
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "16U5079d",
             "deviceMap": [
                 "Watch2,3"
@@ -453,6 +541,20 @@
                 }
             ],
             "size": 122360269
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16U113",
+            "deviceMap": [
+                "Watch2,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19616/25F69DFE-DB6C-11E9-9AAF-9B86F00A3551/com_apple_MobileAsset_SoftwareUpdate/38ea640f7cc12ea6cbae9064596e2505a5ded793.zip",
+                    "active": true
+                }
+            ],
+            "size": 104381655
         },
         {
             "type": "ota",
@@ -540,6 +642,20 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16U569",
+            "deviceMap": [
+                "Watch2,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19156/9F1ED504-DB6A-11E9-BD5B-F6EECEBB1368/com_apple_MobileAsset_SoftwareUpdate/e81e92706fd7faccfabab06eff85c3408e1b0ef9.zip",
+                    "active": true
+                }
+            ],
+            "size": 53809260
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "16U5569a",
             "deviceMap": [
                 "Watch2,3"
@@ -551,6 +667,20 @@
                 }
             ],
             "size": 71021553
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16U600",
+            "deviceMap": [
+                "Watch2,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-18987/E08EB5AA-DB69-11E9-A8EB-BA293A1E0629/com_apple_MobileAsset_SoftwareUpdate/67252c8e471f6c54e8702ce726c6ba3482d27719.zip",
+                    "active": true
+                }
+            ],
+            "size": 48224337
         },
         {
             "type": "ota",
@@ -889,48 +1019,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "16U113",
-            "deviceMap": [
-                "Watch2,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19280/02843E9A-DB6B-11E9-9522-983A227CE0C3/com_apple_MobileAsset_SoftwareUpdate/887e98c8eaf2a266ec817434861b3102428c990d.zip",
-                    "active": true
-                }
-            ],
-            "size": 104301358
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U569",
-            "deviceMap": [
-                "Watch2,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19471/A13ED662-DB6B-11E9-857C-CA57775A4EE3/com_apple_MobileAsset_SoftwareUpdate/2e427ea247b2eaf985fc2a3e41a5640cd5227783.zip",
-                    "active": false
-                }
-            ],
-            "size": 53840737
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U600",
-            "deviceMap": [
-                "Watch2,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19472/A1682FD0-DB6B-11E9-99DD-A18C311CEF73/com_apple_MobileAsset_SoftwareUpdate/3e11e7b7bc6e740f102cc09a65c55af07f04993d.zip",
-                    "active": true
-                }
-            ],
-            "size": 48248204
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "16U5079d",
             "deviceMap": [
                 "Watch2,4"
@@ -984,6 +1072,20 @@
                 }
             ],
             "size": 122359973
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16U113",
+            "deviceMap": [
+                "Watch2,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19280/02843E9A-DB6B-11E9-9522-983A227CE0C3/com_apple_MobileAsset_SoftwareUpdate/887e98c8eaf2a266ec817434861b3102428c990d.zip",
+                    "active": true
+                }
+            ],
+            "size": 104301358
         },
         {
             "type": "ota",
@@ -1071,6 +1173,20 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16U569",
+            "deviceMap": [
+                "Watch2,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19471/A13ED662-DB6B-11E9-857C-CA57775A4EE3/com_apple_MobileAsset_SoftwareUpdate/2e427ea247b2eaf985fc2a3e41a5640cd5227783.zip",
+                    "active": false
+                }
+            ],
+            "size": 53840737
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "16U5569a",
             "deviceMap": [
                 "Watch2,4"
@@ -1082,6 +1198,20 @@
                 }
             ],
             "size": 70976677
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16U600",
+            "deviceMap": [
+                "Watch2,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19472/A1682FD0-DB6B-11E9-99DD-A18C311CEF73/com_apple_MobileAsset_SoftwareUpdate/3e11e7b7bc6e740f102cc09a65c55af07f04993d.zip",
+                    "active": true
+                }
+            ],
+            "size": 48248204
         },
         {
             "type": "ota",
@@ -1420,48 +1550,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "16U113",
-            "deviceMap": [
-                "Watch2,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19643/305A290A-DB6C-11E9-84BE-E224EFDD5BF2/com_apple_MobileAsset_SoftwareUpdate/d8036b1bbe7b037f59ce3cb8590d0390674abd01.zip",
-                    "active": true
-                }
-            ],
-            "size": 103487975
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U569",
-            "deviceMap": [
-                "Watch2,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19468/A12F5020-DB6B-11E9-B2F5-F927462FB14B/com_apple_MobileAsset_SoftwareUpdate/e1487e16ccb4dd4d9273bc089233fa1863709c61.zip",
-                    "active": true
-                }
-            ],
-            "size": 52915112
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U600",
-            "deviceMap": [
-                "Watch2,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19134/8410CCB8-DB6A-11E9-9426-E65A26E58080/com_apple_MobileAsset_SoftwareUpdate/b31c52b672609ae47b956b40ea005a885c9352a2.zip",
-                    "active": false
-                }
-            ],
-            "size": 47330091
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "16U5079d",
             "deviceMap": [
                 "Watch2,6"
@@ -1515,6 +1603,20 @@
                 }
             ],
             "size": 121466320
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16U113",
+            "deviceMap": [
+                "Watch2,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19643/305A290A-DB6C-11E9-84BE-E224EFDD5BF2/com_apple_MobileAsset_SoftwareUpdate/d8036b1bbe7b037f59ce3cb8590d0390674abd01.zip",
+                    "active": true
+                }
+            ],
+            "size": 103487975
         },
         {
             "type": "ota",
@@ -1602,6 +1704,20 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16U569",
+            "deviceMap": [
+                "Watch2,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19468/A12F5020-DB6B-11E9-B2F5-F927462FB14B/com_apple_MobileAsset_SoftwareUpdate/e1487e16ccb4dd4d9273bc089233fa1863709c61.zip",
+                    "active": true
+                }
+            ],
+            "size": 52915112
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "16U5569a",
             "deviceMap": [
                 "Watch2,6"
@@ -1613,6 +1729,20 @@
                 }
             ],
             "size": 70127054
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16U600",
+            "deviceMap": [
+                "Watch2,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19134/8410CCB8-DB6A-11E9-9426-E65A26E58080/com_apple_MobileAsset_SoftwareUpdate/b31c52b672609ae47b956b40ea005a885c9352a2.zip",
+                    "active": false
+                }
+            ],
+            "size": 47330091
         },
         {
             "type": "ota",
@@ -1951,48 +2081,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "16U113",
-            "deviceMap": [
-                "Watch2,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19381/57B3967C-DB6B-11E9-BD22-8863E96DE9C4/com_apple_MobileAsset_SoftwareUpdate/f1f48d1150e685df0f2415c0b60c8d07efef92a6.zip",
-                    "active": true
-                }
-            ],
-            "size": 103406269
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U569",
-            "deviceMap": [
-                "Watch2,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19197/C8180EC6-DB6A-11E9-957E-AC3C830535E0/com_apple_MobileAsset_SoftwareUpdate/9bdaa539ed81b71d490f1eaf83e85bdf9b476d5f.zip",
-                    "active": false
-                }
-            ],
-            "size": 52946014
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "16U600",
-            "deviceMap": [
-                "Watch2,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19050/34DFC3E2-DB6A-11E9-8A29-BD74CF8921B5/com_apple_MobileAsset_SoftwareUpdate/e7a84b0708a27592d966e89112d36e9bf5edc8a2.zip",
-                    "active": true
-                }
-            ],
-            "size": 47353457
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "16U5079d",
             "deviceMap": [
                 "Watch2,7"
@@ -2046,6 +2134,20 @@
                 }
             ],
             "size": 121464867
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "16U113",
+            "deviceMap": [
+                "Watch2,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19381/57B3967C-DB6B-11E9-BD22-8863E96DE9C4/com_apple_MobileAsset_SoftwareUpdate/f1f48d1150e685df0f2415c0b60c8d07efef92a6.zip",
+                    "active": true
+                }
+            ],
+            "size": 103406269
         },
         {
             "type": "ota",
@@ -2133,6 +2235,20 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16U569",
+            "deviceMap": [
+                "Watch2,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19197/C8180EC6-DB6A-11E9-957E-AC3C830535E0/com_apple_MobileAsset_SoftwareUpdate/9bdaa539ed81b71d490f1eaf83e85bdf9b476d5f.zip",
+                    "active": false
+                }
+            ],
+            "size": 52946014
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "16U5569a",
             "deviceMap": [
                 "Watch2,7"
@@ -2147,107 +2263,17 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "16U600",
             "deviceMap": [
-                "Watch3,1"
+                "Watch2,7"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19011/9F1A5DC4-DB58-11E9-859E-D02018E5FE37/com_apple_MobileAsset_SoftwareUpdate/d9992520665963425ba38c213cabb8edb0bf377d.zip",
+                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19050/34DFC3E2-DB6A-11E9-8A29-BD74CF8921B5/com_apple_MobileAsset_SoftwareUpdate/e7a84b0708a27592d966e89112d36e9bf5edc8a2.zip",
                     "active": true
                 }
             ],
-            "size": 1437457919
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "Watch3,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19099/9F14A1F4-DB58-11E9-A229-9EF352CB14C0/com_apple_MobileAsset_SoftwareUpdate/6cc2c7455d432ac5da0588e7105101c40681e7ff.zip",
-                    "active": true
-                }
-            ],
-            "size": 1444125481
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "Watch3,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19178/9F251106-DB58-11E9-8575-82F985F75C0C/com_apple_MobileAsset_SoftwareUpdate/7d28e85109aaf39e0c59928c3eeadc90647c5eba.zip",
-                    "active": true
-                }
-            ],
-            "size": 1377494582
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "Watch3,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19010/9F1B9EC8-DB58-11E9-816E-F68EF785E360/com_apple_MobileAsset_SoftwareUpdate/6ae126c66e73d849e51bf3989dc982fb4bf06007.zip",
-                    "active": true
-                }
-            ],
-            "size": 1386333134
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19560/9F2DEC04-DB58-11E9-BA52-95F13407B179/com_apple_MobileAsset_SoftwareUpdate/fbafa4a85e91d3cfe7e2fd60278aea80d0c8fff4.zip",
-                    "active": true
-                }
-            ],
-            "size": 1436861531
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19105/9F25202E-DB58-11E9-9949-A08F12E3192F/com_apple_MobileAsset_SoftwareUpdate/19e0129e2645334fee618f5e03cfa97a2674dfc9.zip",
-                    "active": true
-                }
-            ],
-            "size": 1398803281
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19039/9F2D123E-DB58-11E9-B775-9B1756750FFC/com_apple_MobileAsset_SoftwareUpdate/84bb01ea62dfaf2ca6bde37f8f2e77dde9bb226a.zip",
-                    "active": true
-                }
-            ],
-            "size": 1473675707
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerFCS/patches/061-19306/9F244AB4-DB58-11E9-9813-EC593F0A2A9B/com_apple_MobileAsset_SoftwareUpdate/cfe3671dba1063cd1674d239300f4921ea0d3ef5.zip",
-                    "active": true
-                }
-            ],
-            "size": 1435053666
+            "size": 47353457
         }
     ]
 }

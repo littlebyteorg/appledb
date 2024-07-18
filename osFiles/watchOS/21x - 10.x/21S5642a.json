@@ -2,6 +2,7 @@
     "osStr": "watchOS",
     "version": "10.3 beta 3",
     "build": "21S5642a",
+    "restoreVersion": "21.19.642.5.1,0",
     "buildTrain": "LighthouseDSeed",
     "released": "2024-01-09",
     "beta": true,
@@ -45,6 +46,26 @@
         "Watch7,4",
         "Watch7,5"
     ],
+    "basebandVersions": {
+        "Watch4,3": "6.03.02",
+        "Watch4,4": "6.03.02",
+        "Watch5,3": "6.03.02",
+        "Watch5,4": "6.03.02",
+        "Watch5,11": "6.03.02",
+        "Watch5,12": "6.03.02",
+        "Watch6,3": "6.03.02",
+        "Watch6,4": "6.03.02",
+        "Watch6,8": "6.03.02",
+        "Watch6,9": "6.03.02",
+        "Watch6,12": "6.03.02",
+        "Watch6,13": "6.03.02",
+        "Watch6,16": "6.03.02",
+        "Watch6,17": "6.03.02",
+        "Watch6,18": "6.03.02",
+        "Watch7,3": "6.03.02",
+        "Watch7,4": "6.03.02",
+        "Watch7,5": "6.03.02"
+    },
     "sources": [
         {
             "type": "ota",
@@ -191,60 +212,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29059/7663FF8D-CCB4-4053-89B1-277CA1153ED6/com_apple_MobileAsset_SoftwareUpdate/ea443f1629cc460a804c620b6492292d12b2940a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7d17603c7cea8b2e84c6834355f55aacead5af67",
-                "sha2-256": "f089ec90497f31a10568fd2c589784b77d520570db99fc507e02fcbed83f907f"
-            },
-            "size": 590225582
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28078/A5516B16-B7DE-4696-80C8-FD1E9AFDD06D/com_apple_MobileAsset_SoftwareUpdate/5ab9d7c1868854e67b4a9896f821e079bfa37956.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e702185771706048b801e94664297440f0d52ef2",
-                "sha2-256": "7a79e9a1d832e546c268f43585ca8c14196579225af76ffd3b572e4132e77e05"
-            },
-            "size": 590033526
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28680/F69B9A15-CF5E-4553-A496-44317CA635D7/com_apple_MobileAsset_SoftwareUpdate/ffa1ac415843399d8c4f97767b1f63d98d73df52.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "fac0ee9bd8558ce132ad944c9a60245c28dad2ee",
-                "sha2-256": "0f15579080d70a1f776a9c9ab323c742d4d0edfb715f22babf099cedc48823fa"
-            },
-            "size": 317573701
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch4,1"
@@ -296,6 +263,42 @@
                 "sha2-256": "3f32c6e923c645c7838231c40b5f276343a0e48d26a3142b0e2e238577c42688"
             },
             "size": 588628211
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29059/7663FF8D-CCB4-4053-89B1-277CA1153ED6/com_apple_MobileAsset_SoftwareUpdate/ea443f1629cc460a804c620b6492292d12b2940a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7d17603c7cea8b2e84c6834355f55aacead5af67",
+                "sha2-256": "f089ec90497f31a10568fd2c589784b77d520570db99fc507e02fcbed83f907f"
+            },
+            "size": 590225582
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28078/A5516B16-B7DE-4696-80C8-FD1E9AFDD06D/com_apple_MobileAsset_SoftwareUpdate/5ab9d7c1868854e67b4a9896f821e079bfa37956.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e702185771706048b801e94664297440f0d52ef2",
+                "sha2-256": "7a79e9a1d832e546c268f43585ca8c14196579225af76ffd3b572e4132e77e05"
+            },
+            "size": 590033526
         },
         {
             "type": "ota",
@@ -368,6 +371,24 @@
                 "sha2-256": "3f936c87bd8b3d4912cf73fa5dff9cf42eb5061528fa6a24435857b0ecb1eb5b"
             },
             "size": 313841963
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28680/F69B9A15-CF5E-4553-A496-44317CA635D7/com_apple_MobileAsset_SoftwareUpdate/ffa1ac415843399d8c4f97767b1f63d98d73df52.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fac0ee9bd8558ce132ad944c9a60245c28dad2ee",
+                "sha2-256": "0f15579080d70a1f776a9c9ab323c742d4d0edfb715f22babf099cedc48823fa"
+            },
+            "size": 317573701
         },
         {
             "type": "ota",
@@ -550,60 +571,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28384/C38C9C83-E2FB-4544-AE91-99478087BFE7/com_apple_MobileAsset_SoftwareUpdate/bbcedab96671c89378185e41818793fd031016d4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "876a943b76abf8ecb939955c64356ea6e9f2a12d",
-                "sha2-256": "b349dd3ab8394427edaec011d3507eb941ed7546d9a464b27b6786b464cdafd0"
-            },
-            "size": 590261267
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29197/B05A35A5-DCDB-4772-A53C-2B91DB6748DC/com_apple_MobileAsset_SoftwareUpdate/783b3000d109ef791531ed7a1f8d74190b89b86b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5efc8333238f990e97b29e9fc66d434b4890d396",
-                "sha2-256": "300ed14be4e4bc7b672fa3697aad98d8ea717995264576965897831bc7ad81bb"
-            },
-            "size": 590070372
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28668/700E1CB2-A675-4CD0-BB0B-9F40418B235F/com_apple_MobileAsset_SoftwareUpdate/c08fd0fd9ba5d15270d1763c8794c9394994f708.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4b5bee1f366e0e92315cbaf89c478d2903a293de",
-                "sha2-256": "b1f65a37ae1de41015f82cc6693c18a3947a8dad7a097f95e10acde1a2482b0b"
-            },
-            "size": 317602815
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch4,2"
@@ -655,6 +622,42 @@
                 "sha2-256": "7a3112c691b7e309031b794aaf0ca43f35eb3d258ce43b7ee59fc864ab76d964"
             },
             "size": 588662984
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28384/C38C9C83-E2FB-4544-AE91-99478087BFE7/com_apple_MobileAsset_SoftwareUpdate/bbcedab96671c89378185e41818793fd031016d4.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "876a943b76abf8ecb939955c64356ea6e9f2a12d",
+                "sha2-256": "b349dd3ab8394427edaec011d3507eb941ed7546d9a464b27b6786b464cdafd0"
+            },
+            "size": 590261267
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29197/B05A35A5-DCDB-4772-A53C-2B91DB6748DC/com_apple_MobileAsset_SoftwareUpdate/783b3000d109ef791531ed7a1f8d74190b89b86b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5efc8333238f990e97b29e9fc66d434b4890d396",
+                "sha2-256": "300ed14be4e4bc7b672fa3697aad98d8ea717995264576965897831bc7ad81bb"
+            },
+            "size": 590070372
         },
         {
             "type": "ota",
@@ -727,6 +730,24 @@
                 "sha2-256": "9e8277cefc018a3a0b03ec49a062c0a4995142031b0ba0d8e7adba7614ebbb95"
             },
             "size": 313895881
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28668/700E1CB2-A675-4CD0-BB0B-9F40418B235F/com_apple_MobileAsset_SoftwareUpdate/c08fd0fd9ba5d15270d1763c8794c9394994f708.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4b5bee1f366e0e92315cbaf89c478d2903a293de",
+                "sha2-256": "b1f65a37ae1de41015f82cc6693c18a3947a8dad7a097f95e10acde1a2482b0b"
+            },
+            "size": 317602815
         },
         {
             "type": "ota",
@@ -909,60 +930,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29076/995CBCDB-79C9-4D30-9E00-E037242DFCC9/com_apple_MobileAsset_SoftwareUpdate/72aec78f6c0b30bd4dd8695d4fd21b9843bab1ed.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "24b36b9e67786166a8a3f8e4efa16313750a5dea",
-                "sha2-256": "69759d67175c7dc66e741228b36f98ca9ca90599f8ef8eb033855097170d385a"
-            },
-            "size": 605377802
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28356/B926BAB1-51A0-4921-8EB6-CB0AF61C8B59/com_apple_MobileAsset_SoftwareUpdate/66fb8f8a6b11a31c140a77119ec26079f6f40534.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4c1a2c78691387f8092da256b24e998b58271418",
-                "sha2-256": "59fd6edd4a18dfb3d2d37c0905f7e87058576a936e3396b4abd8d7ec086f051a"
-            },
-            "size": 605306678
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28725/54E53189-2776-4961-8275-E7381D1F89F2/com_apple_MobileAsset_SoftwareUpdate/cc4c84d3386aceb058eead311dbbda1f417ce55c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "52c8980876d4c43dead44a3e9fd09b27b3fa7941",
-                "sha2-256": "5fc7436f2f46c6b8f2c994ec8bb8c3f5f9fb0814d8d002d692feaa8a0c23bdff"
-            },
-            "size": 352668126
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch4,3"
@@ -1014,6 +981,42 @@
                 "sha2-256": "988b23b7a29d79f24638380485b6abddb3a7b22a5d6a5296a79a7e1e7410f971"
             },
             "size": 602573294
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29076/995CBCDB-79C9-4D30-9E00-E037242DFCC9/com_apple_MobileAsset_SoftwareUpdate/72aec78f6c0b30bd4dd8695d4fd21b9843bab1ed.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "24b36b9e67786166a8a3f8e4efa16313750a5dea",
+                "sha2-256": "69759d67175c7dc66e741228b36f98ca9ca90599f8ef8eb033855097170d385a"
+            },
+            "size": 605377802
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28356/B926BAB1-51A0-4921-8EB6-CB0AF61C8B59/com_apple_MobileAsset_SoftwareUpdate/66fb8f8a6b11a31c140a77119ec26079f6f40534.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4c1a2c78691387f8092da256b24e998b58271418",
+                "sha2-256": "59fd6edd4a18dfb3d2d37c0905f7e87058576a936e3396b4abd8d7ec086f051a"
+            },
+            "size": 605306678
         },
         {
             "type": "ota",
@@ -1086,6 +1089,24 @@
                 "sha2-256": "9bea62ee08a31c40c41ac8e18ffeb9c711323f00e360fbff01fc4f25d5014d1e"
             },
             "size": 348479407
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28725/54E53189-2776-4961-8275-E7381D1F89F2/com_apple_MobileAsset_SoftwareUpdate/cc4c84d3386aceb058eead311dbbda1f417ce55c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "52c8980876d4c43dead44a3e9fd09b27b3fa7941",
+                "sha2-256": "5fc7436f2f46c6b8f2c994ec8bb8c3f5f9fb0814d8d002d692feaa8a0c23bdff"
+            },
+            "size": 352668126
         },
         {
             "type": "ota",
@@ -1268,60 +1289,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28373/14013854-B824-4BF8-AE52-EB4C0B6ECD79/com_apple_MobileAsset_SoftwareUpdate/af0f9d5b29929f10c91591b786942566a9080d1f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "24f9d609e242705e235824c97ae76a6ac93e3283",
-                "sha2-256": "cafbcb99cf8ce693ad60946973376ee63cd81e6517cc2ef4850112ee2631e322"
-            },
-            "size": 605449797
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28920/B975CAA3-E75E-47E1-A332-8F3DC73ECEE3/com_apple_MobileAsset_SoftwareUpdate/6e9e2615ae9a0621500ed900f531c23bba352f29.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "95b19f175fdffe6adfa40f5f891505021fc7d2e4",
-                "sha2-256": "1681f8da8a6ecbf4a983d46e08fe9491c0a4e150c4877517c145fd5db727d602"
-            },
-            "size": 605342548
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29273/C7216D65-50F5-48E9-96BF-294EEAA706F4/com_apple_MobileAsset_SoftwareUpdate/7a4de23f6f9d598759f46f3917b2ee7883d7d720.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "726d168d918b2578e138240a34bd701744a97189",
-                "sha2-256": "9cb88bad400e7ca70c2469ab044f57ef25a6e54138ae3675e46c8b9803160f68"
-            },
-            "size": 352753612
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch4,4"
@@ -1373,6 +1340,42 @@
                 "sha2-256": "3ca9cc2ceccda896893fee792e61fa8f7dbd30021bac3c4edb45234ad2bcc64f"
             },
             "size": 602629618
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28373/14013854-B824-4BF8-AE52-EB4C0B6ECD79/com_apple_MobileAsset_SoftwareUpdate/af0f9d5b29929f10c91591b786942566a9080d1f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "24f9d609e242705e235824c97ae76a6ac93e3283",
+                "sha2-256": "cafbcb99cf8ce693ad60946973376ee63cd81e6517cc2ef4850112ee2631e322"
+            },
+            "size": 605449797
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28920/B975CAA3-E75E-47E1-A332-8F3DC73ECEE3/com_apple_MobileAsset_SoftwareUpdate/6e9e2615ae9a0621500ed900f531c23bba352f29.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "95b19f175fdffe6adfa40f5f891505021fc7d2e4",
+                "sha2-256": "1681f8da8a6ecbf4a983d46e08fe9491c0a4e150c4877517c145fd5db727d602"
+            },
+            "size": 605342548
         },
         {
             "type": "ota",
@@ -1445,6 +1448,24 @@
                 "sha2-256": "9e3c317f9e0deb274fef85bf7c4991bff0a0a4700a1b547db7993a784caa1374"
             },
             "size": 348568059
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29273/C7216D65-50F5-48E9-96BF-294EEAA706F4/com_apple_MobileAsset_SoftwareUpdate/7a4de23f6f9d598759f46f3917b2ee7883d7d720.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "726d168d918b2578e138240a34bd701744a97189",
+                "sha2-256": "9cb88bad400e7ca70c2469ab044f57ef25a6e54138ae3675e46c8b9803160f68"
+            },
+            "size": 352753612
         },
         {
             "type": "ota",
@@ -1627,60 +1648,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28100/8F955786-84B9-49AE-853D-1CD6252F668A/com_apple_MobileAsset_SoftwareUpdate/0a6d0b7b5a4341475ccb493c91535ee3b34e3ccf.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f4e712e6b0a3dd21fe28c241273dbf9799ab4d49",
-                "sha2-256": "3dc74ab8beea057829c409584dc7b85a20890dcc6da60edfab043b3cb1d34eaf"
-            },
-            "size": 591219307
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29285/463B5E9F-32A6-4143-BE2D-DF8AD60BE797/com_apple_MobileAsset_SoftwareUpdate/2cea10d015323b6dd4f56e8a8e26783757d36b27.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1421e5536ea17a7d246d38bae5c7d4dc40a2652a",
-                "sha2-256": "58b63ef022d9d598bc47b043f32ffebdecf4556f9b427e3c3bed0b1aa5364b8d"
-            },
-            "size": 591111568
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28609/722D963E-076F-4BFD-A518-2BCBABCB618E/com_apple_MobileAsset_SoftwareUpdate/a5e408685f8bf334fb468b64fbcfaa28c42c997e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5b162352f0b804b9cd799eeb9dc0ecb69c7292f9",
-                "sha2-256": "5b771670be6e6ae4fa35644dd6b9e211d3fb0cafd52930e4351a55de5e38d35b"
-            },
-            "size": 318253105
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,1"
@@ -1732,6 +1699,42 @@
                 "sha2-256": "e409cdce0caaa7021a3f2eec0d731805ae1792347f3adee3be0ec0177a17ebb2"
             },
             "size": 589411718
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28100/8F955786-84B9-49AE-853D-1CD6252F668A/com_apple_MobileAsset_SoftwareUpdate/0a6d0b7b5a4341475ccb493c91535ee3b34e3ccf.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f4e712e6b0a3dd21fe28c241273dbf9799ab4d49",
+                "sha2-256": "3dc74ab8beea057829c409584dc7b85a20890dcc6da60edfab043b3cb1d34eaf"
+            },
+            "size": 591219307
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29285/463B5E9F-32A6-4143-BE2D-DF8AD60BE797/com_apple_MobileAsset_SoftwareUpdate/2cea10d015323b6dd4f56e8a8e26783757d36b27.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1421e5536ea17a7d246d38bae5c7d4dc40a2652a",
+                "sha2-256": "58b63ef022d9d598bc47b043f32ffebdecf4556f9b427e3c3bed0b1aa5364b8d"
+            },
+            "size": 591111568
         },
         {
             "type": "ota",
@@ -1804,6 +1807,24 @@
                 "sha2-256": "fea298b359ddea09f8f534f6629baf52fbcb903e3dad029ba7b2e7e9c4c6f4b5"
             },
             "size": 314291835
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28609/722D963E-076F-4BFD-A518-2BCBABCB618E/com_apple_MobileAsset_SoftwareUpdate/a5e408685f8bf334fb468b64fbcfaa28c42c997e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5b162352f0b804b9cd799eeb9dc0ecb69c7292f9",
+                "sha2-256": "5b771670be6e6ae4fa35644dd6b9e211d3fb0cafd52930e4351a55de5e38d35b"
+            },
+            "size": 318253105
         },
         {
             "type": "ota",
@@ -1986,60 +2007,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28660/56193DA5-1003-4667-BC92-FCE250159ACA/com_apple_MobileAsset_SoftwareUpdate/4e9afc7bc0897ebdf710dad966d7cc4ac1a7ad9a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3f95a7c59bb1275eacaa2345352bcb28518689ff",
-                "sha2-256": "17a78b749861598beaef8c48f85f53bf5a7d556f7f1241b8f82d315b4079a9d6"
-            },
-            "size": 591248583
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28459/6901D7BF-4F53-4771-A2C1-537259344602/com_apple_MobileAsset_SoftwareUpdate/d41ff191b0a6b3dadef32dc910a9e24de1621be2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7ca9ffa8a753d603ae885bc5ecbc138cfa1c5ffa",
-                "sha2-256": "f24c5289d80ffc2dcb9bd72ab20e2506b6d98644d3dba07481d16421fe8a2417"
-            },
-            "size": 591143898
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28861/27D83DF8-A331-46F8-A2F6-CED1C446FDC6/com_apple_MobileAsset_SoftwareUpdate/219aef028c030d64a2292e1ec726b25b350f9909.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2d1537ab5d9a063210a05651ec24845857aa9a9d",
-                "sha2-256": "71b59a281acabe53fb833e9bd3f834fca5389e6f0e2825f70508e71709e18abd"
-            },
-            "size": 318304011
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,2"
@@ -2091,6 +2058,42 @@
                 "sha2-256": "477429f077f888044663276549c8a7e378050faaffd3fbecdb3378552ff5a985"
             },
             "size": 589435933
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28660/56193DA5-1003-4667-BC92-FCE250159ACA/com_apple_MobileAsset_SoftwareUpdate/4e9afc7bc0897ebdf710dad966d7cc4ac1a7ad9a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3f95a7c59bb1275eacaa2345352bcb28518689ff",
+                "sha2-256": "17a78b749861598beaef8c48f85f53bf5a7d556f7f1241b8f82d315b4079a9d6"
+            },
+            "size": 591248583
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28459/6901D7BF-4F53-4771-A2C1-537259344602/com_apple_MobileAsset_SoftwareUpdate/d41ff191b0a6b3dadef32dc910a9e24de1621be2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7ca9ffa8a753d603ae885bc5ecbc138cfa1c5ffa",
+                "sha2-256": "f24c5289d80ffc2dcb9bd72ab20e2506b6d98644d3dba07481d16421fe8a2417"
+            },
+            "size": 591143898
         },
         {
             "type": "ota",
@@ -2163,6 +2166,24 @@
                 "sha2-256": "47e8e9ab53b59df625ff44664d822ecab38d7445ab36889b2861762b7d4320fd"
             },
             "size": 314352371
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28861/27D83DF8-A331-46F8-A2F6-CED1C446FDC6/com_apple_MobileAsset_SoftwareUpdate/219aef028c030d64a2292e1ec726b25b350f9909.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2d1537ab5d9a063210a05651ec24845857aa9a9d",
+                "sha2-256": "71b59a281acabe53fb833e9bd3f834fca5389e6f0e2825f70508e71709e18abd"
+            },
+            "size": 318304011
         },
         {
             "type": "ota",
@@ -2345,60 +2366,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29072/13D05D8F-363E-4136-9E0D-6ED153CC72C4/com_apple_MobileAsset_SoftwareUpdate/085547453fe0a4a5b1d6a868f9fcb47b253f2117.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "83eaa1ffebf3f8f5ddcf6054b8a7107593938ed0",
-                "sha2-256": "7d1ce5b6b895c4cc94b96ceae3ac8841c24e8df4d85314a84b00a4b3b92def27"
-            },
-            "size": 606015793
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28620/A36C9A90-B5EB-43E2-BB2D-B9AFCCAC9C8B/com_apple_MobileAsset_SoftwareUpdate/96dc1894a62ae7e90e363692e11128c386073b72.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8dc22e66449b3bb443436daadb534b9a8630a211",
-                "sha2-256": "2f980e287f49209d5895a70a476897a65a9216c30585feaca0e789aa7efcd229"
-            },
-            "size": 605822765
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28261/C57C03C1-6482-4D08-B14D-D396A869D949/com_apple_MobileAsset_SoftwareUpdate/c60e5b272a85081b80eb798092b20dadecaada74.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8d1536cbf65fd4c4edc0f3ac8c22ffdd8250cade",
-                "sha2-256": "d0e5cf9e2cbf97a5215cca0990f83acfceff7f773d0209da06c295a8c44033ae"
-            },
-            "size": 353693546
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,3"
@@ -2450,6 +2417,42 @@
                 "sha2-256": "4a7402b3eb5dbeda40632661cb0772ee947b0243beea9a87cca1cdaf588f426c"
             },
             "size": 603248416
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29072/13D05D8F-363E-4136-9E0D-6ED153CC72C4/com_apple_MobileAsset_SoftwareUpdate/085547453fe0a4a5b1d6a868f9fcb47b253f2117.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "83eaa1ffebf3f8f5ddcf6054b8a7107593938ed0",
+                "sha2-256": "7d1ce5b6b895c4cc94b96ceae3ac8841c24e8df4d85314a84b00a4b3b92def27"
+            },
+            "size": 606015793
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28620/A36C9A90-B5EB-43E2-BB2D-B9AFCCAC9C8B/com_apple_MobileAsset_SoftwareUpdate/96dc1894a62ae7e90e363692e11128c386073b72.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8dc22e66449b3bb443436daadb534b9a8630a211",
+                "sha2-256": "2f980e287f49209d5895a70a476897a65a9216c30585feaca0e789aa7efcd229"
+            },
+            "size": 605822765
         },
         {
             "type": "ota",
@@ -2522,6 +2525,24 @@
                 "sha2-256": "6beb98f507746cc7e51243f2bd9c2f653fd06b675c9a878406b28b2d87d13a84"
             },
             "size": 350089362
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28261/C57C03C1-6482-4D08-B14D-D396A869D949/com_apple_MobileAsset_SoftwareUpdate/c60e5b272a85081b80eb798092b20dadecaada74.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8d1536cbf65fd4c4edc0f3ac8c22ffdd8250cade",
+                "sha2-256": "d0e5cf9e2cbf97a5215cca0990f83acfceff7f773d0209da06c295a8c44033ae"
+            },
+            "size": 353693546
         },
         {
             "type": "ota",
@@ -2704,60 +2725,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29021/22D8654B-3FD9-4748-BB2F-D41DC77360A5/com_apple_MobileAsset_SoftwareUpdate/729061d6cb246f6e93058560775594214b74162d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d28e01bcd2889f7f2b6a58ff9ef355d0891d4f50",
-                "sha2-256": "0e04dd339851752b32c6d6675fc66d7c7696633dc688e63218e31df712cfc5a0"
-            },
-            "size": 606075231
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29030/2B236CCB-FB2A-42F7-A3F6-3C19D8D4CB4D/com_apple_MobileAsset_SoftwareUpdate/ba6095ec9e7e5685686ec3146e4edc87082cfd02.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2d953fde2b7a1127735ec5d547dab901bd57923e",
-                "sha2-256": "d201346456ef46d986402f72a3d51d523779babc1db74ab2d167f2b3eccae3f6"
-            },
-            "size": 605863737
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28699/F6DC1E06-E7DC-486B-8490-1BBF511DDAA6/com_apple_MobileAsset_SoftwareUpdate/03fc849dfa418e4b5f78f5e61c09468a7c319565.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b371f8bdf46bf38d53bdcb8fad81e56e46d1146a",
-                "sha2-256": "9680918e26308b0bdfecfb9eedb544c514866ed14cb449ef0d03c21c51cd03db"
-            },
-            "size": 353782882
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,4"
@@ -2809,6 +2776,42 @@
                 "sha2-256": "28d5f4691627a80e75ddf37b506840fd3f70d68bdff4361f13fb676fe4593db0"
             },
             "size": 603309862
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29021/22D8654B-3FD9-4748-BB2F-D41DC77360A5/com_apple_MobileAsset_SoftwareUpdate/729061d6cb246f6e93058560775594214b74162d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d28e01bcd2889f7f2b6a58ff9ef355d0891d4f50",
+                "sha2-256": "0e04dd339851752b32c6d6675fc66d7c7696633dc688e63218e31df712cfc5a0"
+            },
+            "size": 606075231
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29030/2B236CCB-FB2A-42F7-A3F6-3C19D8D4CB4D/com_apple_MobileAsset_SoftwareUpdate/ba6095ec9e7e5685686ec3146e4edc87082cfd02.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2d953fde2b7a1127735ec5d547dab901bd57923e",
+                "sha2-256": "d201346456ef46d986402f72a3d51d523779babc1db74ab2d167f2b3eccae3f6"
+            },
+            "size": 605863737
         },
         {
             "type": "ota",
@@ -2881,6 +2884,24 @@
                 "sha2-256": "5ed97d6cf19a14039e5c1de40b39240a42351bdbbbdd2197731e3db757f9cc46"
             },
             "size": 350161148
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28699/F6DC1E06-E7DC-486B-8490-1BBF511DDAA6/com_apple_MobileAsset_SoftwareUpdate/03fc849dfa418e4b5f78f5e61c09468a7c319565.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b371f8bdf46bf38d53bdcb8fad81e56e46d1146a",
+                "sha2-256": "9680918e26308b0bdfecfb9eedb544c514866ed14cb449ef0d03c21c51cd03db"
+            },
+            "size": 353782882
         },
         {
             "type": "ota",
@@ -3063,60 +3084,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28663/48446662-3DCC-41AA-A867-5867A605A34A/com_apple_MobileAsset_SoftwareUpdate/ed78dd527790840e732f7ef91c54441ed9b2724a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d4857771e93b99a8ac5f3ff0a0c1b07ce0cec8c2",
-                "sha2-256": "9b4e4f030fc145e5c9a2c31d5b64a840e365652ffc76fce5e1b5da82afff774f"
-            },
-            "size": 586438851
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29080/43AD13A3-2F44-46E6-8906-2933E8A559F0/com_apple_MobileAsset_SoftwareUpdate/2979efa372ef4be212fbcead08210d86fcd0fdcc.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "fef6263117ceddb77f5c08220f650c0222c1ab1b",
-                "sha2-256": "6a6a35c1db3d17157ac666d871d816da0075594433a110da3424436151b04b3f"
-            },
-            "size": 586465652
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28819/76B59AF8-3395-42BC-AEE8-A8B5577D5DC3/com_apple_MobileAsset_SoftwareUpdate/dcdb4d8dee4a97183b8af90691073ced19af338d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "de77478189bcb6ab08cbcba8ab2e243fb74f2371",
-                "sha2-256": "5c7117d4d81a678366b0f1accb32f4d0ad881322a72cc90e53abf0ad31cd85ef"
-            },
-            "size": 318192034
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,9"
@@ -3168,6 +3135,42 @@
                 "sha2-256": "7acbc7f1576a0dd908f3b05e66e4ba1f610ec9d11a0a36d2139d67658912d7d8"
             },
             "size": 585127803
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28663/48446662-3DCC-41AA-A867-5867A605A34A/com_apple_MobileAsset_SoftwareUpdate/ed78dd527790840e732f7ef91c54441ed9b2724a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d4857771e93b99a8ac5f3ff0a0c1b07ce0cec8c2",
+                "sha2-256": "9b4e4f030fc145e5c9a2c31d5b64a840e365652ffc76fce5e1b5da82afff774f"
+            },
+            "size": 586438851
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29080/43AD13A3-2F44-46E6-8906-2933E8A559F0/com_apple_MobileAsset_SoftwareUpdate/2979efa372ef4be212fbcead08210d86fcd0fdcc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fef6263117ceddb77f5c08220f650c0222c1ab1b",
+                "sha2-256": "6a6a35c1db3d17157ac666d871d816da0075594433a110da3424436151b04b3f"
+            },
+            "size": 586465652
         },
         {
             "type": "ota",
@@ -3240,6 +3243,24 @@
                 "sha2-256": "1a924d986762fb3dad22edd09d84a4ac95bd02fb4c19859f41a949f09eec8e04"
             },
             "size": 314588963
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28819/76B59AF8-3395-42BC-AEE8-A8B5577D5DC3/com_apple_MobileAsset_SoftwareUpdate/dcdb4d8dee4a97183b8af90691073ced19af338d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "de77478189bcb6ab08cbcba8ab2e243fb74f2371",
+                "sha2-256": "5c7117d4d81a678366b0f1accb32f4d0ad881322a72cc90e53abf0ad31cd85ef"
+            },
+            "size": 318192034
         },
         {
             "type": "ota",
@@ -3422,60 +3443,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28096/759C112B-F774-40B7-A02C-8C803538533E/com_apple_MobileAsset_SoftwareUpdate/9bf3cfb6596f2759370e9cb1e9841b18c0f3ed41.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a5be93219e93090697a5cbcbc2627fe2ff8dce65",
-                "sha2-256": "6be3d6ae76bb62a078f3cb467911e6d04dd68dee38b65c6535aa4d921a789b65"
-            },
-            "size": 586466420
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29065/FFA5E6E0-EE7B-41B0-97A5-06A0A07A0C94/com_apple_MobileAsset_SoftwareUpdate/8227fb261e8785956a1577e61c745c58c2c25367.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ba3427348b69fa10bb1bce79327c0a44232d91c1",
-                "sha2-256": "456a837b19075e489c9ba676cdae200c755fc493a4bc46660fc20e95816949c2"
-            },
-            "size": 586496854
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28998/50CCAF11-6758-4FD8-A9A5-BCBD51E01CAF/com_apple_MobileAsset_SoftwareUpdate/f4c42238868a99c8873210e2c85e2ce00b0b8f60.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d540ef93e7bcbc856bc91ffbc1ad0080036dd673",
-                "sha2-256": "e639ebf5cdc311c05616ecc590cb85eafcf98a864c6d18b1c1682b6a8388a177"
-            },
-            "size": 318224496
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,10"
@@ -3527,6 +3494,42 @@
                 "sha2-256": "6181c438cf9f6488d62ca27e14f408d3c723f7c9901de45d56be0f16578dcd9c"
             },
             "size": 585163076
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28096/759C112B-F774-40B7-A02C-8C803538533E/com_apple_MobileAsset_SoftwareUpdate/9bf3cfb6596f2759370e9cb1e9841b18c0f3ed41.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a5be93219e93090697a5cbcbc2627fe2ff8dce65",
+                "sha2-256": "6be3d6ae76bb62a078f3cb467911e6d04dd68dee38b65c6535aa4d921a789b65"
+            },
+            "size": 586466420
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29065/FFA5E6E0-EE7B-41B0-97A5-06A0A07A0C94/com_apple_MobileAsset_SoftwareUpdate/8227fb261e8785956a1577e61c745c58c2c25367.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ba3427348b69fa10bb1bce79327c0a44232d91c1",
+                "sha2-256": "456a837b19075e489c9ba676cdae200c755fc493a4bc46660fc20e95816949c2"
+            },
+            "size": 586496854
         },
         {
             "type": "ota",
@@ -3599,6 +3602,24 @@
                 "sha2-256": "08f0657b89c07e2980dc14d13dd9a1325d9fec06dcef694818214ba20bf3debf"
             },
             "size": 314605169
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28998/50CCAF11-6758-4FD8-A9A5-BCBD51E01CAF/com_apple_MobileAsset_SoftwareUpdate/f4c42238868a99c8873210e2c85e2ce00b0b8f60.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d540ef93e7bcbc856bc91ffbc1ad0080036dd673",
+                "sha2-256": "e639ebf5cdc311c05616ecc590cb85eafcf98a864c6d18b1c1682b6a8388a177"
+            },
+            "size": 318224496
         },
         {
             "type": "ota",
@@ -3781,60 +3802,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28806/AE422EE6-2D7A-479A-A0B3-33F2E9ECB9A7/com_apple_MobileAsset_SoftwareUpdate/4a2169ec9e888d6e60bb4fab7fab1137177e7ff9.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cdeb4950902b20e1477c2dfc619b7800b5eaa2df",
-                "sha2-256": "02e734ff2bbff572ffd17b1d5cb15c16509f995c565c73f7b636f8bb3bb8f267"
-            },
-            "size": 615795677
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28201/79EFAFF7-A43D-42B5-9AC0-7CB83349D929/com_apple_MobileAsset_SoftwareUpdate/0782c5a1b33b3ebcc9fc398f1c77fb4412bc8bc5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "794c36e31a3a3c12ccbe34f98a9a422e56daa06d",
-                "sha2-256": "34cfde6b40247df89eee04e50e10056070cf0abab155cdfb8d854fe7cd98025c"
-            },
-            "size": 615784353
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28187/C85E2A9A-D5C1-4E10-8B94-E747E23458B9/com_apple_MobileAsset_SoftwareUpdate/819123d4a65175c1690ac9a227fa9cac9859e524.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "42e7a4640a47ce076486a196c517bb868e40cdb2",
-                "sha2-256": "0d4b98bd30b3e6ec840351bed1035a28f424e4cad33b554ca0de260bd03f39e4"
-            },
-            "size": 353269661
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,11"
@@ -3886,6 +3853,42 @@
                 "sha2-256": "c3b952d8dd1134463404f52f53275e003b30c53b859c975e43dad0246da1d671"
             },
             "size": 612863995
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28806/AE422EE6-2D7A-479A-A0B3-33F2E9ECB9A7/com_apple_MobileAsset_SoftwareUpdate/4a2169ec9e888d6e60bb4fab7fab1137177e7ff9.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cdeb4950902b20e1477c2dfc619b7800b5eaa2df",
+                "sha2-256": "02e734ff2bbff572ffd17b1d5cb15c16509f995c565c73f7b636f8bb3bb8f267"
+            },
+            "size": 615795677
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28201/79EFAFF7-A43D-42B5-9AC0-7CB83349D929/com_apple_MobileAsset_SoftwareUpdate/0782c5a1b33b3ebcc9fc398f1c77fb4412bc8bc5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "794c36e31a3a3c12ccbe34f98a9a422e56daa06d",
+                "sha2-256": "34cfde6b40247df89eee04e50e10056070cf0abab155cdfb8d854fe7cd98025c"
+            },
+            "size": 615784353
         },
         {
             "type": "ota",
@@ -3958,6 +3961,24 @@
                 "sha2-256": "7104f3c278be51a43b370be541c7c7efdceca98e6ea50c319892acc8e6074061"
             },
             "size": 349144895
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28187/C85E2A9A-D5C1-4E10-8B94-E747E23458B9/com_apple_MobileAsset_SoftwareUpdate/819123d4a65175c1690ac9a227fa9cac9859e524.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "42e7a4640a47ce076486a196c517bb868e40cdb2",
+                "sha2-256": "0d4b98bd30b3e6ec840351bed1035a28f424e4cad33b554ca0de260bd03f39e4"
+            },
+            "size": 353269661
         },
         {
             "type": "ota",
@@ -4140,60 +4161,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28062/D1A22079-B838-4210-886E-7EB1E2663783/com_apple_MobileAsset_SoftwareUpdate/714571b9194cb4a72bec1a142b46ec1c8cfcb6b6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "258ba28969ae9b48e2ab779f743783ff546ed357",
-                "sha2-256": "63b4b6c93b8a1f61c900366571e6a58b7c553fc6e417d080d1294c6f8dc41ac4"
-            },
-            "size": 615876542
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28253/C3AC53C4-AD4B-497F-95F9-CFAC77313A18/com_apple_MobileAsset_SoftwareUpdate/688fb987dc792d8b50866a8cfddb5e3622c0811f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5a2a02a89086f68bf0adaeec10cd453037e79d5f",
-                "sha2-256": "004b82417d8f18490dd73f86391d23ad062292c6febb9242108f77c1a7fdaf25"
-            },
-            "size": 615819164
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28975/95D57FA4-38A3-49C5-9756-7144B90FA0EF/com_apple_MobileAsset_SoftwareUpdate/2011af2ea56e326910f1ae87c976375032ae635f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "13a76389015d2a1cfbc123e56da193c1be2e92f9",
-                "sha2-256": "da1b4c7836f761ba507312e4437bc0504b6a435032f3f80cbb5b4367dca79968"
-            },
-            "size": 353345450
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch5,12"
@@ -4245,6 +4212,42 @@
                 "sha2-256": "a615c43287d79c3d24df0845434938f973bb56e3a960b9470ef2521a1b0d8b2e"
             },
             "size": 612921139
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28062/D1A22079-B838-4210-886E-7EB1E2663783/com_apple_MobileAsset_SoftwareUpdate/714571b9194cb4a72bec1a142b46ec1c8cfcb6b6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "258ba28969ae9b48e2ab779f743783ff546ed357",
+                "sha2-256": "63b4b6c93b8a1f61c900366571e6a58b7c553fc6e417d080d1294c6f8dc41ac4"
+            },
+            "size": 615876542
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28253/C3AC53C4-AD4B-497F-95F9-CFAC77313A18/com_apple_MobileAsset_SoftwareUpdate/688fb987dc792d8b50866a8cfddb5e3622c0811f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5a2a02a89086f68bf0adaeec10cd453037e79d5f",
+                "sha2-256": "004b82417d8f18490dd73f86391d23ad062292c6febb9242108f77c1a7fdaf25"
+            },
+            "size": 615819164
         },
         {
             "type": "ota",
@@ -4317,6 +4320,24 @@
                 "sha2-256": "a4485c09b4904b3d1bfb27f540c9da793721be1248f91bb8d40ece9e5d42f2da"
             },
             "size": 349218629
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28975/95D57FA4-38A3-49C5-9756-7144B90FA0EF/com_apple_MobileAsset_SoftwareUpdate/2011af2ea56e326910f1ae87c976375032ae635f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "13a76389015d2a1cfbc123e56da193c1be2e92f9",
+                "sha2-256": "da1b4c7836f761ba507312e4437bc0504b6a435032f3f80cbb5b4367dca79968"
+            },
+            "size": 353345450
         },
         {
             "type": "ota",
@@ -4499,60 +4520,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28891/03812999-EE4D-498D-9CEF-12BDFFD81549/com_apple_MobileAsset_SoftwareUpdate/74888175655201bc52680f2b5763e911df93bcb1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1bf8a2dcbd830c8d9dbbe57ee760614ab773ca8a",
-                "sha2-256": "1a95fc3fb1e917e55ceb03cff4e221caa192643651e8046467b099dc01ca9457"
-            },
-            "size": 579420245
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29002/15E7A47F-3691-4E80-9D3E-8EAE6B199EF5/com_apple_MobileAsset_SoftwareUpdate/8799cbe7d6bce1c40798cceb992bbd7a5eeb8e18.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9ed58097a8f13b1e38575f1d75618367d1405109",
-                "sha2-256": "501ce4f1509993a2b081f9069bda214ff4399ce9170a9336387b913f83241862"
-            },
-            "size": 579242671
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28066/1E0EFD4A-B8C7-46BC-B412-066E882D3939/com_apple_MobileAsset_SoftwareUpdate/2d95ce4f6e9d691d0d10fbd6fe88f13c799669c8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ca2e1e273cfa1c057c7286860d8cb7c8ddd82642",
-                "sha2-256": "20e18e831ecd4ac8a56143b42f9b2315b8c6c29a5bd96bd9ba7906cd995ee65a"
-            },
-            "size": 306882423
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,1"
@@ -4604,6 +4571,42 @@
                 "sha2-256": "3b80e3d774e55031cfb05993536d1a3103b40ba96cb1da5f47610e79ac47627a"
             },
             "size": 577652046
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28891/03812999-EE4D-498D-9CEF-12BDFFD81549/com_apple_MobileAsset_SoftwareUpdate/74888175655201bc52680f2b5763e911df93bcb1.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1bf8a2dcbd830c8d9dbbe57ee760614ab773ca8a",
+                "sha2-256": "1a95fc3fb1e917e55ceb03cff4e221caa192643651e8046467b099dc01ca9457"
+            },
+            "size": 579420245
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29002/15E7A47F-3691-4E80-9D3E-8EAE6B199EF5/com_apple_MobileAsset_SoftwareUpdate/8799cbe7d6bce1c40798cceb992bbd7a5eeb8e18.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9ed58097a8f13b1e38575f1d75618367d1405109",
+                "sha2-256": "501ce4f1509993a2b081f9069bda214ff4399ce9170a9336387b913f83241862"
+            },
+            "size": 579242671
         },
         {
             "type": "ota",
@@ -4676,6 +4679,24 @@
                 "sha2-256": "1aa04f9de5b74f5fad73cb2af30719ac8dfb9e2c6c274449f0cd38675731221e"
             },
             "size": 302876167
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28066/1E0EFD4A-B8C7-46BC-B412-066E882D3939/com_apple_MobileAsset_SoftwareUpdate/2d95ce4f6e9d691d0d10fbd6fe88f13c799669c8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ca2e1e273cfa1c057c7286860d8cb7c8ddd82642",
+                "sha2-256": "20e18e831ecd4ac8a56143b42f9b2315b8c6c29a5bd96bd9ba7906cd995ee65a"
+            },
+            "size": 306882423
         },
         {
             "type": "ota",
@@ -4858,60 +4879,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28766/92C0487F-8A31-48B1-814F-601800BA1C46/com_apple_MobileAsset_SoftwareUpdate/84ec76eee2d1b184a809934fa4886caf54469210.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d3bcc6bc28608662b056a246ffe2224d11b9c5c1",
-                "sha2-256": "857b0f4f5275f90f785570492ae0c45a7b75e3cc2ec8d1d8bf9bfdd8f538313f"
-            },
-            "size": 579438697
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28507/87AC7D4A-F2E3-4067-BAB7-FFF767405EFB/com_apple_MobileAsset_SoftwareUpdate/15472eb6c8392d4f3767b9d2e70900c60df6c742.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "fffa1b1c0fc40cffb888afa63c657c10020a7e08",
-                "sha2-256": "95016dab46426fb0c9bcc4f46e8970ca3a0283ad96131d85807d74b90ab3c28b"
-            },
-            "size": 579269510
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28557/F5B4DF8D-CD63-4A70-847A-85C5EC21ACAE/com_apple_MobileAsset_SoftwareUpdate/2b6aa73c644868dc9ee89e2f11a2ab70e51ac0c4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9d26bbe1639861ba387d98a66c74bbe2c4396176",
-                "sha2-256": "c354993b0cf433790aa2e22913579b7bd4de425ba12f86702e5e1295c119c632"
-            },
-            "size": 306911941
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,2"
@@ -4963,6 +4930,42 @@
                 "sha2-256": "843216c27b64b0b1b9b4684618e904b234cb277cdff7a951f3d2e14cc2b28f7b"
             },
             "size": 577676941
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28766/92C0487F-8A31-48B1-814F-601800BA1C46/com_apple_MobileAsset_SoftwareUpdate/84ec76eee2d1b184a809934fa4886caf54469210.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d3bcc6bc28608662b056a246ffe2224d11b9c5c1",
+                "sha2-256": "857b0f4f5275f90f785570492ae0c45a7b75e3cc2ec8d1d8bf9bfdd8f538313f"
+            },
+            "size": 579438697
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28507/87AC7D4A-F2E3-4067-BAB7-FFF767405EFB/com_apple_MobileAsset_SoftwareUpdate/15472eb6c8392d4f3767b9d2e70900c60df6c742.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fffa1b1c0fc40cffb888afa63c657c10020a7e08",
+                "sha2-256": "95016dab46426fb0c9bcc4f46e8970ca3a0283ad96131d85807d74b90ab3c28b"
+            },
+            "size": 579269510
         },
         {
             "type": "ota",
@@ -5035,6 +5038,24 @@
                 "sha2-256": "faee6a267b32227d2880fd6e533033e4d26c773f43ea51a9bdbcd7eb70f8f49e"
             },
             "size": 302920453
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28557/F5B4DF8D-CD63-4A70-847A-85C5EC21ACAE/com_apple_MobileAsset_SoftwareUpdate/2b6aa73c644868dc9ee89e2f11a2ab70e51ac0c4.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9d26bbe1639861ba387d98a66c74bbe2c4396176",
+                "sha2-256": "c354993b0cf433790aa2e22913579b7bd4de425ba12f86702e5e1295c119c632"
+            },
+            "size": 306911941
         },
         {
             "type": "ota",
@@ -5217,60 +5238,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29302/27A47761-1661-4F0F-A937-A5697DB60B0E/com_apple_MobileAsset_SoftwareUpdate/f67544003d4bf69cd7c173b6d5b44320ec885acf.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cfd88184348e3e467686e658e7789a2d7a1aa289",
-                "sha2-256": "897bd27d0d96efb730cbc7a00d02cbe8b90333fa8b7ac9c48018fbd70225a4ed"
-            },
-            "size": 594294081
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29033/703D4CF4-8178-4D63-A533-6E2199D7A39A/com_apple_MobileAsset_SoftwareUpdate/dd3f6c5d5e50b39cecc4b73302445cb0207138a2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e2e3df4f6508c9bea0fa40109a9ea528f1eddf66",
-                "sha2-256": "7ff40ffe11485c295e521b8b197ff0aec5ed856060877ee1867198f0361a73ef"
-            },
-            "size": 594293092
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28348/550367E6-53A4-4AA9-86EA-9578F02F4AB0/com_apple_MobileAsset_SoftwareUpdate/1fafa86e5939a0f36d8bc3fd747abf89ea126188.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "00c196679d6814cd528cf677230c274faf8f270a",
-                "sha2-256": "d9ec3fea25f818a84682a6eab1d517e5ea32d1e1d7f3f48c1da86ceaadbaf746"
-            },
-            "size": 341634476
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,3"
@@ -5322,6 +5289,42 @@
                 "sha2-256": "8392559d5155ccd2b74ce3498413312a2a98386dbe8296e80842876ea12d0fcd"
             },
             "size": 591786181
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29302/27A47761-1661-4F0F-A937-A5697DB60B0E/com_apple_MobileAsset_SoftwareUpdate/f67544003d4bf69cd7c173b6d5b44320ec885acf.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cfd88184348e3e467686e658e7789a2d7a1aa289",
+                "sha2-256": "897bd27d0d96efb730cbc7a00d02cbe8b90333fa8b7ac9c48018fbd70225a4ed"
+            },
+            "size": 594294081
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29033/703D4CF4-8178-4D63-A533-6E2199D7A39A/com_apple_MobileAsset_SoftwareUpdate/dd3f6c5d5e50b39cecc4b73302445cb0207138a2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e2e3df4f6508c9bea0fa40109a9ea528f1eddf66",
+                "sha2-256": "7ff40ffe11485c295e521b8b197ff0aec5ed856060877ee1867198f0361a73ef"
+            },
+            "size": 594293092
         },
         {
             "type": "ota",
@@ -5394,6 +5397,24 @@
                 "sha2-256": "b743629557b9cb72e713e7b3e61a89ae329ebb218548b9220236ec2544054b0d"
             },
             "size": 337732010
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28348/550367E6-53A4-4AA9-86EA-9578F02F4AB0/com_apple_MobileAsset_SoftwareUpdate/1fafa86e5939a0f36d8bc3fd747abf89ea126188.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "00c196679d6814cd528cf677230c274faf8f270a",
+                "sha2-256": "d9ec3fea25f818a84682a6eab1d517e5ea32d1e1d7f3f48c1da86ceaadbaf746"
+            },
+            "size": 341634476
         },
         {
             "type": "ota",
@@ -5576,60 +5597,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28181/4F21721A-ADEB-4112-8210-329CD534C4E2/com_apple_MobileAsset_SoftwareUpdate/13f0af9258d4cec3803f8dc769f49aec08db60b7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "12e68cb8d314101cfeaa095e87f9e3942a96310f",
-                "sha2-256": "74e642617a79dde823e5425bb4137565f1e07b3c6f4da565bbfd4da4d24bc7ea"
-            },
-            "size": 594358999
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28272/8BACA0D1-C43C-4F7B-B055-8AB56EC138A2/com_apple_MobileAsset_SoftwareUpdate/1a915a8970525b5dd9bdf6a691ccab212cdb59cb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ed23b3dbf119bcae205b9cdd2a0b62efe744237a",
-                "sha2-256": "cb350008af03b91b35f1763ee2e9b58010bc58ba59b3d6033d0ee575c176c470"
-            },
-            "size": 594331509
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28612/FD260460-C328-4C45-807A-3014376EB4D4/com_apple_MobileAsset_SoftwareUpdate/c5037d99794188a2e5e445343800fd7d9fcff6e7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "461c1b38a1b31023031b471ebbd7300b5d50d697",
-                "sha2-256": "b1b2e4020f8a4afade8d8410059d4742628aae3da0367ffe08bdecc17c43ca9c"
-            },
-            "size": 341710951
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,4"
@@ -5681,6 +5648,42 @@
                 "sha2-256": "21c6f535ed3cd47d59de8aebc24a9ef899737285aed44a8192c0a1e90201d801"
             },
             "size": 591838446
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28181/4F21721A-ADEB-4112-8210-329CD534C4E2/com_apple_MobileAsset_SoftwareUpdate/13f0af9258d4cec3803f8dc769f49aec08db60b7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "12e68cb8d314101cfeaa095e87f9e3942a96310f",
+                "sha2-256": "74e642617a79dde823e5425bb4137565f1e07b3c6f4da565bbfd4da4d24bc7ea"
+            },
+            "size": 594358999
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28272/8BACA0D1-C43C-4F7B-B055-8AB56EC138A2/com_apple_MobileAsset_SoftwareUpdate/1a915a8970525b5dd9bdf6a691ccab212cdb59cb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ed23b3dbf119bcae205b9cdd2a0b62efe744237a",
+                "sha2-256": "cb350008af03b91b35f1763ee2e9b58010bc58ba59b3d6033d0ee575c176c470"
+            },
+            "size": 594331509
         },
         {
             "type": "ota",
@@ -5753,6 +5756,24 @@
                 "sha2-256": "342209e6cc0e3a2fb5c66ec0268f66d92955d4fdac8763e0f29981a466fb92b7"
             },
             "size": 337796034
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28612/FD260460-C328-4C45-807A-3014376EB4D4/com_apple_MobileAsset_SoftwareUpdate/c5037d99794188a2e5e445343800fd7d9fcff6e7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "461c1b38a1b31023031b471ebbd7300b5d50d697",
+                "sha2-256": "b1b2e4020f8a4afade8d8410059d4742628aae3da0367ffe08bdecc17c43ca9c"
+            },
+            "size": 341710951
         },
         {
             "type": "ota",
@@ -5935,60 +5956,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28667/C8A67ADE-EFBB-41A8-A9A2-65264DFEF113/com_apple_MobileAsset_SoftwareUpdate/0a9fbad1da2bbaba2fb00598c8b109de49a50a81.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d9f949a18f7024bdef797b13eb2758d4da956910",
-                "sha2-256": "b4ea75f8f3f68302a1c76121ce858c91c6a537ad541ec1e5e6257e3eddf7f80e"
-            },
-            "size": 580116902
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29215/8F62EBC9-8FB1-4A22-BCB2-1B9D61A6C643/com_apple_MobileAsset_SoftwareUpdate/6dc07a05dd88d9822c471c44299c5ba16611b28b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b14da317e6a4a4354dff93f2d252e82301b43dba",
-                "sha2-256": "b72e68f350c4b6d1775e7bb63a4c7959262ed623f26d5221f45bb18e4200647d"
-            },
-            "size": 579853819
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29193/92CA4913-3A79-4087-B201-B8973ED6834D/com_apple_MobileAsset_SoftwareUpdate/106064f94c7f539a6b0349d62a86e7b223ae7ee6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cd4b1b4f187e200c4ad722488de60947e7e8decd",
-                "sha2-256": "9fd73841db85220c0bd68eec4fde9915f5d706e6431e032094f0171d6d12311e"
-            },
-            "size": 307208825
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,6"
@@ -6040,6 +6007,42 @@
                 "sha2-256": "abe03953b7b5e32c6ff8256f781dbf8717bb1c6b45510aedde3bc00a58fcf707"
             },
             "size": 578411976
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28667/C8A67ADE-EFBB-41A8-A9A2-65264DFEF113/com_apple_MobileAsset_SoftwareUpdate/0a9fbad1da2bbaba2fb00598c8b109de49a50a81.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d9f949a18f7024bdef797b13eb2758d4da956910",
+                "sha2-256": "b4ea75f8f3f68302a1c76121ce858c91c6a537ad541ec1e5e6257e3eddf7f80e"
+            },
+            "size": 580116902
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29215/8F62EBC9-8FB1-4A22-BCB2-1B9D61A6C643/com_apple_MobileAsset_SoftwareUpdate/6dc07a05dd88d9822c471c44299c5ba16611b28b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b14da317e6a4a4354dff93f2d252e82301b43dba",
+                "sha2-256": "b72e68f350c4b6d1775e7bb63a4c7959262ed623f26d5221f45bb18e4200647d"
+            },
+            "size": 579853819
         },
         {
             "type": "ota",
@@ -6112,6 +6115,24 @@
                 "sha2-256": "e47a5d52deacf66c1c2e00165d1a7325d03f3e96e02b01c72cd412dc863390dd"
             },
             "size": 303417089
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29193/92CA4913-3A79-4087-B201-B8973ED6834D/com_apple_MobileAsset_SoftwareUpdate/106064f94c7f539a6b0349d62a86e7b223ae7ee6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cd4b1b4f187e200c4ad722488de60947e7e8decd",
+                "sha2-256": "9fd73841db85220c0bd68eec4fde9915f5d706e6431e032094f0171d6d12311e"
+            },
+            "size": 307208825
         },
         {
             "type": "ota",
@@ -6294,60 +6315,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28777/5AAE861D-A014-472E-8A60-832756A7370E/com_apple_MobileAsset_SoftwareUpdate/9af920eb0787093c094d29809253f9489627ef3b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1ec1120437ad9fb517a714ab5be5f56a580170de",
-                "sha2-256": "5097528c5719f9a028b1eba648029afc02d32e9578ee53abd535d9c79de00209"
-            },
-            "size": 580154406
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28996/7487A09E-48BE-4662-9FC1-CB0FFD4D1B8B/com_apple_MobileAsset_SoftwareUpdate/c02c496b4754802f59355f1e029596f557df430b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8b558bef07edc60fe4e0c02ed010cb0709148f32",
-                "sha2-256": "934518d344c0a351c208f38d40ef176f23aa65e32d0af5f3f63eeb61bac71a1d"
-            },
-            "size": 579890623
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28486/1007F006-5F02-4D47-A460-37517BA32420/com_apple_MobileAsset_SoftwareUpdate/15d925816678dbc4703479e161029074db991caa.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9114947ff153bdc32648d2e12ac0996c245e93d0",
-                "sha2-256": "b88aa682643414b649ea25584d7be3e51710527eea7b97d2867d3f8cb2f30936"
-            },
-            "size": 307245791
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,7"
@@ -6399,6 +6366,42 @@
                 "sha2-256": "aec9cb014d3337224eb5aa74bfc9c66c96cd09804dcd02f9837f50df47485a76"
             },
             "size": 578433965
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28777/5AAE861D-A014-472E-8A60-832756A7370E/com_apple_MobileAsset_SoftwareUpdate/9af920eb0787093c094d29809253f9489627ef3b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1ec1120437ad9fb517a714ab5be5f56a580170de",
+                "sha2-256": "5097528c5719f9a028b1eba648029afc02d32e9578ee53abd535d9c79de00209"
+            },
+            "size": 580154406
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28996/7487A09E-48BE-4662-9FC1-CB0FFD4D1B8B/com_apple_MobileAsset_SoftwareUpdate/c02c496b4754802f59355f1e029596f557df430b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8b558bef07edc60fe4e0c02ed010cb0709148f32",
+                "sha2-256": "934518d344c0a351c208f38d40ef176f23aa65e32d0af5f3f63eeb61bac71a1d"
+            },
+            "size": 579890623
         },
         {
             "type": "ota",
@@ -6471,6 +6474,24 @@
                 "sha2-256": "b9c7a6b2bbf3c7c8406387884c2e946be11ee7c33b082f01a060e58c7a1731a8"
             },
             "size": 303448128
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28486/1007F006-5F02-4D47-A460-37517BA32420/com_apple_MobileAsset_SoftwareUpdate/15d925816678dbc4703479e161029074db991caa.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9114947ff153bdc32648d2e12ac0996c245e93d0",
+                "sha2-256": "b88aa682643414b649ea25584d7be3e51710527eea7b97d2867d3f8cb2f30936"
+            },
+            "size": 307245791
         },
         {
             "type": "ota",
@@ -6653,60 +6674,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28716/B9CE0054-198F-4192-AD1C-DDECFF3776AE/com_apple_MobileAsset_SoftwareUpdate/495b33b5c1e8b623eb31598eb12d30d8b49c0a8f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "13b55a767c76ec7e3b67a9d9eb0bee3cda9dbeb0",
-                "sha2-256": "c4e423d6c7d3354e676bf170e6839c21d220db020116e91089e20b1ad0cbcd20"
-            },
-            "size": 603316990
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28422/81670523-496E-4E13-87CA-46A40753C070/com_apple_MobileAsset_SoftwareUpdate/caa6ab882b6c6fa1748f45454a9167a1105d329c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9bed6d22827841471e98097ebc6c6a06b3821083",
-                "sha2-256": "4c4522247f8ee72ef4e9e7cfbcc23852a4d58bb5ec7812662f8cd36db99f0861"
-            },
-            "size": 602367780
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28215/60E763D2-45A4-4783-AA67-CE46F54F4D32/com_apple_MobileAsset_SoftwareUpdate/6169fa4d157b9b8458b306c8b0b3b84ce87be77e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "047ae8893020eb80b3b2b0bbb283c16cff48935e",
-                "sha2-256": "9d53ae5dc415525f4cba72a67d666cbf047209a340d1bbe1cafc2842d0dc83ef"
-            },
-            "size": 349116036
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,8"
@@ -6758,6 +6725,42 @@
                 "sha2-256": "19f4f9a5178f85eaf7d756facd5fcb1480efbdeff65d2ba90ef216b0cfd5e6eb"
             },
             "size": 599805433
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28716/B9CE0054-198F-4192-AD1C-DDECFF3776AE/com_apple_MobileAsset_SoftwareUpdate/495b33b5c1e8b623eb31598eb12d30d8b49c0a8f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "13b55a767c76ec7e3b67a9d9eb0bee3cda9dbeb0",
+                "sha2-256": "c4e423d6c7d3354e676bf170e6839c21d220db020116e91089e20b1ad0cbcd20"
+            },
+            "size": 603316990
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28422/81670523-496E-4E13-87CA-46A40753C070/com_apple_MobileAsset_SoftwareUpdate/caa6ab882b6c6fa1748f45454a9167a1105d329c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9bed6d22827841471e98097ebc6c6a06b3821083",
+                "sha2-256": "4c4522247f8ee72ef4e9e7cfbcc23852a4d58bb5ec7812662f8cd36db99f0861"
+            },
+            "size": 602367780
         },
         {
             "type": "ota",
@@ -6830,6 +6833,24 @@
                 "sha2-256": "e41d0f699793f7d6e7ae9d3d33a7e83c501b2464cd3a5b21f648a20a0524fda1"
             },
             "size": 344610986
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28215/60E763D2-45A4-4783-AA67-CE46F54F4D32/com_apple_MobileAsset_SoftwareUpdate/6169fa4d157b9b8458b306c8b0b3b84ce87be77e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "047ae8893020eb80b3b2b0bbb283c16cff48935e",
+                "sha2-256": "9d53ae5dc415525f4cba72a67d666cbf047209a340d1bbe1cafc2842d0dc83ef"
+            },
+            "size": 349116036
         },
         {
             "type": "ota",
@@ -7012,60 +7033,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28460/63A9F635-AE07-4D2C-A5DE-284934B792AB/com_apple_MobileAsset_SoftwareUpdate/906a3b8e7a6a37881a4a38f78ecc64c96f0464a7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "24b315808b4b150a005d0a79ee3cbe80dc36e212",
-                "sha2-256": "d135a967f97b9a6cb613639cdb735147e4fb4e9ceb6b8891d9035c297e587795"
-            },
-            "size": 603340057
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28840/62B20B3A-0110-4DDD-A33E-3F569FDFA999/com_apple_MobileAsset_SoftwareUpdate/446772e0d0752c29bc48d0a4e987666843a94e21.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6a91e780126ffbc511ed68042e7237e08415f62f",
-                "sha2-256": "307db6d0864f0851554caf0451bec5b298645bc8631300ee38b76ea6529b17f9"
-            },
-            "size": 602375949
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29000/B0FD69E9-3669-435A-A1A6-1EAF13C0A8D3/com_apple_MobileAsset_SoftwareUpdate/6eeed0dac2ce3794ab6ad49bd25a43da7dab5b79.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "95c4692b4fd48f7da156ed10c9852b85b419ce8f",
-                "sha2-256": "b567209b26253e7ae1d595da7a2a5d3e0a759f365b0df186935199c86a8d9469"
-            },
-            "size": 349143655
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,9"
@@ -7117,6 +7084,42 @@
                 "sha2-256": "62e5df183be035ae1465fa0cbbf0c6e6b8dd956597710f6b0c74e5f619f5e57e"
             },
             "size": 599826105
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28460/63A9F635-AE07-4D2C-A5DE-284934B792AB/com_apple_MobileAsset_SoftwareUpdate/906a3b8e7a6a37881a4a38f78ecc64c96f0464a7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "24b315808b4b150a005d0a79ee3cbe80dc36e212",
+                "sha2-256": "d135a967f97b9a6cb613639cdb735147e4fb4e9ceb6b8891d9035c297e587795"
+            },
+            "size": 603340057
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28840/62B20B3A-0110-4DDD-A33E-3F569FDFA999/com_apple_MobileAsset_SoftwareUpdate/446772e0d0752c29bc48d0a4e987666843a94e21.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6a91e780126ffbc511ed68042e7237e08415f62f",
+                "sha2-256": "307db6d0864f0851554caf0451bec5b298645bc8631300ee38b76ea6529b17f9"
+            },
+            "size": 602375949
         },
         {
             "type": "ota",
@@ -7189,6 +7192,24 @@
                 "sha2-256": "508aee5804db4ea7d2381288be280f070f9e8c59630c09944840888969d1afa5"
             },
             "size": 344638477
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29000/B0FD69E9-3669-435A-A1A6-1EAF13C0A8D3/com_apple_MobileAsset_SoftwareUpdate/6eeed0dac2ce3794ab6ad49bd25a43da7dab5b79.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "95c4692b4fd48f7da156ed10c9852b85b419ce8f",
+                "sha2-256": "b567209b26253e7ae1d595da7a2a5d3e0a759f365b0df186935199c86a8d9469"
+            },
+            "size": 349143655
         },
         {
             "type": "ota",
@@ -7371,60 +7392,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29300/3EA5712C-7660-4ED8-B2FC-8FE218634355/com_apple_MobileAsset_SoftwareUpdate/b9014076957f190deddb1774a056b6c6b22a6610.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0cf1338ad46668d330c39579b7e56fca6a855606",
-                "sha2-256": "5bfea763872aede59d1f88a7d1719f8c3eca8ea69a17b4ad58ea0bc06e8aab68"
-            },
-            "size": 587225414
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28457/F315F0D9-C519-4E4F-B72C-A1050F8155A8/com_apple_MobileAsset_SoftwareUpdate/2c26187c800422774ebf774a1092baa20363b8bc.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5c98feb744e22377722013db50df906a8444d194",
-                "sha2-256": "bc955b7f90e9c67f404aae6661c0acece5b9abe7e38221b5eac7006fb4a26f76"
-            },
-            "size": 587039269
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28908/D8275A25-AE79-4F4D-B2C6-24C0AA93ACEC/com_apple_MobileAsset_SoftwareUpdate/5d5e3916366716ae53578c747607329e237e79ef.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3e0569b4234990f6e51156fff25b8f303502cb01",
-                "sha2-256": "d1e628e6f973415142aa1a2a42cd2775ea9953263587a4a9287b92f9413857d6"
-            },
-            "size": 320001452
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,10"
@@ -7476,6 +7443,42 @@
                 "sha2-256": "767e800da9642f59fad231d9ac92b5c976a5e9420651998d4ee175dea6173f24"
             },
             "size": 585391512
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29300/3EA5712C-7660-4ED8-B2FC-8FE218634355/com_apple_MobileAsset_SoftwareUpdate/b9014076957f190deddb1774a056b6c6b22a6610.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0cf1338ad46668d330c39579b7e56fca6a855606",
+                "sha2-256": "5bfea763872aede59d1f88a7d1719f8c3eca8ea69a17b4ad58ea0bc06e8aab68"
+            },
+            "size": 587225414
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28457/F315F0D9-C519-4E4F-B72C-A1050F8155A8/com_apple_MobileAsset_SoftwareUpdate/2c26187c800422774ebf774a1092baa20363b8bc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5c98feb744e22377722013db50df906a8444d194",
+                "sha2-256": "bc955b7f90e9c67f404aae6661c0acece5b9abe7e38221b5eac7006fb4a26f76"
+            },
+            "size": 587039269
         },
         {
             "type": "ota",
@@ -7548,6 +7551,24 @@
                 "sha2-256": "8873f5e5c0116d4f35348eec7f272d9dd7e50cf2fa89c051e707df4662831e92"
             },
             "size": 316024597
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28908/D8275A25-AE79-4F4D-B2C6-24C0AA93ACEC/com_apple_MobileAsset_SoftwareUpdate/5d5e3916366716ae53578c747607329e237e79ef.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3e0569b4234990f6e51156fff25b8f303502cb01",
+                "sha2-256": "d1e628e6f973415142aa1a2a42cd2775ea9953263587a4a9287b92f9413857d6"
+            },
+            "size": 320001452
         },
         {
             "type": "ota",
@@ -7730,60 +7751,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28189/421BA0B1-126C-456E-AC69-D5A0EAAE1A5A/com_apple_MobileAsset_SoftwareUpdate/1bd12014fcf52e570b13902691967b3ece1c6a64.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "44f1c451f930560563cffd3bda40dd76801e0f6e",
-                "sha2-256": "5a52bd9f58ba514353748a1ab1d849224b25a1b38c528545b1c39646250eb350"
-            },
-            "size": 587245062
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28940/7730CDA5-7454-443B-81AB-515F85A69483/com_apple_MobileAsset_SoftwareUpdate/96075ba192c35f2496e16fba815508ed34c7357c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5b71471828506f5c03b313487192ebd404609c2d",
-                "sha2-256": "e33236d62475151972b575beef5ccfd86c8f9767d80da1789705a462d0b9f3a2"
-            },
-            "size": 587057577
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28712/F5280DA7-4643-4407-A2DF-617B5D31E438/com_apple_MobileAsset_SoftwareUpdate/c7329d2f3fc4edc078b2da4f88fd903726a2882f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8c4328f0bd6997101e68a60015dfe05910309ce9",
-                "sha2-256": "2e99f6f4c7db70993a3b143c9d02a1e4fa26f1c1f624f9b378b929c8c33a55ee"
-            },
-            "size": 320021528
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,11"
@@ -7835,6 +7802,42 @@
                 "sha2-256": "99c82e9bccf9f4b1f1ab826f1766d9e02d504eefd2af121522120e240586b01a"
             },
             "size": 585407490
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28189/421BA0B1-126C-456E-AC69-D5A0EAAE1A5A/com_apple_MobileAsset_SoftwareUpdate/1bd12014fcf52e570b13902691967b3ece1c6a64.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "44f1c451f930560563cffd3bda40dd76801e0f6e",
+                "sha2-256": "5a52bd9f58ba514353748a1ab1d849224b25a1b38c528545b1c39646250eb350"
+            },
+            "size": 587245062
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28940/7730CDA5-7454-443B-81AB-515F85A69483/com_apple_MobileAsset_SoftwareUpdate/96075ba192c35f2496e16fba815508ed34c7357c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5b71471828506f5c03b313487192ebd404609c2d",
+                "sha2-256": "e33236d62475151972b575beef5ccfd86c8f9767d80da1789705a462d0b9f3a2"
+            },
+            "size": 587057577
         },
         {
             "type": "ota",
@@ -7907,6 +7910,24 @@
                 "sha2-256": "272857f6572c50f755617e8c9d4bb95a6f3360075c136dd98c1c33d6326a68f3"
             },
             "size": 316049773
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28712/F5280DA7-4643-4407-A2DF-617B5D31E438/com_apple_MobileAsset_SoftwareUpdate/c7329d2f3fc4edc078b2da4f88fd903726a2882f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8c4328f0bd6997101e68a60015dfe05910309ce9",
+                "sha2-256": "2e99f6f4c7db70993a3b143c9d02a1e4fa26f1c1f624f9b378b929c8c33a55ee"
+            },
+            "size": 320021528
         },
         {
             "type": "ota",
@@ -8089,60 +8110,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28462/D9991A5A-79AA-4EB1-90F4-A56F6A233A89/com_apple_MobileAsset_SoftwareUpdate/779092f6cf8eafbd1a332481ed75b5f15f1b3f0a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2e533ca5a297c69ed9e6fca823e23045eca05dc4",
-                "sha2-256": "d541f051e1143d108e9eb01a2ca90d388235769b0c74358aea5c3a7fe8e140f5"
-            },
-            "size": 621893186
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28643/A1294599-4715-4BF8-871C-136F0E6044BD/com_apple_MobileAsset_SoftwareUpdate/cc3652e2f6a2a66e64df3e758e123d69b7cf88ee.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c4cca71ced239ee6e5542724a7f589acfc07b1c7",
-                "sha2-256": "7f08e5de9935c505a28e68785725d39c54ee1f7209c1b2f6d1a7216817468740"
-            },
-            "size": 621836197
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28284/2142365C-971D-492B-BE0E-62BBA14E8818/com_apple_MobileAsset_SoftwareUpdate/6b8bbc6b3e7bef8b764a7685a5b839f6ea60ae95.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5638a78f927bf6652c1b41d6f28b194e71bc6d42",
-                "sha2-256": "8e6c47eff8f80e37c1fa4fe2c97a6701c75f470e5964b3cb6ef195ebbc96d59b"
-            },
-            "size": 362170113
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,12"
@@ -8194,6 +8161,42 @@
                 "sha2-256": "142cdd6e3c2ff5f0122573b9b6c819f40b5008957ebe7283310ae8900d1bc2fd"
             },
             "size": 617407359
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28462/D9991A5A-79AA-4EB1-90F4-A56F6A233A89/com_apple_MobileAsset_SoftwareUpdate/779092f6cf8eafbd1a332481ed75b5f15f1b3f0a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2e533ca5a297c69ed9e6fca823e23045eca05dc4",
+                "sha2-256": "d541f051e1143d108e9eb01a2ca90d388235769b0c74358aea5c3a7fe8e140f5"
+            },
+            "size": 621893186
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28643/A1294599-4715-4BF8-871C-136F0E6044BD/com_apple_MobileAsset_SoftwareUpdate/cc3652e2f6a2a66e64df3e758e123d69b7cf88ee.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c4cca71ced239ee6e5542724a7f589acfc07b1c7",
+                "sha2-256": "7f08e5de9935c505a28e68785725d39c54ee1f7209c1b2f6d1a7216817468740"
+            },
+            "size": 621836197
         },
         {
             "type": "ota",
@@ -8266,6 +8269,24 @@
                 "sha2-256": "d50d78a1fb5b008eb5bfa99ae2a2d02db4b56dba936e464adffae6e66f86db19"
             },
             "size": 358222779
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28284/2142365C-971D-492B-BE0E-62BBA14E8818/com_apple_MobileAsset_SoftwareUpdate/6b8bbc6b3e7bef8b764a7685a5b839f6ea60ae95.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5638a78f927bf6652c1b41d6f28b194e71bc6d42",
+                "sha2-256": "8e6c47eff8f80e37c1fa4fe2c97a6701c75f470e5964b3cb6ef195ebbc96d59b"
+            },
+            "size": 362170113
         },
         {
             "type": "ota",
@@ -8448,60 +8469,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,13"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28937/75D8D844-9E09-4FE7-838D-568572988BAA/com_apple_MobileAsset_SoftwareUpdate/e0698baae8f233368ec8efbd770a5698e0efe87f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b788b613d0157d4eada8961bc6e0cfa5ba48a015",
-                "sha2-256": "71800f17dbe3cbbe4c47731175cf1f8bbacc150edb17b0a3b9c8eb2c3f1dbb40"
-            },
-            "size": 621959964
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,13"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28350/D341A113-DB97-4EE6-8707-FA289FB0808D/com_apple_MobileAsset_SoftwareUpdate/a22ec4ed599da20f3a52cc051bbd3b702fa184ad.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0828313637cb318b695d23f34595b907a575cedf",
-                "sha2-256": "6f142b27714e984fc66516e3fc429eceb90f4a5c0e909e31d13c3d1b298fe36b"
-            },
-            "size": 621879709
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,13"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28354/986D00A7-2055-42E8-AD28-AE05544D902D/com_apple_MobileAsset_SoftwareUpdate/02efda3700fa8466551b89e3a49357d786602468.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "31a646cd80617c2224e74532bc5a4f3ce43a04c7",
-                "sha2-256": "acd888eaa4812540a7950833d2789b23ef3e6069d5934f57fd8ae8be3a675ef4"
-            },
-            "size": 362246560
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,13"
@@ -8553,6 +8520,42 @@
                 "sha2-256": "4953c5e19ace19d37f8475cdda7c09a32ca62b145cdb056d3d9707aa34aa1a0b"
             },
             "size": 617469806
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,13"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28937/75D8D844-9E09-4FE7-838D-568572988BAA/com_apple_MobileAsset_SoftwareUpdate/e0698baae8f233368ec8efbd770a5698e0efe87f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b788b613d0157d4eada8961bc6e0cfa5ba48a015",
+                "sha2-256": "71800f17dbe3cbbe4c47731175cf1f8bbacc150edb17b0a3b9c8eb2c3f1dbb40"
+            },
+            "size": 621959964
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,13"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28350/D341A113-DB97-4EE6-8707-FA289FB0808D/com_apple_MobileAsset_SoftwareUpdate/a22ec4ed599da20f3a52cc051bbd3b702fa184ad.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0828313637cb318b695d23f34595b907a575cedf",
+                "sha2-256": "6f142b27714e984fc66516e3fc429eceb90f4a5c0e909e31d13c3d1b298fe36b"
+            },
+            "size": 621879709
         },
         {
             "type": "ota",
@@ -8625,6 +8628,24 @@
                 "sha2-256": "f799ed1b6f095bf17c5abbe9275b41ef24056e9b2cdc32420e28f6b6407dd2d1"
             },
             "size": 358291559
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,13"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28354/986D00A7-2055-42E8-AD28-AE05544D902D/com_apple_MobileAsset_SoftwareUpdate/02efda3700fa8466551b89e3a49357d786602468.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "31a646cd80617c2224e74532bc5a4f3ce43a04c7",
+                "sha2-256": "acd888eaa4812540a7950833d2789b23ef3e6069d5934f57fd8ae8be3a675ef4"
+            },
+            "size": 362246560
         },
         {
             "type": "ota",
@@ -8807,60 +8828,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,14"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28888/04E29926-4B34-4584-9B20-E7B4478893F1/com_apple_MobileAsset_SoftwareUpdate/8768b15fe16ba7c4a78f4a83705622f7ea744a6f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f4d087e81a4e924bfc5af5a6842eb24e4a052e6d",
-                "sha2-256": "6ae223693abc4640d04e90d94f561f2682e0083f4edb20152d009e5c71a15853"
-            },
-            "size": 579775710
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,14"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28521/AE4A07B5-E272-446B-99FF-503CE2AA32B4/com_apple_MobileAsset_SoftwareUpdate/abe06951bba34b1959d9c8a9055c62103df48a44.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6412515013c1d1ddccc87aaba004307f0df2a2db",
-                "sha2-256": "e9b869e00586dc7a43673e5a2439ef356289296a68af5acb48f8f1070f4b3e38"
-            },
-            "size": 579734767
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,14"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29071/C47669BE-1463-437B-9C52-DD0D27FE21D1/com_apple_MobileAsset_SoftwareUpdate/cc33d21f4513134fba9afc0bae50a16b9e420bb8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "1b8285fae9fb12218955f5925d3331721c6f8f7f",
-                "sha2-256": "026a23f60120e84f3ee73739fec82deb4abbcfe92bc919d77b671eeea6d21a6e"
-            },
-            "size": 307090338
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,14"
@@ -8912,6 +8879,42 @@
                 "sha2-256": "48bca8eb59101bf8314a383108d0ccf83cea8db44c60c71104051de419a191dc"
             },
             "size": 578223906
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,14"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28888/04E29926-4B34-4584-9B20-E7B4478893F1/com_apple_MobileAsset_SoftwareUpdate/8768b15fe16ba7c4a78f4a83705622f7ea744a6f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f4d087e81a4e924bfc5af5a6842eb24e4a052e6d",
+                "sha2-256": "6ae223693abc4640d04e90d94f561f2682e0083f4edb20152d009e5c71a15853"
+            },
+            "size": 579775710
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,14"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28521/AE4A07B5-E272-446B-99FF-503CE2AA32B4/com_apple_MobileAsset_SoftwareUpdate/abe06951bba34b1959d9c8a9055c62103df48a44.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6412515013c1d1ddccc87aaba004307f0df2a2db",
+                "sha2-256": "e9b869e00586dc7a43673e5a2439ef356289296a68af5acb48f8f1070f4b3e38"
+            },
+            "size": 579734767
         },
         {
             "type": "ota",
@@ -8984,6 +8987,24 @@
                 "sha2-256": "d0c0361015272d8e8233c72de6c3723f16a453ca0aeffec7214a81d93715b8f6"
             },
             "size": 303293961
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,14"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29071/C47669BE-1463-437B-9C52-DD0D27FE21D1/com_apple_MobileAsset_SoftwareUpdate/cc33d21f4513134fba9afc0bae50a16b9e420bb8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1b8285fae9fb12218955f5925d3331721c6f8f7f",
+                "sha2-256": "026a23f60120e84f3ee73739fec82deb4abbcfe92bc919d77b671eeea6d21a6e"
+            },
+            "size": 307090338
         },
         {
             "type": "ota",
@@ -9166,60 +9187,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28670/D66C8BF5-4AF0-4351-AC6A-A35877552E8E/com_apple_MobileAsset_SoftwareUpdate/f82c2c2a75b43abbfc0eb9bcc422bcd5967f1512.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5150ae0c80202ab31c51805a28ad037c77aaa58c",
-                "sha2-256": "c45e6fd9ead5cff5d5ad7fa8b2bcb45d2a312c3e56217547789e986157bdf5a1"
-            },
-            "size": 579800902
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28577/6FBC9609-1B15-41BE-9136-945A7C266B87/com_apple_MobileAsset_SoftwareUpdate/bf0f3d50dcec5646b9071c6be1c266128ec191d4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bb39572e3ac05457ad870d61167199c778f50420",
-                "sha2-256": "c04b880aad656bee2aed739b732c491c716b47b14059951324d461bf7e9da11b"
-            },
-            "size": 579767384
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28064/27301C84-8180-4F1D-B774-8153F820FC87/com_apple_MobileAsset_SoftwareUpdate/568933aeaad629350e66e3bb825a8b0f752a56b2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "517bdfba3b3477e1c24fcba513ff8c97f12c25c5",
-                "sha2-256": "aa7ac01e8144b609c61b8122b6b55c8ad85e0e3ba7f35824c600491184c643ba"
-            },
-            "size": 307115948
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,15"
@@ -9271,6 +9238,42 @@
                 "sha2-256": "0a0f56418c227be117744dd8317a1857ae60f3c681b8d3c3ec75f5b56783a9fd"
             },
             "size": 578243246
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28670/D66C8BF5-4AF0-4351-AC6A-A35877552E8E/com_apple_MobileAsset_SoftwareUpdate/f82c2c2a75b43abbfc0eb9bcc422bcd5967f1512.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5150ae0c80202ab31c51805a28ad037c77aaa58c",
+                "sha2-256": "c45e6fd9ead5cff5d5ad7fa8b2bcb45d2a312c3e56217547789e986157bdf5a1"
+            },
+            "size": 579800902
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28577/6FBC9609-1B15-41BE-9136-945A7C266B87/com_apple_MobileAsset_SoftwareUpdate/bf0f3d50dcec5646b9071c6be1c266128ec191d4.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bb39572e3ac05457ad870d61167199c778f50420",
+                "sha2-256": "c04b880aad656bee2aed739b732c491c716b47b14059951324d461bf7e9da11b"
+            },
+            "size": 579767384
         },
         {
             "type": "ota",
@@ -9343,6 +9346,24 @@
                 "sha2-256": "023a36ff6445d179a89f496134ec29fa02d6969672d0c8967519867c0c01196a"
             },
             "size": 303340308
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28064/27301C84-8180-4F1D-B774-8153F820FC87/com_apple_MobileAsset_SoftwareUpdate/568933aeaad629350e66e3bb825a8b0f752a56b2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "517bdfba3b3477e1c24fcba513ff8c97f12c25c5",
+                "sha2-256": "aa7ac01e8144b609c61b8122b6b55c8ad85e0e3ba7f35824c600491184c643ba"
+            },
+            "size": 307115948
         },
         {
             "type": "ota",
@@ -9525,60 +9546,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,16"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29018/A92286A0-163E-40C0-9FB1-CCCADEA881DD/com_apple_MobileAsset_SoftwareUpdate/68376eda350d62270dfd532b3858e6aa72b871c5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a9ad037eb371edc5f157d2fd01165bd9798c6d05",
-                "sha2-256": "51a6ac341e01e6651fd8855fdad1f94fbb69f8f7eb7aaf501f184a9087a8f299"
-            },
-            "size": 617409478
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,16"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28421/FBC7B1C6-45CF-4575-A98E-6FF0C95B6158/com_apple_MobileAsset_SoftwareUpdate/c4e6499c1301586752f2e79bd45c2c518be083dd.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9840ab28349610093dab76ff5ac557a266e23e7b",
-                "sha2-256": "887051fae72452511ecc35ab41d53be56a6a160f00b59167fd950c10a060c651"
-            },
-            "size": 617243388
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,16"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28848/EDDE104A-EC90-4CAA-86E4-780E38B88AF5/com_apple_MobileAsset_SoftwareUpdate/6b673f16bd87a288c158a947574901bb07598a62.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bae48e58d28f8a0c52e3a304d12c1286ef6c79e4",
-                "sha2-256": "9aae181855131e06065ffdaf6d12d0130298dc4d2673f11190f509652a6d7a56"
-            },
-            "size": 349260310
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,16"
@@ -9630,6 +9597,42 @@
                 "sha2-256": "0a68f8af342ec55aa8c3861830cd76a2db9128d55546e1a6fcebeb241f1cad97"
             },
             "size": 614282193
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,16"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29018/A92286A0-163E-40C0-9FB1-CCCADEA881DD/com_apple_MobileAsset_SoftwareUpdate/68376eda350d62270dfd532b3858e6aa72b871c5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a9ad037eb371edc5f157d2fd01165bd9798c6d05",
+                "sha2-256": "51a6ac341e01e6651fd8855fdad1f94fbb69f8f7eb7aaf501f184a9087a8f299"
+            },
+            "size": 617409478
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,16"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28421/FBC7B1C6-45CF-4575-A98E-6FF0C95B6158/com_apple_MobileAsset_SoftwareUpdate/c4e6499c1301586752f2e79bd45c2c518be083dd.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9840ab28349610093dab76ff5ac557a266e23e7b",
+                "sha2-256": "887051fae72452511ecc35ab41d53be56a6a160f00b59167fd950c10a060c651"
+            },
+            "size": 617243388
         },
         {
             "type": "ota",
@@ -9702,6 +9705,24 @@
                 "sha2-256": "29a5520fecd60f4f6e773936a1b6d70ec93627fd9cc166ae2b7c315ebd82bcc3"
             },
             "size": 344695893
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,16"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28848/EDDE104A-EC90-4CAA-86E4-780E38B88AF5/com_apple_MobileAsset_SoftwareUpdate/6b673f16bd87a288c158a947574901bb07598a62.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bae48e58d28f8a0c52e3a304d12c1286ef6c79e4",
+                "sha2-256": "9aae181855131e06065ffdaf6d12d0130298dc4d2673f11190f509652a6d7a56"
+            },
+            "size": 349260310
         },
         {
             "type": "ota",
@@ -9884,60 +9905,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,17"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28206/646F3F0D-37E8-48E8-81C9-79FE637ECC2B/com_apple_MobileAsset_SoftwareUpdate/a6635b626c553d272b88683f880aab9d64e5a751.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e6782f82e76c3dd688858341cea1438916cfb78e",
-                "sha2-256": "a8ea593f487d7d7d3972f58a74938efc7f8ebbd379d82ae1e93e676b8c0cb931"
-            },
-            "size": 617437089
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,17"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28600/8564E9FC-9289-412C-8212-89C74C292BF1/com_apple_MobileAsset_SoftwareUpdate/98fcc5c5ad89560c813b9fbf404688f5bc32f0fd.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "804e320a57bddb04b42169daf93026ed8b9ded96",
-                "sha2-256": "16a4c34aef81ec8621e127d94a3d9137ec6b66c77eb2f82c54071413c95692f8"
-            },
-            "size": 617276085
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,17"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29211/A19A72AD-0588-43D5-A49B-1C61DE35AFE0/com_apple_MobileAsset_SoftwareUpdate/e08a3807991d12c2eb30cce2716539992f1b6626.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3148ea0fd1b0161c66bb462fe5de2ae4ed570df4",
-                "sha2-256": "fffd59ccae9d63956bed7bbb4240c46a751a9fd449d1354d2ea6839b611b623f"
-            },
-            "size": 349282199
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,17"
@@ -9989,6 +9956,42 @@
                 "sha2-256": "e38888858368fca240594fcc93b6b922ec4741d2544a308c420b51669c600a28"
             },
             "size": 614319888
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,17"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28206/646F3F0D-37E8-48E8-81C9-79FE637ECC2B/com_apple_MobileAsset_SoftwareUpdate/a6635b626c553d272b88683f880aab9d64e5a751.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e6782f82e76c3dd688858341cea1438916cfb78e",
+                "sha2-256": "a8ea593f487d7d7d3972f58a74938efc7f8ebbd379d82ae1e93e676b8c0cb931"
+            },
+            "size": 617437089
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,17"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28600/8564E9FC-9289-412C-8212-89C74C292BF1/com_apple_MobileAsset_SoftwareUpdate/98fcc5c5ad89560c813b9fbf404688f5bc32f0fd.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "804e320a57bddb04b42169daf93026ed8b9ded96",
+                "sha2-256": "16a4c34aef81ec8621e127d94a3d9137ec6b66c77eb2f82c54071413c95692f8"
+            },
+            "size": 617276085
         },
         {
             "type": "ota",
@@ -10061,6 +10064,24 @@
                 "sha2-256": "7805fd15f1d2c79f913107a4a004858055f02b344904ad78107b575b5badd121"
             },
             "size": 344736902
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,17"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29211/A19A72AD-0588-43D5-A49B-1C61DE35AFE0/com_apple_MobileAsset_SoftwareUpdate/e08a3807991d12c2eb30cce2716539992f1b6626.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3148ea0fd1b0161c66bb462fe5de2ae4ed570df4",
+                "sha2-256": "fffd59ccae9d63956bed7bbb4240c46a751a9fd449d1354d2ea6839b611b623f"
+            },
+            "size": 349282199
         },
         {
             "type": "ota",
@@ -10243,60 +10264,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch6,18"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28689/9F9C60CB-BE2E-4117-A511-2B4342B0A617/com_apple_MobileAsset_SoftwareUpdate/9f941a4238faa80bd22ab31ac37b2989e5b97a8e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5d919695a3b86eebe62ee79532d25c694b925bc0",
-                "sha2-256": "920b91e209eafebdeefa0fd8eab51a2f3f7dadada34ad8081e8ea15e022b7fb0"
-            },
-            "size": 617127499
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch6,18"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28576/D57C73C7-DF6D-4044-9DE6-3C348AAB8C83/com_apple_MobileAsset_SoftwareUpdate/1223a31c1c686d53de9f0f41b0c4c6da3c21b7fe.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b55af520470a25c3dc5fb2bbb24082184c6c8d51",
-                "sha2-256": "66b9c45da3bea0830cc738ec47f6b6321afee72cb86f5d2ab0030c81cb4682f7"
-            },
-            "size": 616995511
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch6,18"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28923/B38F05D5-E809-4BCB-B29D-5C940B158587/com_apple_MobileAsset_SoftwareUpdate/b489b076ef9ed54f041e985a90818c974479a7ef.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6c93afd43b80953da4558a7577cf6ea9426797a9",
-                "sha2-256": "8c4cf130b833a025338b8e148d1d724e96f35d005ec516dc4067b5eb0332ebcb"
-            },
-            "size": 350262715
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch6,18"
@@ -10348,6 +10315,42 @@
                 "sha2-256": "eaa2af015cfbc0a3dd1199f18ad924de6bfc9fe89c4c4a0183e95ba78033792c"
             },
             "size": 614539941
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,18"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28689/9F9C60CB-BE2E-4117-A511-2B4342B0A617/com_apple_MobileAsset_SoftwareUpdate/9f941a4238faa80bd22ab31ac37b2989e5b97a8e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5d919695a3b86eebe62ee79532d25c694b925bc0",
+                "sha2-256": "920b91e209eafebdeefa0fd8eab51a2f3f7dadada34ad8081e8ea15e022b7fb0"
+            },
+            "size": 617127499
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch6,18"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28576/D57C73C7-DF6D-4044-9DE6-3C348AAB8C83/com_apple_MobileAsset_SoftwareUpdate/1223a31c1c686d53de9f0f41b0c4c6da3c21b7fe.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b55af520470a25c3dc5fb2bbb24082184c6c8d51",
+                "sha2-256": "66b9c45da3bea0830cc738ec47f6b6321afee72cb86f5d2ab0030c81cb4682f7"
+            },
+            "size": 616995511
         },
         {
             "type": "ota",
@@ -10420,6 +10423,24 @@
                 "sha2-256": "19cd7c68522259b3d137a3412781a9261fecd4303944decaa3a1d7dfa4c8a747"
             },
             "size": 345670264
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch6,18"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28923/B38F05D5-E809-4BCB-B29D-5C940B158587/com_apple_MobileAsset_SoftwareUpdate/b489b076ef9ed54f041e985a90818c974479a7ef.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6c93afd43b80953da4558a7577cf6ea9426797a9",
+                "sha2-256": "8c4cf130b833a025338b8e148d1d724e96f35d005ec516dc4067b5eb0332ebcb"
+            },
+            "size": 350262715
         },
         {
             "type": "ota",
@@ -10530,60 +10551,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29057/F28D38BE-A6DF-4165-9838-53B19B4DE0C3/com_apple_MobileAsset_SoftwareUpdate/a9fbdbc394717dfa8d317347f5c4b81854f3c5b9.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "64e9b08213ce85fc0180bf337e3d0a56c3289134",
-                "sha2-256": "e468c5851dc99e253235f5cde9a16686f43f0e570c391dc16580057d3e62fa53"
-            },
-            "size": 572378687
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch7,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28248/3A43FD25-78A8-4FE8-A7BA-64E2845B0C90/com_apple_MobileAsset_SoftwareUpdate/23c6cfd4e1d10a2535d0554899644dd2a310df45.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "751154594c4270cf2becbaa19e96dfa2fa44cca6",
-                "sha2-256": "6d54c41b452b98f0fc4f161b7276f32c8677fb93f10dfb5a97d34cd3c618395b"
-            },
-            "size": 572351863
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch7,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28474/64676EB9-950E-49EE-A85F-F79D6E4956C4/com_apple_MobileAsset_SoftwareUpdate/ac0a63407b858d3867cb7415b311542838dd09cc.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e3a073732a16c2fc31bdc7302ca374f3c7027e76",
-                "sha2-256": "f000ce925b46b40b98276c6b63b54c61b4b005dd8e8e00299bb1545532f080fc"
-            },
-            "size": 298952257
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,1"
@@ -10635,6 +10602,42 @@
                 "sha2-256": "a5ade56c0731ea65bb04262745d2633c8047d3b794fe6f5d4389d09c158a7b33"
             },
             "size": 570876718
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29057/F28D38BE-A6DF-4165-9838-53B19B4DE0C3/com_apple_MobileAsset_SoftwareUpdate/a9fbdbc394717dfa8d317347f5c4b81854f3c5b9.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "64e9b08213ce85fc0180bf337e3d0a56c3289134",
+                "sha2-256": "e468c5851dc99e253235f5cde9a16686f43f0e570c391dc16580057d3e62fa53"
+            },
+            "size": 572378687
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch7,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28248/3A43FD25-78A8-4FE8-A7BA-64E2845B0C90/com_apple_MobileAsset_SoftwareUpdate/23c6cfd4e1d10a2535d0554899644dd2a310df45.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "751154594c4270cf2becbaa19e96dfa2fa44cca6",
+                "sha2-256": "6d54c41b452b98f0fc4f161b7276f32c8677fb93f10dfb5a97d34cd3c618395b"
+            },
+            "size": 572351863
         },
         {
             "type": "ota",
@@ -10707,6 +10710,24 @@
                 "sha2-256": "1d2a54e90258dad499574b50d332bb2168a3bf96b15d3f894f543f9de0bc0aa7"
             },
             "size": 295388618
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch7,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28474/64676EB9-950E-49EE-A85F-F79D6E4956C4/com_apple_MobileAsset_SoftwareUpdate/ac0a63407b858d3867cb7415b311542838dd09cc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e3a073732a16c2fc31bdc7302ca374f3c7027e76",
+                "sha2-256": "f000ce925b46b40b98276c6b63b54c61b4b005dd8e8e00299bb1545532f080fc"
+            },
+            "size": 298952257
         },
         {
             "type": "ota",
@@ -10817,60 +10838,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28425/6E8837B7-28E9-4B00-B092-19867B8B3D18/com_apple_MobileAsset_SoftwareUpdate/28d91ca1abcf924d2c811b5580a2aeaa10866c08.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8761fd05bae13cd975bb185391b560993f8d4d11",
-                "sha2-256": "a5e7db59a087974ddab01cf6fa2a98c9aaa1166ecb07ff66eacf24dc16a8941b"
-            },
-            "size": 572400569
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch7,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29262/0E77F452-4ACB-4B45-BFA9-23E0599C20D2/com_apple_MobileAsset_SoftwareUpdate/285c65ca23ed27774d63fa95eb7a48bf2347aa1a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f26962ffb32507372af33635b4d3d9352ff8089d",
-                "sha2-256": "06cdbd3062f3f9182052cfe3d98fdde5d5a59551df2db323d39d882eb903123b"
-            },
-            "size": 572384131
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch7,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28844/C3B98A30-CA5A-4E7D-9CEB-A35D2B739D3D/com_apple_MobileAsset_SoftwareUpdate/1e88006dd4639c30eb2407d4c0c758939d069422.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "33d8db9b63766562eb03013a2353dbf946c1c8eb",
-                "sha2-256": "975bbb9ddee313b6d802906795892dc33c7b8388b1c247f73ff2a4101d2befc2"
-            },
-            "size": 298974075
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,2"
@@ -10922,6 +10889,42 @@
                 "sha2-256": "4c959a4e309e8b4f056cc316c60476e5fc05d875e2bc0e0b237938fb4697ae08"
             },
             "size": 570897546
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28425/6E8837B7-28E9-4B00-B092-19867B8B3D18/com_apple_MobileAsset_SoftwareUpdate/28d91ca1abcf924d2c811b5580a2aeaa10866c08.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8761fd05bae13cd975bb185391b560993f8d4d11",
+                "sha2-256": "a5e7db59a087974ddab01cf6fa2a98c9aaa1166ecb07ff66eacf24dc16a8941b"
+            },
+            "size": 572400569
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch7,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29262/0E77F452-4ACB-4B45-BFA9-23E0599C20D2/com_apple_MobileAsset_SoftwareUpdate/285c65ca23ed27774d63fa95eb7a48bf2347aa1a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f26962ffb32507372af33635b4d3d9352ff8089d",
+                "sha2-256": "06cdbd3062f3f9182052cfe3d98fdde5d5a59551df2db323d39d882eb903123b"
+            },
+            "size": 572384131
         },
         {
             "type": "ota",
@@ -10994,6 +10997,24 @@
                 "sha2-256": "dc4ca9c984d839a11031e18d26eac7d9cabadf4bc32e4ba931b347e15017d1ca"
             },
             "size": 295404615
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch7,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28844/C3B98A30-CA5A-4E7D-9CEB-A35D2B739D3D/com_apple_MobileAsset_SoftwareUpdate/1e88006dd4639c30eb2407d4c0c758939d069422.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "33d8db9b63766562eb03013a2353dbf946c1c8eb",
+                "sha2-256": "975bbb9ddee313b6d802906795892dc33c7b8388b1c247f73ff2a4101d2befc2"
+            },
+            "size": 298974075
         },
         {
             "type": "ota",
@@ -11104,60 +11125,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28433/7156660C-AAC9-4AF0-ADAE-0F87DC209A82/com_apple_MobileAsset_SoftwareUpdate/7d44a347ebb1127943e93226d134bd6a6fa7023f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7b479db318b58438b0e17f205f88b006e975b1aa",
-                "sha2-256": "099d00e29807eab667ed5359dbe6061c741559afe3611b1f6d7749e25ba1da88"
-            },
-            "size": 608472685
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch7,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28730/8CA737A5-FAD7-4D79-98C8-6C6CB58C20BB/com_apple_MobileAsset_SoftwareUpdate/b1b19e41d8beb9c01ff5db4804e5ebb3c35c9734.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "899a820f3315fac8f7053f7f851389d09ef71d72",
-                "sha2-256": "a25e986a1856bc532be5fed8d8b21145cae6db46487052147610dfa95be43cad"
-            },
-            "size": 607896148
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch7,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29056/F2B393D4-0AFC-443A-97CF-8A6CDB362031/com_apple_MobileAsset_SoftwareUpdate/be650578c5326b0b1135c720f1cbe02a6dc80dd6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a73bafe80631a14d46aadc6ece8f616934ace159",
-                "sha2-256": "78315868f56dab5bf2ebac9a8075d474d71ab84e44ca5bbf2e0075159682d1cb"
-            },
-            "size": 342476488
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,3"
@@ -11209,6 +11176,42 @@
                 "sha2-256": "b18d65ea336df391f7a6415e50472ed1f3fd185ed6f6140e88a3044ec8aee2ee"
             },
             "size": 605170713
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28433/7156660C-AAC9-4AF0-ADAE-0F87DC209A82/com_apple_MobileAsset_SoftwareUpdate/7d44a347ebb1127943e93226d134bd6a6fa7023f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7b479db318b58438b0e17f205f88b006e975b1aa",
+                "sha2-256": "099d00e29807eab667ed5359dbe6061c741559afe3611b1f6d7749e25ba1da88"
+            },
+            "size": 608472685
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch7,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28730/8CA737A5-FAD7-4D79-98C8-6C6CB58C20BB/com_apple_MobileAsset_SoftwareUpdate/b1b19e41d8beb9c01ff5db4804e5ebb3c35c9734.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "899a820f3315fac8f7053f7f851389d09ef71d72",
+                "sha2-256": "a25e986a1856bc532be5fed8d8b21145cae6db46487052147610dfa95be43cad"
+            },
+            "size": 607896148
         },
         {
             "type": "ota",
@@ -11281,6 +11284,24 @@
                 "sha2-256": "63b0ed4f506330c68ce59455e7131159f658fbda5be7b23fa054ee6d6289f2a3"
             },
             "size": 337756004
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch7,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29056/F2B393D4-0AFC-443A-97CF-8A6CDB362031/com_apple_MobileAsset_SoftwareUpdate/be650578c5326b0b1135c720f1cbe02a6dc80dd6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a73bafe80631a14d46aadc6ece8f616934ace159",
+                "sha2-256": "78315868f56dab5bf2ebac9a8075d474d71ab84e44ca5bbf2e0075159682d1cb"
+            },
+            "size": 342476488
         },
         {
             "type": "ota",
@@ -11391,60 +11412,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29164/1714DC29-6D5E-4679-918F-3C6C97620A9F/com_apple_MobileAsset_SoftwareUpdate/82fdd8e5550713061835445e8cc62556e0c1f7e1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8b1d6deb83636ece4b450c6d4ab5df856edbd6e4",
-                "sha2-256": "242e05e973adc675b2d4887a3d5c175fb925f6d7279f430fc5de8c842afd4f66"
-            },
-            "size": 608498545
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch7,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28581/0AAA5905-F30F-4CD4-912A-A67A85A5DC08/com_apple_MobileAsset_SoftwareUpdate/9256617298f1292159dc207bb0d12747c2d25bbc.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d6cb88e0a1cd718ccdc95d55bb367b3497aefc31",
-                "sha2-256": "940f24be4fd7d806c5c20f9a3e5f16e052520e9094ef8b2a885fd0823bd63058"
-            },
-            "size": 607946695
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch7,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29052/5F6C79FD-05D8-4E7C-A954-51223D856FA1/com_apple_MobileAsset_SoftwareUpdate/085b61cec53f0cd19850fbb1e10cb66e1638aecb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "aed8c6a520d6b220b9a37bab5ac26e7c33d8dd7c",
-                "sha2-256": "b2cacd545734dfda72714818dc7924a676ebf02c6ee2c62dfce6221063d9f74d"
-            },
-            "size": 342495911
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,4"
@@ -11496,6 +11463,42 @@
                 "sha2-256": "e5ccbee5872501e5b6e4908ed70d4cc018e08a413fc28d5e0c3cd52f8241ad31"
             },
             "size": 605215147
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29164/1714DC29-6D5E-4679-918F-3C6C97620A9F/com_apple_MobileAsset_SoftwareUpdate/82fdd8e5550713061835445e8cc62556e0c1f7e1.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8b1d6deb83636ece4b450c6d4ab5df856edbd6e4",
+                "sha2-256": "242e05e973adc675b2d4887a3d5c175fb925f6d7279f430fc5de8c842afd4f66"
+            },
+            "size": 608498545
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch7,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28581/0AAA5905-F30F-4CD4-912A-A67A85A5DC08/com_apple_MobileAsset_SoftwareUpdate/9256617298f1292159dc207bb0d12747c2d25bbc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d6cb88e0a1cd718ccdc95d55bb367b3497aefc31",
+                "sha2-256": "940f24be4fd7d806c5c20f9a3e5f16e052520e9094ef8b2a885fd0823bd63058"
+            },
+            "size": 607946695
         },
         {
             "type": "ota",
@@ -11568,6 +11571,24 @@
                 "sha2-256": "bf03a660eec3f6730a968b79d13ce198d6f35b5beefc26b7ed36751b6d025894"
             },
             "size": 337790247
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch7,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29052/5F6C79FD-05D8-4E7C-A954-51223D856FA1/com_apple_MobileAsset_SoftwareUpdate/085b61cec53f0cd19850fbb1e10cb66e1638aecb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "aed8c6a520d6b220b9a37bab5ac26e7c33d8dd7c",
+                "sha2-256": "b2cacd545734dfda72714818dc7924a676ebf02c6ee2c62dfce6221063d9f74d"
+            },
+            "size": 342495911
         },
         {
             "type": "ota",
@@ -11678,60 +11699,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,5"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29014/449CCC8D-FE3D-4BDB-BB9F-E2737AF43F79/com_apple_MobileAsset_SoftwareUpdate/45ab4ebe5b71723ee64255f55acd57fae43ef49a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a8bf4ff1a4e5bde4a4c9ee911cede633ed6b1f7d",
-                "sha2-256": "c291bc0503f269c2d97162f75cf9bcf3b9a3f530fb13813296ddd7a25bf8ad03"
-            },
-            "size": 594888757
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S71",
-            "deviceMap": [
-                "Watch7,5"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28974/67B0EE24-1DEB-467A-9A9F-B909477EF4E4/com_apple_MobileAsset_SoftwareUpdate/597383a5ba43e84f895f3bad8a88144650dddb60.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "548b857e936276bfc6b2f99874f47764792b13e2",
-                "sha2-256": "aed2322a69d629f2735292d7bd3658ba17e168de4f6a1137598386e940241fb6"
-            },
-            "size": 594538551
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21S364",
-            "deviceMap": [
-                "Watch7,5"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28524/DB4E871B-759F-4A24-BBC6-12EAD7BDF5B7/com_apple_MobileAsset_SoftwareUpdate/404105a8c7094a87076da988cdf3916dfe309c09.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0ffdfec4e63d1bdfa2da4f48d98de01802291e12",
-                "sha2-256": "dde41aa862ef4896895492abf8f21ee6c5c402e058ceb0fcf0ae3e03aa97012d"
-            },
-            "size": 344297321
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,5"
@@ -11783,6 +11750,42 @@
                 "sha2-256": "049f43124b62df6d4061de25fe2a35bcb418c6c0ce61953866492e25966115d4"
             },
             "size": 591837526
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,5"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-29014/449CCC8D-FE3D-4BDB-BB9F-E2737AF43F79/com_apple_MobileAsset_SoftwareUpdate/45ab4ebe5b71723ee64255f55acd57fae43ef49a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a8bf4ff1a4e5bde4a4c9ee911cede633ed6b1f7d",
+                "sha2-256": "c291bc0503f269c2d97162f75cf9bcf3b9a3f530fb13813296ddd7a25bf8ad03"
+            },
+            "size": 594888757
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S71",
+            "deviceMap": [
+                "Watch7,5"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28974/67B0EE24-1DEB-467A-9A9F-B909477EF4E4/com_apple_MobileAsset_SoftwareUpdate/597383a5ba43e84f895f3bad8a88144650dddb60.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "548b857e936276bfc6b2f99874f47764792b13e2",
+                "sha2-256": "aed2322a69d629f2735292d7bd3658ba17e168de4f6a1137598386e940241fb6"
+            },
+            "size": 594538551
         },
         {
             "type": "ota",
@@ -11855,6 +11858,24 @@
                 "sha2-256": "d6d13859a5a21948cb77280333ad5f3aefc872b013e8ffa21b28c81927f335fd"
             },
             "size": 340401585
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S364",
+            "deviceMap": [
+                "Watch7,5"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterSeed/patches/052-28524/DB4E871B-759F-4A24-BBC6-12EAD7BDF5B7/com_apple_MobileAsset_SoftwareUpdate/404105a8c7094a87076da988cdf3916dfe309c09.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0ffdfec4e63d1bdfa2da4f48d98de01802291e12",
+                "sha2-256": "dde41aa862ef4896895492abf8f21ee6c5c402e058ceb0fcf0ae3e03aa97012d"
+            },
+            "size": 344297321
         },
         {
             "type": "ota",

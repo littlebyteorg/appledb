@@ -30,7 +30,8 @@ info_key_order = {
     "Cores": ["type", "CPU_Core_Count", "Performance_Cores", "Efficiency_Cores", "Instruction_Cache", "Data_Cache", "L1_Cache", "L2_Cache", "System_Level_Cache", "GPU_Core_Count", "Neural_Engine_Core_Count"],
     "Memory": ["type", "Storage", "RAM"],
     "Power": ["type", "Battery_Capacity", "Battery_Life", "Charger"],
-    "Connectivity": ["type", "Ports", "Cellular", "Supports", "Notes", "External_Display_Count", "Wi-Fi", "Bluetooth", "Power_Adapter", "Ultra-wideband"],
+    "Connectivity": ["type", "Concurrent Devices", "Data Throughput", "Frequency", "Interfaces", "MiMO", "Security", "Ports", "Cellular", "Supports", "Notes", "External_Display_Count", "Wi-Fi", "Bluetooth", "Power_Adapter", "Ultra-wideband", "Guest Network Support"],
+    "CPU, RAM & Storage": ["type", "CPU", "Flash Memory", "RAM", "HDD", "DAC"],
     "Expansion": ["type", "PCIe Gen 4 slots", "PCIe gen 3 slots", "Auxiliary power"],
     "Sensors": ["type", "Front_Camera", "Telephoto_Camera", "Wide_Camera", "Ultrawide_Camera", "TrueDepth_Camera", "Back_Camera", "Camera", "Biometrics", "Microphone", "Other"],
     "Audio": ["type", "Speakers", "Channels", "Dolby_Atmos", "Headphone_Jack", "Microphone"],
@@ -38,7 +39,7 @@ info_key_order = {
     "Display": ["type", "Resolution", "Screen_Size", "Refresh_Rate", "Peak_Brightness", "Color_Gamut", "Response_Time", "True_Tone", "ProMotion"]
 }
 
-info_type_order = ["SoC", "Cores", "Memory", "Power", "Connectivity", "Expansion", "Sensors", "Audio", "Input", "Display"]
+info_type_order = ["SoC", "Cores", "Memory", "Power", "Connectivity", "CPU, RAM & Storage", "Expansion", "Sensors", "Audio", "Input", "Display"]
 
 list_fields = [
     "released",

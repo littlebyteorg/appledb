@@ -9,11 +9,56 @@
             "version": "6.1 GM",
             "uniqueBuild": "10B144-GM",
             "released": "2013-01-26",
-            "rc": true
+            "rc": true,
+            "sources": [
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "iPhone3,1"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://adcdownload.apple.com/ios/ios_6.1_beta_5/ios_6.1_beta_5__iphone_4_gsm__10b144.dmg",
+                            "active": false
+                        }
+                    ],
+                    "size": 938516113
+                },
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "iPhone3,2"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://adcdownload.apple.com/ios/ios_6.1_beta_5/ios_6.1_beta_5__iphone_4_gsm_rev_a__10b144.dmg",
+                            "active": false
+                        }
+                    ],
+                    "size": 938303367
+                },
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "iPod4,1"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://adcdownload.apple.com/ios/ios_6.1_beta_5/ios_6.1_beta_5__ipod_touch_4th_generation__10b144.dmg",
+                            "active": false
+                        }
+                    ],
+                    "size": 888641886
+                }
+            ]
         }
     ],
     "releaseNotes": "https://support.apple.com/HT212584#61",
     "securityNotes": "https://support.apple.com/HT202673",
+    "ipd": {
+        "iPhone": "https://secure-appldnld.apple.com/iOS6.1/Documentation/091-0643.20130128.sll3y/iPhoneiTunesUpdateReadMe_6.0.ipd",
+        "iPod": "https://secure-appldnld.apple.com/iOS6.1/Documentation/091-0645.20130128.5BTh/iPodtouchiTunesUpdateReadMe_6.0.ipd"
+    },
     "appledbWebImage": {
         "id": "ios6",
         "align": "left"
@@ -23,6 +68,10 @@
         "iPhone3,2",
         "iPod4,1"
     ],
+    "basebandVersions": {
+        "iPhone3,1": "04.12.05",
+        "iPhone3,2": "04.12.05"
+    },
     "sources": [
         {
             "type": "ipsw",
@@ -33,14 +82,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6.1/091-0682.20130128.mefc4/iPhone3,1_6.1_10B144_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6.1/091-0682.20130128.mefc4/iPhone3,1_6.1_10B144_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "f5f6588902174948c3e9d4f9b3a89e5d",
+                "sha1": "2dcaae314ae8e0a353ad43010159cf15f7f6bd4e",
                 "sha2-256": "d83f8dac345525aaf84d6a384d1d41b0de0034fc0a4c5a8e3af6f91353c593d9"
             },
             "size": 938516113
@@ -104,15 +150,12 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6.1/091-0692.20130128.R3lr4/iPhone3,2_6.1_10B144_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6.1/091-0692.20130128.R3lr4/iPhone3,2_6.1_10B144_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "5a14a53b21c8c01621117d57643dcf73",
-                "sha1": "f3086f7aca0750e843819c84fe2acc3c1f325b7c"
+                "sha1": "f3086f7aca0750e843819c84fe2acc3c1f325b7c",
+                "sha2-256": "12f68b85cf7a39039f6b8e5f12837908e2b3668bb215516c313087028060d2c5"
             },
             "size": 938303367
         },
@@ -159,14 +202,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6.1/091-0688.20130128.omwy3/iPod4,1_6.1_10B144_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6.1/091-0688.20130128.omwy3/iPod4,1_6.1_10B144_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "b41c5b614983ea1c0696369fb0af5e17",
+                "sha1": "8bc0f54ef70cab0573b635fc56764397116d4d1b",
                 "sha2-256": "10d40721e5ca92bdd0ffaa9faac076f0a7ece265deb47a05abe98171dfe3d99d"
             },
             "size": 888641886

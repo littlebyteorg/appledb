@@ -9,11 +9,42 @@
             "version": "6.1 GM",
             "uniqueBuild": "10B143-GM",
             "released": "2013-01-26",
-            "rc": true
+            "rc": true,
+            "sources": [
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "iPhone5,1"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://adcdownload.apple.com/ios/ios_6.1_beta_5/ios_6.1_beta_5__iphone_5_model_a1428__10b143.dmg",
+                            "active": false
+                        }
+                    ],
+                    "size": 1037222452
+                },
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "iPhone5,2"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://adcdownload.apple.com/ios/ios_6.1_beta_5/ios_6.1_beta_5__iphone_5_model_a1429__10b143.dmg",
+                            "active": false
+                        }
+                    ],
+                    "size": 1037464275
+                }
+            ]
         }
     ],
     "releaseNotes": "https://support.apple.com/HT212584#61",
     "securityNotes": "https://support.apple.com/HT202673",
+    "ipd": {
+        "iPhone": "https://secure-appldnld.apple.com/iOS6.1/Documentation/091-0643.20130128.sll3y/iPhoneiTunesUpdateReadMe_6.0.ipd"
+    },
     "appledbWebImage": {
         "id": "ios6",
         "align": "left"
@@ -22,6 +53,10 @@
         "iPhone5,1",
         "iPhone5,2"
     ],
+    "basebandVersions": {
+        "iPhone5,1": "3.04.25",
+        "iPhone5,2": "3.04.25"
+    },
     "sources": [
         {
             "type": "ipsw",
@@ -32,14 +67,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6.1/041-6485.20130128.mt0dy/iPhone5,1_6.1_10B143_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6.1/041-6485.20130128.mt0dy/iPhone5,1_6.1_10B143_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "aa29f384c43de5b1522e00a8d6ff46ee",
+                "sha1": "42ffd7f16d32fa71dab964314387140164c5af10",
                 "sha2-256": "92cb4966126f7db7f841e3ada50658589029ae3f530e2e452a2b8d1aa4b264fd"
             },
             "size": 1037222452
@@ -121,14 +153,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/iOS6.1/041-6487.20130128.Ihb56/iPhone5,2_6.1_10B143_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/iOS6.1/041-6487.20130128.Ihb56/iPhone5,2_6.1_10B143_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "03b85bd144ad8b94621ba50ef7c824ee",
+                "sha1": "a32af87309a7e01a976eb73cac3f06370c5a1079",
                 "sha2-256": "7cd3ab9cd32b01f57da8c1d7c7826b873cfdf65e9c703d54bdfea1ebd37b8a0e"
             },
             "size": 1037462937

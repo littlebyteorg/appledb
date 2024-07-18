@@ -57,7 +57,8 @@ latest_watch_compatibility_versions = {
 default_mac_devices = [
     'MacBookAir7,1',    # Intel, only supports up to Monterey
     'iMac18,1',         # Intel, only supports up to Ventura
-    'MacPro7,1',        # Intel, supports Sonoma
+    'MacBookAir8,1',    # Intel, only supports up to Sonoma
+    'MacPro7,1',        # Intel, supports Sequoia
     'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
     'Mac13,1',          # Covers Mac Studio forked build
     'Mac14,2',          # Covers WWDC 2022 forked builds
@@ -85,11 +86,13 @@ asset_audiences = {
             15: 'ce48f60c-f590-4157-a96f-41179ca08278',
             16: 'a6050bca-50d8-4e45-adc2-f7333396a42c',
             17: '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
+            18: '41651cee-d0e2-442f-b786-85682ff6db86'
         },
         'public': {
             15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
             16: '7466521f-cc37-4267-8f46-78033fa700c2',
             17: '48407998-4446-46b0-9f57-f76b935dc223',
+            18: 'c46ed8dd-1382-40bd-a153-2b6ad61292fd'
         },
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
@@ -99,44 +102,53 @@ asset_audiences = {
             12: '298e518d-b45e-4d36-94be-34a63d6777ec',
             13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
             14: '77c3bd36-d384-44e8-b550-05122d7da438',
+            15: '98df7800-8378-4469-93bf-5912da21a1e1'
         },
         'public': {
             12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
             13: '800034a9-994c-4ecc-af4d-7b3b2ee0a5a6',
             14: '707ddc61-9c3d-4040-a3d0-2a6521b1c2df',
+            15: 'c8ba02c8-cc63-4388-99ee-a81d5a593283'
         },
         'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
     },
     'tvOS': {
         'beta': {
-            17: '61693fed-ab18-49f3-8983-7c3adf843913'
+            17: '61693fed-ab18-49f3-8983-7c3adf843913',
+            18: '98847ed4-1c37-445c-9e7b-5b95d29281f2'
         },
         'public': {
-            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e'
+            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e',
+            18: '879ce2f8-b7d1-420f-9935-58d647d6606a'
         },
         'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
     },
     'watchOS': {
         'beta': {
-            10: '7ae7f3b9-886a-437f-9b22-e9f017431b0e'
+            10: '7ae7f3b9-886a-437f-9b22-e9f017431b0e',
+            11: '23d7265b-1000-47cf-8d0a-07144942db9e'
         },
         'public': {
-            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b'
+            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b',
+            11: '79b47e0c-cbce-4757-b84b-12a95db52f22'
         },
         'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
     },
     'audioOS': {
         'beta': {
-            17: '17536d4c-1a9d-4169-bc62-920a3873f7a5'
+            17: '17536d4c-1a9d-4169-bc62-920a3873f7a5',
+            18: 'bedbd9c7-738a-4060-958b-79da54a1f7ad'
         },
         'public': {
-            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108'
+            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108',
+            18: '1af931ed-e171-4dd0-b944-172cdebcd89d'
         },
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
     'visionOS': {
         'beta': {
-            1: '4d282764-95fe-4e0e-b7da-ea218fd1f75a'
+            1: '4d282764-95fe-4e0e-b7da-ea218fd1f75a',
+            2: '0bef3239-79ad-4d2a-99c3-2c05df2becf8'
         },
         'release': 'c59ff9d1-5468-4f6c-9e54-f68d5eeab93b'
     },
@@ -145,8 +157,10 @@ asset_audiences = {
     }
 }
 
+choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
+
 parser = argparse.ArgumentParser()
-parser.add_argument('-o', '--os', required=True, action='append', choices=['audioOS', 'iOS', 'iPadOS', 'macOS', 'tvOS', 'visionOS', 'watchOS', 'Studio Display Firmware'])
+parser.add_argument('-o', '--os', required=True, action='append', choices=choice_list)
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-r', '--rsr', action='store_true')
@@ -171,12 +185,16 @@ def generate_restore_version(build_number):
         build_iteration = int(match_groups[2])
         build_suffix = match_groups[3]
 
+        divisor = 1000
+        if build_number.startswith('20G1'):
+            divisor = 10000
+
         restore_pieces = []
 
         restore_pieces.append(kernel_version)
         restore_pieces.append(ord(build_letter) - 64)
-        restore_pieces.append(build_iteration % 1000)
-        restore_pieces.append(int(build_iteration / 1000))
+        restore_pieces.append(build_iteration % divisor)
+        restore_pieces.append(int(build_iteration / divisor))
         restore_pieces.append(ord(build_suffix) - 96 if build_suffix else '0')
 
         restore_versions[build_number] = f"{'.'.join([str(piece) for piece in restore_pieces])},0"
@@ -209,14 +227,13 @@ def get_build_version(osStr, build):
 
     return build_versions[f"{osStr}-{build}"]
 
-def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr, time_delay, counter=5):
+def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, is_rsr, time_delay, counter=5):
     asset_type = 'SoftwareUpdate'
     if is_rsr:
         asset_type = 'Splat' + asset_type
-    if osStr == 'macOS':
+    if os_str == 'macOS':
         asset_type = 'Mac' + asset_type
-    
-    if osStr == 'Studio Display Firmware':
+    elif os_str == 'Studio Display Firmware':
         asset_type = 'DarwinAccessoryUpdate.A2525'
 
     links = set()
@@ -236,10 +253,10 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         "Build": os_build,
         "BuildVersion": os_build
     }
-    if osStr in ['iOS', 'iPadOS', 'macOS']:
+    if os_str in ['iOS', 'iPadOS', 'macOS']:
         request['RestoreVersion'] = generate_restore_version(os_build)
 
-    if "beta" in os_version.lower() and osStr in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
+    if "beta" in os_version.lower() and os_str in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
 
     if time_delay > 0:
@@ -255,38 +272,45 @@ def call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is
         if counter == 0:
             print(request)
             raise
-        return call_pallas(device_name, board_id, os_version, os_build, osStr, audience, is_rsr, time_delay, counter - 1)
+        return call_pallas(device_name, board_id, os_version, os_build, os_str, audience, is_rsr, time_delay, counter - 1)
 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     assets = parsed_response.get('Assets', [])
     for asset in assets:
         if asset.get("AlternateAssetAudienceUUID"):
             additional_audiences.add(asset["AlternateAssetAudienceUUID"])
-        if build_versions.get(f"{osStr}-{asset['Build']}"):
+        if build_versions.get(f"{os_str}-{asset['Build']}") or asset['Build'] in parsed_args.get(os_str, []):
             continue
 
         # ensure deltas from beta builds to release builds are properly filtered out as noise as well if the target build is known
         delta_from_beta = re.search(r"(6\d{3})", asset['Build'])
         if delta_from_beta:
-            if build_versions.get(f"{osStr}-{asset['Build'].replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))}"):
+            if build_versions.get(f"{os_str}-{asset['Build'].replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))}"):
                 continue
 
-        if osStr == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == asset['OSVersion'].removeprefix('9.9.'):
+        cleaned_os_version = asset['OSVersion'].removeprefix('9.9.')
+
+        if os_str == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == cleaned_os_version:
             continue
 
-        newly_discovered_versions[asset['Build']] = asset['OSVersion'].removeprefix('9.9.')
+        newly_discovered_versions[asset['Build']] = cleaned_os_version
 
-        links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
+        if asset.get('ArchiveDecryptionKey'):
+            new_link = f"{asset['__BaseURL']}{asset['__RelativePath']};{asset['ArchiveDecryptionKey']}"
+        else:
+            new_link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
+
+        links.add(new_link)
 
     for additional_audience in additional_audiences:
-        additional_links, additional_versions = call_pallas(device_name, board_id, os_version, os_build, osStr, additional_audience, is_rsr, time_delay)
+        additional_links, additional_versions = call_pallas(device_name, board_id, os_version, os_build, os_str, additional_audience, is_rsr, time_delay)
         links.update(additional_links)
         newly_discovered_versions |= additional_versions
     return links, newly_discovered_versions
 
 ota_links = set()
-for (osStr, builds) in parsed_args.items():
-    print(f"Checking {osStr}")
+for (os_str, builds) in parsed_args.items():
+    print(f"Checking {os_str}")
     for build in builds:
         print(f"\tChecking {build}")
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
@@ -299,11 +323,14 @@ for (osStr, builds) in parsed_args.items():
                 uuid.UUID(audience)
                 audiences.append(audience)
             except:
+                target_asset_audiences = asset_audiences[asset_audiences_overrides.get(os_str, os_str)]
                 if audience in ['beta', 'public']:
-                    audiences.extend({k:v for k,v in asset_audiences[asset_audiences_overrides.get(osStr, osStr)][audience].items() if int(kern_version) - kernel_marketing_version_offset_map.get(osStr, default_kernel_marketing_version_offset) <= k}.values())
+                    if target_asset_audiences.get(audience):
+                        kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
+                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if int(kern_version) - kern_offset <= k}.values())
                 else:
-                    audiences.append(asset_audiences[asset_audiences_overrides.get(osStr, osStr)].get(audience, audience))
-        build_path = list(Path(f"osFiles/{osStr}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
+                    audiences.append(target_asset_audiences.get(audience, audience))
+        build_path = list(Path(f"osFiles/{os_str}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
         devices = {}
         build_data = {}
         try:
@@ -311,11 +338,11 @@ for (osStr, builds) in parsed_args.items():
         except:
             print(f"Bad path - {build_path}")
             continue
-        build_versions[f"{osStr}-{build}"] = build_data['version']
+        build_versions[f"{os_str}-{build}"] = build_data['version']
         for device in build_data['deviceMap']:
             if args.devices and device not in args.devices:
                 continue
-            if osStr == 'macOS' and not args.devices and device not in default_mac_devices:
+            if os_str == 'macOS' and not args.devices and device not in default_mac_devices:
                 continue
             devices.setdefault(device, {
                 'boards': get_board_ids(device),
@@ -334,7 +361,7 @@ for (osStr, builds) in parsed_args.items():
                         current_devices = list(current_devices)
                     else:
                         continue
-                elif osStr == 'macOS':
+                elif os_str == 'macOS':
                     current_devices = set(default_mac_devices).intersection(set(source['deviceMap']))
                     if current_devices:
                         current_devices = list(current_devices)
@@ -355,24 +382,24 @@ for (osStr, builds) in parsed_args.items():
                     prerequisite_build = prerequisite_builds
 
                 for current_device in current_devices:
-                    devices[current_device]['builds'][prerequisite_build] = get_build_version(osStr, prerequisite_build)
+                    devices[current_device]['builds'][prerequisite_build] = get_build_version(os_str, prerequisite_build)
 
-        for audience in audiences:
-            for key, value in devices.items():
-                new_versions = {}
+        for key, value in devices.items():
+            new_versions = {}
+            for audience in audiences:
                 for board in value['boards']:
                     if not args.no_prerequisites:
                         for prerequisite_build, version in value['builds'].items():
-                            new_links, newly_discovered_versions = call_pallas(key, board, version, prerequisite_build, osStr, audience, args.rsr, args.time_delay)
+                            new_links, newly_discovered_versions = call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay)
                             ota_links.update(new_links)
                             new_versions |= newly_discovered_versions
-                    new_links, newly_discovered_versions = call_pallas(key, board, build_data['version'], build, osStr, audience, args.rsr, args.time_delay)
+                    new_links, newly_discovered_versions = call_pallas(key, board, build_data['version'], build, os_str, audience, args.rsr, args.time_delay)
                     ota_links.update(new_links)
                     new_versions |= newly_discovered_versions
 
                     new_version_builds = sorted(new_versions.keys())[:-1]
                     for new_build in new_version_builds:
-                        new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, osStr, audience, args.rsr, args.time_delay)
+                        new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, os_str, audience, args.rsr, args.time_delay)
                         ota_links.update(new_links)
 
 [i.unlink() for i in Path.cwd().glob("import-ota.*") if i.is_file()]

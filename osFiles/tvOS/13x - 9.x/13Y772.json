@@ -9,11 +9,96 @@
             "version": "9.2.1 beta 4",
             "uniqueBuild": "13Y772-beta",
             "released": "2016-05-03",
-            "beta": true
+            "beta": true,
+            "sources": [
+                {
+                    "type": "ipsw",
+                    "deviceMap": [
+                        "AppleTV5,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://developer.apple.com/services-account/download?path=/iOS/tvOS_9.2.1_beta_4/AppleTV53_9.2.1_13Y772_Restore.ipsw",
+                            "active": false
+                        }
+                    ],
+                    "size": 1145317720
+                },
+                {
+                    "type": "ota",
+                    "deviceMap": [
+                        "AppleTV5,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/tvosseeds/031-61159-20160503-8B33C766-0E31-11E6-975F-191C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/1c0bd8fafb102182769436891f7e2e4ed2401b72.zip",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "4319059e7db40faa1dc4462c25de419f"
+                    },
+                    "size": 855534505
+                },
+                {
+                    "type": "ota",
+                    "prerequisiteBuild": "13Y5752a",
+                    "deviceMap": [
+                        "AppleTV5,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/tvosseeds/031-61157-20160503-8B32E896-0E31-11E6-B930-1A1C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/4c932fe062163089b31b6c003b18ed84d99511e6.zip",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "ec7267d8a8588cd90480636e1f43c149"
+                    },
+                    "size": 42870854
+                },
+                {
+                    "type": "ota",
+                    "prerequisiteBuild": "13Y763c",
+                    "deviceMap": [
+                        "AppleTV5,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/tvosseeds/031-61158-20160503-8B32E9AE-0E31-11E6-B930-1C1C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/40089d98dbd161de72b8a2230ac69bd73729cd49.zip",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "6b11be61723fcb8d8df22143beb51d2f"
+                    },
+                    "size": 26535400
+                },
+                {
+                    "type": "ota",
+                    "prerequisiteBuild": "13Y768",
+                    "deviceMap": [
+                        "AppleTV5,3"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/tvosseeds/031-61427-20160503-8B337464-0E31-11E6-B653-1D1C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/4a59f932d35e97b2db6ccc776f6458819f033405.zip",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "b7e05547d146fcd94d44a340723860a5"
+                    },
+                    "size": 17008965
+                }
+            ]
         }
     ],
     "releaseNotes": "https://support.apple.com/HT205444",
     "securityNotes": "https://support.apple.com/HT206564",
+    "ipd": {
+        "AppleTV": "https://secure-appldnld.apple.com/ios9.1/documentation/031-43071-20151028-E9019AB2-7E71-11E5-9D71-88535942017F/AppleTViTunesUpdateReadMe_5.0.ipd"
+    },
     "deviceMap": [
         "AppleTV5,3"
     ],
@@ -27,14 +112,11 @@
                 {
                     "url": "https://secure-appldnld.apple.com/tvos9.2.1/031-46327-20160516-FFB07AF6-13CE-11E6-AE7B-93E0400DF7EB/AppleTV5,3_9.2.1_13Y772_Restore.ipsw",
                     "active": true
-                },
-                {
-                    "url": "http://appldnld.apple.com/tvos9.2.1/031-46327-20160516-FFB07AF6-13CE-11E6-AE7B-93E0400DF7EB/AppleTV5,3_9.2.1_13Y772_Restore.ipsw",
-                    "active": true
                 }
             ],
             "hashes": {
                 "md5": "56b1fd6a0783870065321f5de03c134d",
+                "sha1": "edf6f262b976b03193698e397f0cf219196cd343",
                 "sha2-256": "0aa08ddfa480fdbb8c66536673c0f36558a54392aa94ba70ed765fa3f69e115a"
             },
             "size": 1145210370
@@ -54,22 +136,6 @@
                 "md5": "7aea1524c5f922c91b51fcd1879da582"
             },
             "size": 855544212
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "AppleTV5,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/tvosseeds/031-61159-20160503-8B33C766-0E31-11E6-975F-191C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/1c0bd8fafb102182769436891f7e2e4ed2401b72.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "4319059e7db40faa1dc4462c25de419f"
-            },
-            "size": 855534505
         },
         {
             "type": "ota",
@@ -155,57 +221,6 @@
                 "md5": "27733421554c08851629c6de7bace91b"
             },
             "size": 52429299
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "13Y763c",
-            "deviceMap": [
-                "AppleTV5,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/tvosseeds/031-61158-20160503-8B32E9AE-0E31-11E6-B930-1C1C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/40089d98dbd161de72b8a2230ac69bd73729cd49.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "6b11be61723fcb8d8df22143beb51d2f"
-            },
-            "size": 26535400
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "13Y768",
-            "deviceMap": [
-                "AppleTV5,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/tvosseeds/031-61427-20160503-8B337464-0E31-11E6-B653-1D1C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/4a59f932d35e97b2db6ccc776f6458819f033405.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "b7e05547d146fcd94d44a340723860a5"
-            },
-            "size": 17008965
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "13Y5752a",
-            "deviceMap": [
-                "AppleTV5,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/tvosseeds/031-61157-20160503-8B32E896-0E31-11E6-B930-1A1C400DF7EB/com_apple_MobileAsset_SoftwareUpdate/4c932fe062163089b31b6c003b18ed84d99511e6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "ec7267d8a8588cd90480636e1f43c149"
-            },
-            "size": 42870854
         }
     ]
 }

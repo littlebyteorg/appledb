@@ -3,6 +3,8 @@
 import argparse
 import json
 import plistlib
+import re
+import time
 import zipfile
 from pathlib import Path
 from urllib.parse import urlparse
@@ -13,7 +15,7 @@ import requests
 from link_info import needs_apple_auth, source_has_link, apple_auth_token
 from sort_os_files import sort_os_file
 from update_links import update_links
-from common_update_import import augment_with_keys, create_file, OS_MAP
+from common_update_import import augment_with_keys, create_file, OS_MAP, get_board_mapping_lower_case
 
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 
@@ -89,8 +91,19 @@ def import_ipsw(
 
     platform_support = None
     if os_str == "macOS" or "UniversalMac" in ipsw_url:
-        if not ipsw:
-            ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)
+        counter = 0
+        while not ipsw:
+            try:
+                ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url)
+            except remotezip.RemoteIOError as e:
+                if e.args[0].startswith('403 Client Error'):
+                    print('No file')
+                    raise e
+                time.sleep(1+counter)
+                counter += 1
+                if counter > 10:
+                    raise e
+        
         print(f"\tGetting PlatformSupport.plist {'from local file' if local_available else 'via remotezip'}")
         platform_support = plistlib.loads(ipsw.read("PlatformSupport.plist"))
 
@@ -99,7 +112,6 @@ def import_ipsw(
 
     # Get the build, version, and supported devices
     build = build or build_manifest["ProductBuildVersion"]
-    buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
     # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
     # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
     # Check by substring first?
@@ -110,6 +122,25 @@ def import_ipsw(
     build_supported_devices = augment_with_keys(set(
         build_manifest["SupportedProductTypes"] + (platform_support["SupportedModelProperties"] if platform_support else [])
     ))
+    # Grab baseband versions and buildtrain (both per device)
+    buildtrain = None
+    restore_version = None
+    baseband_map = {}
+    for identity in build_manifest['BuildIdentities']:
+        board_id = identity['Info']['DeviceClass']
+        buildtrain = buildtrain or identity['Info']['BuildTrain']
+        restore_version = restore_version or identity.get('Ap,OSLongVersion')
+        if 'BasebandFirmware' in identity['Manifest']:
+            path = identity['Manifest']['BasebandFirmware']['Info']['Path']
+            baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
+            mapped_device = get_board_mapping_lower_case([board_id])
+            if not mapped_device:
+                print((f"MISSING BOARD - {board_id}"))
+                continue
+            if baseband_response:
+                baseband_map[mapped_device[0]] = baseband_response.groups(1)[0]
+            else:
+                print(f"MISSING BASEBAND - {path}")
 
     if not os_str:
         for product_prefix, os_str in OS_MAP:
@@ -125,8 +156,10 @@ def import_ipsw(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
-    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain)
+    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
+    if baseband_map:
+        db_data.setdefault("basebandVersions", {}).update(baseband_map)
 
     db_data.setdefault("deviceMap", []).extend(build_supported_devices)
 

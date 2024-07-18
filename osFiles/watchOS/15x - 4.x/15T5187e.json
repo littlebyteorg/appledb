@@ -17,6 +17,10 @@
         "Watch3,3",
         "Watch3,4"
     ],
+    "basebandVersions": {
+        "Watch3,1": "1.56.01",
+        "Watch3,2": "1.56.01"
+    },
     "sources": [
         {
             "type": "ota",
@@ -67,23 +71,6 @@
                 "md5": "387d839f66095e30e33937481ca1d98e"
             },
             "size": 374038316
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch1,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70130-20180222-B789E3E2-1341-11E8-A172-03CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/df47db641ccb17a5b5c748da626af65d84eeb7e8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "18a0953644aa934bd959ef39f2b75688"
-            },
-            "size": 346889514
         },
         {
             "type": "ota",
@@ -138,54 +125,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch1,1"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70184-20180222-B66CB05C-1341-11E8-B3FF-69CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/1c749abf03925751bbfdd8723439712510008c92.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70130-20180222-B789E3E2-1341-11E8-A172-03CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/df47db641ccb17a5b5c748da626af65d84eeb7e8.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "40c2586e2bd0e8a5702e7d2c601d76ea"
+                "md5": "18a0953644aa934bd959ef39f2b75688"
             },
-            "size": 333231048
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch1,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70120-20180222-702F5DA6-1341-11E8-BE83-28C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/069dded5b76922782dc3b824eda2e15f556f2c86.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "399f2bef0e8bf633c55489f60e38674a"
-            },
-            "size": 333095319
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch1,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70315-20180222-2D1CE43E-1341-11E8-9AA0-5FB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/4990fbd627156f0a9a798ab03008f4465b3b1aae.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "2cd7de7a5c4e3202f6166194b262584a"
-            },
-            "size": 333095670
+            "size": 346889514
         },
         {
             "type": "ota",
@@ -237,6 +190,23 @@
                 "md5": "09473cbf5ebbdc02ca60cc6f35ace32f"
             },
             "size": 333183836
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch1,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70184-20180222-B66CB05C-1341-11E8-B3FF-69CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/1c749abf03925751bbfdd8723439712510008c92.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "40c2586e2bd0e8a5702e7d2c601d76ea"
+            },
+            "size": 333231048
         },
         {
             "type": "ota",
@@ -325,6 +295,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch1,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70120-20180222-702F5DA6-1341-11E8-BE83-28C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/069dded5b76922782dc3b824eda2e15f556f2c86.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "399f2bef0e8bf633c55489f60e38674a"
+            },
+            "size": 333095319
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch1,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70315-20180222-2D1CE43E-1341-11E8-9AA0-5FB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/4990fbd627156f0a9a798ab03008f4465b3b1aae.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "2cd7de7a5c4e3202f6166194b262584a"
+            },
+            "size": 333095670
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch1,1"
@@ -409,23 +413,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch1,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70231-20180222-C0A52EFA-1341-11E8-9271-DAD070E8E01E/com_apple_MobileAsset_SoftwareUpdate/0fc5e8d698d51e928dee50e048ab1dc5d4e2f54f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "ef6872e7ae977912d310e3a60f9183a0"
-            },
-            "size": 346906987
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch1,2"
@@ -477,54 +464,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch1,2"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70097-20180222-B4D65086-1341-11E8-A1D7-02CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/7d1d4636ad158ce6e0102a59b44ffedf1e4343e0.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70231-20180222-C0A52EFA-1341-11E8-9271-DAD070E8E01E/com_apple_MobileAsset_SoftwareUpdate/0fc5e8d698d51e928dee50e048ab1dc5d4e2f54f.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "cbe428d165f6cdfe67db4f540baf0f74"
+                "md5": "ef6872e7ae977912d310e3a60f9183a0"
             },
-            "size": 333239917
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch1,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70258-20180222-733CB642-1341-11E8-819D-D1C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/59b818381d05899242f9ca7d1a5165a3b69eecde.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "489ba2ce6613f7a357d44203075ef15f"
-            },
-            "size": 333104452
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch1,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70311-20180222-2D1B2FCC-1341-11E8-994D-56B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/1610f8625b735dc8ae905f9645fb06de70129b3f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "a611e2395fe52f1ecb981f320f059bc7"
-            },
-            "size": 333104845
+            "size": 346906987
         },
         {
             "type": "ota",
@@ -576,6 +529,23 @@
                 "md5": "93ec9f7503d24a75f2ce5303ce023da4"
             },
             "size": 333198603
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch1,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70097-20180222-B4D65086-1341-11E8-A1D7-02CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/7d1d4636ad158ce6e0102a59b44ffedf1e4343e0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "cbe428d165f6cdfe67db4f540baf0f74"
+            },
+            "size": 333239917
         },
         {
             "type": "ota",
@@ -664,6 +634,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch1,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70258-20180222-733CB642-1341-11E8-819D-D1C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/59b818381d05899242f9ca7d1a5165a3b69eecde.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "489ba2ce6613f7a357d44203075ef15f"
+            },
+            "size": 333104452
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch1,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70311-20180222-2D1B2FCC-1341-11E8-994D-56B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/1610f8625b735dc8ae905f9645fb06de70129b3f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "a611e2395fe52f1ecb981f320f059bc7"
+            },
+            "size": 333104845
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch1,2"
@@ -748,23 +752,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch2,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70073-20180222-B6BC6EBC-1341-11E8-9120-A6CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/9c2227868f1a93b3f7f5a4d635cd667192855625.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "3266936bfb1d0aa20d166ffa2d3fc621"
-            },
-            "size": 365346160
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch2,3"
@@ -816,54 +803,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch2,3"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70254-20180222-B6A31AFC-1341-11E8-A975-88CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/d4e6bd816d2342d24877a5261e984da1a8953162.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70073-20180222-B6BC6EBC-1341-11E8-9120-A6CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/9c2227868f1a93b3f7f5a4d635cd667192855625.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "471d5c82a97f72d26ab83de37cb919b7"
+                "md5": "3266936bfb1d0aa20d166ffa2d3fc621"
             },
-            "size": 352163857
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch2,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70218-20180222-72D33F82-1341-11E8-9C4B-B0C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/cb8b58cbef6e337d63aa9c4b59e53327033b89a3.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "b5a54473fdc9c93da88be652fe2850bb"
-            },
-            "size": 352028636
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch2,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70314-20180222-2D1ECE3E-1341-11E8-A436-5EB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/8d9201e811b04d26224cf9643bfb0e8c5282a293.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "aec4ebdadf6df693f0daf00f794c7997"
-            },
-            "size": 352028809
+            "size": 365346160
         },
         {
             "type": "ota",
@@ -915,6 +868,23 @@
                 "md5": "aa1c3565cdc46776413c800d29931e85"
             },
             "size": 352100601
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch2,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70254-20180222-B6A31AFC-1341-11E8-A975-88CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/d4e6bd816d2342d24877a5261e984da1a8953162.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "471d5c82a97f72d26ab83de37cb919b7"
+            },
+            "size": 352163857
         },
         {
             "type": "ota",
@@ -1003,6 +973,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch2,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70218-20180222-72D33F82-1341-11E8-9C4B-B0C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/cb8b58cbef6e337d63aa9c4b59e53327033b89a3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "b5a54473fdc9c93da88be652fe2850bb"
+            },
+            "size": 352028636
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch2,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70314-20180222-2D1ECE3E-1341-11E8-A436-5EB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/8d9201e811b04d26224cf9643bfb0e8c5282a293.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "aec4ebdadf6df693f0daf00f794c7997"
+            },
+            "size": 352028809
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch2,3"
@@ -1087,23 +1091,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch2,4"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70224-20180222-C0A461D2-1341-11E8-BE2C-D7D070E8E01E/com_apple_MobileAsset_SoftwareUpdate/47251e17cf9e43df126dd084377a9b8e9bf3432a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "561940c3960e40a25ffae4653d35d40e"
-            },
-            "size": 365375936
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch2,4"
@@ -1155,54 +1142,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch2,4"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70146-20180222-B5D335D0-1341-11E8-9906-3ECE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/f27737eb5557f2450f9ad89f567ef2e12571ceff.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70224-20180222-C0A461D2-1341-11E8-BE2C-D7D070E8E01E/com_apple_MobileAsset_SoftwareUpdate/47251e17cf9e43df126dd084377a9b8e9bf3432a.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "6378c2b0a15f298eaa2cd506986a35bf"
+                "md5": "561940c3960e40a25ffae4653d35d40e"
             },
-            "size": 352169168
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch2,4"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70210-20180222-72BDD160-1341-11E8-96EE-9FC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/f6c2102acea3e53fc403c72ce21557fc742e36d7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "e9e775f51cd527309934daea9304e1f9"
-            },
-            "size": 352034046
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch2,4"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70306-20180222-2D187F7A-1341-11E8-BB72-4CB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/d27e20a5d6dd8fed7604b084f5c12cd4958159e9.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "aaedd7e4b0fd26f82c060cdb44fa3d8a"
-            },
-            "size": 352034619
+            "size": 365375936
         },
         {
             "type": "ota",
@@ -1254,6 +1207,23 @@
                 "md5": "860a2d9b6ce1e06f558f61d5a8ec3de7"
             },
             "size": 352131894
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch2,4"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70146-20180222-B5D335D0-1341-11E8-9906-3ECE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/f27737eb5557f2450f9ad89f567ef2e12571ceff.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "6378c2b0a15f298eaa2cd506986a35bf"
+            },
+            "size": 352169168
         },
         {
             "type": "ota",
@@ -1342,6 +1312,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch2,4"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70210-20180222-72BDD160-1341-11E8-96EE-9FC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/f6c2102acea3e53fc403c72ce21557fc742e36d7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "e9e775f51cd527309934daea9304e1f9"
+            },
+            "size": 352034046
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch2,4"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70306-20180222-2D187F7A-1341-11E8-BB72-4CB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/d27e20a5d6dd8fed7604b084f5c12cd4958159e9.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "aaedd7e4b0fd26f82c060cdb44fa3d8a"
+            },
+            "size": 352034619
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch2,4"
@@ -1426,23 +1430,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch2,6"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70066-20180222-B6A94396-1341-11E8-A5B3-96CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/2c54426dc0aa73b7c703797e0c374281179d7d6e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "04b63defffeb7ad00b04adfb08557bc8"
-            },
-            "size": 364416125
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch2,6"
@@ -1494,54 +1481,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch2,6"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70085-20180222-B4A4A1F8-1341-11E8-989B-FDCD70E8E01E/com_apple_MobileAsset_SoftwareUpdate/a359dcb5f4f339c741d91cb5ed46452a83c8b637.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70066-20180222-B6A94396-1341-11E8-A5B3-96CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/2c54426dc0aa73b7c703797e0c374281179d7d6e.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "9ba167a74102fdd1e8bb6c92db59dc62"
+                "md5": "04b63defffeb7ad00b04adfb08557bc8"
             },
-            "size": 351268904
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch2,6"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70115-20180222-6FB7022A-1341-11E8-AFBA-23C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/be27853b347742e67998fe56ecb6ef8f6bd90897.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "0c293240146b0b5c0cf63534ec3a099d"
-            },
-            "size": 351133975
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch2,6"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70308-20180222-2D1B54F2-1341-11E8-A82C-50B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/444de6fa70452a445ed5b9fc560d277029c0c48e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "e23431e6288e2c346690fb7cef0d7ae9"
-            },
-            "size": 351133081
+            "size": 364416125
         },
         {
             "type": "ota",
@@ -1593,6 +1546,23 @@
                 "md5": "562c4d20ac9a47737c6fef6f0d405ddc"
             },
             "size": 351224643
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch2,6"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70085-20180222-B4A4A1F8-1341-11E8-989B-FDCD70E8E01E/com_apple_MobileAsset_SoftwareUpdate/a359dcb5f4f339c741d91cb5ed46452a83c8b637.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "9ba167a74102fdd1e8bb6c92db59dc62"
+            },
+            "size": 351268904
         },
         {
             "type": "ota",
@@ -1681,6 +1651,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch2,6"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70115-20180222-6FB7022A-1341-11E8-AFBA-23C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/be27853b347742e67998fe56ecb6ef8f6bd90897.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "0c293240146b0b5c0cf63534ec3a099d"
+            },
+            "size": 351133975
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch2,6"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70308-20180222-2D1B54F2-1341-11E8-A82C-50B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/444de6fa70452a445ed5b9fc560d277029c0c48e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "e23431e6288e2c346690fb7cef0d7ae9"
+            },
+            "size": 351133081
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch2,6"
@@ -1765,23 +1769,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch2,7"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70158-20180222-B8679C78-1341-11E8-B6FC-35CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/af67155538fdf037210edd7539332274b4b9ef66.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "9b81224c1a565b904d198d95e33fee54"
-            },
-            "size": 364442991
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5835d",
             "deviceMap": [
                 "Watch2,7"
@@ -1816,54 +1803,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch2,7"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70230-20180222-B665E628-1341-11E8-8E72-6ACE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/70080dcee51c3b81cb47f4a6263334c8825e702c.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70158-20180222-B8679C78-1341-11E8-B6FC-35CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/af67155538fdf037210edd7539332274b4b9ef66.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "1877f7e309a9ea44a3a4334aa30bb23b"
+                "md5": "9b81224c1a565b904d198d95e33fee54"
             },
-            "size": 351297452
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch2,7"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70170-20180222-7210567A-1341-11E8-B8F6-66C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/ebf7aacedeec9abb9720c1a92539b9b9d39637ca.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "7243be8e8b63af963b0d70b64eb713da"
-            },
-            "size": 351162356
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch2,7"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70310-20180222-2D1C7346-1341-11E8-9D7D-54B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/f3f77a71d24dda083a31981acf2c1e812e3256bb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "2c14c97962c9a0fc6c1c11bc0d78d116"
-            },
-            "size": 351162223
+            "size": 364442991
         },
         {
             "type": "ota",
@@ -1915,6 +1868,23 @@
                 "md5": "aa0da8deab86eeb9be3e9b528f2071ce"
             },
             "size": 351247906
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch2,7"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70230-20180222-B665E628-1341-11E8-8E72-6ACE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/70080dcee51c3b81cb47f4a6263334c8825e702c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "1877f7e309a9ea44a3a4334aa30bb23b"
+            },
+            "size": 351297452
         },
         {
             "type": "ota",
@@ -2003,6 +1973,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch2,7"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70170-20180222-7210567A-1341-11E8-B8F6-66C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/ebf7aacedeec9abb9720c1a92539b9b9d39637ca.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "7243be8e8b63af963b0d70b64eb713da"
+            },
+            "size": 351162356
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch2,7"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70310-20180222-2D1C7346-1341-11E8-9D7D-54B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/f3f77a71d24dda083a31981acf2c1e812e3256bb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "2c14c97962c9a0fc6c1c11bc0d78d116"
+            },
+            "size": 351162223
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch2,7"
@@ -2087,23 +2091,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch3,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70124-20180222-B76F05EA-1341-11E8-B76A-FDCE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/82cb650eb378e5ecc5787078eca412b27ec155c6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "b58b9aabdf741807f4c1b7c1a6fe1c51"
-            },
-            "size": 404857063
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch3,1"
@@ -2155,54 +2142,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch3,1"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70153-20180222-B5D2460C-1341-11E8-831A-3FCE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/dd183f261b74aa28c36d62a53ac42fd168c67e87.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70124-20180222-B76F05EA-1341-11E8-B76A-FDCE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/82cb650eb378e5ecc5787078eca412b27ec155c6.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "16cbaad3aa65c6af2038f7bb7adbe285"
+                "md5": "b58b9aabdf741807f4c1b7c1a6fe1c51"
             },
-            "size": 389835982
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch3,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70207-20180222-726BAA5C-1341-11E8-9421-84C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/bb1039d4d458dfdd5075bb840486090c2c2b1fcf.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "23e9912c78645337f1e84b1786d30f62"
-            },
-            "size": 389701351
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch3,1"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70312-20180222-2D1D2264-1341-11E8-B369-59B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/7a3be07a0b5ada61f6c444c80fd2b90c7af7f55d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "877641b5a85824b6ea2ebad6d75ff020"
-            },
-            "size": 389701739
+            "size": 404857063
         },
         {
             "type": "ota",
@@ -2254,6 +2207,23 @@
                 "md5": "8ddc216ff6a6bb323758663b4f29e21a"
             },
             "size": 389787141
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch3,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70153-20180222-B5D2460C-1341-11E8-831A-3FCE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/dd183f261b74aa28c36d62a53ac42fd168c67e87.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "16cbaad3aa65c6af2038f7bb7adbe285"
+            },
+            "size": 389835982
         },
         {
             "type": "ota",
@@ -2342,6 +2312,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch3,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70207-20180222-726BAA5C-1341-11E8-9421-84C570E8E01E/com_apple_MobileAsset_SoftwareUpdate/bb1039d4d458dfdd5075bb840486090c2c2b1fcf.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "23e9912c78645337f1e84b1786d30f62"
+            },
+            "size": 389701351
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch3,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70312-20180222-2D1D2264-1341-11E8-B369-59B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/7a3be07a0b5ada61f6c444c80fd2b90c7af7f55d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "877641b5a85824b6ea2ebad6d75ff020"
+            },
+            "size": 389701739
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch3,1"
@@ -2426,23 +2430,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch3,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70127-20180222-B789DFF0-1341-11E8-9FCB-02CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/ac8b9fa96d0870e7696be09548df1fa92c5f84b8.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "8e48fd8c34a95d66a84ed62c2fcd277e"
-            },
-            "size": 404881940
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch3,2"
@@ -2494,54 +2481,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch3,2"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70136-20180222-B58FA298-1341-11E8-BFDB-18CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/811e57333bedb60abd9d06256774197f6c461ff8.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70127-20180222-B789DFF0-1341-11E8-9FCB-02CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/ac8b9fa96d0870e7696be09548df1fa92c5f84b8.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "9f8c2807072c5379431a51e1167ff2e8"
+                "md5": "8e48fd8c34a95d66a84ed62c2fcd277e"
             },
-            "size": 389860371
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch3,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70169-20180222-71E24BE0-1341-11E8-B25F-5AC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/23e5ce6140d85a1acf3ba2d8bd8686ab1326207c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "fd2409aea4b5cafa03ff3093e84af031"
-            },
-            "size": 389724891
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch3,2"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70307-20180222-2D1C3F70-1341-11E8-8802-4EB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/1013e56456e14107c15e3e48b6d5fe4818917605.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "3f4a42e13ab688c57c6387bd352f09d2"
-            },
-            "size": 389725363
+            "size": 404881940
         },
         {
             "type": "ota",
@@ -2593,6 +2546,23 @@
                 "md5": "3b016da14c1dae7a73167044cc20771f"
             },
             "size": 389821163
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch3,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70136-20180222-B58FA298-1341-11E8-BFDB-18CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/811e57333bedb60abd9d06256774197f6c461ff8.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "9f8c2807072c5379431a51e1167ff2e8"
+            },
+            "size": 389860371
         },
         {
             "type": "ota",
@@ -2681,6 +2651,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch3,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70169-20180222-71E24BE0-1341-11E8-B25F-5AC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/23e5ce6140d85a1acf3ba2d8bd8686ab1326207c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "fd2409aea4b5cafa03ff3093e84af031"
+            },
+            "size": 389724891
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch3,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70307-20180222-2D1C3F70-1341-11E8-8802-4EB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/1013e56456e14107c15e3e48b6d5fe4818917605.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "3f4a42e13ab688c57c6387bd352f09d2"
+            },
+            "size": 389725363
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch3,2"
@@ -2748,23 +2752,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch3,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70197-20180222-BD658262-1341-11E8-A524-FFCF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/ae8fc3586d5a8c4165987bcc65d1d097f63fa87c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "da1c472c768c9c2c73380ea52951b506"
-            },
-            "size": 372196902
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch3,3"
@@ -2816,54 +2803,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch3,3"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70182-20180222-B62DA7E0-1341-11E8-97A9-55CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/2e1423361095ab7d9628edce43a28fc84426f98e.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70197-20180222-BD658262-1341-11E8-A524-FFCF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/ae8fc3586d5a8c4165987bcc65d1d097f63fa87c.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "d573855dc9f743754fbc64e279797a59"
+                "md5": "da1c472c768c9c2c73380ea52951b506"
             },
-            "size": 358930306
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch3,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70167-20180222-70A14BAA-1341-11E8-B6F8-3BC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/7bec9575c4d00665076d34c7b413d2f3abc7a97a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "4f2637329ea474f3099c8fb088560585"
-            },
-            "size": 358794971
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch3,3"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70309-20180222-2D1B6528-1341-11E8-BC00-52B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/decc6d577509125bd1aca2a498653ad640b1596f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "1f53dedbaca5bb4f42b0c0be3bb07a2b"
-            },
-            "size": 358795520
+            "size": 372196902
         },
         {
             "type": "ota",
@@ -2915,6 +2868,23 @@
                 "md5": "b0bc214652c267690722a9f8719f8f95"
             },
             "size": 358886534
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70182-20180222-B62DA7E0-1341-11E8-97A9-55CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/2e1423361095ab7d9628edce43a28fc84426f98e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "d573855dc9f743754fbc64e279797a59"
+            },
+            "size": 358930306
         },
         {
             "type": "ota",
@@ -3003,6 +2973,40 @@
         },
         {
             "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70167-20180222-70A14BAA-1341-11E8-B6F8-3BC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/7bec9575c4d00665076d34c7b413d2f3abc7a97a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "4f2637329ea474f3099c8fb088560585"
+            },
+            "size": 358794971
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch3,3"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70309-20180222-2D1B6528-1341-11E8-BC00-52B970E8E01E/com_apple_MobileAsset_SoftwareUpdate/decc6d577509125bd1aca2a498653ad640b1596f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "1f53dedbaca5bb4f42b0c0be3bb07a2b"
+            },
+            "size": 358795520
+        },
+        {
+            "type": "ota",
             "prerequisiteBuild": "15T5165e",
             "deviceMap": [
                 "Watch3,3"
@@ -3070,23 +3074,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15R846",
-            "deviceMap": [
-                "Watch3,4"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70179-20180222-BD13EBD2-1341-11E8-8241-F9CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/e0129eec38f02d2552d3202d58bff0c0c82d0976.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "c1035c4a66d6ba6a8fc83c5ecc00359a"
-            },
-            "size": 372213572
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "15R5823c",
             "deviceMap": [
                 "Watch3,4"
@@ -3138,54 +3125,20 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "15S102",
+            "prerequisiteBuild": "15R846",
             "deviceMap": [
                 "Watch3,4"
             ],
             "links": [
                 {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70183-20180222-B62E2968-1341-11E8-8C89-56CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/c30c8de4b60003e5899c075e76769e341070e345.zip",
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70179-20180222-BD13EBD2-1341-11E8-8241-F9CF70E8E01E/com_apple_MobileAsset_SoftwareUpdate/e0129eec38f02d2552d3202d58bff0c0c82d0976.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "md5": "a185f07d155f22d01e263f2b7260cdde"
+                "md5": "c1035c4a66d6ba6a8fc83c5ecc00359a"
             },
-            "size": 358942236
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S542",
-            "deviceMap": [
-                "Watch3,4"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70173-20180222-722DD9C0-1341-11E8-9E3D-6FC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/f83bc1d5172a5355db613c6eeb1709b1ddc2c133.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "7885aac7dc2f669772ad144b6d70c920"
-            },
-            "size": 358807163
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "15S600b",
-            "deviceMap": [
-                "Watch3,4"
-            ],
-            "links": [
-                {
-                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70313-20180222-2D1B1E6A-1341-11E8-910A-5BB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/64251e42d87b8fd479df73bb5d18eb4de45035d6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "ab74b95af9e3a600e0f81d0511a00978"
-            },
-            "size": 358806632
+            "size": 372213572
         },
         {
             "type": "ota",
@@ -3237,6 +3190,23 @@
                 "md5": "f56dad46a942c3698086ae0c551ae192"
             },
             "size": 358890918
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S102",
+            "deviceMap": [
+                "Watch3,4"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70183-20180222-B62E2968-1341-11E8-8C89-56CE70E8E01E/com_apple_MobileAsset_SoftwareUpdate/c30c8de4b60003e5899c075e76769e341070e345.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "a185f07d155f22d01e263f2b7260cdde"
+            },
+            "size": 358942236
         },
         {
             "type": "ota",
@@ -3322,6 +3292,40 @@
                 "md5": "1b685613305cb1ab9c1ec6ee88260987"
             },
             "size": 358753812
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S542",
+            "deviceMap": [
+                "Watch3,4"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70173-20180222-722DD9C0-1341-11E8-9E3D-6FC570E8E01E/com_apple_MobileAsset_SoftwareUpdate/f83bc1d5172a5355db613c6eeb1709b1ddc2c133.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "7885aac7dc2f669772ad144b6d70c920"
+            },
+            "size": 358807163
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "15S600b",
+            "deviceMap": [
+                "Watch3,4"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/watchos4.3seed/091-70313-20180222-2D1B1E6A-1341-11E8-910A-5BB970E8E01E/com_apple_MobileAsset_SoftwareUpdate/64251e42d87b8fd479df73bb5d18eb4de45035d6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "ab74b95af9e3a600e0f81d0511a00978"
+            },
+            "size": 358806632
         },
         {
             "type": "ota",

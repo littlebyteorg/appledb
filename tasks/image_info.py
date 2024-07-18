@@ -7,6 +7,7 @@ minimum_version_map = {
     'iPadOS': 16,
     'macOS': 11,
     'tvOS': 16,
+    'visionOS': 2,
     'watchOS': 9
 }
 

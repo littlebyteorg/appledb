@@ -2,6 +2,7 @@
     "osStr": "watchOS",
     "version": "10.2 beta",
     "build": "21S5331f",
+    "restoreVersion": "21.19.331.5.6,0",
     "buildTrain": "LighthouseCSeed",
     "released": "2023-10-26",
     "beta": true,
@@ -45,6 +46,26 @@
         "Watch7,4",
         "Watch7,5"
     ],
+    "basebandVersions": {
+        "Watch4,3": "6.02.00",
+        "Watch4,4": "6.02.00",
+        "Watch5,3": "6.02.00",
+        "Watch5,4": "6.02.00",
+        "Watch5,11": "6.02.00",
+        "Watch5,12": "6.02.00",
+        "Watch6,3": "6.02.00",
+        "Watch6,4": "6.02.00",
+        "Watch6,8": "6.02.00",
+        "Watch6,9": "6.02.00",
+        "Watch6,12": "6.02.00",
+        "Watch6,13": "6.02.00",
+        "Watch6,16": "6.02.00",
+        "Watch6,17": "6.02.00",
+        "Watch6,18": "6.02.00",
+        "Watch7,3": "6.02.00",
+        "Watch7,4": "6.02.00",
+        "Watch7,5": "6.02.00"
+    },
     "sources": [
         {
             "type": "ota",
@@ -188,42 +209,6 @@
                 "sha2-256": "d66bdfce2c13afc3ae2bb83beb9e029b841a4e2249c829296f335cd296322508"
             },
             "size": 1392137090
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88995/5C96D652-557A-44BA-9CA2-AEB04531F812/com_apple_MobileAsset_SoftwareUpdate/784b89df75dde0442069994c515993ca2c1bcd19.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d1ff5a34e118f82a79a262257b2e28cab28bbb45",
-                "sha2-256": "de61081d995bbc53f8d157af705a1aa3b09481482cfd8f88856408b017ace531"
-            },
-            "size": 654342078
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch4,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88132/37F43593-C220-472B-9C2F-D355400565F5/com_apple_MobileAsset_SoftwareUpdate/a7fd40c36814a4e471e7494b659f9a29e8b73110.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0248a54b6504cc20205d5309f252cd94aac343da",
-                "sha2-256": "f01e98345521d0c8e30bea2118d959eec481fe562f99001fa3e799a14b1fc62d"
-            },
-            "size": 654269487
         },
         {
             "type": "ota",
@@ -371,21 +356,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch4,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88739/5A84D35E-E137-4CD2-8CD6-734FD0B13472/com_apple_MobileAsset_SoftwareUpdate/3f0b5caf05a49b0e26578eaec362f1be89cc923c.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88995/5C96D652-557A-44BA-9CA2-AEB04531F812/com_apple_MobileAsset_SoftwareUpdate/784b89df75dde0442069994c515993ca2c1bcd19.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "ffa15cf9f45ac89c198d5d051ac9e684682a7ac9",
-                "sha2-256": "7a0f4e62df740ec209530fb0dcfef77303cccb5185081ee6e4bab9824e927fd7"
+                "sha1": "d1ff5a34e118f82a79a262257b2e28cab28bbb45",
+                "sha2-256": "de61081d995bbc53f8d157af705a1aa3b09481482cfd8f88856408b017ace531"
             },
-            "size": 458129813
+            "size": 654342078
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88132/37F43593-C220-472B-9C2F-D355400565F5/com_apple_MobileAsset_SoftwareUpdate/a7fd40c36814a4e471e7494b659f9a29e8b73110.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0248a54b6504cc20205d5309f252cd94aac343da",
+                "sha2-256": "f01e98345521d0c8e30bea2118d959eec481fe562f99001fa3e799a14b1fc62d"
+            },
+            "size": 654269487
         },
         {
             "type": "ota",
@@ -440,6 +443,24 @@
                 "sha2-256": "e8b9b7c96dc75bcc58a91c7c37970f49b648cfe2313ee07a346ace073b0bebce"
             },
             "size": 452137025
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88739/5A84D35E-E137-4CD2-8CD6-734FD0B13472/com_apple_MobileAsset_SoftwareUpdate/3f0b5caf05a49b0e26578eaec362f1be89cc923c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ffa15cf9f45ac89c198d5d051ac9e684682a7ac9",
+                "sha2-256": "7a0f4e62df740ec209530fb0dcfef77303cccb5185081ee6e4bab9824e927fd7"
+            },
+            "size": 458129813
         },
         {
             "type": "ota",
@@ -583,42 +604,6 @@
                 "sha2-256": "83e4937e11643c843d06ccbeaabbe0b5bc7d3e1a2e29d701d9088e2ae4b871ed"
             },
             "size": 1396135491
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88562/F7A67B04-5047-456F-944A-8A13217E013F/com_apple_MobileAsset_SoftwareUpdate/7c605b654596ee9a1c4d9b53eeea5ebd4091d010.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2438a895600d3c60625b4af7628a958e1d7487cf",
-                "sha2-256": "c2b7ab59b5816aa353d92f2de9b3fffb2affe6de5037b1346b71a4c3afd6cacd"
-            },
-            "size": 654365578
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch4,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88388/89F2383A-520F-423C-BE37-01C55CBA9D44/com_apple_MobileAsset_SoftwareUpdate/a1839c5a0834b561e54b78c185e32040a1c4abeb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b7cc2e4e181c37b2506e7aa469b71db152a53b1d",
-                "sha2-256": "23e793bfc6d5a8468849fdc697c1decfb3201852ed8165fd1f10c25ec2034e63"
-            },
-            "size": 654293354
         },
         {
             "type": "ota",
@@ -766,21 +751,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch4,2"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88299/DA50533C-B24E-469A-950B-B7760BB640DF/com_apple_MobileAsset_SoftwareUpdate/0d2cbb59549f7c0eba24b41419fdd3dae64a0ac2.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88562/F7A67B04-5047-456F-944A-8A13217E013F/com_apple_MobileAsset_SoftwareUpdate/7c605b654596ee9a1c4d9b53eeea5ebd4091d010.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "a99bfd420e9ba7e46b93cb3b099ba218e0bb7345",
-                "sha2-256": "ce04b583c2c93b07afb75601f279f06cb373f0d78ea5a2179f5694bff1104aef"
+                "sha1": "2438a895600d3c60625b4af7628a958e1d7487cf",
+                "sha2-256": "c2b7ab59b5816aa353d92f2de9b3fffb2affe6de5037b1346b71a4c3afd6cacd"
             },
-            "size": 458146796
+            "size": 654365578
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88388/89F2383A-520F-423C-BE37-01C55CBA9D44/com_apple_MobileAsset_SoftwareUpdate/a1839c5a0834b561e54b78c185e32040a1c4abeb.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "b7cc2e4e181c37b2506e7aa469b71db152a53b1d",
+                "sha2-256": "23e793bfc6d5a8468849fdc697c1decfb3201852ed8165fd1f10c25ec2034e63"
+            },
+            "size": 654293354
         },
         {
             "type": "ota",
@@ -835,6 +838,24 @@
                 "sha2-256": "7a955ac6de56956b0cb032940be392c090ceb1c9bd266b464ad5b6f5c3d17fdc"
             },
             "size": 452156034
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88299/DA50533C-B24E-469A-950B-B7760BB640DF/com_apple_MobileAsset_SoftwareUpdate/0d2cbb59549f7c0eba24b41419fdd3dae64a0ac2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a99bfd420e9ba7e46b93cb3b099ba218e0bb7345",
+                "sha2-256": "ce04b583c2c93b07afb75601f279f06cb373f0d78ea5a2179f5694bff1104aef"
+            },
+            "size": 458146796
         },
         {
             "type": "ota",
@@ -978,42 +999,6 @@
                 "sha2-256": "0441dcea5c7b1c18a75a6a7f56d46654f8872c5314ba041d4bd939882a0da571"
             },
             "size": 1432387555
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88582/7E397447-B3E6-48A8-B9FA-EE5B759F3907/com_apple_MobileAsset_SoftwareUpdate/0a6624e08584e1f9d89fe4a04ad31be304a7b0b3.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "46916a0e4fd3ab92938e9b3318c9678220e488b8",
-                "sha2-256": "e4416ab3abbdf831feb4935eb1a65a8a33508243609557c8f78bf95b1b6d3599"
-            },
-            "size": 685894615
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch4,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88572/DA3D878F-57B8-4F24-AA98-54D72CBDC679/com_apple_MobileAsset_SoftwareUpdate/21ced8ca7e69f1de887f981d532bb0fc302f5cfc.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "16484b48069811dce76585bc06c382e0ba0e6aed",
-                "sha2-256": "294caffc2698b8db8bfae304d48a28d12984d62863854a314865e13da605293a"
-            },
-            "size": 685842167
         },
         {
             "type": "ota",
@@ -1161,21 +1146,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch4,3"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88467/17DC3A45-9384-45A0-A3FE-D92E95C781DB/com_apple_MobileAsset_SoftwareUpdate/89e728d7d1a0c103565df41f672c417dc825dd3c.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88582/7E397447-B3E6-48A8-B9FA-EE5B759F3907/com_apple_MobileAsset_SoftwareUpdate/0a6624e08584e1f9d89fe4a04ad31be304a7b0b3.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "82fdc478555fe8cb371eb6454e52987907c0c03a",
-                "sha2-256": "851a594e1a44153dc566a87d0ccab861aaf2bd420bc6f2899d954f1773e6b0c9"
+                "sha1": "46916a0e4fd3ab92938e9b3318c9678220e488b8",
+                "sha2-256": "e4416ab3abbdf831feb4935eb1a65a8a33508243609557c8f78bf95b1b6d3599"
             },
-            "size": 491535840
+            "size": 685894615
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88572/DA3D878F-57B8-4F24-AA98-54D72CBDC679/com_apple_MobileAsset_SoftwareUpdate/21ced8ca7e69f1de887f981d532bb0fc302f5cfc.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "16484b48069811dce76585bc06c382e0ba0e6aed",
+                "sha2-256": "294caffc2698b8db8bfae304d48a28d12984d62863854a314865e13da605293a"
+            },
+            "size": 685842167
         },
         {
             "type": "ota",
@@ -1230,6 +1233,24 @@
                 "sha2-256": "5e71cc3b2db008ac50646349a525e2bd0b5c106836465f0d5199b37775f8ba06"
             },
             "size": 484367367
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88467/17DC3A45-9384-45A0-A3FE-D92E95C781DB/com_apple_MobileAsset_SoftwareUpdate/89e728d7d1a0c103565df41f672c417dc825dd3c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "82fdc478555fe8cb371eb6454e52987907c0c03a",
+                "sha2-256": "851a594e1a44153dc566a87d0ccab861aaf2bd420bc6f2899d954f1773e6b0c9"
+            },
+            "size": 491535840
         },
         {
             "type": "ota",
@@ -1373,42 +1394,6 @@
                 "sha2-256": "7452ecc37974f309206049af4b81140fbb0e6c82bb6d25e17b925ad4229b65b9"
             },
             "size": 1436328835
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88833/88EDB843-B7A5-4EB6-8AB4-3BE3B4DF6B31/com_apple_MobileAsset_SoftwareUpdate/2432163529aad902aac8e2a00a0c9d587ac9f3f7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "258e4291720adf39cf0f57df8098a29bf363567d",
-                "sha2-256": "840bd66b49e0f546231c67184035ce6927ae3dd70689a279f66d5316ab128f0b"
-            },
-            "size": 685980148
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch4,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88233/5A82E59A-6FCC-4631-A06F-445FD7A8850E/com_apple_MobileAsset_SoftwareUpdate/54692c7474c0a1e184ecedadc1ca02ef8b4892ad.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "9f44221eb017d8dfe0de024ebd6c473ccb4e4b91",
-                "sha2-256": "474f352afcb20e7f93bfefd34bc0cd87ccad0f1d5e02787d5e67a024f55059d9"
-            },
-            "size": 685934893
         },
         {
             "type": "ota",
@@ -1556,21 +1541,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch4,4"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88003/5BD497C7-60C1-4CF7-A321-2A4CCADB08FF/com_apple_MobileAsset_SoftwareUpdate/b63f438336623ffeec09b8e681dc04379e36bf04.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88833/88EDB843-B7A5-4EB6-8AB4-3BE3B4DF6B31/com_apple_MobileAsset_SoftwareUpdate/2432163529aad902aac8e2a00a0c9d587ac9f3f7.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "333591050f01899def645e8f8e96153e8698d44f",
-                "sha2-256": "64da155f2a37a55450910d7b4212928a53f226dfafc1892b9be4f62021d0dc26"
+                "sha1": "258e4291720adf39cf0f57df8098a29bf363567d",
+                "sha2-256": "840bd66b49e0f546231c67184035ce6927ae3dd70689a279f66d5316ab128f0b"
             },
-            "size": 491552120
+            "size": 685980148
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88233/5A82E59A-6FCC-4631-A06F-445FD7A8850E/com_apple_MobileAsset_SoftwareUpdate/54692c7474c0a1e184ecedadc1ca02ef8b4892ad.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9f44221eb017d8dfe0de024ebd6c473ccb4e4b91",
+                "sha2-256": "474f352afcb20e7f93bfefd34bc0cd87ccad0f1d5e02787d5e67a024f55059d9"
+            },
+            "size": 685934893
         },
         {
             "type": "ota",
@@ -1625,6 +1628,24 @@
                 "sha2-256": "e4b3418eeb52672e4c2c2f4280d3c0aa77cf4b286c3c9031214b609d3a564dd1"
             },
             "size": 484396805
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88003/5BD497C7-60C1-4CF7-A321-2A4CCADB08FF/com_apple_MobileAsset_SoftwareUpdate/b63f438336623ffeec09b8e681dc04379e36bf04.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "333591050f01899def645e8f8e96153e8698d44f",
+                "sha2-256": "64da155f2a37a55450910d7b4212928a53f226dfafc1892b9be4f62021d0dc26"
+            },
+            "size": 491552120
         },
         {
             "type": "ota",
@@ -1768,42 +1789,6 @@
                 "sha2-256": "2fb3e79cfa3e14806dd8ad53488c366f6aad5827404a8030a3d375bbe779822e"
             },
             "size": 1393755120
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88780/51C2124B-F0AF-4BE5-BEFE-2E94F350AC18/com_apple_MobileAsset_SoftwareUpdate/ba1006564517bc1481c021ba32584c3b12e32ff6.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d5d81073ca6e27fb9878e6d86b3811f31d3699ea",
-                "sha2-256": "31a7e1228f0a7ac137fd8e7d01df12a1ef5e41f85eb032fe1ae3b03b0d267c11"
-            },
-            "size": 654239258
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88951/1AACA41C-602D-4843-9CCC-6F7A841B6352/com_apple_MobileAsset_SoftwareUpdate/435b474d6295fbc27a059acbeee9efbe2d453f1d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "705baa50bdb08642363b56ffa205af5e8e577f5f",
-                "sha2-256": "fdb0b8a09fea6975b0f83467b8d4ed0c8dea72695719ffddc0404e9583c4f134"
-            },
-            "size": 654180223
         },
         {
             "type": "ota",
@@ -1951,21 +1936,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88252/4D411169-E09E-4AE5-935B-F50578468A8E/com_apple_MobileAsset_SoftwareUpdate/7f187301372e228fdb1ebea54946275236e8274e.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88780/51C2124B-F0AF-4BE5-BEFE-2E94F350AC18/com_apple_MobileAsset_SoftwareUpdate/ba1006564517bc1481c021ba32584c3b12e32ff6.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "be0a7b19235f215a3e74a23db4ef83821a326f82",
-                "sha2-256": "30c1404372a85730608d6771cf42a0998be7e053253f1251a1a2556d114a4981"
+                "sha1": "d5d81073ca6e27fb9878e6d86b3811f31d3699ea",
+                "sha2-256": "31a7e1228f0a7ac137fd8e7d01df12a1ef5e41f85eb032fe1ae3b03b0d267c11"
             },
-            "size": 458538120
+            "size": 654239258
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88951/1AACA41C-602D-4843-9CCC-6F7A841B6352/com_apple_MobileAsset_SoftwareUpdate/435b474d6295fbc27a059acbeee9efbe2d453f1d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "705baa50bdb08642363b56ffa205af5e8e577f5f",
+                "sha2-256": "fdb0b8a09fea6975b0f83467b8d4ed0c8dea72695719ffddc0404e9583c4f134"
+            },
+            "size": 654180223
         },
         {
             "type": "ota",
@@ -2020,6 +2023,24 @@
                 "sha2-256": "8a798facdfce45c1a3e72985097391b500eb0ff3e2bade5f332adf4a7420021b"
             },
             "size": 452061779
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88252/4D411169-E09E-4AE5-935B-F50578468A8E/com_apple_MobileAsset_SoftwareUpdate/7f187301372e228fdb1ebea54946275236e8274e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "be0a7b19235f215a3e74a23db4ef83821a326f82",
+                "sha2-256": "30c1404372a85730608d6771cf42a0998be7e053253f1251a1a2556d114a4981"
+            },
+            "size": 458538120
         },
         {
             "type": "ota",
@@ -2163,42 +2184,6 @@
                 "sha2-256": "0527c28be029cd068c1feb388e5a99584452c15b2090eced44c10064c4b9c6f5"
             },
             "size": 1397815207
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88107/C0C30FE2-2968-4B2B-9CC4-43C4A91FAAAE/com_apple_MobileAsset_SoftwareUpdate/a3a0bdc83fbe7479f1be593f511e2719c2d6a926.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "c234fc0aac76354320965f62bfc9a35de070f7e8",
-                "sha2-256": "737a3c143f6298a71b7666185c7cf5c98efbe9ff5a1e59de76cee50ce9c92a3b"
-            },
-            "size": 654249649
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88741/37A9FFD1-55EF-482B-AF2B-EC0CBCBE8191/com_apple_MobileAsset_SoftwareUpdate/c1310074f4a8f3b8e2ca18b5fb5405dfb4bcadb0.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "7901dd12d7378ffa48e000e11200ad23832284b6",
-                "sha2-256": "3e8be7983953b94f111b6c170fdf3a0ed6bb0fff00ecc07bbc7b7e82938c4003"
-            },
-            "size": 654206479
         },
         {
             "type": "ota",
@@ -2346,21 +2331,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,2"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87970/52B2F84A-FB0E-4777-80F6-9A98E75A6232/com_apple_MobileAsset_SoftwareUpdate/70306fd22ce9bd19528844631cd0c1110bd24b03.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88107/C0C30FE2-2968-4B2B-9CC4-43C4A91FAAAE/com_apple_MobileAsset_SoftwareUpdate/a3a0bdc83fbe7479f1be593f511e2719c2d6a926.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "395b4ad025b091e407f045a9883391d98253f2b0",
-                "sha2-256": "a9adc6fc32020011cffc71e38c8c35e3c557d11647c6fe952a53411dbdfd2c53"
+                "sha1": "c234fc0aac76354320965f62bfc9a35de070f7e8",
+                "sha2-256": "737a3c143f6298a71b7666185c7cf5c98efbe9ff5a1e59de76cee50ce9c92a3b"
             },
-            "size": 458560070
+            "size": 654249649
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88741/37A9FFD1-55EF-482B-AF2B-EC0CBCBE8191/com_apple_MobileAsset_SoftwareUpdate/c1310074f4a8f3b8e2ca18b5fb5405dfb4bcadb0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7901dd12d7378ffa48e000e11200ad23832284b6",
+                "sha2-256": "3e8be7983953b94f111b6c170fdf3a0ed6bb0fff00ecc07bbc7b7e82938c4003"
+            },
+            "size": 654206479
         },
         {
             "type": "ota",
@@ -2415,6 +2418,24 @@
                 "sha2-256": "4cd6bed8f2f82f9e810a47c19dd922bc9dc12cc6abb3ae0d19270fb606d58638"
             },
             "size": 452092590
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87970/52B2F84A-FB0E-4777-80F6-9A98E75A6232/com_apple_MobileAsset_SoftwareUpdate/70306fd22ce9bd19528844631cd0c1110bd24b03.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "395b4ad025b091e407f045a9883391d98253f2b0",
+                "sha2-256": "a9adc6fc32020011cffc71e38c8c35e3c557d11647c6fe952a53411dbdfd2c53"
+            },
+            "size": 458560070
         },
         {
             "type": "ota",
@@ -2558,42 +2579,6 @@
                 "sha2-256": "9ee24df3cae6d3b965b3280898a85d64f3c760b6994ca2f7fded5a55c391b029"
             },
             "size": 1433992746
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88334/0F1ECC08-B691-41FB-ABE0-2166F5FB25FC/com_apple_MobileAsset_SoftwareUpdate/8452e3260b763c24e5c88d5786b76f7c5ce8e100.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e8e5d7a6fe9077de72475b7d619bcae6418b2251",
-                "sha2-256": "91debbfc498f106627258e505a3f41d68895a988401d975553f74f10f9e213d1"
-            },
-            "size": 686771955
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87921/BDDE83EB-4A13-4213-BA0E-8DA5B98FE4F2/com_apple_MobileAsset_SoftwareUpdate/a08b567ee8ffa45c8ad251fb851fe64559a8ac99.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "be46227c79f0968b0f96aa5a7b60bef59d03d1a4",
-                "sha2-256": "74f6c24ee172295e42a6b949fe8aae9c5b23310a4cd1ff1dc7591085642ee72d"
-            },
-            "size": 686746845
         },
         {
             "type": "ota",
@@ -2741,21 +2726,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,3"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88555/AEBEDDBF-5427-47CA-A9A9-40EB3572F251/com_apple_MobileAsset_SoftwareUpdate/aa61ef919bfe56a1244ac502eb5834a72d035f7e.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88334/0F1ECC08-B691-41FB-ABE0-2166F5FB25FC/com_apple_MobileAsset_SoftwareUpdate/8452e3260b763c24e5c88d5786b76f7c5ce8e100.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "0d6c010ed9a491dc9bb0c1d9c60b9f0e3a6c6114",
-                "sha2-256": "9dc50381497770fc63bf98c359e6ba3cfb1baef7562bd5a478baac336e3cec5f"
+                "sha1": "e8e5d7a6fe9077de72475b7d619bcae6418b2251",
+                "sha2-256": "91debbfc498f106627258e505a3f41d68895a988401d975553f74f10f9e213d1"
             },
-            "size": 492568966
+            "size": 686771955
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87921/BDDE83EB-4A13-4213-BA0E-8DA5B98FE4F2/com_apple_MobileAsset_SoftwareUpdate/a08b567ee8ffa45c8ad251fb851fe64559a8ac99.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "be46227c79f0968b0f96aa5a7b60bef59d03d1a4",
+                "sha2-256": "74f6c24ee172295e42a6b949fe8aae9c5b23310a4cd1ff1dc7591085642ee72d"
+            },
+            "size": 686746845
         },
         {
             "type": "ota",
@@ -2810,6 +2813,24 @@
                 "sha2-256": "c9671f57e4a2852d896bbfe3585be33049667b7e0bdd321490ab2644c6ca6d13"
             },
             "size": 485360647
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88555/AEBEDDBF-5427-47CA-A9A9-40EB3572F251/com_apple_MobileAsset_SoftwareUpdate/aa61ef919bfe56a1244ac502eb5834a72d035f7e.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0d6c010ed9a491dc9bb0c1d9c60b9f0e3a6c6114",
+                "sha2-256": "9dc50381497770fc63bf98c359e6ba3cfb1baef7562bd5a478baac336e3cec5f"
+            },
+            "size": 492568966
         },
         {
             "type": "ota",
@@ -2953,42 +2974,6 @@
                 "sha2-256": "7c512e2cbc794e0c4e8844c5b079924927cdf685bdb14a76fad4f67fc3c6eb8a"
             },
             "size": 1437913042
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88209/618F64EF-307C-4C74-96C6-E7FF386B5855/com_apple_MobileAsset_SoftwareUpdate/42cee761ce222b21cc78181d605a85674ad4b982.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "16de8faa6774271beff930c7d654e25646bbe8c5",
-                "sha2-256": "e82c69f687fdbbc88abcc35c027fc17f1b6df473fd3a29459bafd28091298d20"
-            },
-            "size": 686809222
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88066/A16BC022-95AB-4729-9D91-1B9BE66C27E1/com_apple_MobileAsset_SoftwareUpdate/335bbc7aa5485fbe893b9237734d4062341b9588.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "fc4c7ebc558b2d7f09d6b4c9c8042c86c61a0c25",
-                "sha2-256": "f301689949da13e64fe868684610a6e761cfa9ce8b6bc3316c1457a23cd1e756"
-            },
-            "size": 686784535
         },
         {
             "type": "ota",
@@ -3136,21 +3121,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,4"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89035/1F0C0D03-5B94-42DB-B59E-56A7571F47FA/com_apple_MobileAsset_SoftwareUpdate/de3891f0acad19c6736a27384f4165eb54d3010f.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88209/618F64EF-307C-4C74-96C6-E7FF386B5855/com_apple_MobileAsset_SoftwareUpdate/42cee761ce222b21cc78181d605a85674ad4b982.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "7767e8c1d17e769c14e70c076e4f81b575220bfe",
-                "sha2-256": "4a9930b92afd7e3f3b21bbf2f5471d8bfed4af62e35023306dd006af6bd6cb1b"
+                "sha1": "16de8faa6774271beff930c7d654e25646bbe8c5",
+                "sha2-256": "e82c69f687fdbbc88abcc35c027fc17f1b6df473fd3a29459bafd28091298d20"
             },
-            "size": 492596479
+            "size": 686809222
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88066/A16BC022-95AB-4729-9D91-1B9BE66C27E1/com_apple_MobileAsset_SoftwareUpdate/335bbc7aa5485fbe893b9237734d4062341b9588.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fc4c7ebc558b2d7f09d6b4c9c8042c86c61a0c25",
+                "sha2-256": "f301689949da13e64fe868684610a6e761cfa9ce8b6bc3316c1457a23cd1e756"
+            },
+            "size": 686784535
         },
         {
             "type": "ota",
@@ -3205,6 +3208,24 @@
                 "sha2-256": "337934cb7dbd41d371a3ed8730bc23cc6bdbc00be45267ea28ba3811ff7f1ba0"
             },
             "size": 485392100
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89035/1F0C0D03-5B94-42DB-B59E-56A7571F47FA/com_apple_MobileAsset_SoftwareUpdate/de3891f0acad19c6736a27384f4165eb54d3010f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7767e8c1d17e769c14e70c076e4f81b575220bfe",
+                "sha2-256": "4a9930b92afd7e3f3b21bbf2f5471d8bfed4af62e35023306dd006af6bd6cb1b"
+            },
+            "size": 492596479
         },
         {
             "type": "ota",
@@ -3348,42 +3369,6 @@
                 "sha2-256": "f62542497dfbca23b675f55035d83c45a811a2b3707397317ba658f08c35a742"
             },
             "size": 1395329766
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88646/615E1A80-5A57-4AA8-93E4-B2091444C03F/com_apple_MobileAsset_SoftwareUpdate/aa63306cd83fef10f1b76f192f4bcbe4c332ea0b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e236bc799ae76d92aa82823e57ea09296a0966ab",
-                "sha2-256": "88fe7666cd008d5a1bcb8db8d44d782058f64615e03cf1b93e58b4633d11a244"
-            },
-            "size": 655630311
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89034/4A081456-937A-425A-B511-6E3E0E137011/com_apple_MobileAsset_SoftwareUpdate/21ef1b0f0b84fc6af9965be586202a52fd3878da.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0293ce2cdba830c71e108f743d19b43a7dd814a2",
-                "sha2-256": "7e5f667644fb4c2fd866c0828a4035e65f26dc82d7d285bec8311bacfec28e31"
-            },
-            "size": 655641102
         },
         {
             "type": "ota",
@@ -3531,21 +3516,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,9"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88639/6AE91A84-9D93-41AB-9421-ACD58AE10620/com_apple_MobileAsset_SoftwareUpdate/17cefac73236011ddc99f3526d9a6becf09fd38b.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88646/615E1A80-5A57-4AA8-93E4-B2091444C03F/com_apple_MobileAsset_SoftwareUpdate/aa63306cd83fef10f1b76f192f4bcbe4c332ea0b.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "25548f95e2e59ea8c7aed04fc358148d3161b9bb",
-                "sha2-256": "46c53238629aa94dd3e0a05bf46df499a9bc79ccc88c6b24f9539ca79bf3c0ec"
+                "sha1": "e236bc799ae76d92aa82823e57ea09296a0966ab",
+                "sha2-256": "88fe7666cd008d5a1bcb8db8d44d782058f64615e03cf1b93e58b4633d11a244"
             },
-            "size": 461134664
+            "size": 655630311
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89034/4A081456-937A-425A-B511-6E3E0E137011/com_apple_MobileAsset_SoftwareUpdate/21ef1b0f0b84fc6af9965be586202a52fd3878da.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0293ce2cdba830c71e108f743d19b43a7dd814a2",
+                "sha2-256": "7e5f667644fb4c2fd866c0828a4035e65f26dc82d7d285bec8311bacfec28e31"
+            },
+            "size": 655641102
         },
         {
             "type": "ota",
@@ -3600,6 +3603,24 @@
                 "sha2-256": "e8f64b4186e9df8689d7b7c014ae4718914685383aa0b51b29a79171100aa8d9"
             },
             "size": 454932066
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88639/6AE91A84-9D93-41AB-9421-ACD58AE10620/com_apple_MobileAsset_SoftwareUpdate/17cefac73236011ddc99f3526d9a6becf09fd38b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "25548f95e2e59ea8c7aed04fc358148d3161b9bb",
+                "sha2-256": "46c53238629aa94dd3e0a05bf46df499a9bc79ccc88c6b24f9539ca79bf3c0ec"
+            },
+            "size": 461134664
         },
         {
             "type": "ota",
@@ -3743,42 +3764,6 @@
                 "sha2-256": "bb1f46df4602a31a6a57f6b3de6cd1e728410dc18f780c1650092c7df4ccc681"
             },
             "size": 1399360765
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88059/C86FB4C1-A45F-424A-992A-731A92EEAB71/com_apple_MobileAsset_SoftwareUpdate/fa4968751b54032d835ef2e63db40c6b11c16577.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a8825bb71524f8d326f42edb87fbaa225203ec6f",
-                "sha2-256": "92adf00bf7f4c64aa1166be5f2e8a1dd088af82d61186c1f6723ea4648e3b181"
-            },
-            "size": 655671457
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88235/A6DE8F89-A8C9-47B9-B769-CBC6CC7462A4/com_apple_MobileAsset_SoftwareUpdate/d34b59225c6a4c935a2abceed0e53e4963ba0e10.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "12d0ab5dca8bc990996851a4892ebabff7cfc858",
-                "sha2-256": "6b3805849f1990a8cbf989de854374ca09de5e5775ede97631713de895d5e8cb"
-            },
-            "size": 655688984
         },
         {
             "type": "ota",
@@ -3926,21 +3911,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,10"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88375/75708F7B-7752-4B77-9C10-02727D2166AE/com_apple_MobileAsset_SoftwareUpdate/19a5c527da0ccad94b009d019f836820f31852ab.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88059/C86FB4C1-A45F-424A-992A-731A92EEAB71/com_apple_MobileAsset_SoftwareUpdate/fa4968751b54032d835ef2e63db40c6b11c16577.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "9ff43c59c9e89c25ac6c19fd0e313b23532f9849",
-                "sha2-256": "dc332134bd9b6bf9b07d2e0dc9424fb367a947c906ac74ac309545534793366f"
+                "sha1": "a8825bb71524f8d326f42edb87fbaa225203ec6f",
+                "sha2-256": "92adf00bf7f4c64aa1166be5f2e8a1dd088af82d61186c1f6723ea4648e3b181"
             },
-            "size": 461166144
+            "size": 655671457
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88235/A6DE8F89-A8C9-47B9-B769-CBC6CC7462A4/com_apple_MobileAsset_SoftwareUpdate/d34b59225c6a4c935a2abceed0e53e4963ba0e10.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "12d0ab5dca8bc990996851a4892ebabff7cfc858",
+                "sha2-256": "6b3805849f1990a8cbf989de854374ca09de5e5775ede97631713de895d5e8cb"
+            },
+            "size": 655688984
         },
         {
             "type": "ota",
@@ -3995,6 +3998,24 @@
                 "sha2-256": "21e050c510577efaed2791e92dd32669ca03406b4f1b9676c4adf68278cbe7c6"
             },
             "size": 454942051
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88375/75708F7B-7752-4B77-9C10-02727D2166AE/com_apple_MobileAsset_SoftwareUpdate/19a5c527da0ccad94b009d019f836820f31852ab.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "9ff43c59c9e89c25ac6c19fd0e313b23532f9849",
+                "sha2-256": "dc332134bd9b6bf9b07d2e0dc9424fb367a947c906ac74ac309545534793366f"
+            },
+            "size": 461166144
         },
         {
             "type": "ota",
@@ -4138,42 +4159,6 @@
                 "sha2-256": "03433209242e1edda1742d1facbc696230fb04dbd43e808b1445ac0bf648cb9d"
             },
             "size": 1435027078
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88947/62794F54-9A82-449B-97F9-92B422BA88E5/com_apple_MobileAsset_SoftwareUpdate/9701ef70767a3cbee8c01ef5058a5448b29eecd4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "13bff221e830a9b65a5d28d6a2e96861910dfe94",
-                "sha2-256": "a9f94b7fe7f26bbf2c974fda573afc5ac874d44160df357776352eadf4bec257"
-            },
-            "size": 687234504
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88987/C9D04951-DE25-4884-B9C4-4F5A1A44FDE5/com_apple_MobileAsset_SoftwareUpdate/21e7ff3a7f136e5a57c6890143709fe23fa21d1a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "af9f031cff031cf75bc40373b080106deb36c7b2",
-                "sha2-256": "5c63f5ffa854e2f3f85311dd8047db5d395e032026174d1e92a8bd8a01bb545e"
-            },
-            "size": 687192725
         },
         {
             "type": "ota",
@@ -4321,21 +4306,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,11"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88612/28F3C146-C9BD-429F-975B-139706E25395/com_apple_MobileAsset_SoftwareUpdate/8917960961704d882e3a38ce4adc5ccc85b67b05.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88947/62794F54-9A82-449B-97F9-92B422BA88E5/com_apple_MobileAsset_SoftwareUpdate/9701ef70767a3cbee8c01ef5058a5448b29eecd4.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "1c5b1f63929bacf5c367c1e4b1af68288f63b161",
-                "sha2-256": "b4ce57fde2f7971da02ce67454c4c531a8b66d72dd9e4c1d25b96ed874f7d11a"
+                "sha1": "13bff221e830a9b65a5d28d6a2e96861910dfe94",
+                "sha2-256": "a9f94b7fe7f26bbf2c974fda573afc5ac874d44160df357776352eadf4bec257"
             },
-            "size": 491899286
+            "size": 687234504
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88987/C9D04951-DE25-4884-B9C4-4F5A1A44FDE5/com_apple_MobileAsset_SoftwareUpdate/21e7ff3a7f136e5a57c6890143709fe23fa21d1a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "af9f031cff031cf75bc40373b080106deb36c7b2",
+                "sha2-256": "5c63f5ffa854e2f3f85311dd8047db5d395e032026174d1e92a8bd8a01bb545e"
+            },
+            "size": 687192725
         },
         {
             "type": "ota",
@@ -4390,6 +4393,24 @@
                 "sha2-256": "700da4af806da462fa479a4b7a7c6071711ce9cc5a90c748a2835cf23f051efd"
             },
             "size": 485116059
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88612/28F3C146-C9BD-429F-975B-139706E25395/com_apple_MobileAsset_SoftwareUpdate/8917960961704d882e3a38ce4adc5ccc85b67b05.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1c5b1f63929bacf5c367c1e4b1af68288f63b161",
+                "sha2-256": "b4ce57fde2f7971da02ce67454c4c531a8b66d72dd9e4c1d25b96ed874f7d11a"
+            },
+            "size": 491899286
         },
         {
             "type": "ota",
@@ -4533,42 +4554,6 @@
                 "sha2-256": "78375db31bd47a14829bbab41c10b456c26250e3652d6801f1702c3177884103"
             },
             "size": 1438926017
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87966/642DBD29-061D-4CC1-AA59-DC6EFBB2162A/com_apple_MobileAsset_SoftwareUpdate/1815798427476deb442b3b8451cb874c6914d010.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bd4f05a0b22ade75f3baa31d967524fbae405b7f",
-                "sha2-256": "2baf6d32dadd33344b4026f6aa42a9df1a57646486501c8bfe132c95f07a244d"
-            },
-            "size": 687321215
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch5,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88350/5DFE81FC-4B46-4AF3-A9DD-6B0F60F8B186/com_apple_MobileAsset_SoftwareUpdate/f3f35b954afe956311563ff87a1d076a696b3c34.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "af0e706bde82980b0ea5bd7804256422a9ebe5aa",
-                "sha2-256": "51e8e36382d29d8cf2066b8ffbdc327d61161861887c0fe9f6f093501fb0d0d8"
-            },
-            "size": 687278259
         },
         {
             "type": "ota",
@@ -4716,21 +4701,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch5,12"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88923/BD96FD1D-D5DF-44A3-BFF3-AA80DC018F3E/com_apple_MobileAsset_SoftwareUpdate/c72e63edcb1946e2f62fdec5ec5face601fe3eff.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87966/642DBD29-061D-4CC1-AA59-DC6EFBB2162A/com_apple_MobileAsset_SoftwareUpdate/1815798427476deb442b3b8451cb874c6914d010.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "5af7d8dee453907b0b3972de2f9d1f8956c83480",
-                "sha2-256": "41f8dd5de26d266557b80a3bcd4e1ed59ec4706f0d392cfd55ecf239282a03c0"
+                "sha1": "bd4f05a0b22ade75f3baa31d967524fbae405b7f",
+                "sha2-256": "2baf6d32dadd33344b4026f6aa42a9df1a57646486501c8bfe132c95f07a244d"
             },
-            "size": 491927507
+            "size": 687321215
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88350/5DFE81FC-4B46-4AF3-A9DD-6B0F60F8B186/com_apple_MobileAsset_SoftwareUpdate/f3f35b954afe956311563ff87a1d076a696b3c34.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "af0e706bde82980b0ea5bd7804256422a9ebe5aa",
+                "sha2-256": "51e8e36382d29d8cf2066b8ffbdc327d61161861887c0fe9f6f093501fb0d0d8"
+            },
+            "size": 687278259
         },
         {
             "type": "ota",
@@ -4785,6 +4788,24 @@
                 "sha2-256": "00853cd957856e517ce04e9a1c2b4e8508be095e84e8b76e1e31154d1590e1da"
             },
             "size": 485152925
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch5,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88923/BD96FD1D-D5DF-44A3-BFF3-AA80DC018F3E/com_apple_MobileAsset_SoftwareUpdate/c72e63edcb1946e2f62fdec5ec5face601fe3eff.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5af7d8dee453907b0b3972de2f9d1f8956c83480",
+                "sha2-256": "41f8dd5de26d266557b80a3bcd4e1ed59ec4706f0d392cfd55ecf239282a03c0"
+            },
+            "size": 491927507
         },
         {
             "type": "ota",
@@ -4928,42 +4949,6 @@
                 "sha2-256": "f6d9af619c9b751a0d340b3dc61b29d0a4470a350fbdf3230d79c8e9b1930dc1"
             },
             "size": 1383179503
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88116/52490E68-7089-4C61-B67C-4D30C08FDB2A/com_apple_MobileAsset_SoftwareUpdate/e28132b9ce4aeb30cedcf9d05a76e9b4e91fa13f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a79492ee642b6eac11a00b0117f0762033417201",
-                "sha2-256": "6bd3baafae913dd02941843a2a9fbcbedf48cae2e77caf24075d7a465490e184"
-            },
-            "size": 642831741
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88050/6FFEBB59-D831-4F39-B84C-D7C71C073D3B/com_apple_MobileAsset_SoftwareUpdate/967593e0157e5d51a8d0e110bead7a2eb2096b8b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "96ea1f01be1739485482d4efda49db48fc56cd9e",
-                "sha2-256": "3de0a58c517e12b8692867abac544bef7372914fc00139960e834865b0da0e29"
-            },
-            "size": 642774536
         },
         {
             "type": "ota",
@@ -5111,21 +5096,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87919/8D17541C-6661-4B5C-AF18-8538636E4173/com_apple_MobileAsset_SoftwareUpdate/61658f3268b9b9249ef3ca0814f3f7dd4fce69e3.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88116/52490E68-7089-4C61-B67C-4D30C08FDB2A/com_apple_MobileAsset_SoftwareUpdate/e28132b9ce4aeb30cedcf9d05a76e9b4e91fa13f.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "eb729cb6daa8fb54f8e1a49c4e1863f3ab788e93",
-                "sha2-256": "f58d5fd4c57ba2d2ac89d2ad1185e8e1de0994de09b8e18a33801e1b67dc619d"
+                "sha1": "a79492ee642b6eac11a00b0117f0762033417201",
+                "sha2-256": "6bd3baafae913dd02941843a2a9fbcbedf48cae2e77caf24075d7a465490e184"
             },
-            "size": 446824886
+            "size": 642831741
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88050/6FFEBB59-D831-4F39-B84C-D7C71C073D3B/com_apple_MobileAsset_SoftwareUpdate/967593e0157e5d51a8d0e110bead7a2eb2096b8b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "96ea1f01be1739485482d4efda49db48fc56cd9e",
+                "sha2-256": "3de0a58c517e12b8692867abac544bef7372914fc00139960e834865b0da0e29"
+            },
+            "size": 642774536
         },
         {
             "type": "ota",
@@ -5180,6 +5183,24 @@
                 "sha2-256": "2555055e6bc2954a0d2d01db6d8bc1b84f066016340aca5bf71d25d08613ae8c"
             },
             "size": 441101333
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87919/8D17541C-6661-4B5C-AF18-8538636E4173/com_apple_MobileAsset_SoftwareUpdate/61658f3268b9b9249ef3ca0814f3f7dd4fce69e3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "eb729cb6daa8fb54f8e1a49c4e1863f3ab788e93",
+                "sha2-256": "f58d5fd4c57ba2d2ac89d2ad1185e8e1de0994de09b8e18a33801e1b67dc619d"
+            },
+            "size": 446824886
         },
         {
             "type": "ota",
@@ -5323,42 +5344,6 @@
                 "sha2-256": "9ce90ff004374c39a59be64273429c9c91e8454fb4eb5bf284a0262822be76ae"
             },
             "size": 1387166815
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88611/DE9340F3-31E0-4EE5-BF7B-70793F43AAD1/com_apple_MobileAsset_SoftwareUpdate/a3f78e3ed9a1268288e0bb002aa9fc3a4c8efe15.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b90e86870bffba11614cb290ce75b9918bbe6927",
-                "sha2-256": "564cff8d8e15a3300ba7b515b03322e4f1314fe061976c220e33770ef511e9b2"
-            },
-            "size": 642862132
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88539/AAFEAD0C-D7F0-4084-B73D-D4ABDCEA5035/com_apple_MobileAsset_SoftwareUpdate/efc661e94a634aaee40ccac0e5add95a32421e48.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "343a984d65e9c7c2cce5f8315a08b2962ff74824",
-                "sha2-256": "b9172fe1efade033f020fd35ecb7bde36ab0761de1f2f7b9bbc707cff23fd801"
-            },
-            "size": 642799466
         },
         {
             "type": "ota",
@@ -5506,21 +5491,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,2"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88704/F8430FA5-E5AE-4439-8CDB-347017CFB227/com_apple_MobileAsset_SoftwareUpdate/1dd1f167b203e9a51d31f5afbaf2a25a6b3855d5.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88611/DE9340F3-31E0-4EE5-BF7B-70793F43AAD1/com_apple_MobileAsset_SoftwareUpdate/a3f78e3ed9a1268288e0bb002aa9fc3a4c8efe15.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "009a19accdbb244254057f29c8601a99e7c77691",
-                "sha2-256": "dd5ae75911908cc41a8fdde0f24a684eb41cb46c639a65f475e4468a1381c30d"
+                "sha1": "b90e86870bffba11614cb290ce75b9918bbe6927",
+                "sha2-256": "564cff8d8e15a3300ba7b515b03322e4f1314fe061976c220e33770ef511e9b2"
             },
-            "size": 446817299
+            "size": 642862132
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88539/AAFEAD0C-D7F0-4084-B73D-D4ABDCEA5035/com_apple_MobileAsset_SoftwareUpdate/efc661e94a634aaee40ccac0e5add95a32421e48.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "343a984d65e9c7c2cce5f8315a08b2962ff74824",
+                "sha2-256": "b9172fe1efade033f020fd35ecb7bde36ab0761de1f2f7b9bbc707cff23fd801"
+            },
+            "size": 642799466
         },
         {
             "type": "ota",
@@ -5575,6 +5578,24 @@
                 "sha2-256": "603b62164f7cda3be2640b0dc5e7858b2847af331f8cd27af9fff79d899952bd"
             },
             "size": 441121194
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88704/F8430FA5-E5AE-4439-8CDB-347017CFB227/com_apple_MobileAsset_SoftwareUpdate/1dd1f167b203e9a51d31f5afbaf2a25a6b3855d5.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "009a19accdbb244254057f29c8601a99e7c77691",
+                "sha2-256": "dd5ae75911908cc41a8fdde0f24a684eb41cb46c639a65f475e4468a1381c30d"
+            },
+            "size": 446817299
         },
         {
             "type": "ota",
@@ -5718,42 +5739,6 @@
                 "sha2-256": "8359ef7155d1045bca0a4e7cf17cb9fcae71812745245c1d7337daefa6145d7c"
             },
             "size": 1422295541
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87953/CF77F04F-718A-4C0F-8806-BB15D457A405/com_apple_MobileAsset_SoftwareUpdate/2a0eec7164e3bc998f6cb6b65217ae2d84ed093c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3cb21708cd342a093459aa13ebe6d19b210c2da7",
-                "sha2-256": "932209bb442427d772479e121777c8ac6258034bcf233d51c44abd14b858e315"
-            },
-            "size": 674464751
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88707/AD7C2B55-DD28-4CAE-B1EB-2AEE12790D72/com_apple_MobileAsset_SoftwareUpdate/af8f54f31e7957b010f1fa2fd236c478b3da82d3.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d52c7f0f34c1cfb25e6839fa4754ba47b29e8973",
-                "sha2-256": "28488e23f1465b705c51273ada12b95a505f1f70a3079d0322aafc04f667ef9d"
-            },
-            "size": 674498920
         },
         {
             "type": "ota",
@@ -5901,21 +5886,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,3"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88114/7BA6BEE6-0B6A-44DF-A407-0C5F775CB144/com_apple_MobileAsset_SoftwareUpdate/1cc517cbc25911c951519f09b8d382044b55a39b.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87953/CF77F04F-718A-4C0F-8806-BB15D457A405/com_apple_MobileAsset_SoftwareUpdate/2a0eec7164e3bc998f6cb6b65217ae2d84ed093c.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "06181425822241e1f468b446d8da664bd4eb3957",
-                "sha2-256": "eb63959bfdc557669f2681d33596815960771b718812e488c38ad2c88e2fa676"
+                "sha1": "3cb21708cd342a093459aa13ebe6d19b210c2da7",
+                "sha2-256": "932209bb442427d772479e121777c8ac6258034bcf233d51c44abd14b858e315"
             },
-            "size": 480180378
+            "size": 674464751
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88707/AD7C2B55-DD28-4CAE-B1EB-2AEE12790D72/com_apple_MobileAsset_SoftwareUpdate/af8f54f31e7957b010f1fa2fd236c478b3da82d3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d52c7f0f34c1cfb25e6839fa4754ba47b29e8973",
+                "sha2-256": "28488e23f1465b705c51273ada12b95a505f1f70a3079d0322aafc04f667ef9d"
+            },
+            "size": 674498920
         },
         {
             "type": "ota",
@@ -5970,6 +5973,24 @@
                 "sha2-256": "c7ef04de0962cf7943548a1f98dff59201a27a4339b1124e4d3008056da4ab0a"
             },
             "size": 472621292
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88114/7BA6BEE6-0B6A-44DF-A407-0C5F775CB144/com_apple_MobileAsset_SoftwareUpdate/1cc517cbc25911c951519f09b8d382044b55a39b.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "06181425822241e1f468b446d8da664bd4eb3957",
+                "sha2-256": "eb63959bfdc557669f2681d33596815960771b718812e488c38ad2c88e2fa676"
+            },
+            "size": 480180378
         },
         {
             "type": "ota",
@@ -6113,42 +6134,6 @@
                 "sha2-256": "b5a1268327388e936e04c7c3692f47d91616fe4330a49f616cf7745023b124de"
             },
             "size": 1426129725
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89007/15B0972D-96ED-4505-BE68-97DB47800CB9/com_apple_MobileAsset_SoftwareUpdate/07381a672ae41140991c8521dbc57f653200ced4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f784f898dad19e7fce768a656e8843075a9df6a6",
-                "sha2-256": "1175b6b097093cca04801dfd767864d32e34556635f94ededf24e2988fe2d544"
-            },
-            "size": 674539695
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88777/8CF54607-2252-463A-9DEE-7F1D48A848E5/com_apple_MobileAsset_SoftwareUpdate/185cdb877166828e9b9c20873214a3764111ddd3.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "25cf9d695ddd79e962a89a8f4fd2c641b773786f",
-                "sha2-256": "d6dc2bee2b67c5d551d491f4502c240351043fa9cf1e997f6da43e7237f7de88"
-            },
-            "size": 674542912
         },
         {
             "type": "ota",
@@ -6296,21 +6281,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,4"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88139/EAEF27AC-4301-48C1-BE91-AF1E5DE911F6/com_apple_MobileAsset_SoftwareUpdate/d7dab1287b1269dc9f1131b75ca891d58e540f9a.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89007/15B0972D-96ED-4505-BE68-97DB47800CB9/com_apple_MobileAsset_SoftwareUpdate/07381a672ae41140991c8521dbc57f653200ced4.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "369c4327f32cd064eb12f5afddd72f492ac5fffb",
-                "sha2-256": "683bb41b675dd93eadcaae08a07aee3bfb82a7889a55d4960144b3b2495c32c4"
+                "sha1": "f784f898dad19e7fce768a656e8843075a9df6a6",
+                "sha2-256": "1175b6b097093cca04801dfd767864d32e34556635f94ededf24e2988fe2d544"
             },
-            "size": 480197214
+            "size": 674539695
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88777/8CF54607-2252-463A-9DEE-7F1D48A848E5/com_apple_MobileAsset_SoftwareUpdate/185cdb877166828e9b9c20873214a3764111ddd3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "25cf9d695ddd79e962a89a8f4fd2c641b773786f",
+                "sha2-256": "d6dc2bee2b67c5d551d491f4502c240351043fa9cf1e997f6da43e7237f7de88"
+            },
+            "size": 674542912
         },
         {
             "type": "ota",
@@ -6365,6 +6368,24 @@
                 "sha2-256": "f88e6f985cd3223760d99e1c05863410d7f41efb06e0eda04fedf8e234d191b1"
             },
             "size": 472631302
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88139/EAEF27AC-4301-48C1-BE91-AF1E5DE911F6/com_apple_MobileAsset_SoftwareUpdate/d7dab1287b1269dc9f1131b75ca891d58e540f9a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "369c4327f32cd064eb12f5afddd72f492ac5fffb",
+                "sha2-256": "683bb41b675dd93eadcaae08a07aee3bfb82a7889a55d4960144b3b2495c32c4"
+            },
+            "size": 480197214
         },
         {
             "type": "ota",
@@ -6508,42 +6529,6 @@
                 "sha2-256": "9e5560a295bf1ff000e25133afc17ea93ed8798f0b1ef61a6436f7060f8844e8"
             },
             "size": 1390979285
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87983/DEAD1B67-BD81-42A1-A20E-D44E0B29EADA/com_apple_MobileAsset_SoftwareUpdate/cda1cc434ee4bed4201655f09cffd659bc1d0f5e.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "78f455eab1e40c6006e9df845285b11c4a85a5ae",
-                "sha2-256": "d380daaa29006bd4d4463aee2a5300965d532e3a0e193754a053f1d81099f885"
-            },
-            "size": 645208687
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88762/8CE5BEDA-DA7B-4F24-818A-AED5CE969C9F/com_apple_MobileAsset_SoftwareUpdate/f13c687edbe2bba5e5957a0301304f141dc6dbec.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "40c90391bba73f269f71660dde614d7339680299",
-                "sha2-256": "b174f4a1a2bb3d85612cd7099ca3aff03f53e13185eecea33b9c280a0d3d36a0"
-            },
-            "size": 645188391
         },
         {
             "type": "ota",
@@ -6691,21 +6676,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,6"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88204/C4CC717C-1826-449C-8D1D-AFDEE9E301CE/com_apple_MobileAsset_SoftwareUpdate/7af941f52641214a09ec2af40f8b9f237c28932d.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87983/DEAD1B67-BD81-42A1-A20E-D44E0B29EADA/com_apple_MobileAsset_SoftwareUpdate/cda1cc434ee4bed4201655f09cffd659bc1d0f5e.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "1927c07d8a8ddddc9582c23ae12d04a099e3dc99",
-                "sha2-256": "fdcdb284f527e6c575c9e4132d7e6d66312b71bf9d001df9cac55a42dcc3f1bb"
+                "sha1": "78f455eab1e40c6006e9df845285b11c4a85a5ae",
+                "sha2-256": "d380daaa29006bd4d4463aee2a5300965d532e3a0e193754a053f1d81099f885"
             },
-            "size": 449768920
+            "size": 645208687
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88762/8CE5BEDA-DA7B-4F24-818A-AED5CE969C9F/com_apple_MobileAsset_SoftwareUpdate/f13c687edbe2bba5e5957a0301304f141dc6dbec.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "40c90391bba73f269f71660dde614d7339680299",
+                "sha2-256": "b174f4a1a2bb3d85612cd7099ca3aff03f53e13185eecea33b9c280a0d3d36a0"
+            },
+            "size": 645188391
         },
         {
             "type": "ota",
@@ -6760,6 +6763,24 @@
                 "sha2-256": "4891df4c17c2928291fe9497188fe51f35851d494fa6281de85c1e7678412316"
             },
             "size": 443847214
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88204/C4CC717C-1826-449C-8D1D-AFDEE9E301CE/com_apple_MobileAsset_SoftwareUpdate/7af941f52641214a09ec2af40f8b9f237c28932d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1927c07d8a8ddddc9582c23ae12d04a099e3dc99",
+                "sha2-256": "fdcdb284f527e6c575c9e4132d7e6d66312b71bf9d001df9cac55a42dcc3f1bb"
+            },
+            "size": 449768920
         },
         {
             "type": "ota",
@@ -6903,42 +6924,6 @@
                 "sha2-256": "947d2a565677280495fc74318347217a5010a0f9584fb3dd582e983fe5bc280e"
             },
             "size": 1391236817
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88088/881BBCE2-C389-406A-AB6C-0253BE5AA3C8/com_apple_MobileAsset_SoftwareUpdate/17e4c4f7f863f2b407cdd76fb04d2224079f63e4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d90fd1653005c304021aa1d12ab4a445e671bb3d",
-                "sha2-256": "2723745ac630bf76534f6cc6997dac9c38b97498846569bc895572800c861c07"
-            },
-            "size": 645245483
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,7"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88876/76B50D2A-6F5D-4CC5-A697-A5CA2C3F9CFE/com_apple_MobileAsset_SoftwareUpdate/6ad37a2f90f525800737b9efebc5cd35469a7efa.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "323a163fc58aba705417aed9be68f357abedd1d5",
-                "sha2-256": "1f2cf95b667df14ba6f12459800d1ed884c218367dde4447c6f4d378366974b5"
-            },
-            "size": 645220909
         },
         {
             "type": "ota",
@@ -7086,21 +7071,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,7"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87938/695470AA-FD67-42F5-A179-DB028E21635E/com_apple_MobileAsset_SoftwareUpdate/04dc1d810af91e54ed7c3127f03114d7cb60d67f.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88088/881BBCE2-C389-406A-AB6C-0253BE5AA3C8/com_apple_MobileAsset_SoftwareUpdate/17e4c4f7f863f2b407cdd76fb04d2224079f63e4.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "17edfa431bf0584b158edf9da1bdb961d01ba343",
-                "sha2-256": "6a15836183efaf3f78c51259949407fcf9a910ec18cf25e8c8b0b75a7249e8a6"
+                "sha1": "d90fd1653005c304021aa1d12ab4a445e671bb3d",
+                "sha2-256": "2723745ac630bf76534f6cc6997dac9c38b97498846569bc895572800c861c07"
             },
-            "size": 449800552
+            "size": 645245483
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88876/76B50D2A-6F5D-4CC5-A697-A5CA2C3F9CFE/com_apple_MobileAsset_SoftwareUpdate/6ad37a2f90f525800737b9efebc5cd35469a7efa.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "323a163fc58aba705417aed9be68f357abedd1d5",
+                "sha2-256": "1f2cf95b667df14ba6f12459800d1ed884c218367dde4447c6f4d378366974b5"
+            },
+            "size": 645220909
         },
         {
             "type": "ota",
@@ -7155,6 +7158,24 @@
                 "sha2-256": "2e58260e10bb69ae37c1209d00adade8efdd1e12fcf4f774f710b689d0c2b85f"
             },
             "size": 443864004
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87938/695470AA-FD67-42F5-A179-DB028E21635E/com_apple_MobileAsset_SoftwareUpdate/04dc1d810af91e54ed7c3127f03114d7cb60d67f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "17edfa431bf0584b158edf9da1bdb961d01ba343",
+                "sha2-256": "6a15836183efaf3f78c51259949407fcf9a910ec18cf25e8c8b0b75a7249e8a6"
+            },
+            "size": 449800552
         },
         {
             "type": "ota",
@@ -7298,42 +7319,6 @@
                 "sha2-256": "54d10f50587bf62517cc812d99ca91b747dd53582fb5e32ea86577dcf74a2e26"
             },
             "size": 1437952525
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87916/302DDE03-E081-4A00-BF96-9DD579FC4A4B/com_apple_MobileAsset_SoftwareUpdate/66214e73aa4d5c99a521fbef36275edfd04b37c1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2c07d16c009a2d305ec4f0708e8949c88d1094b0",
-                "sha2-256": "5a487009c708aaab3ea53997c1d9bd7c8b076468603427a39f30fd816532935a"
-            },
-            "size": 684206455
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,8"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87996/1B69044F-7FB4-4757-95F5-1A91628B37DE/com_apple_MobileAsset_SoftwareUpdate/546dcfe96636c87448ec2e57794851b53f26a393.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "46ffad149553c27e0e3da778eeecf4cf3db93022",
-                "sha2-256": "0f9193ca9c6bfcc645425616a8531e4895af53e026f432e512bc30b085580de8"
-            },
-            "size": 684176864
         },
         {
             "type": "ota",
@@ -7481,21 +7466,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,8"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88719/62EFA27F-A264-41C1-AA15-8E7E532C038E/com_apple_MobileAsset_SoftwareUpdate/5207d49b58487f2c8343ffd37f84cf68ff64a043.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87916/302DDE03-E081-4A00-BF96-9DD579FC4A4B/com_apple_MobileAsset_SoftwareUpdate/66214e73aa4d5c99a521fbef36275edfd04b37c1.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "ba812e07c3c52f9a4b35347f663ed7fdfac05473",
-                "sha2-256": "89b23daf94e3b36d5e536eeb35ec90c833b1a488bdb835177c8fd1f4685a4144"
+                "sha1": "2c07d16c009a2d305ec4f0708e8949c88d1094b0",
+                "sha2-256": "5a487009c708aaab3ea53997c1d9bd7c8b076468603427a39f30fd816532935a"
             },
-            "size": 489722895
+            "size": 684206455
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87996/1B69044F-7FB4-4757-95F5-1A91628B37DE/com_apple_MobileAsset_SoftwareUpdate/546dcfe96636c87448ec2e57794851b53f26a393.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "46ffad149553c27e0e3da778eeecf4cf3db93022",
+                "sha2-256": "0f9193ca9c6bfcc645425616a8531e4895af53e026f432e512bc30b085580de8"
+            },
+            "size": 684176864
         },
         {
             "type": "ota",
@@ -7550,6 +7553,24 @@
                 "sha2-256": "c399accd32020e1155deb06b1dc54b59b4fa644543ce920f04fdff9678ede6c0"
             },
             "size": 482956776
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88719/62EFA27F-A264-41C1-AA15-8E7E532C038E/com_apple_MobileAsset_SoftwareUpdate/5207d49b58487f2c8343ffd37f84cf68ff64a043.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ba812e07c3c52f9a4b35347f663ed7fdfac05473",
+                "sha2-256": "89b23daf94e3b36d5e536eeb35ec90c833b1a488bdb835177c8fd1f4685a4144"
+            },
+            "size": 489722895
         },
         {
             "type": "ota",
@@ -7693,42 +7714,6 @@
                 "sha2-256": "f52983112153d597e710e0a265dbb80309799796f5e27d717eea819b0894e431"
             },
             "size": 1438350650
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88150/3B720807-DD5C-4DD9-9AFF-890A39204608/com_apple_MobileAsset_SoftwareUpdate/f446b3ea53e45bebf4cdb2072cb256f2c41c19e2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "67c5d4d3d5c880084972f70b1667bc8bf7c1e96f",
-                "sha2-256": "b6e51fd2404c208dc0c611954afde5fe2b932155d68c920956a6d1a3f224b080"
-            },
-            "size": 684247283
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,9"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88437/142D0ABF-490C-46C4-A066-2F4DE94F2CE1/com_apple_MobileAsset_SoftwareUpdate/e5cd0eaf30e3410cb8177cdf33c7484650ea8e49.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "d5a2e99259ba6dcfbc5f027fa8631b0800cfe0a9",
-                "sha2-256": "75b9a3e679732eb22748ab81a6e5614ebe1a2b287ed359c6a8fc59223033dd84"
-            },
-            "size": 684213307
         },
         {
             "type": "ota",
@@ -7876,21 +7861,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,9"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88041/25F9D121-1081-4D80-B6CA-7650CC804AC8/com_apple_MobileAsset_SoftwareUpdate/3bbdb2ea6b44fd655e5beee14f3f28c376cbc201.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88150/3B720807-DD5C-4DD9-9AFF-890A39204608/com_apple_MobileAsset_SoftwareUpdate/f446b3ea53e45bebf4cdb2072cb256f2c41c19e2.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "6671bb32fec5aaaa5c5ad550b712d41e02d54ee4",
-                "sha2-256": "2fc245fe37e3dd2335149785b07c4040a6440c4cca5340624bf5b17d03690792"
+                "sha1": "67c5d4d3d5c880084972f70b1667bc8bf7c1e96f",
+                "sha2-256": "b6e51fd2404c208dc0c611954afde5fe2b932155d68c920956a6d1a3f224b080"
             },
-            "size": 489761956
+            "size": 684247283
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88437/142D0ABF-490C-46C4-A066-2F4DE94F2CE1/com_apple_MobileAsset_SoftwareUpdate/e5cd0eaf30e3410cb8177cdf33c7484650ea8e49.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d5a2e99259ba6dcfbc5f027fa8631b0800cfe0a9",
+                "sha2-256": "75b9a3e679732eb22748ab81a6e5614ebe1a2b287ed359c6a8fc59223033dd84"
+            },
+            "size": 684213307
         },
         {
             "type": "ota",
@@ -7945,6 +7948,24 @@
                 "sha2-256": "a8c58ede6e2cffc9a316358c1e949773967cd0abddd916bac28778ecab967de9"
             },
             "size": 482973625
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88041/25F9D121-1081-4D80-B6CA-7650CC804AC8/com_apple_MobileAsset_SoftwareUpdate/3bbdb2ea6b44fd655e5beee14f3f28c376cbc201.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "6671bb32fec5aaaa5c5ad550b712d41e02d54ee4",
+                "sha2-256": "2fc245fe37e3dd2335149785b07c4040a6440c4cca5340624bf5b17d03690792"
+            },
+            "size": 489761956
         },
         {
             "type": "ota",
@@ -8088,42 +8109,6 @@
                 "sha2-256": "6f8cccb3f260e872877845ef6eeef04263fe9101f9f8b539f49f6ee2b2245168"
             },
             "size": 1563398515
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88340/F46333C8-E3DE-4B71-9C81-8048113345EF/com_apple_MobileAsset_SoftwareUpdate/00bc9a2ac7e8e83d0e2080361eab07f1ed0e6e9f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "166d1830ecca676bda2e5900897975455ed4c9c5",
-                "sha2-256": "2dffe4ccb086cff61b09371462bf75221a9d0dcb63cd33a13cc221fe8c5fff1d"
-            },
-            "size": 823197822
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,10"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87926/91D9EBD8-053F-47F0-B785-4635505E35D2/com_apple_MobileAsset_SoftwareUpdate/1b483e4f551b1ecbe685e0058df769cb4575f113.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "afac24e6e3facc65ed1abfa1e792c35736e94391",
-                "sha2-256": "4d87b78484cbc2c7aefea50fed7f5260906e2bcd7f2ba68b8ccccbc3d0d53efd"
-            },
-            "size": 823135291
         },
         {
             "type": "ota",
@@ -8271,21 +8256,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,10"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88314/99448978-609E-4EB0-86B3-94CF39B158C8/com_apple_MobileAsset_SoftwareUpdate/780da4bb97932efb81988172314888ad025dc4b6.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88340/F46333C8-E3DE-4B71-9C81-8048113345EF/com_apple_MobileAsset_SoftwareUpdate/00bc9a2ac7e8e83d0e2080361eab07f1ed0e6e9f.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "c5825a4a115106e2862c474350a3714046c2e991",
-                "sha2-256": "21b8e5cf417342aab2f5e24b358bc9d1869fc76b8438eb849af0b977170524dd"
+                "sha1": "166d1830ecca676bda2e5900897975455ed4c9c5",
+                "sha2-256": "2dffe4ccb086cff61b09371462bf75221a9d0dcb63cd33a13cc221fe8c5fff1d"
             },
-            "size": 460643946
+            "size": 823197822
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87926/91D9EBD8-053F-47F0-B785-4635505E35D2/com_apple_MobileAsset_SoftwareUpdate/1b483e4f551b1ecbe685e0058df769cb4575f113.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "afac24e6e3facc65ed1abfa1e792c35736e94391",
+                "sha2-256": "4d87b78484cbc2c7aefea50fed7f5260906e2bcd7f2ba68b8ccccbc3d0d53efd"
+            },
+            "size": 823135291
         },
         {
             "type": "ota",
@@ -8340,6 +8343,24 @@
                 "sha2-256": "d0ded0a428e0039c98d4dfc62338fbc706741b6264311431726c531239de8ad4"
             },
             "size": 454917495
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88314/99448978-609E-4EB0-86B3-94CF39B158C8/com_apple_MobileAsset_SoftwareUpdate/780da4bb97932efb81988172314888ad025dc4b6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "c5825a4a115106e2862c474350a3714046c2e991",
+                "sha2-256": "21b8e5cf417342aab2f5e24b358bc9d1869fc76b8438eb849af0b977170524dd"
+            },
+            "size": 460643946
         },
         {
             "type": "ota",
@@ -8483,42 +8504,6 @@
                 "sha2-256": "555816eb1403432249d73ec9f7538f1f78b6cdc4b458ba502ebed1fd8855d60e"
             },
             "size": 1567015020
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88816/2EC86CDD-8E1F-4308-BE06-A7738514D5CC/com_apple_MobileAsset_SoftwareUpdate/37fdb312773190e7837e13b63a46b3a6357ff0c1.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6997f85733b17137f759f4c425ac52a539e9b21c",
-                "sha2-256": "b41c080f1b069f74262fc0f7431d2bd5b5abdf9b58f7dd2adf4e0d585cabb5c3"
-            },
-            "size": 823194272
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,11"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88049/015D00BD-12C5-40AD-B1A3-F45F8784EE75/com_apple_MobileAsset_SoftwareUpdate/2f9bac4cedc828c2ce7a9b851404d9b5ccf9fb67.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e6f3967d932044f47915a39a3587d3e0fb2cc361",
-                "sha2-256": "af143160cfd4926a63daf20c398a8cadeefc50e835ed170d094f54d46577fc7d"
-            },
-            "size": 823137164
         },
         {
             "type": "ota",
@@ -8666,21 +8651,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,11"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87917/3355D852-0877-44D5-AB0B-33BA5A4BC7E0/com_apple_MobileAsset_SoftwareUpdate/61cc79b572c8e96a5a07f9a716e28aed34d3c57c.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88816/2EC86CDD-8E1F-4308-BE06-A7738514D5CC/com_apple_MobileAsset_SoftwareUpdate/37fdb312773190e7837e13b63a46b3a6357ff0c1.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "1d0e1479b8b2c0f9da2d2f11f1106294736fe384",
-                "sha2-256": "346e821cda9ae40b7a75e8557b5189243ab057fa12ce2992082a9a1b5f16fbab"
+                "sha1": "6997f85733b17137f759f4c425ac52a539e9b21c",
+                "sha2-256": "b41c080f1b069f74262fc0f7431d2bd5b5abdf9b58f7dd2adf4e0d585cabb5c3"
             },
-            "size": 460665418
+            "size": 823194272
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88049/015D00BD-12C5-40AD-B1A3-F45F8784EE75/com_apple_MobileAsset_SoftwareUpdate/2f9bac4cedc828c2ce7a9b851404d9b5ccf9fb67.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e6f3967d932044f47915a39a3587d3e0fb2cc361",
+                "sha2-256": "af143160cfd4926a63daf20c398a8cadeefc50e835ed170d094f54d46577fc7d"
+            },
+            "size": 823137164
         },
         {
             "type": "ota",
@@ -8735,6 +8738,24 @@
                 "sha2-256": "25751cead0e1be9915abd038b37c2fbfbf5faa01de131aec8795465db2ccab64"
             },
             "size": 454939304
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87917/3355D852-0877-44D5-AB0B-33BA5A4BC7E0/com_apple_MobileAsset_SoftwareUpdate/61cc79b572c8e96a5a07f9a716e28aed34d3c57c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1d0e1479b8b2c0f9da2d2f11f1106294736fe384",
+                "sha2-256": "346e821cda9ae40b7a75e8557b5189243ab057fa12ce2992082a9a1b5f16fbab"
+            },
+            "size": 460665418
         },
         {
             "type": "ota",
@@ -8878,42 +8899,6 @@
                 "sha2-256": "af4ed7e940006fe64e193cc38393ff7ba887036d69560480a4747fa1b47078c5"
             },
             "size": 1610212567
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88127/ED477DB8-F497-4486-8DA4-467E75DE111D/com_apple_MobileAsset_SoftwareUpdate/1476933de990478e7ae53ea1205134a6f456d3a4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "573dcf0ae5926a6c80fcdf44e3f3cc8af52e0406",
-                "sha2-256": "342d8a3cbb39a26a8dfa8d314198c5395c7f02d7233860dcdf979a8e34b80d84"
-            },
-            "size": 861988699
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,12"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88751/FB5B3758-A5B8-4826-A442-DD7A507A001C/com_apple_MobileAsset_SoftwareUpdate/13916b215833a7961e02267a91b1593f3de8c617.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "5574d5e8cca720be76c8212251f5dc4d67499064",
-                "sha2-256": "bb60f426cb9d2c7349e8d702da41e0c98027bec9ddfeec33e5df8d2df7ad5ca7"
-            },
-            "size": 862001763
         },
         {
             "type": "ota",
@@ -9061,21 +9046,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,12"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88914/B96E635D-BA36-4C08-857E-F8A44150F237/com_apple_MobileAsset_SoftwareUpdate/f750caa59971184553788a8877b5b9dc9ae5f5c7.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88127/ED477DB8-F497-4486-8DA4-467E75DE111D/com_apple_MobileAsset_SoftwareUpdate/1476933de990478e7ae53ea1205134a6f456d3a4.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "a5c64ea68152345b820422947aadee87f5440b82",
-                "sha2-256": "0f75c84e79fba32baeaa42e996a51bb0ae98b1517954366131dbbe81780eef34"
+                "sha1": "573dcf0ae5926a6c80fcdf44e3f3cc8af52e0406",
+                "sha2-256": "342d8a3cbb39a26a8dfa8d314198c5395c7f02d7233860dcdf979a8e34b80d84"
             },
-            "size": 501184170
+            "size": 861988699
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88751/FB5B3758-A5B8-4826-A442-DD7A507A001C/com_apple_MobileAsset_SoftwareUpdate/13916b215833a7961e02267a91b1593f3de8c617.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "5574d5e8cca720be76c8212251f5dc4d67499064",
+                "sha2-256": "bb60f426cb9d2c7349e8d702da41e0c98027bec9ddfeec33e5df8d2df7ad5ca7"
+            },
+            "size": 862001763
         },
         {
             "type": "ota",
@@ -9130,6 +9133,24 @@
                 "sha2-256": "4c81074bfc71c7aefeac0136ba0947919c7d30c6751b17945d4039ed87d3184f"
             },
             "size": 493486214
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88914/B96E635D-BA36-4C08-857E-F8A44150F237/com_apple_MobileAsset_SoftwareUpdate/f750caa59971184553788a8877b5b9dc9ae5f5c7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a5c64ea68152345b820422947aadee87f5440b82",
+                "sha2-256": "0f75c84e79fba32baeaa42e996a51bb0ae98b1517954366131dbbe81780eef34"
+            },
+            "size": 501184170
         },
         {
             "type": "ota",
@@ -9273,42 +9294,6 @@
                 "sha2-256": "a776561572b13fc52a9793c405e0530372baa1d2c574c730ca8f4371e044c1fc"
             },
             "size": 1613884367
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,13"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88960/F809279C-8BE2-4300-B22A-8EE5FDDB8262/com_apple_MobileAsset_SoftwareUpdate/bcda354ac4a73eb03635330a0a78282667811b8b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "69955096f0253f44e15fa57e8ae81563877dad97",
-                "sha2-256": "bd94a46babbbb63fcb36d1415787968bfd234539a345febfb22f434e2b0cec85"
-            },
-            "size": 862075782
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,13"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88508/A855DAC3-21CA-402E-8000-D365751D2348/com_apple_MobileAsset_SoftwareUpdate/f30d0a73cd8a715cc4ecfec3c68418ed27f92014.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4dcb588f36e516199a6dd894efd4d811aa130e18",
-                "sha2-256": "0bb77d12cb6c5173d876f79dcef4af2c59ad81204c6c822ad56f3cb0d0a073fe"
-            },
-            "size": 862078184
         },
         {
             "type": "ota",
@@ -9456,21 +9441,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,13"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88193/07FD341F-0000-4D94-A098-3C23B280B2CE/com_apple_MobileAsset_SoftwareUpdate/6b509c515459e6ed07d737d6641e3baa75c9912d.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88960/F809279C-8BE2-4300-B22A-8EE5FDDB8262/com_apple_MobileAsset_SoftwareUpdate/bcda354ac4a73eb03635330a0a78282667811b8b.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "8f76cf19dd8a534dc9cad764a4ceb5dc5dc30778",
-                "sha2-256": "5f041a7bb8777871d17d70fd5a925a9cc3b747816d16a2cbb4e2e885c8210612"
+                "sha1": "69955096f0253f44e15fa57e8ae81563877dad97",
+                "sha2-256": "bd94a46babbbb63fcb36d1415787968bfd234539a345febfb22f434e2b0cec85"
             },
-            "size": 501214338
+            "size": 862075782
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,13"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88508/A855DAC3-21CA-402E-8000-D365751D2348/com_apple_MobileAsset_SoftwareUpdate/f30d0a73cd8a715cc4ecfec3c68418ed27f92014.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4dcb588f36e516199a6dd894efd4d811aa130e18",
+                "sha2-256": "0bb77d12cb6c5173d876f79dcef4af2c59ad81204c6c822ad56f3cb0d0a073fe"
+            },
+            "size": 862078184
         },
         {
             "type": "ota",
@@ -9525,6 +9528,24 @@
                 "sha2-256": "c22b5ec0b46e8c3a0570f0020a5cbaac126dd40cec66da65dcbeb0c01f194a77"
             },
             "size": 493530527
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,13"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88193/07FD341F-0000-4D94-A098-3C23B280B2CE/com_apple_MobileAsset_SoftwareUpdate/6b509c515459e6ed07d737d6641e3baa75c9912d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8f76cf19dd8a534dc9cad764a4ceb5dc5dc30778",
+                "sha2-256": "5f041a7bb8777871d17d70fd5a925a9cc3b747816d16a2cbb4e2e885c8210612"
+            },
+            "size": 501214338
         },
         {
             "type": "ota",
@@ -9668,42 +9689,6 @@
                 "sha2-256": "103442eb1180f406e5a95d8ead1b89efde13a5a2579ddcfc3fb7dd849f2684cd"
             },
             "size": 1391997756
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,14"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88055/D17BDC2C-8C66-47B3-97CE-375346B0EDEB/com_apple_MobileAsset_SoftwareUpdate/6c1ca435e067edaab497fff45edae8d976ed0e79.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "419ba8e0637a34ae91903eeba41e86ce3376a937",
-                "sha2-256": "c4515d7fbd5c12f34cda80a5f0fabd31e523864d3c45fd78ec3f4255a40eadbb"
-            },
-            "size": 643862589
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,14"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88175/5D9BBE6D-C2C8-4D60-A2B7-0420D73FAF17/com_apple_MobileAsset_SoftwareUpdate/3fc9e39fcbf4c7c8cf9d7f56c0668e93355e33de.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e4edc36c3f68d5e786e39f230af030f4fc54996c",
-                "sha2-256": "dfea446021600d1337a07c93368843d575566d80009e7e97c1ed4917546f2746"
-            },
-            "size": 643826876
         },
         {
             "type": "ota",
@@ -9851,21 +9836,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,14"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88495/02C1F777-7A5A-4C2E-84C2-669215CD67B4/com_apple_MobileAsset_SoftwareUpdate/b0d30eff3f246a080de63cd8bf7a626a8b0e3db2.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88055/D17BDC2C-8C66-47B3-97CE-375346B0EDEB/com_apple_MobileAsset_SoftwareUpdate/6c1ca435e067edaab497fff45edae8d976ed0e79.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "700d3a31c8d151dde0878e6779e520f36a7a5223",
-                "sha2-256": "9e80d8d4b45e50a6f26aafb9949be03ac147ddc157076910b006ad07f88dd02a"
+                "sha1": "419ba8e0637a34ae91903eeba41e86ce3376a937",
+                "sha2-256": "c4515d7fbd5c12f34cda80a5f0fabd31e523864d3c45fd78ec3f4255a40eadbb"
             },
-            "size": 449155007
+            "size": 643862589
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,14"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88175/5D9BBE6D-C2C8-4D60-A2B7-0420D73FAF17/com_apple_MobileAsset_SoftwareUpdate/3fc9e39fcbf4c7c8cf9d7f56c0668e93355e33de.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e4edc36c3f68d5e786e39f230af030f4fc54996c",
+                "sha2-256": "dfea446021600d1337a07c93368843d575566d80009e7e97c1ed4917546f2746"
+            },
+            "size": 643826876
         },
         {
             "type": "ota",
@@ -9920,6 +9923,24 @@
                 "sha2-256": "4b3bff1dcb55df59a2abaf08970462712780ba9463094b9e265873373e83078a"
             },
             "size": 443648531
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,14"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88495/02C1F777-7A5A-4C2E-84C2-669215CD67B4/com_apple_MobileAsset_SoftwareUpdate/b0d30eff3f246a080de63cd8bf7a626a8b0e3db2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "700d3a31c8d151dde0878e6779e520f36a7a5223",
+                "sha2-256": "9e80d8d4b45e50a6f26aafb9949be03ac147ddc157076910b006ad07f88dd02a"
+            },
+            "size": 449155007
         },
         {
             "type": "ota",
@@ -10063,42 +10084,6 @@
                 "sha2-256": "e8f42e5117fc0b08bbcbaf833f1f5a887af13dfc118b9be1a991f21149cdc982"
             },
             "size": 1392212558
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88476/6DC67464-E76E-4A18-9283-D33CA673C14F/com_apple_MobileAsset_SoftwareUpdate/e68754b0289bd4eeb2be5e51c85e3ac421dc91e5.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "0165ceae2d9406f95fceb8a4357c0df531c67117",
-                "sha2-256": "7dd7354e3a340e058c67adc6479e2c03e8974023427cf63967686a0768174c94"
-            },
-            "size": 643868956
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,15"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88455/CE77B09C-B7A7-4B14-9BB5-84FFE68A132F/com_apple_MobileAsset_SoftwareUpdate/02b14b12bbc66bfb81c3d59a988c80e56940402a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "71c21b0ca05f38ae00dccdda12f5e9c2f99243a3",
-                "sha2-256": "dfd0d1a48469eb6e75e853d2f2bfef0715bc135dfdaa0b724492de08b88efae4"
-            },
-            "size": 643835234
         },
         {
             "type": "ota",
@@ -10246,21 +10231,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,15"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88701/7D973ED6-F637-4E41-82AA-724EFD22FE33/com_apple_MobileAsset_SoftwareUpdate/78103ad3a765879724c9780cf78b45462c26d236.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88476/6DC67464-E76E-4A18-9283-D33CA673C14F/com_apple_MobileAsset_SoftwareUpdate/e68754b0289bd4eeb2be5e51c85e3ac421dc91e5.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "2c15230bfadd97f0e93f52c589e06d70e64c6ae0",
-                "sha2-256": "e9f6107c8cdc44c364edb329f59384331bccc3d79ad50d4324e249282408e6d4"
+                "sha1": "0165ceae2d9406f95fceb8a4357c0df531c67117",
+                "sha2-256": "7dd7354e3a340e058c67adc6479e2c03e8974023427cf63967686a0768174c94"
             },
-            "size": 449173029
+            "size": 643868956
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88455/CE77B09C-B7A7-4B14-9BB5-84FFE68A132F/com_apple_MobileAsset_SoftwareUpdate/02b14b12bbc66bfb81c3d59a988c80e56940402a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "71c21b0ca05f38ae00dccdda12f5e9c2f99243a3",
+                "sha2-256": "dfd0d1a48469eb6e75e853d2f2bfef0715bc135dfdaa0b724492de08b88efae4"
+            },
+            "size": 643835234
         },
         {
             "type": "ota",
@@ -10315,6 +10318,24 @@
                 "sha2-256": "afb40a881a56d24222d9c3b661c942fbcbfe7b094a7ed7b209d359fe957e7567"
             },
             "size": 443674362
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,15"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88701/7D973ED6-F637-4E41-82AA-724EFD22FE33/com_apple_MobileAsset_SoftwareUpdate/78103ad3a765879724c9780cf78b45462c26d236.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2c15230bfadd97f0e93f52c589e06d70e64c6ae0",
+                "sha2-256": "e9f6107c8cdc44c364edb329f59384331bccc3d79ad50d4324e249282408e6d4"
+            },
+            "size": 449173029
         },
         {
             "type": "ota",
@@ -10458,42 +10479,6 @@
                 "sha2-256": "550129ff84d50be17c2eb59865f569dab5043f7710d1b6624d3577a9ce8a7af3"
             },
             "size": 1439152947
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,16"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88466/E1C98E34-3EB0-4EA5-B463-4C34645440E9/com_apple_MobileAsset_SoftwareUpdate/11f31511f009ee88b53bd12e3b54a3fbc7381c89.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3bc0e7f9778041498b327759f4e54fe6bd18036d",
-                "sha2-256": "e78c67e75117798d77fc1e303a48972baf9d919c8cfd1240c19bc1da76818509"
-            },
-            "size": 685676726
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,16"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89029/CDE4D7B0-5449-481B-8EA6-A7D61C894733/com_apple_MobileAsset_SoftwareUpdate/3858fb7d14c0cf5a7d7b95dd62bc0d1d9fb02e3f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "88ed0983c44f7f508d5e396b749db9a1094dd5d7",
-                "sha2-256": "8568c1bf1201a6dad6ade0cb0b2d9175fff7e1d2657641e4f159347d849297ba"
-            },
-            "size": 685605270
         },
         {
             "type": "ota",
@@ -10641,21 +10626,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,16"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88952/2532217D-CD12-4DC9-A98D-AE034321B5B3/com_apple_MobileAsset_SoftwareUpdate/9c537ea3112ef7e2afe3b0a168155ea254c5ddb9.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88466/E1C98E34-3EB0-4EA5-B463-4C34645440E9/com_apple_MobileAsset_SoftwareUpdate/11f31511f009ee88b53bd12e3b54a3fbc7381c89.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "fcc226f3bfe0e8c9a11d67a63edabda18f510d63",
-                "sha2-256": "733bf03bdb630eb2ed9d62828b25962d10b043b7360c7943b105d9c21578b2f4"
+                "sha1": "3bc0e7f9778041498b327759f4e54fe6bd18036d",
+                "sha2-256": "e78c67e75117798d77fc1e303a48972baf9d919c8cfd1240c19bc1da76818509"
             },
-            "size": 490012564
+            "size": 685676726
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,16"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-89029/CDE4D7B0-5449-481B-8EA6-A7D61C894733/com_apple_MobileAsset_SoftwareUpdate/3858fb7d14c0cf5a7d7b95dd62bc0d1d9fb02e3f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "88ed0983c44f7f508d5e396b749db9a1094dd5d7",
+                "sha2-256": "8568c1bf1201a6dad6ade0cb0b2d9175fff7e1d2657641e4f159347d849297ba"
+            },
+            "size": 685605270
         },
         {
             "type": "ota",
@@ -10710,6 +10713,24 @@
                 "sha2-256": "c8d983f51ad50c97a522ffda07ce2bcd5df211d1bbeb96e41f362bf0a356a45c"
             },
             "size": 482514913
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,16"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88952/2532217D-CD12-4DC9-A98D-AE034321B5B3/com_apple_MobileAsset_SoftwareUpdate/9c537ea3112ef7e2afe3b0a168155ea254c5ddb9.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fcc226f3bfe0e8c9a11d67a63edabda18f510d63",
+                "sha2-256": "733bf03bdb630eb2ed9d62828b25962d10b043b7360c7943b105d9c21578b2f4"
+            },
+            "size": 490012564
         },
         {
             "type": "ota",
@@ -10853,42 +10874,6 @@
                 "sha2-256": "5c3b57e0dac6e8a29d94a6493d1a3e6a99893dc9b2d047c124ea994d7a3def41"
             },
             "size": 1439542177
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,17"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88094/87A96BDA-A812-4C73-B7A1-C5AA0130EC3D/com_apple_MobileAsset_SoftwareUpdate/2e194121081af9dcf3fc0110c4ce64a378a322c9.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f20e23ecb587ee81690ecba4fdd1f58043e133ac",
-                "sha2-256": "18596974de10cb7ec4ef6519ce0ea53b6f1469804eb9050e389ad800e4472f18"
-            },
-            "size": 685726538
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,17"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88412/3FB65925-7F9D-4385-95A9-10EE04241486/com_apple_MobileAsset_SoftwareUpdate/25deae1a8464858724783df51952ad9d20279376.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "cd9879f1c70bb7699a659e201f48bac74b71f246",
-                "sha2-256": "e239307ae5475f036f316e537a68593a2866ed4849118e18c07c177aebcfc91a"
-            },
-            "size": 685635032
         },
         {
             "type": "ota",
@@ -11036,21 +11021,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,17"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87973/5D95A544-7FBB-494A-810B-29F3A2175758/com_apple_MobileAsset_SoftwareUpdate/9f6b8419eac2b51cdb6a54b8eee29a08a9507afd.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88094/87A96BDA-A812-4C73-B7A1-C5AA0130EC3D/com_apple_MobileAsset_SoftwareUpdate/2e194121081af9dcf3fc0110c4ce64a378a322c9.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "da89c878a162165b84f5509effa43d5126ece96b",
-                "sha2-256": "4d9db9baec50d1cb4bef8bc668898d326cf265f4bcd325f35f7b2aea015d44c8"
+                "sha1": "f20e23ecb587ee81690ecba4fdd1f58043e133ac",
+                "sha2-256": "18596974de10cb7ec4ef6519ce0ea53b6f1469804eb9050e389ad800e4472f18"
             },
-            "size": 490029716
+            "size": 685726538
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,17"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88412/3FB65925-7F9D-4385-95A9-10EE04241486/com_apple_MobileAsset_SoftwareUpdate/25deae1a8464858724783df51952ad9d20279376.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cd9879f1c70bb7699a659e201f48bac74b71f246",
+                "sha2-256": "e239307ae5475f036f316e537a68593a2866ed4849118e18c07c177aebcfc91a"
+            },
+            "size": 685635032
         },
         {
             "type": "ota",
@@ -11105,6 +11108,24 @@
                 "sha2-256": "6a3ee0b52ed3ea90bff1b08248d81d73d1e349781fe59f64504e69c62d4dc357"
             },
             "size": 482538479
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,17"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87973/5D95A544-7FBB-494A-810B-29F3A2175758/com_apple_MobileAsset_SoftwareUpdate/9f6b8419eac2b51cdb6a54b8eee29a08a9507afd.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "da89c878a162165b84f5509effa43d5126ece96b",
+                "sha2-256": "4d9db9baec50d1cb4bef8bc668898d326cf265f4bcd325f35f7b2aea015d44c8"
+            },
+            "size": 490029716
         },
         {
             "type": "ota",
@@ -11248,42 +11269,6 @@
                 "sha2-256": "748ee3e588cae27761a1540b69365906b7367e3b25bfd3b39c365b44f9c7c4a4"
             },
             "size": 1441041207
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R356",
-            "deviceMap": [
-                "Watch6,18"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88053/EF23F96A-46BE-40DC-B196-77D73065B525/com_apple_MobileAsset_SoftwareUpdate/a0b1bf692d705c96d1debdc97efa66beeb4e3149.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bd0d34f2bbdc850186748d0c847525edc285ffbf",
-                "sha2-256": "b16c0403ed463b2f44c0b3b54e7dc95b9853aff1d6f23e88dad34ce186767786"
-            },
-            "size": 686281732
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "21R360",
-            "deviceMap": [
-                "Watch6,18"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88124/89A4AB16-7FB1-4746-86D8-4107B10FE94F/com_apple_MobileAsset_SoftwareUpdate/10d6bfad31bec1b8fcb8f958e426eaa4ad9cbe5c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f374feaa3783873a4005db71a04dcd88b54d3426",
-                "sha2-256": "e4de9b0b817bc8323d780685be19d3ad69bf246eca9d0756a6f5277283660799"
-            },
-            "size": 686207954
         },
         {
             "type": "ota",
@@ -11431,21 +11416,39 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
+            "prerequisiteBuild": "21R356",
             "deviceMap": [
                 "Watch6,18"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88799/9A778C7F-ADB9-4C2B-A0CF-D43EE75A193D/com_apple_MobileAsset_SoftwareUpdate/5543e200741b22a6ce3817389f8be5c052fb0d36.zip",
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88053/EF23F96A-46BE-40DC-B196-77D73065B525/com_apple_MobileAsset_SoftwareUpdate/a0b1bf692d705c96d1debdc97efa66beeb4e3149.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "59e13efe698b59b99fcb1992d22936869fc30cef",
-                "sha2-256": "9a0e62e0c965ba1b09a6979e0bdddd7c0f28eef2c0452d8fbfd59c94bf5db08f"
+                "sha1": "bd0d34f2bbdc850186748d0c847525edc285ffbf",
+                "sha2-256": "b16c0403ed463b2f44c0b3b54e7dc95b9853aff1d6f23e88dad34ce186767786"
             },
-            "size": 490103038
+            "size": 686281732
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21R360",
+            "deviceMap": [
+                "Watch6,18"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88124/89A4AB16-7FB1-4746-86D8-4107B10FE94F/com_apple_MobileAsset_SoftwareUpdate/10d6bfad31bec1b8fcb8f958e426eaa4ad9cbe5c.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f374feaa3783873a4005db71a04dcd88b54d3426",
+                "sha2-256": "e4de9b0b817bc8323d780685be19d3ad69bf246eca9d0756a6f5277283660799"
+            },
+            "size": 686207954
         },
         {
             "type": "ota",
@@ -11500,6 +11503,24 @@
                 "sha2-256": "abacf6b3f41bb3d77c6b19a1eea7b92431d3d5402be4fc926f4dfd17dd463121"
             },
             "size": 483033622
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch6,18"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88799/9A778C7F-ADB9-4C2B-A0CF-D43EE75A193D/com_apple_MobileAsset_SoftwareUpdate/5543e200741b22a6ce3817389f8be5c052fb0d36.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "59e13efe698b59b99fcb1992d22936869fc30cef",
+                "sha2-256": "9a0e62e0c965ba1b09a6979e0bdddd7c0f28eef2c0452d8fbfd59c94bf5db08f"
+            },
+            "size": 490103038
         },
         {
             "type": "ota",
@@ -11574,24 +11595,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88517/E618FF79-DBE3-4590-B783-10987C60AE4F/com_apple_MobileAsset_SoftwareUpdate/1a60bd7b188263d443db27ea9b94ee930737f6b0.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4a972b749ae4261a0bd94b177f6b5792fb2a1c99",
-                "sha2-256": "81aca71c1644dd16004307111aba324c196050690aaecbbb53dd08dd17c5e27d"
-            },
-            "size": 440771615
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,1"
@@ -11643,6 +11646,24 @@
                 "sha2-256": "df2da6db560b9e09686f37107c40734b1ad95255202f8b105561a301467dc217"
             },
             "size": 434523237
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88517/E618FF79-DBE3-4590-B783-10987C60AE4F/com_apple_MobileAsset_SoftwareUpdate/1a60bd7b188263d443db27ea9b94ee930737f6b0.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4a972b749ae4261a0bd94b177f6b5792fb2a1c99",
+                "sha2-256": "81aca71c1644dd16004307111aba324c196050690aaecbbb53dd08dd17c5e27d"
+            },
+            "size": 440771615
         },
         {
             "type": "ota",
@@ -11717,24 +11738,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,2"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88196/DB8A854A-A391-485A-A035-954FB6B32102/com_apple_MobileAsset_SoftwareUpdate/f2b7d1d65b8bd9a24c7bf5e69f8505b96b82f99d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "ae2e15d288423b04490d31729865c02360adba28",
-                "sha2-256": "73f0c3adb4ddd29d9314a4143305def199a8f20a92694df6a828aaac5f91f5aa"
-            },
-            "size": 440786716
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,2"
@@ -11786,6 +11789,24 @@
                 "sha2-256": "dd2563be662388604b1d4384fc60135f9bd0ff0be2312124d9dbc910c879aa51"
             },
             "size": 434569230
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88196/DB8A854A-A391-485A-A035-954FB6B32102/com_apple_MobileAsset_SoftwareUpdate/f2b7d1d65b8bd9a24c7bf5e69f8505b96b82f99d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "ae2e15d288423b04490d31729865c02360adba28",
+                "sha2-256": "73f0c3adb4ddd29d9314a4143305def199a8f20a92694df6a828aaac5f91f5aa"
+            },
+            "size": 440786716
         },
         {
             "type": "ota",
@@ -11860,24 +11881,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,3"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88487/CCC1E65D-CB8E-4D47-A3C2-55F4B015C7E6/com_apple_MobileAsset_SoftwareUpdate/4b3276e6ba24d19b48f95aaa9b54fa44db6a2151.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "79784e7660c9098504ae472e32b24e6c2e35da2e",
-                "sha2-256": "b8d2c992826a784155e6610ae83f298ab5fad5616f1387e57c054e95e5eae465"
-            },
-            "size": 480917412
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,3"
@@ -11929,6 +11932,24 @@
                 "sha2-256": "78019288cae75d0b74d3a59c8af699a7d4bd9101f5727b5e687c9c6652fc4792"
             },
             "size": 473739634
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88487/CCC1E65D-CB8E-4D47-A3C2-55F4B015C7E6/com_apple_MobileAsset_SoftwareUpdate/4b3276e6ba24d19b48f95aaa9b54fa44db6a2151.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "79784e7660c9098504ae472e32b24e6c2e35da2e",
+                "sha2-256": "b8d2c992826a784155e6610ae83f298ab5fad5616f1387e57c054e95e5eae465"
+            },
+            "size": 480917412
         },
         {
             "type": "ota",
@@ -12003,24 +12024,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,4"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88958/D84E6E3E-7724-44A9-BC01-8BD43F6634A1/com_apple_MobileAsset_SoftwareUpdate/2b2ae952b0cb297d7b45d3adc3c9ed926eedb57d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a53de0555a15828721e45e60b46b830fa98de2a5",
-                "sha2-256": "17d83c78b498a08af7bc82223c6e10f3818001dcd6c311a16951fe318f5e297d"
-            },
-            "size": 480947382
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,4"
@@ -12072,6 +12075,24 @@
                 "sha2-256": "95611ea500d84d9fd9b605638a1195ac1ab30fd8b94f79e0ead6646be683a5c9"
             },
             "size": 473758495
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-88958/D84E6E3E-7724-44A9-BC01-8BD43F6634A1/com_apple_MobileAsset_SoftwareUpdate/2b2ae952b0cb297d7b45d3adc3c9ed926eedb57d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a53de0555a15828721e45e60b46b830fa98de2a5",
+                "sha2-256": "17d83c78b498a08af7bc82223c6e10f3818001dcd6c311a16951fe318f5e297d"
+            },
+            "size": 480947382
         },
         {
             "type": "ota",
@@ -12146,24 +12167,6 @@
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "21S67",
-            "deviceMap": [
-                "Watch7,5"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87994/51CD18FE-FB87-4F32-950F-419E419BEB6B/com_apple_MobileAsset_SoftwareUpdate/a3aa88164def6051dfe3cbfa93dc43e27ff98b23.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "8968522a85d6eec09f3757077864c92aa40baaa6",
-                "sha2-256": "3dd358c4c4f4ac64a9cdb1ef3be4a41721e646649860f5a541eafa502c3931e5"
-            },
-            "size": 480955388
-        },
-        {
-            "type": "ota",
             "prerequisiteBuild": "21S5042f",
             "deviceMap": [
                 "Watch7,5"
@@ -12215,6 +12218,24 @@
                 "sha2-256": "5d630beb69263e45f791ff8cda4b3f7abdb7b27247b775f42c93db975f470030"
             },
             "size": 473318431
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "21S67",
+            "deviceMap": [
+                "Watch7,5"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023FallSeed/patches/042-87994/51CD18FE-FB87-4F32-950F-419E419BEB6B/com_apple_MobileAsset_SoftwareUpdate/a3aa88164def6051dfe3cbfa93dc43e27ff98b23.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8968522a85d6eec09f3757077864c92aa40baaa6",
+                "sha2-256": "3dd358c4c4f4ac64a9cdb1ef3be4a41721e646649860f5a541eafa502c3931e5"
+            },
+            "size": 480955388
         }
     ]
 }
