@@ -1,11 +1,22 @@
 {
     "osStr": "iOS",
-    "version": "16.7.9 RC",
+    "version": "16.7.9",
     "build": "20H348",
     "restoreVersion": "20.8.348.0.0,0",
     "buildTrain": "SydneyUpdate",
-    "released": "2024-07-23",
-    "rc": true,
+    "released": "2024-07-29",
+    "createDuplicateEntries": [
+        {
+            "version": "16.7.9 RC",
+            "uniqueBuild": "20H348-RC",
+            "released": "2024-07-23",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT213407#1679",
+    "ipd": {
+        "iPhone": "https://updates.cdn-apple.com/2024SummerFCS/documentation/062-41998/59C49B8C-2C42-47BC-BA20-76EBCD404818/iPhoneSydneyUpdateShortRTF.ipd"
+    },
     "appledbWebImage": {
         "id": "ios16",
         "align": "left"
@@ -28,6 +39,24 @@
     },
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone10,1",
+                "iPhone10,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-96731/68013816-7F3D-4FA8-8DE7-91FBBEA9D688/iPhone_4.7_P3_16.7.9_20H348_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "d8a5f31f3107691e266471ad40e9c1f64cc266f0",
+                "sha2-256": "025afa9daa17f9ad344eff78e33447de3059b8d12a52cd302ef6e04209bd5e0d"
+            },
+            "size": 6035408259
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "iPhone10,1",
@@ -46,6 +75,24 @@
             "size": 4708731158
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone10,2",
+                "iPhone10,5"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-96718/6424574F-AA88-4EFA-A0B6-45FC98E0CCB0/iPhone_5.5_P3_16.7.9_20H348_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2a8c8b57bcb926dfa4151a87e7c89e4722479d9d",
+                "sha2-256": "86786c890ed4104d052af8ec2a5f763e7dfc7f372d60a0de7f442214466ea1f3"
+            },
+            "size": 6157764187
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "iPhone10,2",
@@ -62,6 +109,24 @@
                 "sha2-256": "7983ab764d7f3f2a2b645356858df1d5796d928325286a87943e08526acac16b"
             },
             "size": 4819144879
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone10,3",
+                "iPhone10,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-96730/5ADC5B4D-7B5A-4666-B4F4-2AB21D45EFA8/iPhone10,3,iPhone10,6_16.7.9_20H348_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bc7393c7834965586475e945b49db1cfa33419f2",
+                "sha2-256": "b549b6c3047dfb8ef127d86a0c4af4024a81443f624de1fa67679731a16a1bf0"
+            },
+            "size": 6170790406
         },
         {
             "type": "ota",

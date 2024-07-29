@@ -1,11 +1,18 @@
 {
     "osStr": "bridgeOS",
-    "version": "8.6 RC",
+    "version": "8.6",
     "build": "21P6074",
     "restoreVersion": "21.16.6074.0.0,0",
     "buildTrain": "SunburstBridgeG",
-    "released": "2024-07-23",
-    "rc": true,
+    "released": "2024-07-29",
+    "createDuplicateEntries": [
+        {
+            "version": "8.6 RC",
+            "uniqueBuild": "21P6074-RC",
+            "released": "2024-07-23",
+            "rc": true
+        }
+    ],
     "deviceMap": [
         "iBridge2,1",
         "iBridge2,3",
@@ -25,6 +32,38 @@
         "iBridge2,22"
     ],
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iBridge2,1",
+                "iBridge2,3",
+                "iBridge2,4",
+                "iBridge2,5",
+                "iBridge2,6",
+                "iBridge2,7",
+                "iBridge2,8",
+                "iBridge2,10",
+                "iBridge2,12",
+                "iBridge2,14",
+                "iBridge2,15",
+                "iBridge2,16",
+                "iBridge2,19",
+                "iBridge2,20",
+                "iBridge2,21",
+                "iBridge2,22"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/052-69288/FB1A896F-8FD5-4883-A4AF-2C7132A982A5/iBridge2,1,iBridge2,10,iBridge2,12,iBridge2,14,iBridge2,15,iBridge2,16,iBridge2,19,iBridge2,20,iBridge2,21,iBridge2,22,iBridge2,3,iBridge2,4,iBridge2,5,iBridge2,6,iBridge2,7,iBridge2,8_8.6_21P6074_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "57e59ea5403d835664510dc304879fb775d50adc",
+                "sha2-256": "34ee6475e5266414e5e5530328e1c0d52b208065fefff01fe9f4e6e0435e25f6"
+            },
+            "size": 714526287
+        },
         {
             "type": "pkg",
             "deviceMap": [

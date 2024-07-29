@@ -1,11 +1,22 @@
 {
     "osStr": "iPadOS",
-    "version": "16.7.9 RC",
+    "version": "16.7.9",
     "build": "20H348",
     "restoreVersion": "20.8.348.0.0,0",
     "buildTrain": "SydneyUpdate",
-    "released": "2024-07-23",
-    "rc": true,
+    "released": "2024-07-29",
+    "createDuplicateEntries": [
+        {
+            "version": "16.7.9 RC",
+            "uniqueBuild": "20H348-RC",
+            "released": "2024-07-23",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT213408#1679",
+    "ipd": {
+        "iPad": "https://updates.cdn-apple.com/2024SummerFCS/documentation/062-41997/719AE25E-F8C5-47F3-8D7B-384E78FA554D/iPadSydneyUpdateShortRTF.ipd"
+    },
     "appledbWebImage": {
         "id": "ipados16",
         "align": "left"
@@ -25,6 +36,24 @@
     },
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad6,3",
+                "iPad6,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-96728/AB14DE0D-331F-4ECC-97F1-3961C88AB071/iPadPro_9.7_16.7.9_20H348_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "24456d0d3b875ad04a84c7cf7471917c88c42b9e",
+                "sha2-256": "1e0be90328242780a22713aab4ae32925ec3890242957cb3d48ec419a5ddd746"
+            },
+            "size": 5553929645
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "iPad6,3",
@@ -43,6 +72,24 @@
             "size": 4285993177
         },
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad6,7",
+                "iPad6,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-96717/4A54551B-B0D1-4E3D-B8BA-5E62BC5AC877/iPadPro_12.9_16.7.9_20H348_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7353399f174e412a605163fefd137e72ee0a5f6d",
+                "sha2-256": "2e56d7428a0476960de3faed4a2bcf38fa0e4c346230b0e36a7a15a84625ca27"
+            },
+            "size": 5547888832
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "iPad6,7",
@@ -59,6 +106,24 @@
                 "sha2-256": "939c74d707cc4fa85cc3b6d43971f2e6ed5dc36165a633ee4de60830d26c77e2"
             },
             "size": 4279211126
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad6,11",
+                "iPad6,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-96729/62176B9A-83EF-4B15-A906-3DE02E0CE0F2/iPad_64bit_TouchID_ASTC_16.7.9_20H348_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "18f8e81a7d4ca5dc15783603a77fae363bc1f7e2",
+                "sha2-256": "a2e43f62ca40b177c9963ba2bc915eda748de6df1838389a2f271e0d297baf1b"
+            },
+            "size": 5586525500
         },
         {
             "type": "ota",

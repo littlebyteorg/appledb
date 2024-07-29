@@ -1,10 +1,21 @@
 {
     "osStr": "iPadOS",
-    "version": "15.8.3 RC",
+    "version": "15.8.3",
     "build": "19H386",
     "buildTrain": "SkyUpdate",
-    "released": "2024-07-23",
-    "rc": true,
+    "released": "2024-07-29",
+    "createDuplicateEntries": [
+        {
+            "version": "15.8.3 RC",
+            "uniqueBuild": "19H386-RC",
+            "released": "2024-07-23",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/HT212789#1583",
+    "ipd": {
+        "iPad": "https://updates.cdn-apple.com/2024SummerFCS/documentation/062-41948/0EE19BD1-34F9-4474-BE87-C57560F6E955/iPadSecShortRTF.ipd"
+    },
     "deviceMap": [
         "iPad5,1",
         "iPad5,2",
@@ -16,6 +27,26 @@
         "iPad5,4": "11.61.01"
     },
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad5,1",
+                "iPad5,2",
+                "iPad5,3",
+                "iPad5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/062-25002/E11066E3-41E6-427D-B452-72D0A355C4E5/iPad_64bit_TouchID_15.8.3_19H386_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e9a31845ca31f6a24e7123e10b688c12ecfd7c86",
+                "sha2-256": "67b29546930604e9543a07e717c012a69f65448bd971fc0ff61d62beb3ea38f4"
+            },
+            "size": 5053324098
+        },
         {
             "type": "ota",
             "deviceMap": [
