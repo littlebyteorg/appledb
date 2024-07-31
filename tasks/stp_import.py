@@ -56,6 +56,8 @@ for cell in table:
     else:
         properties[property_name] = cell.text
 
+properties['Release'] = properties['Release'].split(" ")[0]
+
 if Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json").exists() and not args.force:
     print(f"{properties['Release']}.json already exists, exiting...")
     sys.exit(0)

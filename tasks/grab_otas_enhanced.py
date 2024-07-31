@@ -246,6 +246,8 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
         request['DelayRequested'] = True
         request['Supervised'] = True
 
+    print(json.dumps(request))
+
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
     try:
@@ -276,14 +278,21 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
                 continue
             link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
             if not ota_list.get(f"{os_str}-{updated_build}"):
-                ota_list[f"{os_str}-{updated_build}"] = {
+                base_details = {
                     'osStr': os_str,
                     'version': cleaned_os_version,
                     'released': parsed_response['PostingDate'],
                     'build': updated_build,
                     'buildTrain': asset.get('TrainName'),
+                    'restoreVersion': asset.get('RestoreVersion'),
                     'sources': {}
                 }
+                if asset.get('BridgeVersionInfo'):
+                    base_details['bridgeVersionInfo'] = {
+                        'BridgeProductBuildVersion': asset['BridgeVersionInfo']['BridgeProductBuildVersion'],
+                        'BridgeVersion': asset["BridgeVersionInfo"]["BridgeVersion"]
+                    }
+                ota_list[f"{os_str}-{updated_build}"] = base_details
             if not ota_list[f"{os_str}-{updated_build}"]['sources'].get(link):
                 ota_list[f"{os_str}-{updated_build}"]['sources'][link] = {
                     "prerequisites": set(),
