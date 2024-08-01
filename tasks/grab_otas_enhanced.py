@@ -246,8 +246,6 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
         request['DelayRequested'] = True
         request['Supervised'] = True
 
-    print(json.dumps(request))
-
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
     try:
