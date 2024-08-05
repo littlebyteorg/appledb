@@ -77,6 +77,7 @@ def import_ota(
 
                     if info_plist.get('SplatOnly'):
                         rsr = True
+                    bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
                     break
                 except remotezip.RemoteIOError as e:
                     if not build:
@@ -88,7 +89,6 @@ def import_ota(
                         if counter > 10:
                             raise e
                     info_plist = {}
-    bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
     bridge_version = None
 
     if bridge_version_info:
@@ -203,8 +203,8 @@ def import_ota(
 
         db_data["sources"].append(source)
 
-    if bridge_version:
-        db_data['bridgeOSBuild'] = info_plist['BridgeVersionInfo']['BridgeProductBuildVersion']
+    if bridge_version and bridge_version_info:
+        db_data['bridgeOSBuild'] = bridge_version_info['BridgeProductBuildVersion']
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     if use_network:
