@@ -46,7 +46,8 @@ def call_pallas(os, build):
                 'deviceMap': [f"{os} Simulator"],
                 'links': [
                     {
-                        'url': f"{asset['__BaseURL']}{asset['__RelativePath']}"
+                        'url': f"{asset['__BaseURL']}{asset['__RelativePath']}",
+                        'decryptionKey': asset["ArchiveDecryptionKey"]
                     }
                 ],
                 'size': asset['_DownloadSize']
