@@ -196,6 +196,8 @@ def import_ota(
     if not found_source:
         print("\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
+        if ota_key:
+            source["links"][0]["decryptionKey"] = ota_key
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
         if supported_boards:
