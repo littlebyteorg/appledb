@@ -12,19 +12,26 @@ while True:
         break
     build = input("Build: ")
     version = input("Version: ")
-    use_today = bool(input("Use today's date (today in Cupertino time)? [y/n]: ").strip().lower() == "y")
-    if use_today:
-        release_date = datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+    internal = bool(input("Is App Internal? [y/n]: ").strip().lower() == "y")
+    if internal:
+        release_date = None
     else:
-        release_date = input("Enter release date (YYYY-MM-DD): ").strip()
+        use_today = bool(input("Use today's date (today in Cupertino time)? [y/n]: ").strip().lower() == "y")
+        if use_today:
+            release_date = datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+        else:
+            release_date = input("Enter release date (YYYY-MM-DD): ").strip()
 
     if not Path(f"osFiles/Software/{app_name}").exists():
         device_file = Path(f"deviceFiles/Software/{app_name}.json")
         device_details = {
             'name': app_name,
-            'type': 'Software',
-            'released': release_date
+            'type': 'Software'
         }
+        if internal:
+            device_details['internal'] = True
+        elif release_date:
+            device_details['released'] = release_date
         json.dump(
             sort_device_file(None, device_details),
             device_file.open("w", encoding="utf-8", newline="\n"),
@@ -36,9 +43,12 @@ while True:
     app_details = {
         'osStr': app_name,
         'version': version,
-        'released': release_date,
         'deviceMap': [app_name]
     }
+    if internal:
+        app_details['internal'] = True
+    elif release_date:
+        app_details['released'] = release_date
     if build:
         app_details['build'] = build
     json.dump(
