@@ -38,11 +38,11 @@ if DEV_AUTH_VALUE:
     HEADERS = {'Authorization': DEV_AUTH_VALUE}
 
 if DEV_DATA_PROXY:
-    response = requests.get(DEV_DATA_PROXY, headers=HEADERS).json()
+    response = json.loads(requests.get(DEV_DATA_PROXY, headers=HEADERS).text)
 
     if response.get('token', {}).get('ADCDownloadAuth'):
-            with Path('apple_token.txt').open('w') as token_file:
-                token_file.write(response['token']['ADCDownloadAuth'])
+        with Path('apple_token.txt').open('w') as token_file:
+            token_file.write(response['token']['ADCDownloadAuth'])
 
     json.dump(response, Path("import_raw.json").open("w", encoding="utf-8", newline="\n"))
 
