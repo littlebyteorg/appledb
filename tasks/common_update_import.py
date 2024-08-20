@@ -24,7 +24,7 @@ OS_MAP = [
     ("AppleDisplay", "Studio Display Firmware"),
 ]
 
-FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1"]
+FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1", "Watch1,2-Store-Dock"]
 
 VARIANTS = {}
 BOARD_IDS = {}
@@ -40,6 +40,7 @@ for device in Path("deviceFiles").rglob("*.json"):
     if not identifiers:
         identifiers = [name]
     key = device_data.get("key", identifiers[0] if identifiers else name)
+    if key in FILTERED_OUT_DEVICES: continue
 
     for identifier in identifiers:
         VARIANTS.setdefault(identifier, set()).add(key)
