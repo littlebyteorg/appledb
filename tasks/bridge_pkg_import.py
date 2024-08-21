@@ -14,7 +14,7 @@ from link_info import source_has_link
 from update_links import update_links
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-v', '--version', default=14)
+parser.add_argument('-v', '--version', default=15)
 parser.add_argument('-b', '--beta', action='store_true')
 parser.add_argument('-p', '--public-beta', action='store_true')
 args = parser.parse_args()
