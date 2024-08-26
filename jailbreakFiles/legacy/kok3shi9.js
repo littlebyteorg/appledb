@@ -1,7 +1,7 @@
 module.exports = {
   name: "kok3shi9",
   alias: ["kok3shi", "kokeshi", "kok3shiJB", "kokeshiJB"],
-  priority: 3,
+  priority: 1,
   info: {
     website: {
       name: "kok3shidoll.web.app/kok3shi9.html",
@@ -48,6 +48,9 @@ module.exports = {
   compatibility: [
     {
       firmwares: [
+        "13C75", // 9.2
+        "13D15", // 9.2.1
+        "13D20", // 9.2.1
         "13E233", // 9.3
         "13E237", // 9.3
         "13E238", // 9.3.1
