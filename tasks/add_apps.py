@@ -10,6 +10,7 @@ while True:
     app_name = input("App Name: ")
     if not app_name:
         break
+    app_key = app_name.replace(":", "").replace(".", "").replace("⁺", "+")
     build = input("Build: ")
     version = input("Version: ")
     internal = bool(input("Is App Internal? [y/n]: ").strip().lower() == "y")
@@ -22,12 +23,14 @@ while True:
         else:
             release_date = input("Enter release date (YYYY-MM-DD): ").strip()
 
-    if not Path(f"osFiles/Software/{app_name}").exists():
-        device_file = Path(f"deviceFiles/Software/{app_name}.json")
+    if not Path(f"osFiles/Software/{app_key}").exists():
+        device_file = Path(f"deviceFiles/Software/{app_key}.json")
         device_details = {
             'name': app_name,
             'type': 'Software'
         }
+        if app_key != app_name:
+            device_details['key'] = app_key
         if internal:
             device_details['internal'] = True
         elif release_date:
@@ -38,12 +41,12 @@ while True:
             indent=4,
             ensure_ascii=False,
         )
-        os.makedirs(f'osFiles/Software/{app_name}', exist_ok=True)
-    app_file = Path(f"osFiles/Software/{app_name}/{version}.json")
+        os.makedirs(f'osFiles/Software/{app_key}', exist_ok=True)
+    app_file = Path(f"osFiles/Software/{app_key}/{version}.json")
     app_details = {
         'osStr': app_name,
         'version': version,
-        'deviceMap': [app_name]
+        'deviceMap': [app_key]
     }
     if internal:
         app_details['internal'] = True
