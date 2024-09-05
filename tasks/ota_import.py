@@ -192,6 +192,8 @@ def import_ota(
             print("\tURL already exists in sources")
             found_source = True
             source.setdefault("deviceMap", []).extend(supported_devices)
+            if supported_boards:
+                source.setdefault("boardMap", []).extend(supported_boards)
 
     if not found_source:
         print("\tAdding new source")
