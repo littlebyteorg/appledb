@@ -57,14 +57,14 @@ break_loop = False
 for row in rows:
     cells = row.getchildren()
     if cells[2].text == 'Preinstalled': continue
-    date = dateutil.parser.parse(cells[2].text).strftime("%Y-%m-%d")
+    date = dateutil.parser.parse(cells[2].text_content()).strftime("%Y-%m-%d")
     if args.date:
         if date < args.date: break
         if date > args.date: continue
-    impacted_versions = cells[0].text
-    if impacted_versions: continue
-    link_element = cells[0].getchildren()[0]
-    link = link_element.attrib.get("href").replace("/kb/", "/")
+    link_element = cells[0].getchildren()[0].getchildren()
+    if not link_element: continue
+    link_element = link_element[0]
+    link = f"https://support.apple.com/{link_element.attrib.get("href").split("/")[-1]}"
     impacted_versions = link_element.text
 
     for impacted_version in impacted_versions.split(' and '):
