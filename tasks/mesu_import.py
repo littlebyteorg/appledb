@@ -33,7 +33,10 @@ asset_types = {
         'A2564': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2564_EA',
         'A2618': 'com_apple_MobileAsset_UARP_A2618',
         'A2968': 'com_apple_MobileAsset_UARP_A2968',
-        'A3048': 'com_apple_MobileAsset_UARP_A3048'
+        'A3048': 'com_apple_MobileAsset_UARP_A3048',
+        'A3053': 'com_apple_MobileAsset_UARP_A3053',
+        'A3056': 'com_apple_MobileAsset_UARP_A3056',
+        'A3184': 'com_apple_MobileAsset_UARP_A3184'
     },
     'AirTags': {
         'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware'
@@ -122,6 +125,15 @@ device_map = {
     'A3048': [
         "Device1,8228-left",
         "Device1,8228-right"
+    ],
+    'A3053': [
+        'AirPods 4 ANC'
+    ],
+    'A3056': [
+        'AirPods 4'
+    ],
+    'A3184': [
+        "iProd8,6-USBC"
     ]
 }
 
