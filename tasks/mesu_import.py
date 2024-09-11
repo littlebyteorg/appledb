@@ -133,7 +133,7 @@ device_map = {
         'AirPods 4'
     ],
     'A3184': [
-        "iProd8,6-USBC"
+        "AirPodsMax1,2"
     ]
 }
 
