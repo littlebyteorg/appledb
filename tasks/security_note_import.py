@@ -96,6 +96,8 @@ for product in found_links.keys():
         build_paths = Path(f"osFiles/{product_subfolder}{build_subfolder}.x").rglob("*.json")
         for build_path in build_paths:
             build_data = json.load(build_path.open(encoding="utf-8"))
-            if build_data['version'] != version: continue
+            if build_data['version'].removesuffix('.0') != version: continue
+            # Explicit True check for preinstalled to prevent arrays from causing a skip
+            if build_data.get('internal', False) or build_data.get('preinstalled', False) == True: continue
             build_data['securityNotes'] = link
             json.dump(sort_os_file(None, build_data), build_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
