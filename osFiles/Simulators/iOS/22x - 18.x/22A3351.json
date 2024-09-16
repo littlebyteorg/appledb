@@ -1,9 +1,50 @@
 {
     "osStr": "iOS",
-    "version": "18.0 RC Simulator",
+    "version": "18.0 Simulator",
     "build": "22A3351",
     "uniqueBuild": "22A3351-sim",
-    "released": "2024-09-09",
+    "released": "2024-09-16",
+    "createDuplicateEntries": [
+        {
+            "version": "18.0 RC Simulator",
+            "uniqueBuild": "22A3351-RC-sim",
+            "released": "2024-09-09",
+            "rc": true,
+            "sources": [
+                {
+                    "type": "aar",
+                    "deviceMap": [
+                        "iOS Simulator"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://updates.cdn-apple.com/2024/mobileassets/096-69248/4B445B67-D466-4490-9378-92D545900B07/com_apple_MobileAsset_iOSSimulatorRuntime/52E3D836-79DC-4499-9338-BF2914342F15.aar",
+                            "decryptionKey": "+s/0nHezP9mnuT50CYOmfXRLyREc0Wkw8svm1HE3WwY=",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "sha1": "f26371e86932c821bfbc433718ed09373260a8eb",
+                        "sha2-256": "31afdbb53c00b5234dfc17cb1db12fdd3803488ffa3802f01a590970fcd31dac"
+                    },
+                    "size": 8388608000
+                },
+                {
+                    "type": "dmg",
+                    "deviceMap": [
+                        "iOS Simulator"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/iOS_18_Release_Candidate_Simulator_Runtime/iOS_18_Release_Candidate_Simulator_Runtime.dmg",
+                            "active": true
+                        }
+                    ],
+                    "size": 8640300544
+                }
+            ]
+        }
+    ],
     "deviceMap": [
         "iOS Simulator"
     ],
@@ -33,7 +74,7 @@
             ],
             "links": [
                 {
-                    "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/iOS_18_Release_Candidate_Simulator_Runtime/iOS_18_Release_Candidate_Simulator_Runtime.dmg",
+                    "url": "https://developer.apple.com/services-account/download?path=/Developer_Tools/iOS_18_Simulator_Runtime/iOS_18_Simulator_Runtime.dmg",
                     "active": true
                 }
             ],
