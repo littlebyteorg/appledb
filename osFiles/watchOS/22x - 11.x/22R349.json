@@ -1,11 +1,20 @@
 {
     "osStr": "watchOS",
-    "version": "11.0 RC",
+    "version": "11.0",
     "build": "22R349",
     "restoreVersion": "22.18.349.0.0,0",
     "buildTrain": "Moonstone",
-    "released": "2024-09-09",
-    "rc": true,
+    "released": "2024-09-16",
+    "createDuplicateEntries": [
+        {
+            "version": "11.0 RC",
+            "uniqueBuild": "22R349-RC",
+            "released": "2024-09-09",
+            "rc": true
+        }
+    ],
+    "releaseNotes": "https://support.apple.com/121163#11",
+    "securityNotes": "https://support.apple.com/121240",
     "appledbWebImage": {
         "id": "watchos11",
         "align": "left"
@@ -32,7 +41,11 @@
         "Watch7,2",
         "Watch7,3",
         "Watch7,4",
-        "Watch7,5"
+        "Watch7,5",
+        "Watch7,8",
+        "Watch7,9",
+        "Watch7,10",
+        "Watch7,11"
     ],
     "basebandVersions": {
         "Watch6,3": "7.00.00",
@@ -46,7 +59,9 @@
         "Watch6,18": "7.00.00",
         "Watch7,3": "7.00.00",
         "Watch7,4": "7.00.00",
-        "Watch7,5": "7.00.00"
+        "Watch7,5": "7.00.00",
+        "Watch7,10": "7.00.00",
+        "Watch7,11": "7.00.00"
     },
     "sources": [
         {
@@ -17325,6 +17340,78 @@
                 "sha2-256": "4832996d2f22f932713e5f5537c1063845f3d022fe9ef1d705086c3ff8e67e25"
             },
             "size": 310378496
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "Watch7,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SummerFCS/mobileassets/032-92825/1BE35529-DA86-46F3-A9F7-1AC50C4DD783/com_apple_MobileAsset_SoftwareUpdate/3f935aa184060012b47fdd196495c5b2f7e04455a64025382aeeff38a07d4128.aea",
+                    "decryptionKey": "mhyPeR8YGs/tikjNk1p5ZpZ1eNjbJz41rc9nzvDOBHQ=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "61a42ca0066452d1f2654e933dfc55038a0df985",
+                "sha2-256": "ec206333885c3e92e83e02335f2e2aa52fe06e88a42fb4f53679f5d2f571424a"
+            },
+            "size": 3154116608
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "Watch7,9"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SummerFCS/mobileassets/032-92813/B738E731-3806-4E4B-891F-48AB2548C609/com_apple_MobileAsset_SoftwareUpdate/1f589be4b61647f2e2937b6a91a29362a72aeb5b355d1f1ae535dc61aeff5ca8.aea",
+                    "decryptionKey": "WbaYhBqv7DOJKCbbF4nIrZt7ZyJ7i86ey1bsQLo2E9A=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4fbe24da8073dfa9f6b98c4403b06abbde916eab",
+                "sha2-256": "aab6599df79a6aa43d2d2c7e343e4342ba44afa7ad30e358b731cbfc90ed408a"
+            },
+            "size": 3154116608
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "Watch7,10"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SummerFCS/mobileassets/032-92822/400486CA-5B63-4991-AE48-12DFEDCD0DC1/com_apple_MobileAsset_SoftwareUpdate/e5d1ecb4c686ff12690d28fc7082008182a121647db4731deed4ac1cef645eae.aea",
+                    "decryptionKey": "wMWJzK1KMEYdC1tr85MD/z5sr/wDjyilehOSGas0q7c=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fb36253fdef0816b8d0cab01205df8925c4d10d5",
+                "sha2-256": "fa37bfbfa402f4efd02204e1bcfe53e7bff7a4f4ba00e5c41bc35f99d16c5718"
+            },
+            "size": 3221225472
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "Watch7,11"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2024SummerFCS/mobileassets/032-92812/A3B807FF-6A37-415A-93DF-F911A19D3783/com_apple_MobileAsset_SoftwareUpdate/ec16b25834ea4cebe0b704a5038efc8143dde24c6d0ee6c36ffa35eb73b4c205.aea",
+                    "decryptionKey": "Dkvlca+9jv4a1HrDyJYZHCqQ1z5WreFYxf1boLgiDSU=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "adebb996f656c5dbc47ba0c21ecc3f1b950fa5e7",
+                "sha2-256": "a38a2693f49d01a83f9053db519c69d83c5b10c78e21d0268414912c047b2813"
+            },
+            "size": 3221225472
         }
     ]
 }
