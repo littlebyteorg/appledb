@@ -127,10 +127,12 @@ device_map = {
         "Device1,8228-right"
     ],
     'A3053': [
-        'AirPods 4 ANC'
+        'AirPods3,2-left',
+        'AirPods3,2-right'
     ],
     'A3056': [
-        'AirPods 4'
+        'AirPods3,3-left',
+        'AirPods3,3-right'
     ],
     'A3184': [
         "AirPodsMax1,2"
@@ -147,6 +149,7 @@ for asset_type, assets in asset_types.items():
             asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset}/{asset}.xml'
         else:
             asset_url = f'https://mesu.apple.com/assets/{asset}/{asset}.xml'
+        # print(asset_url)
         asset_response = SESSION.get(f"{asset_url}?cachebust{random.randint(100, 1000)}")
         try:
             asset_response.raise_for_status()
