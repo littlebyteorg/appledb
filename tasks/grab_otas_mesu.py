@@ -20,7 +20,10 @@ for url in urls:
     assets = plistlib.loads(response.content)['Assets']
 
     for asset in assets:
-        ota_links.add(f"{asset['__BaseURL']}{asset['__RelativePath']}")
+        link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
+        if asset.get('ArchiveDecryptionKey'):
+            link = f"{link};{asset['ArchiveDecryptionKey']}"
+        ota_links.add(link)
 
 [i.unlink() for i in Path.cwd().glob("import-ota.*") if i.is_file()]
 Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
