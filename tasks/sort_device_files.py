@@ -22,7 +22,8 @@ key_order = [
     "released", # conditional array
     "discontinued",
     "info",
-    "windowsStoreId"
+    "windowsStoreId",
+    "extra" # additional field for internal notes to not be on the site
 ]
 
 info_key_order = {
