@@ -38,7 +38,8 @@ if DEV_AUTH_VALUE:
     HEADERS = {'Authorization': DEV_AUTH_VALUE}
 
 if DEV_DATA_PROXY:
-    response = json.loads(requests.get(DEV_DATA_PROXY, headers=HEADERS).text)
+    text_response = requests.get(DEV_DATA_PROXY, headers=HEADERS).text
+    response = json.loads(text_response)
 
     if response.get('token', {}).get('ADCDownloadAuth'):
         with Path('apple_token.txt').open('w') as token_file:

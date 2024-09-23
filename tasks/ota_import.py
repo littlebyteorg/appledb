@@ -40,6 +40,8 @@ def import_ota(
     # We need per-device details anyway, grab from the full OTA
     if skip_remote:
         skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
+        if ota_url.endswith('.aea'):
+            skip_remote = skip_remote or device_map[0] not in ['Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11']
 
     if not skip_remote and not ota_key and ota_url.endswith('.aea'):
         ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
@@ -51,6 +53,7 @@ def import_ota(
     if not skip_remote:
         if ota_key:
             if Path("aastuff").exists():
+                print('Downloading full OTA file')
                 handle_ota_file(ota_url, ota_key)
                 extracted_path = Path(str(local_path).split(".")[0])
                 info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
