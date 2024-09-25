@@ -107,6 +107,7 @@ def import_ota(
         # Grab baseband versions and buildtrain (both per device)
         for identity in build_manifest['BuildIdentities']:
             board_id = identity['Info']['DeviceClass']
+            if board_id.endswith('dev'): continue
             buildtrain = buildtrain or identity['Info']['BuildTrain']
             restore_version = restore_version or identity.get('Ap,OSLongVersion')
             if 'BasebandFirmware' in identity['Manifest']:
