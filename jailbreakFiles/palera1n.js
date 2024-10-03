@@ -19,17 +19,21 @@ module.exports = {
             link: '/updating-to-16-7-10/'
           },
           {
-            text: 'Updating to 17.6.1',
-            link: '/updating-to-17-6-1/'
+            text: 'Updating to 17.7',
+            link: '/updating-to-17-7/'
+          },
+          {
+            text: 'Updating to 18.0',
+            link: '/updating-to-18-0/'
           },
         ]
       }
     ],
-    latestVer: "2.0.1",
+    latestVer: "2.0.2",
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
     notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16.",
-    firmwares: ["15.0","18.0"]
+    firmwares: ["15.0","18.1b5"]
   },
   compatibility: [
     {
@@ -264,7 +268,9 @@ module.exports = {
         "22A5338b",
         "22A5346a",
         "22A5350a",
-        "22A3354"
+        "22A3354",
+        "22B5045g",
+        "22B5054e"
       ]
     },
     {
@@ -402,10 +408,20 @@ module.exports = {
         "21M5059b",
         "21M5068a",
         "21M71",
+        "21M80",
         "22J5290l",
         "22J5305e",
         "22J5315e",
-        "22J5324f"
+        "22J5324f",
+        "22J5335d",
+        "22J5346a",
+        "22J5353a",
+        "22J5356a",
+        "22J309",
+        "22J357",
+        "22J5543e",
+        "22J5552d",
+        "22J5557d"
       ]
     },
     {
