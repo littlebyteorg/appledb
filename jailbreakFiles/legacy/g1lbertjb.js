@@ -15,7 +15,7 @@ module.exports = {
     guide: [
       {
         name: "Installing g1lbertJB",
-        url: "/installing-g1lbertJB",
+        url: "/installing-g1lbertJB/",
         pkgman: "cydia",
       }
     ],
