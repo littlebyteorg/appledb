@@ -1,6 +1,6 @@
 module.exports = {
   name: "PPJailbreak",
-  priority: 7,
+  priority: 99,
   info: {
     wiki: {
       name: "theapplewiki.com/wiki/PPJailbreak",
