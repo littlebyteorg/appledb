@@ -38,11 +38,12 @@ if DEV_AUTH_VALUE:
     HEADERS = {'Authorization': DEV_AUTH_VALUE}
 
 if DEV_DATA_PROXY:
-    response = requests.get(DEV_DATA_PROXY, headers=HEADERS).json()
+    text_response = requests.get(DEV_DATA_PROXY, headers=HEADERS).text
+    response = json.loads(text_response)
 
     if response.get('token', {}).get('ADCDownloadAuth'):
-            with Path('apple_token.txt').open('w') as token_file:
-                token_file.write(response['token']['ADCDownloadAuth'])
+        with Path('apple_token.txt').open('w') as token_file:
+            token_file.write(response['token']['ADCDownloadAuth'])
 
     json.dump(response, Path("import_raw.json").open("w", encoding="utf-8", newline="\n"))
 
@@ -186,7 +187,7 @@ for download in downloads:
             if int(str(candidate_file).split("/")[3].split("x")[0]) < 22: continue
             candidate_data = json.load(candidate_file.open(encoding="utf-8"))
             if candidate_data.get('internal'): continue
-            if candidate_data["version"].replace(".0", "").replace("Simulator", "Simulator Runtime") == download_name.replace(f"{candidate_data['osStr']} ", ""):
+            if candidate_data["version"].replace(".0", "").replace("Simulator", "Simulator Runtime") == download_name.replace(f"{candidate_data['osStr']} ", "").replace("Release Candidate", "RC"):
                 sources = []
                 if candidate_data.get('sources'):
                     if [x for x in candidate_data['sources'] if x['type'] == 'dmg']: continue

@@ -8,7 +8,7 @@ import argparse
 import requests
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-m', '--min-version', default=12, type=int)
+parser.add_argument('-m', '--min-version', default=13, type=int)
 parser.add_argument('-b', '--beta', action='store_true')
 args = parser.parse_args()
 
@@ -17,7 +17,7 @@ VARIATION_CATALOG_MAPS = {
     'beta': 'public-beta'
 }
 
-max_version = int(sorted([str(x).split(" - ")[1] for x in list(Path('osFiles/macOS').glob("*"))])[-2].removesuffix('.x'))
+max_version = int(sorted([str(x).split(" - ")[1] for x in list(Path('osFiles/macOS').glob("*")) if not str(x).endswith('.DS_Store')])[-2].removesuffix('.x'))
 
 SESSION = requests.session()
 

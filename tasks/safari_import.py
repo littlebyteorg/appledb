@@ -14,7 +14,7 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-v', '--version', type=int, default=17)
+parser.add_argument('-v', '--version', type=int, default=18)
 parser.add_argument('-b', '--beta', action='store_true')
 args = parser.parse_args()
 

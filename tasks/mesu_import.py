@@ -33,7 +33,10 @@ asset_types = {
         'A2564': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2564_EA',
         'A2618': 'com_apple_MobileAsset_UARP_A2618',
         'A2968': 'com_apple_MobileAsset_UARP_A2968',
-        'A3048': 'com_apple_MobileAsset_UARP_A3048'
+        'A3048': 'com_apple_MobileAsset_UARP_A3048',
+        'A3053': 'com_apple_MobileAsset_UARP_A3053',
+        'A3056': 'com_apple_MobileAsset_UARP_A3056',
+        'A3184': 'com_apple_MobileAsset_UARP_A3184'
     },
     'AirTags': {
         'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware'
@@ -137,6 +140,17 @@ device_map = {
     'A3048': [
         "Device1,8228-left",
         "Device1,8228-right"
+    ],
+    'A3053': [
+        'AirPods3,2-left',
+        'AirPods3,2-right'
+    ],
+    'A3056': [
+        'AirPods3,3-left',
+        'AirPods3,3-right'
+    ],
+    'A3184': [
+        "AirPodsMax1,2"
     ]
 }
 
@@ -150,6 +164,7 @@ for asset_type, assets in asset_types.items():
             asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset}/{asset}.xml'
         else:
             asset_url = f'https://mesu.apple.com/assets/{asset}/{asset}.xml'
+        # print(asset_url)
         asset_response = SESSION.get(f"{asset_url}?cachebust{random.randint(100, 1000)}")
         try:
             asset_response.raise_for_status()

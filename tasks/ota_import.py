@@ -28,7 +28,8 @@ SESSION = requests.Session()
 
 def import_ota(
     ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, \
-        use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None
+        use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None, \
+        restore_version=None, bridge_version_info=None
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -39,6 +40,8 @@ def import_ota(
     # We need per-device details anyway, grab from the full OTA
     if skip_remote:
         skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
+        if ota_url.endswith('.aea'):
+            skip_remote = skip_remote or device_map[0] not in ['Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11']
 
     if not skip_remote and not ota_key and ota_url.endswith('.aea'):
         ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
@@ -50,6 +53,7 @@ def import_ota(
     if not skip_remote:
         if ota_key:
             if Path("aastuff").exists():
+                print('Downloading full OTA file')
                 handle_ota_file(ota_url, ota_key)
                 extracted_path = Path(str(local_path).split(".")[0])
                 info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
@@ -76,6 +80,7 @@ def import_ota(
 
                     if info_plist.get('SplatOnly'):
                         rsr = True
+                    bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
                     break
                 except remotezip.RemoteIOError as e:
                     if not build:
@@ -89,20 +94,20 @@ def import_ota(
                     info_plist = {}
     bridge_version = None
 
-    if info_plist and info_plist.get('BridgeVersionInfo'):
-        bridge_version = info_plist['BridgeVersionInfo']['BridgeVersion'].split('.')
-        bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[0]}"
+    if bridge_version_info:
+        bridge_version = bridge_version_info['BridgeVersion'].split('.')
+        bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[-4]}"
 
     if ota:
         ota.close()
 
     # Get the build, version, and supported devices
-    restore_version = None
     baseband_map = {}
     if build_manifest:
         # Grab baseband versions and buildtrain (both per device)
         for identity in build_manifest['BuildIdentities']:
             board_id = identity['Info']['DeviceClass']
+            if board_id.endswith('dev'): continue
             buildtrain = buildtrain or identity['Info']['BuildTrain']
             restore_version = restore_version or identity.get('Ap,OSLongVersion')
             if 'BasebandFirmware' in identity['Manifest']:
@@ -191,10 +196,14 @@ def import_ota(
             print("\tURL already exists in sources")
             found_source = True
             source.setdefault("deviceMap", []).extend(supported_devices)
+            if supported_boards:
+                source.setdefault("boardMap", []).extend(supported_boards)
 
     if not found_source:
         print("\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
+        if ota_key:
+            source["links"][0]["decryptionKey"] = ota_key
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
         if supported_boards:
@@ -202,8 +211,8 @@ def import_ota(
 
         db_data["sources"].append(source)
 
-    if bridge_version:
-        db_data['bridgeOSBuild'] = info_plist['BridgeVersionInfo']['BridgeProductBuildVersion']
+    if bridge_version and bridge_version_info:
+        db_data['bridgeOSBuild'] = bridge_version_info['BridgeProductBuildVersion']
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     if use_network:
@@ -221,7 +230,7 @@ def import_ota(
     if bridge_version and bridge_devices:
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
-        bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{info_plist['BridgeVersionInfo']['BridgeVersion']},0")
+        bridge_file = create_file("bridgeOS", bridge_version_info['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{bridge_version_info['BridgeVersion']},0")
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
         bridge_data["deviceMap"] = list(set(bridge_data.get("deviceMap", [])).union(bridge_devices))
         json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
@@ -255,7 +264,7 @@ if __name__ == "__main__":
                 print(f"Importing {version['osStr']} {version['version']}")
                 if "sources" not in version:
                     files_processed.add(
-                        create_file(version["osStr"], version["build"], FULL_SELF_DRIVING, version=version["version"], released=version["released"], buildtrain=version.get("buildTrain"))
+                        create_file(version["osStr"], version["build"], FULL_SELF_DRIVING, version=version["version"], released=version["released"], buildtrain=version.get("buildTrain"), restore_version=version.get("restoreVersion"))
                     )
                 else:
                     for source in version['sources']:
@@ -265,7 +274,8 @@ if __name__ == "__main__":
                                     import_ota(
                                         link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], \
                                         released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), \
-                                        device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain")
+                                        device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"), \
+                                        restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo')
                                     )
                                 )
                             except Exception:

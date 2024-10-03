@@ -28,7 +28,8 @@ added_builds = {
     '21A329': ['21A326'],
     '21A327': ['21A329'],
     '21A350': ['21A340', '21A351'],
-    '21B80': ['21B74']
+    '21B80': ['21B74'],
+    '21F90': ['21F101']
 }
 
 # Ensure known versions of watchOS don't get included in import-ota.txt.
@@ -57,7 +58,8 @@ asset_audiences = {
             15: 'ce48f60c-f590-4157-a96f-41179ca08278',
             16: 'a6050bca-50d8-4e45-adc2-f7333396a42c',
             17: '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
-            18: '41651cee-d0e2-442f-b786-85682ff6db86'
+            18: '41651cee-d0e2-442f-b786-85682ff6db86',
+            18.1: '9953ae7e-ec38-48d6-9d3c-5c1a15a536dc'
         },
         'public': {
             15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
@@ -73,7 +75,8 @@ asset_audiences = {
             12: '298e518d-b45e-4d36-94be-34a63d6777ec',
             13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
             14: '77c3bd36-d384-44e8-b550-05122d7da438',
-            15: '98df7800-8378-4469-93bf-5912da21a1e1'
+            15: '98df7800-8378-4469-93bf-5912da21a1e1',
+            15.1: '1831c3e6-1dc4-4f6b-a9dc-7ae6a41d9af4'
         },
         'public': {
             12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
@@ -275,14 +278,21 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
                 continue
             link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
             if not ota_list.get(f"{os_str}-{updated_build}"):
-                ota_list[f"{os_str}-{updated_build}"] = {
+                base_details = {
                     'osStr': os_str,
                     'version': cleaned_os_version,
                     'released': parsed_response['PostingDate'],
                     'build': updated_build,
                     'buildTrain': asset.get('TrainName'),
+                    'restoreVersion': asset.get('RestoreVersion'),
                     'sources': {}
                 }
+                if asset.get('BridgeVersionInfo'):
+                    base_details['bridgeVersionInfo'] = {
+                        'BridgeProductBuildVersion': asset['BridgeVersionInfo']['BridgeProductBuildVersion'],
+                        'BridgeVersion': asset["BridgeVersionInfo"]["BridgeVersion"]
+                    }
+                ota_list[f"{os_str}-{updated_build}"] = base_details
             if not ota_list[f"{os_str}-{updated_build}"]['sources'].get(link):
                 ota_list[f"{os_str}-{updated_build}"]['sources'][link] = {
                     "prerequisites": set(),

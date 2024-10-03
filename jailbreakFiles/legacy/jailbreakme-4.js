@@ -1,7 +1,7 @@
 module.exports = {
   name: "JailbreakMe 4.0",
   alias: ["JailbreakMe-4.0", "JailbreakMe_4.0", "JailbreakMe4.0", "JailbreakMe 4", "JailbreakMe-4", "JailbreakMe_4", "JailbreakMe4"],
-  priority: 1,
+  priority: 0,
   info: {
     website: {
       name: "jailbreak.me",

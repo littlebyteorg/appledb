@@ -1,7 +1,7 @@
 module.exports = {
   name: "kok3shi9",
   alias: ["kok3shi", "kokeshi", "kok3shiJB", "kokeshiJB"],
-  priority: 3,
+  priority: 1,
   info: {
     website: {
       name: "kok3shidoll.web.app/kok3shi9.html",
@@ -39,16 +39,20 @@ module.exports = {
       }
     ],
     type: "Semi-untethered",
-    firmwares: ["9.3","9.3.6"],
+    firmwares: ["9.2","9.3.6"],
     notes: "32-bit support only for 9.3.2 to 9.3.6",
-    latestVer: "4.0.3",
+    latestVer: "5.0.1",
     color: "#c279a0",
     icon: "/assets/images/jb-icons/kok3shi.png",
   },
   compatibility: [
     {
       firmwares: [
+        "13C75", // 9.2
+        "13D15", // 9.2.1
+        "13D20", // 9.2.1
         "13E233", // 9.3
+        "13E234", // 9.3
         "13E237", // 9.3
         "13E238", // 9.3.1
         "13F69", // 9.3.2
