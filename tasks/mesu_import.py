@@ -78,13 +78,24 @@ device_map = {
         "AirPods2,1-right"
     ],
     'A2048': [
-        "PowerbeatsPro1,1",
-        "PowerbeatsPro1,1-faze",
-        "PowerbeatsPro1,1-fragment",
-        "PowerbeatsPro1,1-melody",
-        "PowerbeatsPro1,1-nba",
-        "PowerbeatsPro1,1-paria",
-        "PowerbeatsPro1,1-samuel"
+        "PowerbeatsPro1,1-left",
+        "PowerbeatsPro1,1-right",
+        "PowerbeatsPro2,1-left",
+        "PowerbeatsPro2,1-right",
+        "PowerbeatsPro2,1-left",
+        "PowerbeatsPro2,1-right",
+        "PowerbeatsPro2,1-faze-left",
+        "PowerbeatsPro2,1-faze-right",
+        "PowerbeatsPro2,1-fragment-left",
+        "PowerbeatsPro2,1-fragment-right",
+        "PowerbeatsPro2,1-melody-left",
+        "PowerbeatsPro2,1-melody-right",
+        "PowerbeatsPro2,1-nba-left",
+        "PowerbeatsPro2,1-nba-right",
+        "PowerbeatsPro2,1-paria-left",
+        "PowerbeatsPro2,1-paria-right",
+        "PowerbeatsPro2,1-samuel-left",
+        "PowerbeatsPro2,1-samuel-right"
     ],
     'A2084': [
         "AirPods2,2-left",
@@ -110,10 +121,14 @@ device_map = {
         "Audio2,1-right"
     ],
     'A2577': [
-        "BeatsFitPro1,1",
-        "BeatsFitPro1,1-alo",
-        "BeatsFitPro1,1-fragment",
-        "BeatsFitPro1,1-kim"
+        "BeatsFitPro1,1-left",
+        "BeatsFitPro1,1-right",
+        "BeatsFitPro1,1-alo-left",
+        "BeatsFitPro1,1-alo-right",
+        "BeatsFitPro1,1-fragment-left",
+        "BeatsFitPro1,1-fragment-right",
+        "BeatsFitPro1,1-kim-left"
+        "BeatsFitPro1,1-kim-right"
     ],
     'A2618': [
         "AirPods3,1-left",
