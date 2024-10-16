@@ -325,7 +325,7 @@ for (os_str, builds) in parsed_args.items():
                 if audience in ['beta', 'public']:
                     if target_asset_audiences.get(audience):
                         kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
-                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if int(kern_version) - kern_offset <= k}.values())
+                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if (k == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= k}.values())
                 else:
                     audiences.append(target_asset_audiences.get(audience, audience))
         build_path = list(Path(f"osFiles/{os_str}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
