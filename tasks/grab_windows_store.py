@@ -7,9 +7,11 @@ https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wusp/b8a2ad1d-1
 
 """
 
+import argparse
 import atexit
 import base64
 import json
+import sys
 import tempfile
 import textwrap
 from pathlib import Path
@@ -570,27 +572,66 @@ def merge_files_with_links(files, links):
 
 
 if __name__ == "__main__":
-    print("Getting cookie...")
-    cookie = get_cookie()
+    if len(sys.argv) > 1:
+        argparser = argparse.ArgumentParser()
+        g1 = argparser.add_mutually_exclusive_group(required=True)
+        g2 = argparser.add_mutually_exclusive_group(required=True)
+        g1.add_argument("-n", "--app-name", help="The name of the app to check")
+        g2.add_argument("-v", "--app-version", help="The version of the app to check")
+        g1.add_argument("-u", "--update-id", help="The update ID of the app to check")
+        g2.add_argument("-r", "--revision-number", help="The revision number of the app to check")
 
-    apps = []
+        args = argparser.parse_args()
 
-    for app_product_id, app_name in APPS_TO_CHECK.items():
-        print(f"Checking {app_name}...")
+        if bool(args.app_name) != bool(args.app_version):
+            argparser.error("You must provide both the app name and version")
 
-        details = get_full_details(app_product_id)
+        if bool(args.update_id) != bool(args.revision_number):
+            argparser.error("You must provide both the update ID and revision number")
 
-        app_info = details | get_update_info(*cookie, category_id=details["wu_category_id"], release_type=RELEASE_TYPE)
+        update_id = revision_number = None
+        if args.app_name:
+            path = Path("osFiles/Software") / args.app_name / f"{args.app_version}.json"
+            if not path.exists():
+                raise FileNotFoundError(path)
+            data = json.loads(path.read_text())
 
-        for update_id, revision_number in app_info["update_ids"]:
-            print(f"Getting links for {update_id} rev {revision_number}...")
-            links = get_fe3_links(update_id, revision_number, RELEASE_TYPE)
-            merge_files_with_links(app_info["files"], links)
+            for source in data.get("sources", []):
+                if "windowsUpdateDetails" in source:
+                    update_id = source["windowsUpdateDetails"]["updateId"]
+                    revision_number = source["windowsUpdateDetails"]["revisionId"]
+                    break
+            else:
+                raise RuntimeError("Could not find Windows Update details in the file")
+        else:
+            update_id = args.update_id
+            revision_number = args.revision_number
 
-        # print(f"Final info for {app_product_id} is")
-        # pprint(app_info)
-        apps.append(app_info)
+        for url, digest in get_fe3_links(update_id, revision_number, RELEASE_TYPE):
+            print(f"{base64.b64decode(digest).hex()} -> {url}")
 
-    json.dump(apps, Path("import_wu.json").open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    else:
+        print("Getting cookie...")
+        cookie = get_cookie()
 
-    print("Done!")
+        apps = []
+
+        for app_product_id, app_name in APPS_TO_CHECK.items():
+            print(f"Checking {app_name}...")
+
+            details = get_full_details(app_product_id)
+
+            app_info = details | get_update_info(*cookie, category_id=details["wu_category_id"], release_type=RELEASE_TYPE)
+
+            for update_id, revision_number in app_info["update_ids"]:
+                print(f"Getting links for {update_id} rev {revision_number}...")
+                links = get_fe3_links(update_id, revision_number, RELEASE_TYPE)
+                merge_files_with_links(app_info["files"], links)
+
+            # print(f"Final info for {app_product_id} is")
+            # pprint(app_info)
+            apps.append(app_info)
+
+        json.dump(apps, Path("import_wu.json").open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+
+        print("Done!")
