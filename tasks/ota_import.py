@@ -4,6 +4,7 @@ import argparse
 import json
 import plistlib
 import re
+import shutil
 import zipfile
 from pathlib import Path
 
@@ -36,25 +37,38 @@ def import_ota(
     ota = None
     info_plist = None
     build_manifest = None
+    only_needs_baseband = False
+    aea_support_filename = 'aastuff'
 
     # We need per-device details anyway, grab from the full OTA
     if skip_remote:
         skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
         if ota_url.endswith('.aea'):
             skip_remote = skip_remote or device_map[0] not in ['Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11']
+            if not skip_remote:
+                skip_remote = True
+                only_needs_baseband = True
 
     if not skip_remote and not ota_key and ota_url.endswith('.aea'):
         ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
 
         if not ota_key:
             raise RuntimeError(f"Couldn't determine OS details for {ota_url}")
+    
+    if Path('aastuff_standalone').exists():
+        aea_support_filename = 'aastuff_standalone'
 
     counter = 0
-    if not skip_remote:
+    delete_output_dir = False
+    if only_needs_baseband:
+        delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
+        extracted_path = Path(str(local_path).split(".")[0])
+        build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
+    elif not skip_remote:
         if ota_key:
-            if Path("aastuff").exists():
+            if Path(aea_support_filename).exists():
                 print('Downloading full OTA file')
-                handle_ota_file(ota_url, ota_key)
+                delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
                 extracted_path = Path(str(local_path).split(".")[0])
                 info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
                 build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
@@ -234,6 +248,9 @@ def import_ota(
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
         bridge_data["deviceMap"] = list(set(bridge_data.get("deviceMap", [])).union(bridge_devices))
         json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    
+    if delete_output_dir:
+        shutil.rmtree(f"otas/{Path(ota_url).stem}")
     return db_file
 
 if __name__ == "__main__":

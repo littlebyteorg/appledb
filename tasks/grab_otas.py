@@ -96,6 +96,7 @@ asset_audiences = {
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
     },
     'macOS': {
+        'alternate': '1831c3e6-1dc4-4f6b-a9dc-7ae6a41d9af4',
         'beta': {
             12: '298e518d-b45e-4d36-94be-34a63d6777ec',
             13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
