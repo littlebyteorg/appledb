@@ -17,6 +17,7 @@ OS_MAP = [
     ("iPad", "iPadOS"),
     ("AudioAccessory", "audioOS"),
     ("AppleTV", "tvOS"),
+    ("ComputeModule", "cloudOS"),
     ("Mac", "macOS"),
     ("Watch", "watchOS"),
     ("iBridge", "bridgeOS"),
