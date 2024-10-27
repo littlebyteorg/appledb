@@ -82,7 +82,7 @@ async def download(run, url, hashes, output_path, chunk_size=104857600):
     return file_hashes
 
 def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifest=False):
-    file_path = f'otas/{download_link.split('/')[-1]}'
+    file_path = f'otas/{download_link.split("/")[-1]}'
     output_path = file_path.split('.')[0]
     remove_input_file = False
     remove_output_file = False
