@@ -47,7 +47,7 @@ args = parser.parse_args()
 if bool(args.version) != bool(args.product):
     parser.error("product and version must either both be provided or both be absent")
 
-result = requests.get("https://support.apple.com/HT201222")
+result = requests.get("https://support.apple.com/en-us/100100?cachebust111")
 result.raise_for_status()
 element = lxml.html.fromstring(result.text)
 
