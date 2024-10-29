@@ -108,7 +108,7 @@ def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifes
 
         if not Path(output_path).exists():
             remove_output_file = True
-            subprocess.run([f'./{aea_support_file}', file_path, output_path, key], check=True, stderr=subprocess.DEVNULL)
+            subprocess.run([f'./{aea_support_file}', '-i', file_path, '-o', output_path, '-k', key], check=True, stderr=subprocess.DEVNULL)
             if remove_input_file:
                 Path(file_path).unlink()
     return remove_output_file
