@@ -25,7 +25,7 @@ OS_MAP = [
     ("AppleDisplay", "Studio Display Firmware"),
 ]
 
-FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1", "Watch1,2-Store-Dock"]
+FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1", "Watch1,2-Store-Dock", "iBridge2,11", "iBridge2,13"]
 
 VARIANTS = {}
 BOARD_IDS = {}
@@ -79,7 +79,7 @@ def get_board_mappings(devices):
         if not device_mappings:
             continue
         if device_mappings[0].startswith("iBridge"):
-            bridge_identifiers.extend(device_mappings)
+            bridge_identifiers.extend(augment_with_keys(device_mappings))
         else:
             identifiers.extend(augment_with_keys(device_mappings))
     return identifiers, bridge_identifiers
