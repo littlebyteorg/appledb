@@ -40,21 +40,19 @@ def call_pallas(os, build):
     asset = parsed_response.get('Assets', [])
     if asset:
         asset = asset[0]
-        return [
-            {
-                'type': asset['__RelativePath'].split('.')[-1],
-                'deviceMap': [f"{os} Simulator"],
-                'links': [
-                    {
-                        'url': f"{asset['__BaseURL']}{asset['__RelativePath']}",
-                        'decryptionKey': asset["ArchiveDecryptionKey"]
-                    }
-                ],
-                'size': asset['_DownloadSize']
-            }
-        ]
+        return {
+            'type': asset['__RelativePath'].split('.')[-1],
+            'deviceMap': [f"{os} Simulator"],
+            'links': [
+                {
+                    'url': f"{asset['__BaseURL']}{asset['__RelativePath']}",
+                    'decryptionKey': asset["ArchiveDecryptionKey"]
+                }
+            ],
+            'size': asset['_DownloadSize']
+        }
     else:
-        return []
+        return {}
     
 
 sdk_platform_mapping = {
@@ -161,37 +159,41 @@ for simulator in simulator_response['downloadables']:
 
     file_path = Path(f"osFiles/Simulators/{os_str}/{build_version}x - {major_version}.x/{build}.json")
 
-    if file_path.exists(): continue
-    file_path.parent.mkdir(parents=True, exist_ok=True)
+    file_type = 'aar' if simulator.get('downloadMethod') == 'mobileAsset' else 'dmg'
 
-    new_item = {
-        'osStr': os_str,
-        'version': simulator['name'].replace(f"{os_str} ", "").replace("Simulator Runtime", "Simulator").replace("Release Candidate", "RC"),
-        'build': build,
-        'uniqueBuild': f"{build}-sim",
-        'released': datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"),
-        'deviceMap': [f"{os_str} Simulator"]
-    }
+    if file_path.exists():
+        new_item = json.load(file_path.open())
+        if bool([x for x in new_item.get('sources', []) if x['type'] == file_type]): continue
+    else:
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        new_item = {
+            'osStr': os_str,
+            'version': simulator['name'].replace(f"{os_str} ", "").replace("Simulator Runtime", "Simulator").replace("Release Candidate", "RC"),
+            'build': build,
+            'uniqueBuild': f"{build}-sim",
+            'released': datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"),
+            'deviceMap': [f"{os_str} Simulator"]
+        }
     if simulator.get('source'):
-        new_item['sources'] = [
-            {
-                'type': 'dmg',
-                'deviceMap': [f"{os_str} Simulator"],
-                'links': [
-                    {
-                        'url': simulator['source'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path=')
-                    }
-                ],
-                'size': simulator['fileSize']
-            }
-        ]
+        new_item.setdefault('sources', []).append({
+            'type': 'dmg',
+            'deviceMap': [f"{os_str} Simulator"],
+            'links': [
+                {
+                    'url': simulator['source'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path=')
+                }
+            ],
+            'size': simulator['fileSize']
+        })
     elif simulator.get('downloadMethod') == 'mobileAsset':
         pallas_response = call_pallas(os_str, build)
         if pallas_response:
-            new_item['sources'] = pallas_response
+            new_item.setdefault('sources', []).append(pallas_response)
     if 'beta' in new_item['version']:
         new_item['beta'] = True
     elif 'rc' in new_item['version']:
         new_item['rc'] = True
-    json.dump(sort_os_file(None, new_item), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-    update_links([file_path])
+    if new_item.get('sources'):
+        json.dump(sort_os_file(None, new_item), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        update_links([file_path])
