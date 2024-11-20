@@ -44,10 +44,12 @@ def import_ota(
     if skip_remote:
         skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
         if ota_url.endswith('.aea'):
-            skip_remote = skip_remote or len(set(device_map).intersection(['Watch6,3', 'Watch6,4', 'Watch6,8', 'Watch6,9', 'Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11'])) > 0
+            skip_remote = skip_remote or len(set(device_map).intersection(['Watch6,3', 'Watch6,4', 'Watch6,8', 'Watch6,9', 'Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11'])) == 0
             if not skip_remote:
                 skip_remote = True
                 only_needs_baseband = True
+        else:
+            skip_remote = True
 
     if not skip_remote and not ota_key and ota_url.endswith('.aea'):
         ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
