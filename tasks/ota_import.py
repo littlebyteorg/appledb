@@ -259,6 +259,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--bulk-mode', action='store_true')
     parser.add_argument('-s', '--full-self-driving', action='store_true')
+    parser.add_argument('-i', '--suffix', default="")
     args = parser.parse_args()
 
     if args.full_self_driving:
@@ -271,13 +272,14 @@ if __name__ == "__main__":
     if bulk_mode:
         failed_links = []
         files_processed = set()
+        file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
         if not FULL_SELF_DRIVING:
             print("Warning: you still need to be present, as this script will ask for input!")
 
-        if Path("import-ota.json").exists():
-            print("Reading versions from import-ota.json")
-            versions = json.load(Path("import-ota.json").open(encoding="utf-8"))
+        if Path(f"{file_name_base}.json").exists():
+            print(f"Reading versions from {file_name_base}.json")
+            versions = json.load(Path(f"{file_name_base}.json").open(encoding="utf-8"))
 
             for version in versions:
                 print(f"Importing {version['osStr']} {version['version']}")
@@ -300,10 +302,10 @@ if __name__ == "__main__":
                             except Exception:
                                 failed_links.append(link["url"])
 
-        elif Path("import-ota.txt").exists():
-            print("Reading URLs from import-ota.txt")
+        elif Path(f"{file_name_base}.txt").exists():
+            print(f"Reading URLs from {file_name_base}.txt")
 
-            urls = [i.strip() for i in Path("import-ota.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
+            urls = [i.strip() for i in Path(f"{file_name_base}.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
                 key = None
