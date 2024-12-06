@@ -48,8 +48,6 @@ def import_ota(
             if not skip_remote:
                 skip_remote = True
                 only_needs_baseband = True
-        else:
-            skip_remote = True
 
     if not skip_remote and not ota_key and ota_url.endswith('.aea'):
         ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
