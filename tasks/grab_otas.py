@@ -167,7 +167,10 @@ parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
 parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
+parser.add_argument('-s', '--suffix', default="")
 args = parser.parse_args()
+
+file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 parsed_args = dict(zip(args.os, args.build))
 
@@ -402,5 +405,5 @@ for (os_str, builds) in parsed_args.items():
                         new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, os_str, audience, args.rsr, args.time_delay)
                         ota_links.update(new_links)
 
-[i.unlink() for i in Path.cwd().glob("import-ota.*") if i.is_file()]
-Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
+[i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+Path(f"{file_name_base}.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
