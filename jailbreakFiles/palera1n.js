@@ -18,13 +18,13 @@ module.exports = {
             text: 'Updating to 16.7.10',
             link: '/updating-to-16-7-10/'
           },
+//          {
+//            text: 'Updating to 17.7.1',
+//            link: '/updating-to-17-7-1/'
+//          },
           {
-            text: 'Updating to 17.7.1',
-            link: '/updating-to-17-7-1/'
-          },
-          {
-            text: 'Updating to 18.1',
-            link: '/updating-to-18-1/'
+            text: 'Updating to 18.2',
+            link: '/updating-to-18-2/'
           },
         ]
       }
@@ -32,8 +32,8 @@ module.exports = {
     latestVer: "2.0.2",
     type: "Semi-tethered",
     icon: "/assets/images/jb-icons/palera1n.png",
-    notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16.",
-    firmwares: ["15.0","18.2 RC"]
+    notes: "Compatible with A8(X) - A11 devices. A11 devices cannot use a passcode, Touch ID, Face ID, or Apple Pay in a jailbroken state, and must have never had a password after restoring on iOS 16. Latest release does not currently work with iPadOS 17.7.3",
+    firmwares: ["15.0","18.2"]
   },
   compatibility: [
     {
@@ -283,6 +283,8 @@ module.exports = {
         "22C5131e",
         "22C5142a",
         "22C150",
+        "22C151",
+        "22C152"
       ]
     },
     {
