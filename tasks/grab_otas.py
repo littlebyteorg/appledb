@@ -65,6 +65,7 @@ default_mac_devices = [
     'Mac15,3',          # Covers Ventura 13.5/13.6.2 and Sonoma 14.1 forked builds
     'Mac15,12',         # Covers Sonoma 14.3 forked builds
     'Mac16,1',          # Covers Sequoia 15.0/15.1 forked builds
+    'Mac16,12',         # Covers Sequoia 15.2 and more(?) forked builds
 ]
 
 asset_audiences_overrides = {
