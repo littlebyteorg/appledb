@@ -108,6 +108,12 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
     if os_str == "audioOS" and packaging.version.parse(recommended_version.split(" ")[0]) >= packaging.version.parse("13.4"):
         os_str_override = 'HomePod Software'
 
+    if os_str == "watchOS" and version_dir == "12x - 8.x":
+        version_dir = "12x - 1.x"
+
+    if os_str == "tvOS" and version_dir == "12x - 8.x":
+        version_dir = "12x - 7.x"
+
     file_path = f"osFiles/{os_str}/{version_dir}/{build}.json"
     if rsr:
         file_path = file_path.replace("osFiles", "osFiles/Rapid Security Responses")
