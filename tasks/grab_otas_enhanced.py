@@ -6,6 +6,7 @@ import json
 import uuid
 import requests
 import urllib3
+from sort_os_files import build_number_sort, device_sort
 
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -30,7 +31,9 @@ added_builds = {
     '21A350': ['21A340', '21A351'],
     '21B80': ['21B74'],
     '21F90': ['21F101'],
-    '21G80': ['21G79']
+    '21G80': ['21G79'],
+    '22A3354': ['22A3351'],
+    '22B83': ['22B82'],
 }
 
 # Ensure known versions of watchOS don't get included in import-ota.txt.
@@ -131,6 +134,71 @@ asset_audiences = {
     }
 }
 
+mac_device_map_checks = {
+    '13': set([
+        "iMac18,1",
+        "iMac18,2",
+        "iMac18,3",
+        "MacBook10,1",
+        "MacBookPro14,1",
+        "MacBookPro14,2",
+        "MacBookPro14,3"
+    ]),
+    '14': set([
+        "MacBookAir8,1",
+        "MacBookAir8,2"
+    ])
+}
+
+mac_device_map_extensions = {
+    '13': set([
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacBookAir8,1",
+        "MacBookAir8,2",
+        "MacBookAir9,1",
+        "MacBookPro15,1-2018",
+        "MacBookPro15,1-2019",
+        "MacBookPro15,2-2018",
+        "MacBookPro15,2-2019",
+        "MacBookPro15,3-2018",
+        "MacBookPro15,3-2019",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "Macmini8,1",
+        "MacPro7,1",
+        "MacPro7,1-Rack"
+    ]),
+    '14': set([
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacBookAir9,1",
+        "MacBookPro15,1-2018",
+        "MacBookPro15,1-2019",
+        "MacBookPro15,2-2018",
+        "MacBookPro15,2-2019",
+        "MacBookPro15,3-2018",
+        "MacBookPro15,3-2019",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "Macmini8,1",
+        "MacPro7,1",
+        "MacPro7,1-Rack"
+    ])
+}
+
 choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
 
 parser = argparse.ArgumentParser()
@@ -141,7 +209,10 @@ parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
 parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
+parser.add_argument('-s', '--suffix', default="")
 args = parser.parse_args()
+
+file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 parsed_args = dict(zip(args.os, args.build))
 
@@ -407,7 +478,15 @@ for (os_str, builds) in parsed_args.items():
                     newly_discovered_versions = {}
 
 for key in ota_list.keys():
-    ota_list[key]['sources'] = list(ota_list[key]['sources'].values())
+    sources = []
+    for source in ota_list[key]['sources'].values():
+        if ota_list[key]['osStr'] == 'macOS' and source['deviceMap'] == mac_device_map_checks.get(ota_list[key]['version'].split('.')[0], set()):
+            source['deviceMap'].update(mac_device_map_extensions[ota_list[key]['version'].split('.')[0]])
+        source['deviceMap'] = sorted(list(source['deviceMap']), key=device_sort)
+        source['prerequisites'] = sorted(list(source['prerequisites']), key=build_number_sort)
+        source['boardMap'] = sorted(list(source['boardMap']))
+        sources.append(source)
+    ota_list[key]['sources'] = sources
 
-[i.unlink() for i in Path.cwd().glob("import-ota.*") if i.is_file()]
-json.dump(list(ota_list.values()), Path("import-ota.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)
+[i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)

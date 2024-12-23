@@ -38,6 +38,15 @@ default_settings = {
 }
 
 release_note_settings = {
+    'audioOS': {
+        'anchor_prefix': 'link'
+    },
+    'iOS': {
+        'anchor_prefix': 'a'
+    },
+    'iPadOS': {
+        'anchor_prefix': 'a'
+    },
     'macOS': {
         'anchor_prefix': 'macos',
         'include_trailing_zero': True
@@ -46,7 +55,11 @@ release_note_settings = {
         'use_anchors': False
     },
     'visionOS': {
+        'anchor_prefix': 'a',
         'include_trailing_zero': True
+    },
+    'watchOS': {
+        'anchor_prefix': 'a'
     },
     'tvOS': {
         'use_anchors': False
@@ -69,7 +82,7 @@ def get_release_notes_link(os_str, version):
     anchor = ''
     if link_settings['use_anchors']:
         anchor = f"#{link_settings['anchor_prefix']}{version.replace('.', '')}"
-        if not link_settings['include_trailing_zero']:
+        if not link_settings['include_trailing_zero'] and version.endswith('.0'):
             anchor = anchor.removesuffix("0")
 
     return f"{base_url}{article_id}{anchor}"

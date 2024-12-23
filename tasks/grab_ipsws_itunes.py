@@ -45,9 +45,17 @@ for url in urls:
                 for variant in [i for i in build_info.values() if isinstance(i, dict)]:
                     if not variant["FirmwareURL"]:
                         continue
-                    if variant["FirmwareURL"].startswith("protected"):
+                    # Ignore super-old IPSWs
+                    if not variant["FirmwareURL"].startswith("https"):
                         continue
-                    if not variant["FirmwareURL"].startswith("http"):
+                    # Ignore iOS 12.5.7
+                    if '_16H81_' in variant["FirmwareURL"]:
+                        continue
+                    # Ignore iOS 15.8.3
+                    if '_19H386_' in variant["FirmwareURL"]:
+                        continue
+                    # Ignore iOS 16.7.10
+                    if '_20H350_' in variant["FirmwareURL"]:
                         continue
                     ipsws_set.add(unquote(variant["FirmwareURL"]))
 
