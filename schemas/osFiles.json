@@ -7,7 +7,7 @@
     "additionalProperties": false,
     "properties": {
         "osStr":         {"type": "string"},
-        "version":       {"type": "string"},
+        "version":       {"type": "string", "not": { "pattern": "FIXME" }},
         "iosVersion":    {"type": "string"},
         "safariVersion": {
             "anyOf": [
