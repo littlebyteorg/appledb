@@ -16,8 +16,8 @@ module.exports = {
     ],
     type: "Untethered",
     firmwares: ["8.0", "9.0.2"],
-    notes: "Only supports 32-bit devices. 9.0.x support limited to A6(X) devices. Untether support limited to 32-bit devices on 8.3 to 8.4.1 and A6(X) devices on 8.0 to 8.2",
-    latestVer: "1.0",
+    notes: "Only supports 32-bit devices.",
+    latestVer: "1.1",
     color: "#ba8eb6",
   },
   compatibility: [
@@ -36,6 +36,9 @@ module.exports = {
         "12F70", // 8.3, iPhone only
         "12H143", // 8.4
         "12H321", // 8.4.1
+        "13A344", // 9.0
+        "13A404", // 9.0.1
+        "13A452", // 9.0.2
       ],
       devices: [
         "iPhone4,1", // iPhone 4S, A5
@@ -50,22 +53,6 @@ module.exports = {
         "iPad3,2", // iPad (3rd generation) Wi-Fi + Cellular (VZ), A5X
         "iPad3,3", // iPad (3rd generation) Wi-Fi + Cellular, A5X
         "iPod5,1", // iPod touch (5th generation), A5
-        "iPhone5,1", // iPhone 5 (GSM), A6
-        "iPhone5,2", // iPhone 5 (CDMA), A6
-        "iPhone5,3", // iPhone 5c (GSM), A6
-        "iPhone5,4", // iPhone 5c (CDMA), A6
-        "iPad3,4", // iPad (4th generation) Wi-Fi, A6X
-        "iPad3,5", // iPad (4th generation) Wi-Fi + Cellular, A6X
-        "iPad3,6", // iPad (4th generation) Wi-Fi + Cellular (MM), A6X
-      ]
-    },
-    {
-      firmwares: [
-        "13A344", // 9.0
-        "13A404", // 9.0.1
-        "13A452", // 9.0.2
-      ],
-      devices: [
         "iPhone5,1", // iPhone 5 (GSM), A6
         "iPhone5,2", // iPhone 5 (CDMA), A6
         "iPhone5,3", // iPhone 5c (GSM), A6
