@@ -12,9 +12,11 @@ key_order = [
     "alias",
     "key",
     "soc",
+    "cpid", # conditional array
     "arch",
     "type",
     "board", # conditional array
+    "bdid",
     "iBridge",
     "model",
     "internal",
@@ -46,6 +48,7 @@ list_fields = [
     "released",
     "model",
     "soc",
+    "cpid",
     "board",
     "alias"
 ]
