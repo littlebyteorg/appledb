@@ -61,8 +61,8 @@ class ProcessFileThread(threading.Thread):
                     continue
 
                 if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth):
-                    # We don't have credentials for this host, so we'll assume it's active and skip it
-                    link["active"] = True
+                    # We don't have credentials for this host, don't touch active status
+                    # link["active"] = True
                     continue
 
                 if not self.use_network:

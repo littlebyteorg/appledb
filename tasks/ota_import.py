@@ -30,7 +30,7 @@ SESSION = requests.Session()
 def import_ota(
     ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, \
         use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None, \
-        restore_version=None, bridge_version_info=None
+        restore_version=None, bridge_version_info=None, size=None
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -41,7 +41,8 @@ def import_ota(
     aea_support_filename = 'aastuff'
 
     # We need per-device details anyway, grab from the full OTA
-    if skip_remote:
+    # If size is explicitly passed in, assume source is no longer active
+    if skip_remote and not size:
         skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
         if ota_url.endswith('.aea'):
             skip_remote = skip_remote or len(set(device_map).intersection(['Watch6,3', 'Watch6,4', 'Watch6,8', 'Watch6,9', 'Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11'])) == 0
@@ -222,6 +223,8 @@ def import_ota(
             source["prerequisiteBuild"] = prerequisite_builds
         if supported_boards:
             source["boardMap"] = supported_boards
+        if size:
+            source["size"] = size
 
         db_data["sources"].append(source)
 
@@ -294,7 +297,7 @@ if __name__ == "__main__":
                                         link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], \
                                         released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), \
                                         device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"), \
-                                        restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo')
+                                        restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo'), size=source.get('size')
                                     )
                                 )
                             except Exception:
