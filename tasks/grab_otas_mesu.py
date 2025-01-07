@@ -23,6 +23,7 @@ for url in urls:
         link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
         if asset.get('ArchiveDecryptionKey'):
             link = f"{link};{asset['ArchiveDecryptionKey']}"
+        if 'OTARescueAsset' in link: continue
         ota_links.add(link)
 
 [i.unlink() for i in Path.cwd().glob("import-ota.*") if i.is_file()]
