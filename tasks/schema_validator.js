@@ -7,29 +7,31 @@ process.chdir(__dirname);
 const ajv = new Ajv({ allErrors: true});
 addFormats(ajv);
 
-const schema = require("../schemas/osFiles.json");
-const validator = ajv.compile(schema);
-
-const filesToValidate = [
-    "../osFiles/**/*.json"
-]
-
 var total = 0, failed = 0;
 
-for (const pattern of filesToValidate) {
-    const files = glob.sync(pattern);
-    for (const file of files) {
-        total++;
-    
-        const data = require(file);
-        const valid = validator(data);
-        if (!valid) {
-            failed++;
-            console.error(`${file} failed validation`);
-            console.error(validator.errors);
+function validate(schemaPath, filesToValidate) {
+    const schema = require(schemaPath);
+    const validator = ajv.compile(schema);
+
+    for (const pattern of filesToValidate) {
+        const files = glob.sync(pattern);
+        for (const file of files) {
+            total++;
+
+            const data = require(file);
+            const valid = validator(data);
+            if (!valid) {
+                failed++;
+                console.error(`${file} failed validation`);
+                console.error(validator.errors);
+            }
         }
     }
+
 }
+
+validate("../schemas/osFiles.json", ["../osFiles/**/*.json"]);
+validate("../schemas/deviceFiles.json", ["../deviceFiles/**/*.json"]);
 
 if (failed) {
     console.error(`${failed}/${total} files failed`);
