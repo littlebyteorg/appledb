@@ -21,6 +21,12 @@
                 {"type": "array", "items": {"type": "string"}}
             ]
         },
+        "cpid": {
+            "anyOf": [
+                {"$ref": "#/definitions/hex"},
+                {"type": "array", "items": {"$ref": "#/definitions/hex"}}
+            ]
+        },
         "arch":           {"type": "string"},
         "type":           {"type": "string"},
         "board": {
@@ -29,6 +35,7 @@
                 {"type": "array", "items": {"type": "string"}}
             ]
         },
+        "bdid":           {"$ref": "#/definitions/hex"},
         "iBridge":        {"type": "string"},
         "model": {
             "anyOf": [
@@ -46,9 +53,14 @@
         },
         "discontinued":   {"type": "string", "format": "date"},
         "info":           {"type": "array", "items": {"type": "object"}},
-        "windowsStoreId": {"type": "string"}
+        "windowsStoreId": {"type": "string"},
+        "extra":          {"type": "object"}
     },
     "definitions": {
+        "hex": {
+            "type": "string",
+            "pattern": "^0x[0-9a-fA-F]+$"
+        },
         "partial-date": {
             "anyOf": [
                 {"type": "string", "format": "date-time"},
