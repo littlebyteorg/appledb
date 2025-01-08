@@ -1,6 +1,6 @@
 module.exports = {
   name: "TaiG",
-  priority: 10,
+  priority: 999,
   info: {
     wiki: {
       name: "theapplewiki.com/wiki/TaiG",

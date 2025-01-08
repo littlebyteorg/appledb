@@ -6,6 +6,7 @@ import json
 import uuid
 import requests
 import urllib3
+from sort_os_files import build_number_sort, device_sort
 
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -28,7 +29,11 @@ added_builds = {
     '21A329': ['21A326'],
     '21A327': ['21A329'],
     '21A350': ['21A340', '21A351'],
-    '21B80': ['21B74']
+    '21B80': ['21B74'],
+    '21F90': ['21F101'],
+    '21G80': ['21G79'],
+    '22A3354': ['22A3351'],
+    '22B83': ['22B82'],
 }
 
 # Ensure known versions of watchOS don't get included in import-ota.txt.
@@ -63,11 +68,13 @@ asset_audiences = {
             15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
             16: '7466521f-cc37-4267-8f46-78033fa700c2',
             17: '48407998-4446-46b0-9f57-f76b935dc223',
+            18: 'c46ed8dd-1382-40bd-a153-2b6ad61292fd'
         },
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
     },
     'macOS': {
+        'alternate': '1831c3e6-1dc4-4f6b-a9dc-7ae6a41d9af4',
         'beta': {
             12: '298e518d-b45e-4d36-94be-34a63d6777ec',
             13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
@@ -78,6 +85,7 @@ asset_audiences = {
             12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
             13: '800034a9-994c-4ecc-af4d-7b3b2ee0a5a6',
             14: '707ddc61-9c3d-4040-a3d0-2a6521b1c2df',
+            15: 'c8ba02c8-cc63-4388-99ee-a81d5a593283'
         },
         'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
     },
@@ -87,7 +95,8 @@ asset_audiences = {
             18: '98847ed4-1c37-445c-9e7b-5b95d29281f2'
         },
         'public': {
-            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e'
+            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e',
+            18: '879ce2f8-b7d1-420f-9935-58d647d6606a'
         },
         'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
     },
@@ -97,7 +106,8 @@ asset_audiences = {
             11: '23d7265b-1000-47cf-8d0a-07144942db9e'
         },
         'public': {
-            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b'
+            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b',
+            11: '79b47e0c-cbce-4757-b84b-12a95db52f22'
         },
         'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
     },
@@ -107,7 +117,8 @@ asset_audiences = {
             18: 'bedbd9c7-738a-4060-958b-79da54a1f7ad'
         },
         'public': {
-            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108'
+            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108',
+            18: '1af931ed-e171-4dd0-b944-172cdebcd89d'
         },
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
@@ -123,6 +134,71 @@ asset_audiences = {
     }
 }
 
+mac_device_map_checks = {
+    '13': set([
+        "iMac18,1",
+        "iMac18,2",
+        "iMac18,3",
+        "MacBook10,1",
+        "MacBookPro14,1",
+        "MacBookPro14,2",
+        "MacBookPro14,3"
+    ]),
+    '14': set([
+        "MacBookAir8,1",
+        "MacBookAir8,2"
+    ])
+}
+
+mac_device_map_extensions = {
+    '13': set([
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacBookAir8,1",
+        "MacBookAir8,2",
+        "MacBookAir9,1",
+        "MacBookPro15,1-2018",
+        "MacBookPro15,1-2019",
+        "MacBookPro15,2-2018",
+        "MacBookPro15,2-2019",
+        "MacBookPro15,3-2018",
+        "MacBookPro15,3-2019",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "Macmini8,1",
+        "MacPro7,1",
+        "MacPro7,1-Rack"
+    ]),
+    '14': set([
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacBookAir9,1",
+        "MacBookPro15,1-2018",
+        "MacBookPro15,1-2019",
+        "MacBookPro15,2-2018",
+        "MacBookPro15,2-2019",
+        "MacBookPro15,3-2018",
+        "MacBookPro15,3-2019",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "Macmini8,1",
+        "MacPro7,1",
+        "MacPro7,1-Rack"
+    ])
+}
+
 choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
 
 parser = argparse.ArgumentParser()
@@ -133,7 +209,10 @@ parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
 parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
+parser.add_argument('-s', '--suffix', default="")
 args = parser.parse_args()
+
+file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 parsed_args = dict(zip(args.os, args.build))
 
@@ -270,14 +349,21 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
                 continue
             link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
             if not ota_list.get(f"{os_str}-{updated_build}"):
-                ota_list[f"{os_str}-{updated_build}"] = {
+                base_details = {
                     'osStr': os_str,
                     'version': cleaned_os_version,
                     'released': parsed_response['PostingDate'],
                     'build': updated_build,
                     'buildTrain': asset.get('TrainName'),
+                    'restoreVersion': asset.get('RestoreVersion'),
                     'sources': {}
                 }
+                if asset.get('BridgeVersionInfo'):
+                    base_details['bridgeVersionInfo'] = {
+                        'BridgeProductBuildVersion': asset['BridgeVersionInfo']['BridgeProductBuildVersion'],
+                        'BridgeVersion': asset["BridgeVersionInfo"]["BridgeVersion"]
+                    }
+                ota_list[f"{os_str}-{updated_build}"] = base_details
             if not ota_list[f"{os_str}-{updated_build}"]['sources'].get(link):
                 ota_list[f"{os_str}-{updated_build}"]['sources'][link] = {
                     "prerequisites": set(),
@@ -334,7 +420,7 @@ for (os_str, builds) in parsed_args.items():
                 if audience in ['beta', 'public']:
                     if target_asset_audiences.get(audience):
                         kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
-                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if int(kern_version) - kern_offset <= k}.values())
+                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if (k == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= k}.values())
                 else:
                     audiences.append(target_asset_audiences.get(audience, audience))
         build_path = list(Path(f"osFiles/{os_str}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
@@ -392,7 +478,15 @@ for (os_str, builds) in parsed_args.items():
                     newly_discovered_versions = {}
 
 for key in ota_list.keys():
-    ota_list[key]['sources'] = list(ota_list[key]['sources'].values())
+    sources = []
+    for source in ota_list[key]['sources'].values():
+        if ota_list[key]['osStr'] == 'macOS' and source['deviceMap'] == mac_device_map_checks.get(ota_list[key]['version'].split('.')[0], set()):
+            source['deviceMap'].update(mac_device_map_extensions[ota_list[key]['version'].split('.')[0]])
+        source['deviceMap'] = sorted(list(source['deviceMap']), key=device_sort)
+        source['prerequisites'] = sorted(list(source['prerequisites']), key=build_number_sort)
+        source['boardMap'] = sorted(list(source['boardMap']))
+        sources.append(source)
+    ota_list[key]['sources'] = sources
 
-[i.unlink() for i in Path.cwd().glob("import-ota.*") if i.is_file()]
-json.dump(list(ota_list.values()), Path("import-ota.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)
+[i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)

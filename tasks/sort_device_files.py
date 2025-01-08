@@ -12,9 +12,11 @@ key_order = [
     "alias",
     "key",
     "soc",
+    "cpid", # conditional array
     "arch",
     "type",
     "board", # conditional array
+    "bdid",
     "iBridge",
     "model",
     "internal",
@@ -22,7 +24,8 @@ key_order = [
     "released", # conditional array
     "discontinued",
     "info",
-    "windowsStoreId"
+    "windowsStoreId",
+    "extra" # additional field for internal notes to not be on the site
 ]
 
 info_key_order = {
@@ -45,6 +48,7 @@ list_fields = [
     "released",
     "model",
     "soc",
+    "cpid",
     "board",
     "alias"
 ]

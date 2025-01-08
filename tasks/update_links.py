@@ -31,12 +31,13 @@ success_map = {}
 
 
 class ProcessFileThread(threading.Thread):
-    def __init__(self, file_queue: queue.Queue, print_queue: queue.Queue, use_network=True, name=None):
+    def __init__(self, file_queue: queue.Queue, print_queue: queue.Queue, use_network=True, name=None, active_only=False):
         self.file_queue: queue.Queue = file_queue
         self.print_queue: queue.Queue = print_queue
         self.use_network = use_network
         self.session = requests.Session()
         self.has_apple_auth = apple_auth_token != ''
+        self.active_only = active_only
         adapter = requests.adapters.HTTPAdapter(max_retries=10, pool_connections=16)
         self.session.mount("https://", adapter)
         self.session.mount("http://", adapter)
@@ -60,13 +61,17 @@ class ProcessFileThread(threading.Thread):
                     continue
 
                 if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth):
-                    # We don't have credentials for this host, so we'll assume it's active and skip it
-                    link["active"] = True
+                    # We don't have credentials for this host, don't touch active status
+                    # link["active"] = True
                     continue
 
                 if not self.use_network:
                     # Network disabled, don't touch active status
                     # link["active"] = True
+                    continue
+
+                if self.active_only and link.get("active") == False:
+                    success_map[url] = link["active"]
                     continue
 
                 successful_hit = False
@@ -208,7 +213,7 @@ class PrintThread(threading.Thread):
         self.stop_event.set()
 
 
-def update_links(files: Collection[Path], use_network=True):
+def update_links(files: Collection[Path], use_network=True, active_only=False):
     file_queue = queue.Queue()
     for i in files:
         file_queue.put(i)
@@ -220,7 +225,7 @@ def update_links(files: Collection[Path], use_network=True):
     printer_thread = PrintThread(print_queue, len(files), "Printer Thread")
     printer_thread.start()
 
-    threads = [ProcessFileThread(file_queue, print_queue, use_network, name=f"Thread {i}") for i in range(min(len(files), THREAD_COUNT))]
+    threads = [ProcessFileThread(file_queue, print_queue, use_network, name=f"Thread {i}", active_only=active_only) for i in range(min(len(files), THREAD_COUNT))]
     for thread in threads:
         thread.start()
 
@@ -240,6 +245,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--folders', nargs='+')
     parser.add_argument('-d', '--domains', nargs='+')
+    parser.add_argument('-a', '--active_only', action='store_true')
     parser.add_argument('-t', '--thread-count', type=int, default=16)
     args = parser.parse_args()
     THREAD_COUNT = args.thread_count
@@ -253,4 +259,4 @@ if __name__ == "__main__":
     if args.domains:
         DOMAIN_CHECK_LIST = args.domains
     
-    update_links(files)
+    update_links(files, active_only=args.active_only)

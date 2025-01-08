@@ -81,26 +81,37 @@ async def download(run, url, hashes, output_path, chunk_size=104857600):
 
     return file_hashes
 
-def handle_ota_file(download_link, key):
-    file_path = f'otas/{download_link.split('/')[-1]}'
+def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifest=False):
+    file_path = f'otas/{download_link.split("/")[-1]}'
     output_path = file_path.split('.')[0]
-    if not Path(file_path).exists():
-        executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
-        loop = asyncio.new_event_loop()
-        run = functools.partial(loop.run_in_executor, executor)
+    remove_input_file = False
+    remove_output_file = False
+    if only_manifest:
+        remove_output_file = True
+        Path(f"{output_path}/AssetData/boot/").mkdir(parents=True, exist_ok=True)
+        subprocess.run([f'./{aea_support_file}', '-i', download_link, '-o', output_path, "-n", "-e", "-f", "AssetData/boot/BuildManifest.plist"], check=True, stderr=subprocess.DEVNULL)
+    else:
+        if not Path(file_path).exists():
+            remove_input_file = True
+            executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
+            loop = asyncio.new_event_loop()
+            run = functools.partial(loop.run_in_executor, executor)
 
-        asyncio.set_event_loop(loop)
+            asyncio.set_event_loop(loop)
 
-        try:
-            loop.run_until_complete(
-                download(run, download_link, [], file_path)
-            )
-        finally:
-            loop.close()
+            try:
+                loop.run_until_complete(
+                    download(run, download_link, [], file_path)
+                )
+            finally:
+                loop.close()
 
-    if not Path(output_path).exists():
-        subprocess.run(['./aastuff', file_path, output_path, key], check=True, stderr=subprocess.DEVNULL)
-        Path(file_path).unlink()
+        if not Path(output_path).exists():
+            remove_output_file = True
+            subprocess.run([f'./{aea_support_file}', '-i', file_path, '-o', output_path, '-k', key], check=True, stderr=subprocess.DEVNULL)
+            if remove_input_file:
+                Path(file_path).unlink()
+    return remove_output_file
 
 def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None):
     if hashes is None:

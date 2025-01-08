@@ -55,17 +55,17 @@ latest_watch_compatibility_versions = {
 }
 
 default_mac_devices = [
-    'MacBookAir7,1',    # Intel, only supports up to Monterey
     'iMac18,1',         # Intel, only supports up to Ventura
     'MacBookAir8,1',    # Intel, only supports up to Sonoma
     'MacPro7,1',        # Intel, supports Sequoia
     'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
-    'Mac13,1',          # Covers Mac Studio forked build
-    'Mac14,2',          # Covers WWDC 2022 forked builds
+    'Mac14,2',          # Covers Monterey 12.4 (WWDC 2022) forked builds
     'Mac14,6',          # Covers Ventura 13.0 forked builds
-    'Mac14,15',         # Covers WWDC 2023 forked builds
-    'Mac15,3',          # Covers M3 forked builds (Ventura and Sonoma)
-    'Mac15,12',         # Covers forked 14.3
+    'Mac14,15',         # Covers Ventura 13.3/13.4 (WWDC 2023) forked builds
+    'Mac15,3',          # Covers Ventura 13.5/13.6.2 and Sonoma 14.1 forked builds
+    'Mac15,12',         # Covers Sonoma 14.3 forked builds
+    'Mac16,1',          # Covers Sequoia 15.0/15.1 forked builds
+    'Mac16,12',         # Covers Sequoia 15.2 and more(?) forked builds
 ]
 
 asset_audiences_overrides = {
@@ -92,11 +92,13 @@ asset_audiences = {
             15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
             16: '7466521f-cc37-4267-8f46-78033fa700c2',
             17: '48407998-4446-46b0-9f57-f76b935dc223',
+            18: 'c46ed8dd-1382-40bd-a153-2b6ad61292fd'
         },
         'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
         'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
     },
     'macOS': {
+        'alternate': '1831c3e6-1dc4-4f6b-a9dc-7ae6a41d9af4',
         'beta': {
             12: '298e518d-b45e-4d36-94be-34a63d6777ec',
             13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
@@ -107,6 +109,7 @@ asset_audiences = {
             12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
             13: '800034a9-994c-4ecc-af4d-7b3b2ee0a5a6',
             14: '707ddc61-9c3d-4040-a3d0-2a6521b1c2df',
+            15: 'c8ba02c8-cc63-4388-99ee-a81d5a593283'
         },
         'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
     },
@@ -116,7 +119,8 @@ asset_audiences = {
             18: '98847ed4-1c37-445c-9e7b-5b95d29281f2'
         },
         'public': {
-            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e'
+            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e',
+            18: '879ce2f8-b7d1-420f-9935-58d647d6606a'
         },
         'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
     },
@@ -126,7 +130,8 @@ asset_audiences = {
             11: '23d7265b-1000-47cf-8d0a-07144942db9e'
         },
         'public': {
-            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b'
+            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b',
+            11: '79b47e0c-cbce-4757-b84b-12a95db52f22'
         },
         'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
     },
@@ -136,7 +141,8 @@ asset_audiences = {
             18: 'bedbd9c7-738a-4060-958b-79da54a1f7ad'
         },
         'public': {
-            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108'
+            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108',
+            18: '1af931ed-e171-4dd0-b944-172cdebcd89d'
         },
         'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
     },
@@ -162,7 +168,10 @@ parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
 parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
+parser.add_argument('-s', '--suffix', default="")
 args = parser.parse_args()
+
+file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 parsed_args = dict(zip(args.os, args.build))
 
@@ -322,7 +331,7 @@ for (os_str, builds) in parsed_args.items():
                 if audience in ['beta', 'public']:
                     if target_asset_audiences.get(audience):
                         kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
-                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if int(kern_version) - kern_offset <= k}.values())
+                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if (k == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= k}.values())
                 else:
                     audiences.append(target_asset_audiences.get(audience, audience))
         build_path = list(Path(f"osFiles/{os_str}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
@@ -397,5 +406,5 @@ for (os_str, builds) in parsed_args.items():
                         new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, os_str, audience, args.rsr, args.time_delay)
                         ota_links.update(new_links)
 
-[i.unlink() for i in Path.cwd().glob("import-ota.*") if i.is_file()]
-Path("import-ota.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
+[i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+Path(f"{file_name_base}.txt").write_text("\n".join(sorted(ota_links)), "utf-8")

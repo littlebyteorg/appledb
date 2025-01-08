@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import sys
 import json
 import plistlib
@@ -14,6 +15,10 @@ import requests
 
 from sort_os_files import sort_os_file
 from update_links import update_links
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--force', action='store_true')
+args = parser.parse_args()
 
 result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}")
 result.raise_for_status()
@@ -51,7 +56,9 @@ for cell in table:
     else:
         properties[property_name] = cell.text
 
-if Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json").exists():
+properties['Release'] = properties['Release'].split(" ")[0]
+
+if Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json").exists() and not args.force:
     print(f"{properties['Release']}.json already exists, exiting...")
     sys.exit(0)
 
@@ -59,31 +66,37 @@ properties['Posted'] = dateutil.parser.parse(properties["Posted"]).date()
 
 mac_versions = list(mac_versions)
 
+safari_version = None
+
+link_version_map = {}
+
 for mac_version in mac_versions:
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?appledbcachebust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
-    catalog_safari = None
+    catalog_safari = []
     for product in plist.values():
         if "SafariTechPreview" not in product.get("ServerMetadataURL", ""):
             continue
 
+        metadata_url = product['ServerMetadataURL']
+
         dist_response = requests.get(product['Distributions']['English']).text
+        os_version = dist_response.split("system.compareVersions(myTargetSystemVersion.ProductVersion, '")[1].split(".")[0]
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
         if dist_version != properties['Release']:
             print(f'Version mismatch - macOS {mac_version}')
             continue
-        catalog_safari = product
-        break
+        catalog_safari.append(product)
+        sources['pkg'][os_version] = product['Packages'][0]['URL']
 
     if not catalog_safari:
         print(f'Missing Safari Tech Preview for macOS {mac_version}')
         continue
 
-    safari_metadata = plistlib.loads(requests.get(catalog_safari['ServerMetadataURL']).content)
+    safari_metadata = plistlib.loads(requests.get(metadata_url).content)
     safari_version = safari_metadata['CFBundleShortVersionString']
-    sources['pkg'][mac_version] = catalog_safari['Packages'][0]['URL']
 
 source = {
     "osStr": "Safari Technology Preview",
@@ -110,7 +123,7 @@ for package_type, type_sources in sources.items():
             "links": [{"url": link}]
         })
 stp_file = Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json")
-if not stp_file.exists():
+if args.force or not stp_file.exists():
     json.dump(sort_os_file(None, source), stp_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
     update_links([stp_file])

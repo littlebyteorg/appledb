@@ -13,6 +13,7 @@ rewrite_map_v2 = {
         "https://developer.apple.com/devcenter/download.action?path=/",
     ],
     "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
+    "https://seeddownload.cdn-apple.com/": [],
     "http://a1408.g.akamai.net/": [],
     "https://download.info.apple.com/": ["http://download.info.apple.com/"],
     "https://support.apple.com/downloads/": ["http://support.apple.com/downloads/"],

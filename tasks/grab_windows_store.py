@@ -7,24 +7,35 @@ https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wusp/b8a2ad1d-1
 
 """
 
+import argparse
 import atexit
 import base64
+import datetime
+import itertools
 import json
+import sys
 import tempfile
 import textwrap
 from pathlib import Path
 from typing import Optional
 from xml.etree import ElementTree as ET
 
+import dateutil.parser
 import requests
 
 APPS_TO_CHECK = {
-    "9NP83LWLPZ9K": "Apple Devices Preview",
-    "9PFHDD62MXS1": "Apple Music Preview",
-    "9NM4T8B9JQZ1": "Apple TV Preview",
-    # "9PKTQ5699M62": "iCloud",  # Currently unsupported because there's multiple architectures
-    # "9PB2MZ1ZMB1S": "iTunes",  # Has iTunes, iPodVoiceOver, and MobileDeviceSupport
+    "9NP83LWLPZ9K": "Apple Devices",
+    "9PFHDD62MXS1": "Apple Music",
+    "9NM4T8B9JQZ1": "Apple TV",
+    "9PKTQ5699M62": "iCloud",  # Currently unsupported because there's multiple architectures + some kind of Xbox version
+    # (TODO: Filter by platform.target as well, see ApplicabilityBlob)
+    # https://github.com/dongle-the-gadget/StoreListings/blob/88ad3eac390978a85f5c23f98fa79bef41bc4552/StoreListings.Library/FE3Handler.cs#L418
+    "9PB2MZ1ZMB1S": "iTunes",  # Has iTunes, iPodVoiceOver, and MobileDeviceSupport
+    "9PP5M2PJ95GX": "Apple Music | Xbox",
+    "9MW0ZWQFH0M2": "Apple TV | Xbox",
 }
+IDENTITY_FILTER = {"9PB2MZ1ZMB1S": "AppleInc.iTunes"}
+
 release_types = {"Retail": "retail", "Release Preview": "RP", "Insider Slow": "WIS", "Insider Fast": "WIF"}
 RELEASE_TYPE = release_types["Retail"]
 
@@ -383,7 +394,22 @@ def parse_wrapped_xml(xml: ET.Element) -> ET.Element:
     return unwrapped
 
 
-def get_update_info(cookie: str, cookie_expiration: str, category_id: str, release_type: str, user: Optional[str] = None):
+def unwrap_all(xml: ET.Element):
+    wrapped_xmls = xml.findall(".//ms:Xml", namespaces=NAMESPACES)
+    for wrapped_xml in wrapped_xmls:
+        if wrapped_xml is None:
+            raise ValueError("Expected wrapped XML")
+
+        unwrapped = ET.fromstring(
+            f'<root:ParsedXmlWrapper xmlns:root="https://example.com/root_xmlns_for_wrapper_element">{wrapped_xml.text}</root:ParsedXmlWrapper>'
+        )
+        wrapped_xml.clear()
+        wrapped_xml.append(unwrapped)
+
+
+def get_update_info(
+    cookie: str, cookie_expiration: str, app_product_id: str, category_id: str, release_type: str, user: Optional[str] = None
+):
     response = windows_update_session.post(
         WINDOWS_UPDATE_URL,
         data=GET_INFO_BODY.format(
@@ -403,6 +429,8 @@ def get_update_info(cookie: str, cookie_expiration: str, category_id: str, relea
         raise
 
     root = ET.fromstring(response.content)
+    # unwrap_all(root)
+    # Path("tmp/update_info_unwrapped.xml").write_bytes(ET.tostring(root))
     updates_result = root.find("./s:Body/ms:SyncUpdatesResponse/ms:SyncUpdatesResult", namespaces=NAMESPACES)
     assert updates_result is not None
 
@@ -431,6 +459,8 @@ def get_update_info(cookie: str, cookie_expiration: str, category_id: str, relea
         if extended_properties.attrib["IsAppxFramework"] == "true":
             continue
 
+        # print(ET.tostring(update_info).decode())
+
         for file in files:
             # if "InstallerSpecificIdentifier" in file.attrib and "FileName" in file.attrib:
             if "FileName" in file.attrib:
@@ -442,6 +472,8 @@ def get_update_info(cookie: str, cookie_expiration: str, category_id: str, relea
                     "digest": base64.b64decode(file.attrib["Digest"]).hex(),
                     "digest_type": file.attrib["DigestAlgorithm"],
                     "size": int(file.attrib["Size"]),
+                    "modified": dateutil.parser.parse(file.attrib["Modified"]),
+                    "main": False,
                 }
 
                 additional_digest = file.find("./AdditionalDigest")
@@ -454,44 +486,68 @@ def get_update_info(cookie: str, cookie_expiration: str, category_id: str, relea
 
                 file_details.setdefault(update_id, []).append(this_file_details)
 
+        handler_specific_data = update_info.find("./HandlerSpecificData")
+        if handler_specific_data is not None and handler_specific_data.attrib["type"] == "appx:AppxInstaller":
+            appx_package_install_data = handler_specific_data.find("./AppxPackageInstallData")
+            if appx_package_install_data is None:
+                raise RuntimeError("Expected AppxPackageInstallData in HandlerSpecificData")
+
+            for file in file_details[update_id]:
+                if file["filename"] == appx_package_install_data.attrib["PackageFileName"]:
+                    if appx_package_install_data.attrib["MainPackage"] == "true":
+                        file["main"] = True
+
+        # unwrap_all(extended_update)
+        # Path(f"tmp/{update_id}_extended_update.xml").write_bytes(ET.tostring(extended_update))
+
     new_updates = updates_result.find("./ms:NewUpdates", namespaces=NAMESPACES)
     assert new_updates is not None
-
-    identities = {}
 
     for new_update in new_updates:
         identity_id = new_update.find("./ms:ID", namespaces=NAMESPACES)
         assert identity_id is not None
         identity_id = identity_id.text
+        if identity_id not in file_details:
+            continue
         update_info = parse_wrapped_xml(new_update)
 
         # continue
 
-        if update_info.find("./Properties/SecuredFragment") is None:
-            # This update ID is not available for download
-            continue
+        # if update_info.find("./Properties/SecuredFragment") is None:
+        #     # This update ID is not available for download
+        #     continue
+        assert update_info.find("./Properties/SecuredFragment") is not None
+
+        # if identity_id in file_details:
+        #     print(ET.tostring(update_info).decode())
 
         update_identity = update_info.find("./UpdateIdentity")
         assert update_identity is not None
         update_id = update_identity.attrib["UpdateID"]
         revision_number = update_identity.attrib["RevisionNumber"]
-        identities.setdefault(identity_id, []).append((update_id, revision_number))
+
+        applicability_blob_element = update_info.find("./ApplicabilityRules/Metadata/AppxPackageMetadata/AppxMetadata/ApplicabilityBlob")
+        assert applicability_blob_element is not None
+        assert applicability_blob_element.text is not None
+        applicability_blob = json.loads(applicability_blob_element.text)
+        platforms = [i["platform.target"] for i in applicability_blob["content.targetPlatforms"]]
+
+        for file in file_details[identity_id]:
+            file.update({"update_id": update_id, "revision_number": revision_number, "platforms": platforms})
+
+        # unwrap_all(new_update)
+        # Path(f"tmp/{identity_id}_new_update.xml").write_bytes(ET.tostring(new_update))
 
     # print(ET.tostring(root, encoding="unicode"))
 
-    info = []
+    info = {
+        "files": list(itertools.chain.from_iterable(file_details.values())),
+    }
 
-    for update_id in file_details:
-        details = {
-            "files": file_details.get(update_id, []),
-            "update_ids": identities.get(update_id, []),
-        }
+    # if app_product_id in IDENTITY_FILTER:
+    #     info["files"] = [i for i in info["files"] if i["identity"] == IDENTITY_FILTER[app_product_id]]
 
-        assert details["files"] and details["update_ids"]
-        info.append(details)
-
-    assert len(info) == 1
-    return info[0]
+    return info
 
 
 GET_FE3_LINKS_BODY = """
@@ -570,27 +626,73 @@ def merge_files_with_links(files, links):
 
 
 if __name__ == "__main__":
-    print("Getting cookie...")
-    cookie = get_cookie()
+    if len(sys.argv) > 1:
+        argparser = argparse.ArgumentParser()
+        g1 = argparser.add_mutually_exclusive_group(required=True)
+        g2 = argparser.add_mutually_exclusive_group(required=True)
+        g1.add_argument("-n", "--app-name", help="The name of the app to check")
+        g2.add_argument("-v", "--app-version", help="The version of the app to check")
+        g1.add_argument("-u", "--update-id", help="The update ID of the app to check")
+        g2.add_argument("-r", "--revision-number", help="The revision number of the app to check")
 
-    apps = []
+        args = argparser.parse_args()
 
-    for app_product_id, app_name in APPS_TO_CHECK.items():
-        print(f"Checking {app_name}...")
+        if bool(args.app_name) != bool(args.app_version):
+            argparser.error("You must provide both the app name and version")
 
-        details = get_full_details(app_product_id)
+        if bool(args.update_id) != bool(args.revision_number):
+            argparser.error("You must provide both the update ID and revision number")
 
-        app_info = details | get_update_info(*cookie, category_id=details["wu_category_id"], release_type=RELEASE_TYPE)
+        update_id = revision_number = None
+        if args.app_name:
+            path = Path("osFiles/Software") / args.app_name / f"{args.app_version}.json"
+            if not path.exists():
+                raise FileNotFoundError(path)
+            data = json.loads(path.read_text())
 
-        for update_id, revision_number in app_info["update_ids"]:
-            print(f"Getting links for {update_id} rev {revision_number}...")
-            links = get_fe3_links(update_id, revision_number, RELEASE_TYPE)
-            merge_files_with_links(app_info["files"], links)
+            for source in data.get("sources", []):
+                if "windowsUpdateDetails" in source:
+                    update_id = source["windowsUpdateDetails"]["updateId"]
+                    revision_number = source["windowsUpdateDetails"]["revisionId"]
+                    break
+            else:
+                raise RuntimeError("Could not find Windows Update details in the file")
+        else:
+            update_id = args.update_id
+            revision_number = args.revision_number
 
-        # print(f"Final info for {app_product_id} is")
-        # pprint(app_info)
-        apps.append(app_info)
+        for url, digest in get_fe3_links(update_id, revision_number, RELEASE_TYPE):
+            print(f"{base64.b64decode(digest).hex()} -> {url}")
 
-    json.dump(apps, Path("import_wu.json").open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    else:
+        print("Getting cookie...")
+        cookie = get_cookie()
 
-    print("Done!")
+        apps = []
+
+        for app_product_id, app_name in APPS_TO_CHECK.items():
+            print(f"Checking {app_name}...")
+
+            details = get_full_details(app_product_id)
+
+            app_info = details | get_update_info(
+                *cookie, app_product_id=app_product_id, category_id=details["wu_category_id"], release_type=RELEASE_TYPE
+            )
+
+            for update_id, revision_number in {(i["update_id"], i["revision_number"]) for i in app_info["files"]}:
+                print(f"Getting links for {update_id} rev {revision_number}...")
+                links = get_fe3_links(update_id, revision_number, RELEASE_TYPE)
+                merge_files_with_links(app_info["files"], links)
+
+            # print(f"Final info for {app_product_id} is")
+            # pprint(app_info)
+            apps.append(app_info)
+
+        def serialize(obj):
+            if isinstance(obj, datetime.datetime):
+                return obj.isoformat()
+            return obj
+
+        json.dump(apps, Path("import_wu.json").open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False, default=serialize)
+
+        print("Done!")

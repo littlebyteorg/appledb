@@ -1,6 +1,6 @@
 module.exports = {
   name: "daibutsu",
-  priority: 1,
+  priority: 3,
   info: {
     website: {
       name: "dora2ios.web.app/daibutsu.html",

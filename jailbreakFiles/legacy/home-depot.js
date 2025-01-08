@@ -1,7 +1,7 @@
 module.exports = {
   name: "Home Depot",
   alias: ["HomeDepot", "Home-Depot", "Home_Depot"],
-  priority: 2,
+  priority: 3,
   info: {
     website: {
       name: "wall.supplies",

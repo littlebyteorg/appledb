@@ -84,7 +84,7 @@ for group in element.xpath(".//h3/.."):
             if url.startswith("/"):
                 url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
-            assert build == build_info["Build"]
+            assert build in build_info["Build"].split(" | ")
 
             data.setdefault("links", []).append({"device": device, "url": url, "build": build})
     except IndexError:

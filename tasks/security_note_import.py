@@ -47,7 +47,7 @@ args = parser.parse_args()
 if bool(args.version) != bool(args.product):
     parser.error("product and version must either both be provided or both be absent")
 
-result = requests.get("https://support.apple.com/HT201222")
+result = requests.get("https://support.apple.com/en-us/100100?cachebust111")
 result.raise_for_status()
 element = lxml.html.fromstring(result.text)
 
@@ -57,14 +57,14 @@ break_loop = False
 for row in rows:
     cells = row.getchildren()
     if cells[2].text == 'Preinstalled': continue
-    date = dateutil.parser.parse(cells[2].text).strftime("%Y-%m-%d")
+    date = dateutil.parser.parse(cells[2].text_content()).strftime("%Y-%m-%d")
     if args.date:
         if date < args.date: break
         if date > args.date: continue
-    impacted_versions = cells[0].text
-    if impacted_versions: continue
-    link_element = cells[0].getchildren()[0]
-    link = link_element.attrib.get("href").replace("/kb/", "/")
+    link_element = cells[0].getchildren()[0].getchildren()
+    if not link_element: continue
+    link_element = link_element[0]
+    link = f"https://support.apple.com/{link_element.attrib.get("href").split("/")[-1]}"
     impacted_versions = link_element.text
 
     for impacted_version in impacted_versions.split(' and '):
@@ -96,6 +96,8 @@ for product in found_links.keys():
         build_paths = Path(f"osFiles/{product_subfolder}{build_subfolder}.x").rglob("*.json")
         for build_path in build_paths:
             build_data = json.load(build_path.open(encoding="utf-8"))
-            if build_data['version'] != version: continue
+            if build_data['version'].removesuffix('.0') != version: continue
+            # Explicit True check for preinstalled to prevent arrays from causing a skip
+            if build_data.get('internal', False) or build_data.get('preinstalled', False) == True: continue
             build_data['securityNotes'] = link
             json.dump(sort_os_file(None, build_data), build_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)

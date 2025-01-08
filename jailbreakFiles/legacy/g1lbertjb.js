@@ -1,5 +1,6 @@
 module.exports = {
   name: "g1lbertJB",
+  priority: 1,
   info: {
     website: {
       name: "github.com/g1lbertJB/g1lbertJB",
@@ -11,6 +12,13 @@ module.exports = {
       url: "https://www.theapplewiki.com/wiki/g1lbertJB",
       external: true
     },
+    guide: [
+      {
+        name: "Installing g1lbertJB",
+        url: "/installing-g1lbertJB/",
+        pkgman: "cydia",
+      }
+    ],
     latestVer: "1.0.3",
     type: "Untethered",
     firmwares: ["5.0", "6.1.2"],
@@ -21,6 +29,9 @@ module.exports = {
         "9A334", // 5.0
         "9A405", // 5.0.1
         "9A406", // 5.0.1, iPhone 4s only
+        "9B169",
+        "9B172",
+        "9B174",
         "9B176", // 5.1
         "9B179", // 5.1, iPhone 4s only
         "9B206", // 5.1.1

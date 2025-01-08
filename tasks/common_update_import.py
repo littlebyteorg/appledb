@@ -17,6 +17,7 @@ OS_MAP = [
     ("iPad", "iPadOS"),
     ("AudioAccessory", "audioOS"),
     ("AppleTV", "tvOS"),
+    ("ComputeModule", "cloudOS"),
     ("Mac", "macOS"),
     ("Watch", "watchOS"),
     ("iBridge", "bridgeOS"),
@@ -24,7 +25,7 @@ OS_MAP = [
     ("AppleDisplay", "Studio Display Firmware"),
 ]
 
-FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1"]
+FILTERED_OUT_DEVICES = ["iProd99,1", "iFPGA", "iSim1,1", "Watch1,2-Store-Dock", "iBridge2,11", "iBridge2,13"]
 
 VARIANTS = {}
 BOARD_IDS = {}
@@ -40,6 +41,7 @@ for device in Path("deviceFiles").rglob("*.json"):
     if not identifiers:
         identifiers = [name]
     key = device_data.get("key", identifiers[0] if identifiers else name)
+    if key in FILTERED_OUT_DEVICES: continue
 
     for identifier in identifiers:
         VARIANTS.setdefault(identifier, set()).add(key)
@@ -77,7 +79,7 @@ def get_board_mappings(devices):
         if not device_mappings:
             continue
         if device_mappings[0].startswith("iBridge"):
-            bridge_identifiers.extend(device_mappings)
+            bridge_identifiers.extend(augment_with_keys(device_mappings))
         else:
             identifiers.extend(augment_with_keys(device_mappings))
     return identifiers, bridge_identifiers
@@ -105,6 +107,25 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
 
     if os_str == "audioOS" and packaging.version.parse(recommended_version.split(" ")[0]) >= packaging.version.parse("13.4"):
         os_str_override = 'HomePod Software'
+
+    # HACK: 1st-generation Apple Watch
+    if os_str == "watchOS" and version_dir == "12x - 8.x":
+        version_dir = "12x - 1.x"
+    if os_str == "watchOS" and version_dir.endswith("9.x") and version_dir != "20x - 9.x":
+        base_build = int(version_dir.split('x')[0])
+        version_dir = f"{base_build}x - {base_build - 11}.x"
+
+    # HACK: Apple TV 2nd and 3rd gen
+    if os_str == "tvOS" and version_dir == "12x - 8.x":
+        version_dir = "12x - 7.x"
+    if os_str == "tvOS" and version_dir == "11x - 7.x":
+        version_dir = "11x - 6.x"
+    if os_str == "tvOS" and version_dir == "10x - 6.x":
+        version_dir = "10x - 5.1 to 5.3"
+    if os_str == "tvOS" and version_dir == "9x - 5.x":
+        version_dir = "9x - 4.4 to 5.0.2"
+    if os_str == "tvOS" and version_dir == "8x - 4.x":
+        version_dir = "8x - 4.0 to 4.3"
 
     file_path = f"osFiles/{os_str}/{version_dir}/{build}.json"
     if rsr:

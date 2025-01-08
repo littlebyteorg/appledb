@@ -4,6 +4,7 @@ import argparse
 import json
 import plistlib
 import re
+import shutil
 import zipfile
 from pathlib import Path
 
@@ -28,29 +29,47 @@ SESSION = requests.Session()
 
 def import_ota(
     ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, \
-        use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None
+        use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None, \
+        restore_version=None, bridge_version_info=None, size=None
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
     ota = None
     info_plist = None
     build_manifest = None
+    only_needs_baseband = False
+    aea_support_filename = 'aastuff'
 
     # We need per-device details anyway, grab from the full OTA
-    if skip_remote:
+    # If size is explicitly passed in, assume source is no longer active
+    if skip_remote and not size:
         skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
+        if ota_url.endswith('.aea'):
+            skip_remote = skip_remote or len(set(device_map).intersection(['Watch6,3', 'Watch6,4', 'Watch6,8', 'Watch6,9', 'Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11'])) == 0
+            if not skip_remote:
+                skip_remote = True
+                only_needs_baseband = True
 
     if not skip_remote and not ota_key and ota_url.endswith('.aea'):
         ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
 
         if not ota_key:
             raise RuntimeError(f"Couldn't determine OS details for {ota_url}")
+    
+    if Path('aastuff_standalone').exists():
+        aea_support_filename = 'aastuff_standalone'
 
     counter = 0
-    if not skip_remote:
+    delete_output_dir = False
+    if only_needs_baseband:
+        delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
+        extracted_path = Path(str(local_path).split(".")[0])
+        build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
+    elif not skip_remote:
         if ota_key:
-            if Path("aastuff").exists():
-                handle_ota_file(ota_url, ota_key)
+            if Path(aea_support_filename).exists():
+                print('Downloading full OTA file')
+                delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
                 extracted_path = Path(str(local_path).split(".")[0])
                 info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
                 build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
@@ -76,6 +95,7 @@ def import_ota(
 
                     if info_plist.get('SplatOnly'):
                         rsr = True
+                    bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
                     break
                 except remotezip.RemoteIOError as e:
                     if not build:
@@ -89,20 +109,20 @@ def import_ota(
                     info_plist = {}
     bridge_version = None
 
-    if info_plist and info_plist.get('BridgeVersionInfo'):
-        bridge_version = info_plist['BridgeVersionInfo']['BridgeVersion'].split('.')
-        bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[0]}"
+    if bridge_version_info:
+        bridge_version = bridge_version_info['BridgeVersion'].split('.')
+        bridge_version = f"{(int(bridge_version[0]) - 13)}.{bridge_version[2].zfill(4)[-4]}"
 
     if ota:
         ota.close()
 
     # Get the build, version, and supported devices
-    restore_version = None
     baseband_map = {}
     if build_manifest:
         # Grab baseband versions and buildtrain (both per device)
         for identity in build_manifest['BuildIdentities']:
             board_id = identity['Info']['DeviceClass']
+            if board_id.endswith('dev'): continue
             buildtrain = buildtrain or identity['Info']['BuildTrain']
             restore_version = restore_version or identity.get('Ap,OSLongVersion')
             if 'BasebandFirmware' in identity['Manifest']:
@@ -191,19 +211,25 @@ def import_ota(
             print("\tURL already exists in sources")
             found_source = True
             source.setdefault("deviceMap", []).extend(supported_devices)
+            if supported_boards:
+                source.setdefault("boardMap", []).extend(supported_boards)
 
     if not found_source:
         print("\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
+        if ota_key:
+            source["links"][0]["decryptionKey"] = ota_key
         if prerequisite_builds:
             source["prerequisiteBuild"] = prerequisite_builds
         if supported_boards:
             source["boardMap"] = supported_boards
+        if size:
+            source["size"] = size
 
         db_data["sources"].append(source)
 
-    if bridge_version:
-        db_data['bridgeOSBuild'] = info_plist['BridgeVersionInfo']['BridgeProductBuildVersion']
+    if bridge_version and bridge_version_info:
+        db_data['bridgeOSBuild'] = bridge_version_info['BridgeProductBuildVersion']
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     if use_network:
@@ -221,16 +247,20 @@ def import_ota(
     if bridge_version and bridge_devices:
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
-        bridge_file = create_file("bridgeOS", info_plist['BridgeVersionInfo']['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{info_plist['BridgeVersionInfo']['BridgeVersion']},0")
+        bridge_file = create_file("bridgeOS", bridge_version_info['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{bridge_version_info['BridgeVersion']},0")
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
         bridge_data["deviceMap"] = list(set(bridge_data.get("deviceMap", [])).union(bridge_devices))
         json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    
+    if delete_output_dir:
+        shutil.rmtree(f"otas/{Path(ota_url).stem}")
     return db_file
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--bulk-mode', action='store_true')
     parser.add_argument('-s', '--full-self-driving', action='store_true')
+    parser.add_argument('-i', '--suffix', default="")
     args = parser.parse_args()
 
     if args.full_self_driving:
@@ -243,19 +273,20 @@ if __name__ == "__main__":
     if bulk_mode:
         failed_links = []
         files_processed = set()
+        file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
         if not FULL_SELF_DRIVING:
             print("Warning: you still need to be present, as this script will ask for input!")
 
-        if Path("import-ota.json").exists():
-            print("Reading versions from import-ota.json")
-            versions = json.load(Path("import-ota.json").open(encoding="utf-8"))
+        if Path(f"{file_name_base}.json").exists():
+            print(f"Reading versions from {file_name_base}.json")
+            versions = json.load(Path(f"{file_name_base}.json").open(encoding="utf-8"))
 
             for version in versions:
                 print(f"Importing {version['osStr']} {version['version']}")
                 if "sources" not in version:
                     files_processed.add(
-                        create_file(version["osStr"], version["build"], FULL_SELF_DRIVING, version=version["version"], released=version["released"], buildtrain=version.get("buildTrain"))
+                        create_file(version["osStr"], version["build"], FULL_SELF_DRIVING, version=version["version"], released=version["released"], buildtrain=version.get("buildTrain"), restore_version=version.get("restoreVersion"))
                     )
                 else:
                     for source in version['sources']:
@@ -265,16 +296,17 @@ if __name__ == "__main__":
                                     import_ota(
                                         link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], \
                                         released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), \
-                                        device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain")
+                                        device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"), \
+                                        restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo'), size=source.get('size')
                                     )
                                 )
                             except Exception:
                                 failed_links.append(link["url"])
 
-        elif Path("import-ota.txt").exists():
-            print("Reading URLs from import-ota.txt")
+        elif Path(f"{file_name_base}.txt").exists():
+            print(f"Reading URLs from {file_name_base}.txt")
 
-            urls = [i.strip() for i in Path("import-ota.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
+            urls = [i.strip() for i in Path(f"{file_name_base}.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
                 key = None

@@ -118,10 +118,6 @@ def import_ipsw(
     recommended_version = recommended_version or build_manifest["ProductVersion"]
     # Devices supported specifically in this source
     supported_devices = augment_with_keys(build_manifest["SupportedProductTypes"])
-    # Devices supported in this build, but not necessarily in this source
-    build_supported_devices = augment_with_keys(set(
-        build_manifest["SupportedProductTypes"] + (platform_support["SupportedModelProperties"] if platform_support else [])
-    ))
     # Grab baseband versions and buildtrain (both per device)
     buildtrain = None
     restore_version = None
@@ -141,6 +137,12 @@ def import_ipsw(
                 baseband_map[mapped_device[0]] = baseband_response.groups(1)[0]
             else:
                 print(f"MISSING BASEBAND - {path}")
+    if buildtrain.endswith('HW'):
+        platform_support = None
+    # Devices supported in this build, but not necessarily in this source
+    build_supported_devices = augment_with_keys(set(
+        build_manifest["SupportedProductTypes"] + (platform_support["SupportedModelProperties"] if platform_support else [])
+    ))
 
     if not os_str:
         for product_prefix, os_str in OS_MAP:

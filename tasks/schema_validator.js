@@ -4,7 +4,7 @@ const glob = require("glob");
 
 process.chdir(__dirname);
 
-const ajv = new Ajv();
+const ajv = new Ajv({ allErrors: true});
 addFormats(ajv);
 
 var total = 0, failed = 0;
