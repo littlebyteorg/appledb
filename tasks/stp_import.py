@@ -13,6 +13,7 @@ import lxml.etree
 import lxml.html
 import requests
 
+from file_downloader import handle_pkg_file
 from sort_os_files import sort_os_file
 from update_links import update_links
 
@@ -114,12 +115,12 @@ source = {
 
 for package_type, type_sources in sources.items():
     for mac_version, link in type_sources.items():
+        (file_hashes, _) = handle_pkg_file(download_link=link, hashes=['md5', 'sha1', 'sha2-256'])
         source["sources"].append({
             "type": package_type,
-            "deviceMap": [
-                "Safari Technology Preview"
-            ],
+            "deviceMap": ["Safari Technology Preview"],
             "osMap": [f"macOS {mac_version}"],
+            "hashes": file_hashes,
             "links": [{"url": link}]
         })
 stp_file = Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json")
