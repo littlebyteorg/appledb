@@ -57,7 +57,10 @@ def import_appx(store_id, released, file):
     if not version:
         raise RuntimeError("Couldn't find version")
 
-    os_str = OSSTR_MAP[store_id]
+    os_str = OSSTR_MAP.get(store_id)
+    if not os_str:
+        print(f"MISSING STORE ID {store_id}")
+        return None
     db_file = Path(f"osFiles/Software/{os_str}/{version}.json")
     if db_file.exists():
         print("\tFile already exists, not replacing")
