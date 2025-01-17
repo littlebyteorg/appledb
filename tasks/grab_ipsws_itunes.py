@@ -24,6 +24,18 @@ urls = [
 ]
 
 ipsws_set = set()
+known_builds = [
+    '16H81',   # iOS 12.5.7
+    '19H386',  # iOS 15.8.3
+    '20H350',  # iOS 16.7.10
+    '21H312',  # iOS 17.7.3
+    # '22C161',  # iOS 18.2.1
+    # '22K155',  # tvOS 18.2
+    # '22K160',  # tvOS 18.2.1
+    # '22N842',  # visionOS 2.2
+    # '22P2093', # bridgeOS 9.2
+    # '24C101',  # macOS 15.2
+]
 
 for url in urls:
     response = requests.get(url + f"?cachebust{random.randint(100, 1000)}", timeout=30)
@@ -48,14 +60,7 @@ for url in urls:
                     # Ignore super-old IPSWs
                     if not variant["FirmwareURL"].startswith("https"):
                         continue
-                    # Ignore iOS 12.5.7
-                    if '_16H81_' in variant["FirmwareURL"]:
-                        continue
-                    # Ignore iOS 15.8.3
-                    if '_19H386_' in variant["FirmwareURL"]:
-                        continue
-                    # Ignore iOS 16.7.10
-                    if '_20H350_' in variant["FirmwareURL"]:
+                    if any([x for x in known_builds if f'_{x}_' in variant["FirmwareURL"]]):
                         continue
                     ipsws_set.add(unquote(variant["FirmwareURL"]))
 
