@@ -1,25 +1,25 @@
 module.exports = {
-  name: "Pangu",
-  alias: "Pangu7",
-  priority: 1,
+  name: "Lyncis",
+  priority: 0,
   info: {
-    wiki: {
-      name: "theapplewiki.com/wiki/Pangu",
-      url: "https://www.theapplewiki.com/wiki/Pangu",
-      external: true
-    },
     guide: [
       {
-        name: "Installing Pangu7",
-        url: "/installing-pangu7/",
+        name: "Using Lyncis",
+        url: "/using-lyncis/",
         pkgman: "cydia",
+        updateLink: [
+          {
+            text: 'Updating to 7.1.2 (IPSW)',
+            link: '/updating-to-7-1-2-ipsw/'
+          },
+        ],
       }
     ],
     type: "Untethered",
     firmwares: ["7.1","7.1.2"],
-    latestVer: "1.2.1 (Windows)\n1.2.0 (macOS)",
+    notes: "Only supports 32-bit devices.",
+    latestVer: "1.0",
     color: "#ffffff",
-    icon: "/assets/images/jb-icons/pangu.png",
   },
   compatibility: [
     {
@@ -38,8 +38,6 @@ module.exports = {
         "iPhone5,2", // iPhone 5 (CDMA), A6
         "iPhone5,3", // iPhone 5c (GSM), A6
         "iPhone5,4", // iPhone 5c (CDMA), A6
-        "iPhone6,1", // iPhone 5s (GSM), A7
-        "iPhone6,2", // iPhone 5s (GSM), A7
         "iPad2,1", // iPad 2 Wi-Fi, A5
         "iPad2,2", // iPad 2 Wi-Fi + 3G (GSM), A5
         "iPad2,3", // iPad 2 Wi-Fi + 3G (CDMA), A5
@@ -53,12 +51,6 @@ module.exports = {
         "iPad3,4", // iPad (4th generation) Wi-Fi, A6X
         "iPad3,5", // iPad (4th generation) Wi-Fi + Cellular, A6X
         "iPad3,6", // iPad (4th generation) Wi-Fi + Cellular (MM), A6X
-        "iPad4,1", // iPad Air Wi-Fi, A7
-        "iPad4,2", // iPad Air Wi-Fi + Cellular, A7
-        "iPad4,3", // iPad Air Wi-Fi + Cellular (TD-LTE), A7
-        "iPad4,4", // iPad mini 2 Wi-Fi, A7
-        "iPad4,5", // iPad mini 2 Wi-Fi + Cellular, A7
-        "iPad4,6", // iPad mini 2 Wi-Fi + Cellular (TD-LTE), A7
         "iPod5,1", // iPod touch (5th generation), A5
       ]
     },
