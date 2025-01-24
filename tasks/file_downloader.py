@@ -47,6 +47,8 @@ async def download(run, url, hashes, output_path, chunk_size=104857600):
             for i, start in enumerate(chunks)
         ]
 
+        if not tasks:
+            return {}
         await asyncio.wait(tasks)
 
         if 'sha1' in hashes:
@@ -110,7 +112,7 @@ def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifes
             remove_output_file = True
             subprocess.run([f'./{aea_support_file}', '-i', file_path, '-o', output_path, '-k', key], check=True, stderr=subprocess.DEVNULL)
             if remove_input_file:
-                Path(file_path).unlink()
+                Path(file_path).unlink(missing_ok=True)
     return remove_output_file
 
 def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None):
@@ -150,5 +152,5 @@ def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_pat
             manifest_content = plistlib.loads(Path(f'{output_path}/{extracted_manifest_file_path}').read_bytes())
         shutil.rmtree(output_path)
 
-    Path(f'{output_path}.pkg').unlink()
+    Path(f'{output_path}.pkg').unlink(missing_ok=True)
     return (file_hashes, manifest_content)
