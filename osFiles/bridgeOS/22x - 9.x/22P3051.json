@@ -1,11 +1,18 @@
 {
     "osStr": "bridgeOS",
-    "version": "9.3 RC",
+    "version": "9.3",
     "build": "22P3051",
     "restoreVersion": "22.16.13051.0.0,0",
     "buildTrain": "GlowBridgeD",
-    "released": "2025-01-21",
-    "rc": true,
+    "released": "2025-01-27",
+    "createDuplicateEntries": [
+        {
+            "version": "9.3 RC",
+            "uniqueBuild": "22P3051-RC",
+            "released": "2025-01-21",
+            "rc": true
+        }
+    ],
     "deviceMap": [
         "iBridge2,1",
         "iBridge2,3",
@@ -47,8 +54,17 @@
             ],
             "links": [
                 {
+                    "url": "https://swcdn.apple.com/content/downloads/35/30/072-08253-A_5LCKB6V4W4/o48w2wzcpnf6ne2u950tnv9bgf3311ysxr/BridgeOSUpdateCustomer.pkg",
+                    "active": true
+                },
+                {
                     "url": "https://swcdn.apple.com/content/downloads/56/02/072-08253-A_I3NMXE2BAR/1ztxswqf0sb9dxlyri97lfcpl2svqvvtir/BridgeOSUpdateCustomer.pkg",
                     "catalog": "dev-beta",
+                    "active": true
+                },
+                {
+                    "url": "https://swcdn.apple.com/content/downloads/46/10/072-08253-A_4UC9ZGP4E7/gvjg6bcdmf0l5toiil51xr4o1lujwpu1jv/BridgeOSUpdateCustomer.pkg",
+                    "catalog": "public-beta",
                     "active": true
                 }
             ],
