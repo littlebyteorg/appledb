@@ -397,7 +397,7 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
             if asset.get('TrainName') and not ota_list[f"{os_str}-{updated_build}"].get('buildTrain'):
                 ota_list[f"{os_str}-{updated_build}"]['buildTrain'] = asset['TrainName']
 
-            newly_discovered_versions[updated_build] = cleaned_os_version
+            newly_discovered_versions.setdefault(os_str, {})[updated_build] = cleaned_os_version
 
         for additional_audience in additional_audiences:
             call_pallas(device_name, board_id, os_version, os_build, os_str, additional_audience, is_rsr, time_delay)
@@ -467,15 +467,14 @@ for (os_str, builds) in parsed_args.items():
         for audience in audiences:
             for key, value in devices.items():
                 for board in value['boards']:
-                    if not args.no_prerequisites:
+                    if not (args.no_prerequisites or os_str == 'tvOS'):
                         for prerequisite_build, version in value['builds'].items():
                             call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay)
                     call_pallas(key, board, build_data['version'], build, os_str, audience, args.rsr, args.time_delay)
 
-                    new_version_builds = sorted(newly_discovered_versions.keys())[:-1]
+                    new_version_builds = sorted([x for x in newly_discovered_versions.get(os_str, {}).keys() if x < build])
                     for new_build in new_version_builds:
-                        call_pallas(key, board, newly_discovered_versions[new_build], new_build, os_str, audience, args.rsr, args.time_delay)
-                    newly_discovered_versions = {}
+                        call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay)
 
 for key in ota_list.keys():
     sources = []
