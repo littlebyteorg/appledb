@@ -199,6 +199,35 @@ mac_device_map_extensions = {
     ])
 }
 
+mac_device_additions = {
+    '21F2081': [
+        "iMac21,1",
+        "iMac21,2",
+        "Mac13,1",
+        "Mac13,2",
+        "MacBookAir10,1",
+        "MacBookPro17,1",
+        "MacBookPro18,1",
+        "MacBookPro18,2",
+        "MacBookPro18,3",
+        "MacBookPro18,4",
+        "Macmini9,1",
+        "VirtualMac2,1"
+    ],
+    '24A8332': [
+        "VirtualMac2,1"
+    ],
+    '24B2082': [
+        "VirtualMac2,1"
+    ],
+    '24B2083': [
+        "VirtualMac2,1"
+    ],
+    '24B2091': [
+        "VirtualMac2,1"
+    ],
+}
+
 choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
 
 parser = argparse.ArgumentParser()
@@ -479,8 +508,12 @@ for (os_str, builds) in parsed_args.items():
 for key in ota_list.keys():
     sources = []
     for source in ota_list[key]['sources'].values():
-        if ota_list[key]['osStr'] == 'macOS' and source['deviceMap'] == mac_device_map_checks.get(ota_list[key]['version'].split('.')[0], set()):
-            source['deviceMap'].update(mac_device_map_extensions[ota_list[key]['version'].split('.')[0]])
+        if ota_list[key]['osStr'] == 'macOS':
+            if source['deviceMap'] == mac_device_map_checks.get(ota_list[key]['version'].split('.')[0], set()):
+                source['deviceMap'].update(mac_device_map_extensions[ota_list[key]['version'].split('.')[0]])
+            if bool(set(mac_device_additions.keys()).intersection(source['prerequisites'])):
+                for prerequisite in source['prerequisites']:
+                    source['deviceMap'].update(mac_device_additions.get(prerequisite, []))
         source['deviceMap'] = sorted(list(source['deviceMap']), key=device_sort)
         source['prerequisites'] = sorted(list(source['prerequisites']), key=build_number_sort)
         source['boardMap'] = sorted(list(source['boardMap']))
