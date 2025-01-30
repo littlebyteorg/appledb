@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
 import plistlib
 from pathlib import Path
 import random
@@ -25,16 +24,16 @@ urls = [
 
 ipsws_set = set()
 known_builds = [
-    '16H81',   # iOS 12.5.7
-    '19H386',  # iOS 15.8.3
-    '20H350',  # iOS 16.7.10
-    '21H312',  # iOS 17.7.3
-    # '22C161',  # iOS 18.2.1
-    # '22K155',  # tvOS 18.2
-    # '22K160',  # tvOS 18.2.1
-    # '22N842',  # visionOS 2.2
-    # '22P2093', # bridgeOS 9.2
-    # '24C101',  # macOS 15.2
+    # iOS
+    '16H81',   # 12.5.7
+    '19H386',  # 15.8.3
+    '20H350',  # 16.7.10
+    '21H414',  # 17.7.4
+    '22D63',  # 18.3
+    '22K557',  # tvOS 18.3
+    '22N896',  # visionOS 2.3
+    '22P3051', # bridgeOS 9.3
+    '24D60',  # macOS 15.3
 ]
 
 for url in urls:
@@ -64,5 +63,6 @@ for url in urls:
                         continue
                     ipsws_set.add(unquote(variant["FirmwareURL"]))
 
+print(f"{len(ipsws_set)} links added")
 [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
 Path("import.txt").write_text("\n".join(sorted(ipsws_set)), "utf-8", newline="\n")
