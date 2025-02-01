@@ -80,83 +80,7 @@ kernel_marketing_version_offset_map = {
 
 default_kernel_marketing_version_offset = 4
 
-asset_audiences = {
-    'iOS': {
-        'beta': {
-            15: 'ce48f60c-f590-4157-a96f-41179ca08278',
-            16: 'a6050bca-50d8-4e45-adc2-f7333396a42c',
-            17: '9dcdaf87-801d-42f6-8ec6-307bd2ab9955',
-            18: '41651cee-d0e2-442f-b786-85682ff6db86'
-        },
-        'public': {
-            15: '9e12a7a5-36ac-4583-b4fb-484736c739a8',
-            16: '7466521f-cc37-4267-8f46-78033fa700c2',
-            17: '48407998-4446-46b0-9f57-f76b935dc223',
-            18: 'c46ed8dd-1382-40bd-a153-2b6ad61292fd'
-        },
-        'release': '01c1d682-6e8f-4908-b724-5501fe3f5e5c',
-        'security': 'c724cb61-e974-42d3-a911-ffd4dce11eda'
-    },
-    'macOS': {
-        'alternate': '1831c3e6-1dc4-4f6b-a9dc-7ae6a41d9af4',
-        'beta': {
-            12: '298e518d-b45e-4d36-94be-34a63d6777ec',
-            13: '683e9586-8a82-4e5f-b0e7-767541864b8b',
-            14: '77c3bd36-d384-44e8-b550-05122d7da438',
-            15: '98df7800-8378-4469-93bf-5912da21a1e1'
-        },
-        'public': {
-            12: '9f86c787-7c59-45a7-a79a-9c164b00f866',
-            13: '800034a9-994c-4ecc-af4d-7b3b2ee0a5a6',
-            14: '707ddc61-9c3d-4040-a3d0-2a6521b1c2df',
-            15: 'c8ba02c8-cc63-4388-99ee-a81d5a593283'
-        },
-        'release': '60b55e25-a8ed-4f45-826c-c1495a4ccc65'
-    },
-    'tvOS': {
-        'beta': {
-            17: '61693fed-ab18-49f3-8983-7c3adf843913',
-            18: '98847ed4-1c37-445c-9e7b-5b95d29281f2'
-        },
-        'public': {
-            17: 'd9159cba-c93c-4e6d-8f9f-4d77b27b3a5e',
-            18: '879ce2f8-b7d1-420f-9935-58d647d6606a'
-        },
-        'release': '356d9da0-eee4-4c6c-bbe5-99b60eadddf0'
-    },
-    'watchOS': {
-        'beta': {
-            10: '7ae7f3b9-886a-437f-9b22-e9f017431b0e',
-            11: '23d7265b-1000-47cf-8d0a-07144942db9e'
-        },
-        'public': {
-            10: 'f3d4d255-9db8-425c-bf9a-fea7dcdb940b',
-            11: '79b47e0c-cbce-4757-b84b-12a95db52f22'
-        },
-        'release': 'b82fcf9c-c284-41c9-8eb2-e69bf5a5269f'
-    },
-    'audioOS': {
-        'beta': {
-            17: '17536d4c-1a9d-4169-bc62-920a3873f7a5',
-            18: 'bedbd9c7-738a-4060-958b-79da54a1f7ad'
-        },
-        'public': {
-            17: 'f7655fc0-7a0a-43fa-b781-170a834a3108',
-            18: '1af931ed-e171-4dd0-b944-172cdebcd89d'
-        },
-        'release': '0322d49d-d558-4ddf-bdff-c0443d0e6fac'
-    },
-    'visionOS': {
-        'beta': {
-            1: '4d282764-95fe-4e0e-b7da-ea218fd1f75a',
-            2: '0bef3239-79ad-4d2a-99c3-2c05df2becf8'
-        },
-        'release': 'c59ff9d1-5468-4f6c-9e54-f68d5eeab93b'
-    },
-    'Studio Display Firmware': {
-        'release': '02d8e57e-dd1c-4090-aa50-b4ed2aef0062'
-    }
-}
+asset_audiences = asset_audiences = json.load(Path("tasks/audiences.json").open())
 
 choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
 
@@ -222,14 +146,22 @@ def get_board_ids(identifier):
             board_ids[identifier] = [device_data['board']]
     return board_ids[identifier]
 
-def get_build_version(osStr, build):
+def get_build_version(os_str, build):
     global build_versions
-    if not build_versions.get(f"{osStr}-{build}"):
-        build_path = list(Path(f'osFiles/{osStr}').rglob(f'{build}.json'))[0]
-        build_data = json.load(build_path.open())
-        build_versions[f"{osStr}-{build}"] = build_data['version']
+    if not build_versions.get(f"{os_str}-{build}"):
+        try:
+            build_path = list(Path(f'osFiles/{os_str}').rglob(f'{build}.json'))[0]
+            build_data = json.load(build_path.open())
+            build_versions[f"{os_str}-{build}"] = build_data['version']
+        except:
+            if os_str == 'iPadOS':
+                build_versions[f"{os_str}-{build}"] = get_build_version('iOS', build)
+            elif os_str == 'iOS':
+                build_versions[f"{os_str}-{build}"] = get_build_version('iPadOS', build)
+            else:
+                build_versions[f"{os_str}-{build}"] = 'N/A'
 
-    return build_versions[f"{osStr}-{build}"]
+    return build_versions[f"{os_str}-{build}"]
 
 def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, is_rsr, time_delay, counter=5):
     asset_type = 'SoftwareUpdate'
@@ -274,7 +206,7 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
         response.raise_for_status()
     except:
         if counter == 0:
-            print(request)
+            print(json.dumps(request))
             raise
         return call_pallas(device_name, board_id, os_version, os_build, os_str, audience, is_rsr, time_delay, counter - 1)
 
@@ -312,28 +244,67 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
         newly_discovered_versions |= additional_versions
     return links, newly_discovered_versions
 
+def merge_dicts(original, additional):
+    for k in additional.keys():
+        if original.get(k):
+            original[k] = [original[k], additional[k]]
+        else:
+            original[k] = additional[k]
+    return original
+
+beta_specific_types = ['developer', 'appleseed', 'public']
+
 ota_links = set()
 for (os_str, builds) in parsed_args.items():
     print(f"Checking {os_str}")
+    target_asset_audiences = asset_audiences[asset_audiences_overrides.get(os_str, os_str)]
     for build in builds:
         print(f"\tChecking {build}")
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
         audiences = []
-        for audience in args.audience:
-            try:
-                # Allow for someone to pass in a specific asset audience UUID
-                uuid.UUID(audience)
-                audiences.append(audience)
-            except:
-                target_asset_audiences = asset_audiences[asset_audiences_overrides.get(os_str, os_str)]
-                if audience in ['beta', 'public']:
-                    if target_asset_audiences.get(audience):
-                        kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
-                        audiences.extend({k:v for k,v in target_asset_audiences[audience].items() if (k == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= k}.values())
+        raw_audiences = args.audience
+        unfiltered_audiences = {}
+        if 'alternate' in raw_audiences:
+            for sub_type in beta_specific_types:
+                if target_asset_audiences['alternate'].get(sub_type):
+                    target_asset_audiences[sub_type] = merge_dicts(target_asset_audiences[sub_type], target_asset_audiences['alternate'][sub_type])
+            if target_asset_audiences['alternate'].get('release'):
+                target_asset_audiences['release'] = [target_asset_audiences['release'], target_asset_audiences['alternate']['release']]
+            raw_audiences.remove('alternate')
+        for audience in raw_audiences:
+            if audience == 'beta':
+                desired_audiences = target_asset_audiences.get('developer', target_asset_audiences.get('appleseed', {}))
+                kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
+
+                values = [v for k,v in desired_audiences.items() if (int(k) == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= int(k)]
+                for value in values:
+                    if isinstance(value, list):
+                        audiences.extend(value)
+                    else:
+                        audiences.append(value)
+            elif audience in beta_specific_types:
+                if target_asset_audiences.get(audience):
+                    kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
+                    values = [v for k,v in target_asset_audiences[audience].items() if (int(k) == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= int(k)]
+                    for value in values:
+                        if isinstance(value, list):
+                            audiences.extend(value)
+                        else:
+                            audiences.append(value)
+            elif audience == 'release':
+                if isinstance(target_asset_audiences['release'], list):
+                    audiences.extend(target_asset_audiences['release'])
                 else:
-                    audiences.append(target_asset_audiences.get(audience, audience))
+                    audiences.append(target_asset_audiences['release'])
+            else:
+                try:
+                    uuid.UUID(audience)
+                    audiences.append(audience)
+                except:
+                    print(f"Invalid audience {audience}, skipping")
+                    continue
         build_path = list(Path(f"osFiles/{os_str}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
         devices = {}
         build_data = {}

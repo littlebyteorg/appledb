@@ -59,7 +59,7 @@ def augment_with_keys(identifiers):
     for identifier in identifiers:
         if identifier in FILTERED_OUT_DEVICES: continue
         new_identifiers.extend(VARIANTS.get(identifier, [identifier]))
-    return new_identifiers
+    return list(set(new_identifiers))
 
 def get_board_mapping_lower_case(devices):
     modified_mapping = {k.lower(): v for k,v in BOARD_IDS.items()}
