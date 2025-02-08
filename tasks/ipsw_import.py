@@ -47,7 +47,7 @@ JSON import sample:
 
 
 def import_ipsw(
-    ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True
+    ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, ipd=None, use_network=True
 ):
     local_path = LOCAL_IPSW_PATH / Path(Path(ipsw_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -165,6 +165,9 @@ def import_ipsw(
 
     db_data.setdefault("deviceMap", []).extend(build_supported_devices)
 
+    if ipd:
+        db_data.setdefault("ipd", {}).update(ipd)
+
     found_source = False
     for source in db_data.setdefault("sources", []):
         if source_has_link(source, ipsw_url):
@@ -222,7 +225,7 @@ if __name__ == "__main__":
                 else:
                     for link in version["links"]:
                         files_processed.add(
-                            import_ipsw(link["url"], version=version["version"], released=version["released"], use_network=False)
+                            import_ipsw(link["url"], version=version["version"], released=version.get("released"), ipd=version.get('ipd'), use_network=False)
                         )
 
         elif Path("import.txt").exists():

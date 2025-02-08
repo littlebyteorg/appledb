@@ -50,6 +50,26 @@ out = []
 
 HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
 
+skip_builds = [
+    "20H343",
+    "21G101",
+    "21H312",
+    "21H414",
+    "22C152",
+    "22C161",
+    "2C161",
+    "22D63",
+    "22K155",
+    "22K160",
+    "22K557",
+    "22N842",
+    "22N896",
+    "22S101",
+    "22S555",
+    "24C101",
+    "24D60",
+]
+
 for group in element.xpath(".//h3/.."):
     name: str = group.find("h3", None).text.strip()
     match = HEADING_PATTERN.match(name)
@@ -69,6 +89,7 @@ for group in element.xpath(".//h3/.."):
     build_info_raw = [i.strip() for i in build_info_container[0].itertext(None) if i.strip()]
     build_info = dict(zip(build_info_raw[::2], build_info_raw[1::2]))
     data.update({i.lower(): v for i, v in build_info.items()})
+    if data["build"] in skip_builds: continue
 
     if "released" in data:
         data["released"] = dateutil.parser.parse(data["released"]).strftime("%Y-%m-%d")
@@ -84,7 +105,9 @@ for group in element.xpath(".//h3/.."):
             if url.startswith("/"):
                 url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
-            assert build in build_info["Build"].split(" | ")
+            if build not in build_info["Build"].split(" | "):
+                print(f"WARNING: {build_info["Build"]} isn't the same as {build}, skipping")
+                continue
 
             data.setdefault("links", []).append({"device": device, "url": url, "build": build})
     except IndexError:
@@ -104,6 +127,7 @@ for group in element.xpath(".//h3/.."):
 
     out.append(data)
 
-print([f"{d['osStr']} {d['version']}" for d in out])
-[i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
-json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
+if bool(out):
+    print([f"{d['osStr']} {d['version']} ({len(d['links'])})" for d in out])
+    [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
+    json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)

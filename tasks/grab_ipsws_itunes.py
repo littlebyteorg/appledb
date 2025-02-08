@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
+import json
 import plistlib
 from pathlib import Path
 import random
 
+import packaging
 import requests
 from urllib.parse import unquote
+
+from common_update_import import OS_MAP
 
 # other links:
 # http://ax.phobos.apple.com.edgesuite.net/WebObjects/MZStore.woa/wa/com.apple.jingle.appserver.client.MZITunesClientCheck/version
@@ -22,14 +26,27 @@ urls = [
     "https://mesu.apple.com/assets/visionos/com_apple_visionOSIPSW/com_apple_visionOSIPSW.xml"
 ]
 
-ipsws_set = set()
+def get_os_str(supported_device, version):
+    for product_prefix, os_str in OS_MAP:
+        if supported_device.startswith(product_prefix):
+            if os_str == "iPadOS" and packaging.version.parse(version) < packaging.version.parse("13.0"):
+                os_str = "iOS"
+            return os_str
+        elif product_prefix in supported_device:
+            return os_str
+    else:
+        print(supported_device)
+
+ipsw_list = {}
 known_builds = [
     # iOS
     '16H81',   # 12.5.7
     '19H386',  # 15.8.3
     '20H350',  # 16.7.10
     '21H414',  # 17.7.4
+    '22C161',  # 18.2.1
     '22D63',  # 18.3
+    '22D64',  # 18.3, iPhone 11 series
     '22K557',  # tvOS 18.3
     '22N896',  # visionOS 2.3
     '22P3051', # bridgeOS 9.3
@@ -59,10 +76,43 @@ for url in urls:
                     # Ignore super-old IPSWs
                     if not variant["FirmwareURL"].startswith("https"):
                         continue
+                    if variant.get('BuildVersion') in known_builds:
+                        continue
                     if any([x for x in known_builds if f'_{x}_' in variant["FirmwareURL"]]):
                         continue
-                    ipsws_set.add(unquote(variant["FirmwareURL"]))
+                    os_str = get_os_str(device, variant['ProductVersion'])
+                    if not ipsw_list.get(f"{os_str}-{variant['BuildVersion']}"):
+                        ipsw_list[f"{os_str}-{variant['BuildVersion']}"] = {
+                            "osStr": os_str,
+                            "version": variant['ProductVersion'],
+                            "build": variant['BuildVersion'],
+                            "links": set()
+                        }
+                    ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"].add(unquote(variant["FirmwareURL"]))
+                    if variant.get("DocumentationURL"):
+                        ipsw_list[f"{os_str}-{variant['BuildVersion']}"].setdefault('ipd', {})
+                        doc_filename = variant['DocumentationURL'].split('/')[-1]
 
-print(f"{len(ipsws_set)} links added")
-[i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
-Path("import.txt").write_text("\n".join(sorted(ipsws_set)), "utf-8", newline="\n")
+                        if doc_filename.startswith('iPad'):
+                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['iPad'] = variant['DocumentationURL']
+                        elif doc_filename.startswith('iPod'):
+                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['iPod'] = variant['DocumentationURL']
+                        elif doc_filename.startswith('iPhone') or doc_filename.startswith('iOS'):
+                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['iPhone'] = variant['DocumentationURL']
+                        elif doc_filename.startswith('AppleTV'):
+                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['AppleTV'] = variant['DocumentationURL']
+                        elif doc_filename.startswith('HomePod'):
+                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['AudioAccessory'] = variant['DocumentationURL']
+                        else:
+                            print("Unrecognized prefix")
+
+if bool(ipsw_list):
+    cleaned_list = []
+    count = 0
+    for item in ipsw_list.values():
+        count += len(item["links"])
+        item["links"] = [{"url": x} for x in item["links"]]
+        cleaned_list.append(item)
+    print(f"{count} links added")
+    [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
+    json.dump(cleaned_list, Path("import.json").open("w", encoding="utf-8"), indent=4)
