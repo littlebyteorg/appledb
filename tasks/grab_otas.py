@@ -377,5 +377,7 @@ for (os_str, builds) in parsed_args.items():
                         new_links, _ = call_pallas(key, board, new_versions[new_build], new_build, os_str, audience, args.rsr, args.time_delay)
                         ota_links.update(new_links)
 
-[i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
-Path(f"{file_name_base}.txt").write_text("\n".join(sorted(ota_links)), "utf-8")
+if bool(ota_links):
+    print(f"{len(ota_links)} links added")
+    [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+    Path(f"{file_name_base}.txt").write_text("\n".join(sorted(ota_links)), "utf-8")

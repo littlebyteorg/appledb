@@ -485,6 +485,7 @@ for key in ota_list.keys():
         source['boardMap'] = sorted(list(source['boardMap']))
         sources.append(source)
     ota_list[key]['sources'] = sources
-
-[i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
-json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)
+if bool(ota_list.keys()):
+    print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
+    [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+    json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)
