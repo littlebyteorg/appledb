@@ -37,8 +37,8 @@ skip_builds = [
     "16H81",
     "19H386",
     "20H350",
-    "21H414",
-    "22D63",
+    "21H420",
+    "22D72",
     "22K557",
     "99Z999"
 ]
@@ -110,8 +110,6 @@ for key in ota_list.keys():
         source['prerequisites'] = sorted(list(source['prerequisites']), key=build_number_sort)
         if len(source['prerequisites']):
             if source['prerequisites'][0][:3] != source['prerequisites'][-1][:3]:
-                print(source['prerequisites'][0][:3])
-                print(source['prerequisites'][-1][:3])
                 source['prerequisites'] = []
         source['boardMap'] = sorted(list(source['boardMap']))
         sources.append(source)
