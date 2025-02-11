@@ -51,23 +51,19 @@ out = []
 HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
 
 skip_builds = [
-    "20H343",
-    "21G101",
-    "21H312",
-    "21H414",
-    "22C152",
-    "22C161",
-    "2C161",
-    "22D63",
-    "22K155",
-    "22K160",
-    "22K557",
-    "22N842",
-    "22N896",
-    "22S101",
-    "22S555",
-    "24C101",
-    "24D60",
+    "20H343", # iOS/iPadOS 16.7.8
+    "21G101", # iOS 17.6.1
+    "21H414", # iPadOS 17.7.4
+    "21H420", # iPadOS 17.7.5
+    "22D63", # iOS/iPadOS 18.3
+    "22D72", # iOS/iPadOS 18.3.1
+    "22K557", # tvOS 18.3
+    "22N896", # visionOS 2.3
+    "22N900", # visionOS 2.3.1
+    "22S555", # watchOS 11.3
+    "22S560", # watchOS 11.3.1
+    "24D60", # macOS 15.3
+    "24D70", # macOS 15.3.1
 ]
 
 for group in element.xpath(".//h3/.."):
@@ -128,6 +124,6 @@ for group in element.xpath(".//h3/.."):
     out.append(data)
 
 if bool(out):
-    print([f"{d['osStr']} {d['version']} ({len(d['links'])})" for d in out])
+    print([f"{d['osStr']} {d['version']} ({len(d.get('links', []))})" for d in out])
     [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
     json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
