@@ -43,7 +43,8 @@ asset_types = {
     },
     'Beats': {
         'A2048': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2048_EA',
-        'A2577': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2577_EA'
+        'A2577': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2577_EA',
+        'A3157': 'com_apple_MobileAsset_UARP_A3157'
     },
     'Keyboards': {
         'A2520': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_10',
@@ -148,6 +149,10 @@ device_map = {
     'A3056': [
         'AirPods3,3-left',
         'AirPods3,3-right'
+    ],
+    'A3157': [
+        'Device1,8221-left',
+        'Device1,8221-right'
     ],
     'A3184': [
         "AirPodsMax1,2"
