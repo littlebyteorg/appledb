@@ -19,12 +19,12 @@ module.exports = {
             link: '/updating-to-16-7-10/'
           },
           {
-            text: 'Updating to 17.7.1',
-            link: '/updating-to-17-7-1/'
+            text: 'Updating to 17.7.5',
+            link: '/updating-to-17-7-5/'
           },
           {
-            text: 'Updating to 18.2',
-            link: '/updating-to-18-2/'
+            text: 'Updating to 18.3.1',
+            link: '/updating-to-18-3-1/'
           },
         ]
       }
