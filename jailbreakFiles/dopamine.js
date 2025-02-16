@@ -21,7 +21,7 @@ module.exports = {
         ]
       }
     ],
-    latestVer: "2.4",
+    latestVer: "2.4.1",
     icon: "/assets/images/jb-icons/dopamine.png",
     notes: "Supports all devices on 15.0 to 16.5. Supports M1 devices and A14 and earlier devices on 16.5.1. Supports A11 and earlier devices on 16.6 to 16.6.1",
     type: "Semi-Untethered",
