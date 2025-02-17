@@ -85,19 +85,32 @@ asset_audiences = asset_audiences = json.load(Path("tasks/audiences.json").open(
 choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-o', '--os', required=True, action='append', choices=choice_list)
-parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")
-parser.add_argument('-r', '--rsr', action='store_true')
+parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
-parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
+parser.add_argument('-o', '--os', action='append', choices=choice_list)
+parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--suffix', default="")
+parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
 args = parser.parse_args()
 
 file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
-parsed_args = dict(zip(args.os, args.build))
+if args.os and args.build:
+    parsed_args = dict(zip(args.os, args.build))
+else:
+    latest_builds = json.load(Path('tasks/latest_builds.json').open())
+    beta_builds = any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public']))
+    release_builds = any((x for x in args.audience if x not in ['beta', 'developer', 'appleseed', 'public']))
+    parsed_args = {}
+    for os_str, types in latest_builds.items():
+        if args.os and os_str not in args.os: continue
+        parsed_args.setdefault(os_str, [])
+        if beta_builds:
+            parsed_args[os_str].extend(latest_builds[os_str]['beta'])
+        if release_builds:
+            parsed_args[os_str].extend(latest_builds[os_str]['release'])
 
 board_ids = {}
 build_versions = {}
