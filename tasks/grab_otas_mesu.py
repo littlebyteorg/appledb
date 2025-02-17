@@ -78,6 +78,7 @@ for url in urls:
                 }
                 ota_list[f"{os_str}-{updated_build}"] = base_details
         link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
+        if 'OTARescueAsset' in link: continue
         if not ota_list[f"{os_str}-{updated_build}"]['sources'].get(link):
             ota_list[f"{os_str}-{updated_build}"]['sources'][link] = {
                 "prerequisites": set(),
@@ -93,14 +94,13 @@ for url in urls:
         if ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
             ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
         ota_list[f"{os_str}-{updated_build}"]['sources'][link]["boardMap"].update(asset.get('SupportedDeviceModels', []))
-        if asset.get('PrerequisiteBuild'):
+        if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True):
             ota_list[f"{os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
 
         if asset.get('TrainName') and not ota_list[f"{os_str}-{updated_build}"].get('buildTrain'):
             ota_list[f"{os_str}-{updated_build}"]['buildTrain'] = asset['TrainName']
         if asset.get('ArchiveDecryptionKey'):
             link = f"{link};{asset['ArchiveDecryptionKey']}"
-        if 'OTARescueAsset' in link: continue
         ota_links.add(link)
 
 for key in ota_list.keys():
