@@ -25,6 +25,7 @@ key_order = [
     "discontinued",
     "info",
     "windowsStoreId",
+    "appLink",
     "extra" # additional field for internal notes to not be on the site
 ]
 
