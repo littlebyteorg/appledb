@@ -10,6 +10,7 @@ import requests
 from urllib.parse import unquote
 
 from common_update_import import OS_MAP
+from sort_os_files import device_sort
 
 # other links:
 # http://ax.phobos.apple.com.edgesuite.net/WebObjects/MZStore.woa/wa/com.apple.jingle.appserver.client.MZITunesClientCheck/version
@@ -45,11 +46,12 @@ known_builds = [
     '20H350',  # 16.7.10
     '21H420',  # 17.7.5
     '22C161',  # 18.2.1
-    '22D72',  # 18.3.1
+    '22D72',   # 18.3.1
+    '22D8075', # 18.3.1 (iPhone 16e)
     '22K557',  # tvOS 18.3
     '22N900',  # visionOS 2.3.1
     '22P3051', # bridgeOS 9.3
-    '24D70',  # macOS 15.3.1
+    '24D70',   # macOS 15.3.1
 ]
 
 for url in urls:
@@ -85,9 +87,14 @@ for url in urls:
                             "osStr": os_str,
                             "version": variant['ProductVersion'],
                             "build": variant['BuildVersion'],
-                            "links": set()
+                            "links": {}
                         }
-                    ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"].add(unquote(variant["FirmwareURL"]))
+                    if not ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"].get(unquote(variant["FirmwareURL"])):
+                        ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"][unquote(variant["FirmwareURL"])] = {
+                            "device": set(),
+                            "url": unquote(variant["FirmwareURL"])
+                        }
+                    ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"][unquote(variant["FirmwareURL"])]["device"].add(device)
                     if variant.get("DocumentationURL"):
                         ipsw_list[f"{os_str}-{variant['BuildVersion']}"].setdefault('ipd', {})
                         doc_filename = variant['DocumentationURL'].split('/')[-1]
@@ -109,8 +116,12 @@ if bool(ipsw_list):
     cleaned_list = []
     count = 0
     for item in ipsw_list.values():
+        raw_links = list(item["links"].values())
+        item["links"] = []
+        for link in raw_links:
+            link["device"] = ", ".join(sorted(list(link["device"]), key=device_sort))
+            item["links"].append(link)
         count += len(item["links"])
-        item["links"] = [{"url": x} for x in item["links"]]
         cleaned_list.append(item)
     print(f"{count} links added")
     [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
