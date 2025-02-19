@@ -27,6 +27,7 @@ jobs:
 
         # Set the output named "docs_changed"
         echo "docs_changed=$HasDiff" >> $GITHUB_OUTPUT
+        Write-Host "::set-output name=docs_changed::$HasDiff"
         
   update_dbweb:
     runs-on: ubuntu-latest
