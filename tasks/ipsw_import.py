@@ -76,7 +76,7 @@ def import_ipsw(
             build_manifest = plistlib.loads(build_manifest_response.content)
 
     ipsw = None
-    if not build_manifest:
+    if not build_manifest or [(x.get('Cellular1,ChipID') for x in build_manifest['BuildIdentities'])]:
         # Get it via remotezip
         ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url, headers=headers)
         print(f"\tGetting BuildManifest.plist {'from local file' if local_available else 'via remotezip'}")
@@ -86,8 +86,8 @@ def import_ipsw(
         # manifest_paths = [file for file in ipsw.namelist() if file.endswith("BuildManifest.plist")]
         # assert len(manifest_paths) == 1, f"Expected 1 BuildManifest.plist, got {len(manifest_paths)}: {manifest_paths}"
         # build_manifest = plistlib.loads(ipsw.read(manifest_paths[0]))
-
-        build_manifest = plistlib.loads(ipsw.read("BuildManifest.plist"))
+        if not build_manifest:
+            build_manifest = plistlib.loads(ipsw.read("BuildManifest.plist"))
 
     platform_support = None
     if os_str == "macOS" or "UniversalMac" in ipsw_url:
@@ -106,9 +106,6 @@ def import_ipsw(
         
         print(f"\tGetting PlatformSupport.plist {'from local file' if local_available else 'via remotezip'}")
         platform_support = plistlib.loads(ipsw.read("PlatformSupport.plist"))
-
-    if ipsw:
-        ipsw.close()
 
     # Get the build, version, and supported devices
     build = build or build_manifest["ProductBuildVersion"]
@@ -137,6 +134,18 @@ def import_ipsw(
                 baseband_map[mapped_device[0]] = baseband_response.groups(1)[0]
             else:
                 print(f"MISSING BASEBAND - {path}")
+        elif 'Cellular1,ChipID' in identity:
+            mapped_device = get_board_mapping_lower_case([board_id])
+            if not mapped_device:
+                print((f"MISSING BOARD - {board_id}"))
+                continue
+            if baseband_map.get(mapped_device[0]): continue
+            path = identity['Manifest']['Cellular1,RTKitOS']['Info']['Path']
+            bbfw_version = ipsw.read(path).split(b"|BBFW:")[1].split(b"|")[0].decode()
+            baseband_map[mapped_device[0]] = bbfw_version
+
+    if ipsw:
+        ipsw.close()
     if buildtrain.endswith('HW'):
         platform_support = None
     # Devices supported in this build, but not necessarily in this source
