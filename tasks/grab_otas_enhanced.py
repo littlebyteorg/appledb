@@ -163,6 +163,7 @@ parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--suffix', default="")
 parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
+parser.add_argument('-u', '--update-type')
 args = parser.parse_args()
 
 file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
@@ -171,15 +172,16 @@ if args.os and args.build:
     parsed_args = dict(zip(args.os, args.build))
 else:
     latest_builds = json.load(Path('tasks/latest_builds.json').open())
-    beta_builds = any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public']))
-    release_builds = any((x for x in args.audience if x not in ['beta', 'developer', 'appleseed', 'public']))
+    beta_builds = any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public'])) and args.update_type != 'rc'
+    is_rc = args.update_type == 'rc'
     parsed_args = {}
     for os_str, types in latest_builds.items():
         if args.os and os_str not in args.os: continue
         parsed_args.setdefault(os_str, [])
-        if beta_builds:
+        use_beta_builds = beta_builds and not (is_rc and os_str not in ('watchOS', 'macOS'))
+        if use_beta_builds:
             parsed_args[os_str].extend(latest_builds[os_str]['beta'])
-        if release_builds:
+        else:
             parsed_args[os_str].extend(latest_builds[os_str]['release'])
 
 board_ids = {}
