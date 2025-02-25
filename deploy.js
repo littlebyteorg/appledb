@@ -420,7 +420,7 @@ const latestVersions = latestVersionArr
   if (!a.hasOwnProperty(x.osStr)) a[x.osStr] = []
   const i = a[x.osStr].length
   const replaced = (i > 0 && a[x.osStr][0].version.split(" ")[0] >= x.version.split(" ")[0] && (x.beta || x.rc))
-  a[x.osStr].push({'build': x.build, 'version': x.version, 'beta': x.beta, 'rc': x.rc, 'released': x.released, 'replaced': replaced})
+  a[osStr].push({'osStr': x.osStr, 'build': x.build, 'uniqueBuild': x.uniqueBuild, 'version': x.version, 'beta': x.beta, 'rc': x.rc, 'released': x.released, 'replaced': replaced})
   return a
 }), {})
 
