@@ -362,6 +362,70 @@ let homePage = require("./appledb-web/homePage.json");
 homePage.softwareCount = osFiles.length;
 homePage.deviceCount = deviceFiles.length;
 
+let latestVersionArr = homePage['osVersionArray']
+
+const latestVersions = latestVersionArr
+.map(x => osFiles
+  .filter(x => !(x.version.includes('Simulator') || x.sdk || x.hideFromLatestVersions ))
+  .filter((y, index, arr) => {
+    const osStrCheck = y.osStr == x.osStr
+    const betaRcCheck = (y.beta || y.rc) == x.beta
+
+    const indexCheck = arr.findIndex((item) => item.build === y.build && item.osStr === y.osStr) === index
+    
+    const check = osStrCheck && betaRcCheck && y.released && indexCheck
+
+    let startsWith = x.version
+    if (startsWith && y.version) {
+      startsWith = y.version.startsWith(startsWith)
+      return check && startsWith
+    }
+
+    return check
+  })
+  .sort((a,b) => {
+    const date = [a,b].map(x => new Date(x.released))
+    if (date[0] < date[1]) return 1
+    if (date[0] > date[1]) return -1
+    return 0
+  })[0])
+.filter(x => x)
+.map(x => {
+  if (!x.released) return x
+  if (x.released.includes(' ')) return x
+
+  const dateOffset = (new Date().getTimezoneOffset() * 60 * 1000) + (60 * 60000)
+  const currentDate = new Date(x.released).valueOf()
+  const adjustedDate = new Date(currentDate + dateOffset)
+
+  const releasedArr = x.released.split('-')
+  const dateStyleArr = [{ year: 'numeric' }, { year: 'numeric', month: 'short' }, { dateStyle: 'medium' }]
+  x.released =  new Intl.DateTimeFormat('en-US', dateStyleArr[releasedArr.length-1]).format(adjustedDate)
+  x.releasedVal = adjustedDate.valueOf()
+
+  return x
+})
+.sort((a,b) => {
+  const dateRel = [a,b].map(x => new Date(x.released))
+  if (dateRel[0] < dateRel[1]) return 1
+  if (dateRel[0] > dateRel[1]) return -1
+
+  if (a.osStr.toLowerCase() < b.osStr.toLowerCase()) return -1
+  if (a.osStr.toLowerCase() > b.osStr.toLowerCase()) return 1
+
+  if (a.version < b.version) return 1
+  if (a.version > b.version) return -1
+  return 0
+}).reduce(((a, x) => {
+  if (!a.hasOwnProperty(x.osStr)) a[x.osStr] = []
+  const i = a[x.osStr].length
+  const replaced = (i > 0 && a[x.osStr][0].version.split(" ")[0] >= x.version.split(" ")[0] && (x.beta || x.rc))
+  a[x.osStr].push({'build': x.build, 'version': x.version, 'beta': x.beta, 'rc': x.rc, 'released': x.released, 'replaced': replaced})
+  return a
+}), {})
+
+homePage['latestVersions'] = latestVersions
+
 mkdir("./out/appledb-web");
 write("./out/appledb-web/homePage.json", JSON.stringify(homePage));
 
