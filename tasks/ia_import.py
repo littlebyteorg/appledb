@@ -32,6 +32,8 @@ def import_ia(
     buildtrain = None
     restore_version = None
     build_manifest = None
+    supported_devices = None
+    bridge_devices = None
 
     if 'pkg;' in ia_url:
         url_split = ia_url.split(';', 1)

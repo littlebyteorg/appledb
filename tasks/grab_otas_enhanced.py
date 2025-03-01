@@ -152,7 +152,8 @@ mac_device_additions = {
     ],
 }
 
-choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
+choice_list = list(asset_audiences.keys())
+choice_list.extend(list(asset_audiences_overrides.keys()))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")

@@ -86,7 +86,8 @@ default_kernel_marketing_version_offset = 4
 
 asset_audiences = asset_audiences = json.load(Path("tasks/audiences.json").open())
 
-choice_list = list(asset_audiences.keys()).extend(list(asset_audiences_overrides.keys()))
+choice_list = list(asset_audiences.keys())
+choice_list.extend(list(asset_audiences_overrides.keys()))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")
@@ -363,17 +364,17 @@ for (os_str, builds) in parsed_args.items():
                     current_devices = source['deviceMap']
 
                 prerequisite_builds = source['prerequisiteBuild']
-                if isinstance(prerequisite_builds, list):
-                    for prerequisite_build_option in prerequisite_builds:
-                        if skip_builds.get(prerequisite_build_option) is not None:
-                            if len(skip_builds[prerequisite_build_option]) == 0 or current_device in skip_builds[prerequisite_build_option]:
-                                continue
-                        prerequisite_build = prerequisite_build_option
-                        break
-                else:
-                    prerequisite_build = prerequisite_builds
 
                 for current_device in current_devices:
+                    if isinstance(prerequisite_builds, list):
+                        for prerequisite_build_option in prerequisite_builds:
+                            if skip_builds.get(prerequisite_build_option) is not None:
+                                if len(skip_builds[prerequisite_build_option]) == 0 or current_device in skip_builds[prerequisite_build_option]:
+                                    continue
+                            prerequisite_build = prerequisite_build_option
+                            break
+                    else:
+                        prerequisite_build = prerequisite_builds
                     devices[current_device]['builds'][prerequisite_build] = get_build_version(os_str, prerequisite_build)
 
         for key, value in devices.items():
