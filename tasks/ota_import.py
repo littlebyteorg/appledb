@@ -329,8 +329,9 @@ if __name__ == "__main__":
             raise RuntimeError("No import file found")
 
         print("Checking processed files for alive/hashes...")
-        # update_links(files_processed)
-        print(f"Failed links: {failed_links}")
+        update_links(files_processed)
+        if failed_links:
+            print(f"Failed links: {failed_links}")
     else:
         while True:
             url = input("Enter OTA URL (enter to exit): ").strip()

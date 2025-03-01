@@ -164,6 +164,7 @@ if __name__ == "__main__":
     if FULL_SELF_DRIVING:
         print("Full self-driving mode enabled. Make sure to verify data before committing.")
     if bulk_mode:
+        failed_links = []
         files_processed = set()
 
         if not FULL_SELF_DRIVING:
@@ -181,9 +182,12 @@ if __name__ == "__main__":
                     )
                 else:
                     for link in version["links"]:
-                        files_processed.add(
-                            import_ia(link["url"], version=version["version"], released=version["released"], use_network=False, skip_sha1_hash=args.no_sha1_hash)
-                        )
+                        try:
+                            files_processed.add(
+                                import_ia(link["url"], version=version["version"], released=version["released"], use_network=False, skip_sha1_hash=args.no_sha1_hash)
+                            )
+                        except:
+                            failed_links.append(link)
 
         elif Path("import-ia.txt").exists():
             print("Reading URLs from import-ia.txt")
@@ -191,12 +195,17 @@ if __name__ == "__main__":
             urls = [i.strip() for i in Path("import-ia.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
-                files_processed.add(import_ia(url, use_network=False, skip_sha1_hash=args.no_sha1_hash))
+                try:
+                    files_processed.add(import_ia(url, use_network=False, skip_sha1_hash=args.no_sha1_hash))
+                except:
+                    failed_links.append(url)
         else:
             raise RuntimeError("No import file found")
 
         print("Checking processed files for alive/hashes...")
         update_links(files_processed)
+        if failed_links:
+            print(f"Failed links: {failed_links}")
     else:
         try:
             while True:

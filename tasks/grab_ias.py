@@ -44,6 +44,8 @@ for mac_version in mac_versions:
         for product in plist.values():
             if not product.get('ExtendedMetaInfo', {}).get('InstallAssistantPackageIdentifiers'):
                 continue
+            if 'InstallAssistantAuto' in product.get('ServerMetadataURL', ''):
+                continue
             base_url = product['Packages'][0]['URL'].rsplit("/", 1)[0]
             if VARIATION_CATALOG_MAPS.get(variation):
                 links.add(f"{base_url}/InstallAssistant.pkg;{VARIATION_CATALOG_MAPS[variation]}")
