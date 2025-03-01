@@ -43,7 +43,11 @@ skip_builds = {
         'iPhone15,5',
         'iPhone16,1',
         'iPhone16,2',
-    ]
+    ],
+    '21G79': [],
+    '21H15': [],
+    '22A3351': [],
+    '22B82': [],
 }
 
 # Ensure known versions of watchOS don't get included in import-ota.txt.

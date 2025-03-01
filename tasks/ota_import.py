@@ -21,6 +21,7 @@ from common_update_import import all_boards_covered, augment_with_keys, create_f
 # TODO: createAdditionalEntries support (would only work with JSON tho)
 
 FULL_SELF_DRIVING = False
+REFRESH_EXISTING = False
 # Use local files if found
 USE_LOCAL_IF_FOUND = True
 LOCAL_OTA_PATH = Path("otas")
@@ -208,14 +209,17 @@ def import_ota(
     found_source = False
     for source in db_data.setdefault("sources", []):
         if source_has_link(source, ota_url):
-            print("\tURL already exists in sources")
-            found_source = True
-            source.setdefault("deviceMap", []).extend(supported_devices)
-            if supported_boards:
-                source.setdefault("boardMap", []).extend(supported_boards)
+            if REFRESH_EXISTING:
+                db_data['sources'].pop(db_data['sources'].index(source))
+            else:
+                print("\tURL already exists in sources")
+                found_source = True
+                source.setdefault("deviceMap", []).extend(supported_devices)
+                if supported_boards:
+                    source.setdefault("boardMap", []).extend(supported_boards)
 
     if not found_source:
-        print("\tAdding new source")
+        print("\tReplacing source" if REFRESH_EXISTING else "\tAdding new source")
         source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
         if ota_key:
             source["links"][0]["decryptionKey"] = ota_key
@@ -259,12 +263,15 @@ def import_ota(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--bulk-mode', action='store_true')
-    parser.add_argument('-s', '--full-self-driving', action='store_true')
     parser.add_argument('-i', '--suffix', default="")
+    parser.add_argument('-r', '--refresh-existing', action='store_true')
+    parser.add_argument('-s', '--full-self-driving', action='store_true')
     args = parser.parse_args()
 
     if args.full_self_driving:
         FULL_SELF_DRIVING = True
+    if args.refresh_existing:
+        REFRESH_EXISTING = True
 
     bulk_mode = args.bulk_mode or input("Bulk mode - read data from import-ota.json/import-ota.txt? [y/n]: ").strip().lower() == "y"
 
@@ -322,7 +329,7 @@ if __name__ == "__main__":
             raise RuntimeError("No import file found")
 
         print("Checking processed files for alive/hashes...")
-        update_links(files_processed)
+        # update_links(files_processed)
         print(f"Failed links: {failed_links}")
     else:
         while True:
