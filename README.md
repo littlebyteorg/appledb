@@ -27,9 +27,6 @@ bypassApps/
 bypassTweaks/
     *define me*
 
-chipFiles/
-    Each of these files describes a particular Apple designed processor (such as the M1, A15, etc).
-
 deviceFiles/
     Each of these files describes an Apple device (such as the iPhone 13 Pro Max, iPad Air, etc).
 
@@ -56,7 +53,7 @@ tests/
     These are files that are never checked into the GitHub copy
     
 deploy.js
-    *legacy deploy code* - Will move to grunt
+    Deployment script
 
 jest.config.json
     Configuration for the `jest` test runner for the files in `tests/`
@@ -66,7 +63,7 @@ LICENSE
 package.json
     Declares the various tools and commands that the repo uses such as `npm test`
 
-package-lock.json
+yarn-lock.json
     A set of the correct versions of tools to install to `node_modules/` - Do not hand edit
 
 README.md
@@ -76,7 +73,7 @@ tsconfig.json
     Configuration to allow for the use of TypeScript as well as JavaScript
     
 update_links.py
-    *legacy link updater* - Move to grunt task
+    link updater
 ```
 
 ## Contributing

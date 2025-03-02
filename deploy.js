@@ -185,10 +185,6 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
   if (!ver.key) ver.key = ver.osStr + ";" + ver.uniqueBuild;
   if (!ver.beta) ver.beta = false;
   if (!ver.rc) ver.rc = false;
-  /*if (!ver.sortVersion) {
-    if (ver.iosVersion) ver.sortVersion = ver.iosVersion
-    else ver.sortVersion = ver.version
-  }*/
   if (!ver.deviceMap) ver.deviceMap = [];
   if (!ver.released) ver.released = "";
 
@@ -200,8 +196,6 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
   else if (ver.osType == "Apple TV Software") ver.osType = "tvOS";
   else if (ver.osType == "audioOS") ver.osType = "HomePod Software";
   else if (ver.osType == "Mac OS X" || ver.osType == "OS X") ver.osType = "macOS";
-
-  // if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources) ver.sources = ver.sources.filter(source => (source.type != 'ota'))
 
   function getLegacyDevicesObjectArray() {
     let obj = {};
@@ -250,7 +244,7 @@ jailbreakFiles = jailbreakFiles.map(function (jb) {
 });
 
 bypassApps = bypassApps.map(function (app) {
-  if (!app.bypasses) return JSON.stringify(app);
+  if (!app.bypasses) return app;
 
   app.bypasses = app.bypasses.map(function (b) {
     if (!b.name) return b;
@@ -261,10 +255,8 @@ bypassApps = bypassApps.map(function (app) {
     return bypassObj;
   });
 
-  return JSON.stringify(app);
+  return app;
 });
-
-bypassApps = bypassApps.map((x) => JSON.parse(x)); // This is extremely dumb but necessary for some reason
 
 const p = "out";
 mkdir(p);
@@ -426,8 +418,8 @@ const latestVersions = latestVersionArr
 
 homePage['latestVersions'] = latestVersions
 
-mkdir("./out/appledb-web");
-write("./out/appledb-web/homePage.json", JSON.stringify(homePage));
+mkdir(`${p}/appledb-web`);
+write(`${p}/appledb-web/homePage.json`, JSON.stringify(homePage));
 
 // finish
 
