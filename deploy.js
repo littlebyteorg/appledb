@@ -78,7 +78,7 @@ function handleSDKs(baseItem) {
 }
 
 var osFiles = requireAll("osFiles", ".json"),
-  jailbreakFiles = requireAll("jailbreakFiles", ".js"),
+  jailbreakFiles = requireAll("jailbreakFiles", ".json"),
   deviceGroupFiles = requireAll("deviceGroupFiles", ".json"),
   deviceFiles = requireAll("deviceFiles", ".json"),
   bypassTweaks = requireAll("bypassTweaks", ".json"),
