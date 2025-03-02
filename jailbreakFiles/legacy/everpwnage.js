@@ -17,7 +17,7 @@ module.exports = {
     type: "Untethered",
     firmwares: ["8.0", "9.0.2"],
     notes: "Only supports 32-bit devices.",
-    latestVer: "1.1",
+    latestVer: "1.1.1",
     color: "#ba8eb6",
   },
   compatibility: [
