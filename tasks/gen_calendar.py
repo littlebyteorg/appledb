@@ -24,6 +24,9 @@ def process_event(data: dict):
     if data.get("build"):
         event.name += f" ({data['build']})"
 
+    uniqueBuild = data.get('uniqueBuild') or data.get('build') or data['version']
+    event.uid = f"{data['osStr']};{uniqueBuild}"
+
     event.description = f"""
 {data['osStr']} {data['version']}{f" ({data['build']})" if data.get("build") else ""}
 
@@ -68,8 +71,9 @@ Released on {data['released']}.
         f"https://appledb.dev/firmware/{data['osStr'].replace(' ', '-')}/{data.get('uniqueBuild') or data.get('build') or data['version']}"
     )
 
-    # if len(data["released"]) <= 7:
-    #     continue
+    if len(data["released"]) <= 7:
+        print(data)
+        return
     # released = datetime.datetime.fromisoformat(data["released"])
     released = dateutil.parser.parse(data["released"])
 
