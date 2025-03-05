@@ -7,11 +7,22 @@ from pathlib import Path
 from typing import Optional
 
 import dateutil.parser
+import ics.serializers.event_serializer
 from ics import Calendar, Event
+from ics.grammar.parse import ContentLine
 
 FIRMWARE_DATA = json.loads(Path("out/ios/main.json").read_bytes())
 DEVICE_DATA = json.loads(Path("out/device/main.json").read_bytes())
 CUPERTINO = zoneinfo.ZoneInfo("America/Los_Angeles")
+
+
+# Monkeypatch to fix URL serialization
+def serialize_url(event, container):
+    if event.url:
+        container.append(ContentLine("URL", value=event.url))
+
+
+ics.serializers.event_serializer.EventSerializer.serialize_url = serialize_url
 
 
 def handle_date(event: Event, date: str, all_day: bool):
@@ -40,7 +51,7 @@ def process_firmware_event(data: dict, all_day: bool = True):
     if data.get("build"):
         event.name += f" ({data['build']})"
 
-    event.uid = "FIRMWARE;" + data["key"]
+    event.uid = "APPLEDB;FIRMWARE;" + data["key"]
 
     event.description = f"""
 {data['osStr']} {data['version']}{f" ({data['build']})" if data.get("build") else ""}
@@ -113,7 +124,7 @@ def process_device_event(data: dict, all_day: bool = True):
         if multiple:
             event.name += f" ({i + 1}/{len(release_dates)})"
 
-        event.uid = ";".join(["DEVICE;", data["key"], release_date])
+        event.uid = ";".join(["APPLEDB", "DEVICE", data["key"], release_date])
 
         event.description = f"""
 {data['name']} release{f" ({i + 1}/{len(release_dates)})" if multiple else ""}.
@@ -130,7 +141,7 @@ def process_device_event(data: dict, all_day: bool = True):
         event = Event()
         event.name = f"{data['name']} discontinued"
 
-        event.uid = ";".join(["DEVICE;", data["key"], discontinued])
+        event.uid = ";".join(["APPLEDB", "DEVICE", data["key"], discontinued])
 
         event.description = f"""
 {data['name']} discontinued.
