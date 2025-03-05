@@ -124,7 +124,7 @@ def process_device_event(data: dict, all_day: bool = True):
         if multiple:
             event.name += f" ({i + 1}/{len(release_dates)})"
 
-        event.uid = ";".join(["APPLEDB", "DEVICE", data["key"], release_date])
+        event.uid = "-".join(["APPLEDB", "DEVICE", data["key"], release_date])
 
         event.description = f"""
 {data['name']} release{f" ({i + 1}/{len(release_dates)})" if multiple else ""}.
@@ -141,7 +141,7 @@ def process_device_event(data: dict, all_day: bool = True):
         event = Event()
         event.name = f"{data['name']} discontinued"
 
-        event.uid = ";".join(["APPLEDB", "DEVICE", data["key"], discontinued])
+        event.uid = "-".join(["APPLEDB", "DEVICE", data["key"], discontinued])
 
         event.description = f"""
 {data['name']} discontinued.
