@@ -8,7 +8,7 @@ from pathlib import Path
 import dateutil.parser
 from ics import Calendar, Event
 
-DATA = json.loads(Path("out/iOS/main.json").read_bytes())
+DATA = json.loads(Path("out/ios/main.json").read_bytes())
 CUPERTINO = zoneinfo.ZoneInfo("America/Los_Angeles")
 
 
