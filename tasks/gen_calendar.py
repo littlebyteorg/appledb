@@ -1,21 +1,21 @@
 import datetime
-from pathlib import Path
 import json
+import urllib
+import urllib.parse
 import zoneinfo
+from pathlib import Path
+
 import dateutil.parser
 from ics import Calendar, Event
 
-# TODO: Make events have predictable IDs
-
-calendar = Calendar()
-
+DATA = json.loads(Path("out/iOS/main.json").read_bytes())
 CUPERTINO = zoneinfo.ZoneInfo("America/Los_Angeles")
 
-ALL_DAY = True
-DATE_THRESHOLD = datetime.datetime(2024, 1, 1) if ALL_DAY else datetime.datetime(2024, 1, 1, 10, 0, 0, tzinfo=CUPERTINO)
 
+def process_event(data: dict, all_day: bool = True):
+    DATE_THRESHOLD = datetime.datetime(1970, 1, 1) if all_day else datetime.datetime(1970, 1, 1, 10, 0, 0, tzinfo=CUPERTINO)
+    # DATE_THRESHOLD = datetime.datetime(2024, 1, 1) if all_day else datetime.datetime(2024, 1, 1, 10, 0, 0, tzinfo=CUPERTINO)
 
-def process_event(data: dict):
     if not data.get("released"):
         return
 
@@ -24,8 +24,7 @@ def process_event(data: dict):
     if data.get("build"):
         event.name += f" ({data['build']})"
 
-    uniqueBuild = data.get('uniqueBuild') or data.get('build') or data['version']
-    event.uid = f"{data['osStr']};{uniqueBuild}"
+    event.uid = data["key"]
 
     event.description = f"""
 {data['osStr']} {data['version']}{f" ({data['build']})" if data.get("build") else ""}
@@ -67,17 +66,16 @@ Released on {data['released']}.
 
     event.description = event.description.strip()
 
-    event.url = (
-        f"https://appledb.dev/firmware/{data['osStr'].replace(' ', '-')}/{data.get('uniqueBuild') or data.get('build') or data['version']}"
-    )
+    event.url = data["appledburl"]
 
-    if len(data["released"]) <= 7:
-        print(data)
+    if len(data["released"]) < 10:
+        # print(data)
         return
+
     # released = datetime.datetime.fromisoformat(data["released"])
     released = dateutil.parser.parse(data["released"])
 
-    if ALL_DAY:
+    if all_day:
         if released.tzinfo:
             released = released.astimezone(CUPERTINO)
             released = released.replace(tzinfo=None)
@@ -95,20 +93,86 @@ Released on {data['released']}.
         event.end = released
 
     event.transparent = True
-    calendar.events.add(event)
+
+    return event
 
 
-for i in Path("osFiles").rglob("*.json"):
-    try:
-        os_file = json.loads(i.read_text())
-        process_event(os_file)
-        for changes in os_file.get("createDuplicateEntries", []):
-            duplicate = os_file | changes
-            duplicate.pop("createDuplicateEntries")
-            process_event(duplicate)
-        # TODO: Handle SDKs
-    except:
-        print(f"Error parsing {i}")
-        raise
+README = """
+# Calendars
 
-Path("calendar.ics").write_text(calendar.serialize())
+Calendars generated based on released firmwares in AppleDB.
+
+"""
+
+
+def generate(all_day: bool = True):
+    global README
+
+    main_calendar = Calendar()
+    calendars = {}
+
+    if all_day:
+        README += """## All Day Events
+
+The events in these calendars are marked as all day.
+
+"""
+    else:
+        README += """## Time-Based Events
+
+The events in these calendars are marked as starting and ending at 10AM Cupertino time.
+
+"""
+
+    for i in DATA:
+        # Create calendars for this osType
+        # This is before event creation, so that we can ensure there are calendars for all osTypes,
+        # even if they will be empty
+        if i["osType"] not in calendars:
+            calendars[i["osType"]] = Calendar()
+
+        event = process_event(i, all_day)
+        if not event:
+            continue
+
+        main_calendar.events.add(event)
+        calendars[i["osType"]].events.add(event)
+
+    main_path = Path(f"out/iOS/main{'-timed' if not all_day else ''}.ics")
+    main_path.write_text(main_calendar.serialize())
+    main_url = f"https://api.appledb.dev/{urllib.parse.quote(str(main_path.relative_to(Path('out'))))}"
+    README += f"- [Main Calendar]({main_url})\n"
+
+    def sort_key(x):
+        try:
+            index = [
+                "iOS",
+                "macOS",
+                "tvOS",
+                "watchOS",
+                "HomePod Software",
+                "visionOS",
+                "bridgeOS",
+                "Xcode",
+                "Safari",
+                "Bluetooth Headset Firmware",
+                "Rosetta",
+            ].index(x)
+        except ValueError:
+            index = 99
+
+        return (index, x)
+
+    for i in sorted(calendars.keys(), key=sort_key):
+        calendar_path = Path(f"out/iOS/{i}/main{'-timed' if not all_day else ''}.ics")
+        calendar_path.write_text(calendars[i].serialize())
+        calendar_url = f"https://api.appledb.dev/{urllib.parse.quote(str(calendar_path.relative_to(Path('out'))))}"
+        README += f"- [{i}]({calendar_url})\n"
+
+    README += "\n"
+
+
+if __name__ == "__main__":
+    generate(True)
+    generate(False)
+    Path("out/CALENDARS.md").write_text(README, encoding="utf-8")
