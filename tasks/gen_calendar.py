@@ -138,7 +138,7 @@ The events in these calendars are marked as starting and ending at 10AM Cupertin
         main_calendar.events.add(event)
         calendars[i["osType"]].events.add(event)
 
-    main_path = Path(f"out/iOS/main{'-timed' if not all_day else ''}.ics")
+    main_path = Path(f"out/ios/main{'-timed' if not all_day else ''}.ics")
     main_path.write_text(main_calendar.serialize())
     main_url = f"https://api.appledb.dev/{urllib.parse.quote(str(main_path.relative_to(Path('out'))))}"
     README += f"- [Main Calendar]({main_url})\n"
@@ -164,7 +164,7 @@ The events in these calendars are marked as starting and ending at 10AM Cupertin
         return (index, x)
 
     for i in sorted(calendars.keys(), key=sort_key):
-        calendar_path = Path(f"out/iOS/{i}/main{'-timed' if not all_day else ''}.ics")
+        calendar_path = Path(f"out/ios/{i}/main{'-timed' if not all_day else ''}.ics")
         calendar_path.write_text(calendars[i].serialize())
         calendar_url = f"https://api.appledb.dev/{urllib.parse.quote(str(calendar_path.relative_to(Path('out'))))}"
         README += f"- [{i}]({calendar_url})\n"
