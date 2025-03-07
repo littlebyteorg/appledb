@@ -104,12 +104,14 @@ def import_ia(
     db_data.setdefault("deviceMap", []).extend(supported_devices)
 
     found_source = False
+    is_new_import = None
     for source in db_data.setdefault("sources", []):
         if source['type'] == "installassistant":
             found_source = True
             source.setdefault("deviceMap", []).extend(supported_devices)
             if source_has_link(source, ia_url):
                 print("\tURL already exists in sources")
+                is_new_import = False
             else:
                 new_link = {"url": ia_url, "active": True}
                 if catalog_name:
@@ -128,12 +130,13 @@ def import_ia(
             source['links'][0]['catalog'] = catalog_name
 
         db_data["sources"].append(source)
+        is_new_import = True
 
     if bridge_version:
         db_data['bridgeOSBuild'] = info_plist['BridgeVersionInfo']['BridgeProductBuildVersion']
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-    if use_network:
+    if use_network and is_new_import:
         print("\tRunning update links on file")
         update_links([db_file])
     else:
@@ -149,7 +152,7 @@ def import_ia(
         bridge_data = json.load(bridge_file.open(encoding="utf-8"))
         bridge_data.setdefault("deviceMap", []).extend(bridge_devices)
         json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-    return db_file
+    return db_file, is_new_import
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -185,9 +188,9 @@ if __name__ == "__main__":
                 else:
                     for link in version["links"]:
                         try:
-                            files_processed.add(
-                                import_ia(link["url"], version=version["version"], released=version["released"], use_network=False, skip_sha1_hash=args.no_sha1_hash)
-                            )
+                            (processed_file, fresh_import) = import_ia(link["url"], version=version["version"], released=version["released"], use_network=False, skip_sha1_hash=args.no_sha1_hash)
+                            if fresh_import:
+                                files_processed.add(processed_file)
                         except:
                             failed_links.append(link)
 
@@ -198,14 +201,17 @@ if __name__ == "__main__":
             for url in urls:
                 print(f"Importing {url}")
                 try:
-                    files_processed.add(import_ia(url, use_network=False, skip_sha1_hash=args.no_sha1_hash))
+                    (processed_file, fresh_import) = import_ia(url, use_network=False, skip_sha1_hash=args.no_sha1_hash)
+                    if fresh_import:
+                        files_processed.add(processed_file)
                 except:
                     failed_links.append(url)
         else:
             raise RuntimeError("No import file found")
 
-        print("Checking processed files for alive/hashes...")
-        update_links(files_processed)
+        if files_processed:
+            print("Checking processed files for alive/hashes...")
+            update_links(files_processed)
         if failed_links:
             print(f"Failed links: {failed_links}")
     else:
