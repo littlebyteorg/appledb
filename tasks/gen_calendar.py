@@ -22,7 +22,7 @@ def serialize_url(event, container):
         container.append(ContentLine("URL", value=event.url))
 
 
-ics.serializers.event_serializer.EventSerializer.serialize_url = serialize_url
+# ics.serializers.event_serializer.EventSerializer.serialize_url = serialize_url
 
 
 def handle_date(event: Event, date: str, all_day: bool):
@@ -93,7 +93,9 @@ Released on {data['released']}.
 
     event.description = event.description.strip()
 
-    event.url = data["appledburl"]
+    event.description += "\n\n" + data["appledburl"]
+
+    # event.url = data["appledburl"]
 
     if len(data["released"]) < 10:
         # print(data)
@@ -182,7 +184,9 @@ Type: {data['type']}
 
         event.description = event.description.strip()
 
-        event.url = f"https://appledb.dev/device/identifier/{data['key'].replace(' ', '-').replace('/', '-')}"
+        event.description += "\n\n" + f"https://appledb.dev/device/identifier/{data['key'].replace(' ', '-').replace('/', '-')}"
+
+        # event.url = f"https://appledb.dev/device/identifier/{data['key'].replace(' ', '-').replace('/', '-')}"
 
         event.transparent = True
 
