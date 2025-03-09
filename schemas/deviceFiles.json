@@ -54,6 +54,7 @@
         },
         "discontinued":   {"type": "string", "format": "date"},
         "info":           {"type": "array", "items": {"type": "object"}},
+        "colors":         {"type": "array", "items": {}},
         "windowsStoreId": {"type": "string"},
         "extra":          {"type": "object"}
     },
@@ -61,6 +62,10 @@
         "hex": {
             "type": "string",
             "pattern": "^0x[0-9a-fA-F]+$"
+        },
+        "color-hex": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F](6)$"
         },
         "partial-date": {
             "anyOf": [
@@ -70,6 +75,16 @@
                 {"type": "string", "pattern": "^\\d{4}$"},
                 {"type": "string", "maxLength": 0}
             ]
+        },
+        "color": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {"type": "string"},
+                "hex": {"$ref": "#/definitions/hex"},
+                "released": {"$ref": "#/definitions/partial-date"}
+            },
+            "required": ["name", "hex"]
         }
     }
 }

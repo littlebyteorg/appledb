@@ -23,6 +23,7 @@ key_order = [
     "group",
     "released", # conditional array
     "discontinued",
+    "colors",
     "info",
     "windowsStoreId",
     "appLink",
@@ -54,6 +55,8 @@ list_fields = [
     "alias"
 ]
 
+colors_key_order = ["name", "hex", "released"]
+
 def sorted_dict_by_key(data, order):
     return dict(sorted(data.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order)))
 
@@ -69,6 +72,13 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
     for key in list_fields:
         if not isinstance(data.get(key), list): continue
         data[key].sort()
+
+    for i, colors in enumerate(data.get('colors', [])):
+        data['colors'][i] = sorted_dict_by_key(colors, colors_key_order)
+        if set(data["colors"][i].keys()) - set(colors_key_order):
+            raise ValueError(f"Unknown keys: {sorted(set(data['colors'][i].keys()) - set(colors_key_order))}")
+
+    data.get('colors', []).sort(key=lambda color: (color.get('released', ''), color['name']))
 
     for i, info in enumerate(data.get('info', [])):
         data['info'][i] = sorted_dict_by_key(info, info_key_order[info['type']])
