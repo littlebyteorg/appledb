@@ -13,7 +13,7 @@ import requests
 from sort_os_files import sort_os_file
 from file_downloader import handle_pkg_file
 
-result = requests.get(f"https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog?cachebust{random.randint(100, 1000)}")
+result = requests.get(f"https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog?cachebust{random.randint(100, 1000)}", timeout=30)
 result.raise_for_status()
 
 plist = plistlib.loads(result.content)
@@ -33,7 +33,7 @@ for product in plist.get('Products', {}).values():
             beta = os_details.get('beta')
             rc = os_details.get('rc')
         else:
-            distribution_result = requests.get(product['ServerMetadataURL'])
+            distribution_result = requests.get(product['ServerMetadataURL'], timeout=30)
 
             distribution_plist = plistlib.loads(distribution_result.content)
             distribution_version = distribution_plist["CFBundleShortVersionString"]

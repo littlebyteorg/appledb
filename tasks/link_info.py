@@ -1,3 +1,6 @@
+import os
+from datetime import datetime, timedelta, timezone
+
 # Preferred -> other variants
 rewrite_map_v2 = {
     "https://updates.cdn-apple.com/": ["http://updates-http.cdn-apple.com/"],
@@ -49,9 +52,14 @@ stop_remaking_active = [
     "swcdn.apple.com"
 ]
 
+apple_auth_token = ""
+
 try:
-    with open("apple_token.txt", "r") as token_file:
-        apple_auth_token = token_file.readline().strip()
+    if datetime.fromtimestamp(os.path.getmtime("apple_token.txt"), timezone.utc) < (datetime.now(timezone.utc) - timedelta(hours=12)):
+        apple_auth_token = ""
+    else:
+        with open("apple_token.txt", "r") as token_file:
+            apple_auth_token = token_file.readline().strip()
 except:
     apple_auth_token = ""
 
