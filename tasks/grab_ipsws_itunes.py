@@ -53,7 +53,7 @@ known_builds = [
     '22K561',  # tvOS 18.3.1
     '22N906',  # visionOS 2.3.2
     '22P3060', # bridgeOS 9.3
-    '24D82',   # macOS 15.3.2
+    '24D81',   # macOS 15.3.2
     '24D2082', # macOS 15.3.2 (Spring 2025)
 ]
 
