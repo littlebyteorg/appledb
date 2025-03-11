@@ -34,6 +34,7 @@ added_builds = {
     '21G80': ['21G79'],
     '22A3354': ['22A3351'],
     '22C152': ['22C154'],
+    '22D63': ['22D64'],
 }
 
 # Ensure known versions of watchOS don't get included in import-ota.txt.
