@@ -1,28 +1,13 @@
-import datetime
 import json
-import urllib
-import urllib.parse
 import zoneinfo
 from pathlib import Path
-from typing import Optional
 
 import dateutil.parser
-import ics.serializers.event_serializer
-from ics import Calendar, Event
-from ics.grammar.parse import ContentLine
+from icalendar import Calendar, Event
 
 FIRMWARE_DATA = json.loads(Path("out/ios/main.json").read_bytes())
 DEVICE_DATA = json.loads(Path("out/device/main.json").read_bytes())
 CUPERTINO = zoneinfo.ZoneInfo("America/Los_Angeles")
-
-
-# Monkeypatch to fix URL serialization
-def serialize_url(event, container):
-    if event.url:
-        container.append(ContentLine("URL", value=event.url))
-
-
-# ics.serializers.event_serializer.EventSerializer.serialize_url = serialize_url
 
 
 def handle_date(event: Event, date: str, all_day: bool):
@@ -32,14 +17,12 @@ def handle_date(event: Event, date: str, all_day: bool):
         if released.tzinfo:
             released = released.astimezone(CUPERTINO)
             released = released.replace(tzinfo=None)
-        event.begin = released
-        event.end = released
-        event.make_all_day()
+        event.add("dtstart", released.date())
     else:
         if not released.tzinfo:
             released = released.replace(hour=10, minute=0, second=0, tzinfo=CUPERTINO)
-        event.begin = released
-        event.end = released
+        event.add("dtstart", released)
+        event.add("dtend", released)
 
 
 def process_firmware_event(data: dict, all_day: bool = True):
@@ -47,64 +30,67 @@ def process_firmware_event(data: dict, all_day: bool = True):
         return
 
     event = Event()
-    event.name = f"{data['osStr']} {data['version']}"
+    name = f"{data['osStr']} {data['version']}"
     if data.get("build"):
-        event.name += f" ({data['build']})"
+        name += f" ({data['build']})"
 
-    event.uid = "APPLEDB;FIRMWARE;" + data["key"]
+    event.add("summary", name)
 
-    event.description = f"""
-{data['osStr']} {data['version']}{f" ({data['build']})" if data.get("build") else ""}
+    event.add("uid", "APPLEDB;FIRMWARE;" + data["key"])
 
-Released on {data['released']}.
+    description = f"""
+{data["osStr"]} {data["version"]}{f" ({data['build']})" if data.get("build") else ""}
+
+Released on {data["released"]}.
 
 """
 
     if data.get("deviceMap"):
-        event.description += "Supported devices:\n"
-        event.description += ", ".join(data["deviceMap"])
-        event.description += "\n\n"
+        description += "Supported devices:\n"
+        description += ", ".join(data["deviceMap"])
+        description += "\n\n"
 
     if data.get("osMap"):
-        event.description += "Supported OSes:\n"
-        event.description += ", ".join(data["osMap"])
-        event.description += "\n\n"
+        description += "Supported OSes:\n"
+        description += ", ".join(data["osMap"])
+        description += "\n\n"
 
     if data.get("preinstalled"):
         if data["preinstalled"] == data["deviceMap"]:
-            event.description += "This build is a preinstalled build on all devices it was available for.\n\n"
+            description += "This build is a preinstalled build on all devices it was available for.\n\n"
         else:
-            event.description += "This build is preinstalled on the following devices:\n"
-            event.description += ", ".join(data["preinstalled"])
-            event.description += "\n\n"
+            description += "This build is preinstalled on the following devices:\n"
+            description += ", ".join(data["preinstalled"])
+            description += "\n\n"
 
     if data.get("internal"):
-        event.description += "This is an internal build.\n"
+        description += "This is an internal build.\n"
     # if data.get("simulator"):
-    #     event.description += "This is a simulator build.\n"
+    #     description += "This is a simulator build.\n"
     if data.get("sdk"):
-        event.description += "This is an SDK build.\n"
+        description += "This is an SDK build.\n"
     if data.get("beta"):
-        event.description += "This is a beta build.\n"
+        description += "This is a beta build.\n"
     if data.get("rc"):
-        event.description += "This is a release candidate build.\n"
+        description += "This is a release candidate build.\n"
     if data.get("rsr"):
-        event.description += "This is a Rapid Security Response.\n"
+        description += "This is a Rapid Security Response.\n"
 
-    event.description = event.description.strip()
+    description = description.strip()
 
-    event.description += "\n\n" + data["appledburl"]
+    description += "\n\n" + data["appledburl"]
 
-    # event.url = data["appledburl"]
+    event.add("description", description)
+
+    # event.add("url", data["appledburl"])
 
     if len(data["released"]) < 10:
         # print(data)
         return
 
-    # released = datetime.datetime.fromisoformat(data["released"])
     handle_date(event, data["released"], all_day)
 
-    event.transparent = True
+    event.add("transp", "TRANSPARENT")
 
     return [event]
 
@@ -119,18 +105,23 @@ def process_device_event(data: dict, all_day: bool = True):
     multiple = len(release_dates) > 1
     discontinued = data.get("discontinued")
 
-    events = []
+    events: list[Event] = []
     for i, release_date in enumerate(release_dates):
         event = Event()
-        event.name = f"{data['name']} release"
+        name = f"{data['name']} release"
         if multiple:
-            event.name += f" ({i + 1}/{len(release_dates)})"
+            name += f" ({i + 1}/{len(release_dates)})"
 
-        event.uid = "-".join(["APPLEDB", "DEVICE", data["key"], release_date])
+        event.add("summary", name)
 
-        event.description = f"""
-{data['name']} release{f" ({i + 1}/{len(release_dates)})" if multiple else ""}.
-"""
+        event.add("uid", "-".join(["APPLEDB", "DEVICE", data["key"], release_date]))
+
+        event.add(
+            "description",
+            f"""
+{data["name"]} release{f" ({i + 1}/{len(release_dates)})" if multiple else ""}.
+""",
+        )
         if len(release_date) < 10:
             print(data)
             return
@@ -141,13 +132,16 @@ def process_device_event(data: dict, all_day: bool = True):
 
     if discontinued:
         event = Event()
-        event.name = f"{data['name']} discontinued"
+        event.add("summary", f"{data['name']} discontinued")
 
-        event.uid = "-".join(["APPLEDB", "DEVICE", data["key"], discontinued])
+        event.add("uid", "-".join(["APPLEDB", "DEVICE", data["key"], discontinued]))
 
-        event.description = f"""
-{data['name']} discontinued.
-"""
+        event.add(
+            "description",
+            f"""
+{data["name"]} discontinued.
+""",
+        )
         if len(discontinued) < 10:
             print(data)
             return
@@ -157,41 +151,53 @@ def process_device_event(data: dict, all_day: bool = True):
         events.append(event)
 
     for event in events:
-        event.description += f"""
-Released on {', '.join(release_dates)}.{(' Discontinued on ' + data['discontinued'] + '.') if data.get('discontinued') else ''}
+        description = (
+            event.pop("description", "")
+            + f"""
+Released on {", ".join(release_dates)}.{(" Discontinued on " + data["discontinued"] + ".") if data.get("discontinued") else ""}
 
-Type: {data['type']}
+Type: {data["type"]}
 
 """
+        )
 
         if data.get("model"):
-            event.description += "Models:\n"
-            event.description += ", ".join(data["model"])
-            event.description += "\n\n"
+            description += "Models:\n"
+            description += ", ".join(data["model"])
+            description += "\n\n"
 
         if data.get("identifier"):
-            event.description += "Identifiers:\n"
-            event.description += ", ".join(data["identifier"])
-            event.description += "\n\n"
+            description += "Identifiers:\n"
+            description += ", ".join(data["identifier"])
+            description += "\n\n"
 
         if data.get("board"):
-            event.description += "Boardconfigs:\n"
-            event.description += ", ".join(data["board"])
-            event.description += "\n\n"
+            description += "Boardconfigs:\n"
+            description += ", ".join(data["board"])
+            description += "\n\n"
 
         if data.get("internal"):
-            event.description += "This is an internal device.\n"
+            description += "This is an internal device.\n"
 
-        event.description = event.description.strip()
+        description = description.strip()
 
-        event.description += "\n\n" + f"https://appledb.dev/device/identifier/{data['key'].replace(' ', '-').replace('/', '-')}"
+        description += "\n\n" + f"https://appledb.dev/device/identifier/{data['key'].replace(' ', '-').replace('/', '-')}"
 
-        # event.url = f"https://appledb.dev/device/identifier/{data['key'].replace(' ', '-').replace('/', '-')}"
+        event.add("description", description)
 
-        event.transparent = True
+        # event.add("url", f"https://appledb.dev/device/identifier/{data['key'].replace(' ', '-').replace('/', '-')}")
+
+        event.add("transp", "TRANSPARENT")
 
     # TODO: List
     return events
+
+
+def new_calendar():
+    cal = Calendar()
+    cal.add("prodid", "-//AppleDB//AppleDB//EN")
+    cal.add("version", "2.0")
+    return cal
 
 
 def generate():
@@ -206,17 +212,17 @@ marked as starting and ending at 10AM Cupertino time.
     """
 
     all_day_calendars = {
-        "all": Calendar(),
-        "all_firmware": Calendar(),
-        "all_device": Calendar(),
+        "all": new_calendar(),
+        "all_firmware": new_calendar(),
+        "all_device": new_calendar(),
         "firmwares": {},
         "devices": {},
     }
 
     timed_calendars = {
-        "all": Calendar(),
-        "all_firmware": Calendar(),
-        "all_device": Calendar(),
+        "all": new_calendar(),
+        "all_firmware": new_calendar(),
+        "all_device": new_calendar(),
         "firmwares": {},
         "devices": {},
     }
@@ -227,15 +233,16 @@ marked as starting and ending at 10AM Cupertino time.
             # This is before event creation, so that we can ensure there are calendars for all osTypes,
             # even if they will be empty
             if i["osType"] not in calendars["firmwares"]:
-                calendars["firmwares"][i["osType"]] = Calendar()
+                calendars["firmwares"][i["osType"]] = new_calendar()
 
             events = process_firmware_event(i, all_day)
             if not events:
                 continue
 
-            calendars["all"].events.update(events)
-            calendars["all_firmware"].events.update(events)
-            calendars["firmwares"][i["osType"]].events.update(events)
+            for j in events:
+                calendars["all"].add_component(j)
+                calendars["all_firmware"].add_component(j)
+                calendars["firmwares"][i["osType"]].add_component(j)
 
         for i in DEVICE_DATA:
             # Create calendars for this type
@@ -248,16 +255,17 @@ marked as starting and ending at 10AM Cupertino time.
             if not events:
                 continue
 
-            calendars["all"].events.update(events)
-            calendars["all_device"].events.update(events)
-            calendars["devices"][i["type"]].events.update(events)
+            for j in events:
+                calendars["all"].add_component(j)
+                calendars["all_device"].add_component(j)
+                calendars["devices"][i["type"]].add_component(j)
 
     def path_to_url(path: Path) -> str:
         return f"https://api.appledb.dev/{str(path.relative_to(Path('out')))}"
 
     def save_calendar(all_day_calendar: Calendar, timed_calendar: Calendar, path: Path):
-        (path / "main.ics").write_text(all_day_calendar.serialize())
-        (path / "main-timed.ics").write_text(timed_calendar.serialize())
+        (path / "main.ics").write_bytes(all_day_calendar.to_ical())
+        (path / "main-timed.ics").write_bytes(timed_calendar.to_ical())
 
         return f"[all day]({path_to_url(path / 'main.ics')}) | [time-based]({path_to_url(path / 'main-timed.ics')})"
 
