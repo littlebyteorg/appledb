@@ -65,7 +65,7 @@ function handleSDKs(baseItem) {
 
   for (var sdk of baseItem["sdks"]) {
     sdk["version"] = sdk["version"] + " SDK";
-    sdk["uniqueBuild"] = sdk["build"] + "-SDK";
+    sdk["uniqueBuild"] = (sdk["build"] || sdk["version"]) + "-" + (baseItem["uniqueBuild"] || baseItem["build"] || baseItem["version"]) + "-SDK";
     sdk["released"] = baseItem["released"];
     sdk["deviceMap"] = [
       (sdk["osStr"].indexOf("OS X") >= 0 ? "macOS" : sdk["osStr"]) + " SDK",
