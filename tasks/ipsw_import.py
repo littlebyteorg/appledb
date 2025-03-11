@@ -139,7 +139,8 @@ def import_ipsw(
             if not mapped_device:
                 print((f"MISSING BOARD - {board_id}"))
                 continue
-            if baseband_map.get(mapped_device[0]): continue
+            if baseband_map.get(mapped_device[0]):
+                continue
             path = identity['Manifest']['Cellular1,RTKitOS']['Info']['Path']
             bbfw_version = ipsw.read(path).split(b"|BBFW:")[1].split(b"|")[0].decode()
             baseband_map[mapped_device[0]] = bbfw_version
@@ -178,10 +179,12 @@ def import_ipsw(
         db_data.setdefault("ipd", {}).update(ipd)
 
     found_source = False
+    is_new_import = None
     for source in db_data.setdefault("sources", []):
         if source_has_link(source, ipsw_url):
             print("\tURL already exists in sources")
             found_source = True
+            is_new_import = False
             source.setdefault("deviceMap", []).extend(supported_devices)
 
     if not found_source:
@@ -189,9 +192,10 @@ def import_ipsw(
         source = {"deviceMap": supported_devices, "type": "ipsw", "links": [{"url": ipsw_url, "active": True}]}
 
         db_data["sources"].append(source)
+        is_new_import = True
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-    if use_network:
+    if use_network and is_new_import:
         print("\tRunning update links on file")
         update_links([db_file])
     else:
@@ -199,7 +203,7 @@ def import_ipsw(
         # and we can use threads to speed it up
         update_links([db_file], False)
     print(f"\tSanity check the file{', run update_links.py, ' if not use_network else ' '}and then commit it\n")
-    return db_file
+    return db_file, is_new_import
 
 
 if __name__ == "__main__":
@@ -233,9 +237,9 @@ if __name__ == "__main__":
                     )
                 else:
                     for link in version["links"]:
-                        files_processed.add(
-                            import_ipsw(link["url"], version=version["version"], released=version.get("released"), ipd=version.get('ipd'), use_network=False)
-                        )
+                        (processed_file, fresh_import) = import_ipsw(link["url"], version=version["version"], released=version.get("released"), ipd=version.get('ipd'), use_network=False)
+                        if fresh_import:
+                            files_processed.add(processed_file)
 
         elif Path("import.txt").exists():
             print("Reading URLs from import.txt")
@@ -243,12 +247,15 @@ if __name__ == "__main__":
             urls = [i.strip() for i in Path("import.txt").read_text(encoding="utf-8").splitlines() if i.strip()]
             for url in urls:
                 print(f"Importing {url}")
-                files_processed.add(import_ipsw(url, use_network=False))
+                (processed_file, fresh_import) = import_ipsw(url, use_network=False)
+                if fresh_import:
+                    files_processed.add(processed_file)
         else:
             raise RuntimeError("No import file found")
 
-        print("Checking processed files for alive/hashes...")
-        update_links(files_processed)
+        if files_processed:
+            print("Checking processed files for alive/hashes...")
+            update_links(files_processed)
     else:
         try:
             while True:

@@ -27,13 +27,13 @@ simulator_pallas_mapping = {
     'visionOS': 'xrOSSimulatorRuntime'
 }
 
-def call_pallas(os, build):
+def call_pallas(os, requested_build):
     request = {
         "ClientVersion": 2,
         "CertIssuanceDay": "2023-12-10",
         "AssetType": f"com.apple.MobileAsset.{simulator_pallas_mapping[os]}",
         "AssetAudience": "02d8e57e-dd1c-4090-aa50-b4ed2aef0062",
-        "RequestedBuild": build
+        "RequestedBuild": requested_build
     }
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
@@ -53,7 +53,6 @@ def call_pallas(os, build):
         }
     else:
         return {}
-    
 
 sdk_platform_mapping = {
     'iOS': 'iphoneos',
@@ -84,7 +83,7 @@ for xcode_version in xcode_response:
     os_map = [f'macOS {x}' for x in range(int(xcode_version['requires'].split(".")[0]), int(xcode_version['version']['number'].split('.')[0]))]
     if file_path.exists(): continue
     file_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     formatted_sdks = []
 
     for sdk_key in xcode_version['sdks'].keys():

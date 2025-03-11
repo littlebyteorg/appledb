@@ -64,14 +64,14 @@ def import_ota(
     delete_output_dir = False
     if only_needs_baseband:
         delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
-        extracted_path = Path(str(local_path).split(".")[0])
+        extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
         build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
     elif not skip_remote:
         if ota_key:
             if Path(aea_support_filename).exists():
                 print('Downloading full OTA file')
                 delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
-                extracted_path = Path(str(local_path).split(".")[0])
+                extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
                 info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
                 build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
 
@@ -123,7 +123,8 @@ def import_ota(
         # Grab baseband versions and buildtrain (both per device)
         for identity in build_manifest['BuildIdentities']:
             board_id = identity['Info']['DeviceClass']
-            if board_id.endswith('dev'): continue
+            if board_id.endswith('dev'):
+                continue
             buildtrain = buildtrain or identity['Info']['BuildTrain']
             restore_version = restore_version or identity.get('Ap,OSLongVersion')
             if 'BasebandFirmware' in identity['Manifest']:
@@ -207,6 +208,7 @@ def import_ota(
     db_data.setdefault("deviceMap", []).extend(supported_devices)
 
     found_source = False
+    is_new_import = None
     for source in db_data.setdefault("sources", []):
         if source_has_link(source, ota_url):
             if REFRESH_EXISTING:
@@ -214,6 +216,7 @@ def import_ota(
             else:
                 print("\tURL already exists in sources")
                 found_source = True
+                is_new_import = False
                 source.setdefault("deviceMap", []).extend(supported_devices)
                 if supported_boards:
                     source.setdefault("boardMap", []).extend(supported_boards)
@@ -231,12 +234,13 @@ def import_ota(
             source["size"] = size
 
         db_data["sources"].append(source)
+        is_new_import = True
 
     if bridge_version and bridge_version_info:
         db_data['bridgeOSBuild'] = bridge_version_info['BridgeProductBuildVersion']
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-    if use_network:
+    if is_new_import and use_network:
         print("\tRunning update links on file")
         update_links([db_file])
     else:
@@ -258,7 +262,7 @@ def import_ota(
     
     if delete_output_dir:
         shutil.rmtree(f"otas/{Path(ota_url).stem}")
-    return db_file
+    return db_file, is_new_import
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -299,14 +303,14 @@ if __name__ == "__main__":
                     for source in version['sources']:
                         for link in source.get('links', []):
                             try:
-                                files_processed.add(
-                                    import_ota(
+                                (processed_file, fresh_import) = import_ota(
                                         link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], \
                                         released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), \
                                         device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"), \
                                         restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo'), size=source.get('size')
                                     )
-                                )
+                                if fresh_import:
+                                    files_processed.add(processed_file)
                             except Exception:
                                 failed_links.append(link["url"])
 
@@ -322,14 +326,17 @@ if __name__ == "__main__":
                     url = url_split[0]
                     key = url_split[1]
                 try:
-                    files_processed.add(import_ota(url, ota_key=key, use_network=False))
+                    (processed_file, fresh_import) = import_ota(url, ota_key=key, use_network=False)
+                    if fresh_import:
+                        files_processed.add(processed_file)
                 except Exception:
                     failed_links.append(url)
         else:
             raise RuntimeError("No import file found")
 
-        print("Checking processed files for alive/hashes...")
-        update_links(files_processed)
+        if files_processed:
+            print("Checking processed files for alive/hashes...")
+            update_links(files_processed)
         if failed_links:
             print(f"Failed links: {failed_links}")
     else:
