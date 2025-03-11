@@ -192,7 +192,10 @@ def import_ota(
     print(f"\t{os_str} {recommended_version} ({build})")
     if prerequisite_builds:
         print(f"\tPrerequisite: {prerequisite_builds}")
-    print(f"\tDevice Support: {supported_devices}")
+    if len(supported_devices) > 10:
+        print(f"\tDevice Support: ({len(supported_devices)} models)")
+    else:
+        print(f"\tDevice Support: {supported_devices}")
     if supported_boards:
         print(f"\tBoard Support: {supported_boards}")
 

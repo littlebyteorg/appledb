@@ -96,7 +96,10 @@ def import_ia(
         buildtrain = info_plist['TrainName']
         restore_version = info_plist['RestoreVersion']
     print(f"\tmacOS {recommended_version} ({build})")
-    print(f"\tDevice Support: {supported_devices}")
+    if len(supported_devices) > 10:
+        print(f"\tDevice Support: ({len(supported_devices)} models)")
+    else:
+        print(f"\tDevice Support: {supported_devices}")
 
     db_file = create_file("macOS", build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))

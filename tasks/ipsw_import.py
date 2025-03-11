@@ -168,6 +168,11 @@ def import_ipsw(
                 print(f"\tCouldn't match product types to any known OS: {supported_devices}")
                 os_str = input("\tEnter OS name: ").strip()
 
+    if len(supported_devices) > 10:
+        print(f"\tDevice Support: ({len(supported_devices)} models)")
+    else:
+        print(f"\tDevice Support: {supported_devices}")
+
     db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
     if baseband_map:
