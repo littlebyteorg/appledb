@@ -1,4 +1,5 @@
 import json
+import urllib.parse
 import zoneinfo
 from pathlib import Path
 
@@ -209,7 +210,7 @@ Calendars generated based on released firmwares and devices in AppleDB.
 All day calendars have events marked as taking place all day, while time-based calendars have events
 marked as starting and ending at 10AM Cupertino time.
 
-    """
+"""
 
     all_day_calendars = {
         "all": new_calendar(),
@@ -261,7 +262,7 @@ marked as starting and ending at 10AM Cupertino time.
                 calendars["devices"][i["type"]].add_component(j)
 
     def path_to_url(path: Path) -> str:
-        return f"https://api.appledb.dev/{str(path.relative_to(Path('out')))}"
+        return f"https://api.appledb.dev/{urllib.parse.quote(str(path.relative_to(Path('out'))))}"
 
     def save_calendar(all_day_calendar: Calendar, timed_calendar: Calendar, path: Path):
         (path / "main.ics").write_bytes(all_day_calendar.to_ical())
