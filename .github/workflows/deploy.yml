@@ -29,6 +29,9 @@ jobs:
           # choose node.js version to use
           node-version: "22"
           cache: 'yarn'
+      
+      - run: sudo apt install liblzma-dev
+        if: matrix.os == 'ubuntu-24.04-arm'
 
       # install dependencies
       - name: Install node.js dependencies
