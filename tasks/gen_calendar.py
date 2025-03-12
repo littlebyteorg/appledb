@@ -194,8 +194,12 @@ Type: {data["type"]}
     return events
 
 
-def new_calendar():
+def new_calendar(name: str, description: str) -> Calendar:
     cal = Calendar()
+    cal.add("name", name)
+    cal.add("X-WR-CALNAME", name)
+    cal.add("timezone-id", "America/Los_Angeles")
+    cal.add("X-WR-TIMEZONE", "America/Los_Angeles")
     cal.add("prodid", "-//AppleDB//AppleDB//EN")
     cal.add("version", "2.0")
     return cal
@@ -213,17 +217,17 @@ marked as starting and ending at 10AM Cupertino time.
 """
 
     all_day_calendars = {
-        "all": new_calendar(),
-        "all_firmware": new_calendar(),
-        "all_device": new_calendar(),
+        "all": new_calendar("AppleDB", "AppleDB device and firmware calendar."),
+        "all_firmware": new_calendar("AppleDB - Firmware", "AppleDB firmware calendar."),
+        "all_device": new_calendar("AppleDB - Devices", "AppleDB device calendar."),
         "firmwares": {},
         "devices": {},
     }
 
     timed_calendars = {
-        "all": new_calendar(),
-        "all_firmware": new_calendar(),
-        "all_device": new_calendar(),
+        "all": new_calendar("AppleDB", "AppleDB device and firmware calendar."),
+        "all_firmware": new_calendar("AppleDB - Firmware", "AppleDB firmware calendar."),
+        "all_device": new_calendar("AppleDB - Devices", "AppleDB device calendar."),
         "firmwares": {},
         "devices": {},
     }
@@ -234,7 +238,7 @@ marked as starting and ending at 10AM Cupertino time.
             # This is before event creation, so that we can ensure there are calendars for all osTypes,
             # even if they will be empty
             if i["osType"] not in calendars["firmwares"]:
-                calendars["firmwares"][i["osType"]] = new_calendar()
+                calendars["firmwares"][i["osType"]] = new_calendar(f"AppleDB - {i['osType']}", f"AppleDB calendar for {i['osType']}.")
 
             events = process_firmware_event(i, all_day)
             if not events:
@@ -250,7 +254,7 @@ marked as starting and ending at 10AM Cupertino time.
             # This is before event creation, so that we can ensure there are calendars for all types,
             # even if they will be empty
             if i["type"] not in calendars["devices"]:
-                calendars["devices"][i["type"]] = Calendar()
+                calendars["devices"][i["type"]] = new_calendar(f"AppleDB - {i['type']}", f"AppleDB calendar for {i['type']}.")
 
             events = process_device_event(i, all_day)
             if not events:
