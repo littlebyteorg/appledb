@@ -239,7 +239,7 @@ def import_ota(
         db_data["sources"].append(source)
         is_new_import = True
 
-    if bridge_version and bridge_version_info:
+    if bridge_version and bridge_version_info and not rsr:
         db_data['bridgeOSBuild'] = bridge_version_info['BridgeProductBuildVersion']
 
     json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
