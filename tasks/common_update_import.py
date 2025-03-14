@@ -19,6 +19,7 @@ OS_MAP = [
     ("AppleTV", "tvOS"),
     ("ComputeModule", "cloudOS"),
     ("Mac", "macOS"),
+    ("ADP", "macOS"),
     ("Watch", "watchOS"),
     ("iBridge", "bridgeOS"),
     ("RealityDevice", "visionOS"),
