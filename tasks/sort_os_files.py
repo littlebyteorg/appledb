@@ -52,7 +52,7 @@ sources_key_order = [
     "size",
 ]
 
-ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPhone", "iPod"]
+ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPhone", "iPhone_old", "iPod"]
 
 links_key_order = ["url", "decryptionKey", "catalog", "preferred", "active"]
 
@@ -90,7 +90,7 @@ def os_sort(os):
 
 
 def sorted_dict_by_key(data, order):
-    return dict(sorted(data.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order)))
+    return dict(sorted(data.items(), key=lambda item: order.index(item[0])))
 
 
 def sorted_dict_by_alphasort(data):
