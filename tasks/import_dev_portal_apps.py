@@ -163,7 +163,6 @@ for download in downloads:
         kdk_build_data = json.load(target_file[0].open(encoding="utf-8"))
         kdk_file = download['files'][0]
         if bool([source for source in kdk_build_data.get('sources', []) if source['type'] == 'kdk']):
-            process_downloads["Kernel Debug Kit"] = False
             continue
         kdk_build_data.setdefault('sources', []).append({
             "type": "kdk",
