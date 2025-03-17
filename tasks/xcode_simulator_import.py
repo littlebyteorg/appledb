@@ -46,7 +46,7 @@ def call_pallas(os, requested_build):
             'links': [
                 {
                     'url': f"{asset['__BaseURL']}{asset['__RelativePath']}",
-                    'decryptionKey': asset["ArchiveDecryptionKey"]
+                    'decryptionKey': asset.get("ArchiveDecryptionKey")
                 }
             ],
             'size': asset['_DownloadSize']
