@@ -8,6 +8,9 @@ URLs are case sensitive.
 
 ## Structure
 
+> [!NOTE]
+> See [CALENDARS.md](https://github.com/littlebyteorg/appledb/blob/gh-pages/CALENDARS.md) for calendar endpoint information.
+
 - `/bypass/` - jailbreak detection bypasses for apps
   - [`/bypass/index.json`](https://api.appledb.dev/bypass/index.json) - list all bundle IDs where information is available
   - `/bypass/<bundle id>.json` ([example](https://api.appledb.dev/bypass/com.freecharge.ios.json)) - information on a specific app's jailbreak detection bypass
@@ -41,6 +44,10 @@ URLs are case sensitive.
 ## API Changelog
 
 To stay updated on changes to the API (and AppleDB development in general), you can join our [Discord](https://discord.gg/QBj8pBa).
+
+### 2025-03-12
+
+- Add calendar endpoints
 
 ### 2024-03-01
 
