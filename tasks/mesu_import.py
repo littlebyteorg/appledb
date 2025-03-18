@@ -151,8 +151,8 @@ device_map = {
         'AirPods3,3-right'
     ],
     'A3157': [
-        'Device1,8221-left',
-        'Device1,8221-right'
+        'Powerb3,1-left',
+        'Powerb3,1-right'
     ],
     'A3184': [
         "AirPodsMax1,2"
