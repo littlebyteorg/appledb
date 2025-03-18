@@ -4,12 +4,15 @@ import plistlib
 import random
 from pathlib import Path
 import argparse
+from datetime import date
+import string
 
 import requests
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-m', '--min-version', default=13, type=int)
 parser.add_argument('-b', '--beta', action='store_true')
+parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()
 
 VARIATION_CATALOG_MAPS = {
@@ -37,7 +40,7 @@ if args.beta and args.min_version < max_version:
 
 for mac_version in mac_versions:
     for variation in variations:
-        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{variation}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{variation}-1.sucatalog?{random.choice(string.ascii_letters)}xx{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
 
         plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
@@ -46,11 +49,15 @@ for mac_version in mac_versions:
                 continue
             if 'InstallAssistantAuto' in product.get('ServerMetadataURL', ''):
                 continue
+            if product['PostDate'].date() != date.today() and not args.all:
+                continue
             base_url = product['Packages'][0]['URL'].rsplit("/", 1)[0]
             if VARIATION_CATALOG_MAPS.get(variation):
                 links.add(f"{base_url}/InstallAssistant.pkg;{VARIATION_CATALOG_MAPS[variation]}")
             else:
                 links.add(f"{base_url}/InstallAssistant.pkg")
 
-[i.unlink() for i in Path.cwd().glob("import-ia.*") if i.is_file()]
-Path("import-ia.txt").write_text("\n".join(sorted(links)), "utf-8")
+if len(links):
+    print(f"{len(links)} links added")
+    [i.unlink() for i in Path.cwd().glob("import-ia.*") if i.is_file()]
+    Path("import-ia.txt").write_text("\n".join(sorted(links)), "utf-8")
