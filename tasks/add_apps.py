@@ -13,6 +13,7 @@ while True:
     app_key = app_name.replace(":", "").replace(".", "").replace("⁺", "+")
     build = input("Build: ")
     version = input("Version: ")
+    beta = "beta" in version
     internal = bool(input("Is App Internal? [y/n]: ").strip().lower() == "y")
     if internal:
         release_date = None
@@ -54,6 +55,8 @@ while True:
         app_details['released'] = release_date
     if build:
         app_details['build'] = build
+    if beta:
+        app_details['beta'] = True
     json.dump(
         sort_os_file(None, app_details),
         app_file.open("w", encoding="utf-8", newline="\n"),
