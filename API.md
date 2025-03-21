@@ -28,7 +28,7 @@ URLs are case sensitive.
   - [`/group/main.json`](https://api.appledb.dev/group/main.json) ([`.gz`](https://api.appledb.dev/group/main.json.gz)/[`.xz`](https://api.appledb.dev/group/main.json.xz)) - contains information for all device groups
 - `/ios/` - information on OS versions (not just iOS)
   - [`/ios/index.json`](https://api.appledb.dev/ios/index.json) - list of all keys (`<osStr>;<build>`)
-  - `/ios/<osStr>;<build>.json` ([example](https://api.appledb.dev/ios/macOS;22F66.json)) - information on a specific OS build
+  - `/ios/<osStr>;<build>.json` ([example](https://api.appledb.dev/ios/iOS;19G71.json)) - information on a specific OS build
   - [`/ios/main.json`](https://api.appledb.dev/ios/main.json) ([`.gz`](https://api.appledb.dev/ios/main.json.gz)/[`.xz`](https://api.appledb.dev/ios/main.json.xz)) - contains information for all OS builds
   - `/ios/<osType>/` - information for a specific OS
     - `/ios/<osType>/index.json` ([example](https://api.appledb.dev/ios/macOS/index.json)) - list of all keys for a specific OS, relative to the `/ios/` path
