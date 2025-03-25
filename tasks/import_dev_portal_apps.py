@@ -124,7 +124,6 @@ for download in downloads:
                 "Command Line Tools for Xcode"
             ],
             "osMap": [
-                "macOS 14",
                 "macOS 15"
             ],
             "sources": [
@@ -134,7 +133,6 @@ for download in downloads:
                         "Command Line Tools for Xcode"
                     ],
                     "osMap": [
-                        "macOS 14",
                         "macOS 15"
                     ],
                     "links": [
