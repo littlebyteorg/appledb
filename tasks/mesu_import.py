@@ -16,6 +16,8 @@ from update_links import update_links
 
 SESSION = requests.session()
 
+print(datetime.now())
+
 beta_asset_subfolders = {
     'AirPods': 'AirPods2022Seed'
 }
