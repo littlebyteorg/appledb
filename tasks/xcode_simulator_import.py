@@ -191,7 +191,7 @@ for simulator in simulator_response['downloadables']:
             new_item.setdefault('sources', []).append(pallas_response)
     if 'beta' in new_item['version']:
         new_item['beta'] = True
-    elif 'rc' in new_item['version']:
+    elif 'RC' in new_item['version']:
         new_item['rc'] = True
     if new_item.get('sources'):
         json.dump(sort_os_file(None, new_item), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
