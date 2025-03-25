@@ -45,7 +45,7 @@ while True:
         os.makedirs(f'osFiles/Software/{app_key}', exist_ok=True)
     app_file = Path(f"osFiles/Software/{app_key}/{version}.json")
     app_details = {
-        'osStr': app_name,
+        'osStr': app_name.split(" (", 1)[0],
         'version': version,
         'deviceMap': [app_key]
     }
