@@ -488,9 +488,17 @@ for (os_str, builds) in parsed_args.items():
                     for new_build in new_version_builds:
                         call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay)
 
+missing_decryption_keys = set()
 for key in ota_list.keys():
     sources = []
     for source in ota_list[key]['sources'].values():
+        if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
+            missing_key = f"{ota_list[key]['osStr']}-{"/".join(source['prerequisites'])}"
+            if ota_list[key]['osStr'] == 'macOS':
+                suffix = 'Intel' if 'MacPro7,1' in source['deviceMap'] else 'AS'
+            else:
+                suffix = source['deviceMap'][0]
+            missing_decryption_keys.add(f"{missing_key}-{suffix}")
         if ota_list[key]['osStr'] == 'macOS':
             if source['deviceMap'] == mac_device_map_checks.get(ota_list[key]['version'].split('.')[0], set()):
                 source['deviceMap'].update(mac_device_map_extensions[ota_list[key]['version'].split('.')[0]])
@@ -504,5 +512,7 @@ for key in ota_list.keys():
     ota_list[key]['sources'] = sources
 if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
+    if missing_decryption_keys:
+        print(f"Missing decryption keys: {sorted(missing_decryption_keys)}")
     [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
     json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)

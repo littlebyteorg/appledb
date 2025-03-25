@@ -163,14 +163,6 @@
                                         "decryptionKey": {"type": "string"},
                                         "active": {"type": "boolean"},
                                         "catalog": {"enum": ["dev-beta", "public-beta"]}
-                                    },
-                                    "if": {
-                                        "properties": {
-                                            "url": {"pattern": "aea$", "type": "string"}
-                                        }
-                                    },
-                                    "then": {
-                                        "required": ["decryptionKey"]
                                     }
                                 }
                             },
