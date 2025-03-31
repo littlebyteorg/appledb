@@ -54,7 +54,7 @@
         },
         "discontinued":   {"type": "string", "format": "date"},
         "info":           {"type": "array", "items": {"type": "object"}},
-        "colors":         {"type": "array", "items": {}},
+        "colors":         {"type": "array", "items": {"$ref": "#/definitions/color"}},
         "windowsStoreId": {"type": "string"},
         "extra":          {"type": "object"}
     },
@@ -81,7 +81,8 @@
             "additionalProperties": false,
             "properties": {
                 "name": {"type": "string"},
-                "hex": {"$ref": "#/definitions/hex"},
+                "key": {"type": "string"},
+                "hex": {"$ref": "#/definitions/color-hex"},
                 "released": {"$ref": "#/definitions/partial-date"}
             },
             "required": ["name", "hex"]

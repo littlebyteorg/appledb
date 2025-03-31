@@ -174,15 +174,16 @@ if args.os and args.build:
     parsed_args = dict(zip(args.os, args.build))
 else:
     latest_builds = json.load(Path('tasks/latest_builds.json').open())
-    beta_builds = any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public'])) and args.update_type != 'rc'
+    beta_builds = any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public']))
     is_rc = args.update_type == 'rc'
     parsed_args = {}
     for os_str, types in latest_builds.items():
         if args.os and os_str not in args.os: continue
         parsed_args.setdefault(os_str, [])
-        use_beta_builds = beta_builds and not (is_rc and os_str not in ('watchOS', 'macOS'))
-        if use_beta_builds:
+        if beta_builds:
             parsed_args[os_str].extend(latest_builds[os_str]['beta'])
+            if os_str == 'watchOS' and is_rc:
+                parsed_args[os_str].extend(latest_builds[os_str]['release'])
         else:
             parsed_args[os_str].extend(latest_builds[os_str]['release'])
 

@@ -105,6 +105,12 @@ deviceFiles = deviceFiles.map(function (dev) {
         return o;
       }
     });
+  
+    if (dev.colors)
+      dev.colors = dev.colors.map((c) => {
+        if (!c.key) c.key = c.name
+        return c
+      })
 
   return dev;
 });
