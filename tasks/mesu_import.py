@@ -33,7 +33,10 @@ asset_types = {
         'A3048': 'com_apple_MobileAsset_UARP_A3048',
         'A3053': 'com_apple_MobileAsset_UARP_A3053',
         'A3056': 'com_apple_MobileAsset_UARP_A3056',
-        'A3184': 'com_apple_MobileAsset_UARP_A3184'
+        'A3184': [
+            'com_apple_MobileAsset_MobileAccessoryUpdate_A3184_EA',
+            'com_apple_MobileAsset_MobileAccessoryUpdate_A3184-24E_EA'
+        ]
     },
     'AirTags': {
         'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware'
@@ -156,101 +159,111 @@ device_map = {
     ]
 }
 
-files = set()
+def call_mesu(asset_url):
+    files = set()
+    asset_response = SESSION.get(f"{asset_url}?cachebust{random.randint(100, 1000)}")
+    try:
+        asset_response.raise_for_status()
+    except:
+        print(f"Skipping {asset_url.removeprefix("https://mesu.apple.com/assets/").removesuffix(".xml")}")
+        return files
+    asset_plist = plistlib.loads(asset_response.content)
+    release_date = datetime.strptime(asset_response.headers.get("Last-Modified").replace(" GMT", ""), '%a, %d %b %Y %H:%M:%S').replace(tzinfo=timezone.utc).astimezone(zoneinfo.ZoneInfo('America/Los_Angeles')).strftime("%Y-%m-%d")
+    for asset in asset_plist['Assets']:
+        kern_version = re.search(r"\d+(?=[a-zA-Z])", asset['Build']).group()
+        file_path = f"osFiles/{os_str_map[asset_type]}/{kern_version}x/{asset['Build']}.json"
 
+        if not Path(file_path).exists():
+            if not Path(file_path).parent.exists():
+                Path(file_path).parent.mkdir()
+            with remotezip.RemoteZip(f"{asset['__BaseURL']}{asset['__RelativePath']}") as file:
+                manifest_paths = [f for f in file.namelist() if f.endswith("BuildManifest.plist")]
+                buildtrain = None
+                version = None
+                if manifest_paths:
+                    build_manifest = plistlib.loads(file.read(manifest_paths[0]))
+                    buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
+                    version = build_manifest['ProductVersion']
+                if os_str_map[asset_type] == 'Bluetooth Headset Firmware' and not version:
+                    if asset['FirmwareVersionMinor'] > 1000:
+                        version = '.'.join(str(asset['FirmwareVersionMajor']))
+                    else:
+                        version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}"
+                elif os_str_map[asset_type] == 'Durian Firmware':
+                    version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}.{asset['FirmwareVersionRelease']}"
+                base_contents = {
+                    "osStr": os_str_map[asset_type],
+                    "version": version,
+                    "build": asset['Build'],
+                    "released": release_date,
+                    "deviceMap": []
+                }
+                if buildtrain:
+                    base_contents['buildTrain'] = buildtrain
+
+                if beta:
+                    base_contents["beta"] = True
+                elif release_notes_map.get(asset_type):
+                    base_contents["releaseNotes"] = release_notes_map[asset_type]
+                json.dump(base_contents, Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+
+        file_data = json.load(Path(file_path).open(encoding="utf-8"))
+        if device_map[model][0] in file_data['deviceMap']:
+            continue
+        source = {"deviceMap": device_map[model], "type": "ota", "links": [{"url": f"{asset['__BaseURL']}{asset['__RelativePath']}", "active": True}]}
+        if release_date != file_data['released']:
+            extended_items = []
+            extended_item_processed = False
+            extended_item_changed = False
+            for item in file_data.get('createDuplicateEntries', []):
+                if item.get('released', file_data['released']) == release_date:
+                    extended_item_processed = True
+                    if device_map[model][0] not in item['deviceMap']:
+                        item['deviceMap'].extend(device_map[model])
+                        item.setdefault('sources', []).append(source)
+                        extended_item_changed = True
+                extended_items.append(item)
+            
+            if not extended_item_processed:
+                extended_items.append({
+                    'uniqueBuild': f"{file_data['build']}-{model}",
+                    'released': release_date,
+                    'deviceMap': device_map[model],
+                    'sources': [source]
+                })
+                extended_item_changed = True
+            if not extended_item_changed:
+                continue
+            file_data['createDuplicateEntries'] = extended_items
+        else:
+            file_data['deviceMap'].extend(device_map[model])
+            file_data.setdefault('sources', []).append(source)
+
+        json.dump(sort_os_file(None, file_data), Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+
+        files.add(Path(file_path))
+    return files
+
+processed_files = set()
 for beta in [True, False]:
     for asset_type, assets in asset_types.items():
-        for model, asset in assets.items():
-            if beta:
-                if not beta_asset_subfolders.get(asset_type):
-                    break
-                asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset}/{asset}.xml'
+        for model, asset_link in assets.items():
+            if isinstance(asset_link, list):
+                for asset_sublink in asset_link:
+                    if beta:
+                        if not beta_asset_subfolders.get(asset_type):
+                            break
+                        asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset_sublink}/{asset_sublink}.xml'
+                    else:
+                        asset_url = f'https://mesu.apple.com/assets/{asset_sublink}/{asset_sublink}.xml'
+                    processed_files.update(call_mesu(asset_url))
             else:
-                asset_url = f'https://mesu.apple.com/assets/{asset}/{asset}.xml'
-            # print(asset_url)
-            asset_response = SESSION.get(f"{asset_url}?cachebust{random.randint(100, 1000)}")
-            try:
-                asset_response.raise_for_status()
-            except:
                 if beta:
-                    print(f"Skipping {beta_asset_subfolders[asset_type]}/{asset}...")
+                    if not beta_asset_subfolders.get(asset_type):
+                        break
+                    asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset_link}/{asset_link}.xml'
                 else:
-                    print(f"Skipping {asset}...")
-                continue
-            asset_plist = plistlib.loads(asset_response.content)
-            release_date = datetime.strptime(asset_response.headers.get("Last-Modified").replace(" GMT", ""), '%a, %d %b %Y %H:%M:%S').replace(tzinfo=timezone.utc).astimezone(zoneinfo.ZoneInfo('America/Los_Angeles')).strftime("%Y-%m-%d")
-            for asset in asset_plist['Assets']:
-                kern_version = re.search(r"\d+(?=[a-zA-Z])", asset['Build']).group()
-                file_path = f"osFiles/{os_str_map[asset_type]}/{kern_version}x/{asset['Build']}.json"
-
-                if not Path(file_path).exists():
-                    if not Path(file_path).parent.exists():
-                        Path(file_path).parent.mkdir()
-                    with remotezip.RemoteZip(f"{asset['__BaseURL']}{asset['__RelativePath']}") as file:
-                        manifest_paths = [f for f in file.namelist() if f.endswith("BuildManifest.plist")]
-                        buildtrain = None
-                        version = None
-                        if manifest_paths:
-                            build_manifest = plistlib.loads(file.read(manifest_paths[0]))
-                            buildtrain = build_manifest['BuildIdentities'][0]['Info']['BuildTrain']
-                            version = build_manifest['ProductVersion']
-                        if os_str_map[asset_type] == 'Bluetooth Headset Firmware' and not version:
-                            if asset['FirmwareVersionMinor'] > 1000:
-                                version = '.'.join(str(asset['FirmwareVersionMajor']))
-                            else:
-                                version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}"
-                        elif os_str_map[asset_type] == 'Durian Firmware':
-                            version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}.{asset['FirmwareVersionRelease']}"
-                        base_contents = {
-                            "osStr": os_str_map[asset_type],
-                            "version": version,
-                            "build": asset['Build'],
-                            "released": release_date,
-                            "deviceMap": []
-                        }
-                        if buildtrain:
-                            base_contents['buildTrain'] = buildtrain
-
-                        if beta:
-                            base_contents["beta"] = True
-                        elif release_notes_map.get(asset_type):
-                            base_contents["releaseNotes"] = release_notes_map[asset_type]
-                        json.dump(base_contents, Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-
-                file_data = json.load(Path(file_path).open(encoding="utf-8"))
-                if device_map[model][0] in file_data['deviceMap']:
-                    continue
-                source = {"deviceMap": device_map[model], "type": "ota", "links": [{"url": f"{asset['__BaseURL']}{asset['__RelativePath']}", "active": True}]}
-                if release_date != file_data['released']:
-                    extended_items = []
-                    extended_item_processed = False
-                    extended_item_changed = False
-                    for item in file_data.get('createDuplicateEntries', []):
-                        if item.get('released', file_data['released']) == release_date:
-                            extended_item_processed = True
-                            if device_map[model][0] not in item['deviceMap']:
-                                item['deviceMap'].extend(device_map[model])
-                                item.setdefault('sources', []).append(source)
-                                extended_item_changed = True
-                        extended_items.append(item)
-                    
-                    if not extended_item_processed:
-                        extended_items.append({
-                            'uniqueBuild': f"{file_data['build']}-{model}",
-                            'released': release_date,
-                            'deviceMap': device_map[model],
-                            'sources': [source]
-                        })
-                        extended_item_changed = True
-                    if not extended_item_changed:
-                        continue
-                    file_data['createDuplicateEntries'] = extended_items
-                else:
-                    file_data['deviceMap'].extend(device_map[model])
-                    file_data.setdefault('sources', []).append(source)
-
-                json.dump(sort_os_file(None, file_data), Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-
-                files.add(Path(file_path))
-
-update_links(list(files))
+                    asset_url = f'https://mesu.apple.com/assets/{asset_link}/{asset_link}.xml'
+                processed_files.update(call_mesu(asset_url))
+            
+update_links(list(processed_files))
