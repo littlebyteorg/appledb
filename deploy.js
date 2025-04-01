@@ -364,14 +364,12 @@ let latestVersionArr = homePage['osVersionArray']
 
 const latestVersions = latestVersionArr
 .map(x => osFiles
-  .filter(x => !(x.version.includes('Simulator') || x.sdk || x.hideFromLatestVersions ))
-  .filter((y, index, arr) => {
+  .filter(y => !(y.version.includes('Simulator') || y.sdk || y.hideFromLatestVersions ))
+  .filter(y => {
     const osStrCheck = y.osStr == x.osStr
     const betaRcCheck = (y.beta || y.rc) == x.beta
-
-    const indexCheck = arr.findIndex((item) => item.build === y.build && item.osStr === y.osStr) === index
     
-    const check = osStrCheck && betaRcCheck && y.released && indexCheck
+    const check = osStrCheck && betaRcCheck && y.released
 
     let startsWith = x.version
     if (startsWith && y.version) {
