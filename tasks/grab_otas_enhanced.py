@@ -403,6 +403,8 @@ for (os_str, builds) in parsed_args.items():
             if target_asset_audiences['alternate'].get('release'):
                 target_asset_audiences['release'] = [target_asset_audiences['release'], target_asset_audiences['alternate']['release']]
             raw_audiences.remove('alternate')
+            if not raw_audiences:
+                raw_audiences.append('release')
         for audience in raw_audiences:
             if audience == 'beta':
                 desired_audiences = target_asset_audiences.get('developer', target_asset_audiences.get('appleseed', {}))
