@@ -386,6 +386,10 @@ const latestVersions = latestVersionArr
     const date = [a,b].map(x => new Date(x.released))
     if (date[0] < date[1]) return 1
     if (date[0] > date[1]) return -1
+    if (a.deviceMap.length < b.deviceMap.length) return 1
+    if (a.deviceMap.length > b.deviceMap.length) return -1
+    if (a.build < b.build) return 1
+    if (a.build > b.build) return -1
     return 0
   })[0])
 .filter(x => x)
