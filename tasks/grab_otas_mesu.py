@@ -67,16 +67,19 @@ for url in urls:
         if delta_from_beta:
             updated_build = updated_build.replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))
         if updated_build in skip_builds: continue
+        restore_version = asset.get('RestoreVersion')
+        if restore_version:
+            restore_version = restore_version.replace('.6.0,0', '.0.0,0')
         if not ota_list.get(f"{os_str}-{updated_build}"):
-                base_details = {
-                    'osStr': os_str,
-                    'version': cleaned_os_version,
-                    'build': updated_build,
-                    'buildTrain': asset.get('TrainName'),
-                    'restoreVersion': asset.get('RestoreVersion'),
-                    'sources': {}
-                }
-                ota_list[f"{os_str}-{updated_build}"] = base_details
+            base_details = {
+                'osStr': os_str,
+                'version': cleaned_os_version,
+                'build': updated_build,
+                'buildTrain': asset.get('TrainName'),
+                'restoreVersion': restore_version,
+                'sources': {}
+            }
+            ota_list[f"{os_str}-{updated_build}"] = base_details
         link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
         if 'OTARescueAsset' in link: continue
         if not ota_list[f"{os_str}-{updated_build}"]['sources'].get(link):
