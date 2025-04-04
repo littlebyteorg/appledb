@@ -15,7 +15,15 @@
         },
         "alias":          {"type": "array", "items": {"type": "string"}},
         "key":            {"type": "string"},
-        "appLink":            {"type": "string"},
+        "appLink":        {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["url", "active"],
+            "properties": {
+                "url": {"type": "string", "format": "uri"},
+                "active": {"type": "boolean"}
+            }
+        },
         "soc": {
             "anyOf": [
                 {"type": "string"},

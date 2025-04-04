@@ -57,6 +57,8 @@ list_fields = [
 
 colors_key_order = ["name", "hex", "released"]
 
+links_key_order = ["url", "active"]
+
 def sorted_dict_by_key(data, order):
     return dict(sorted(data.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order)))
 
@@ -86,6 +88,9 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
             raise ValueError(f"Unknown keys ({[info['type']]}): {sorted(set(data['info'][i].keys()) - set(info_key_order[info['type']]))}")
         
     data.get('info', []).sort(key=lambda info: info_type_order.index(info['type']))
+
+    if "appLink" in data:
+        data["appLink"] = sorted_dict_by_key(data["appLink"], links_key_order)
 
     if not raw_data:
         json.dump(data, file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)  # type: ignore
