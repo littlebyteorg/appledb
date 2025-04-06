@@ -18,6 +18,7 @@ rewrite_map_v2 = {
     "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
     "https://seeddownload.cdn-apple.com/": [],
     "http://a1408.g.akamai.net/": [],
+    "http://addons.mozilla.org/": [],
     "https://download.info.apple.com/": ["http://download.info.apple.com/"],
     "https://support.apple.com/downloads/": ["http://support.apple.com/downloads/"],
     "https://devimages-cdn.apple.com/": ["http://devimages-cdn.apple.com/"],
