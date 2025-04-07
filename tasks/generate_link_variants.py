@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Collection
 
 from sort_os_files import sort_os_file
-from link_info import rewrite_map_v2
+from link_info import rewrite_map_v2, needs_apple_auth
 
 def appendable(iterable, link):
     # Only append if it's not already in the list
@@ -73,6 +73,13 @@ def rewrite_links(links: list[dict]):
             continue
 
         path = link["url"].replace(current_host, "", 1)
+        needs_auth = False
+        for hostname in needs_apple_auth:
+            if hostname in current_host:
+                needs_auth = True
+                break
+        if needs_auth:
+            link["auth"] = True
         for host in get_host_group(link["url"]):
             appendable(new_links, {**link, "url": host + path})
 
@@ -93,16 +100,27 @@ def rewrite_links(links: list[dict]):
 
     new_links.sort(key=get_sort_order)
 
+    has_existing_active_link = bool([x for x in links if x['active']])
+    preferred_link_override = False
+
     for link in new_links:
         if link["url"].startswith(get_preferred_host(link["url"])):
-            link["preferred"] = True
+            if has_existing_active_link and not link["active"]:
+                preferred_link_override = True
+            else:
+                link["preferred"] = True
             break
 
     for link in new_links:
         if "preferred" not in link:
-            link["preferred"] = False
+            if preferred_link_override and link["active"]:
+                link["preferred"] = True
+                preferred_link_override = False
+            else:
+                link["preferred"] = False
 
     if links:
+        new_links.sort(key=lambda x: x['preferred'], reverse=True)
         # Top link should be preferred
         assert new_links[0]["preferred"], new_links
         # There should only be one preferred link
