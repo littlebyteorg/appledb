@@ -53,6 +53,15 @@ known_builds = [
     '24E248',  # macOS 15.3.2
 ]
 
+filename_prefix_map = {
+    'AppleTV': 'AppleTV',
+    'HomePod': 'AudioAccessory',
+    'iOS': 'iPhone',
+    'iPad': 'iPad',
+    'iPhone': 'iPhone',
+    'iPod': 'iPod',
+}
+
 for url in urls:
     response = requests.get(url + f"?cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
@@ -78,8 +87,6 @@ for url in urls:
                         continue
                     if variant.get('BuildVersion') in known_builds:
                         continue
-                    if any([x for x in known_builds if f'_{x}_' in variant["FirmwareURL"]]):
-                        continue
                     os_str = get_os_str(device, variant['ProductVersion'])
                     if not ipsw_list.get(f"{os_str}-{variant['BuildVersion']}"):
                         ipsw_list[f"{os_str}-{variant['BuildVersion']}"] = {
@@ -97,19 +104,10 @@ for url in urls:
                     if variant.get("DocumentationURL"):
                         ipsw_list[f"{os_str}-{variant['BuildVersion']}"].setdefault('ipd', {})
                         doc_filename = variant['DocumentationURL'].split('/')[-1]
-
-                        if doc_filename.startswith('iPad'):
-                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['iPad'] = variant['DocumentationURL']
-                        elif doc_filename.startswith('iPod'):
-                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['iPod'] = variant['DocumentationURL']
-                        elif doc_filename.startswith('iPhone') or doc_filename.startswith('iOS'):
-                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['iPhone'] = variant['DocumentationURL']
-                        elif doc_filename.startswith('AppleTV'):
-                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['AppleTV'] = variant['DocumentationURL']
-                        elif doc_filename.startswith('HomePod'):
-                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd']['AudioAccessory'] = variant['DocumentationURL']
-                        else:
-                            print("Unrecognized prefix")
+                        for prefix, ipd_property in filename_prefix_map.items():
+                            if doc_filename.startswith(prefix):
+                                ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd'][ipd_property] = variant['DocumentationURL']
+                                break
 
 if bool(ipsw_list):
     cleaned_list = []
