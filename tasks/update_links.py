@@ -162,6 +162,12 @@ class ProcessFileThread(threading.Thread):
                         else:
                             print(f"Unknown ETag type: {resp.headers['ETag']}, ignoring")
 
+                    if resp.reason == 'Partial Content':
+                        print(
+                            f"Warning: {file_name}: {url} response only showing partial size of {resp.headers['Content-Length']}"
+                        )
+                        continue
+                    
                     if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
                         print(
                             f"Warning: {file_name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}"
