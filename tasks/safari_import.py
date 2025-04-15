@@ -57,7 +57,7 @@ for mac_version in mac_versions:
     else:
         manifest_path = 'Library/Apple/Safari/Cryptex/Restore/BuildManifest.plist'
     url = catalog_safari['Packages'][0]['URL']
-    (file_hashes, manifest) = handle_pkg_file(download_link=url, hashes=['md5', 'sha1', 'sha2-256'], extracted_manifest_file_path=manifest_path)
+    (file_hashes, manifest) = handle_pkg_file(download_link=url, hashes=['md5', 'sha1', 'sha2-256'], extracted_manifest_file_path=manifest_path, file_suffix=f"-safari-{mac_version}")
 
     safari_build = manifest['ProductBuildVersion']
     print(mac_codenames[str(mac_version)])

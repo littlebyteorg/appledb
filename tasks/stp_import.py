@@ -115,7 +115,7 @@ source = {
 
 for package_type, type_sources in sources.items():
     for mac_version, link in type_sources.items():
-        (file_hashes, _) = handle_pkg_file(download_link=link, hashes=['md5', 'sha1', 'sha2-256'])
+        (file_hashes, _) = handle_pkg_file(download_link=link, hashes=['md5', 'sha1', 'sha2-256'], file_suffix=f"-stp-{mac_version}")
         source["sources"].append({
             "type": package_type,
             "deviceMap": ["Safari Technology Preview"],

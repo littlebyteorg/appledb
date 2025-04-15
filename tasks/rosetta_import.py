@@ -46,7 +46,7 @@ for product in plist.get('Products', {}).values():
                 beta = "beta" in desired_version.lower()
                 rc = "rc" in desired_version.lower()
 
-        (hashes, _) = handle_pkg_file(product["Packages"][0]["URL"])
+        (hashes, _) = handle_pkg_file(product["Packages"][0]["URL"], file_suffix=f'-rosetta-{build}')
 
         output = {
             "osStr": "Rosetta",

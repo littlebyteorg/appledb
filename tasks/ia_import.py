@@ -126,7 +126,10 @@ def import_ia(
         source = {"deviceMap": supported_devices, "type": "installassistant", "links": [{"url": ia_url, "active": True}]}
         
         if not skip_sha1_hash:
-            (hashes, _) = handle_pkg_file(ia_url)
+            file_suffix = f"-ia-{build}"
+            if catalog_name:
+                file_suffix = f"{file_suffix}-{catalog_name}"
+            (hashes, _) = handle_pkg_file(ia_url, file_suffix=file_suffix)
             source['hashes'] = hashes
 
         if catalog_name:

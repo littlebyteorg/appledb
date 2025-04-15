@@ -37,7 +37,7 @@ for source in list(Path('osFiles/macOS/22x - 13.x').rglob('22H*.json')):
                 raise
             counter += 1
 
-    (_, manifest) = handle_pkg_file(hashes=[], extracted_manifest_file_path=manifest_path)
+    (_, manifest) = handle_pkg_file(hashes=[], extracted_manifest_file_path=manifest_path, file_suffix='-embedded')
 
     source_json['embeddedOSBuild'] = manifest['ProductBuildVersion']
 

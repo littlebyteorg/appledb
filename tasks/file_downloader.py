@@ -115,7 +115,7 @@ def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifes
                 Path(file_path).unlink(missing_ok=True)
     return remove_output_file
 
-def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None):
+def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None, file_suffix=None):
     if hashes is None:
         hashes = ['sha1']
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
@@ -124,6 +124,8 @@ def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_pat
 
     asyncio.set_event_loop(loop)
     output_path = 'out/package'
+    if file_suffix:
+        output_path = f"{output_path}{file_suffix}"
 
     try:
         file_hashes = loop.run_until_complete(

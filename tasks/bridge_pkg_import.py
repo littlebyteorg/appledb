@@ -38,6 +38,12 @@ updated_files = set()
 raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
 raw_sucatalog.raise_for_status()
 
+catalog_name = ''
+if args.beta:
+    catalog_name = 'dev-beta'
+elif args.public_beta:
+    catalog_name = 'public-beta'
+
 plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
 for product in plist.values():
     if product.get('ExtendedMetaInfo', {}).get('ProductType') != 'bridgeOS':
@@ -65,27 +71,26 @@ for product in plist.values():
                 'url': url,
                 'active': True
             }
-            if args.beta:
-                new_link['catalog'] = 'dev-beta'
-            elif args.public_beta:
-                new_link['catalog'] = 'public-beta'
+            if catalog_name:
+                new_link['catalog'] = catalog_name
 
             source['links'].append(new_link)
             found_source = True
         new_sources.append(source)
     if not found_source:
+        file_suffix = "-bridge"
+        if catalog_name:
+            file_suffix = f"{file_suffix}-{catalog_name}"
         manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resources/BuildManifest.plist'
-        (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path)
+        (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path, file_suffix=file_suffix)
         db_data['buildTrain'] = manifest['BuildIdentities'][0]['Info']['BuildTrain']
         db_data['deviceMap'].extend(manifest["SupportedProductTypes"])
         new_link = {
             'url': url,
             'active': True
         }
-        if args.beta:
-            new_link['catalog'] = 'dev-beta'
-        elif args.public_beta:
-            new_link['catalog'] = 'public-beta'
+        if catalog_name:
+            new_link['catalog'] = catalog_name
         source = {"deviceMap": db_data['deviceMap'], "type": "pkg", "links": [new_link], "hashes": file_hashes}
         new_sources.append(source)
     db_data['sources'] = new_sources
