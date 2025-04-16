@@ -80,7 +80,7 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
         if set(data["colors"][i].keys()) - set(colors_key_order):
             raise ValueError(f"Unknown keys: {sorted(set(data['colors'][i].keys()) - set(colors_key_order))}")
 
-    data.get('colors', []).sort(key=lambda color: (color.get('released', ''), color['name']))
+    data.get('colors', []).sort(key=lambda color: (color.get('released', '') or '9999-99-99', color['name']))
 
     for i, info in enumerate(data.get('info', [])):
         data['info'][i] = sorted_dict_by_key(info, info_key_order[info['type']])
