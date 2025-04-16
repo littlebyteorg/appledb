@@ -4,6 +4,7 @@ import json
 import plistlib
 from pathlib import Path
 import random
+import string
 
 import packaging
 import requests
@@ -48,9 +49,9 @@ known_builds = [
     '22C161',  # 18.2.1
     '22E240',  # 18.4
     '22L255',  # tvOS 18.4
-    '22O238',  # visionOS 2.4
-    '22P4248', # bridgeOS 9.3
-    '24E248',  # macOS 15.3.2
+    '22O251',  # visionOS 2.4.1
+    '22P4248', # bridgeOS 9.4
+    '24E263',  # macOS 15.4.1
 ]
 
 filename_prefix_map = {
@@ -63,7 +64,7 @@ filename_prefix_map = {
 }
 
 for url in urls:
-    response = requests.get(url + f"?cachebust{random.randint(100, 1000)}", timeout=30)
+    response = requests.get(url + f"?{random.choice(string.ascii_letters)}cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     plist = plistlib.loads(response.content)
