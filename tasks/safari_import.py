@@ -84,10 +84,7 @@ for mac_version in mac_versions:
         }
 
         if release_notes_link:
-            SAFARI_DETAILS[safari_build]['releaseNotes'] = {
-                "url": release_notes_link,
-                "active": True
-            }
+            SAFARI_DETAILS[safari_build]['releaseNotes'] = release_notes_link
 
         if is_beta:
             SAFARI_DETAILS[safari_build]['beta'] = True

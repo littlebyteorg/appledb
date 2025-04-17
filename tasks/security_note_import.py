@@ -99,8 +99,5 @@ for product, product_link_map in found_links.items():
             if build_data['version'].removesuffix('.0') != version: continue
             # Explicit True check for preinstalled to prevent arrays from causing a skip
             if build_data.get('internal', False) or build_data.get('preinstalled', False) is True: continue
-            build_data['securityNotes'] = {
-                "url": link,
-                "active": True
-            }
+            build_data['securityNotes'] = link
             json.dump(sort_os_file(None, build_data), build_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
