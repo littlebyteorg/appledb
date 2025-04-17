@@ -137,6 +137,11 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         data["createDuplicateEntries"][i] = sort_os_file(None, duplicate_entry)
     data.get("createDuplicateEntries", []).sort(key=lambda x: x["released"])
 
+    if "releaseNotes" in data:
+        data["releaseNotes"] = sorted_dict_by_key(data["releaseNotes"], links_key_order)
+    if "securityNotes" in data:
+        data["securityNotes"] = sorted_dict_by_key(data["securityNotes"], links_key_order)
+
     if "deviceMap" in data:
         data["deviceMap"] = device_map_sort(data["deviceMap"])
 
@@ -147,6 +152,8 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         data["basebandVersions"] = sorted_dict_by_key(data["basebandVersions"], data["deviceMap"])
 
     if "ipd" in data:
+        for key in data["ipd"].keys():
+            data["ipd"][key] = sorted_dict_by_key(data["ipd"][key], links_key_order)
         data["ipd"] = sorted_dict_by_key(data["ipd"], ipd_key_order)
 
     for i, sdk in enumerate(data.get("sdks", [])):

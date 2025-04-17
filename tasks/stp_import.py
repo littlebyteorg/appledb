@@ -105,7 +105,10 @@ source = {
     "safariVersion": safari_version,
     "released": properties["Posted"].strftime("%Y-%m-%d"),
     "beta": True,
-    "releaseNotes": f"https://developer.apple.com/documentation/safari-technology-preview-release-notes/stp-release-{properties['Release']}",
+    "releaseNotes": {
+        "url": f"https://developer.apple.com/documentation/safari-technology-preview-release-notes/stp-release-{properties['Release']}",
+        "active": True
+    },
     "deviceMap": [
         "Safari Technology Preview"
     ],

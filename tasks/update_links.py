@@ -177,6 +177,89 @@ class ProcessFileThread(threading.Thread):
                 # self.print_queue.put("Processed a link")
         return sources
 
+    def process_link(self, url, current_status):
+        updated_status = current_status
+        hostname = urlparse(url).hostname
+        if DOMAIN_CHECK_LIST and hostname not in DOMAIN_CHECK_LIST:
+            # explicitly not checking this domain
+            return current_status
+        if url in success_map:
+            # Skip ones we've already processed
+            updated_status = success_map[url]
+            return updated_status
+
+        if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth):
+            # We don't have credentials for this host, don't touch active status
+            return current_status
+
+        if not self.use_network:
+            # Network disabled, don't touch active status
+            return current_status
+        
+        if self.active_only and not current_status:
+            success_map[url] = current_status
+            return current_status
+
+        successful_hit = False
+
+        resp = None
+
+        for _ in range(10):
+            try:
+                if hostname in no_head:
+                    resp = self.session.get(
+                        url,
+                        headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
+                        verify=False,
+                        stream=True,
+                    )
+                elif hostname in needs_apple_auth:
+                    resp = self.session.head(
+                        url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
+                        headers={
+                            "User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0",
+                            "cookie": f"ADCDownloadAuth={apple_auth_token}"
+                        },
+                        verify=False,
+                        allow_redirects=True,
+                    )
+                else:
+                    if hostname in needs_cache_bust:
+                        suffix = f'?cachebust{random.randint(100, 1000)}'
+                    else:
+                        suffix = ''
+                    resp = self.session.head(
+                        f"{url}{suffix}",
+                        headers={"User-Agent": "softwareupdated (unknown version) CFNetwork/808.1.4 Darwin/16.1.0"},
+                        verify=False,
+                        allow_redirects=True,
+                    )
+            except requests.ConnectionError:
+                print("Warning: retrying connection error")
+                time.sleep(1)
+                continue
+            else:
+                break
+        else:
+            raise Exception(f"Failed to connect to {url}")
+
+        if hostname in no_head:
+            resp.close()
+
+        if not current_status and hostname in stop_remaking_active:
+            successful_hit = False
+        elif resp.status_code == 200:
+            successful_hit = 'unauthorized' not in resp.url and not resp.url.endswith("/docs")
+        elif resp.status_code in (403, 404):
+            # Dead link
+            successful_hit = False
+        else:  # Leave it be
+            raise Exception(f"Unknown status code: {resp.status_code}")
+
+        success_map[url] = updated_status = successful_hit
+
+        return updated_status
+
     def run(self):
         while not self.file_queue.empty():
             try:
@@ -190,9 +273,59 @@ class ProcessFileThread(threading.Thread):
             if data.get('sources', []):
                 data['sources'] = self.process_sources(data['sources'], ios_file.name)
 
+            for key in ['releaseNotes', 'securityNotes']:
+                if not data.get(key): continue
+
+                if isinstance(data[key], str):
+                    link = data[key]
+                    active_status = True
+                else:
+                    link = data[key]['url']
+                    active_status = data[key]['active']
+                data[key] = {
+                    'url': link,
+                    'active': self.process_link(link, active_status)
+                }
+            for (key, link) in data.get('ipd', {}).items():
+                if isinstance(data['ipd'][key], str):
+                    link = data['ipd'][key]
+                    active_status = True
+                else:
+                    link = data['ipd'][key]['url']
+                    active_status = data['ipd'][key]['active']
+                data['ipd'][key] = {
+                    'url': link,
+                    'active': self.process_link(link, active_status)
+                }
+
             for entry in data.get("createDuplicateEntries", []):
                 if entry.get('sources', []):
                     entry['sources'] = self.process_sources(entry['sources'], ios_file.name)
+
+                for key in ['releaseNotes', 'securityNotes']:
+                    if not entry.get(key): continue
+
+                    if isinstance(entry[key], str):
+                        link = entry[key]
+                        active_status = True
+                    else:
+                        link = entry[key]['url']
+                        active_status = entry[key]['active']
+                    entry[key] = {
+                        'url': link,
+                        'active': self.process_link(link, active_status)
+                    }
+                for (key, link) in entry.get('ipd', {}).items():
+                    if isinstance(entry['ipd'][key], str):
+                        link = entry['ipd'][key]
+                        active_status = True
+                    else:
+                        link = entry['ipd'][key]['url']
+                        active_status = entry['ipd'][key]['active']
+                    entry['ipd'][key] = {
+                        'url': link,
+                        'active': self.process_link(link, active_status)
+                    }
 
             json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             self.print_queue.put(False)

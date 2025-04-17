@@ -80,7 +80,10 @@ for (osStr, builds) in parsed_builds.items():
         if not osStr.startswith('Simulators/'):
             release_notes_link = get_release_notes_link(osStr, file_data["version"])
             if release_notes_link:
-                file_data["releaseNotes"] = release_notes_link
+                file_data["releaseNotes"] = {
+                    "url": release_notes_link,
+                    "active": True
+                }
 
         if args.exclude_devices:
             excluded_devices = list(set(args.exclude_devices).intersection(set(file_data['deviceMap'])))

@@ -112,7 +112,10 @@ for xcode_version in xcode_response:
         'version': xcode_version['version']['number'],
         'build': xcode_version['version']['build'],
         'released': dateutil.parser.parse(f"{xcode_version['date']['year']}-{xcode_version['date']['month']}-{xcode_version['date']['day']}").strftime("%Y-%m-%d"),
-        'releaseNotes': xcode_version['links']['notes']['url'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path='),
+        'releaseNotes': {
+            "url": xcode_version['links']['notes']['url'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path='),
+            "active": True
+        },
         'deviceMap': ['Xcode'],
         'osMap': os_map,
         'sdks': formatted_sdks,

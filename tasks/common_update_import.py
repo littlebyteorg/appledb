@@ -205,7 +205,10 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         release_notes_link = get_release_notes_link(os_str, db_data["version"])
         if release_notes_link:
             file_updated = True
-            db_data["releaseNotes"] = release_notes_link
+            db_data["releaseNotes"] = {
+                "url": release_notes_link,
+                "active": True
+            }
 
     # Only write to file if required
     if file_updated:

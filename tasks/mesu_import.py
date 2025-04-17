@@ -204,7 +204,10 @@ def call_mesu(asset_url):
                 if beta:
                     base_contents["beta"] = True
                 elif release_notes_map.get(asset_type):
-                    base_contents["releaseNotes"] = release_notes_map[asset_type]
+                    base_contents["releaseNotes"] = {
+                        "url": release_notes_map[asset_type],
+                        "active": True
+                    }
                 json.dump(base_contents, Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
         file_data = json.load(Path(file_path).open(encoding="utf-8"))
