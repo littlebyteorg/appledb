@@ -81,12 +81,12 @@ for row in rows:
 
     if break_loop: break
 
-for product in found_links.keys():
+for product, product_link_map in found_links.items():
     product_subfolder = product
     if product in software_list:
         product_subfolder = f"Software/{product}"
 
-    for version, link in found_links[product].items():
+    for version, link in product_link_map.items():
         parsed_version = int(version.split('.', 1)[0])
         build_subfolder = ''
         if build_prefix_offset.get(product) is not None:
@@ -98,6 +98,6 @@ for product in found_links.keys():
             build_data = json.load(build_path.open(encoding="utf-8"))
             if build_data['version'].removesuffix('.0') != version: continue
             # Explicit True check for preinstalled to prevent arrays from causing a skip
-            if build_data.get('internal', False) or build_data.get('preinstalled', False) == True: continue
+            if build_data.get('internal', False) or build_data.get('preinstalled', False) is True: continue
             build_data['securityNotes'] = link
             json.dump(sort_os_file(None, build_data), build_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
