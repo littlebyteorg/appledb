@@ -15,14 +15,11 @@ while True:
     version = input("Version: ")
     beta = "beta" in version
     internal = bool(input("Is App Internal? [y/n]: ").strip().lower() == "y")
-    if internal:
-        release_date = None
+    use_today = bool(input("Use today's date (today in Cupertino time)? [y/n]: ").strip().lower() == "y")
+    if use_today:
+        release_date = datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
     else:
-        use_today = bool(input("Use today's date (today in Cupertino time)? [y/n]: ").strip().lower() == "y")
-        if use_today:
-            release_date = datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
-        else:
-            release_date = input("Enter release date (YYYY-MM-DD): ").strip()
+        release_date = input("Enter release date (YYYY-MM-DD): ").strip()
 
     if not Path(f"osFiles/Software/{app_key}").exists():
         device_file = Path(f"deviceFiles/Software/{app_key}.json")
@@ -34,7 +31,7 @@ while True:
             device_details['key'] = app_key
         if internal:
             device_details['internal'] = True
-        elif release_date:
+        if release_date:
             device_details['released'] = release_date
         json.dump(
             sort_device_file(None, device_details),
@@ -51,7 +48,7 @@ while True:
     }
     if internal:
         app_details['internal'] = True
-    elif release_date:
+    if release_date:
         app_details['released'] = release_date
     if build:
         app_details['build'] = build
