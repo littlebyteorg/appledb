@@ -11,11 +11,17 @@
     },
     "deviceMap": [
         "iPad4,2",
-        "iPad5,4"
+        "iPad5,4",
+        "iPhone6,1",
+        "iPhone7,1",
+        "iPhone7,2"
     ],
     "basebandVersions": {
         "iPad4,2": "3.11.00",
-        "iPad5,4": "1.04.00"
+        "iPad5,4": "1.04.00",
+        "iPhone6,1": "3.11.00",
+        "iPhone7,1": "1.04.00",
+        "iPhone7,2": "1.04.00"
     },
     "sources": [
         {
@@ -51,6 +57,57 @@
                 "md5": "5da7a0222dafb84e5c33ee4609facff2"
             },
             "size": 73892092
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "12B396",
+            "deviceMap": [
+                "iPhone6,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS8.1Seed/031-08919.20141007.iZQYQ/com_apple_MobileAsset_SoftwareUpdate/113b594203c9efcab6f6e9af7fb01a5fa6671790.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "fb3f50a9a855bc6a760842d0b127b3d8"
+            },
+            "size": 68093126
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "12B396",
+            "deviceMap": [
+                "iPhone7,1"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS8.1Seed/031-08882.20141007.ksDxP/com_apple_MobileAsset_SoftwareUpdate/58949c5893acfa61cc53d96e49da36a74c32ca57.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "d5f7caacd3b7a69bf89d1fe3f044a485"
+            },
+            "size": 75796992
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "12B396",
+            "deviceMap": [
+                "iPhone7,2"
+            ],
+            "links": [
+                {
+                    "url": "http://appldnld.apple.com/iOS8.1Seed/031-08898.20141007.u96Wc/com_apple_MobileAsset_SoftwareUpdate/53032525539ac8c43d04d5219c69c6efc67834e2.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "6c3b6d1e3f04ce3b318c7365a0843c77"
+            },
+            "size": 74477387
         }
     ]
 }
