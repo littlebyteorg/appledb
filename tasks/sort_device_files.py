@@ -89,7 +89,7 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
         
     data.get('info', []).sort(key=lambda info: info_type_order.index(info['type']))
 
-    if "appLink" in data:
+    if isinstance(data.get("appLink"), dict):
         data["appLink"] = sorted_dict_by_key(data["appLink"], links_key_order)
 
     if not raw_data:

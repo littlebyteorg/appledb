@@ -17,6 +17,7 @@ import requests.adapters
 import urllib3
 from link_info import needs_auth, needs_apple_auth, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token
 from sort_os_files import sort_os_file
+from sort_device_files import sort_device_file
 
 # Disable SSL warnings, because Apple's SSL is broken
 urllib3.disable_warnings()
@@ -274,7 +275,7 @@ class ProcessFileThread(threading.Thread):
             if data.get('sources', []) and not self.notes_only:
                 data['sources'] = self.process_sources(data['sources'], ios_file.name)
 
-            for key in ['releaseNotes', 'securityNotes']:
+            for key in ['releaseNotes', 'securityNotes', 'appLink']:
                 if not data.get(key): continue
 
                 if isinstance(data[key], str):
@@ -344,7 +345,10 @@ class ProcessFileThread(threading.Thread):
                             'active': False
                         }
 
-            json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+            if 'Software' in ios_file.as_posix():
+                json.dump(sort_device_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+            else:
+                json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             self.print_queue.put(False)
 
 
@@ -409,9 +413,10 @@ if __name__ == "__main__":
     files = []
     if args.folders:
         for path in args.folders:
-            files.extend(list(Path(f"osFiles/{path}").rglob("*.json")))
+            files.extend(list(Path(f"{path}").rglob("*.json")))
     else:
         files.extend(list(Path("osFiles").rglob("*.json")))
+        files.extend(list(Path("deviceFiles/Software").rglob("*.json")))
 
     if args.domains:
         DOMAIN_CHECK_LIST = args.domains
