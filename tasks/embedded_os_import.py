@@ -27,10 +27,10 @@ for source in list(Path('osFiles/macOS/22x - 13.x').rglob('22H*.json')):
     relevant_ota = relevant_otas[0]
 
     counter = 0
-    while not Path('out/package.pkg').exists():
+    while not Path('out/package-embedded.pkg').exists():
         try:
             with remotezip.RemoteZip(relevant_ota['links'][0]['url'], initial_buffer_size=256*1024, session=SESSION, timeout=120) as ota:
-                with open(f'out/package.pkg', 'wb') as eos_file:
+                with open(f'out/package-embedded.pkg', 'wb') as eos_file:
                     eos_file.write(ota.read('AssetData/boot/EmbeddedOSFirmware.pkg'))
         except:
             if counter >= 10:
