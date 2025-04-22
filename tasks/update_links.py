@@ -126,7 +126,7 @@ class ProcessFileThread(threading.Thread):
                     successful_hit = False
                 elif resp.status_code == 200:
                     successful_hit = 'unauthorized' not in resp.url and not resp.url.endswith("/docs")
-                elif resp.status_code == 403 or resp.status_code == 404:
+                elif resp.status_code in (401, 403, 404):
                     # Dead link
                     successful_hit = False
                 else:  # Leave it be
@@ -252,7 +252,7 @@ class ProcessFileThread(threading.Thread):
             successful_hit = False
         elif resp.status_code == 200:
             successful_hit = 'unauthorized' not in resp.url and not resp.url.endswith("/docs")
-        elif resp.status_code in (403, 404):
+        elif resp.status_code in (401, 403, 404):
             # Dead link
             successful_hit = False
         else:  # Leave it be
