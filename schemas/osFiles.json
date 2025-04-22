@@ -50,8 +50,18 @@
                 "internal":     {"type": "boolean"},
                 "hideFromLatestVersions": {"type": "boolean"},
                 "notes":        {"type": "string"},
-                "releaseNotes": {"type": "string", "format": "uri"},
-                "securityNotes":{"type": "string", "format": "uri"},
+                "releaseNotes": {
+                    "anyOf": [
+                        {"type": "string", "format": "uri"},
+                        {"$ref": "#/definitions/sourceLink"}
+                    ]
+                },
+                "securityNotes": {
+                    "anyOf": [
+                        {"type": "string", "format": "uri"},
+                        {"$ref": "#/definitions/sourceLink"}
+                    ]
+                },
 
                 "preinstalled": {
                     "anyOf": [
@@ -74,13 +84,43 @@
                 "ipd": {
                     "type": "object",
                     "properties": {
-                        "AudioAccessory": {"type": "string", "format": "uri"},
-                        "AppleTV":  {"type": "string", "format": "uri"},
-                        "iPhone":   {"type": "string", "format": "uri"},
-                        "iPad":     {"type": "string", "format": "uri"},
-                        "iPod":     {"type": "string", "format": "uri"}
+                        "AudioAccessory": {
+                            "anyOf": [
+                                {"type": "string", "format": "uri"},
+                                {"$ref": "#/definitions/sourceLink"}
+                            ]
+                        },
+                        "AppleTV":  {
+                            "anyOf": [
+                                {"type": "string", "format": "uri"},
+                                {"$ref": "#/definitions/sourceLink"}
+                            ]
+                        },
+                        "iPhone":   {
+                            "anyOf": [
+                                {"type": "string", "format": "uri"},
+                                {"$ref": "#/definitions/sourceLink"}
+                            ]
+                        },
+                        "iPad":     {
+                            "anyOf": [
+                                {"type": "string", "format": "uri"},
+                                {"$ref": "#/definitions/sourceLink"}
+                            ]
+                        },
+                        "iPod":     {
+                            "anyOf": [
+                                {"type": "string", "format": "uri"},
+                                {"$ref": "#/definitions/sourceLink"}
+                            ]
+                        }
                     },
-                    "additionalProperties": {"type": "string", "format": "uri"}
+                    "additionalProperties": {
+                        "anyOf": [
+                            {"type": "string", "format": "uri"},
+                            {"$ref": "#/definitions/sourceLink"}
+                        ]
+                    }
                 },
                 "createDuplicateEntries": {
                     "type": "array",
@@ -155,15 +195,7 @@
                                 "type": "array",
                                 "minItems": 1,
                                 "items": {
-                                    "type": "object",
-                                    "additionalProperties": false,
-                                    "required": ["url", "active"],
-                                    "properties": {
-                                        "url": {"type": "string", "format": "uri"},
-                                        "decryptionKey": {"type": "string"},
-                                        "active": {"type": "boolean"},
-                                        "catalog": {"enum": ["dev-beta", "public-beta"]}
-                                    }
+                                    "$ref": "#/definitions/sourceLink"
                                 }
                             },
                             "prerequisiteBuild": {
@@ -176,6 +208,17 @@
                         }
                     }
                 }
+            }
+        },
+        "sourceLink": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["url", "active"],
+            "properties": {
+                "url": {"type": "string", "format": "uri"},
+                "decryptionKey": {"type": "string"},
+                "active": {"type": "boolean"},
+                "catalog": {"enum": ["dev-beta", "public-beta"]}
             }
         }
     }

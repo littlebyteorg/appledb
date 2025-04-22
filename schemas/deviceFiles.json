@@ -16,13 +16,10 @@
         "alias":          {"type": "array", "items": {"type": "string"}},
         "key":            {"type": "string"},
         "appLink":        {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["url", "active"],
-            "properties": {
-                "url": {"type": "string", "format": "uri"},
-                "active": {"type": "boolean"}
-            }
+            "anyOf": [
+                {"type": "string", "format": "uri"},
+                {"$ref": "#/definitions/sourceLink"}
+            ]
         },
         "soc": {
             "anyOf": [
@@ -94,6 +91,15 @@
                 "released": {"$ref": "#/definitions/partial-date"}
             },
             "required": ["name", "hex"]
+        },
+        "sourceLink": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["url", "active"],
+            "properties": {
+                "url": {"type": "string", "format": "uri"},
+                "active": {"type": "boolean"}
+            }
         }
     }
 }
