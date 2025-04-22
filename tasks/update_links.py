@@ -345,7 +345,7 @@ class ProcessFileThread(threading.Thread):
                             'active': False
                         }
 
-            if 'Software' in ios_file.as_posix():
+            if ios_file.as_posix().startswith('deviceFiles'):
                 json.dump(sort_device_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             else:
                 json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
