@@ -4,6 +4,7 @@ import argparse
 import base64
 import json
 import uuid
+import packaging.version
 import requests
 import urllib3
 from sort_os_files import build_number_sort, device_sort
@@ -322,9 +323,12 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
             if os_str == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == cleaned_os_version:
                 continue
             link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
-            if not ota_list.get(f"{os_str}-{updated_build}"):
+            response_os_str = os_str
+            if os_str == "iOS" and packaging.version.parse(cleaned_os_version.split(" ")[0]) >= packaging.version.parse("13.0") and device_name.startswith('iPad'):
+                response_os_str = "iPadOS"
+            if not ota_list.get(f"{response_os_str}-{updated_build}"):
                 base_details = {
-                    'osStr': os_str,
+                    'osStr': response_os_str,
                     'version': cleaned_os_version,
                     'released': parsed_response['PostingDate'],
                     'build': updated_build,
@@ -337,9 +341,9 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
                         'BridgeProductBuildVersion': asset['BridgeVersionInfo']['BridgeProductBuildVersion'],
                         'BridgeVersion': asset["BridgeVersionInfo"]["BridgeVersion"]
                     }
-                ota_list[f"{os_str}-{updated_build}"] = base_details
-            if not ota_list[f"{os_str}-{updated_build}"]['sources'].get(link):
-                ota_list[f"{os_str}-{updated_build}"]['sources'][link] = {
+                ota_list[f"{response_os_str}-{updated_build}"] = base_details
+            if not ota_list[f"{response_os_str}-{updated_build}"]['sources'].get(link):
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link] = {
                     "prerequisites": set(),
                     "deviceMap": set(),
                     "boardMap": set(),
@@ -348,30 +352,30 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
                         "key": asset.get('ArchiveDecryptionKey')
                     }]
                 }
-            ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].add(device_name)
+            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add(device_name)
             # iPhone11,4 is weird; nothing comes back from Pallas, but it's in the BuildManifest for the actual zip in this scenario
-            if ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
-                ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
-            ota_list[f"{os_str}-{updated_build}"]['sources'][link]["boardMap"].add(board_id)
-            if asset.get('PrerequisiteBuild'):
-                ota_list[f"{os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
+            if ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
+            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].add(board_id)
+            if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True):
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
                 for additional_build in added_builds.get(asset['PrerequisiteBuild'], []):
                     if '|' in additional_build:
                         additional_build_split = additional_build.split('|')
-                        if additional_build_split[0] in ota_list[f"{os_str}-{updated_build}"]['sources'][link]['prerequisites']:
+                        if additional_build_split[0] in ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites']:
                             continue
-                        ota_list[f"{os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
+                        ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
                     elif '-' in additional_build:
                         additional_build_split = additional_build.split('-')
                         if updated_build.startswith(additional_build_split[0]):
-                            ota_list[f"{os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
+                            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
                     else:
-                        ota_list[f"{os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build)
+                        ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build)
 
-            if asset.get('TrainName') and not ota_list[f"{os_str}-{updated_build}"].get('buildTrain'):
-                ota_list[f"{os_str}-{updated_build}"]['buildTrain'] = asset['TrainName']
+            if asset.get('TrainName') and not ota_list[f"{response_os_str}-{updated_build}"].get('buildTrain'):
+                ota_list[f"{response_os_str}-{updated_build}"]['buildTrain'] = asset['TrainName']
 
-            newly_discovered_versions.setdefault(os_str, {})[updated_build] = cleaned_os_version
+            newly_discovered_versions.setdefault(response_os_str, {})[updated_build] = cleaned_os_version
 
         for additional_audience in additional_audiences:
             call_pallas(device_name, board_id, os_version, os_build, os_str, additional_audience, is_rsr, time_delay)
