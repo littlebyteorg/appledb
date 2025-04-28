@@ -70,6 +70,9 @@ major_version_offset = {
     
 
 for xcode_version in xcode_response:
+    # HACK: xcodereleases.com is incomplete for this
+    if xcode_version['version']['build'] == '10M25xx':
+        xcode_version['version']['build'] = '10M2518'
     build_version = re.search(r"\d+(?=[a-zA-Z])", xcode_version['version']['build']).group()
     major_version = xcode_version['version']['number'].split(".")[0]
     if major_version == '3':
@@ -88,6 +91,7 @@ for xcode_version in xcode_response:
 
     for sdk_key in xcode_version['sdks'].keys():
         for sdk_item in xcode_version['sdks'][sdk_key]:
+            if not sdk_item.get('build'): continue
             sdk_mapping = [mapping for mapping in simulator_response['sdkToSeedMappings'] \
                            if mapping['buildUpdate'] == sdk_item['build'] \
                             and mapping['platform'] == f"com.apple.platform.{sdk_platform_mapping[sdk_key]}"]
