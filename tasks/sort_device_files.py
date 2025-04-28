@@ -62,6 +62,9 @@ links_key_order = ["url", "active"]
 def sorted_dict_by_key(data, order):
     return dict(sorted(data.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order)))
 
+def color_sort(color):
+    pass
+
 def sort_device_file(file_path: Optional[Path], raw_data=None):
     if not file_path and not raw_data:
         raise ValueError("Must provide either a file path or raw data")
@@ -80,7 +83,9 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
         if set(data["colors"][i].keys()) - set(colors_key_order):
             raise ValueError(f"Unknown keys: {sorted(set(data['colors'][i].keys()) - set(colors_key_order))}")
 
-    data.get('colors', []).sort(key=lambda color: (color.get('released', '') or '9999-99-99', color['name']))
+    # HACK: sorting order is release date in descending order, then name in ascending order
+    data.get('colors', []).sort(key=lambda color: color['name'])
+    data.get('colors', []).sort(key=lambda color: color.get('released', ''), reverse=True)
 
     for i, info in enumerate(data.get('info', [])):
         data['info'][i] = sorted_dict_by_key(info, info_key_order[info['type']])
