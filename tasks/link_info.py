@@ -44,6 +44,10 @@ needs_apple_auth = [
     "developer.apple.com",
 ]
 
+needs_apple_auth_exception = [
+    "developer.apple.com/documentation"
+]
+
 # Domains that need cache-busting to check availability of underlying link
 needs_cache_bust = [
     "swcdn.apple.com"

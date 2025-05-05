@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
-from link_info import needs_auth, needs_apple_auth, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token
+from link_info import needs_auth, needs_apple_auth, needs_apple_auth_exception, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token
 from sort_os_files import sort_os_file
 from sort_device_files import sort_device_file
 
@@ -62,7 +62,7 @@ class ProcessFileThread(threading.Thread):
                     link["active"] = success_map[url]
                     continue
 
-                if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth):
+                if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth and not any([x for x in needs_apple_auth_exception if x in url])):
                     # We don't have credentials for this host, don't touch active status
                     # link["active"] = True
                     continue
@@ -89,7 +89,7 @@ class ProcessFileThread(threading.Thread):
                                 verify=False,
                                 stream=True,
                             )
-                        elif hostname in needs_apple_auth:
+                        elif hostname in needs_apple_auth and not any([x for x in needs_apple_auth_exception if x in url]):
                             resp = self.session.head(
                                 url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
                                 headers={
@@ -190,7 +190,7 @@ class ProcessFileThread(threading.Thread):
             updated_status = success_map[url]
             return updated_status
 
-        if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth):
+        if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth and not any([x for x in needs_apple_auth_exception if x in url])):
             # We don't have credentials for this host, don't touch active status
             return current_status
 
@@ -215,7 +215,7 @@ class ProcessFileThread(threading.Thread):
                         verify=False,
                         stream=True,
                     )
-                elif hostname in needs_apple_auth:
+                elif hostname in needs_apple_auth and not any([x for x in needs_apple_auth_exception if x in url]):
                     resp = self.session.head(
                         url.replace('developer.apple.com/services-account/download?path=', 'download.developer.apple.com'),
                         headers={
@@ -272,6 +272,8 @@ class ProcessFileThread(threading.Thread):
 
             data = json.load(ios_file.open())
 
+            orig_data = json.load(ios_file.open())
+
             if data.get('sources', []) and not self.notes_only:
                 data['sources'] = self.process_sources(data['sources'], ios_file.name)
 
@@ -308,6 +310,7 @@ class ProcessFileThread(threading.Thread):
                         'active': False
                     }
 
+            entries = []
             for entry in data.get("createDuplicateEntries", []):
                 if entry.get('sources', []) and not self.notes_only:
                     entry['sources'] = self.process_sources(entry['sources'], ios_file.name)
@@ -345,10 +348,16 @@ class ProcessFileThread(threading.Thread):
                             'active': False
                         }
 
-            if ios_file.as_posix().startswith('deviceFiles'):
-                json.dump(sort_device_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-            else:
-                json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                entries.append(entry)
+            
+            if entries:
+                data['createDuplicateEntries'] = entries
+
+            if data != orig_data:
+                if ios_file.as_posix().startswith('deviceFiles'):
+                    json.dump(sort_device_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                else:
+                    json.dump(sort_os_file(None, data), ios_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
             self.print_queue.put(False)
 
 

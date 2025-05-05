@@ -76,7 +76,7 @@ def import_ipsw(
             build_manifest = plistlib.loads(build_manifest_response.content)
 
     ipsw = None
-    if not build_manifest or [(x.get('Cellular1,ChipID') for x in build_manifest['BuildIdentities'])]:
+    if not build_manifest or any([x.get('Cellular1,ChipID') for x in build_manifest['BuildIdentities']]):
         # Get it via remotezip
         ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url, headers=headers)
         print(f"\tGetting BuildManifest.plist {'from local file' if local_available else 'via remotezip'}")

@@ -73,13 +73,10 @@ def rewrite_links(links: list[dict]):
             continue
 
         path = link["url"].replace(current_host, "", 1)
-        needs_auth = False
         for hostname in needs_apple_auth:
             if hostname in current_host:
-                needs_auth = True
+                link["auth"] = True
                 break
-        if needs_auth:
-            link["auth"] = True
         for host in get_host_group(link["url"]):
             appendable(new_links, {**link, "url": host + path})
 
