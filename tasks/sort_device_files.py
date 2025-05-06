@@ -55,7 +55,7 @@ list_fields = [
     "alias"
 ]
 
-colors_key_order = ["name", "hex", "released"]
+colors_key_order = ["name", "key", "hex", "released"]
 
 links_key_order = ["url", "active"]
 
