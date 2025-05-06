@@ -123,13 +123,7 @@ device_map = {
     ],
     'A2577': [
         "BeatsFitPro1,1-left",
-        "BeatsFitPro1,1-right",
-        "BeatsFitPro1,1-alo-left",
-        "BeatsFitPro1,1-alo-right",
-        "BeatsFitPro1,1-fragment-left",
-        "BeatsFitPro1,1-fragment-right",
-        "BeatsFitPro1,1-kim-left"
-        "BeatsFitPro1,1-kim-right"
+        "BeatsFitPro1,1-right"
     ],
     'A2618': [
         "AirPods3,1-left",
