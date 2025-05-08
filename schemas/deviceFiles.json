@@ -88,7 +88,12 @@
                 "name": {"type": "string"},
                 "key": {"type": "string"},
                 "group": {"type": "string"},
-                "hex": {"$ref": "#/definitions/color-hex"},
+                "hex": {
+                    "anyOf": [
+                        {"$ref": "#/definitions/color-hex"},
+                        {"type": "array", "items": {"$ref": "#/definitions/color-hex"}}
+                    ]
+                },
                 "released": {"$ref": "#/definitions/partial-date"}
             },
             "required": ["name", "hex"]
