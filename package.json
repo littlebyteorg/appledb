@@ -8,6 +8,7 @@
     "prepare": "is-ci || husky install",
     "sort-os-files": "./tasks/sort_os_files.py",
     "sort-device-files": "./tasks/sort_device_files.py",
+    "sort-device-group-files": "./tasks/sort_device_group_files.py",
     "lint": "eslint .",
     "validate": "node tasks/schema_validator.js"
   },
@@ -43,6 +44,7 @@
   },
   "lint-staged": {
     "osFiles/**/*.json": "npm run sort-os-files -- -f",
-    "deviceFiles/**/*.json": "npm run sort-device-files -- -f"
+    "deviceFiles/**/*.json": "npm run sort-device-files -- -f",
+    "deviceGroupFiles/**/*.json": "npm run sort-device-group-files -- -f"
   }
 }
