@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Device Group",
+    "description": "Description of a device group",
+
+    "type": "object",
+    "$ref": "#/definitions/group",
+    "definitions": {
+        "group": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "type", "devices"],
+            "properties": {
+                "key":            {"type": "string"},
+                "name":           {"type": "string"},
+                "type":           {"type": "string"},
+                "order":          {"type": "integer"},
+                "devices":        {"type": "array", "items": {"type": "string"}},
+                "subgroups": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "allOf": [
+                            {"$ref": "#/definitions/group"},
+                            {"type": "object", "properties": {"subgroups": false}}
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
