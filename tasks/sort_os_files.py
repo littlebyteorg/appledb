@@ -15,6 +15,7 @@ key_order = [
     "safariVersion",
     "build",
     "restoreVersion",
+    "buildId",
     "uniqueBuild",
     "embeddedOSBuild",
     "bridgeOSBuild",
@@ -42,6 +43,7 @@ key_order = [
 sources_key_order = [
     "type",
     "prerequisiteBuild",
+    "systemImageId",
     "deviceMap",
     "boardMap",
     "osMap",
