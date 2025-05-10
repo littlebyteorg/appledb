@@ -10,7 +10,7 @@
         "name": {"type": "string"},
         "alias": {
             "anyOf": [
-                {"type": "array", "items": {"type": "string"}},
+                {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
                 {"type": "string"}
             ]
         },
