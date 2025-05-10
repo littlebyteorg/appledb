@@ -1,6 +1,7 @@
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
 const glob = require("glob");
+const { readFileSync } = require("fs");
 
 process.chdir(__dirname);
 
@@ -10,7 +11,7 @@ addFormats(ajv);
 var total = 0, failed = 0;
 
 function validate(schemaPath, filesToValidate) {
-    const schema = require(schemaPath);
+    const schema = JSON.parse(readFileSync(schemaPath))
     const validator = ajv.compile(schema);
 
     for (const pattern of filesToValidate) {
@@ -18,7 +19,7 @@ function validate(schemaPath, filesToValidate) {
         for (const file of files) {
             total++;
 
-            const data = require(file);
+            const data = JSON.parse(readFileSync(file));
             const valid = validator(data);
             if (!valid) {
                 failed++;
@@ -33,6 +34,8 @@ function validate(schemaPath, filesToValidate) {
 validate("../schemas/osFiles.json", ["../osFiles/**/*.json"]);
 validate("../schemas/deviceFiles.json", ["../deviceFiles/**/*.json"]);
 validate("../schemas/deviceGroupFiles.json", ["../deviceGroupFiles/**/*.json"]);
+// jailbreak has some .json.archive files, validating those as well
+validate("../schemas/jailbreakFiles.json", ["../jailbreakFiles/**/*.json*"]);
 
 if (failed) {
     console.error(`${failed}/${total} files failed`);

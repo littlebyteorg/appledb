@@ -1,0 +1,109 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Jailbreak",
+    "description": "Description of an Jailbreak",
+
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["name", "info", "compatibility"],
+    "properties": {
+        "name": {"type": "string"},
+        "alias": {
+            "anyOf": [
+                {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+                {"type": "string"}
+            ]
+        },
+        "priority": {"type": "integer"},
+        "hideFromGuide": {"type": "boolean"},
+        "info": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "website": {"$ref": "#/definitions/site"},
+                "wiki": {"$ref": "#/definitions/site"},
+                "guide": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "text": {"type": "string"},
+                            "name": {"type": "string"},
+                            "sidebarName": {"type": "string"},
+                            "url": {"type": "string"},
+                            "pkgman": {"type": "string"},
+                            "devices": {"$ref": "#/definitions/devices"},
+                            "firmwares": {"$ref": "#/definitions/firmwares"},
+                            "updateLink": {"$ref": "#/definitions/guideLinks"},
+                            "sidebarChildren": {"$ref": "#/definitions/guideLinks"}
+                        }
+                    }
+                },
+                "latestVer": {"type": "string"},
+                "type": {"type": "string"},
+                "icon": {"type": "string"},
+                "notes": {"type": "string"},
+                "color": {"type": "string"},
+                "soc": {"type": "string"},
+                "jailbreaksmeapp": {"type": "boolean"},
+                "firmwares": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {"type": "string"}
+                }
+            }
+        },
+        "compatibility": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["devices", "firmwares"],
+                "properties": {
+                    "devices": {"$ref": "#/definitions/devices"},
+                    "firmwares": {"$ref": "#/definitions/firmwares"},
+                    "priority": {"type": "integer"}
+                }
+            }
+        }
+    },
+    "definitions": {
+        "devices": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "firmwares": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "guideLinks": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "text": {"type": "string"},
+                    "link": {"type": "string"}
+                }
+            }
+        },
+        "site": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "url"],
+            "properties": {
+                "name": {"type": "string"},
+                "url": {"type": "string"},
+                "external": {"type": "boolean"}
+            }
+        }
+    }
+}
