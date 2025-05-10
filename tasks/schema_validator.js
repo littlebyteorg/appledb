@@ -1,7 +1,7 @@
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
-import glob from "glob";
-import { readFileSync } from "fs";
+const Ajv = require("ajv");
+const addFormats = require("ajv-formats");
+const glob = require("glob");
+const { readFileSync } = require("fs");
 
 process.chdir(__dirname);
 
