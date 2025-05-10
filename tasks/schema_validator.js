@@ -34,7 +34,8 @@ function validate(schemaPath, filesToValidate) {
 validate("../schemas/osFiles.json", ["../osFiles/**/*.json"]);
 validate("../schemas/deviceFiles.json", ["../deviceFiles/**/*.json"]);
 validate("../schemas/deviceGroupFiles.json", ["../deviceGroupFiles/**/*.json"]);
-validate("../schemas/jailbreakFiles.json", ["../jailbreakFiles/**/*.json"]);
+// jailbreak has some .json.archive files, validating those as well
+validate("../schemas/jailbreakFiles.json", ["../jailbreakFiles/**/*.json*"]);
 
 if (failed) {
     console.error(`${failed}/${total} files failed`);
