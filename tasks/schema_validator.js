@@ -1,6 +1,6 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { sync } from "glob";
+import glob from "glob";
 import { readFileSync } from "fs";
 
 process.chdir(__dirname);
@@ -15,7 +15,7 @@ function validate(schemaPath, filesToValidate) {
     const validator = ajv.compile(schema);
 
     for (const pattern of filesToValidate) {
-        const files = sync(pattern);
+        const files = glob.sync(pattern);
         for (const file of files) {
             total++;
 
