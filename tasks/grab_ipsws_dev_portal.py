@@ -57,13 +57,18 @@ skip_builds = [
     "21H423", # iPadOS 17.7.6
     "22E240", # iOS/iPadOS 18.4
     "22E252", # iOS/iPadOS 18.4.1
-    "22L255", # tvOS 18.4.1
+    "22F76",  # iOS/iPadOS 18.5
+    "22L255", # tvOS 18.4
     "22L261", # tvOS 18.4.1
+    "22L572", # tvOS 18.5
     "22O238", # visionOS 2.4
     "22O251", # visionOS 2.4.1
+    "22O473", # visionOS 2.5
     "22T251", # watchOS 11.4
+    "22T572", # watchOS 11.5
     "24E248", # macOS 15.4
     "24E263", # macOS 15.4.1
+    "24F74",  # macOS 15.5
     # betas
     "22F5068a", # iOS/iPadOS 18.5
     "22L5566a", # tvOS 18.5
