@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Tweaks to bypass jailbreak detection",
+    "description": "Description of tweaks to bypass jailbreak detection",
+
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "name": {"type": "string"},
+        "bundleId": {"type": "string"},
+        "guide": {"anyOf": [
+            {"type": "null"},
+            {"type": "string"}
+        ]},
+        "notes": {"type": "string"},
+        "repository": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "uri": {"type": "string", "format": "uri"}
+            }
+        }
+    }
+}
