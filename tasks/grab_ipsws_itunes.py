@@ -45,7 +45,7 @@ known_builds = [
     '16H81',   # 12.5.7
     '19H390',  # 15.8.4
     '20H360',  # 16.7.11
-    '21H433',  # 17.7.7
+    # '21H433',  # 17.7.7
     '22C161',  # 18.2.1
     '22F76',   # 18.5
     '22L572',  # tvOS 18.5
@@ -62,7 +62,7 @@ filename_prefix_map = {
     'iPhone': 'iPhone',
     'iPod': 'iPod',
 }
-
+builds = set()
 for url in urls:
     response = requests.get(url + f"?{random.choice(string.ascii_letters)}cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
@@ -88,6 +88,7 @@ for url in urls:
                         continue
                     if variant.get('BuildVersion') in known_builds:
                         continue
+                    builds.add(variant['BuildVersion'])
                     os_str = get_os_str(device, variant['ProductVersion'])
                     if not ipsw_list.get(f"{os_str}-{variant['BuildVersion']}"):
                         ipsw_list[f"{os_str}-{variant['BuildVersion']}"] = {
@@ -110,6 +111,7 @@ for url in urls:
                                 ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd'][ipd_property] = variant['DocumentationURL']
                                 break
 
+print(builds)
 if bool(ipsw_list):
     cleaned_list = []
     count = 0

@@ -490,8 +490,10 @@ for (os_str, builds) in parsed_args.items():
                         call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay)
 
 missing_decryption_keys = set()
+builds = set()
 for key in ota_list.keys():
     sources = []
+    builds.add(ota_list[key]['build'])
     for source in ota_list[key]['sources'].values():
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
             missing_key = f"{ota_list[key]['osStr']}-{"/".join(source['prerequisites'])}"
@@ -511,6 +513,7 @@ for key in ota_list.keys():
         source['boardMap'] = sorted(list(source['boardMap']))
         sources.append(source)
     ota_list[key]['sources'] = sources
+print(builds)
 if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     if missing_decryption_keys:
