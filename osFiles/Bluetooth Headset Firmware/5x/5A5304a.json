@@ -10,9 +10,9 @@
         "AirPods2,1-right",
         "AirPods2,2-left",
         "AirPods2,2-right",
+        "AirPodsMax1,1",
         "Audio2,1-left",
-        "Audio2,1-right",
-        "iProd8,6"
+        "Audio2,1-right"
     ],
     "sources": [
         {
@@ -56,6 +56,24 @@
         {
             "type": "ota",
             "deviceMap": [
+                "AirPodsMax1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022/patches/012-27915/C9EC88B6-E0B0-4557-B651-A1325088D1CA/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/70dc312b1a62df075cb2504f1249a4e9bce5a580.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "aae5101e7f360c876f44ea98481eb166",
+                "sha1": "5373e207c075c9bbbeacb345e95537cec8b03f78",
+                "sha2-256": "bb0337bfeea3ff62f4c53830b260a56ab6ee33bcb9b28635fac58d9c71e8ad44"
+            },
+            "size": 3024843
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
                 "Audio2,1-left",
                 "Audio2,1-right"
             ],
@@ -71,24 +89,6 @@
                 "sha2-256": "e3c347b9ec94a55360dd7cfc47b34f347c357fc5c967ddc1489272379154dcc1"
             },
             "size": 2557877
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iProd8,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022/patches/012-27915/C9EC88B6-E0B0-4557-B651-A1325088D1CA/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/70dc312b1a62df075cb2504f1249a4e9bce5a580.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "aae5101e7f360c876f44ea98481eb166",
-                "sha1": "5373e207c075c9bbbeacb345e95537cec8b03f78",
-                "sha2-256": "bb0337bfeea3ff62f4c53830b260a56ab6ee33bcb9b28635fac58d9c71e8ad44"
-            },
-            "size": 3024843
         }
     ]
 }

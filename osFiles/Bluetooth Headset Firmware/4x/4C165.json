@@ -9,9 +9,9 @@
         "AirPods2,1-right",
         "AirPods2,2-left",
         "AirPods2,2-right",
+        "AirPodsMax1,1",
         "Audio2,1-left",
-        "Audio2,1-right",
-        "iProd8,6"
+        "Audio2,1-right"
     ],
     "sources": [
         {
@@ -55,6 +55,24 @@
         {
             "type": "ota",
             "deviceMap": [
+                "AirPodsMax1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2021/patches/071-82414/7A6956A0-C255-4692-88D0-E45E0B40762F/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/f4cab9dee43c096b9495e770707eb031c65ee3ee.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "3bf8f23f2917cb75c262ffe646d7b765",
+                "sha1": "284884936c82eca462630d5132564b6b4f857abd",
+                "sha2-256": "467ecd8e5043abe1846ed69af12fb631c687a2a5a167144d55454554eb4db807"
+            },
+            "size": 3017100
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
                 "Audio2,1-left",
                 "Audio2,1-right"
             ],
@@ -70,24 +88,6 @@
                 "sha2-256": "56d12111a6be7740e117869abd5e9136da7a69da24c577a8719cd9f321698501"
             },
             "size": 2530342
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iProd8,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2021/patches/071-82414/7A6956A0-C255-4692-88D0-E45E0B40762F/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/f4cab9dee43c096b9495e770707eb031c65ee3ee.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "3bf8f23f2917cb75c262ffe646d7b765",
-                "sha1": "284884936c82eca462630d5132564b6b4f857abd",
-                "sha2-256": "467ecd8e5043abe1846ed69af12fb631c687a2a5a167144d55454554eb4db807"
-            },
-            "size": 3017100
         }
     ]
 }

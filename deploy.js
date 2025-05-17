@@ -375,7 +375,7 @@ const latestVersions = latestVersionArr
     if (startsWith && y.version) {
       startsWith = y.version.startsWith(startsWith)
       if (check && startsWith && y.osStr == 'Bluetooth Headset Firmware') {
-        return y.deviceMap.filter(z => z.startsWith("AirPods") || z.startsWith("Device1,8228") || z == 'iProd8,6').length
+        return y.deviceMap.filter(z => z.startsWith("AirPods") || z.startsWith("Device1,8228")).length
       }
       return check && startsWith
     }

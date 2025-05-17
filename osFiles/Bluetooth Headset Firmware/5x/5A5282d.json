@@ -10,9 +10,9 @@
         "AirPods2,1-right",
         "AirPods2,2-left",
         "AirPods2,2-right",
+        "AirPodsMax1,1",
         "Audio2,1-left",
-        "Audio2,1-right",
-        "iProd8,6"
+        "Audio2,1-right"
     ],
     "sources": [
         {
@@ -56,6 +56,24 @@
         {
             "type": "ota",
             "deviceMap": [
+                "AirPodsMax1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022/patches/012-08785/E4B3DB46-B3D9-4DDC-9431-3C179958759D/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/df3ce470b848e1bf03a739b637615c14ef9f4c77.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "3aaa514de0e99b6fb1be7b8bcb6f9a74",
+                "sha1": "c2fd27698983e448c98dad16339f470e586fe421",
+                "sha2-256": "c35e4189d1c80948ed52429d8c1f0cf8323e7110b0d694aef3d2c473cc257cdb"
+            },
+            "size": 3030993
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
                 "Audio2,1-left",
                 "Audio2,1-right"
             ],
@@ -71,24 +89,6 @@
                 "sha2-256": "8a8c2e58f747c57ebf4b6c4efc02a7b2d25cae7520aaaae466dfa8608df0156b"
             },
             "size": 2898578
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iProd8,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022/patches/012-08785/E4B3DB46-B3D9-4DDC-9431-3C179958759D/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/df3ce470b848e1bf03a739b637615c14ef9f4c77.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "3aaa514de0e99b6fb1be7b8bcb6f9a74",
-                "sha1": "c2fd27698983e448c98dad16339f470e586fe421",
-                "sha2-256": "c35e4189d1c80948ed52429d8c1f0cf8323e7110b0d694aef3d2c473cc257cdb"
-            },
-            "size": 3030993
         }
     ]
 }

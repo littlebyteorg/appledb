@@ -91,7 +91,7 @@ device_map = {
         "AirPods2,2-right"
     ],
     'A2096': [
-        "iProd8,6"
+        "AirPodsMax1,1"
     ],
     'A2187': [
         "AirTag1,1"

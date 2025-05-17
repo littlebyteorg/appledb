@@ -14,11 +14,11 @@
         "AirPods2,1-right",
         "AirPods2,2-left",
         "AirPods2,2-right",
+        "AirPodsMax1,1",
         "Audio2,1-left",
         "Audio2,1-right",
         "Device1,8228-left",
-        "Device1,8228-right",
-        "iProd8,6"
+        "Device1,8228-right"
     ],
     "sources": [
         {
@@ -62,6 +62,24 @@
         {
             "type": "ota",
             "deviceMap": [
+                "AirPodsMax1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023/patches/012-08977/E7DAAA75-A186-4970-829A-88AA1DCC4E74/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/789e0091ce63617c0ffa704949e5af0ecb2104a9.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "00554fd687c14f5b284862863f9e29b7",
+                "sha1": "8c6fc3b7fa50b547e534d2ee69df0ba8783cf95b",
+                "sha2-256": "4ad78c48fcf08435ab6c25bcf8f7ac140d4c83cdce737f56287177a2a6e26de6"
+            },
+            "size": 3146401
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
                 "Audio2,1-left",
                 "Audio2,1-right"
             ],
@@ -77,24 +95,6 @@
                 "sha2-256": "38da22cab912586f84a4d1aec6b84fb07d156a44a58558bf1997158820cfd5dc"
             },
             "size": 2630293
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iProd8,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023/patches/012-08977/E7DAAA75-A186-4970-829A-88AA1DCC4E74/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/789e0091ce63617c0ffa704949e5af0ecb2104a9.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "00554fd687c14f5b284862863f9e29b7",
-                "sha1": "8c6fc3b7fa50b547e534d2ee69df0ba8783cf95b",
-                "sha2-256": "4ad78c48fcf08435ab6c25bcf8f7ac140d4c83cdce737f56287177a2a6e26de6"
-            },
-            "size": 3146401
         }
     ]
 }

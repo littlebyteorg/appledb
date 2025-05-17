@@ -12,9 +12,9 @@
         "AirPods2,2-right",
         "AirPods3,1-left",
         "AirPods3,1-right",
+        "AirPodsMax1,1",
         "Audio2,1-left",
-        "Audio2,1-right",
-        "iProd8,6"
+        "Audio2,1-right"
     ],
     "sources": [
         {
@@ -58,6 +58,24 @@
         {
             "type": "ota",
             "deviceMap": [
+                "AirPodsMax1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022/patches/012-86311/6C2FC85D-184D-4F87-8181-D9E0B108A68F/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/abc6bff51893cf91393656263b535e63d8d96fb7.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "2a32c91a98e9ea78528e5bb3cae9099e",
+                "sha1": "8459fb0f3baad4180308baf67fe815ceaf37449b",
+                "sha2-256": "1bd821256b3ad1bcf43697c70c8e75158c8565035837f1770e5f27d906a1c251"
+            },
+            "size": 3143816
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
                 "Audio2,1-left",
                 "Audio2,1-right"
             ],
@@ -73,24 +91,6 @@
                 "sha2-256": "5d19d445e27d5a6e2f57ba5bf87d7485fbd1f8fe1f88cbada415d6f2f8624025"
             },
             "size": 2632676
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iProd8,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2022/patches/012-86311/6C2FC85D-184D-4F87-8181-D9E0B108A68F/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/abc6bff51893cf91393656263b535e63d8d96fb7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "2a32c91a98e9ea78528e5bb3cae9099e",
-                "sha1": "8459fb0f3baad4180308baf67fe815ceaf37449b",
-                "sha2-256": "1bd821256b3ad1bcf43697c70c8e75158c8565035837f1770e5f27d906a1c251"
-            },
-            "size": 3143816
         }
     ]
 }

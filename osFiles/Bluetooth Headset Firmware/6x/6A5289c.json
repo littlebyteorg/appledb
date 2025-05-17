@@ -12,9 +12,9 @@
         "AirPods2,2-right",
         "AirPods3,1-left",
         "AirPods3,1-right",
+        "AirPodsMax1,1",
         "Audio2,1-left",
-        "Audio2,1-right",
-        "iProd8,6"
+        "Audio2,1-right"
     ],
     "sources": [
         {
@@ -76,6 +76,24 @@
         {
             "type": "ota",
             "deviceMap": [
+                "AirPodsMax1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2023/patches/042-18341/FAE41D4B-C746-44D0-A29E-F5E9F3FB6DC7/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/2711f8ca0d3542cd278d862c3c35505725911511.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "b1035e475cbac8a14241ad9d88e8a127",
+                "sha1": "c033aef70debf402f3d811e1cd04e4aca6dfd11e",
+                "sha2-256": "fc270843cfe5a45e50038b31a1661156e704cb8009245769794e94d0007e053f"
+            },
+            "size": 3146090
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
                 "Audio2,1-left",
                 "Audio2,1-right"
             ],
@@ -91,24 +109,6 @@
                 "sha2-256": "336a68a9fa3a1bcb7ac45d6d8f13e94f46239c3df9f18ac06e6716537fd87396"
             },
             "size": 2630054
-        },
-        {
-            "type": "ota",
-            "deviceMap": [
-                "iProd8,6"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2023/patches/042-18341/FAE41D4B-C746-44D0-A29E-F5E9F3FB6DC7/com_apple_MobileAsset_MobileAccessoryUpdate_A2096_EA/2711f8ca0d3542cd278d862c3c35505725911511.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "md5": "b1035e475cbac8a14241ad9d88e8a127",
-                "sha1": "c033aef70debf402f3d811e1cd04e4aca6dfd11e",
-                "sha2-256": "fc270843cfe5a45e50038b31a1661156e704cb8009245769794e94d0007e053f"
-            },
-            "size": 3146090
         }
     ]
 }
