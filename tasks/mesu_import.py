@@ -75,8 +75,8 @@ device_map = {
         'Magic Keyboard with Numeric Keypad'
     ],
     'A2032': [
-        "AirPods2,1-left",
-        "AirPods2,1-right"
+        "AirPods1,2-left",
+        "AirPods1,2-right"
     ],
     'A2048': [
         "PowerbeatsPro1,1-left",
@@ -87,8 +87,8 @@ device_map = {
         "PowerbeatsPro2,1-right"
     ],
     'A2084': [
-        "AirPods2,2-left",
-        "AirPods2,2-right"
+        "AirPodsPro1,1-left",
+        "AirPodsPro1,1-right"
     ],
     'A2096': [
         "AirPodsMax1,1"
@@ -106,31 +106,31 @@ device_map = {
         'Magic Keyboard with Touch ID and Numeric Keypad'
     ],
     'A2564': [
-        "Audio2,1-left",
-        "Audio2,1-right"
+        "AirPods1,3-left",
+        "AirPods1,3-right"
     ],
     'A2577': [
         "BeatsFitPro1,1-left",
         "BeatsFitPro1,1-right"
     ],
     'A2618': [
-        "AirPods3,1-left",
-        "AirPods3,1-right"
+        "AirPodsPro1,2-left",
+        "AirPodsPro1,2-right"
     ],
     'A2968': [
-        "Device1,8228-case"
+        "AirPodsPro1,2-usbc-case"
     ],
     'A3048': [
-        "Device1,8228-left",
-        "Device1,8228-right"
+        "AirPodsPro1,2-usbc-left",
+        "AirPodsPro1,2-usbc-right"
     ],
     'A3053': [
-        'AirPods3,2-left',
-        'AirPods3,2-right'
+        'AirPods1,4-left',
+        'AirPods1,4-right'
     ],
     'A3056': [
-        'AirPods3,3-left',
-        'AirPods3,3-right'
+        'AirPods1,5-left',
+        'AirPods1,5-right'
     ],
     'A3157': [
         'Powerb3,1-left',
