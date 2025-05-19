@@ -27,10 +27,10 @@ for device in Path("deviceFiles").rglob("*.json"):
         VARIANTS.setdefault(identifier, set()).add(key)
 
 
-def augment_with_keys(identifiers):
+def augment_with_keys(new_identifiers):
     new_identifiers = []
-    for identifier in identifiers:
-        new_identifiers.extend(VARIANTS.get(identifier, [identifier]))
+    for new_identifier in new_identifiers:
+        new_identifiers.extend(VARIANTS.get(new_identifier, [new_identifier]))
     return new_identifiers
 
 

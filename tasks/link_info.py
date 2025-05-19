@@ -64,9 +64,9 @@ try:
     if datetime.fromtimestamp(os.path.getmtime("apple_token.txt"), timezone.utc) < (datetime.now(timezone.utc) - timedelta(hours=12)):
         apple_auth_token = ""
     else:
-        with open("apple_token.txt", "r") as token_file:
+        with open("apple_token.txt", "r", encoding="utf-8") as token_file:
             apple_auth_token = token_file.readline().strip()
-except:
+except: #pylint: disable=bare-except
     apple_auth_token = ""
 
 # Domains that do not reliably support HEAD requests

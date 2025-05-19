@@ -141,13 +141,13 @@ device_map = {
     ]
 }
 
-def call_mesu(asset_url):
+def call_mesu(url):
     files = set()
-    asset_response = SESSION.get(f"{asset_url}?cachebust{random.randint(100, 1000)}")
+    asset_response = SESSION.get(f"{url}?cachebust{random.randint(100, 1000)}")
     try:
         asset_response.raise_for_status()
-    except:
-        print(f"Skipping {asset_url.removeprefix("https://mesu.apple.com/assets/").removesuffix(".xml")}")
+    except: #pylint: disable=bare-except
+        print(f"Skipping {url.split("/assets/", 1)[1].rsplit("/", 1)[0]}")
         return files
     asset_plist = plistlib.loads(asset_response.content)
     release_date = datetime.strptime(asset_response.headers.get("Last-Modified").replace(" GMT", ""), '%a, %d %b %Y %H:%M:%S').replace(tzinfo=timezone.utc).astimezone(zoneinfo.ZoneInfo('America/Los_Angeles')).strftime("%Y-%m-%d")

@@ -11,7 +11,7 @@ from link_info import rewrite_map_v2, needs_apple_auth
 def appendable(iterable, link):
     # Only append if it's not already in the list
 
-    for i, existing_link in enumerate(iterable):
+    for existing_link in iterable:
         if link["url"] == existing_link["url"]:
             break
     else:
@@ -27,32 +27,32 @@ for preferred_host, other_hosts in rewrite_map_v2.items():
 
 
 def get_host(url: str):
-    for preferred_host, alternative_hosts in rewrite_map_v2.items():
-        if url.startswith(preferred_host):
-            return preferred_host
-        for alternative_host in alternative_hosts:
-            if url.startswith(alternative_host):
-                return alternative_host
+    for preferred, alternatives in rewrite_map_v2.items():
+        if url.startswith(preferred):
+            return preferred
+        for alternative in alternatives:
+            if url.startswith(alternative):
+                return alternative
 
     assert False, f"Could not find host for {url}"
     return None
 
 
 def get_preferred_host(url: str):
-    for preferred_host, alternative_hosts in rewrite_map_v2.items():
-        if url.startswith(preferred_host):
-            return preferred_host
-        for alternative_host in alternative_hosts:
-            if url.startswith(alternative_host):
-                return preferred_host
+    for preferred, alternatives in rewrite_map_v2.items():
+        if url.startswith(preferred):
+            return preferred
+        for alternative in alternatives:
+            if url.startswith(alternative):
+                return preferred
 
     assert False, f"Could not find preferred host for {url}"
     return None
 
 
 def get_host_group(url: str):
-    preferred_host = get_preferred_host(url)
-    return [preferred_host] + rewrite_map_v2[preferred_host]
+    preferred = get_preferred_host(url)
+    return [preferred] + rewrite_map_v2[preferred]
 
 
 def rewrite_links(links: list[dict]):

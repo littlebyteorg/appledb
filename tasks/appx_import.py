@@ -9,7 +9,6 @@ from xml.etree import ElementTree as ET
 import zipfile
 
 import dateutil.parser
-import remotezip
 import requests
 from sort_os_files import sort_os_file
 
@@ -36,11 +35,11 @@ IDENTITY_FILTER = {"9PB2MZ1ZMB1S": "AppleInc.iTunes"}
 SESSION = requests.Session()
 
 
-def import_appx(store_id, released, file):
+def import_appx(store_id, released, file_details):
     # Get version
     version = None
     # with remotezip.RemoteZip(file["url"]) as appx_bundle:
-    with zipfile.ZipFile(io.BytesIO(requests.get(file["url"]).content)) as appx_bundle:
+    with zipfile.ZipFile(io.BytesIO(requests.get(file_details["url"], timeout=60).content)) as appx_bundle:
         if "AppxManifest.xml" in appx_bundle.namelist():
             bundle_manifest = ET.fromstring(appx_bundle.read("AppxManifest.xml").decode("utf-8"))
         else:
@@ -87,8 +86,8 @@ def import_appx(store_id, released, file):
     if not db_data.get("released"):
         db_data["released"] = dateutil.parser.parse(released).strftime("%Y-%m-%d")
 
-    update_id = file["update_id"]
-    revision = file["revision_number"]
+    update_id = file_details["update_id"]
+    revision = file_details["revision_number"]
 
     for source in db_data.setdefault("sources", []):
         windows_update_details = source.get("windowsUpdateDetails")
@@ -105,11 +104,11 @@ def import_appx(store_id, released, file):
             "deviceMap": [os_str],
             "type": "appx",
             "links": [{"url": f"https://apps.microsoft.com/store/detail/{store_id}", "active": True}],
-            "size": int(file["size"]),
+            "size": int(file_details["size"]),
             "hashes": {},
         }
 
-        for digest, digest_type in [(file["digest"], file["digest_type"]), (file["additional_digest"], file["additional_digest_type"])]:
+        for digest, digest_type in [(file_details["digest"], file_details["digest_type"]), (file_details["additional_digest"], file_details["additional_digest_type"])]:
             if digest_type == "SHA1":
                 source["hashes"]["sha1"] = digest
             elif digest_type == "SHA256":

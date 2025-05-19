@@ -36,16 +36,16 @@ MULTI_BOARD_DEVICES = {}
 for device in Path("deviceFiles").rglob("*.json"):
     device_data = json.load(device.open(encoding="utf-8"))
     name = device_data["name"]
-    identifiers = device_data.get("identifier", [])
-    if isinstance(identifiers, str):
-        identifiers = [identifiers]
-    if not identifiers:
-        identifiers = [name]
-    key = device_data.get("key", identifiers[0] if identifiers else name)
+    device_identifiers = device_data.get("identifier", [])
+    if isinstance(device_identifiers, str):
+        device_identifiers = [device_identifiers]
+    if not device_identifiers:
+        device_identifiers = [name]
+    key = device_data.get("key", device_identifiers[0] if device_identifiers else name)
     if key in FILTERED_OUT_DEVICES: continue
 
-    for identifier in identifiers:
-        VARIANTS.setdefault(identifier, set()).add(key)
+    for device_identifier in device_identifiers:
+        VARIANTS.setdefault(device_identifier, set()).add(key)
         if device_data.get('board'):
             if isinstance(device_data['board'], list):
                 for board in device_data['board']:
@@ -62,21 +62,21 @@ def augment_with_keys(identifiers):
         new_identifiers.extend(VARIANTS.get(identifier, [identifier]))
     return list(set(new_identifiers))
 
-def get_board_mapping_lower_case(devices):
+def get_board_mapping_lower_case(target_devices):
     modified_mapping = {k.lower(): v for k,v in BOARD_IDS.items()}
     identifiers = []
-    for device in devices:
-        device_mappings = list(modified_mapping.get(device, []))
+    for target_device in target_devices:
+        device_mappings = list(modified_mapping.get(target_device, []))
         if not device_mappings:
             continue
         identifiers.extend(augment_with_keys(device_mappings))
     return identifiers
 
-def get_board_mappings(devices):
+def get_board_mappings(target_devices):
     identifiers = []
     bridge_identifiers = []
-    for device in devices:
-        device_mappings = list(BOARD_IDS.get(device, []))
+    for target_device in target_devices:
+        device_mappings = list(BOARD_IDS.get(target_device, []))
         if not device_mappings:
             continue
         if device_mappings[0].startswith("iBridge"):

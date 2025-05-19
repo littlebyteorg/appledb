@@ -5,22 +5,22 @@ from pathlib import Path
 import lzma
 import argparse
 
-def extract_file(input, output):
-    file_path = Path(input)
+def extract_file(input_file, output_file):
+    file_path = Path(input_file)
     file_size = file_path.stat().st_size
-    file_write = Path(output)
+    file_write = Path(output_file)
     with file_path.open("rb") as data:
         magic = data.read(4)
         if magic != b"pbzx":
             return False
 
         with file_write.open("wb") as out:
-            uncompLen = int.from_bytes(data.read(8), "big")
+            _ = int.from_bytes(data.read(8), "big")
 
             i = 0
             while data.tell() < file_size:
                 i += 1
-                uncompLen = int.from_bytes(data.read(8), "big")
+                _ = int.from_bytes(data.read(8), "big")
                 chunkLength = int.from_bytes(data.read(8), "big")
 
                 buffer = data.read(chunkLength)

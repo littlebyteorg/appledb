@@ -10,10 +10,10 @@ import urllib3
 from sort_os_files import build_number_sort, device_sort
 
 class SetEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, set):
-            return list(obj)
-        return json.JSONEncoder.default(self, obj)
+    def default(self, o):
+        if isinstance(o, set):
+            return list(o)
+        return json.JSONEncoder.default(self, o)
 
 
 # Disable SSL warnings, because Apple's SSL is broken
@@ -58,7 +58,7 @@ kernel_marketing_version_offset_map = {
 
 default_kernel_marketing_version_offset = 4
 
-asset_audiences = json.load(Path("tasks/audiences.json").open())
+asset_audiences = json.load(Path("tasks/audiences.json").open(encoding="utf-8"))
 
 mac_device_map_checks = {
     '13': set([
@@ -175,7 +175,7 @@ is_rc = args.update_type == 'rc'
 if args.os and args.build:
     parsed_args = dict(zip(args.os, args.build))
 else:
-    latest_builds = json.load(Path('tasks/latest_builds.json').open())
+    latest_builds = json.load(Path('tasks/latest_builds.json').open(encoding="utf-8"))
     beta_builds = any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public']))
     parsed_args = {}
     for os_str, types in latest_builds.items():
@@ -191,7 +191,6 @@ newly_discovered_versions = {}
 ota_list = {}
 
 def generate_restore_version(build_number):
-    global restore_versions
     if not restore_versions.get(build_number):
         match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
         match_groups = match.groups()
@@ -217,14 +216,13 @@ def generate_restore_version(build_number):
     return restore_versions[build_number]
 
 def get_board_ids(identifier):
-    global board_ids
     if not board_ids.get(identifier):
         device_path = list(Path('deviceFiles').rglob(f"{identifier}.json"))[0]
         device_data = json.load(device_path.open())
         
         if device_data.get('iBridge'):
             device_path = Path(f"deviceFiles/iBridge/{device_data['iBridge']}.json")
-            device_data = json.load(device_path.open())
+            device_data = json.load(device_path.open(encoding="utf-8"))
             # iBridge board IDs need to be upper-cased
             device_data['board'] = device_data['board'].upper()
         if isinstance(device_data['board'], list):
@@ -233,33 +231,30 @@ def get_board_ids(identifier):
             board_ids[identifier] = [device_data['board']]
     return board_ids[identifier]
 
-def get_build_version(os_str, build):
-    global build_versions
-    if not build_versions.get(f"{os_str}-{build}"):
+def get_build_version(target_os_str, target_build):
+    if not build_versions.get(f"{target_os_str}-{target_build}"):
         try:
-            build_path = list(Path(f'osFiles/{os_str}').rglob(f'{build}.json'))[0]
-            build_data = json.load(build_path.open())
-            build_versions[f"{os_str}-{build}"] = build_data['version']
-        except:
-            if os_str == 'iPadOS':
-                build_versions[f"{os_str}-{build}"] = get_build_version('iOS', build)
-            elif os_str == 'iOS':
-                build_versions[f"{os_str}-{build}"] = get_build_version('iPadOS', build)
+            version_path = list(Path(f'osFiles/{target_os_str}').rglob(f'{target_build}.json'))[0]
+            version_data = json.load(version_path.open())
+            build_versions[f"{target_os_str}-{target_build}"] = version_data['version']
+        except: #pylint: disable=bare-except
+            if target_os_str == 'iPadOS':
+                build_versions[f"{target_os_str}-{target_build}"] = get_build_version('iOS', target_build)
+            elif target_os_str == 'iOS':
+                build_versions[f"{target_os_str}-{target_build}"] = get_build_version('iPadOS', target_build)
             else:
-                build_versions[f"{os_str}-{build}"] = 'N/A'
+                build_versions[f"{target_os_str}-{target_build}"] = 'N/A'
 
-    return build_versions[f"{os_str}-{build}"]
+    return build_versions[f"{target_os_str}-{target_build}"]
 
-def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, is_rsr, time_delay, counter=5):
-    global ota_list
-    global newly_discovered_versions
+def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, counter=5):
     asset_type = 'SoftwareUpdate'
     if is_rsr:
         asset_type = 'Splat' + asset_type
 
-    if os_str == 'macOS':
+    if target_os_str == 'macOS':
         asset_type = 'Mac' + asset_type
-    elif os_str == 'Studio Display Firmware':
+    elif target_os_str == 'Studio Display Firmware':
         asset_type = 'DarwinAccessoryUpdate.A2525'
 
     # links = set()
@@ -269,7 +264,7 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
         "ClientVersion": 2,
         "CertIssuanceDay": "2023-12-10",
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
-        "AssetAudience": audience,
+        "AssetAudience": asset_audience,
         # Device name might have an AppleDB-specific suffix; remove this when calling Pallas
         "ProductType": device_name.split("-")[0],
         "HWModelStr": board_id,
@@ -278,10 +273,10 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
         "Build": os_build,
         "BuildVersion": os_build
     }
-    if os_str in ['iOS', 'iPadOS', 'macOS']:
+    if target_os_str in ['iOS', 'iPadOS', 'macOS']:
         request['RestoreVersion'] = generate_restore_version(os_build)
 
-    if "beta" in os_version.lower() and os_str in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
+    if "beta" in os_version.lower() and target_os_str in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
 
     if time_delay > 0:
@@ -293,11 +288,11 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
 
     try:
         response.raise_for_status()
-    except:
+    except: #pylint: disable=bare-except
         if counter == 0:
             print(json.dumps(request))
             raise
-        call_pallas(device_name, board_id, os_version, os_build, os_str, audience, is_rsr, time_delay, counter - 1)
+        call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, counter - 1)
     else:
         parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
         assets = parsed_response.get('Assets', [])
@@ -310,16 +305,16 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
             delta_from_beta = re.search(r"(6\d{3})", updated_build)
             if delta_from_beta:
                 updated_build = updated_build.replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))
-            if build_versions.get(f"{os_str}-{updated_build}") or updated_build in parsed_args.get(os_str, []):
+            if build_versions.get(f"{target_os_str}-{updated_build}") or updated_build in parsed_args.get(target_os_str, []):
                 continue
 
             cleaned_os_version = asset['OSVersion'].removeprefix('9.9.')
 
-            if os_str == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == cleaned_os_version:
+            if target_os_str == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == cleaned_os_version:
                 continue
             link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
-            response_os_str = os_str
-            if os_str == "iOS" and packaging.version.parse(cleaned_os_version.split(" ")[0]) >= packaging.version.parse("13.0") and device_name.startswith('iPad'):
+            response_os_str = target_os_str
+            if target_os_str == "iOS" and packaging.version.parse(cleaned_os_version.split(" ")[0]) >= packaging.version.parse("13.0") and device_name.startswith('iPad'):
                 response_os_str = "iPadOS"
             if not ota_list.get(f"{response_os_str}-{updated_build}"):
                 base_details = {
@@ -373,7 +368,7 @@ def call_pallas(device_name, board_id, os_version, os_build, os_str, audience, i
             newly_discovered_versions.setdefault(response_os_str, {})[updated_build] = cleaned_os_version
 
         for additional_audience in additional_audiences:
-            call_pallas(device_name, board_id, os_version, os_build, os_str, additional_audience, is_rsr, time_delay)
+            call_pallas(device_name, board_id, os_version, os_build, target_os_str, additional_audience, is_rsr, time_delay)
 
 def merge_dicts(original, additional):
     for k in additional.keys():
@@ -433,7 +428,7 @@ for (os_str, builds) in parsed_args.items():
                 try:
                     uuid.UUID(audience)
                     audiences.append(audience)
-                except:
+                except: #pylint: disable=bare-except
                     print(f"Invalid audience {audience}, skipping")
                     continue
         build_path = list(Path(f"osFiles/{os_str}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
@@ -441,7 +436,7 @@ for (os_str, builds) in parsed_args.items():
         build_data = {}
         try:
             build_data = json.load(build_path.open())
-        except:
+        except: #pylint: disable=bare-except
             print(f"Bad path - {build_path}")
             continue
         build_versions[f"{os_str}-{build}"] = build_data['version']
@@ -518,5 +513,5 @@ if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     if missing_decryption_keys:
         print(f"Missing decryption keys: {sorted(missing_decryption_keys)}")
-    [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+    _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
     json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)

@@ -6,9 +6,7 @@ import sys
 from pathlib import Path
 
 import dateutil.parser
-import lxml.html
 import requests
-import lxml.etree
 
 from sort_os_files import sort_os_file  # pylint: disable=no-name-in-module
 
@@ -38,11 +36,11 @@ if DEV_AUTH_VALUE:
     HEADERS = {'Authorization': DEV_AUTH_VALUE}
 
 if DEV_DATA_PROXY:
-    text_response = requests.get(DEV_DATA_PROXY, headers=HEADERS).text
+    text_response = requests.get(DEV_DATA_PROXY, headers=HEADERS, timeout=30).text
     response = json.loads(text_response)
 
     if response.get('token', {}).get('ADCDownloadAuth'):
-        with Path('apple_token.txt').open('w') as token_file:
+        with Path('apple_token.txt').open('w', encoding="utf-8") as token_file:
             token_file.write(response['token']['ADCDownloadAuth'])
 
     json.dump(response, Path("import_raw.json").open("w", encoding="utf-8", newline="\n"))

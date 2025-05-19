@@ -23,7 +23,6 @@ from sort_device_files import sort_device_file
 urllib3.disable_warnings()
 # urllib3.add_stderr_logger()
 
-# TODO: Make this configurable
 THREAD_COUNT = 16
 
 DOMAIN_CHECK_LIST = []
@@ -117,7 +116,7 @@ class ProcessFileThread(threading.Thread):
                     else:
                         break
                 else:
-                    raise Exception(f"Failed to connect to {url}")
+                    raise Exception(f"Failed to connect to {url}") #pylint: disable=broad-exception-raised
 
                 if hostname in no_head:
                     resp.close()
@@ -130,7 +129,7 @@ class ProcessFileThread(threading.Thread):
                     # Dead link
                     successful_hit = False
                 else:  # Leave it be
-                    raise Exception(f"Unknown status code: {resp.status_code}")
+                    raise Exception(f"Unknown status code: {resp.status_code}") #pylint: disable=broad-exception-raised
 
                 success_map[url] = link["active"] = successful_hit
 
@@ -146,13 +145,13 @@ class ProcessFileThread(threading.Thread):
                         source.setdefault("hashes", {})["md5"] = base64.b64decode(resp.headers["Content-MD5"]).hex()
 
                     if "ETag" in resp.headers:
-                        # TODO: Document what server each ETag format is from
                         def is_hex(s):
                             return all(c in string.hexdigits for c in s)
 
                         potential_hash = resp.headers["ETag"][1:-1]
 
                         if len(potential_hash) == 32 and is_hex(potential_hash):
+                            # Seen from updates.cdn-apple.com and presumably also appldnld.apple.com
                             source.setdefault("hashes", {})["md5"] = potential_hash
                         elif len(potential_hash) > 33 and is_hex(potential_hash[:32]) and potential_hash[32] == ":":
                             # <md5>:<unix epoch>
@@ -243,7 +242,7 @@ class ProcessFileThread(threading.Thread):
             else:
                 break
         else:
-            raise Exception(f"Failed to connect to {url}")
+            raise Exception(f"Failed to connect to {url}") #pylint: disable=broad-exception-raised
 
         if hostname in no_head:
             resp.close()
@@ -256,7 +255,7 @@ class ProcessFileThread(threading.Thread):
             # Dead link
             successful_hit = False
         else:  # Leave it be
-            raise Exception(f"Unknown status code: {resp.status_code}")
+            raise Exception(f"Unknown status code: {resp.status_code}") #pylint: disable=broad-exception-raised
 
         success_map[url] = updated_status = successful_hit
 
@@ -419,15 +418,15 @@ if __name__ == "__main__":
     parser.add_argument('-t', '--thread-count', type=int, default=16)
     args = parser.parse_args()
     THREAD_COUNT = args.thread_count
-    files = []
+    file_list = []
     if args.folders:
         for path in args.folders:
-            files.extend(list(Path(f"{path}").rglob("*.json")))
+            file_list.extend(list(Path(f"{path}").rglob("*.json")))
     else:
-        files.extend(list(Path("osFiles").rglob("*.json")))
-        files.extend(list(Path("deviceFiles/Software").rglob("*.json")))
+        file_list.extend(list(Path("osFiles").rglob("*.json")))
+        file_list.extend(list(Path("deviceFiles/Software").rglob("*.json")))
 
     if args.domains:
         DOMAIN_CHECK_LIST = args.domains
     
-    update_links(files, active_only=args.active_only, notes_only=args.notes_only)
+    update_links(file_list, active_only=args.active_only, notes_only=args.notes_only)

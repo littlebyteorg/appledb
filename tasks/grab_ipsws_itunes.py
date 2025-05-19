@@ -19,8 +19,6 @@ from sort_os_files import device_sort
 # https://itunes.com/version (redirect to mzstatic)
 # All are the same
 
-# TODO: Probably put import.txt in a folder, and put it in .gitignore
-
 urls = [
     "https://itunes.apple.com/WebObjects/MZStore.woa/wa/com.apple.jingle.appserver.client.MZITunesClientCheck/version",
     "https://mesu.apple.com/assets/macos/com_apple_macOSIPSW/com_apple_macOSIPSW.xml",
@@ -29,15 +27,14 @@ urls = [
 ]
 
 def get_os_str(supported_device, version):
-    for product_prefix, os_str in OS_MAP:
+    for product_prefix, product_os_str in OS_MAP:
         if supported_device.startswith(product_prefix):
-            if os_str == "iPadOS" and packaging.version.parse(version) < packaging.version.parse("13.0"):
-                os_str = "iOS"
-            return os_str
-        elif product_prefix in supported_device:
-            return os_str
-    else:
-        print(supported_device)
+            if product_os_str == "iPadOS" and packaging.version.parse(version) < packaging.version.parse("13.0"):
+                product_os_str = "iOS"
+            return product_os_str
+        if product_prefix in supported_device:
+            return product_os_str
+    print(supported_device)
 
 ipsw_list = {}
 known_builds = [
@@ -124,5 +121,5 @@ if bool(ipsw_list):
         count += len(item["links"])
         cleaned_list.append(item)
     print(f"{count} links added")
-    [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
+    _ = [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
     json.dump(cleaned_list, Path("import.json").open("w", encoding="utf-8"), indent=4)

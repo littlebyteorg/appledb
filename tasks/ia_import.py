@@ -12,8 +12,6 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 from common_update_import import create_file, get_board_mappings
 
-# TODO: createAdditionalEntries support (would only work with JSON tho)
-
 FULL_SELF_DRIVING = False
 # Use local files if found
 USE_LOCAL_IF_FOUND = True
@@ -23,7 +21,7 @@ SESSION = requests.Session()
 
 
 def import_ia(
-    ia_url, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, use_network=True, skip_sha1_hash=False
+    ia_url, build=None, recommended_version=None, os_version=None, released=None, beta=None, rc=None, use_network=True, skip_sha1_hash=False
 ):
     local_path = LOCAL_IA_PATH / Path(Path(ia_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -81,9 +79,6 @@ def import_ia(
 
     # Get the build, version, and supported devices
     build = build or info_plist["Build"]
-    # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
-    # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
-    # Check by substring first?
     recommended_version = recommended_version or info_plist["OSVersion"]
 
     if not supported_devices:
@@ -101,7 +96,7 @@ def import_ia(
     else:
         print(f"\tDevice Support: {supported_devices}")
 
-    db_file = create_file("macOS", build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
+    db_file = create_file("macOS", build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=os_version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     db_data.setdefault("deviceMap", []).extend(supported_devices)
@@ -194,10 +189,10 @@ if __name__ == "__main__":
                 else:
                     for link in version["links"]:
                         try:
-                            (processed_file, fresh_import) = import_ia(link["url"], version=version["version"], released=version["released"], use_network=False, skip_sha1_hash=args.no_sha1_hash)
+                            (processed_file, fresh_import) = import_ia(link["url"], os_version=version["version"], released=version["released"], use_network=False, skip_sha1_hash=args.no_sha1_hash)
                             if fresh_import:
                                 files_processed.add(processed_file)
-                        except:
+                        except: #pylint: disable=bare-except
                             failed_links.append(link)
 
         elif Path("import-ia.txt").exists():
@@ -210,7 +205,7 @@ if __name__ == "__main__":
                     (processed_file, fresh_import) = import_ia(url, use_network=False, skip_sha1_hash=args.no_sha1_hash)
                     if fresh_import:
                         files_processed.add(processed_file)
-                except:
+                except: #pylint: disable=bare-except
                     failed_links.append(url)
         else:
             raise RuntimeError("No import file found")

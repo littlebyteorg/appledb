@@ -4,14 +4,14 @@ import asyncio
 import hashlib
 import concurrent.futures
 import functools
-import requests
-
-import pbzx
 import plistlib
 import shutil
 from pathlib import Path
-import libarchive
 import subprocess
+
+import pbzx
+import requests
+import libarchive
 
 SESSION = requests.session()
 async def get_size(url):

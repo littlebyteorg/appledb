@@ -12,7 +12,7 @@ import requests
 from sort_os_files import sort_os_file
 from update_links import update_links
 
-result = requests.get(f"https://swcatalog.apple.com/content/catalogs/others/index-windows-1.sucatalog?cachebust{random.randint(100, 1000)}")
+result = requests.get(f"https://swcatalog.apple.com/content/catalogs/others/index-windows-1.sucatalog?cachebust{random.randint(100, 1000)}", timeout=30)
 
 plist = list(plistlib.loads(result.content)['Products'].values())
 plist.sort(key=lambda x: x['PostDate'], reverse=True)
@@ -25,15 +25,15 @@ for product in plist:
         target_date = release_date
     elif target_date != release_date:
         continue
-    dist_response = requests.get(product['Distributions']['English']).text
+    dist_response = requests.get(product['Distributions']['English'], timeout=30).text
 
     itunes_version = [x for x in re.findall(r"(<pkg-ref.*<\/pkg-ref>)", dist_response) if 'id="iTunes' in x][0].split('version="')[1].split('"')[0]
     if "WINDOWS64" in product['ServerMetadataURL']:
         device_name = "iTunes (Windows, x64)"
-        source_link = requests.head('https://www.apple.com/itunes/download/win64').headers['Location']
+        source_link = requests.head('https://www.apple.com/itunes/download/win64', timeout=30).headers['Location']
     else:
         device_name = "iTunes (Windows, x86)"
-        source_link = requests.head('https://www.apple.com/itunes/download/win32').headers['Location']
+        source_link = requests.head('https://www.apple.com/itunes/download/win32', timeout=30).headers['Location']
 
     if not version_details:
         version_details = {

@@ -11,10 +11,10 @@ import requests
 from sort_os_files import build_number_sort, device_sort
 
 class SetEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, set):
-            return list(obj)
-        return json.JSONEncoder.default(self, obj)
+    def default(self, o):
+        if isinstance(o, set):
+            return list(o)
+        return json.JSONEncoder.default(self, o)
 
 urls = [
     "https://mesu.apple.com/assets/audio/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml",
@@ -120,5 +120,5 @@ for key in ota_list.keys():
 
 if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
-    [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
+    _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
     json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)

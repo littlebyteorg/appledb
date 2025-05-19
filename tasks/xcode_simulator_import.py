@@ -165,7 +165,7 @@ for simulator in simulator_response['downloadables']:
     file_type = 'aar' if simulator.get('downloadMethod') == 'mobileAsset' else 'dmg'
 
     if file_path.exists():
-        new_item = json.load(file_path.open())
+        new_item = json.load(file_path.open(encoding="utf-8"))
         if bool([x for x in new_item.get('sources', []) if x['type'] == file_type]): continue
     else:
         file_path.parent.mkdir(parents=True, exist_ok=True)

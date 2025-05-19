@@ -17,8 +17,6 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 from common_update_import import augment_with_keys, create_file, OS_MAP, get_board_mapping_lower_case
 
-# TODO: createAdditionalEntries support (would only work with JSON tho)
-
 FULL_SELF_DRIVING = False
 # Use local files if found
 USE_LOCAL_IF_FOUND = True
@@ -47,7 +45,7 @@ JSON import sample:
 
 
 def import_ipsw(
-    ipsw_url, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, ipd=None, use_network=True
+    ipsw_url, os_str=None, build=None, recommended_version=None, final_version=None, released=None, beta=None, rc=None, ipd=None, use_network=True
 ):
     local_path = LOCAL_IPSW_PATH / Path(Path(ipsw_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -109,9 +107,6 @@ def import_ipsw(
 
     # Get the build, version, and supported devices
     build = build or build_manifest["ProductBuildVersion"]
-    # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
-    # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
-    # Check by substring first?
     recommended_version = recommended_version or build_manifest["ProductVersion"]
     # Devices supported specifically in this source
     supported_devices = augment_with_keys(build_manifest["SupportedProductTypes"])
@@ -173,7 +168,7 @@ def import_ipsw(
     else:
         print(f"\tDevice Support: {supported_devices}")
 
-    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
+    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=final_version, released=released, beta=beta, rc=rc, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
     if baseband_map:
         db_data.setdefault("basebandVersions", {}).update(baseband_map)
@@ -242,7 +237,7 @@ if __name__ == "__main__":
                     )
                 else:
                     for link in version["links"]:
-                        (processed_file, fresh_import) = import_ipsw(link["url"], version=version["version"], released=version.get("released"), ipd=version.get('ipd'), use_network=False)
+                        (processed_file, fresh_import) = import_ipsw(link["url"], final_version=version["version"], released=version.get("released"), ipd=version.get('ipd'), use_network=False)
                         if fresh_import:
                             files_processed.add(processed_file)
 

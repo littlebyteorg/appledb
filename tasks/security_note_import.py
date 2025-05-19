@@ -3,9 +3,9 @@
 import json
 from pathlib import Path
 import argparse
+import random
 
 import dateutil.parser
-import lxml.etree
 import lxml.html
 import requests
 
@@ -47,7 +47,7 @@ args = parser.parse_args()
 if bool(args.version) != bool(args.product):
     parser.error("product and version must either both be provided or both be absent")
 
-result = requests.get("https://support.apple.com/en-us/100100?cachebust111")
+result = requests.get(f"https://support.apple.com/en-us/100100?cachebust{random.randint(100, 1000)}", timeout=30)
 result.raise_for_status()
 element = lxml.html.fromstring(result.text)
 

@@ -7,13 +7,9 @@ import sys
 from pathlib import Path
 
 import dateutil.parser
-import lxml.etree
 import lxml.html
 import requests
-import lxml.etree
 from lxml.etree import _Element as Element  # pylint: disable=no-name-in-module
-
-# TODO: Probably put import.txt/import.json/import_raw.html in a folder, and put it in .gitignore
 
 # If you have a proxy to access the dev portal, pass it on the command line, set the DEV_PORTAL_PROXY environment variable, or set it here
 # Otherwise, leave it blank and save the HTML to import_raw.html
@@ -136,5 +132,5 @@ for group in element.xpath(".//h3/.."):
 
 if bool(out):
     print([f"{d['osStr']} {d['version']} ({len(d.get('links', []))})" for d in out])
-    [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
+    _ = [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
     json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)

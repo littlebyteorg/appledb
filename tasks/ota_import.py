@@ -18,8 +18,6 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 from common_update_import import all_boards_covered, augment_with_keys, create_file, get_board_mapping_lower_case, get_board_mappings, OS_MAP
 
-# TODO: createAdditionalEntries support (would only work with JSON tho)
-
 FULL_SELF_DRIVING = False
 REFRESH_EXISTING = False
 # Use local files if found
@@ -29,7 +27,7 @@ LOCAL_OTA_PATH = Path("otas")
 SESSION = requests.Session()
 
 def import_ota(
-    ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, version=None, released=None, beta=None, rc=None, \
+    ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, final_version=None, released=None, beta=None, rc=None, \
         use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None, \
         restore_version=None, bridge_version_info=None, size=None
 ):
@@ -144,9 +142,6 @@ def import_ota(
         prerequisite_builds = prerequisite_builds or (info_plist.get('BaseUpdate') if info_plist else [])
     else:
         build = build or info_plist["Build"]
-        # TODO: Check MarketingVersion in Restore.plist in order to support older tvOS IPSWs
-        # Maybe hardcode 4.0 to 4.3, 4.4 to 5.0.2, etc
-        # Check by substring first?
         recommended_version = recommended_version or info_plist["OSVersion"].removeprefix("9.9.")
         if rsr:
             recommended_version = recommended_version + (f" {info_plist['ProductVersionExtra']}" if info_plist.get('ProductVersionExtra') else '')
@@ -202,7 +197,7 @@ def import_ota(
     if restore_version is None and info_plist and info_plist.get('RestoreVersion'):
         restore_version = info_plist.get('RestoreVersion')
 
-    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain, restore_version=restore_version)
+    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=final_version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain, restore_version=restore_version)
     db_data = json.load(db_file.open(encoding="utf-8"))
 
     if baseband_map:
@@ -212,31 +207,31 @@ def import_ota(
 
     found_source = False
     is_new_import = None
-    for source in db_data.setdefault("sources", []):
-        if source_has_link(source, ota_url):
+    for existing_source in db_data.setdefault("sources", []):
+        if source_has_link(existing_source, ota_url):
             if REFRESH_EXISTING:
-                db_data['sources'].pop(db_data['sources'].index(source))
+                db_data['sources'].pop(db_data['sources'].index(existing_source))
             else:
                 print("\tURL already exists in sources")
                 found_source = True
                 is_new_import = False
-                source.setdefault("deviceMap", []).extend(supported_devices)
+                existing_source.setdefault("deviceMap", []).extend(supported_devices)
                 if supported_boards:
-                    source.setdefault("boardMap", []).extend(supported_boards)
+                    existing_source.setdefault("boardMap", []).extend(supported_boards)
 
     if not found_source:
         print("\tReplacing source" if REFRESH_EXISTING else "\tAdding new source")
-        source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
+        existing_source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
         if ota_key:
-            source["links"][0]["decryptionKey"] = ota_key
+            existing_source["links"][0]["decryptionKey"] = ota_key
         if prerequisite_builds:
-            source["prerequisiteBuild"] = prerequisite_builds
+            existing_source["prerequisiteBuild"] = prerequisite_builds
         if supported_boards:
-            source["boardMap"] = supported_boards
+            existing_source["boardMap"] = supported_boards
         if size:
-            source["size"] = size
+            existing_source["size"] = size
 
-        db_data["sources"].append(source)
+        db_data["sources"].append(existing_source)
         is_new_import = True
 
     if bridge_version and bridge_version_info and not rsr:
@@ -314,7 +309,7 @@ if __name__ == "__main__":
                                     )
                                 if fresh_import:
                                     files_processed.add(processed_file)
-                            except Exception:
+                            except: #pylint: disable=bare-except
                                 failed_links.append(link["url"])
 
         elif Path(f"{file_name_base}.txt").exists():
@@ -332,7 +327,7 @@ if __name__ == "__main__":
                     (processed_file, fresh_import) = import_ota(url, ota_key=key, use_network=False)
                     if fresh_import:
                         files_processed.add(processed_file)
-                except Exception:
+                except: #pylint: disable=bare-except
                     failed_links.append(url)
         else:
             raise RuntimeError("No import file found")

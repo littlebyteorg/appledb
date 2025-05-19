@@ -9,7 +9,6 @@ from pathlib import Path
 import html
 
 import dateutil.parser
-import lxml.etree
 import lxml.html
 import requests
 
@@ -21,7 +20,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--force', action='store_true')
 args = parser.parse_args()
 
-result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}")
+result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}", timeout=30)
 result.raise_for_status()
 element = lxml.html.fromstring(result.text)
 
@@ -41,7 +40,7 @@ mac_versions = set()
 for link in links:
     try:
         a_tag = link.xpath('a')[0]
-    except:
+    except: # pylint: disable=bare-except
         continue
     if not a_tag.attrib.get("class", ""):
         continue
@@ -72,7 +71,7 @@ safari_version = None
 link_version_map = {}
 
 for mac_version in mac_versions:
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?appledbcachebust{random.randint(100, 1000)}')
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
@@ -83,7 +82,7 @@ for mac_version in mac_versions:
 
         metadata_url = product['ServerMetadataURL']
 
-        dist_response = requests.get(product['Distributions']['English']).text
+        dist_response = requests.get(product['Distributions']['English'], timeout=30).text
         os_version = dist_response.split("system.compareVersions(myTargetSystemVersion.ProductVersion, '")[1].split(".")[0]
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
         if dist_version != properties['Release']:
@@ -96,7 +95,7 @@ for mac_version in mac_versions:
         print(f'Missing Safari Tech Preview for macOS {mac_version}')
         continue
 
-    safari_metadata = plistlib.loads(requests.get(metadata_url).content)
+    safari_metadata = plistlib.loads(requests.get(metadata_url, timeout=30).content)
     safari_version = safari_metadata['CFBundleShortVersionString']
 
 source = {

@@ -28,7 +28,7 @@ for product in plist.get('Products', {}).values():
             Path.mkdir(current_path.parent, parents=True)
         os_path = Path(str(current_path).replace("Software/Rosetta", "macOS"))
         if os_path.exists():
-            os_details = json.load(os_path.open())
+            os_details = json.load(os_path.open(encoding="utf-8"))
             desired_version = os_details['version']
             beta = os_details.get('beta')
             rc = os_details.get('rc')
