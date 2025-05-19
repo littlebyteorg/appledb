@@ -51,6 +51,7 @@ skip_builds = [
     "20H360", # iOS/iPadOS 16.7.11
     "21G101", # iOS 17.6.1
     "21H423", # iPadOS 17.7.6
+    "21H440", # iPadOS 17.7.8
     "22E240", # iOS/iPadOS 18.4
     "22E252", # iOS/iPadOS 18.4.1
     "22F76",  # iOS/iPadOS 18.5
