@@ -5,6 +5,7 @@ import json
 import argparse
 from pathlib import Path
 from typing import Optional
+from sort_files_common import sorted_dict_by_key
 
 key_order = [
     "name",
@@ -59,8 +60,6 @@ colors_key_order = ["name", "key", "group", "hex", "released"]
 
 links_key_order = ["url", "active"]
 
-def sorted_dict_by_key(data, order):
-    return dict(sorted(data.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order)))
 
 def sort_device_file(file_path: Optional[Path], raw_data=None):
     if not file_path and not raw_data:

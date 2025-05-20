@@ -2,54 +2,11 @@
 
 import copy
 import json
-import re
 import argparse
 from pathlib import Path
 from typing import Optional
 
-
-def device_sort(device):
-    match = re.match(r"([a-zA-Z]+)(\d+),(\d+)", device)
-    if not match or len(match.groups()) != 3:
-        # iMac,1 is a valid identifier; check for this and, if present, treat missing section as 0
-        match = re.match(r"([a-zA-Z]+),(\d+)", device)
-        if not match or len(match.groups()) != 2:
-            # This is probably not a device identifier, so just return it
-            return "", 0, 0, device
-        return match.groups()[0].lower(), 0, int(match.groups()[1]), device
-
-    # The device at the end is for instances like "BeatsStudioBuds1,1", "BeatsStudioBuds1,1-tiger"
-    # However, this will sort "MacBookPro15,1-2019" before "MacBookPro15,2-2018"
-    return match.groups()[0].lower(), int(match.groups()[1]), int(match.groups()[2]), device
-
-
-
-def sorted_dict_by_key(data, order):
-    return dict(sorted(data.items(), key=lambda item: order.index(item[0])))
-
-
-def sorted_dict_by_alphasort(data):
-    return dict(sorted(data.items(), key=lambda item: item[0]))
-
-
-def device_map_sort(device_map):
-    return sorted(set(device_map), key=device_sort)
-
-
-def build_number_sort(build_number):
-    match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
-    if not match:
-        return 0, "A", 0, 0, "a"
-    kernel_version = int(match.groups()[0])
-    build_train_version = match.groups()[1]
-    build_version = int(match.groups()[2])
-    build_prefix = 0
-    build_suffix = match.groups()[3] or ""
-    build_prefix_position = 10000 if build_train_version == 'P' or build_number.startswith('8N') else 1000
-    if build_version > build_prefix_position:
-        build_prefix = int(build_version / build_prefix_position)
-        build_version = build_version % build_prefix_position
-    return kernel_version, build_train_version, build_version, build_prefix, build_suffix
+from sort_files_common import build_number_sort, device_map_sort, sorted_dict_by_key
 
 
 key_order = [

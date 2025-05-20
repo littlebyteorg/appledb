@@ -487,20 +487,20 @@ for (os_str, builds) in parsed_args.items():
 
 missing_decryption_keys = set()
 builds = set()
-for key in ota_list.keys():
+for key, value in ota_list.items():
     sources = []
-    builds.add(ota_list[key]['build'])
-    for source in ota_list[key]['sources'].values():
+    builds.add(value['build'])
+    for source in value['sources'].values():
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
-            missing_key = f"{ota_list[key]['osStr']}-{"/".join(source['prerequisites'])}"
-            if ota_list[key]['osStr'] == 'macOS':
+            missing_key = f"{value['osStr']}-{"/".join(source['prerequisites'])}"
+            if value['osStr'] == 'macOS':
                 suffix = 'Intel' if 'MacPro7,1' in source['deviceMap'] else 'AS'
             else:
                 suffix = source['deviceMap'][0]
             missing_decryption_keys.add(f"{missing_key}-{suffix}")
-        if ota_list[key]['osStr'] == 'macOS':
-            if source['deviceMap'] == mac_device_map_checks.get(ota_list[key]['version'].split('.')[0], set()):
-                source['deviceMap'].update(mac_device_map_extensions[ota_list[key]['version'].split('.')[0]])
+        if value['osStr'] == 'macOS':
+            if source['deviceMap'] == mac_device_map_checks.get(value['version'].split('.')[0], set()):
+                source['deviceMap'].update(mac_device_map_extensions[value['version'].split('.')[0]])
             if bool(set(mac_device_additions.keys()).intersection(source['prerequisites'])):
                 for prerequisite in source['prerequisites']:
                     source['deviceMap'].update(mac_device_additions.get(prerequisite, []))

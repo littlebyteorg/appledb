@@ -5,6 +5,7 @@ import json
 import argparse
 from pathlib import Path
 from typing import Optional
+from sort_files_common import sorted_dict_by_key
 
 key_order = [
     "name",
@@ -15,8 +16,6 @@ key_order = [
     "subgroups"
 ]
 
-def sorted_dict_by_key(data, order):
-    return dict(sorted(data.items(), key=lambda item: order.index(item[0])))
 
 def sort_device_group_file(file_path: Optional[Path], raw_data=None):
     if not file_path and not raw_data:
