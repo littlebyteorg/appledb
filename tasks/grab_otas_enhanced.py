@@ -183,6 +183,16 @@ else:
         if args.os and os_str not in args.os: continue
         parsed_args.setdefault(os_str, []).extend(latest_builds[os_str]['rc' if is_rc else 'beta' if beta_builds else 'release'])
 
+minimum_compatibility = 0
+maximum_compatibility = 1000
+if parsed_args.get('watchOS'):
+    compatibility_builds = sorted(parsed_args['watchOS'])
+    def generate_build_compatibility_version(target_build):
+        return ((int(target_build[0:2]) - 12) * 2) + 4
+
+    minimum_compatibility = generate_build_compatibility_version(compatibility_builds[0]) - 1
+    maximum_compatibility = generate_build_compatibility_version(compatibility_builds[-1]) + 1
+
 board_ids = {}
 build_versions = {}
 restore_versions = {}
@@ -263,7 +273,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
 
     request = {
         "ClientVersion": 2,
-        "CertIssuanceDay": "2023-12-10",
+        "CertIssuanceDay": "2024-12-05",
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
         "AssetAudience": asset_audience,
         # Device name might have an AppleDB-specific suffix; remove this when calling Pallas
@@ -276,6 +286,10 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
     }
     if target_os_str in ['iOS', 'iPadOS', 'macOS']:
         request['RestoreVersion'] = generate_restore_version(os_build)
+    elif target_os_str == 'watchOS':
+        request['DeviceName'] = 'Apple Watch'
+        request['MinCompanionCompatibilityVersion'] = minimum_compatibility
+        request['MaxCompanionCompatibilityVersion'] = maximum_compatibility
 
     if "beta" in os_version.lower() and target_os_str in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
