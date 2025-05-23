@@ -66,6 +66,10 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
     data = sorted_dict_by_key(data, key_order)
     if set(data.keys()) - set(key_order):
         raise ValueError(f"Unknown keys: {sorted(set(data.keys()) - set(key_order))}")
+    
+    if file_path:
+        if file_path.stem not in [data.get('uniqueBuild'), data.get('build'), data['version']]:
+            raise ValueError(f"Improper file name: {file_path.stem} should be {data.get('uniqueBuild')}, {data.get('build')} or {data['version']}")
 
     for i, duplicate_entry in enumerate(data.get("createDuplicateEntries", [])):
         data["createDuplicateEntries"][i] = sort_os_file(None, duplicate_entry)
