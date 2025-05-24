@@ -3,6 +3,27 @@ import re
 os_prefix_order = ["Mac OS", "Mac OS X", "OS X", "macOS", "Windows"]
 
 
+def validate_file_name(file_name, file_name_options):
+    parsed_options = []
+    for file_name_option in file_name_options:
+        if not file_name_option: continue
+        if isinstance(file_name_option, list):
+            parsed_options.extend(file_name_option)
+        else:
+            parsed_options.append(file_name_option)
+    parsed_options = [x.replace("ü", "u") for x in parsed_options]
+    if file_name not in parsed_options:
+        file_name_option_str = ""
+        if len(parsed_options) == 1:
+            file_name_option_str = parsed_options[0]
+        elif len(parsed_options) == 2:
+            file_name_option_str = " or ".join(parsed_options)
+        else:
+            parsed_options[-1] = f"or {parsed_options[-1]}"
+            file_name_option_str = ", ".join(parsed_options)
+        raise ValueError(f"Improper file name: {file_name} should be {file_name_option_str}")
+
+
 def device_sort(device):
     match = re.match(r"([a-zA-Z]+)(\d+),(\d+)", device)
     if not match or len(match.groups()) != 3:

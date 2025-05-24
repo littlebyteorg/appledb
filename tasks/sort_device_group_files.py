@@ -5,7 +5,7 @@ import json
 import argparse
 from pathlib import Path
 from typing import Optional
-from sort_files_common import sorted_dict_by_key
+from sort_files_common import sorted_dict_by_key, validate_file_name
 
 key_order = [
     "name",
@@ -25,7 +25,10 @@ def sort_device_group_file(file_path: Optional[Path], raw_data=None):
     data = sorted_dict_by_key(data, key_order)
     if set(data.keys()) - set(key_order):
         raise ValueError(f"Unknown keys: {sorted(set(data.keys()) - set(key_order))}")
-    
+
+    if file_path:
+        validate_file_name(file_path.stem, [data.get("name"), data.get("key")])
+
     for i, subgroup in enumerate(data.get("subgroups", [])):
         data["subgroups"][i] = sort_device_group_file(None, subgroup)
     data.get("subgroups", []).sort(key=lambda x: x["order"])

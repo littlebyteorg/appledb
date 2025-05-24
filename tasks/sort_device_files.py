@@ -5,7 +5,7 @@ import json
 import argparse
 from pathlib import Path
 from typing import Optional
-from sort_files_common import sorted_dict_by_key
+from sort_files_common import sorted_dict_by_key, validate_file_name
 
 key_order = [
     "name",
@@ -69,7 +69,10 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
     data = sorted_dict_by_key(data, key_order)
     if set(data.keys()) - set(key_order):
         raise ValueError(f"Unknown keys: {sorted(set(data.keys()) - set(key_order))}")
-    
+
+    if file_path:
+        validate_file_name(file_path.stem, [data.get("name"), data.get("identifier"), data.get("key")])
+
     for key in list_fields:
         if not isinstance(data.get(key), list): continue
         data[key].sort()
