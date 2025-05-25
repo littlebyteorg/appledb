@@ -309,6 +309,8 @@ if __name__ == "__main__":
                                     )
                                 if fresh_import:
                                     files_processed.add(processed_file)
+                            except KeyboardInterrupt:
+                                raise
                             except: #pylint: disable=bare-except
                                 failed_links.append(link["url"])
 
@@ -327,6 +329,8 @@ if __name__ == "__main__":
                     (processed_file, fresh_import) = import_ota(url, ota_key=key, use_network=False)
                     if fresh_import:
                         files_processed.add(processed_file)
+                except KeyboardInterrupt:
+                    raise
                 except: #pylint: disable=bare-except
                     failed_links.append(url)
         else:

@@ -177,17 +177,19 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         print("\tMissing release date")
         if released:
             print(f"\tRelease date is: {released}")
-            db_data["released"] = released
-        elif full_self_driving:
-            print("\tUsing placeholder for date")
-            db_data["released"] = "YYYY-MM-DD"  # Should fail CI
-            # db_data["released"] = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
         else:
-            use_today = bool(input("\tUse today's date (today in Cupertino time)? [y/n]: ").strip().lower() == "y")
-            if use_today:
-                db_data["released"] = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+            if full_self_driving:
+                print("\tUsing placeholder for date")
+                released = "YYYY-MM-DD"  # Should fail CI
+                # released = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
             else:
-                db_data["released"] = input("\tEnter release date (YYYY-MM-DD): ").strip()
+                use_today = bool(input("\tUse today's date (today in Cupertino time)? [y/n]: ").strip().lower() == "y")
+                if use_today:
+                    released = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+                else:
+                    released = input("\tEnter release date (YYYY-MM-DD): ").strip()
+        if released:
+            db_data["released"] = released
 
     if "beta" not in db_data and (beta or "beta" in db_data["version"].lower()):
         file_updated = True
