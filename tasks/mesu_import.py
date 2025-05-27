@@ -146,7 +146,9 @@ def call_mesu(url):
     asset_response = SESSION.get(f"{url}?cachebust{random.randint(100, 1000)}")
     try:
         asset_response.raise_for_status()
-    except: #pylint: disable=bare-except
+    except requests.HTTPError as ex:
+        if ex.response.status_code != 403:
+            raise ex
         print(f"Skipping {url.split("/assets/", 1)[1].rsplit("/", 1)[0]}")
         return files
     asset_plist = plistlib.loads(asset_response.content)

@@ -192,7 +192,7 @@ if __name__ == "__main__":
                             (processed_file, fresh_import) = import_ia(link["url"], os_version=version["version"], released=version["released"], use_network=False, skip_sha1_hash=args.no_sha1_hash)
                             if fresh_import:
                                 files_processed.add(processed_file)
-                        except: #pylint: disable=bare-except
+                        except requests.HTTPError:
                             failed_links.append(link)
 
         elif Path("import-ia.txt").exists():
@@ -205,7 +205,7 @@ if __name__ == "__main__":
                     (processed_file, fresh_import) = import_ia(url, use_network=False, skip_sha1_hash=args.no_sha1_hash)
                     if fresh_import:
                         files_processed.add(processed_file)
-                except: #pylint: disable=bare-except
+                except requests.HTTPError:
                     failed_links.append(url)
         else:
             raise RuntimeError("No import file found")

@@ -178,7 +178,7 @@ def get_build_version(target_os_str, target_build):
             version_path = list(Path(f'osFiles/{target_os_str}').rglob(f'{target_build}.json'))[0]
             version_data = json.load(version_path.open())
             build_versions[f"{target_os_str}-{target_build}"] = version_data['version']
-        except: #pylint: disable=bare-except
+        except FileNotFoundError:
             if target_os_str == 'iPadOS':
                 build_versions[f"{target_os_str}-{target_build}"] = get_build_version('iOS', target_build)
             elif target_os_str == 'iOS':
@@ -233,7 +233,7 @@ def call_pallas(device_name, board_id, os_version, os_build, source_os_str, asse
 
     try:
         response.raise_for_status()
-    except: #pylint: disable=bare-except
+    except requests.HTTPError:
         if counter == 0:
             print(json.dumps(request))
             raise
@@ -333,7 +333,7 @@ for (os_str, builds) in parsed_args.items():
                 try:
                     uuid.UUID(audience)
                     audiences.append(audience)
-                except: #pylint: disable=bare-except
+                except ValueError:
                     print(f"Invalid audience {audience}, skipping")
                     continue
         build_path = list(Path(f"osFiles/{os_str}").glob(f"{kern_version}x*"))[0].joinpath(f"{build}.json")
@@ -341,7 +341,7 @@ for (os_str, builds) in parsed_args.items():
         build_data = {}
         try:
             build_data = json.load(build_path.open())
-        except: #pylint: disable=bare-except
+        except FileNotFoundError:
             print(f"Bad path - {build_path}")
             continue
         build_versions[f"{os_str}-{build}"] = build_data['version']

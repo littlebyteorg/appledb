@@ -66,7 +66,7 @@ try:
     else:
         with open("apple_token.txt", "r", encoding="utf-8") as token_file:
             apple_auth_token = token_file.readline().strip()
-except: #pylint: disable=bare-except
+except FileNotFoundError:
     apple_auth_token = ""
 
 # Domains that do not reliably support HEAD requests

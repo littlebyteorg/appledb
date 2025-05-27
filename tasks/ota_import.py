@@ -309,9 +309,7 @@ if __name__ == "__main__":
                                     )
                                 if fresh_import:
                                     files_processed.add(processed_file)
-                            except KeyboardInterrupt:
-                                raise
-                            except: #pylint: disable=bare-except
+                            except requests.HTTPError:
                                 failed_links.append(link["url"])
 
         elif Path(f"{file_name_base}.txt").exists():
@@ -329,9 +327,7 @@ if __name__ == "__main__":
                     (processed_file, fresh_import) = import_ota(url, ota_key=key, use_network=False)
                     if fresh_import:
                         files_processed.add(processed_file)
-                except KeyboardInterrupt:
-                    raise
-                except: #pylint: disable=bare-except
+                except requests.HTTPError:
                     failed_links.append(url)
         else:
             raise RuntimeError("No import file found")

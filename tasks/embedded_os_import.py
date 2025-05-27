@@ -32,7 +32,7 @@ for source in list(Path('osFiles/macOS/22x - 13.x').rglob('22H*.json')):
             with remotezip.RemoteZip(relevant_ota['links'][0]['url'], initial_buffer_size=256*1024, session=SESSION, timeout=120) as ota:
                 with open('out/package-embedded.pkg', 'wb') as eos_file:
                     eos_file.write(ota.read('AssetData/boot/EmbeddedOSFirmware.pkg'))
-        except: #pylint: disable=bare-except
+        except requests.HTTPError:
             if counter >= 10:
                 raise
             counter += 1
