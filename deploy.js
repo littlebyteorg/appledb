@@ -198,7 +198,7 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
   else if (!ver.preinstalled) ver.preinstalled = [];
 
   ver.osType = ver.osStr;
-  if (ver.osType == "iPhoneOS" || ver.osType == "iPadOS") ver.osType = "iOS";
+  if (ver.osType == "iPhone Software" || ver.osType == "iPhone OS" || ver.osType == "iPadOS") ver.osType = "iOS";
   else if (ver.osType == "Apple TV Software") ver.osType = "tvOS";
   else if (ver.osType == "audioOS") ver.osType = "HomePod Software";
   else if (ver.osType == "Mac OS X" || ver.osType == "OS X") ver.osType = "macOS";
