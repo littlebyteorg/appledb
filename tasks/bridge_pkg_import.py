@@ -19,13 +19,18 @@ parser.add_argument('-b', '--beta', action='store_true')
 parser.add_argument('-p', '--public-beta', action='store_true')
 args = parser.parse_args()
 
+max_version = int(sorted([str(x).split(" - ")[1] for x in list(Path('osFiles/macOS').glob("*")) if not str(x).endswith('.DS_Store')])[-2].removesuffix('.x'))
+
 SESSION = requests.session()
 
-MAC_CATALOG_SUFFIX = ''
+variations = []
+
 if args.beta:
-    MAC_CATALOG_SUFFIX = 'seed'
-elif args.public_beta:
-    MAC_CATALOG_SUFFIX = 'beta'
+    variations.append('seed')
+if args.public_beta:
+    variations.append('beta')
+if not variations:
+    variations.append('')
 
 def convert_version_to_build(version):
     version_split = version.split('.')
@@ -35,66 +40,68 @@ def convert_version_to_build(version):
     return f"{version_split[0]}{chr(int(version_split[1]) + 64)}{version_split[3] if version_split[3] != "0" else ""}{version_split[2]}{chr(int(version_split[4])+96) if version_split[4] != "0" else ""}"
 
 updated_files = set()
-raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
-raw_sucatalog.raise_for_status()
+for variation in variations:
+    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.version}{variation}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+    raw_sucatalog.raise_for_status()
 
-catalog_name = ''
-if args.beta:
-    catalog_name = 'dev-beta'
-elif args.public_beta:
-    catalog_name = 'public-beta'
+    if variation == 'seed':
+        catalog_name = 'dev-beta'
+    elif variation == 'beta':
+        catalog_name = 'public-beta'
+    else:
+        catalog_name = ''
 
-plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
-for product in plist.values():
-    if product.get('ExtendedMetaInfo', {}).get('ProductType') != 'bridgeOS':
-        continue
-    url = product['ServerMetadataURL'].replace('.smd', '.pkg')
-    build = convert_version_to_build(product['ExtendedMetaInfo']['BridgeOSPredicateProductOrdering'])
-    print(build)
-    file_location = Path(f'osFiles/bridgeOS/{build[0:2]}x - {int(build[0:2]) - 13}.x/{build}.json')
-    if not file_location.exists():
-        print('File missing, import macOS OTAs first')
-        continue
-    db_data = json.load(file_location.open(encoding="utf-8"))
-    found_source = False
+    plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
+    for product in plist.values():
+        if product.get('ExtendedMetaInfo', {}).get('ProductType') != 'bridgeOS':
+            continue
+        url = product['ServerMetadataURL'].replace('.smd', '.pkg')
+        build = convert_version_to_build(product['ExtendedMetaInfo']['BridgeOSPredicateProductOrdering'])
+        print(build)
+        file_location = Path(f'osFiles/bridgeOS/{build[0:2]}x - {int(build[0:2]) - 13}.x/{build}.json')
+        if not file_location.exists():
+            print('File missing, import macOS OTAs first')
+            continue
+        db_data = json.load(file_location.open(encoding="utf-8"))
+        found_source = False
 
-    new_sources = []
+        new_sources = []
 
-    file_size = int(SESSION.head(url).headers["Content-Length"])
+        file_size = int(SESSION.head(url).headers["Content-Length"])
 
-    for source in db_data.setdefault("sources", []):
-        if source_has_link(source, url):
-            found_source = True
-            print("\tURL already exists in sources")
-        elif source['size'] == file_size:
+        for source in db_data.setdefault("sources", []):
+            if source_has_link(source, url):
+                found_source = True
+                print("\tURL already exists in sources")
+            elif source['size'] == file_size:
+                new_link = {
+                    'url': url,
+                    'active': True
+                }
+                if catalog_name:
+                    new_link['catalog'] = catalog_name
+
+                source['links'].append(new_link)
+                found_source = True
+            new_sources.append(source)
+        if not found_source:
+            file_suffix = "-bridge"
+            if catalog_name:
+                file_suffix = f"{file_suffix}-{catalog_name}"
+            manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resources/BuildManifest.plist'
+            (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path, file_suffix=file_suffix)
+            db_data['buildTrain'] = manifest['BuildIdentities'][0]['Info']['BuildTrain']
+            db_data['deviceMap'].extend(manifest["SupportedProductTypes"])
             new_link = {
                 'url': url,
                 'active': True
             }
             if catalog_name:
                 new_link['catalog'] = catalog_name
-
-            source['links'].append(new_link)
-            found_source = True
-        new_sources.append(source)
-    if not found_source:
-        file_suffix = "-bridge"
-        if catalog_name:
-            file_suffix = f"{file_suffix}-{catalog_name}"
-        manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resources/BuildManifest.plist'
-        (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path, file_suffix=file_suffix)
-        db_data['buildTrain'] = manifest['BuildIdentities'][0]['Info']['BuildTrain']
-        db_data['deviceMap'].extend(manifest["SupportedProductTypes"])
-        new_link = {
-            'url': url,
-            'active': True
-        }
-        if catalog_name:
-            new_link['catalog'] = catalog_name
-        source = {"deviceMap": db_data['deviceMap'], "type": "pkg", "links": [new_link], "hashes": file_hashes}
-        new_sources.append(source)
-    db_data['sources'] = new_sources
-    json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-    updated_files.add(file_location)
+            source = {"deviceMap": db_data['deviceMap'], "type": "pkg", "links": [new_link], "hashes": file_hashes}
+            new_sources.append(source)
+        db_data['sources'] = new_sources
+        json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        updated_files.add(file_location)
 
 update_links(list(updated_files))

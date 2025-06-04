@@ -20,9 +20,13 @@ args = parser.parse_args()
 
 SESSION = requests.session()
 
+OFFSET_VERSION = 0
+if args.version < 26:
+    OFFSET_VERSION = 4
+
 mac_versions = [
-    args.version - 5,
-    args.version - 4
+    args.version - OFFSET_VERSION - 1,
+    args.version - OFFSET_VERSION
 ]
 
 mac_codenames = json.load(Path("tasks/macos_codenames.json").open(encoding="utf-8"))

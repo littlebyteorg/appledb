@@ -34,9 +34,14 @@ else:
 
 links = set()
 
-mac_versions = [args.min_version]
+mac_version_overrides = {
+    11: '10.16',
+    26: '16'
+}
+
+mac_versions = [mac_version_overrides.get(args.min_version, args.min_version)]
 if args.beta and args.min_version < max_version:
-    mac_versions.append(args.min_version + 1)
+    mac_versions.append(mac_version_overrides.get(args.min_version + 1, args.min_version + 1))
 
 for mac_version in mac_versions:
     for variation in variations:
