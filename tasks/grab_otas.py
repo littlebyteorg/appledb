@@ -311,6 +311,7 @@ for (os_str, builds) in parsed_args.items():
 
                 values = [v for k,v in desired_audiences.items() if (int(k) == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= int(k)]
                 for value in values:
+                    if not value: continue
                     if isinstance(value, list):
                         audiences.extend(value)
                     else:
@@ -320,6 +321,7 @@ for (os_str, builds) in parsed_args.items():
                     kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
                     values = [v for k,v in target_asset_audiences[audience].items() if (int(k) == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= int(k)]
                     for value in values:
+                        if not value: continue
                         if isinstance(value, list):
                             audiences.extend(value)
                         else:
