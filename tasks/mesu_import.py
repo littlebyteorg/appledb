@@ -19,7 +19,7 @@ SESSION = requests.session()
 print(datetime.now())
 
 beta_asset_subfolders = {
-    'AirPods': 'AirPods2022Seed'
+    'AirPods': 'AirPodsDeveloperSeed'
 }
 
 asset_types = {
@@ -237,6 +237,7 @@ for beta in [True, False]:
                     if beta:
                         if not beta_asset_subfolders.get(asset_type):
                             break
+                        
                         asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset_sublink}/{asset_sublink}.xml'
                     else:
                         asset_url = f'https://mesu.apple.com/assets/{asset_sublink}/{asset_sublink}.xml'
