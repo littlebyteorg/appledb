@@ -158,7 +158,10 @@ for simulator in simulator_response['downloadables']:
     build = simulator['simulatorVersion']['buildUpdate']
 
     build_version = int(re.search(r"\d+(?=[a-zA-Z])", build).group())
-    major_version = build_version - major_version_offset.get(os_str, 4)
+    if build_version < (25 if os_str == 'macOS' else 23):
+        major_version = build_version - major_version_offset.get(os_str, 4)
+    else:
+        major_version = build_version + (1 if os_str == 'macOS' else 3)
 
     file_path = Path(f"osFiles/Simulators/{os_str}/{build_version}x - {major_version}.x/{build}.json")
 

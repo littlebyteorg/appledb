@@ -108,6 +108,7 @@ for download in downloads:
             clt_version = download_name.split("Xcode ")[1].replace('Release Candidate', 'RC').replace(' Seed', '').replace(' seed', '').removeprefix('- ')
             clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
         target_file = Path(f"osFiles/Software/Command Line Tools for Xcode/{clt_subfolder}/{clt_version}.json")
+        Path(f"osFiles/Software/Command Line Tools for Xcode/{clt_subfolder}").mkdir(exist_ok=True, parents=True)
         if target_file.exists():
             process_downloads["Command Line Tools"] = False
             continue
