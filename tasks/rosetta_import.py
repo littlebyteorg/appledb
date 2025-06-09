@@ -21,7 +21,8 @@ print(plist['IndexDate'])
 for product in plist.get('Products', {}).values():
     build = product['ExtendedMetaInfo']['BuildVersion']
     kernel_version = re.match(r"(\d+)([A-Z])(\d+)([A-Z])?", build)[1]
-    current_path = Path(f'osFiles/Software/Rosetta/{kernel_version}x - {int(kernel_version) - 9}.x/{build}.json')
+    kernel_version_offset = -9 if int(kernel_version) < 25 else 1
+    current_path = Path(f'osFiles/Software/Rosetta/{kernel_version}x - {int(kernel_version) + kernel_version_offset}.x/{build}.json')
     if not current_path.exists():
         print(current_path)
         if not current_path.parent.exists():

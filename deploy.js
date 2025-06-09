@@ -364,8 +364,8 @@ let latestVersionArr = homePage['osVersionArray']
 
 const latestVersions = latestVersionArr
 .map(x => osFiles
-  .filter(y => !(y.version.includes('Simulator') || y.sdk || y.hideFromLatestVersions ))
   .filter(y => {
+    if (y.version.includes('Simulator') || y.sdk || y.hideFromLatestVersions ) return false
     const osStrCheck = y.osStr == x.osStr
     const betaRcCheck = (y.beta || y.rc) == x.beta
     

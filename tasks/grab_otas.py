@@ -61,7 +61,8 @@ latest_watch_compatibility_versions = {
 default_mac_devices = [
     'iMac18,1',         # Intel, only supports up to Ventura
     'MacBookAir8,1',    # Intel, only supports up to Sonoma
-    'MacPro7,1',        # Intel, supports Sequoia
+    'MacBookAir9,1',    # Intel, only supports up to Sequoia
+    'MacPro7,1',        # Intel, supports Tahoe
     'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
     'Mac14,2',          # Covers Monterey 12.4 (WWDC 2022) forked builds
     'Mac14,6',          # Covers Ventura 13.0 forked builds
