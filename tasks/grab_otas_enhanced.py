@@ -173,15 +173,19 @@ args = parser.parse_args()
 file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 is_rc = args.update_type == 'rc'
+is_next_major = args.update_type == 'next'
 if args.os and args.build:
     parsed_args = dict(zip(args.os, args.build))
 else:
     latest_builds = json.load(Path('tasks/latest_builds.json').open(encoding="utf-8"))
-    beta_builds = any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public']))
+    beta_builds = is_next_major or any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public']))
     parsed_args = {}
     for os_str, types in latest_builds.items():
         if args.os and os_str not in args.os: continue
-        parsed_args.setdefault(os_str, []).extend(latest_builds[os_str]['rc' if is_rc else 'beta' if beta_builds else 'release'])
+        parsed_args.setdefault(os_str, [])
+        parsed_args[os_str].extend(latest_builds[os_str]['rc' if is_rc else 'beta' if beta_builds else 'release'])
+        if is_next_major:
+            parsed_args[os_str].extend(latest_builds[os_str]['next'])
 
 minimum_compatibility = 0
 maximum_compatibility = 1000
