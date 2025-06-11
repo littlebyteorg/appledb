@@ -17,6 +17,7 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 
 parser = argparse.ArgumentParser()
+parser.add_argument('-c', '--catalog-version', default='14')
 parser.add_argument('-f', '--force', action='store_true')
 args = parser.parse_args()
 
@@ -45,7 +46,10 @@ for link in links:
     if not a_tag.attrib.get("class", ""):
         continue
     span_text = html.unescape(link.xpath('span')[0].text).split()[2]
-    mac_versions.add(span_text)
+    if span_text == '26':
+        mac_versions.add('16')
+    else:
+        mac_versions.add(span_text)
     sources['dmg'][span_text] = a_tag.attrib.get("href")
 
 properties = {}
@@ -70,8 +74,12 @@ safari_version = None
 
 link_version_map = {}
 
+os_version_override_map = {
+    '16': '26'
+}
+
 for mac_version in mac_versions:
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.catalog_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
@@ -84,10 +92,9 @@ for mac_version in mac_versions:
 
         dist_response = requests.get(product['Distributions']['English'], timeout=30).text
         os_version = dist_response.split("system.compareVersions(myTargetSystemVersion.ProductVersion, '")[1].split(".")[0]
+        os_version = os_version_override_map.get(os_version, os_version)
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
-        if dist_version != properties['Release']:
-            print(f'Version mismatch - macOS {mac_version}')
-            continue
+        if dist_version != properties['Release']: continue
         catalog_safari.append(product)
         sources['pkg'][os_version] = product['Packages'][0]['URL']
 
@@ -97,6 +104,8 @@ for mac_version in mac_versions:
 
     safari_metadata = plistlib.loads(requests.get(metadata_url, timeout=30).content)
     safari_version = safari_metadata['CFBundleShortVersionString']
+if not sources['pkg']:
+    exit(0)
 
 source = {
     "osStr": "Safari Technology Preview",
