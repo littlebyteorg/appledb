@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 from datetime import datetime, timezone
 import zoneinfo
+import argparse
 
 import remotezip
 import requests
@@ -16,10 +17,46 @@ from update_links import update_links
 
 SESSION = requests.session()
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-a', '--all-links', action='store_true')
+args = parser.parse_args()
+
 print(datetime.now())
 
 beta_asset_subfolders = {
-    'AirPods': 'AirPodsDeveloperSeed'
+    'AirPods': {
+        'AirPods2020AppleSeed': [
+            'A2084'
+        ],
+        'AirPods2021Seed': [
+            'A2084'
+        ],
+        'AirPods2022Seed': [
+            'A2032',
+            'A2084',
+            'A2096',
+            'A2564',
+            'A2618',
+            'A2968',
+            'A3048',
+            'A3053',
+            'A3056'
+        ],
+        'AirPodsDeveloperSeed': [
+            'A2618',
+            'A2968',
+            'A3048',
+            'A3053',
+            'A3056'
+        ],
+        'AirPodsPublicSeed': [
+            'A2618',
+            'A2968',
+            'A3048',
+            'A3053',
+            'A3056'
+        ]
+    }
 }
 
 asset_types = {
@@ -238,17 +275,21 @@ for beta in [True, False]:
                         if not beta_asset_subfolders.get(asset_type):
                             break
                         
-                        asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset_sublink}/{asset_sublink}.xml'
+                        for beta_asset_type, filtered_models in beta_asset_subfolders[asset_type].items():
+                            skip_filtering = args.all_links and '202' not in beta_asset_type
+                            if filtered_models and not skip_filtering and model not in filtered_models: continue
+                            processed_files.update(call_mesu(f'https://mesu.apple.com/assets/{beta_asset_type}/{asset_sublink}/{asset_sublink}.xml'))
                     else:
-                        asset_url = f'https://mesu.apple.com/assets/{asset_sublink}/{asset_sublink}.xml'
-                    processed_files.update(call_mesu(asset_url))
+                        processed_files.update(call_mesu(f'https://mesu.apple.com/assets/{asset_sublink}/{asset_sublink}.xml'))
             else:
                 if beta:
                     if not beta_asset_subfolders.get(asset_type):
                         break
-                    asset_url = f'https://mesu.apple.com/assets/{beta_asset_subfolders[asset_type]}/{asset_link}/{asset_link}.xml'
+                    for beta_asset_type, filtered_models in beta_asset_subfolders[asset_type].items():
+                        skip_filtering = args.all_links and '202' not in beta_asset_type
+                        if filtered_models and not skip_filtering and model not in filtered_models: continue
+                        processed_files.update(call_mesu(f'https://mesu.apple.com/assets/{beta_asset_type}/{asset_link}/{asset_link}.xml'))
                 else:
-                    asset_url = f'https://mesu.apple.com/assets/{asset_link}/{asset_link}.xml'
-                processed_files.update(call_mesu(asset_url))
+                    processed_files.update(call_mesu(f'https://mesu.apple.com/assets/{asset_link}/{asset_link}.xml'))
             
 update_links(list(processed_files))
