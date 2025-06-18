@@ -99,6 +99,7 @@ parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--suffix', default="")
 parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
+parser.add_argument('-u', '--update-type')
 args = parser.parse_args()
 
 file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
