@@ -11,6 +11,7 @@ key_order = [
     "name",
     "identifier",
     "alias",
+    "imageKey",
     "key",
     "soc",
     "cpid", # conditional array
