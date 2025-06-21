@@ -91,6 +91,7 @@ deviceFiles = deviceFiles.map(function (dev) {
   }
 
   if (!dev.key) dev.key = dev.identifier[0] || dev.name;
+  if (!dev.imageKey) dev.imageKey = dev.key
 
   if (dev.info)
     dev.info = dev.info.map((o) => {
