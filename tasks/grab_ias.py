@@ -36,7 +36,11 @@ links = set()
 
 mac_version_overrides = {
     11: '10.16',
-    26: '16'
+    # force corrections in both directions
+    16: '26',
+    23: '13',
+    24: '14',
+    25: '15'
 }
 
 mac_versions = [mac_version_overrides.get(args.min_version, args.min_version)]
