@@ -40,6 +40,7 @@ key_order = [
 
 sources_key_order = [
     "type",
+    "arch",
     "prerequisiteBuild",
     "deviceMap",
     "boardMap",

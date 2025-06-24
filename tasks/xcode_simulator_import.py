@@ -37,10 +37,10 @@ def call_pallas(os, requested_build):
     }
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
-    asset = parsed_response.get('Assets', [])
-    if asset:
-        asset = asset[0]
-        return {
+    assets = parsed_response.get('Assets', [])
+    parsed_assets = []
+    for asset in assets:
+        parsed_asset = {
             'type': asset['__RelativePath'].split('.')[-1],
             'deviceMap': [f"{os} Simulator"],
             'links': [
@@ -51,8 +51,10 @@ def call_pallas(os, requested_build):
             ],
             'size': asset['_DownloadSize']
         }
-    else:
-        return {}
+        if len(asset['Architectures']) == 1:
+            parsed_asset['arch'] = asset['Architectures']
+        parsed_assets.append(parsed_asset)
+    return parsed_assets
 
 sdk_platform_mapping = {
     'iOS': 'iphoneos',
@@ -195,7 +197,7 @@ for simulator in simulator_response['downloadables']:
     elif simulator.get('downloadMethod') == 'mobileAsset':
         pallas_response = call_pallas(os_str, build)
         if pallas_response:
-            new_item.setdefault('sources', []).append(pallas_response)
+            new_item.setdefault('sources', []).extend(pallas_response)
     if 'beta' in new_item['version']:
         new_item['beta'] = True
     elif 'RC' in new_item['version']:
