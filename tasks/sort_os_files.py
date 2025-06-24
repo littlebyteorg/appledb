@@ -110,6 +110,8 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             data["sources"][i]["boardMap"] = board_map_sort(source["boardMap"])
         if source.get("osMap"):
             data["sources"][i]["osMap"] = os_map_sort(source["osMap"])
+        if "arch" in source:
+            data["sources"][i]["arch"] = sorted(source["arch"])
         if "hashes" in source:
             data["sources"][i]["hashes"] = sorted_dict_by_alphasort(source["hashes"])
         for j, link in enumerate(source.get("links", [])):
@@ -143,6 +145,13 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
         else:
             sorted_os_item = (-1, 0)
 
+        if source.get("arch"):
+            sorted_arch_item = source["arch"][-1]
+            if sorted_arch_item == "x86_64":
+                sorted_arch_item = "aaaa" # put x86_64 first
+        else:
+            sorted_arch_item = ""
+
         if 'mac' in data.get('osStr', '').lower():
             return (
                 source_type_order.index(source["type"]),
@@ -155,6 +164,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
             build_number_sort(prerequisite_order),
             sorted_os_item,
             board_order,
+            sorted_arch_item,
         )
 
     data.get("sources", []).sort(key=source_sort)

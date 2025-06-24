@@ -51,10 +51,10 @@ def call_pallas(os, requested_build):
             ],
             'size': asset['_DownloadSize']
         }
-        if len(asset['Architectures']) == 1:
+        if asset['Architectures']:
             parsed_asset['arch'] = asset['Architectures']
         parsed_assets.append(parsed_asset)
-    return parsed_assets
+    return parsed_assets, parsed_response["PostingDate"]
 
 sdk_platform_mapping = {
     'iOS': 'iphoneos',
@@ -169,6 +169,8 @@ for simulator in simulator_response['downloadables']:
 
     file_type = 'aar' if simulator.get('downloadMethod') == 'mobileAsset' else 'dmg'
 
+    is_new_file = False
+
     if file_path.exists():
         new_item = json.load(file_path.open(encoding="utf-8"))
         if bool([x for x in new_item.get('sources', []) if x['type'] == file_type]): continue
@@ -183,6 +185,8 @@ for simulator in simulator_response['downloadables']:
             'released': datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"),
             'deviceMap': [f"{os_str} Simulator"]
         }
+
+        is_new_file = True
     if simulator.get('source'):
         new_item.setdefault('sources', []).append({
             'type': 'dmg',
@@ -195,9 +199,11 @@ for simulator in simulator_response['downloadables']:
             'size': simulator['fileSize']
         })
     elif simulator.get('downloadMethod') == 'mobileAsset':
-        pallas_response = call_pallas(os_str, build)
+        (pallas_response, pallas_date) = call_pallas(os_str, build)
         if pallas_response:
             new_item.setdefault('sources', []).extend(pallas_response)
+        if pallas_date and is_new_file:
+            new_item['released'] = pallas_date
     if 'beta' in new_item['version']:
         new_item['beta'] = True
     elif 'RC' in new_item['version']:
