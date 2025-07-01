@@ -6,6 +6,7 @@ import random
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import argparse
+from datetime import date
 
 import requests
 
@@ -16,6 +17,7 @@ from update_links import update_links
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--version', type=int, default=18)
 parser.add_argument('-b', '--beta', action='store_true')
+parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()
 
 SESSION = requests.session()
@@ -38,13 +40,15 @@ if args.beta:
 SAFARI_DETAILS = {}
 
 for mac_version in mac_versions:
-    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?rscachebust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
     catalog_safari = None
     for product in plist.values():
         if f"Safari{args.version}" not in product.get("ServerMetadataURL", ""):
+            continue
+        if product['PostDate'].date() != date.today() and not args.all:
             continue
 
         dist_response = SESSION.get(product['Distributions']['English']).text
@@ -56,20 +60,13 @@ for mac_version in mac_versions:
         print(f'Missing Safari for macOS {mac_version}')
         continue
 
-    if mac_version <= 12:
-        manifest_path = 'Applications/Safari.app/Contents/version.plist'
-    else:
-        manifest_path = 'Library/Apple/Safari/Cryptex/Restore/BuildManifest.plist'
+    manifest_path = 'Library/Apple/Safari/Cryptex/Restore/BuildManifest.plist'
     url = catalog_safari['Packages'][0]['URL']
     (file_hashes, manifest) = handle_pkg_file(download_link=url, hashes=['md5', 'sha1', 'sha2-256'], extracted_manifest_file_path=manifest_path, file_suffix=f"-safari-{mac_version}")
 
     safari_build = manifest['ProductBuildVersion']
-    print(mac_codenames[str(mac_version)])
-    print(safari_build)
-    safari_buildtrain = None
     supported_devices = ["Safari (macOS)"]
-    if manifest_path.endswith('BuildManifest.plist'):
-        safari_buildtrain = manifest['BuildIdentities'][0]['Info']['BuildTrain']
+    safari_buildtrain = manifest['BuildIdentities'][0]['Info']['BuildTrain']
 
     is_beta = 'beta' in dist_version
     if not SAFARI_DETAILS.get(safari_build):
@@ -96,15 +93,14 @@ for mac_version in mac_versions:
 
     SAFARI_DETAILS[safari_build]["osMap"].append(f"macOS {mac_version}")
 
-    if safari_buildtrain:
-        if SAFARI_DETAILS[safari_build].get('buildTrain'):
-            if not isinstance(SAFARI_DETAILS[safari_build]['buildTrain'], list):
-                SAFARI_DETAILS[safari_build]['buildTrain'] = [SAFARI_DETAILS[safari_build]['buildTrain']]
-            SAFARI_DETAILS[safari_build]['buildTrain'] = set(SAFARI_DETAILS[safari_build]['buildTrain'])
-            SAFARI_DETAILS[safari_build]['buildTrain'].add(safari_buildtrain)
-            SAFARI_DETAILS[safari_build]['buildTrain'] = list(SAFARI_DETAILS[safari_build]['buildTrain'])
-        else:
-            SAFARI_DETAILS[safari_build]['buildTrain'] = safari_buildtrain
+    if SAFARI_DETAILS[safari_build].get('buildTrain'):
+        if not isinstance(SAFARI_DETAILS[safari_build]['buildTrain'], list):
+            SAFARI_DETAILS[safari_build]['buildTrain'] = [SAFARI_DETAILS[safari_build]['buildTrain']]
+        SAFARI_DETAILS[safari_build]['buildTrain'] = set(SAFARI_DETAILS[safari_build]['buildTrain'])
+        SAFARI_DETAILS[safari_build]['buildTrain'].add(safari_buildtrain)
+        SAFARI_DETAILS[safari_build]['buildTrain'] = list(SAFARI_DETAILS[safari_build]['buildTrain'])
+    else:
+        SAFARI_DETAILS[safari_build]['buildTrain'] = safari_buildtrain
 
     SAFARI_DETAILS[safari_build]["sources"].append({
         "type": "pkg",
