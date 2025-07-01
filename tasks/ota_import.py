@@ -253,10 +253,7 @@ def import_ota(
     if bridge_version and bridge_devices:
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
-        bridge_file = create_file("bridgeOS", bridge_version_info['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{bridge_version_info['BridgeVersion']},0")
-        bridge_data = json.load(bridge_file.open(encoding="utf-8"))
-        bridge_data["deviceMap"] = list(set(bridge_data.get("deviceMap", [])).union(bridge_devices))
-        json.dump(sort_os_file(None, bridge_data), bridge_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        create_file("bridgeOS", bridge_version_info['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{bridge_version_info['BridgeVersion']},0")
     
     if delete_output_dir:
         shutil.rmtree(f"otas/{Path(ota_url).stem}")
