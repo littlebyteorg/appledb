@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
+from datetime import timezone
 import json
 import plistlib
 import random
 from pathlib import Path
 import argparse
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -12,6 +14,7 @@ from file_downloader import handle_pkg_file
 from sort_os_files import sort_os_file
 from link_info import source_has_link
 from update_links import update_links
+from common_update_import import create_file
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--version', default=15)
@@ -40,6 +43,9 @@ def convert_version_to_build(version):
     return f"{version_split[0]}{chr(int(version_split[1]) + 64)}{version_split[3] if version_split[3] != "0" else ""}{version_split[2]}{chr(int(version_split[4])+96) if version_split[4] != "0" else ""}"
 
 updated_files = set()
+manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resources/BuildManifest.plist'
+file_hashes = {}
+manifest = {}
 for variation in variations:
     raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.version}{variation}-1.sucatalog?cachebust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
@@ -51,6 +57,10 @@ for variation in variations:
     else:
         catalog_name = ''
 
+    file_suffix = "-bridge"
+    if catalog_name:
+        file_suffix = f"{file_suffix}-{catalog_name}"
+
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
     for product in plist.values():
         if product.get('ExtendedMetaInfo', {}).get('ProductType') != 'bridgeOS':
@@ -60,8 +70,8 @@ for variation in variations:
         print(build)
         file_location = Path(f'osFiles/bridgeOS/{build[0:2]}x - {int(build[0:2]) - 13}.x/{build}.json')
         if not file_location.exists():
-            print('File missing, import macOS OTAs first')
-            continue
+            (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path, file_suffix=file_suffix)
+            create_file("bridgeOS", build, False, recommended_version=manifest['ProductVersion'], released=product['PostDate'].replace(tzinfo=timezone.utc).astimezone(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"), buildtrain=manifest['BuildIdentities'][0]['Info']['BuildTrain'])
         db_data = json.load(file_location.open(encoding="utf-8"))
         found_source = False
 
@@ -85,13 +95,10 @@ for variation in variations:
                 found_source = True
             new_sources.append(source)
         if not found_source:
-            file_suffix = "-bridge"
-            if catalog_name:
-                file_suffix = f"{file_suffix}-{catalog_name}"
-            manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resources/BuildManifest.plist'
-            (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path, file_suffix=file_suffix)
+            if not file_hashes or not manifest:
+                (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path, file_suffix=file_suffix)
             db_data['buildTrain'] = manifest['BuildIdentities'][0]['Info']['BuildTrain']
-            db_data['deviceMap'].extend(manifest["SupportedProductTypes"])
+            db_data.setdefault('deviceMap', []).extend(manifest["SupportedProductTypes"])
             new_link = {
                 'url': url,
                 'active': True
