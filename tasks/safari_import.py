@@ -20,14 +20,23 @@ parser.add_argument('-b', '--beta', action='store_true')
 parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()
 
+if args.version in range(19, 26):
+    parser.error("Version cannot be between 19 and 25")
+
 SESSION = requests.session()
 
-OFFSET_VERSION = 0
-if args.version < 26:
+LEGACY_OFFSET = 1
+if args.version == 26:
+    OFFSET_VERSION = 11
+elif args.version < 26:
     OFFSET_VERSION = 4
+else:
+    if args.version == 27:
+        LEGACY_OFFSET = 11
+    OFFSET_VERSION = 1
 
 mac_versions = [
-    args.version - OFFSET_VERSION - 1,
+    args.version - OFFSET_VERSION - LEGACY_OFFSET,
     args.version - OFFSET_VERSION
 ]
 
@@ -40,7 +49,7 @@ if args.beta:
 SAFARI_DETAILS = {}
 
 for mac_version in mac_versions:
-    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?rscachebust{random.randint(100, 1000)}')
+    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
