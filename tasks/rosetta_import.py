@@ -19,6 +19,8 @@ result.raise_for_status()
 plist = plistlib.loads(result.content)
 print(plist['IndexDate'])
 for product in plist.get('Products', {}).values():
+    if not product['ExtendedMetaInfo'].get('BuildVersion'):
+        print(product['ExtendedMetaInfo'])
     build = product['ExtendedMetaInfo'].get('BuildVersion', product['ExtendedMetaInfo'].get('buildVersion'))
     kernel_version = re.match(r"(\d+)([A-Z])(\d+)([A-Z])?", build)[1]
     kernel_version_offset = -9 if int(kernel_version) < 25 else 1
