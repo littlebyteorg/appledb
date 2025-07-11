@@ -61,24 +61,61 @@ default_kernel_marketing_version_offset = 4
 
 asset_audiences = json.load(Path("tasks/audiences.json").open(encoding="utf-8"))
 
-mac_device_map_checks = {
-    '13': set([
+default_mac_devices = [
+    'iMac18,1',         # Intel, only supports up to Ventura
+    'MacBookAir8,1',    # Intel, only supports up to Sonoma
+    'MacBookAir9,1',    # Intel, only supports up to Sequoia
+    'MacPro7,1',        # Intel, supports Tahoe
+    'MacBookPro17,1',   # M1, covers all released Apple Silicon builds
+    'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
+    'Mac14,2',          # Covers Monterey 12.4 (WWDC 2022) forked builds
+    'Mac14,3',          # Covers Ventura 13.0 forked builds
+    'Mac14,6',          # Covers Ventura 13.0 forked builds
+    'Mac14,15',         # Covers Ventura 13.3 (WWDC 2023) forked builds
+    'Mac14,14',         # Covers Ventura 13.4 (WWDC 2023) forked builds
+    'Mac15,3',          # Covers Ventura 13.5/13.6.2 forked builds
+    'Mac15,6',          # Covers Sonoma 14.1 forked builds
+    'Mac15,12',         # Covers Sonoma 14.3 forked builds
+    'Mac16,1',          # Covers Sequoia 15.0 forked builds
+    'Mac16,5',          # Covers Sequoia 15.1 forked builds
+    'Mac16,12',         # Covers Sequoia 15.2 forked builds
+    'Mac16,9',          # Covers Sequoia 15.3 forked builds
+    'VirtualMac2,1'     # Always include
+]
+
+default_mac_device_extensions = {
+    'iMac18,1': set([
         "iMac18,1",
         "iMac18,2",
         "iMac18,3",
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
         "MacBook10,1",
+        "MacBookAir8,1",
+        "MacBookAir8,2",
+        "MacBookAir9,1",
         "MacBookPro14,1",
         "MacBookPro14,2",
-        "MacBookPro14,3"
+        "MacBookPro14,3",
+        "MacBookPro15,1-2018",
+        "MacBookPro15,1-2019",
+        "MacBookPro15,2-2018",
+        "MacBookPro15,2-2019",
+        "MacBookPro15,3-2018",
+        "MacBookPro15,3-2019",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "Macmini8,1",
+        "MacPro7,1",
+        "MacPro7,1-Rack"
     ]),
-    '14': set([
-        "MacBookAir8,1",
-        "MacBookAir8,2"
-    ])
-}
-
-mac_device_map_extensions = {
-    '13': set([
+    'MacBookAir8,1': set([
         "iMac19,1",
         "iMac19,2",
         "iMac20,1",
@@ -102,7 +139,7 @@ mac_device_map_extensions = {
         "MacPro7,1",
         "MacPro7,1-Rack"
     ]),
-    '14': set([
+    'MacBookAir9,1': set([
         "iMac19,1",
         "iMac19,2",
         "iMac20,1",
@@ -123,7 +160,95 @@ mac_device_map_extensions = {
         "Macmini8,1",
         "MacPro7,1",
         "MacPro7,1-Rack"
-    ])
+    ]),
+    'MacPro7,1': set([
+        "iMac20,1",
+        "iMac20,2",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,4",
+        "MacPro7,1",
+        "MacPro7,1-Rack"
+    ]),
+    'MacBookPro17,1': set([
+        'MacBookAir10,1',
+        'MacBookPro17,1',
+        'Macmini9,1',
+        'iMac21,1',
+        'iMac21,2',
+        'Mac13,1',
+        'Mac13,2',
+    ]),
+    'MacBookPro18,1': set([
+        'MacBookPro18,1',
+        'MacBookPro18,2',
+        'MacBookPro18,3',
+        'MacBookPro18,4',
+    ]),
+    'Mac14,2': set([
+        'Mac14,2',
+        'Mac14,7',
+    ]),
+    'Mac14,6': set([
+        'Mac14,5',
+        'Mac14,6',
+        'Mac14,9',
+        'Mac14,10',
+    ]),
+    'Mac14,3': set([
+        'Mac14,3',
+        'Mac14,12',
+    ]),
+    'Mac14,15': set([
+        'Mac14,15',
+    ]),
+    'Mac14,14': set([
+        'Mac14,8',
+        'Mac14,8-Rack',
+        'Mac14,13',
+        'Mac14,14',
+    ]),
+    'Mac15,3': set([
+        'Mac15,3',
+        'Mac15,4',
+        'Mac15,5',
+    ]),
+    'Mac15,6': set([
+        'Mac15,6',
+        'Mac15,7',
+        'Mac15,8',
+        'Mac15,9',
+        'Mac15,10',
+        'Mac15,11',
+    ]),
+    'Mac15,12': set([
+        'Mac15,12',
+        'Mac15,13',
+    ]),
+    'Mac16,1': set([
+        'Mac16,1',
+        'Mac16,2',
+        'Mac16,3',
+        'Mac16,10',
+    ]),
+    'Mac16,5': set([
+        'Mac16,5',
+        'Mac16,6',
+        'Mac16,7',
+        'Mac16,8',
+        'Mac16,11',
+    ]),
+    'Mac16,12': set([
+        'Mac16,12',
+        'Mac16,13',
+    ]),
+    'Mac16,9': set([
+        'Mac15,14',
+        'Mac16,9',
+    ]),
+    'VirtualMac2,1': set([
+        'VirtualMac2,1',
+    ]),
 }
 
 mac_device_additions = {
@@ -465,6 +590,8 @@ for (os_str, builds) in parsed_args.items():
         for device in build_data['deviceMap']:
             if args.devices and device not in args.devices:
                 continue
+            if os_str == 'macOS' and not args.devices and device not in default_mac_devices:
+                continue
             devices.setdefault(device, {
                 'boards': get_board_ids(device),
                 'builds': {}
@@ -478,6 +605,12 @@ for (os_str, builds) in parsed_args.items():
 
                 if args.devices:
                     current_devices = set(args.devices).intersection(set(source['deviceMap']))
+                    if current_devices:
+                        current_devices = list(current_devices)
+                    else:
+                        continue
+                elif os_str == 'macOS':
+                    current_devices = set(default_mac_devices).intersection(set(source['deviceMap']))
                     if current_devices:
                         current_devices = list(current_devices)
                     else:
@@ -519,8 +652,10 @@ for key, value in ota_list.items():
                 suffix = source['deviceMap'][0]
             missing_decryption_keys.add(f"{missing_key}-{suffix}")
         if value['osStr'] == 'macOS':
-            if source['deviceMap'] == mac_device_map_checks.get(value['version'].split('.')[0], set()):
-                source['deviceMap'].update(mac_device_map_extensions[value['version'].split('.')[0]])
+            source_device_map = set()
+            for device in source['deviceMap']:
+                source_device_map.update(default_mac_device_extensions[device])
+            source['deviceMap'] = source_device_map
             if bool(set(mac_device_additions.keys()).intersection(source['prerequisites'])):
                 for prerequisite in source['prerequisites']:
                     source['deviceMap'].update(mac_device_additions.get(prerequisite, []))

@@ -10,8 +10,8 @@ import string
 import requests
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-m', '--min-version', default=13, type=int)
-parser.add_argument('-b', '--beta', action='store_true')
+parser.add_argument('-v', '--versions', default=['15'], nargs="+")
+parser.add_argument('-r', '--release-types', default=['release'], nargs="+", choices=['beta', 'public', 'release'])
 parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()
 
@@ -26,28 +26,16 @@ SESSION = requests.session()
 
 variations = []
 
-if args.beta:
+if 'beta' in args.release_types:
     variations.append('seed')
+if 'public' in args.release_types:
     variations.append('beta')
-else:
+if 'release' in args.release_types:
     variations.append('')
 
 links = set()
 
-mac_version_overrides = {
-    11: '10.16',
-    # force corrections in both directions
-    16: '26',
-    23: '13',
-    24: '14',
-    25: '15'
-}
-
-mac_versions = [mac_version_overrides.get(args.min_version, args.min_version)]
-if args.beta and args.min_version < max_version:
-    mac_versions.append(mac_version_overrides.get(args.min_version + 1, args.min_version + 1))
-
-for mac_version in mac_versions:
+for mac_version in args.versions:
     for variation in variations:
         raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{variation}-1.sucatalog?{random.choice(string.ascii_letters)}cachebust{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
