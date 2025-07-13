@@ -1,8 +1,39 @@
 {
-    "osStr": "VGA Adapter Firmware",
-    "version": "8.0.0",
+    "osStr": "Accessory Firmware",
+    "version": "8.0.2",
     "build": "14A7040",
+    "buildTrain": "PianoWire",
+    "released": "2022-04-20",
     "deviceMap": [
+        "iAccy1,1",
         "iAccy1,2"
+    ],
+    "sources": [
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iAccy1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022/mobileassets/002-73084/233649F4-EA0A-45FD-B478-1A9B39DEAE5F/com_apple_MobileAsset_MobileAccessoryUpdate_haywire/8e85d44e961d706a384cb72274e973f7661affd4.zip",
+                    "active": true
+                }
+            ],
+            "size": 10611130
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iAccy1,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2022/mobileassets/002-73084/233649F4-EA0A-45FD-B478-1A9B39DEAE5F/com_apple_MobileAsset_MobileAccessoryUpdate_haywire/d45da7fec5532b1572bd0c91a9c05550a7509fe9.zip",
+                    "active": true
+                }
+            ],
+            "size": 10552481
+        }
     ]
 }
