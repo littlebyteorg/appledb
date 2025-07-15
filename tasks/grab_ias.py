@@ -11,7 +11,7 @@ import requests
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--versions', default=['15'], nargs="+")
-parser.add_argument('-r', '--release-types', default=['release'], nargs="+", choices=['beta', 'public', 'release'])
+parser.add_argument('-r', '--release-types', default=['release'], nargs="+", choices=['dev', 'public', 'release'])
 parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()
 
@@ -26,7 +26,7 @@ SESSION = requests.session()
 
 variations = []
 
-if 'beta' in args.release_types:
+if 'dev' in args.release_types:
     variations.append('seed')
 if 'public' in args.release_types:
     variations.append('beta')

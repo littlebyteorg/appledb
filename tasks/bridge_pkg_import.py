@@ -18,7 +18,7 @@ from common_update_import import create_file
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--versions', default=['15'], nargs="+")
-parser.add_argument('-r', '--release-types', default=['release'], nargs="+", choices=['beta', 'public', 'release'])
+parser.add_argument('-r', '--release-types', default=['release'], nargs="+", choices=['dev', 'public', 'release'])
 parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()
 
@@ -27,13 +27,13 @@ max_version = int(sorted([str(x).split(" - ")[1] for x in list(Path('osFiles/mac
 SESSION = requests.session()
 
 RELEASE_CATALOG_NAME_MAP = {
-    'beta': 'dev-beta',
+    'dev': 'dev-beta',
     'public': 'public-beta',
     'release': ''
 }
 
 RELEASE_CATALOG_MAP = {
-    'beta': 'seed',
+    'dev': 'seed',
     'public': 'beta',
     'release': ''
 }
@@ -53,7 +53,7 @@ for version in args.versions:
     print(version)
     for release_type in args.release_types:
         print(release_type)
-        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{RELEASE_CATALOG_MAP[release_type]}-1.sucatalog?appledbcachebust{random.randint(100, 1000)}')
+        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{RELEASE_CATALOG_MAP[release_type]}-1.sucatalog?cachebust{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
 
         catalog_name = RELEASE_CATALOG_NAME_MAP.get(release_type, "")
