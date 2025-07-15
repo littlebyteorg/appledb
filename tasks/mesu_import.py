@@ -291,5 +291,6 @@ for beta in [True, False]:
                         processed_files.update(call_mesu(f'https://mesu.apple.com/assets/{beta_asset_type}/{asset_link}/{asset_link}.xml'))
                 else:
                     processed_files.update(call_mesu(f'https://mesu.apple.com/assets/{asset_link}/{asset_link}.xml'))
-            
-update_links(list(processed_files))
+
+if processed_files:
+    update_links(list(processed_files))

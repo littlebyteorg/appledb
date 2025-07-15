@@ -40,8 +40,8 @@ if 'public' in args.release_types:
 if 'release' in args.release_types:
     variations.append('')
 
-def convert_version_to_build(version):
-    version_split = version.split('.')
+def convert_version_to_build(base_version):
+    version_split = base_version.split('.')
     version_split[2] = version_split[2][-4:]
     if version_split[3] == "0":
         version_split[2] = str(int(version_split[2]))
@@ -110,8 +110,10 @@ for version in args.versions:
                     new_link['catalog'] = catalog_name
                 source = {"deviceMap": db_data['deviceMap'], "type": "pkg", "links": [new_link], "hashes": file_hashes}
                 new_sources.append(source)
-            db_data['sources'] = new_sources
-            json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-            updated_files.add(file_location)
+            if len(new_sources) != len(db_data['sources']):
+                db_data['sources'] = new_sources
+                json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                updated_files.add(file_location)
 
-update_links(list(updated_files))
+if updated_files:
+    update_links(list(updated_files))
