@@ -53,7 +53,7 @@ for version in args.versions:
     print(version)
     for release_type in args.release_types:
         print(release_type)
-        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{RELEASE_CATALOG_MAP[release_type]}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{RELEASE_CATALOG_MAP[release_type]}-1.sucatalog?appledbcachebust{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
 
         catalog_name = RELEASE_CATALOG_NAME_MAP.get(release_type, "")
@@ -77,6 +77,7 @@ for version in args.versions:
                 create_file("bridgeOS", build, False, recommended_version=manifest['ProductVersion'], released=product['PostDate'].replace(tzinfo=timezone.utc).astimezone(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"), buildtrain=manifest['BuildIdentities'][0]['Info']['BuildTrain'])
             db_data = json.load(file_location.open(encoding="utf-8"))
             found_source = False
+            has_new_link = False
 
             new_sources = []
 
@@ -95,6 +96,7 @@ for version in args.versions:
 
                     source['links'].append(new_link)
                     found_source = True
+                    has_new_link = True
                 new_sources.append(source)
             if not found_source:
                 if not file_hashes or not manifest:
@@ -109,7 +111,8 @@ for version in args.versions:
                     new_link['catalog'] = catalog_name
                 source = {"deviceMap": db_data['deviceMap'], "type": "pkg", "links": [new_link], "hashes": file_hashes}
                 new_sources.append(source)
-            if len(new_sources) != len(db_data['sources']):
+                has_new_link = True
+            if has_new_link:
                 db_data['sources'] = new_sources
                 json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
                 updated_files.add(file_location)
