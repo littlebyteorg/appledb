@@ -26,19 +26,17 @@ max_version = int(sorted([str(x).split(" - ")[1] for x in list(Path('osFiles/mac
 
 SESSION = requests.session()
 
-VARIATION_CATALOG_MAPS = {
-    'seed': 'dev-beta',
-    'beta': 'public-beta'
+RELEASE_CATALOG_NAME_MAP = {
+    'beta': 'dev-beta',
+    'public': 'public-beta',
+    'release': ''
 }
 
-variations = []
-
-if 'beta' in args.release_types:
-    variations.append('seed')
-if 'public' in args.release_types:
-    variations.append('beta')
-if 'release' in args.release_types:
-    variations.append('')
+RELEASE_CATALOG_MAP = {
+    'beta': 'seed',
+    'public': 'beta',
+    'release': ''
+}
 
 def convert_version_to_build(base_version):
     version_split = base_version.split('.')
@@ -52,11 +50,13 @@ manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resour
 file_hashes = {}
 manifest = {}
 for version in args.versions:
-    for variation in variations:
-        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{variation}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+    print(version)
+    for release_type in args.release_types:
+        print(release_type)
+        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{RELEASE_CATALOG_MAP[release_type]}-1.sucatalog?cachebust{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
 
-        catalog_name = VARIATION_CATALOG_MAPS.get(variation, "")
+        catalog_name = RELEASE_CATALOG_NAME_MAP.get(release_type, "")
 
         file_suffix = "-bridge"
         if catalog_name:
@@ -85,7 +85,6 @@ for version in args.versions:
             for source in db_data.setdefault("sources", []):
                 if source_has_link(source, url):
                     found_source = True
-                    print("\tURL already exists in sources")
                 elif source['size'] == file_size:
                     new_link = {
                         'url': url,
