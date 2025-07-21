@@ -115,7 +115,4 @@ for version in args.versions:
             if has_new_link:
                 db_data['sources'] = new_sources
                 json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
-                updated_files.add(file_location)
-
-if updated_files:
-    update_links(list(updated_files))
+                update_links([file_location])
