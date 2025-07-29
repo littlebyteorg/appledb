@@ -127,6 +127,8 @@ for mac_version in mac_versions:
 
 for build, details in SAFARI_DETAILS.items():
     safari_file = Path(f'osFiles/Software/Safari/{args.version}.x/{build}.json')
+    if not safari_file.parent.exists():
+        safari_file.parent.mkdir()
     if safari_file.exists():
         parsed_safari_file = json.load(safari_file.open(encoding="utf-8"))
         if parsed_safari_file['version'] != details['version'] or parsed_safari_file['osMap'] != details['osMap']:
