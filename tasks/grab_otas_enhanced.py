@@ -377,7 +377,7 @@ def get_build_version(target_os_str, target_build):
             version_path = list(Path(f'osFiles/{target_os_str}').rglob(f'{target_build}.json'))[0]
             version_data = json.load(version_path.open())
             build_versions[f"{target_os_str}-{target_build}"] = version_data['version']
-        except FileNotFoundError:
+        except (FileNotFoundError, IndexError):
             if target_os_str == 'iPadOS':
                 build_versions[f"{target_os_str}-{target_build}"] = get_build_version('iOS', target_build)
             elif target_os_str == 'iOS':
