@@ -51,7 +51,7 @@ def call_pallas(os, requested_build):
             ],
             'size': asset['_DownloadSize']
         }
-        if asset['Architectures']:
+        if asset.get('Architectures'):
             parsed_asset['arch'] = asset['Architectures']
         parsed_assets.append(parsed_asset)
     return parsed_assets, parsed_response["PostingDate"]
