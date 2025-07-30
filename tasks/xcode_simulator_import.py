@@ -75,6 +75,8 @@ for xcode_version in xcode_response:
     # HACK: xcodereleases.com is incomplete for this
     if xcode_version['version']['build'] == '10M25xx':
         xcode_version['version']['build'] = '10M2518'
+    if xcode_version['version']['build'] == '5A2039a':
+        xcode_version['version']['build'] = '5A2034a'
     build_version = re.search(r"\d+(?=[a-zA-Z])", xcode_version['version']['build']).group()
     major_version = xcode_version['version']['number'].split(".")[0]
     if major_version == '3':
