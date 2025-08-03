@@ -18,8 +18,8 @@
         "imageKey":            {"type": "string"},
         "appLink":        {
             "anyOf": [
-                {"type": "string", "format": "uri"},
-                {"$ref": "#/definitions/sourceLink"}
+                {"type": "array", "items": {"$ref": "#/definitions/appLink"}},
+                {"$ref": "#/definitions/appLink"}
             ]
         },
         "soc": {
@@ -107,6 +107,12 @@
                 "url": {"type": "string", "format": "uri"},
                 "active": {"type": "boolean"}
             }
+        },
+        "appLink": {
+            "anyOf": [
+                {"type": "string", "format": "uri"},
+                {"$ref": "#/definitions/sourceLink"}
+            ]
         }
     }
 }

@@ -261,6 +261,22 @@ class ProcessFileThread(threading.Thread):
 
         return updated_status
 
+    def process_reference_link(self, reference_link):
+        if isinstance(reference_link, str):
+            link = reference_link
+            active_status = True
+        else:
+            link = reference_link['url']
+            active_status = reference_link['active']
+        active_status = self.process_link(link, active_status)
+        if active_status:
+            return link
+        else:
+            return {
+                'url': link,
+                'active': False
+            }
+
     def run(self):
         while not self.file_queue.empty():
             try:
@@ -279,35 +295,13 @@ class ProcessFileThread(threading.Thread):
             for key in ['releaseNotes', 'securityNotes', 'appLink']:
                 if not data.get(key): continue
 
-                if isinstance(data[key], str):
-                    link = data[key]
-                    active_status = True
+                if isinstance(data[key], list):
+                    for i, link_entry in enumerate(data[key]):
+                        data[key][i] = self.process_reference_link(link_entry)
                 else:
-                    link = data[key]['url']
-                    active_status = data[key]['active']
-                active_status = self.process_link(link, active_status)
-                if active_status:
-                    data[key] = link
-                else:
-                    data[key] = {
-                        'url': link,
-                        'active': False
-                    }
+                    data[key] = self.process_reference_link(data[key])
             for (key, link) in data.get('ipd', {}).items():
-                if isinstance(data['ipd'][key], str):
-                    link = data['ipd'][key]
-                    active_status = True
-                else:
-                    link = data['ipd'][key]['url']
-                    active_status = data['ipd'][key]['active']
-                active_status = self.process_link(link, active_status)
-                if active_status:
-                    data['ipd'][key] = link
-                else:
-                    data['ipd'][key] = {
-                        'url': link,
-                        'active': False
-                    }
+                data['ipd'][key] = self.process_reference_link(data['ipd'][key])
 
             entries = []
             for entry in data.get("createDuplicateEntries", []):
