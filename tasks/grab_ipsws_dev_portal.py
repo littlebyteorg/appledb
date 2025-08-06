@@ -107,7 +107,7 @@ for group in element.xpath(".//h3/.."):
                 url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
             if build not in build_info["Build"].split(" | "):
-                print(f"WARNING: {build_info["Build"]} isn't the same as {build}, skipping")
+                print(f"WARNING: {build_info['Build']} isn't the same as {build}, skipping")
                 continue
 
             data.setdefault("links", []).append({"device": device, "url": url, "build": build})
