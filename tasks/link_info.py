@@ -15,6 +15,7 @@ rewrite_map_v2 = {
         "http://adcdownload.apple.com/",
         "https://developer.apple.com/devcenter/download.action?path=/",
     ],
+    "https://developer.apple.com": [],
     "https://swcdn.apple.com/": ["http://swcdn.apple.com/"],
     "http://apsu.apple.com/": [],
     "https://seeddownload.cdn-apple.com/": [],
