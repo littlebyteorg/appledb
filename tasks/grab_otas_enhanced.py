@@ -39,6 +39,10 @@ added_builds = {
     '23A5297m': ['23A5297n']
 }
 
+ignore_builds = {
+    'audioOS': ['17L256', '17L562', '17L570']
+}
+
 # Ensure known versions of watchOS don't get included in import-ota.txt.
 # Update this dictionary in case Apple updates watchOS for iPhones that don't support latest iOS.
 latest_watch_compatibility_versions = {
@@ -624,6 +628,8 @@ for (os_str, builds) in parsed_args.items():
 
                 for current_device in current_devices:
                     for prerequisite_build in prerequisite_builds:
+                        if prerequisite_build in ignore_builds.get(os_str, []):
+                            continue
                         devices[current_device]['builds'][prerequisite_build] = get_build_version(os_str, prerequisite_build)
 
         for audience in audiences:
