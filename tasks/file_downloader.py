@@ -91,7 +91,7 @@ def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifes
     if only_manifest:
         remove_output_file = True
         Path(f"{output_path}/AssetData/boot/").mkdir(parents=True, exist_ok=True)
-        subprocess.run([f'./{aea_support_file}', '-i', download_link, '-o', output_path, "-n", "-e", "-f", "AssetData/boot/BuildManifest.plist"], check=True, stderr=subprocess.DEVNULL)
+        subprocess.run([f'./{aea_support_file}', '-i', download_link, '-o', output_path, '-k', key, "-e", "-f", "AssetData/boot/BuildManifest.plist"], check=True, stderr=subprocess.DEVNULL)
     else:
         if not Path(file_path).exists():
             remove_input_file = True
