@@ -81,7 +81,8 @@ def build_number_sort(build_number):
     build_version = int(match.groups()[2])
     build_prefix = 0
     build_suffix = match.groups()[3] or ""
-    if build_version > 1000:
-        build_prefix = int(build_version / 1000)
-        build_version = build_version % 1000
+    build_prefix_position = 10000 if build_train_version == 'P' or build_number.startswith('8N') else 1000
+    if build_version > build_prefix_position:
+        build_prefix = int(build_version / build_prefix_position)
+        build_version = build_version % build_prefix_position
     return kernel_version, build_train_version, build_version, build_prefix, build_suffix
