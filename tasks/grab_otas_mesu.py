@@ -17,7 +17,6 @@ class SetEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 urls = [
-    "https://mesu.apple.com/assets/audio/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml",
     "https://mesu.apple.com/assets/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml"
 ]
 
@@ -39,7 +38,7 @@ skip_builds = [
     "20H360",
     "21H446",
     "22G86",
-    "22M84",
+    "22G90",
     "99Z999"
 ]
 
