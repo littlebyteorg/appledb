@@ -135,6 +135,7 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
     db_file = Path(file_path)
     if db_file.exists():
         print("\tFile already exists, not replacing")
+        if os_str == 'bridgeOS': return
         db_data = json.load(db_file.open(encoding="utf-8"))
     else:
         file_updated = True

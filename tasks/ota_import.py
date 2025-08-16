@@ -54,7 +54,7 @@ def import_ota(
 
         if not ota_key:
             raise RuntimeError(f"Couldn't determine OS details for {ota_url}")
-    
+
     if Path('aastuff_standalone').exists():
         aea_support_filename = 'aastuff_standalone'
 
@@ -254,7 +254,7 @@ def import_ota(
         macos_version = db_data["version"]
         bridge_version = macos_version.replace(macos_version.split(" ")[0], bridge_version)
         create_file("bridgeOS", bridge_version_info['BridgeProductBuildVersion'], FULL_SELF_DRIVING, recommended_version=bridge_version, released=db_data["released"], restore_version=f"{bridge_version_info['BridgeVersion']},0")
-    
+
     if delete_output_dir:
         shutil.rmtree(f"otas/{Path(ota_url).stem}")
     return db_file, is_new_import
