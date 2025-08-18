@@ -56,6 +56,28 @@ def call_pallas(os, requested_build):
         parsed_assets.append(parsed_asset)
     return parsed_assets, parsed_response["PostingDate"]
 
+def get_build_train(target_build):
+    base_build_train_map = {
+        '13': 'Sunriver',
+        '14': 'Summit',
+        '15': 'Rainbow',
+        '16': 'Geode',
+        '17': 'Wonder',
+    }
+    build_type_map = {
+        '5': 'Seed',
+        '7': 'HW'
+    }
+    build_type = ''
+    if len(target_build) >= 7 and target_build[6].isdigit():
+        build_type = build_type_map.get(target_build[3], '')
+    
+    minor_letter = target_build[2] if target_build[2] != 'A' else ''
+
+    base_build_train = base_build_train_map[target_build[:2]]
+    
+    return f"{base_build_train}{minor_letter}{build_type}"
+
 sdk_platform_mapping = {
     'iOS': 'iphoneos',
     'macOS': 'macosx',
@@ -77,8 +99,12 @@ for xcode_version in xcode_response:
         xcode_version['version']['build'] = '10M2518'
     if xcode_version['version']['build'] == '5A2039a':
         xcode_version['version']['build'] = '5A2034a'
+    if xcode_version['version']['build'] == '17A5295f' and xcode_version['version']['release'].get('beta') == 6:
+        xcode_version['version']['build'] = '17A5305f'
+    
     build_version = re.search(r"\d+(?=[a-zA-Z])", xcode_version['version']['build']).group()
     major_version = xcode_version['version']['number'].split(".")[0]
+    if int(major_version) < 16: continue
     if major_version == '3':
         if build_version == '10':
             major_version_range = "3.2.x"
@@ -87,71 +113,99 @@ for xcode_version in xcode_response:
     else:
         major_version_range = f"{major_version}.x"
     file_path = Path(f"osFiles/Software/Xcode/{build_version}x - {major_version_range}/{xcode_version['version']['build']}.json")
-    os_map = [f'macOS {x}' for x in range(int(xcode_version['requires'].split(".")[0]), int(xcode_version['version']['number'].split('.')[0]))]
-    if file_path.exists(): continue
-    file_path.parent.mkdir(parents=True, exist_ok=True)
+    os_map = [f'macOS {x}' for x in range(int(xcode_version['requires'].split(".")[0]), int(xcode_version['version']['number'].split('.')[0]) + 1) if x not in range(16, 26)]
+    if xcode_version.get('links', {}).get('download'):
+        current_link = xcode_version['links']['download']['url'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path=')
+    else:
+        current_link = ''
+    if file_path.exists():
+        new_item = json.load(file_path.open(encoding="utf-8"))
+        links = [y['url'].lower() for x in new_item.get('sources', []) for y in x['links']]
+        for dup in new_item.get('createDuplicateEntries', []):
+            links.extend([y['url'].lower() for x in dup.get('sources', []) for y in x['links']])
+        if not xcode_version.get('links'): continue
 
-    formatted_sdks = []
-
-    for sdk_key in xcode_version['sdks'].keys():
-        for sdk_item in xcode_version['sdks'][sdk_key]:
-            if not sdk_item.get('build'): continue
-            sdk_mapping = [mapping for mapping in simulator_response['sdkToSeedMappings'] \
-                           if mapping['buildUpdate'] == sdk_item['build'] \
-                            and mapping['platform'] == f"com.apple.platform.{sdk_platform_mapping[sdk_key]}"]
-
-            sdk = {
-                'osStr': sdk_key,
-                'version': sdk_item['number'],
-                'build': sdk_item['build']
-            }
-
-            if sdk_mapping:
-                sdk_mapping = sdk_mapping[0]
-                sdk['beta'] = True
-                sdk['version'] += ' beta'
-                if int(sdk_mapping['seedNumber']) > 1:
-                    sdk['version'] += f" {sdk_mapping['seedNumber']}"
-
-            formatted_sdks.append(sdk)
-
-    new_item = {
-        'osStr': xcode_version['name'],
-        'version': xcode_version['version']['number'],
-        'build': xcode_version['version']['build'],
-        'released': dateutil.parser.parse(f"{xcode_version['date']['year']}-{xcode_version['date']['month']}-{xcode_version['date']['day']}").strftime("%Y-%m-%d"),
-        'releaseNotes': xcode_version['links']['notes']['url'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path='),
-        'deviceMap': ['Xcode'],
-        'osMap': os_map,
-        'sdks': formatted_sdks,
-        'sources': [
-            {
-                'type': xcode_version['links']['download']['url'].split('.')[-1],
-                'deviceMap': ['Xcode'],
-                'osMap': os_map,
-                'links': [
-                    {
-                        'url': xcode_version['links']['download']['url'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path='),
-                    }
-                ],
-                'hashes': xcode_version['checksums']
-            }
-        ]
-    }
-
-    if xcode_version['version']['release'].get('beta'):
-        new_item['beta'] = True
-        if xcode_version['version']['release']['beta'] == 1:
-            new_item['version'] += ' beta'
+        # xcode_version['links']['download']['url'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path=')
+        if current_link.lower() in links:
+            continue
         else:
-            new_item['version'] += f" beta {xcode_version['version']['release']['beta']}"
-    elif xcode_version['version']['release'].get('rc'):
-        new_item['rc'] = True
-        if xcode_version['version']['release']['rc'] == 1:
-            new_item['version'] += ' RC'
-        else:
-            new_item['version'] += f" RC {xcode_version['version']['release']['rc']}"
+            print(xcode_version['version']['build'])
+            print(current_link)
+    else:
+        file_path.parent.mkdir(parents=True, exist_ok=True)
 
+        formatted_sdks = []
+
+        for sdk_key in xcode_version['sdks'].keys():
+            for sdk_item in xcode_version['sdks'][sdk_key]:
+                if not sdk_item.get('build'): continue
+                sdk_mapping = [mapping for mapping in simulator_response['sdkToSeedMappings'] \
+                            if mapping['buildUpdate'] == sdk_item['build'] \
+                                and mapping['platform'] == f"com.apple.platform.{sdk_platform_mapping[sdk_key]}"]
+
+                sdk = {
+                    'osStr': sdk_key,
+                    'version': sdk_item['number'],
+                    'build': sdk_item['build']
+                }
+
+                if sdk_mapping:
+                    sdk_mapping = sdk_mapping[0]
+                    sdk['beta'] = True
+                    sdk['version'] += ' beta'
+                    if int(sdk_mapping['seedNumber']) > 1:
+                        sdk['version'] += f" {sdk_mapping['seedNumber']}"
+
+                formatted_sdks.append(sdk)
+
+        new_item = {
+            'osStr': xcode_version['name'],
+            'version': xcode_version['version']['number'],
+            'build': xcode_version['version']['build'],
+            'buildTrain': get_build_train(xcode_version['version']['build']),
+            'released': dateutil.parser.parse(f"{xcode_version['date']['year']}-{xcode_version['date']['month']}-{xcode_version['date']['day']}").strftime("%Y-%m-%d"),
+            'releaseNotes': xcode_version['links']['notes']['url'].replace('download.developer.apple.com', 'developer.apple.com/services-account/download?path='),
+            'deviceMap': ['Xcode'],
+            'osMap': os_map,
+            'sdks': formatted_sdks,
+            'sources': []
+        }
+
+        if xcode_version['version']['release'].get('beta'):
+            new_item['beta'] = True
+            if xcode_version['version']['release']['beta'] == 1:
+                new_item['version'] += ' beta'
+            else:
+                new_item['version'] += f" beta {xcode_version['version']['release']['beta']}"
+        elif xcode_version['version']['release'].get('rc'):
+            new_item['rc'] = True
+            if xcode_version['version']['release']['rc'] == 1:
+                new_item['version'] += ' RC'
+            else:
+                new_item['version'] += f" RC {xcode_version['version']['release']['rc']}"
+
+    if current_link:
+        new_source = {
+            'type': xcode_version['links']['download']['url'].split('.')[-1],
+            'deviceMap': ['Xcode'],
+            'osMap': os_map,
+            'links': [
+                {
+                    'url': current_link,
+                }
+            ],
+            'hashes': xcode_version['checksums']
+        }
+        if '_universal.' in current_link.lower():
+            new_source['arch'] = [
+                'arm64',
+                'x86_64'
+            ]
+        elif '_silicon.' in current_link.lower():
+            new_source['arch'] = [
+                'arm64'
+            ]
+        new_item['sources'].append(new_source)
     json.dump(sort_os_file(None, new_item), file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
     update_links([file_path])
 
