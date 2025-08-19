@@ -41,8 +41,11 @@ while True:
         )
         os.makedirs(f'osFiles/Software/{app_key}', exist_ok=True)
     app_file = Path(f"osFiles/Software/{app_key}/{version}.json")
+    os_str = app_name.split(" (", 1)[0]
+    if os_str in ['Apple TV', 'Apple Music Classical', 'iCloud Bookmarks', 'iCloud Passwords', 'Photomator']:
+        os_str = app_name
     app_details = {
-        'osStr': app_name.split(" (", 1)[0],
+        'osStr': os_str,
         'version': version,
         'deviceMap': [app_key]
     }
