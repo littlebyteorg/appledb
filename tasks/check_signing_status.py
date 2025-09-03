@@ -191,20 +191,10 @@ blocked_prefixes = {
 def handle_signing(json_contents):
     checked_build_device_list = set()
     checked_board_device_list = set()
+    signed_devices = []
     for source in json_contents['sources']:
         if not set([x for x in source['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os, [])]).difference(checked_build_device_list): continue
         if not ((source['type'] == 'pkg' and os == 'bridgeOS') or source['type'] in ['ipsw', 'ota']): continue
-        previously_checked = []
-        for device in source['deviceMap']:
-            if json_contents.get('signingStatus', {}).get(device) is not None:
-                if isinstance(board_ids.get(device), list):
-                    if not isinstance(json_contents['signingStatus'][device], dict):
-                        continue
-                    if len(board_ids[device]) != len(json_contents['signingStatus'][device].keys()):
-                        continue
-                previously_checked.append(device)
-        if len(previously_checked) == len(source['deviceMap']):
-            continue
         # if source['type'] == 'ipsw': continue
         link = [x for x in source['links'] if x['active'] and 'apple.com' in x['url'] and 'developer' not in x['url']]
         if not link: continue
@@ -246,26 +236,22 @@ def handle_signing(json_contents):
                 else:
                     continue
 
-            if json_contents.get('signingStatus', {}).get(model) and not model.startswith('iPhone8'): continue
             params = ["./tsschecker", "-m", file_path, "-d", model]
             if json_contents.get('basebandVersions', {}).get(model) and model not in ['iPhone1,1', 'iPhone1,2', 'iPhone2,1', 'iPad1,1', 'iPhone17,5']:
                 params.append("-c")
                 params.append(baseband_value[model])
             else:
                 params.append("-b")
+            signed = False
             if isinstance(board_ids.get(model), list):
                 params.append("--boardconfig")
-                if not isinstance(json_contents.get('signingStatus', {}).get(model, {}), dict):
-                    del json_contents['signingStatus'][model]
                 for board in source.get('boardMap', board_ids[model]):
                     if params[-1] != '--boardconfig':
                         params.pop()
                     params.append(board)
                     signing_check = subprocess.run(params, check=False, capture_output=True)
-                    signed = signing_check.returncode == 0
+                    signed = signed or (signing_check.returncode == 0)
                     print(f"{model}-{board} ({build}): {signed}")
-                    if not json_contents.get('signingStatus', {}).get(model, {}).get(board):
-                        json_contents.setdefault('signingStatus', {}).setdefault(model, {})[board] = signed
                     checked_board_device_list.add(board)
             else:
                 if board_ids.get(model):
@@ -274,12 +260,18 @@ def handle_signing(json_contents):
                 signing_check = subprocess.run(params, check=False, capture_output=True)
                 signed = signing_check.returncode == 0
                 print(f"{model} ({build}): {signed}")
-                if not json_contents.get('signingStatus', {}).get(model):
-                    json_contents.setdefault('signingStatus', {})[model] = signed
             checked_build_device_list.add(model)
+            if signed:
+                signed_devices.append(model)
         Path(file_path).unlink()
         if parent_path:
             shutil.rmtree(parent_path)
+        if len(signed_devices) == len(json_contents['deviceMap']):
+            json_contents['signed'] = True
+        elif len(signed_devices) > 0:
+            json_contents['signed'] = signed_devices
+        elif json_contents.get('signed'):
+            del json_contents['signed']
     return json_contents
 
 for os, builds in parsed_args.items():

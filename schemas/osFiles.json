@@ -30,10 +30,6 @@
                     "type":"object",
                     "additionalProperties": true
                 },
-                "signingStatus": {
-                    "type":"object",
-                    "additionalProperties": true
-                },
                 "buildTrain":    {
                     "anyOf": [
                         {"type": "string"},
@@ -68,6 +64,12 @@
                 },
 
                 "preinstalled": {
+                    "anyOf": [
+                        {"type": "boolean"},
+                        {"type": "array", "items": {"type": "string"}}
+                    ]
+                },
+                "signed": {
                     "anyOf": [
                         {"type": "boolean"},
                         {"type": "array", "items": {"type": "string"}}

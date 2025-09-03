@@ -33,7 +33,7 @@ key_order = [
     "appledbWebImage",
     "deviceMap",
     "basebandVersions",
-    "signingStatus",
+    "signed",
     "osMap",
     "sdks",
     "sources",
@@ -84,14 +84,14 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
     if "deviceMap" in data:
         data["deviceMap"] = device_map_sort(data["deviceMap"])
 
+    if isinstance(data.get("signed"), list):
+        data["signed"] = device_map_sort(data["signed"])
+
     if "osMap" in data:
         data["osMap"] = os_map_sort(data["osMap"])
 
     if "basebandVersions" in data:
         data["basebandVersions"] = sorted_dict_by_key(data["basebandVersions"], data["deviceMap"])
-
-    if "signingStatus" in data:
-        data["signingStatus"] = sorted_dict_by_key(data["signingStatus"], data["deviceMap"])
 
     if "ipd" in data:
         for key in data["ipd"].keys():
