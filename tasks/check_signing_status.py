@@ -220,6 +220,8 @@ def handle_signing(json_contents):
                     file_path = f"{parent_path}/AssetData/boot/BuildManifest.plist"
                 else:
                     path_prefix = 'AssetData/boot/' if link['url'].endswith('.zip') else ''
+                    if os == 'Studio Display Firmware':
+                        path_prefix = path_prefix.removesuffix("boot/")
                     file = remotezip.RemoteZip(link['url'].replace("https://secure-appldnld", "http://appldnld"), session=session)
                     if url_prefix in ['iPhone1,2', 'iPod2,1'] and int(build[0]) == 7:
                         source_file_name = 'BuildManifesto.plist'
