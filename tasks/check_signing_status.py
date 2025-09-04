@@ -193,7 +193,8 @@ def handle_signing(json_contents):
     checked_board_device_list = set()
     signed_devices = []
     for source in json_contents['sources']:
-        if not set([x for x in source['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os, [])]).difference(checked_build_device_list): continue
+        device_map = [x for x in json_contents['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os, [])]
+        if not set(device_map).difference(checked_build_device_list): continue
         if not ((source['type'] == 'pkg' and os == 'bridgeOS') or source['type'] in ['ipsw', 'ota']): continue
         # if source['type'] == 'ipsw': continue
         link = [x for x in source['links'] if x['active'] and 'apple.com' in x['url'] and 'developer' not in x['url']]
@@ -268,7 +269,7 @@ def handle_signing(json_contents):
         Path(file_path).unlink()
         if parent_path:
             shutil.rmtree(parent_path)
-        if len(signed_devices) == len(json_contents['deviceMap']):
+        if len(set(device_map).symmetric_difference(set(signed_devices))) == 0:
             json_contents['signed'] = True
         elif len(signed_devices) > 0:
             json_contents['signed'] = signed_devices
