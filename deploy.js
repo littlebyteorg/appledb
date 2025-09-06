@@ -197,6 +197,8 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
 
   if (ver.preinstalled === true) ver.preinstalled = ver.deviceMap;
   else if (!ver.preinstalled) ver.preinstalled = [];
+  if (ver.signed === true) ver.signed = ver.deviceMap;
+  else if (!ver.signed) ver.signed = [];
 
   ver.osType = ver.osStr;
   if (ver.osType == "iPhone Software" || ver.osType == "iPhone OS" || ver.osType == "iPadOS") ver.osType = "iOS";
