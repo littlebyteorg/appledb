@@ -196,7 +196,7 @@ def handle_signing(json_contents):
         device_map = [x for x in json_contents['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os, [])]
         if not set(device_map).difference(checked_build_device_list): continue
         if not ((source['type'] == 'pkg' and os == 'bridgeOS') or source['type'] in ['ipsw', 'ota']): continue
-        # if source['type'] == 'ipsw': continue
+        if source['type'] == 'ipsw' and os in ['tvOS', 'audioOS', 'watchOS']: continue
         link = [x for x in source['links'] if x['active'] and 'apple.com' in x['url'] and 'developer' not in x['url']]
         if not link: continue
         link = link[0]
