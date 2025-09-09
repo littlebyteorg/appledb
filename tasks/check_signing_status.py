@@ -9,15 +9,29 @@ import remotezip
 
 from file_downloader import handle_ota_file, handle_pkg_file
 from sort_os_files import sort_os_file
+from sort_files_common import build_number_sort, device_sort
 
 session = requests.Session()
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-b', '--build', action='append', nargs='+')
-parser.add_argument('-o', '--os', action='append')
-args = parser.parse_args()
+supported_os_names = [
+    'audioOS',
+    'bridgeOS',
+    'iOS',
+    'iPadOS',
+    'macOS',
+    'tvOS',
+    'Studio Display Firmware',
+    'visionOS',
+    'watchOS',
+]
 
-parsed_args = dict(zip(args.os, args.build))
+parser = argparse.ArgumentParser()
+parser.add_argument('-a', '--all-signed', action='store_true')
+parser.add_argument('-b', '--build', action='append', nargs='+')
+parser.add_argument('-l', '--list-signed', action='store_true')
+parser.add_argument('-ld', '--list-devices', action='store_true')
+parser.add_argument('-o', '--os', action='append', choices=supported_os_names)
+args = parser.parse_args()
 
 baseband_value = {
     "iPad2,2": "112312323123123123121212",
@@ -188,7 +202,24 @@ blocked_prefixes = {
     ]
 }
 
-def handle_signing(fw, os_name):
+def get_signed_builds(os_names, include_devices):
+    signed_builds = {}
+    for os_name in os_names:
+        working_dict = {}
+        for file_path in Path(f"osFiles/{os_name}").rglob("*.json"):
+            file_contents = json.load(file_path.open(encoding='utf-8'))
+            if not file_contents.get('signed'): continue
+            if isinstance(file_contents['signed'], list):
+                working_dict[file_contents['build']] = file_contents['signed']
+            else:
+                working_dict[file_contents['build']] = [x for x in file_contents['deviceMap'] if x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
+        if include_devices:
+            signed_builds[os_name] = {k: sorted(working_dict[k], key=device_sort) for k in sorted(working_dict.keys(), key=build_number_sort)}
+        else:
+            signed_builds[os_name] = sorted(working_dict.keys(), key=build_number_sort)
+    return signed_builds
+
+def check_signing_status(fw, os_name):
     checked_build_device_list = set()
     checked_board_device_list = set()
     signed_devices = []
@@ -286,7 +317,15 @@ def handle_signing(fw, os_name):
             del fw['signed']
     return fw
 
-for os_str, builds in parsed_args.items():
+if args.all_signed or args.list_signed:
+    os_build_map = get_signed_builds(args.os or supported_os_names, args.list_signed and args.list_devices)
+    if args.list_signed:
+        print(json.dumps(os_build_map, indent=4))
+        exit(0)
+else:
+    os_build_map = dict(zip(args.os, args.build))
+
+for os_str, builds in os_build_map.items():
     print(os_str)
     for build in builds:
         if int(build[0]) < 7 and build[1] in string.ascii_uppercase:
@@ -295,8 +334,8 @@ for os_str, builds in parsed_args.items():
         for file_name in Path(f'osFiles/{os_str}').rglob(f"{build}.json"):
             json_contents = json.load(file_name.open(encoding="utf-8"))
             if not json_contents.get('sources'): continue
-            json_contents = handle_signing(json_contents, os_str)
+            json_contents = check_signing_status(json_contents, os_str)
             for i, dup in enumerate(json_contents.get('createDuplicateEntries', [])):
                 if not dup.get('sources') or not dup.get('deviceMap'): continue
-                json_contents['createDuplicateEntries'][i] = handle_signing(dup, os_str)
+                json_contents['createDuplicateEntries'][i] = check_signing_status(dup, os_str)
             json.dump(sort_os_file(None, json_contents), file_name.open('w', encoding='utf-8'), indent=4)
