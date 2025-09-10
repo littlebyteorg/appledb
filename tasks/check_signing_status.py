@@ -283,7 +283,7 @@ def check_signing_status(fw, os_name):
                     continue
 
             params = ["./tsschecker", "-m", cached_path, "-d", model]
-            if fw.get('basebandVersions', {}).get(model) and model not in ['iPhone1,1', 'iPhone1,2', 'iPhone2,1', 'iPad1,1', 'iPhone17,5']:
+            if fw.get('basebandVersions', {}).get(model) and baseband_value.get(model) and model not in ['iPhone1,1', 'iPhone1,2', 'iPhone2,1', 'iPad1,1', 'iPhone17,5']:
                 params.append("-c")
                 params.append(baseband_value[model])
             else:
