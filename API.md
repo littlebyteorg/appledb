@@ -45,6 +45,13 @@ URLs are case sensitive.
 
 To stay updated on changes to the API (and AppleDB development in general), you can join our [Discord](https://discord.gg/QBj8pBa).
 
+### 2025-09-12
+
+- Add `buildId` and `systemImageId` to *OS firmwares, where applicable. `buildId` mirrors `BuildID` and `systemImageId` mirrors `SystemImageID` from `/System/Library/CoreServices/SystemVersion.plist`. `buildId` is a top level firmware key, while `systemImageId` is per source (as it differs between root FS images).
+
+> [!WARNING]
+> This information is incomplete and still in the process of being added (it is mostly only present for firmwares with unencrypted OTAs). Check for key presence before usage.
+
 ### 2025-03-12
 
 - Add calendar endpoints
