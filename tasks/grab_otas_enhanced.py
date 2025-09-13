@@ -652,7 +652,7 @@ for key, value in ota_list.items():
     builds.add(value['build'])
     for source in value['sources'].values():
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
-            missing_key = f"{value['osStr']}-{"/".join(source['prerequisites'])}"
+            missing_key = f"{value['osStr']}-{'/'.join(source['prerequisites'])}"
             if value['osStr'] == 'macOS':
                 suffix = 'Intel' if 'MacPro7,1' in source['deviceMap'] else 'AS'
             else:

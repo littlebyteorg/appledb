@@ -43,7 +43,7 @@ def convert_version_to_build(base_version):
     version_split[2] = version_split[2][-4:]
     if version_split[3] == "0":
         version_split[2] = str(int(version_split[2]))
-    return f"{version_split[0]}{chr(int(version_split[1]) + 64)}{version_split[3] if version_split[3] != "0" else ""}{version_split[2]}{chr(int(version_split[4])+96) if version_split[4] != "0" else ""}"
+    return f"{version_split[0]}{chr(int(version_split[1]) + 64)}{version_split[3] if version_split[3] != '0' else ''}{version_split[2]}{chr(int(version_split[4])+96) if version_split[4] != '0' else ''}"
 
 updated_files = set()
 manifest_path = 'usr/standalone/firmware/bridgeOSCustomer.bundle/Contents/Resources/BuildManifest.plist'

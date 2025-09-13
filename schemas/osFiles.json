@@ -21,6 +21,7 @@
                 },
                 "build":         {"type": "string"},
                 "restoreVersion": {"type": "string"},
+                "buildId":       {"type": "string", "format": "uuid"},
                 "uniqueBuild":   {"type": "string"},
                 "key":           {"type": "string"},
                 
@@ -216,6 +217,7 @@
                                     {"type": "array", "minItems": 1, "items": {"type": "string"}}
                                 ]
                             },
+                            "systemImageId": {"type": "string", "format": "uuid"},
                             "size": {"type": "integer"}
                         }
                     }
