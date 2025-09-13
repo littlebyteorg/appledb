@@ -11,6 +11,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    needs: validate-source
 
     steps:
       - uses: actions/checkout@v4
@@ -49,6 +50,10 @@ jobs:
       - name: Build json files
         run: node deploy.js
 
+      # run validator script
+      - name: Validate json files
+        run: python tasks/validate.py
+
       # run calendar script
       - name: Generate calendar
         run: python tasks/gen_calendar.py
@@ -67,7 +72,7 @@ jobs:
           # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  validate:
+  validate-source:
     runs-on: ubuntu-latest
 
     steps:
