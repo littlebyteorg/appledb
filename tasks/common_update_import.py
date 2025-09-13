@@ -164,6 +164,8 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         web_image = get_image(os_str, friendly_version)
         if web_image:
             db_data['appledbWebImage'] = web_image
+        if os_str != 'cloudOS':
+            db_data['signed'] = True
 
     if buildtrain and buildtrain != db_data.get('buildTrain'):
         file_updated = True
