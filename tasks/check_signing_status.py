@@ -224,6 +224,11 @@ def check_signing_status(fw, os_name):
     checked_board_device_list = set()
     signed_devices = []
     fw_device_map = [x for x in fw['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
+    fw_preinstalled_devices = []
+    if isinstance(fw.get('preinstalled'), list):
+        fw_preinstalled_devices = [x for x in fw['preinstalled'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
+    elif fw.get('preinstalled'):
+        fw_preinstalled_devices = fw_device_map.copy()
     for source in fw['sources']:
         device_map = [x for x in source['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
         if not set(device_map).difference(checked_build_device_list): continue
@@ -281,7 +286,9 @@ def check_signing_status(fw, os_name):
                         continue
                 else:
                     continue
-
+            
+            if model in fw_preinstalled_devices:
+                fw_preinstalled_devices.remove(model)
             params = ["./tsschecker", "-m", cached_path, "-d", model]
             if fw.get('basebandVersions', {}).get(model) and baseband_value.get(model) and model not in ['iPhone1,1', 'iPhone1,2', 'iPhone2,1', 'iPad1,1', 'iPhone17,5']:
                 params.append("-c")
@@ -309,12 +316,12 @@ def check_signing_status(fw, os_name):
             checked_build_device_list.add(model)
             if signed:
                 signed_devices.append(model)
-        if len(set(fw_device_map).symmetric_difference(set(signed_devices))) == 0:
-            fw['signed'] = True
-        elif len(signed_devices) > 0:
-            fw['signed'] = signed_devices
-        elif fw.get('signed'):
-            del fw['signed']
+    if len(set(fw_device_map).symmetric_difference(set(signed_devices + fw_preinstalled_devices))) == 0:
+        fw['signed'] = True
+    elif len(signed_devices) > 0:
+        fw['signed'] = signed_devices
+    elif fw.get('signed'):
+        del fw['signed']
     return fw
 
 if args.all_signed or args.list_signed:

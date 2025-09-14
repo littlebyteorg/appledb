@@ -45,6 +45,10 @@ URLs are case sensitive.
 
 To stay updated on changes to the API (and AppleDB development in general), you can join our [Discord](https://discord.gg/QBj8pBa).
 
+### 2025-09-14
+
+- Add `signed` to all *OS firmwares that Apple is still signing. This is either an array of devices for which the build is still signed or `true` meaning all devices are signed. Absence of this value means the build is completely unsigned. Note that this uses IPSW build manifests, where available, for iOS, iPadOS, bridgeOS, macOS, and visionOS, and falls back to OTA build manifests in all other cases.
+
 ### 2025-09-12
 
 - Add `buildId` and `systemImageId` to *OS firmwares, where applicable. `buildId` mirrors `BuildID` and `systemImageId` mirrors `SystemImageID` from `/System/Library/CoreServices/SystemVersion.plist`. `buildId` is a top level firmware key, while `systemImageId` is per source (as it differs between root FS images).
