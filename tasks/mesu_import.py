@@ -49,7 +49,8 @@ beta_asset_subfolders = {
             'A3053',
             'A3056',
             'A3063',
-            'A3064'
+            'A3064',
+            'A3122'
         ],
         'AirPodsPublicSeed': [
             'A2618',
@@ -58,7 +59,8 @@ beta_asset_subfolders = {
             'A3053',
             'A3056',
             'A3063',
-            'A3064'
+            'A3064',
+            'A3122'
         ]
     }
 }
@@ -76,6 +78,7 @@ asset_types = {
         'A3056': 'com_apple_MobileAsset_UARP_A3056',
         'A3064': 'com_apple_MobileAsset_UARP_A3064',
         'A3063': 'com_apple_MobileAsset_UARP_A3063',
+        'A3122': 'com_apple_MobileAsset_UARP_A3122',
         'A3184': [
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184_EA',
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184-24E_EA'
@@ -188,6 +191,18 @@ device_map = {
     'A3056': [
         'AirPods1,5-left',
         'AirPods1,5-right'
+    ],
+    'A3063': [
+        'AirPodsPro1,3-left',
+        'AirPodsPro1,3-right'
+    ],
+    'A3064': [
+        'AirPodsPro1,3-left',
+        'AirPodsPro1,3-right'
+    ],
+    'A3122': [
+        'AirPodsPro1,3-left',
+        'AirPodsPro1,3-right'
     ],
     'A3157': [
         'Powerb3,1-left',
