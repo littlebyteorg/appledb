@@ -90,7 +90,11 @@ for product, product_link_map in found_links.items():
         parsed_version = int(version.split('.', 1)[0])
         build_subfolder = ''
         if build_prefix_offset.get(product) is not None:
-            build_subfolder = f"/{parsed_version + build_prefix_offset[product]}x - {parsed_version}"
+            if parsed_version >= 26:
+                build_offset = -1 if product == 'macOS' else -3
+            else:
+                build_offset = build_prefix_offset[product]
+            build_subfolder = f"/{parsed_version + build_offset}x - {parsed_version}"
         else:
             build_subfolder = f"/{parsed_version}"
         build_paths = Path(f"osFiles/{product_subfolder}{build_subfolder}.x").rglob("*.json")

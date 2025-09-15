@@ -1,11 +1,18 @@
 {
     "osStr": "bridgeOS",
-    "version": "10.0 RC",
+    "version": "10.0",
     "build": "23P350",
     "restoreVersion": "23.16.10350.0.0,0",
     "buildTrain": "CheerBridge",
-    "released": "2025-09-09",
-    "rc": true,
+    "released": "2025-09-15",
+    "createDuplicateEntries": [
+        {
+            "version": "10.0 RC",
+            "uniqueBuild": "23P350-RC",
+            "released": "2025-09-09",
+            "rc": true
+        }
+    ],
     "deviceMap": [
         "iBridge2,1",
         "iBridge2,3",
@@ -26,6 +33,38 @@
     ],
     "signed": true,
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iBridge2,1",
+                "iBridge2,3",
+                "iBridge2,4",
+                "iBridge2,5",
+                "iBridge2,6",
+                "iBridge2,7",
+                "iBridge2,8",
+                "iBridge2,10",
+                "iBridge2,12",
+                "iBridge2,14",
+                "iBridge2,15",
+                "iBridge2,16",
+                "iBridge2,19",
+                "iBridge2,20",
+                "iBridge2,21",
+                "iBridge2,22"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/052-69211/8F332DE9-5259-4723-B440-18B140177D0D/iBridge2,1,iBridge2,10,iBridge2,12,iBridge2,14,iBridge2,15,iBridge2,16,iBridge2,19,iBridge2,20,iBridge2,21,iBridge2,22,iBridge2,3,iBridge2,4,iBridge2,5,iBridge2,6,iBridge2,7,iBridge2,8_10.0_23P350_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "576ba16aded3f15fe51f43fbac0b0b0ad716cd28",
+                "sha2-256": "1758973a31342bc62bfbac44e94a1222868ca9d4f203178e2bb2fa22d162d86e"
+            },
+            "size": 728740164
+        },
         {
             "type": "pkg",
             "deviceMap": [
@@ -67,6 +106,37 @@
                 "sha1": "df2b53df13e6537d130199d5b0d48214bf926a7a"
             },
             "size": 564516227
+        },
+        {
+            "type": "pkg",
+            "deviceMap": [
+                "iBridge2,1",
+                "iBridge2,3",
+                "iBridge2,4",
+                "iBridge2,5",
+                "iBridge2,6",
+                "iBridge2,7",
+                "iBridge2,8",
+                "iBridge2,10",
+                "iBridge2,12",
+                "iBridge2,14",
+                "iBridge2,15",
+                "iBridge2,16",
+                "iBridge2,19",
+                "iBridge2,20",
+                "iBridge2,21",
+                "iBridge2,22"
+            ],
+            "links": [
+                {
+                    "url": "https://swcdn.apple.com/content/downloads/22/50/093-37713-A_VSS1XUGL5D/7vb4r7ajzd1y6ae9fhhyocskig6k5w37sp/BridgeOSUpdateCustomer.pkg",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "79faddbc9f0651d6f0961ed4ae778a7061f5c443"
+            },
+            "size": 564516225
         }
     ]
 }

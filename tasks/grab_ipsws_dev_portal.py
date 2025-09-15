@@ -48,22 +48,30 @@ HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)
 
 skip_builds = [
     "19H390", # iOS/iPadOS 15.8.4
+    "19H394", # iOS/iPadOS 15.8.5
     "20H360", # iOS/iPadOS 16.7.11
+    "20H364", # iOS/iPadOS 16.7.12
     "21G101", # iOS 17.6.1
     "21H423", # iPadOS 17.7.6
     "21H446", # iPadOS 17.7.9
     "22F76",  # iOS/iPadOS 18.5
     "22G100", # iOS/iPadOS 18.6.2
+    "22H20", # iOS/iPadOS 18.7
+    "23A340", # iOS/iPadOS 26.0
     "22L572", # tvOS 18.5
     "22M84", # tvOS 18.6
+    "23J352", # tvOS 26.0
     "22O473", # visionOS 2.5
     "22O785", # visionOS 2.6
+    "23M336", # visionOS 26.0
     "22T572", # watchOS 11.5
     "22U84", # watchOS 11.6
     "22U90", # watchOS 11.6.1
+    "23R351", # watchOS 26.0
     "24F74",  # macOS 15.5
     "24G84", # macOS 15.6
     "24G90", # macOS 15.6.1
+    "25A353", # macOS 26.0
     # betas
     "23A5336a", # iOS/iPadOS 26
     "23J5351a", # tvOS 26
