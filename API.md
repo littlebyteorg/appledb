@@ -45,7 +45,7 @@ URLs are case sensitive.
 
 To stay updated on changes to the API (and AppleDB development in general), you can join our [Discord](https://discord.gg/QBj8pBa).
 
-### 2025-09-14
+### 2025-09-16
 
 - Add `signed` to all *OS firmwares that Apple is still signing. This is either an array of devices for which the build is still signed or `true` meaning all devices are signed. Absence of this value means the build is completely unsigned. Note that this uses IPSW build manifests, where available, for iOS, iPadOS, bridgeOS, macOS, and visionOS, and falls back to OTA build manifests in all other cases.
 
