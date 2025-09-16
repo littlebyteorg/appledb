@@ -115,7 +115,7 @@ def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifes
                 Path(file_path).unlink(missing_ok=True)
     return remove_output_file
 
-def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None, file_suffix=None):
+def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None, file_suffix=None, remove_file=True):
     if hashes is None:
         hashes = ['sha1']
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
@@ -154,5 +154,6 @@ def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_pat
             manifest_content = plistlib.loads(Path(f'{output_path}/{extracted_manifest_file_path}').read_bytes())
         shutil.rmtree(output_path)
 
-    Path(f'{output_path}.pkg').unlink(missing_ok=True)
+    if remove_file:
+        Path(f'{output_path}.pkg').unlink(missing_ok=True)
     return (file_hashes, manifest_content)
