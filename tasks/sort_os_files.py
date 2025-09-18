@@ -55,7 +55,7 @@ sources_key_order = [
     "size",
 ]
 
-ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPhone", "iPhone_old", "iPod"]
+ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPad_old", "iPhone", "iPhone_old", "iPod"]
 
 links_key_order = ["url", "decryptionKey", "catalog", "preferred", "active", "auth"]
 
