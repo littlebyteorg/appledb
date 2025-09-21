@@ -86,5 +86,35 @@ jobs:
       - name: Install node.js dependencies
         run: yarn
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          # choose python version to use
+          python-version: "3.x"
+          cache: "pip"
+          cache-dependency-path: "tasks/requirements.txt"
+
+      - name: Install python dependencies
+        run: pip install -r tasks/requirements.txt
+
       - name: Validate Schema
         run: yarn validate
+
+      - name: Run sort
+        run: |
+          python3 tasks/sort_bypass_app_files.py
+          python3 tasks/sort_bypass_tweak_files.py
+          python3 tasks/sort_device_files.py
+          python3 tasks/sort_device_group_files.py
+          python3 tasks/sort_jailbreak_files.py
+          python3 tasks/sort_os_files.py
+
+      - name: Check for uncommitted changes
+        run: |
+          if [[ $(git status --porcelain) ]]; then
+            echo "Files are not sorted. Please run the sort scripts and commit the changes."
+            git status
+            exit 1
+          else
+            echo "No uncommitted changes found."
+          fi
