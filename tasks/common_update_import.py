@@ -135,7 +135,7 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
     db_file = Path(file_path)
     if db_file.exists():
         print("\tFile already exists, not replacing")
-        if os_str == 'bridgeOS': return
+        if os_str == 'bridgeOS': return db_file
         db_data = json.load(db_file.open(encoding="utf-8"))
     else:
         file_updated = True
@@ -164,6 +164,8 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         web_image = get_image(os_str, friendly_version)
         if web_image:
             db_data['appledbWebImage'] = web_image
+        if os_str != 'cloudOS':
+            db_data['signed'] = True
 
     if buildtrain and buildtrain != db_data.get('buildTrain'):
         file_updated = True

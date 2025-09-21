@@ -34,6 +34,7 @@ key_order = [
     "appledbWebImage",
     "deviceMap",
     "basebandVersions",
+    "signed",
     "osMap",
     "sdks",
     "sources",
@@ -54,7 +55,7 @@ sources_key_order = [
     "size",
 ]
 
-ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPhone", "iPhone_old", "iPod"]
+ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPad_old", "iPhone", "iPhone_old", "iPod"]
 
 links_key_order = ["url", "decryptionKey", "catalog", "preferred", "active", "auth"]
 
@@ -84,6 +85,9 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
 
     if "deviceMap" in data:
         data["deviceMap"] = device_map_sort(data["deviceMap"])
+
+    if isinstance(data.get("signed"), list):
+        data["signed"] = device_map_sort(data["signed"])
 
     if "osMap" in data:
         data["osMap"] = os_map_sort(data["osMap"])

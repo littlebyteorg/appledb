@@ -10,7 +10,7 @@ import string
 import requests
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-v', '--versions', default=['15'], nargs="+")
+parser.add_argument('-v', '--versions', default=['14', '15', '26'], nargs="+")
 parser.add_argument('-r', '--release-types', default=['release'], nargs="+", choices=['dev', 'public', 'release'])
 parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()

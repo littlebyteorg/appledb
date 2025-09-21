@@ -37,6 +37,16 @@ build_prefix_offset = {
     'Xcode': 0,
 }
 
+build_prefix_offset_26 = {
+    'iOS': 3,
+    'iPadOS': 3,
+    'macOS': 1,
+    'tvOS': 3,
+    'visionOS': 3,
+    'watchOS': 3,
+    'Xcode': 9,
+}
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--product', choices=supported_product_list)
 parser.add_argument('-v', '--version')
@@ -90,7 +100,11 @@ for product, product_link_map in found_links.items():
         parsed_version = int(version.split('.', 1)[0])
         build_subfolder = ''
         if build_prefix_offset.get(product) is not None:
-            build_subfolder = f"/{parsed_version + build_prefix_offset[product]}x - {parsed_version}"
+            if parsed_version >= 26:
+                build_offset = -build_prefix_offset_26[product]
+            else:
+                build_offset = build_prefix_offset[product]
+            build_subfolder = f"/{parsed_version + build_offset}x - {parsed_version}"
         else:
             build_subfolder = f"/{parsed_version}"
         build_paths = Path(f"osFiles/{product_subfolder}{build_subfolder}.x").rglob("*.json")
