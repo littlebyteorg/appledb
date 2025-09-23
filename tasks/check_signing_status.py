@@ -242,8 +242,11 @@ def check_signing_status(fw, os_name):
         fw_preinstalled_devices = fw_device_map.copy()
     for source in fw['sources']:
         device_map = [x for x in source['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
+        if args.signed_only:
+            if isinstance(fw.get('signed'), list):
+                device_map = [x for x in device_map if x in fw['signed']]
+            elif not fw.get('signed'): continue
         if not set(device_map).difference(checked_build_device_list): continue
-        if args.signed_only and isinstance(fw.get('signed'), list) and set(device_map).difference(fw['signed']): continue
         if not ((source['type'] == 'pkg' and os_name == 'bridgeOS') or source['type'] in ['ipsw', 'ota'] or (source['type'] == 'installassistant' and fw['build'] in ['20B50', '20D75'])): continue
         if source['type'] == 'ipsw' and os_name in ['tvOS', 'audioOS', 'watchOS'] and 'AppleTV2,1' not in fw_device_map: continue
         link = [x for x in source['links'] if 'apple.com' in x['url'] and 'developer' not in x['url']]
@@ -289,7 +292,7 @@ def check_signing_status(fw, os_name):
             Path(file_path).unlink()
             if parent_path:
                 shutil.rmtree(parent_path)
-        for model in source['deviceMap']:
+        for model in device_map:
             model = model.split("-", 1)[0]
             if model.split(",")[0] in blocked_prefixes.get(os_name, []): continue
             if model in checked_build_device_list:
