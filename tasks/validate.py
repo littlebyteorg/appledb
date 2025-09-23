@@ -8,15 +8,15 @@ import dateutil
 import dateutil.parser
 
 
-def check_duplicate_keys(oses: list[dict]):
+def check_duplicate_keys(items: list[dict]):
     failed = False
 
     seen = set()
-    for os in oses:
-        if os["key"] in seen:
-            print(f"Duplicate key {os['key']}")
+    for item in items:
+        if item["key"] in seen:
+            print(f"Duplicate key {item['key']}")
             failed = True
-        seen.add(os["key"])
+        seen.add(item["key"])
 
     return failed
 
@@ -90,11 +90,14 @@ def check_placeholders(os: dict):
 
 def main():
     oses: list[dict] = json.loads(gzip.decompress(Path("out/ios/main.json.gz").read_bytes()))
+    devices: list[dict] = json.loads(gzip.decompress(Path("out/device/main.json.gz").read_bytes()))
 
     failed = False
 
     # Must be first because we use keys as unique values in later checks
     failed |= check_duplicate_keys(oses)
+    failed |= check_duplicate_keys(devices)
+
     failed |= check_duplicate_hashes(oses)
     for os in oses:
         failed |= check_map_consistency(os)
