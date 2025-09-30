@@ -37,7 +37,8 @@ added_builds = {
     '22C152': ['22C154'],
     '22D63': ['22D64'],
     '23A5297m': ['23A5297n'],
-    '22G86': ['22G84']
+    '22G86': ['22G84'],
+    '23A341': ['23A330', '23A340']
 }
 
 ignore_builds = {
@@ -636,6 +637,7 @@ for (os_str, builds) in parsed_args.items():
 
         for audience in audiences:
             for key, value in devices.items():
+                print(f"\t\tChecking {key}")
                 for board in value['boards']:
                     if not (args.no_prerequisites or os_str == 'tvOS'):
                         for prerequisite_build, version in value['builds'].items():
