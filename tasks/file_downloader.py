@@ -21,6 +21,7 @@ async def get_size(url):
 
 
 def download_range(url, start, end, output):
+    if Path(output).exists(): return
     headers = {'Range': f'bytes={start}-{end}'}
     response = SESSION.get(url, headers=headers)
 

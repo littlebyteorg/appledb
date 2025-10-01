@@ -87,7 +87,6 @@ baseband_value = {
     "iPad16,2": 4,
     "iPad16,4": 4,
     "iPad16,6": 4,
-    "iPhone2,1": 12,
     "iPhone3,1": 12,
     "iPhone3,2": 12,
     "iPhone3,3": 4,
@@ -213,6 +212,7 @@ def get_signed_builds(os_names, include_devices):
         working_dict = {}
         for file_path in Path(f"osFiles/{os_name}").rglob("*.json"):
             file_contents = json.load(file_path.open(encoding='utf-8'))
+            if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
             if not file_contents.get('signed'): continue
             if isinstance(file_contents['signed'], list):
                 working_dict[file_contents['build']] = file_contents['signed']
@@ -234,6 +234,9 @@ def check_signing_status(fw, os_name):
     checked_build_device_list = set()
     checked_board_device_list = set()
     signed_devices = []
+    existing_signed = fw.get('signed', False)
+    if isinstance(existing_signed, list):
+        existing_signed = fw['signed'].copy()
     fw_device_map = [x for x in fw['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
     fw_preinstalled_devices = []
     if isinstance(fw.get('preinstalled'), list):
@@ -242,8 +245,11 @@ def check_signing_status(fw, os_name):
         fw_preinstalled_devices = fw_device_map.copy()
     for source in fw['sources']:
         device_map = [x for x in source['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
+        if args.signed_only:
+            if isinstance(fw.get('signed'), list):
+                device_map = [x for x in device_map if x in fw['signed']]
+            elif not fw.get('signed'): continue
         if not set(device_map).difference(checked_build_device_list): continue
-        if args.signed_only and isinstance(fw.get('signed'), list) and set(device_map).difference(fw['signed']): continue
         if not ((source['type'] == 'pkg' and os_name == 'bridgeOS') or source['type'] in ['ipsw', 'ota'] or (source['type'] == 'installassistant' and fw['build'] in ['20B50', '20D75'])): continue
         if source['type'] == 'ipsw' and os_name in ['tvOS', 'audioOS', 'watchOS'] and 'AppleTV2,1' not in fw_device_map: continue
         link = [x for x in source['links'] if 'apple.com' in x['url'] and 'developer' not in x['url']]
@@ -289,7 +295,7 @@ def check_signing_status(fw, os_name):
             Path(file_path).unlink()
             if parent_path:
                 shutil.rmtree(parent_path)
-        for model in source['deviceMap']:
+        for model in device_map:
             model = model.split("-", 1)[0]
             if model.split(",")[0] in blocked_prefixes.get(os_name, []): continue
             if model in checked_build_device_list:
@@ -302,7 +308,7 @@ def check_signing_status(fw, os_name):
             if model in fw_preinstalled_devices:
                 fw_preinstalled_devices.remove(model)
             params = ["./tsschecker", "-m", cached_path, "-d", model]
-            if fw.get('basebandVersions', {}).get(model) and baseband_value.get(model) and model not in ['iPhone1,1', 'iPhone1,2', 'iPhone2,1', 'iPad1,1']:
+            if fw.get('basebandVersions', {}).get(model) and baseband_value.get(model):
                 params.append("-c")
                 params.append(generate_random_serial(baseband_value[model]))
             else:
@@ -316,7 +322,8 @@ def check_signing_status(fw, os_name):
                     params.append(board)
                     signing_check = subprocess.run(params, check=False, capture_output=True)
                     signed = signed or (signing_check.returncode == 0)
-                    print(f"{model}-{board} ({build}): {signed}")
+                    if (args.signed_only and not signed) or not args.signed_only:
+                        print(f"    {model}-{board} ({build}): {signed}")
                     checked_board_device_list.add(board)
             else:
                 if board_ids.get(model):
@@ -324,7 +331,8 @@ def check_signing_status(fw, os_name):
                     params.append(board_ids[model])
                 signing_check = subprocess.run(params, check=False, capture_output=True)
                 signed = signing_check.returncode == 0
-                print(f"{model} ({build}): {signed}")
+                if (args.signed_only and not signed) or not args.signed_only:
+                    print(f"    {model} ({build}): {signed}")
             checked_build_device_list.add(model)
             if signed:
                 signed_devices.append(model)
@@ -334,7 +342,7 @@ def check_signing_status(fw, os_name):
         fw['signed'] = signed_devices
     elif fw.get('signed'):
         del fw['signed']
-    return fw
+    return fw, fw.get('signed', False) != existing_signed
 
 if args.all_signed or args.list_signed:
     os_build_map = get_signed_builds(args.os or supported_os_names, args.list_signed and args.list_devices)
@@ -349,12 +357,14 @@ for os_str, builds in os_build_map.items():
     for build in builds:
         if int(build[0]) < 7 and build[1] in string.ascii_uppercase:
             continue
-        print(build)
+        print(f"  {build}")
         for file_name in Path(f'osFiles/{os_str}').rglob(f"{build}.json"):
             json_contents = json.load(file_name.open(encoding="utf-8"))
             if not json_contents.get('sources'): continue
-            json_contents = check_signing_status(json_contents, os_str)
+            (json_contents, save_file) = check_signing_status(json_contents, os_str)
             for i, dup in enumerate(json_contents.get('createDuplicateEntries', [])):
                 if not dup.get('sources') or not dup.get('deviceMap'): continue
-                json_contents['createDuplicateEntries'][i] = check_signing_status(dup, os_str)
-            json.dump(sort_os_file(None, json_contents), file_name.open('w', encoding='utf-8'), indent=4)
+                (json_contents['createDuplicateEntries'][i], dup_save_file) = check_signing_status(dup, os_str)
+                save_file = save_file or dup_save_file
+            if save_file:
+                json.dump(sort_os_file(None, json_contents), file_name.open('w', encoding='utf-8'), indent=4)

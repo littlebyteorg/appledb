@@ -37,7 +37,8 @@ added_builds = {
     '22C152': ['22C154'],
     '22D63': ['22D64'],
     '23A5297m': ['23A5297n'],
-    '22G86': ['22G84']
+    '22G86': ['22G84'],
+    '23A341': ['23A330', '23A340']
 }
 
 ignore_builds = {
@@ -47,10 +48,10 @@ ignore_builds = {
 # Ensure known versions of watchOS don't get included in import-ota.txt.
 # Update this dictionary in case Apple updates watchOS for iPhones that don't support latest iOS.
 latest_watch_compatibility_versions = {
-    12: '5.3.9',  # iPhone 5s/6
-    18: '8.8.1',  # iPhone 6s/SE (1st)/7
-    20: '9.6.3',  # iPhone 8/X
-    24: '11.6.1', # iPhone Xr/Xs
+    12: ['5.3.9'],  # iPhone 5s/6
+    18: ['8.8.1'],  # iPhone 6s/SE (1st)/7
+    20: ['9.6.3'],  # iPhone 8/X
+    24: ['11.6', '11.6.1'], # iPhone Xr/Xs
 }
 
 asset_audiences_overrides = {
@@ -460,7 +461,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
 
             cleaned_os_version = asset['OSVersion'].removeprefix('9.9.')
 
-            if target_os_str == 'watchOS' and latest_watch_compatibility_versions.get(asset['CompatibilityVersion']) == cleaned_os_version:
+            if target_os_str == 'watchOS' and cleaned_os_version in latest_watch_compatibility_versions.get(asset['CompatibilityVersion'], []):
                 continue
             link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
             response_os_str = target_os_str
@@ -636,6 +637,7 @@ for (os_str, builds) in parsed_args.items():
 
         for audience in audiences:
             for key, value in devices.items():
+                print(f"\t\tChecking {key}")
                 for board in value['boards']:
                     if not (args.no_prerequisites or os_str == 'tvOS'):
                         for prerequisite_build, version in value['builds'].items():
