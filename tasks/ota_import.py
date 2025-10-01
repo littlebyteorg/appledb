@@ -26,6 +26,61 @@ LOCAL_OTA_PATH = Path("otas")
 
 SESSION = requests.Session()
 
+CELLULAR_DEVICES_26 = [
+    'iPad8,3',
+    'iPad8,4',
+    'iPad8,7',
+    'iPad8,8',
+    'iPad8,10',
+    'iPad8,12',
+    'iPad11,2',
+    'iPad11,4',
+    'iPad11,7',
+    'iPad12,2',
+    'iPad13,2',
+    'iPad13,6',
+    'iPad13,7',
+    'iPad13,10',
+    'iPad13,11',
+    'iPad13,17',
+    'iPad13,19',
+    'iPad14,2',
+    'iPad14,4',
+    'iPad14,6',
+    'iPad14,9',
+    'iPad14,11',
+    'iPad15,4',
+    'iPad15,6',
+    'iPad15,8',
+    'iPad16,2',
+    'iPad16,4',
+    'iPad16,6',
+    'Watch6,3',
+    'Watch6,4',
+    'Watch6,8',
+    'Watch6,9',
+    'Watch6,12',
+    'Watch6,13',
+    'Watch6,16',
+    'Watch6,17',
+    'Watch6,18',
+    'Watch7,3',
+    'Watch7,4',
+    'Watch7,5',
+    'Watch7,10',
+    'Watch7,11',
+    'Watch7,12',
+    'Watch7,15',
+    'Watch7,16',
+    'Watch7,19',
+    'Watch7,20',
+]
+
+APPLE_BASEBAND_DEVICES = [
+    'iPhone17,5',
+    'iPhone18,4',
+]
+
 def import_ota(
     ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, final_version=None, released=None, beta=None, rc=None, \
         use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None, \
@@ -42,10 +97,10 @@ def import_ota(
     # We need per-device details anyway, grab from the full OTA
     # If size is explicitly passed in, assume source is no longer active
     if skip_remote and not size:
-        skip_remote = bool(prerequisite_builds) or os_str in ['iOS', 'iPadOS']
+        skip_remote = bool(prerequisite_builds) or (os_str in ['iOS', 'iPadOS'] and build[2] <= 'G')
         if ota_url.endswith('.aea'):
-            skip_remote = skip_remote or len(set(device_map).intersection(['Watch6,3', 'Watch6,4', 'Watch6,8', 'Watch6,9', 'Watch6,12', 'Watch6,13', 'Watch6,16', 'Watch6,17', 'Watch6,18', 'Watch7,3', 'Watch7,4', 'Watch7,5', 'Watch7,10', 'Watch7,11', 'Watch7,12', 'Watch7,15', 'Watch7,16', 'Watch7,19', 'Watch7,20'])) == 0
-            if not skip_remote:
+            skip_remote = skip_remote or (len(set(device_map).intersection(CELLULAR_DEVICES_26)) == 0 and not device_map[0].startswith('iPhone'))
+            if not skip_remote and len(set(device_map).intersection(APPLE_BASEBAND_DEVICES)) == 0:
                 skip_remote = True
                 only_needs_baseband = True
 
@@ -133,6 +188,17 @@ def import_ota(
                     baseband_map[mapped_device] = baseband_response.groups(1)[0]
                 else:
                     print(f"MISSING BASEBAND - {path}")
+            elif 'Cellular1,ChipID' in identity and not skip_remote:
+                mapped_device = get_board_mapping_lower_case([board_id])
+                if not mapped_device:
+                    print((f"MISSING BOARD - {board_id}"))
+                    continue
+                if baseband_map.get(mapped_device[0]):
+                    continue
+                path = identity['Manifest']['Cellular1,RTKitOS']['Info']['Path']
+                bbfw_version = list(extracted_path.rglob(path))[0].read_bytes().split(b"|BBFW:")[1].split(b"|")[0].decode()
+                # bbfw_version = ipsw.read(path).split(b"|BBFW:")[1].split(b"|")[0].decode()
+                baseband_map[mapped_device[0]] = bbfw_version
     if (ota_url.endswith(".ipsw")):
         build = build or info_plist["TargetUpdate"]
         recommended_version = recommended_version or info_plist["ProductVersion"]
