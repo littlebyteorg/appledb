@@ -47,7 +47,9 @@ jobs:
         run: python tasks/generate_link_variants.py
 
       - name: Mount tmpfs
-        run: sudo mount -t tmpfs -o size=5G tmpfs out
+        run: |
+          mkdir out
+          sudo mount -t tmpfs -o size=5G tmpfs out
 
       # run build script
       - name: Build json files
