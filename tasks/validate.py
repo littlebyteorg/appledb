@@ -74,7 +74,7 @@ def check_release_date(os: dict):
             return True
         now = datetime.datetime.now(tz=zoneinfo.ZoneInfo("America/Los_Angeles"))
         future = (parsed > now) if parsed.tzinfo else (parsed.replace(tzinfo=zoneinfo.ZoneInfo("America/Los_Angeles")) > now)
-        if future:
+        if future and not os.get("preinstalled"):
             print(f"Release date {os['released']} for {os['key']} is in the future")
             return True
 
