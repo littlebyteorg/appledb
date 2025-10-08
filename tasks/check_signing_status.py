@@ -29,11 +29,62 @@ supported_os_names = [
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--all-signed', action='store_true')
 parser.add_argument('-b', '--build', action='append', nargs='+')
+parser.add_argument('-f', '--force-final-releases', action='store_true')
 parser.add_argument('-l', '--list-signed', action='store_true')
 parser.add_argument('-ld', '--list-devices', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=supported_os_names)
 parser.add_argument('-s', '--signed-only', action='store_true')
 args = parser.parse_args()
+
+final_builds = {
+    'audioOS': [
+        '17M61',
+    ],
+    'iOS': [
+        '8B117',
+        '8C148',
+        '9B206',
+        '10B500',
+        '11D257',
+        '13G36',
+        '13G37',
+        '14G60',
+        '14G61',
+        '16H81',
+        '19H394',
+        '20H364',
+    ],
+    'iPadOS': [
+        '19H394',
+        '20H364',
+        '21H450',
+    ],
+    'macOS': [
+        '20B28'
+    ],
+    'tvOS': [
+        '11D258',
+        '12H1006',
+        '17M61',
+    ],
+    'Studio Display Firmware': [
+        '19F80',
+        '20E246',
+        '21A329'
+    ],
+    'watchOS': [
+        '14V753',
+        '15U70',
+        '16U693',
+        '17U208',
+        '17U216',
+        '19U512',
+        '20U502',
+        '21U580',
+        '22U84',
+        '22U90',
+    ],
+}
 
 baseband_value = {
     "iPad2,2": 12,
@@ -212,7 +263,9 @@ def get_signed_builds(os_names, include_devices):
         working_dict = {}
         for file_path in Path(f"osFiles/{os_name}").rglob("*.json"):
             file_contents = json.load(file_path.open(encoding='utf-8'))
-            if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
+            if not args.force_final_releases and not args.list_signed:
+                if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
+                if file_contents['build'] in final_builds.get(os_name, []): continue
             if not file_contents.get('signed'): continue
             if isinstance(file_contents['signed'], list):
                 working_dict[file_contents['build']] = file_contents['signed']
@@ -235,6 +288,7 @@ def check_signing_status(fw, os_name):
     checked_board_device_list = set()
     signed_devices = []
     existing_signed = fw.get('signed', False)
+    if args.signed_only and not existing_signed: return (fw, False)
     if isinstance(existing_signed, list):
         existing_signed = fw['signed'].copy()
     fw_device_map = [x for x in fw['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
@@ -246,9 +300,9 @@ def check_signing_status(fw, os_name):
     for source in fw['sources']:
         device_map = [x for x in source['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
         if args.signed_only:
-            if isinstance(fw.get('signed'), list):
+            if isinstance(existing_signed, list):
                 device_map = [x for x in device_map if x in fw['signed']]
-            elif not fw.get('signed'): continue
+            elif not existing_signed: continue
         if not set(device_map).difference(checked_build_device_list): continue
         if not ((source['type'] == 'pkg' and os_name == 'bridgeOS') or source['type'] in ['ipsw', 'ota'] or (source['type'] == 'installassistant' and fw['build'] in ['20B50', '20D75'])): continue
         if source['type'] == 'ipsw' and os_name in ['tvOS', 'audioOS', 'watchOS'] and 'AppleTV2,1' not in fw_device_map: continue
