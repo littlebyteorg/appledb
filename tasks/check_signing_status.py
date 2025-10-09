@@ -63,8 +63,12 @@ final_builds = {
         '20B28'
     ],
     'tvOS': [
+        '10B809',
+        '11D257',
         '11D258',
+        '12H606',
         '12H1006',
+        '14W756',
         '17M61',
     ],
     'Studio Display Firmware': [
