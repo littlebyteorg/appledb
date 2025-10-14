@@ -54,6 +54,11 @@ latest_watch_compatibility_versions = {
     24: ['11.6', '11.6.1'], # iPhone Xr/Xs
 }
 
+legacy_versions = {
+    'iOS': [15, 16],
+    'iPadOS': [15, 16, 17],
+}
+
 asset_audiences_overrides = {
     'iPadOS': 'iOS'
 }
@@ -538,6 +543,11 @@ for (os_str, builds) in parsed_args.items():
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
+        kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
+        if int(kern_version) < (25 if os_str == 'macOS' else 23):
+            calculated_version = int(kern_version) - kern_offset
+        else:
+            calculated_version = int(kern_version) + (1 if os_str == 'macOS' else 3)
         audiences = []
         raw_audiences = args.audience
         unfiltered_audiences = {}
@@ -553,9 +563,8 @@ for (os_str, builds) in parsed_args.items():
         for audience in raw_audiences:
             if audience == 'beta':
                 desired_audiences = target_asset_audiences.get('developer', target_asset_audiences.get('appleseed', {}))
-                kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
 
-                values = [v for k,v in desired_audiences.items() if (int(k) == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= int(k)]
+                values = [v for k,v in desired_audiences.items() if (calculated_version == int(k)) or (calculated_version < int(k) and calculated_version not in legacy_versions.get(os_str, []))]
                 for value in values:
                     if not value: continue
                     if isinstance(value, list):
@@ -564,8 +573,7 @@ for (os_str, builds) in parsed_args.items():
                         audiences.append(value)
             elif audience in beta_specific_types:
                 if target_asset_audiences.get(audience):
-                    kern_offset = kernel_marketing_version_offset_map.get(os_str, default_kernel_marketing_version_offset)
-                    values = [v for k,v in target_asset_audiences[audience].items() if (int(k) == 12 and int(kern_version) - kern_offset == 15) or int(kern_version) - kern_offset <= int(k)]
+                    values = [v for k,v in target_asset_audiences[audience].items() if calculated_version <= int(k)]
                     for value in values:
                         if not value: continue
                         if isinstance(value, list):
