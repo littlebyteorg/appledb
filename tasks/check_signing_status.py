@@ -7,6 +7,7 @@ import subprocess
 import random
 import requests
 import remotezip
+import packaging.version
 
 from file_downloader import handle_ota_file, handle_pkg_file
 from sort_os_files import sort_os_file
@@ -34,6 +35,7 @@ parser.add_argument('-l', '--list-signed', action='store_true')
 parser.add_argument('-ld', '--list-devices', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=supported_os_names)
 parser.add_argument('-s', '--signed-only', action='store_true')
+parser.add_argument('-u', '--unsigned', action='store_true')
 args = parser.parse_args()
 
 final_builds = {
@@ -261,17 +263,22 @@ blocked_prefixes = {
     ]
 }
 
-def get_signed_builds(os_names, include_devices):
+def get_builds(os_names, include_devices):
     signed_builds = {}
     for os_name in os_names:
         working_dict = {}
         for file_path in Path(f"osFiles/{os_name}").rglob("*.json"):
             file_contents = json.load(file_path.open(encoding='utf-8'))
+            if os_name == 'audioOS' and file_contents['build'] == '15C25': continue
+            if file_contents.get('osStr') and not file_contents.get('build'): continue
+            if os_name == 'macOS' and packaging.version.parse(file_contents.get('version', '0').split(" ", 1)[0]) < packaging.version.parse("10.16"): continue
+            if os_name == 'tvOS' and packaging.version.parse(file_contents.get('version', '0').split(" ", 1)[0]) < packaging.version.parse("4"): continue
+            if not file_contents.get('deviceMap'): continue
             if not args.force_final_releases and not args.list_signed:
                 if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
                 if file_contents['build'] in final_builds.get(os_name, []): continue
-            if not file_contents.get('signed'): continue
-            if isinstance(file_contents['signed'], list):
+            if not file_contents.get('signed', args.unsigned): continue
+            if not args.unsigned and isinstance(file_contents['signed'], list):
                 working_dict[file_contents['build']] = file_contents['signed']
             else:
                 working_dict[file_contents['build']] = [x for x in file_contents['deviceMap'] if x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
@@ -308,15 +315,19 @@ def check_signing_status(fw, os_name):
                 device_map = [x for x in device_map if x in fw['signed']]
             elif not existing_signed: continue
         if not set(device_map).difference(checked_build_device_list): continue
-        if not ((source['type'] == 'pkg' and os_name == 'bridgeOS') or source['type'] in ['ipsw', 'ota'] or (source['type'] == 'installassistant' and fw['build'] in ['20B50', '20D75'])): continue
+        if not ((source['type'] == 'pkg' and os_name == 'bridgeOS') or source['type'] in ['ipsw', 'ota'] or (source['type'] == 'installassistant' and fw['build'] in ['20B50', '20D75', '23D2057'])): continue
         if source['type'] == 'ipsw' and os_name in ['tvOS', 'audioOS', 'watchOS'] and 'AppleTV2,1' not in fw_device_map: continue
-        link = [x for x in source['links'] if 'apple.com' in x['url'] and 'developer' not in x['url']]
+        if fw.get('build'):
+            fw_build = fw['build']
+        else:
+            fw_build = fw['uniqueBuild'].split('-')[0]
+        link = [x for x in source['links'] if 'apple.com' in x['url'] and ('developer' not in x['url'] or fw_build in ['20A5299w'])]
         if not link: continue
         link = link[0]
         url_prefix = link['url'].rsplit('/', 1)[1].split('_', 1)[0]
         if url_prefix in ['iPhone1,1', 'iPod1,1']: continue
         parent_path = None
-        cached_path = f"out/manifest_cache/{os_str}/{fw.get('uniqueBuild', fw['build'])}/{link['url'].rsplit('/', 1)[1].rsplit(".", 1)[0]}/BuildManifest.plist"
+        cached_path = f"out/manifest_cache/{os_str}/{fw_build}/{link['url'].rsplit('/', 1)[1].rsplit(".", 1)[0]}/BuildManifest.plist"
         has_cached_manifest = Path(cached_path).exists()
         if not has_cached_manifest:
             link = [x for x in source['links'] if x['active'] and 'apple.com' in x['url'] and 'developer' not in x['url']]
@@ -394,16 +405,17 @@ def check_signing_status(fw, os_name):
             checked_build_device_list.add(model)
             if signed:
                 signed_devices.append(model)
-    if len(set(fw_device_map).symmetric_difference(set(signed_devices + fw_preinstalled_devices))) == 0:
-        fw['signed'] = True
-    elif len(signed_devices) > 0:
-        fw['signed'] = signed_devices
+    if len(signed_devices) > 0:
+        if len(set(fw_device_map).symmetric_difference(set(signed_devices + fw_preinstalled_devices))) == 0:
+            fw['signed'] = True
+        else:
+            fw['signed'] = signed_devices
     elif fw.get('signed'):
         del fw['signed']
     return fw, fw.get('signed', False) != existing_signed
 
-if args.all_signed or args.list_signed:
-    os_build_map = get_signed_builds(args.os or supported_os_names, args.list_signed and args.list_devices)
+if args.all_signed or args.list_signed or args.unsigned:
+    os_build_map = get_builds(args.os or supported_os_names, args.list_signed and args.list_devices)
     if args.list_signed:
         print(json.dumps(os_build_map, indent=4))
         exit(0)
@@ -418,7 +430,7 @@ for os_str, builds in os_build_map.items():
         print(f"  {build}")
         for file_name in Path(f'osFiles/{os_str}').rglob(f"{build}.json"):
             json_contents = json.load(file_name.open(encoding="utf-8"))
-            if not json_contents.get('sources'): continue
+            if not [x for x in json_contents.get('sources', []) if x['type'] != 'kdk']: continue
             (json_contents, save_file) = check_signing_status(json_contents, os_str)
             for i, dup in enumerate(json_contents.get('createDuplicateEntries', [])):
                 if not dup.get('sources') or not dup.get('deviceMap'): continue
