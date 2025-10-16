@@ -79,7 +79,9 @@ for fork in args.forks:
         start_range = int(f"{fork}{args.range[0]:03d}")
         end_range = int(f"{fork}{args.range[1]:03d}")
 
+    target_audiences = list()
     asset_audience = asset_audiences[asset_audiences_overrides.get(args.os, args.os)]['release']
+    # asset_audience = asset_audiences[asset_audiences_overrides.get(args.os, args.os)]['developer']['26']
 
     for build in range(start_range, end_range+1):
         for board, identifier in board_identifier_map.items():
