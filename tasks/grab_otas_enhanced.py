@@ -92,6 +92,7 @@ default_mac_devices = [
     'Mac16,5',          # Covers Sequoia 15.1 forked builds
     'Mac16,12',         # Covers Sequoia 15.2 forked builds
     'Mac16,9',          # Covers Sequoia 15.3 forked builds
+    'Mac17,2',          # Covers Tahoe 26.0 forked builds
     'VirtualMac2,1'     # Always include
 ]
 
@@ -440,6 +441,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
         request['DelayRequested'] = True
         request['Supervised'] = True
 
+    print(json.dumps(request))
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
     try:
@@ -672,7 +674,8 @@ for key, value in ota_list.items():
         if value['osStr'] == 'macOS':
             source_device_map = set()
             for device in source['deviceMap']:
-                source_device_map.update(default_mac_device_extensions[device])
+                if default_mac_device_extensions.get(device):
+                    source_device_map.update(default_mac_device_extensions[device])
             source['deviceMap'] = source_device_map
             if bool(set(mac_device_additions.keys()).intersection(source['prerequisites'])):
                 for prerequisite in source['prerequisites']:
