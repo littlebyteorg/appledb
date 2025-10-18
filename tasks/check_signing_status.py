@@ -315,7 +315,7 @@ def check_signing_status(fw, os_name):
                 device_map = [x for x in device_map if x in fw['signed']]
             elif not existing_signed: continue
         if not set(device_map).difference(checked_build_device_list): continue
-        if not ((source['type'] == 'pkg' and os_name == 'bridgeOS') or source['type'] in ['ipsw', 'ota'] or (source['type'] == 'installassistant' and fw['build'] in ['20B50', '20D75', '23D2057'])): continue
+        if not ((source['type'] == 'pkg' and os_name == 'bridgeOS') or source['type'] in ['ipsw', 'ota'] or (source['type'] == 'installassistant' and fw['build'] in ['20B50', '20D75', '23D2057', '25A8353'])): continue
         if source['type'] == 'ipsw' and os_name in ['tvOS', 'audioOS', 'watchOS'] and 'AppleTV2,1' not in fw_device_map: continue
         if fw.get('build'):
             fw_build = fw['build']

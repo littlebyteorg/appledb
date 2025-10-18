@@ -55,6 +55,8 @@ CELLULAR_DEVICES_26 = [
     'iPad16,2',
     'iPad16,4',
     'iPad16,6',
+    'iPad17,2',
+    'iPad17,4',
     'Watch6,3',
     'Watch6,4',
     'Watch6,8',
