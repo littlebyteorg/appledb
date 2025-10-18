@@ -74,15 +74,14 @@ default_kernel_marketing_version_offset = 4
 asset_audiences = json.load(Path("tasks/audiences.json").open(encoding="utf-8"))
 
 default_mac_devices = [
-    'iMac18,1',         # Intel, only supports up to Ventura
     'MacBookAir8,1',    # Intel, only supports up to Sonoma
     'MacBookAir9,1',    # Intel, only supports up to Sequoia
     'MacPro7,1',        # Intel, supports Tahoe
     'MacBookPro17,1',   # M1, covers all released Apple Silicon builds
-    'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds
+    'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds + Ventura 13.6.2
     'Mac14,2',          # Covers Monterey 12.4 (WWDC 2022) forked builds
     'Mac14,3',          # Covers Ventura 13.0 forked builds
-    'Mac14,6',          # Covers Ventura 13.0 forked builds
+    'Mac14,6',          # Covers Ventura 13.0 forked builds + Ventura 13.6.2
     'Mac14,15',         # Covers Ventura 13.3 (WWDC 2023) forked builds
     'Mac14,14',         # Covers Ventura 13.4 (WWDC 2023) forked builds
     'Mac15,3',          # Covers Ventura 13.5/13.6.2 forked builds
@@ -97,37 +96,6 @@ default_mac_devices = [
 ]
 
 default_mac_device_extensions = {
-    'iMac18,1': set([
-        "iMac18,1",
-        "iMac18,2",
-        "iMac18,3",
-        "iMac19,1",
-        "iMac19,2",
-        "iMac20,1",
-        "iMac20,2",
-        "iMacPro1,1",
-        "MacBook10,1",
-        "MacBookAir8,1",
-        "MacBookAir8,2",
-        "MacBookAir9,1",
-        "MacBookPro14,1",
-        "MacBookPro14,2",
-        "MacBookPro14,3",
-        "MacBookPro15,1-2018",
-        "MacBookPro15,1-2019",
-        "MacBookPro15,2-2018",
-        "MacBookPro15,2-2019",
-        "MacBookPro15,3-2018",
-        "MacBookPro15,3-2019",
-        "MacBookPro15,4",
-        "MacBookPro16,1",
-        "MacBookPro16,2",
-        "MacBookPro16,3",
-        "MacBookPro16,4",
-        "Macmini8,1",
-        "MacPro7,1",
-        "MacPro7,1-Rack"
-    ]),
     'MacBookAir8,1': set([
         "iMac19,1",
         "iMac19,2",
@@ -212,9 +180,6 @@ default_mac_device_extensions = {
         'Mac14,3',
         'Mac14,12',
     ]),
-    'Mac14,15': set([
-        'Mac14,15',
-    ]),
     'Mac14,14': set([
         'Mac14,8',
         'Mac14,8-Rack',
@@ -258,9 +223,6 @@ default_mac_device_extensions = {
     'Mac16,9': set([
         'Mac15,14',
         'Mac16,9',
-    ]),
-    'VirtualMac2,1': set([
-        'VirtualMac2,1',
     ]),
 }
 
@@ -679,6 +641,7 @@ for key, value in ota_list.items():
             if bool(set(mac_device_additions.keys()).intersection(source['prerequisites'])):
                 for prerequisite in source['prerequisites']:
                     source['deviceMap'].update(mac_device_additions.get(prerequisite, []))
+            source['boardMap'] = set()
         source['deviceMap'] = sorted(list(source['deviceMap']), key=device_sort)
         source['prerequisites'] = sorted(list(source['prerequisites']), key=build_number_sort)
         source['boardMap'] = sorted(list(source['boardMap']))
