@@ -635,6 +635,7 @@ for key, value in ota_list.items():
         if value['osStr'] == 'macOS':
             source_device_map = set()
             for device in source['deviceMap']:
+                source_device_map.add(device)
                 if default_mac_device_extensions.get(device):
                     source_device_map.update(default_mac_device_extensions[device])
             source['deviceMap'] = source_device_map
