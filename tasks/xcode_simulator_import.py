@@ -54,7 +54,7 @@ def call_pallas(os, requested_build):
         if asset.get('Architectures'):
             parsed_asset['arch'] = asset['Architectures']
         parsed_assets.append(parsed_asset)
-    return parsed_assets, parsed_response["PostingDate"]
+    return parsed_assets, parsed_response.get("PostingDate")
 
 def get_build_train(target_build):
     base_build_train_map = {
