@@ -84,6 +84,10 @@ asset_types = {
     'Beats': {
         'A2048': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2048_EA',
         'A2577': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2577_EA',
+        'A3476': [
+            'com_apple_MobileAsset_MobileAccessoryUpdate_A3476_EA',
+            'com_apple_MobileAsset_UARP_A3476'
+        ],
         'A3157': 'com_apple_MobileAsset_UARP_A3157'
     },
     'Keyboards': {
@@ -196,6 +200,10 @@ device_map = {
     ],
     'A3184': [
         "AirPodsMax1,2"
+    ],
+    'A3476': [
+        "Powerbeats Fit-left",
+        "Powerbeats Fit-right"
     ]
 }
 
