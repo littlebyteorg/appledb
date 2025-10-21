@@ -8,6 +8,16 @@ import dateutil
 import dateutil.parser
 
 
+NOW = datetime.datetime.now(tz=zoneinfo.ZoneInfo("America/Los_Angeles"))
+FUTURE_THRESHOLD = datetime.timedelta(days=40)
+
+
+def force_tz(dt: datetime.datetime):
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=zoneinfo.ZoneInfo("America/Los_Angeles"))
+    return dt
+
+
 def check_duplicate_keys(items: list[dict]):
     failed = False
 
@@ -65,15 +75,14 @@ def check_beta_rc_consistency(os: dict):
     return False
 
 
-def check_release_date(os: dict):
+def check_release_date_os(os: dict):
     if os.get("released"):
         try:
             parsed = dateutil.parser.parse(os["released"])
         except Exception as e:
             print(f"Release date {os['released']} for {os['key']} is not parseable: {e}")
             return True
-        now = datetime.datetime.now(tz=zoneinfo.ZoneInfo("America/Los_Angeles"))
-        future = (parsed > now) if parsed.tzinfo else (parsed.replace(tzinfo=zoneinfo.ZoneInfo("America/Los_Angeles")) > now)
+        future = force_tz(parsed) > NOW
         if future and not os.get("preinstalled"):
             print(f"Release date {os['released']} for {os['key']} is in the future")
             return True
@@ -85,6 +94,45 @@ def check_placeholders(os: dict):
     if "FIXME" in os["version"] or "YYYY-MM-DD" in os.get("released", ""):
         print(f"Placeholder in {os['version']} for {os['key']}")
         return True
+    return False
+
+
+def check_release_date_device(device: dict):
+    if device.get("released"):
+        try:
+            parsed = dateutil.parser.parse(device["released"])
+        except Exception as e:
+            print(f"Release date {device['released']} for {device['key']} is not parseable: {e}")
+            return True
+        threshold = NOW + FUTURE_THRESHOLD
+        future = force_tz(parsed) > threshold
+        if future and not device.get("preinstalled"):
+            print(f"Release date {device['released']} for {device['key']} is too far in the future")
+            return True
+
+        if device.get("colors", []):
+            for color in device["colors"]:
+                if "released" in color:
+                    try:
+                        color_parsed = dateutil.parser.parse(color["released"])
+                    except Exception as e:
+                        print(
+                            f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is not parseable: {e}"
+                        )
+                        return True
+                    color_past = color_parsed < parsed
+                    if color_past:
+                        print(
+                            f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is before device release date {device['released']}"
+                        )
+                        return True
+                    color_future = force_tz(color_parsed) > threshold
+                    if color_future:
+                        print(
+                            f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is too far in the future"
+                        )
+                        return True
+
     return False
 
 
@@ -103,7 +151,10 @@ def main():
         failed |= check_map_consistency(os)
         failed |= check_beta_rc_consistency(os)
         failed |= check_placeholders(os)
-        failed |= check_release_date(os)
+        failed |= check_release_date_os(os)
+
+    for device in devices:
+        failed |= check_release_date_device(device)
 
     print(f"Validation {'failed' if failed else 'succeeded'}")
     if failed:
