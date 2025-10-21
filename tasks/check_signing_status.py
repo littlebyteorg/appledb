@@ -327,12 +327,17 @@ def check_signing_status(fw, os_name):
         url_prefix = link['url'].rsplit('/', 1)[1].split('_', 1)[0]
         if url_prefix in ['iPhone1,1', 'iPod1,1']: continue
         parent_path = None
-        cached_path = f"out/manifest_cache/{os_str}/{fw_build}/{link['url'].rsplit('/', 1)[1].rsplit(".", 1)[0]}/BuildManifest.plist"
+        if os_name in ['macOS', 'bridgeOS'] and len(device_map) > 3:
+            device_map_name = 'Universal'
+        else:
+            device_map_name = ";".join(device_map)
+        cached_path = f"manifest_cache/{os_str}/{fw_build}/{device_map_name}/BuildManifest.plist"
         has_cached_manifest = Path(cached_path).exists()
         if not has_cached_manifest:
             link = [x for x in source['links'] if x['active'] and 'apple.com' in x['url'] and 'developer' not in x['url']]
             if not link: continue
             link = link[0]
+            print(f'Cache miss for {cached_path}, grabbing from source')
             Path(cached_path).parent.mkdir(parents=True, exist_ok=True)
             if source['type'] == 'pkg':
                 parent_path = 'out/package-bridge'
