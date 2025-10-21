@@ -134,7 +134,7 @@ def check_release_date_device(device: dict):
                 print(f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is not parseable: {e}")
                 failed = True
                 continue
-            color_past = color_parsed < earliest
+            color_past = force_tz(color_parsed) < earliest
             if color_past:
                 print(
                     f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is before device release date {device['released']}"
