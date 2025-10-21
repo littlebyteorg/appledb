@@ -60,7 +60,7 @@ skip_builds = [
     "23A341", # iOS/iPadOS 26.0
     "23A341 | 23A345", # iOS/iPadOS 26.0
     "23A355", # iOS/iPadOS 26.0.1
-    "23A8464", # iPadOS 26.0.1 (M5)
+    "23A8466", # iPadOS 26.0.1 (M5)
     "22L572", # tvOS 18.5
     "22M84", # tvOS 18.6
     "23J353", # tvOS 26.0
