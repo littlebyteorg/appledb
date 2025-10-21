@@ -98,42 +98,56 @@ def check_placeholders(os: dict):
 
 
 def check_release_date_device(device: dict):
-    if device.get("released"):
+    failed = False
+    released = device.get("released")
+
+    if not released:
+        return False
+
+    if isinstance(released, str):
+        released = [released]
+
+    earliest = NOW
+    threshold = NOW + FUTURE_THRESHOLD
+
+    for date_str in released:
         try:
-            parsed = dateutil.parser.parse(device["released"])
+            parsed = dateutil.parser.parse(date_str)
+            earliest = min(earliest, force_tz(parsed))
         except Exception as e:
-            print(f"Release date {device['released']} for {device['key']} is not parseable: {e}")
-            return True
-        threshold = NOW + FUTURE_THRESHOLD
+            print(f"Release date {date_str} for {device['key']} is not parseable: {e}")
+            failed = True
+            continue
         future = force_tz(parsed) > threshold
         if future and not device.get("preinstalled"):
-            print(f"Release date {device['released']} for {device['key']} is too far in the future")
-            return True
+            print(f"Release date {date_str} for {device['key']} is too far in the future")
+            failed = True
 
-        if device.get("colors", []):
-            for color in device["colors"]:
-                if "released" in color:
-                    try:
-                        color_parsed = dateutil.parser.parse(color["released"])
-                    except Exception as e:
-                        print(
-                            f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is not parseable: {e}"
-                        )
-                        return True
-                    color_past = color_parsed < parsed
-                    if color_past:
-                        print(
-                            f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is before device release date {device['released']}"
-                        )
-                        return True
-                    color_future = force_tz(color_parsed) > threshold
-                    if color_future:
-                        print(
-                            f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is too far in the future"
-                        )
-                        return True
+    if failed:
+        return failed
 
-    return False
+    for color in device.get("colors", []):
+        if "released" in color:
+            try:
+                color_parsed = dateutil.parser.parse(color["released"])
+            except Exception as e:
+                print(f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is not parseable: {e}")
+                failed = True
+                continue
+            color_past = color_parsed < earliest
+            if color_past:
+                print(
+                    f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is before device release date {device['released']}"
+                )
+                failed = True
+            color_future = force_tz(color_parsed) > threshold
+            if color_future:
+                print(
+                    f"Release date {color['released']} for color {color.get('name', 'unknown')} of {device['key']} is too far in the future"
+                )
+                failed = True
+
+    return failed
 
 
 def main():
