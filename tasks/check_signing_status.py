@@ -53,13 +53,13 @@ final_builds = {
         '14G60',
         '14G61',
         '16H81',
-        '19H394',
-        '20H364',
+        # '19H394',
+        # '20H364',
     ],
     'iPadOS': [
-        '19H394',
-        '20H364',
-        '21H450',
+        # '19H394',
+        # '20H364',
+        # '21H450',
     ],
     'macOS': [
         '20B28'
@@ -91,6 +91,10 @@ final_builds = {
         '22U90',
     ],
 }
+
+current_builds = json.load(Path('tasks/latest_builds.json').open(encoding="utf-8"))
+for os_name in final_builds.keys():
+    final_builds[os_name] = list(set(final_builds[os_name]).union(current_builds.get(os_name, {}).get('release', [])))
 
 baseband_value = {
     "iPad2,2": 12,
