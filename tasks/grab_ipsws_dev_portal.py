@@ -11,6 +11,8 @@ import lxml.html
 import requests
 from lxml.etree import _Element as Element  # pylint: disable=no-name-in-module
 
+HEADERS = {}
+
 # If you have a proxy to access the dev portal, pass it on the command line, set the DEV_PORTAL_PROXY environment variable, or set it here
 # Otherwise, leave it blank and save the HTML to import_raw.html
 if sys.argv[1:]:
@@ -20,8 +22,18 @@ elif os.environ.get("DEV_PORTAL_PROXY"):
 else:
     DEV_PORTAL_PROXY = ""  # Set your proxy here
 
+if sys.argv[2:]:
+    DEV_AUTH_VALUE = sys.argv[2]
+elif os.environ.get("DEV_AUTH_VALUE"):
+    DEV_AUTH_VALUE = os.environ["DEV_AUTH_VALUE"].strip()
+else:
+    DEV_AUTH_VALUE = ""  # Set your value here for an authorization header
+
+if DEV_AUTH_VALUE:
+    HEADERS = {"Authorization": DEV_AUTH_VALUE}
+
 if DEV_PORTAL_PROXY:
-    result = requests.get(DEV_PORTAL_PROXY, timeout=30)
+    result = requests.get(DEV_PORTAL_PROXY, headers=HEADERS, timeout=30)
     result.raise_for_status()
 
     Path("import_raw.html").write_bytes(result.content)
@@ -60,7 +72,7 @@ skip_builds = [
     "23A341", # iOS/iPadOS 26.0
     "23A341 | 23A345", # iOS/iPadOS 26.0
     "23A355", # iOS/iPadOS 26.0.1
-    "23A8464", # iPadOS 26.0.1 (M5)
+    "23A8466", # iPadOS 26.0.1 (M5)
     "22L572", # tvOS 18.5
     "22M84", # tvOS 18.6
     "23J353", # tvOS 26.0
@@ -94,7 +106,7 @@ for group in element.xpath(".//h3/.."):
         if name.startswith("Device Support"):
             # Bruh
             continue
-        assert match, "Name does not match pattern"
+        assert match, f"Name does not match pattern: {name}"
     version = match.groupdict()["version"]
     if "." not in version:
         version += ".0"
@@ -123,7 +135,7 @@ for group in element.xpath(".//h3/.."):
                 url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
             if build not in build_info["Build"].split(" | "):
-                print(f"WARNING: {build_info['Build']} isn't the same as {build}, skipping")
+                print(f"WARNING: {build_info['Build']} isn't the same as {build} ({device}), skipping")
                 continue
 
             data.setdefault("links", []).append({"device": device, "url": url, "build": build})
