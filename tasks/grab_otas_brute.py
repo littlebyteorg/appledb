@@ -18,7 +18,7 @@ asset_audiences_overrides = {
     'iPadOS': 'iOS'
 }
 
-def call_pallas(board_id, os_build, os_str, audience, identifier, product_version, counter=5):
+def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, product_version, counter=5):
     asset_type = 'SoftwareUpdate'
     if os_str == 'macOS':
         asset_type = 'Mac' + asset_type
@@ -27,8 +27,8 @@ def call_pallas(board_id, os_build, os_str, audience, identifier, product_versio
         "ClientVersion": 2,
         "CertIssuanceDay": "2023-12-10",
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
-        "AssetAudience": audience,
-        "ProductType": identifier,
+        "AssetAudience": target_audience,
+        "ProductType": device_identifier,
         "ProductVersion": product_version,
         "HWModelStr": board_id,
         "BuildVersion": os_build
@@ -43,7 +43,7 @@ def call_pallas(board_id, os_build, os_str, audience, identifier, product_versio
         if counter == 0:
             print(request)
             raise
-        return call_pallas(board_id, os_build, os_str, audience, identifier, product_version, counter - 1)
+        return call_pallas(board_id, os_build, os_str, target_audience, device_identifier, product_version, counter - 1)
 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     for asset in parsed_response['Assets']:
