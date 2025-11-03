@@ -4,6 +4,7 @@ import json
 import os
 import re
 import sys
+import string
 from pathlib import Path
 
 import dateutil.parser
@@ -134,15 +135,17 @@ for group in element.xpath(".//h3/.."):
             if url.startswith("/"):
                 url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
+            if build[2] not in string.ascii_uppercase:
+                build = build[1:]
             if build not in build_info["Build"].split(" | "):
                 print(f"WARNING: {build_info['Build']} isn't the same as {build} ({device}), skipping")
                 continue
 
-            data.setdefault("links", []).append({"device": device, "url": url, "build": build})
+            data.setdefault("links", []).append({"device": device, "url": url.replace("hhttp", "http"), "build": build})
     except IndexError:
         if direct_download and direct_download[0].attrib["href"].endswith('.ipsw'):
             has_profile_download = False
-            data.setdefault("links", []).append({"device": 'Mac computers with Apple Silicon', "url": direct_download[0].attrib["href"], "build": build})
+            data.setdefault("links", []).append({"device": 'Mac computers with Apple Silicon', "url": direct_download[0].attrib["href"].replace("hhttp", "http"), "build": build})
         else:
             assert data["osStr"] == "watchOS" or (
                 any(("macappstore" in i.get("href") or "apps.apple.com" in i.get("href")) for i in group.findall(".//a"))  # type: ignore
