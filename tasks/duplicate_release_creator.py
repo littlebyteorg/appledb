@@ -37,7 +37,7 @@ parsed_builds = dict(zip(args.os, args.build))
 developer_beta_rc_link_rename = False
 
 for (osStr, builds) in parsed_builds.items():
-    if osStr == 'Xcode' or osStr.startswith('Simulators/'):
+    if osStr == 'Xcode':
         developer_beta_rc_link_rename = True
     else:
         developer_beta_rc_link_rename = False
