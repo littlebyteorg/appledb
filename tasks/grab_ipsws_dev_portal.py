@@ -141,13 +141,20 @@ for group in element.xpath(".//h3/.."):
             if url.startswith("/"):
                 url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
+            # HACK: dev portal builds are inconsistent
             if build[2] not in string.ascii_uppercase:
                 build = build[1:]
             if build not in build_info["Build"].split(" | "):
                 print(f"WARNING: {build_info['Build']} isn't the same as {build} ({device}), skipping")
                 continue
 
-            data.setdefault("links", []).append({"device": device, "url": url.replace("hhttp", "http"), "build": build})
+            # HACK: dev portal links are inconsistent
+            if url.startswith('hhttp'):
+                url = url[1:]
+            elif url.startswith('ttp'):
+                url = f"h{url}"
+
+            data.setdefault("links", []).append({"device": device, "url": url, "build": build})
     except IndexError:
         if direct_download and direct_download[0].attrib["href"].endswith('.ipsw'):
             has_profile_download = False
