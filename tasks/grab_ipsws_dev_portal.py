@@ -99,10 +99,10 @@ skip_builds = [
     "25A8364", # macOS 26.0.1 (M5)
     "25B78", # macOS 26.1
     # betas
-    "23B5064e", # iOS/iPadOS 26.1
-    "23J5563d", # tvOS 26.1
-    "23N5033d", # visionOS 26.1
-    "23S5022e", # watchOS 26.1
+    "23C5027f", # iOS/iPadOS 26.2
+    "23K5029e", # tvOS 26.2
+    "23N5279e", # visionOS 26.2
+    "23S5280e", # watchOS 26.2
     "25B5062e", # macOS 26.1
 ]
 
