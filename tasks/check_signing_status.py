@@ -93,8 +93,8 @@ final_builds = {
 }
 
 current_builds = json.load(Path('tasks/latest_builds.json').open(encoding="utf-8"))
-for os_name in final_builds.keys():
-    final_builds[os_name] = list(set(final_builds[os_name]).union(current_builds.get(os_name, {}).get('release', [])))
+for final_build_os_name in final_builds.keys():
+    final_builds[final_build_os_name] = list(set(final_builds[final_build_os_name]).union(current_builds.get(final_build_os_name, {}).get('release', [])))
 
 baseband_value = {
     "iPad2,2": 12,
@@ -314,6 +314,7 @@ def check_signing_status(fw, os_name):
         fw_preinstalled_devices = fw_device_map.copy()
     for source in fw['sources']:
         device_map = [x for x in source['deviceMap'] if "-" not in x and x.split(",")[0] not in blocked_prefixes.get(os_name, [])]
+        cached_device_map = device_map.copy()
         if args.signed_only:
             if isinstance(existing_signed, list):
                 device_map = [x for x in device_map if x in fw['signed']]
@@ -331,10 +332,10 @@ def check_signing_status(fw, os_name):
         url_prefix = link['url'].rsplit('/', 1)[1].split('_', 1)[0]
         if url_prefix in ['iPhone1,1', 'iPod1,1']: continue
         parent_path = None
-        if os_name in ['macOS', 'bridgeOS'] and len(device_map) > 3:
+        if os_name in ['macOS', 'bridgeOS'] and len(cached_device_map) > 3:
             device_map_name = 'Universal'
         else:
-            device_map_name = ";".join(device_map)
+            device_map_name = ";".join(cached_device_map)
         cached_path = f"manifest_cache/{os_str}/{fw_build}/{device_map_name}/BuildManifest.plist"
         has_cached_manifest = Path(cached_path).exists()
         if not has_cached_manifest:

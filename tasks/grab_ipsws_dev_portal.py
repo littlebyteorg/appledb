@@ -103,7 +103,7 @@ skip_builds = [
     "23K5029e", # tvOS 26.2
     "23N5279e", # visionOS 26.2
     "23S5280e", # watchOS 26.2
-    "25B5062e", # macOS 26.1
+    "25C5031i", # macOS 26.1
 ]
 
 for group in element.xpath(".//h3/.."):
