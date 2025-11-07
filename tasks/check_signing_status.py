@@ -78,6 +78,7 @@ final_builds = {
         '20E246',
         '21A329'
     ],
+    'visionOS': [],
     'watchOS': [
         '14V753',
         '15U70',
