@@ -63,7 +63,7 @@ parser.add_argument('-i', '--identifiers', nargs="+", required=True)
 parser.add_argument('-o', '--os', choices=choice_list, required=True)
 parser.add_argument('-p', '--build-prefix', required=True)
 parser.add_argument('-r', '--range', nargs='+', type=int, required=True)
-parser.add_argument('-s', '--suffix-range', nargs='+', type=str, required=True)
+parser.add_argument('-s', '--suffix-range', nargs='+', type=str)
 parser.add_argument('-v', '--versions', nargs='+', required=True)
 args = parser.parse_args()
 if len(args.range) != 2:
