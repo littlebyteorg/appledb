@@ -2,6 +2,7 @@ from pathlib import Path
 import argparse
 import base64
 import json
+import string
 import requests
 import urllib3
 
@@ -18,7 +19,7 @@ asset_audiences_overrides = {
     'iPadOS': 'iOS'
 }
 
-def call_pallas(board_id, os_build, os_str, audience, identifier, product_version, counter=5):
+def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, product_version, counter=5):
     asset_type = 'SoftwareUpdate'
     if os_str == 'macOS':
         asset_type = 'Mac' + asset_type
@@ -27,8 +28,8 @@ def call_pallas(board_id, os_build, os_str, audience, identifier, product_versio
         "ClientVersion": 2,
         "CertIssuanceDay": "2023-12-10",
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
-        "AssetAudience": audience,
-        "ProductType": identifier,
+        "AssetAudience": target_audience,
+        "ProductType": device_identifier,
         "ProductVersion": product_version,
         "HWModelStr": board_id,
         "BuildVersion": os_build
@@ -39,11 +40,11 @@ def call_pallas(board_id, os_build, os_str, audience, identifier, product_versio
 
     try:
         response.raise_for_status()
-    except Exception:
+    except requests.HTTPError:
         if counter == 0:
             print(request)
             raise
-        return call_pallas(board_id, os_build, os_str, audience, identifier, product_version, counter - 1)
+        return call_pallas(board_id, os_build, os_str, target_audience, device_identifier, product_version, counter - 1)
 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     for asset in parsed_response['Assets']:
@@ -62,22 +63,28 @@ parser.add_argument('-i', '--identifiers', nargs="+", required=True)
 parser.add_argument('-o', '--os', choices=choice_list, required=True)
 parser.add_argument('-p', '--build-prefix', required=True)
 parser.add_argument('-r', '--range', nargs='+', type=int, required=True)
+parser.add_argument('-s', '--suffix-range', nargs='+', type=str)
 parser.add_argument('-v', '--versions', nargs='+', required=True)
 args = parser.parse_args()
 if len(args.range) != 2:
     raise argparse.ArgumentTypeError("Must be exactly two values for range")
+if 5 in args.forks and len(args.suffix_range) != 2:
+    raise argparse.ArgumentTypeError("Must be exactly two values for suffix range")
 if len(args.boards) != len(args.identifiers):
     raise argparse.ArgumentTypeError("Same number of boards and identifiers must be passed in")
 
 board_identifier_map = dict(zip(args.boards, args.identifiers))
 
 for fork in args.forks:
+    suffix_range = ['']
     if fork == 0:
         start_range = args.range[0]
         end_range = args.range[1]
     else:
         start_range = int(f"{fork}{args.range[0]:03d}")
         end_range = int(f"{fork}{args.range[1]:03d}")
+        if fork == 5:
+            suffix_range = sorted([x for x in string.ascii_letters if x >= args.suffix_range[0] and x<= args.suffix_range[1]])
 
     target_audiences = []
     filtered_audiences = set()
@@ -89,7 +96,8 @@ for fork in args.forks:
             target_audiences.append(audience[sorted(audience.keys())[-1]])
 
     for asset_audience in target_audiences:
-        for build in range(start_range, end_range+1):
-            for board, identifier in board_identifier_map.items():
-                for version in args.versions:
-                    call_pallas(board, f"{args.build_prefix}{build}", args.os, asset_audience, identifier, version)
+        for board, identifier in board_identifier_map.items():
+            for build in range(start_range, end_range+1):
+                for suffix in suffix_range:
+                    for version in args.versions:
+                        call_pallas(board, f"{args.build_prefix}{build}{suffix}", args.os, asset_audience, identifier, version)

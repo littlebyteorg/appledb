@@ -4,6 +4,7 @@ import json
 import os
 import re
 import sys
+import string
 from pathlib import Path
 
 import dateutil.parser
@@ -59,44 +60,26 @@ out = []
 HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
 
 skip_builds = [
-    "19H390", # iOS/iPadOS 15.8.4
-    "19H394", # iOS/iPadOS 15.8.5
-    "20H360", # iOS/iPadOS 16.7.11
-    "20H364", # iOS/iPadOS 16.7.12
-    "21G101", # iOS 17.6.1
-    "21H423", # iPadOS 17.7.6
-    "21H446", # iPadOS 17.7.9
-    "22F76",  # iOS/iPadOS 18.5
-    "22G100", # iOS/iPadOS 18.6.2
     "22H20", # iOS/iPadOS 18.7
-    "23A341", # iOS/iPadOS 26.0
-    "23A341 | 23A345", # iOS/iPadOS 26.0
+    "22H124", # iOS/iPadOS 18.7.2
     "23A355", # iOS/iPadOS 26.0.1
     "23A8466", # iPadOS 26.0.1 (M5)
-    "22L572", # tvOS 18.5
-    "22M84", # tvOS 18.6
-    "23J353", # tvOS 26.0
+    "23B85", # iOS/iPadOS 26.1
     "23J362", # tvOS 26.0.1
-    "22O473", # visionOS 2.5
-    "22O785", # visionOS 2.6
-    "23M336", # visionOS 26.0
+    "23J582", # tvOS 26.1
     "23M8340", # visionOS 26.0.1 (M5)
-    "22T572", # watchOS 11.5
-    "22U84", # watchOS 11.6
-    "22U90", # watchOS 11.6.1
-    "23R352", # watchOS 26.0
+    "23M341", # visionOS 26.0.1
+    "23N49", # visionOS 26.1
     "23R362 | 23R8362", # watchOS 26.0.2
-    "24F74",  # macOS 15.5
-    "24G84", # macOS 15.6
-    "24G90", # macOS 15.6.1
-    "25A354", # macOS 26.0
+    "23S37", # watchOS 26.1
     "25A8364", # macOS 26.0.1 (M5)
+    "25B78", # macOS 26.1
     # betas
-    "23B5064e", # iOS/iPadOS 26.1
-    "23J5563d", # tvOS 26.1
-    "23N5033d", # visionOS 26.1
-    "23S5022e", # watchOS 26.1
-    "25B5062e", # macOS 26.1
+    "23C5027f", # iOS/iPadOS 26.2
+    "23K5029e", # tvOS 26.2
+    "23N5279e", # visionOS 26.2
+    "23S5280e", # watchOS 26.2
+    "25C5031i", # macOS 26.1
 ]
 
 for group in element.xpath(".//h3/.."):
@@ -134,15 +117,24 @@ for group in element.xpath(".//h3/.."):
             if url.startswith("/"):
                 url = "https://developer.apple.com" + url
             build = i.find("p", None).text.strip()
+            # HACK: dev portal builds are inconsistent
+            if build[2] not in string.ascii_uppercase:
+                build = build[1:]
             if build not in build_info["Build"].split(" | "):
                 print(f"WARNING: {build_info['Build']} isn't the same as {build} ({device}), skipping")
                 continue
+
+            # HACK: dev portal links are inconsistent
+            if url.startswith('hhttp'):
+                url = url[1:]
+            elif url.startswith('ttp'):
+                url = f"h{url}"
 
             data.setdefault("links", []).append({"device": device, "url": url, "build": build})
     except IndexError:
         if direct_download and direct_download[0].attrib["href"].endswith('.ipsw'):
             has_profile_download = False
-            data.setdefault("links", []).append({"device": 'Mac computers with Apple Silicon', "url": direct_download[0].attrib["href"], "build": build})
+            data.setdefault("links", []).append({"device": 'Mac computers with Apple Silicon', "url": direct_download[0].attrib["href"].replace("hhttp", "http"), "build": build})
         else:
             assert data["osStr"] == "watchOS" or (
                 any(("macappstore" in i.get("href") or "apps.apple.com" in i.get("href")) for i in group.findall(".//a"))  # type: ignore
