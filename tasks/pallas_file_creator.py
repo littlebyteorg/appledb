@@ -98,7 +98,7 @@ for os in choices:
     audience_key = os
     if audience_key == 'iPadOS':
         audience_key = 'iOS'
-    audiences = flatten_audiences(raw_audiences[audience_key])
+    audiences = flatten_audiences(raw_audiences.get(audience_key, {}))
     pallas_request = {
         "ClientVersion": 2,
         "CertIssuanceDay": "2024-12-05",

@@ -30,7 +30,8 @@ supported_os_names = [
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--all-signed', action='store_true')
 parser.add_argument('-b', '--build', action='append', nargs='+')
-parser.add_argument('-f', '--force-final-releases', action='store_true')
+parser.add_argument('-fb', '--future-betas', action='store_true')
+parser.add_argument('-fr', '--force-final-releases', action='store_true')
 parser.add_argument('-l', '--list-signed', action='store_true')
 parser.add_argument('-ld', '--list-devices', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=supported_os_names)
@@ -40,61 +41,63 @@ args = parser.parse_args()
 
 final_builds = {
     'audioOS': [
-        '17M61',
+        '17M61', # intermediate OTA required for everything pre-tvOS 14
     ],
+    'bridgeOS': [],
     'iOS': [
-        '8B117',
-        '8C148',
-        '9B206',
-        '10B500',
-        '11D257',
-        '13G36',
-        '13G37',
-        '14G60',
-        '14G61',
-        '16H81',
-        '19H394',
-        '20H364',
+        '8B117', # iPhone 3G/iPod touch 2
+        '8C148', # iPhone 3G/iPod touch 2
+        '9B206', # iPad 1/iPod touch 3
+        '10B500', # iPhone 3GS/iPod touch 4
+        '11D257', # iPhone 4
+        '13G36', # iPad 2, 3/iPad mini 1/iPhone 4S/iPod touch 5
+        '13G37', # iPad 2, 3/iPad mini 1/iPhone 4S
+        '14G60', # iPad 4/iPhone 5, 5c
+        '14G61', # iPad 4/iPhone 5, 5c
+        '16H81', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
+        '19H394', # iPhone 6s, 7, SE/iPod touch 7
+        '20H364', # iPhone 8, X
     ],
     'iPadOS': [
-        '19H394',
-        '20H364',
+        '19H394', # iPad Air 2/iPad mini 4
+        '20H364', # iPad 5/iPad Pro 1
     ],
     'macOS': [
-        '20B28'
+        '20B28' # 11.0.1 RC (still signed somehow)
     ],
     'tvOS': [
-        '10B809',
-        '11D257',
-        '11D258',
-        '12H606',
-        '12H1006',
-        '14W756',
-        '17M61',
+        '10B809', # still signed for 2, 3
+        '11D257', # Apple TV 2
+        '11D258', # Apple TV 2
+        '12H606', # Apple TV 3
+        '12H1006', # Apple TV 3
+        '14W756', # intermediate required for everything pre-tvOS 11
+        '17M61', # intermediate OTA required for everything pre-tvOS 14
     ],
     'Studio Display Firmware': [
-        '19F80',
-        '20E246',
-        '21A329'
+        '19F80', # pre-Ventura 13.3
+        '20E246', # pre-Sonoma
+        '21A329' # latest
     ],
     'visionOS': [],
     'watchOS': [
-        '14V753',
-        '15U70',
-        '16U693',
-        '17U208',
-        '17U216',
-        '19U512',
-        '20U502',
-        '21U580',
-        '22U84',
-        '22U90',
+        '14V753', # latest iOS 10
+        '15U70', # latest 1st-generation
+        '16U693', # latest iOS 12
+        '17U208', # intermediate OTA required for everything pre-watchOS 7
+        '17U216', # latest series 1/2
+        '19U512', # latest series 3, iOS 15
+        '20U502', # latest iOS 16
+        '21U580', # latest series 4/5, SE
+        '22U84', # SE 2, latest iOS 18
+        '22U90', # latest iOS 18
     ],
 }
 
 current_builds = json.load(Path('tasks/latest_builds.json').open(encoding="utf-8"))
+released_builds = {x: y['release'] for (x,y) in current_builds.items() if y.get('release')}
 for final_build_os_name in final_builds.keys():
-    final_builds[final_build_os_name] = list(set(final_builds[final_build_os_name]).union(current_builds.get(final_build_os_name, {}).get('release', [])))
+    final_builds[final_build_os_name] = list(set(final_builds[final_build_os_name]).union(released_builds.get(final_build_os_name, [])))
 
 baseband_value = {
     "iPad2,2": 12,
@@ -282,6 +285,12 @@ def get_builds(os_names, include_devices):
                 if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
                 if file_contents['build'] in final_builds.get(os_name, []): continue
             if not file_contents.get('signed', args.unsigned): continue
+            if not args.future_betas:
+                current_prefix = file_contents['build'][:2]
+                current_release = [x for x in released_builds.get(os_name, []) if x.startswith(current_prefix)]
+                if current_release:
+                    if build_number_sort(file_contents['build']) > build_number_sort(current_release[0]): continue
+                elif build_number_sort(file_contents['build']) > build_number_sort(released_builds.get(os_name, [])[-1]): continue
             if not args.unsigned and isinstance(file_contents['signed'], list):
                 working_dict[file_contents['build']] = file_contents['signed']
             else:
@@ -433,7 +442,7 @@ else:
     os_build_map = dict(zip(args.os, args.build))
 
 for os_str, builds in os_build_map.items():
-    print(os_str)
+    if builds: print(os_str)
     for build in builds:
         if int(build[0]) < 7 and build[1] in string.ascii_uppercase:
             continue
