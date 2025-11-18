@@ -448,6 +448,9 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                     'restoreVersion': asset.get('RestoreVersion'),
                     'sources': {}
                 }
+                if is_rsr:
+                    base_details['rsr'] = True
+                    base_details['versionExtra'] = asset.get('ProductVersionExtra')
                 if asset.get('BridgeVersionInfo'):
                     base_details['bridgeVersionInfo'] = {
                         'BridgeProductBuildVersion': asset['BridgeVersionInfo']['BridgeProductBuildVersion'],
