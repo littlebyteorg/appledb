@@ -290,6 +290,10 @@ else:
         if is_next_major:
             parsed_args[os_str].extend(latest_builds[os_str]['next'])
 
+if "Studio Display Firmware" in args.os:
+    # Studio Display Firmware is a mesu asset shoehorned into pallas
+    parsed_args.setdefault("Studio Display Firmware", ["19D8050"])
+
 minimum_compatibility = 0
 maximum_compatibility = 1000
 if parsed_args.get('watchOS'):
