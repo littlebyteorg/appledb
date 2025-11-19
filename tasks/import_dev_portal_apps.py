@@ -53,6 +53,7 @@ downloads = sorted(json_data['downloads'], key=lambda x: dateutil.parser.parse(x
 
 process_downloads = {
     "Safari": True,
+    "Icon Composer": True,
     "Command Line Tools": True,
     "Kernel Debug Kit": True,
     "Simulator": True,
@@ -97,6 +98,45 @@ for download in downloads:
                     })
                     json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
                     update_links([candidate_file])
+    elif download_name.startswith("Icon Composer") and process_downloads["Icon Composer"]:
+        icon_composer_version = download_name.removeprefix('Icon Composer ')
+        target_file = Path(f"osFiles/Software/Icon Composer/{icon_composer_version}.json")
+        if target_file.exists():
+            process_downloads["Icon Composer"] = False
+            continue
+        download_details = download['files'][0]
+        
+        release_date = dateutil.parser.parse(download['dateCreated'])
+        json_data = {
+            "osStr": "Icon Composer",
+            "version": icon_composer_version,
+            "released": release_date.strftime("%Y-%m-%d"),
+            "deviceMap": [
+                "Icon Composer"
+            ],
+            "sources": [
+                {
+                    "type": "dmg",
+                    "deviceMap": [
+                        "Icon Composer"
+                    ],
+                    "links": [
+                        {
+                            "url": LINK_PREFIX + download_details['remotePath'],
+                            "active": True
+                        }
+                    ],
+                    "size": download_details['fileSize']
+                }
+            ]
+        }
+        if "beta" in icon_composer_version:
+            json_data["beta"] = True
+        if "RC" in icon_composer_version:
+            json_data["rc"] = True
+
+        json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        update_links([target_file])
     elif download_name.startswith("Command Line Tools") and process_downloads["Command Line Tools"]:
         if download_name.split(" ")[-1].startswith("201"):
             clt_version = download_name.split(" - ")[-1]
