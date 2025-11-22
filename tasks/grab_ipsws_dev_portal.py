@@ -39,13 +39,7 @@ if DEV_PORTAL_PROXY:
 
     Path("import_raw.html").write_bytes(result.content)
 
-    ipsws = re.findall(r"href=\"(.*\.ipsw)\"", result.text)
-
-    Path("import.txt").write_text("\n".join(ipsws), "utf-8", newline="\n")
-
-    element = lxml.html.fromstring(result.text)
-else:
-    element = lxml.html.fromstring(Path("import_raw.html").read_text("utf-8"))  # result.text)
+element = lxml.html.fromstring(Path("import_raw.html").read_text("utf-8"))
 
 sections = element.xpath(".//section")
 for section in sections:
