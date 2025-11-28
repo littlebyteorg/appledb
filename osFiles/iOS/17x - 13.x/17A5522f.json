@@ -13,6 +13,10 @@
         "iPhone8,1",
         "iPhone8,2",
         "iPhone8,4",
+        "iPhone9,1",
+        "iPhone9,2",
+        "iPhone9,3",
+        "iPhone9,4",
         "iPhone10,1",
         "iPhone10,2",
         "iPhone10,3",
@@ -28,6 +32,10 @@
         "iPhone8,1": "6.04.00",
         "iPhone8,2": "6.04.00",
         "iPhone8,4": "8.00.01",
+        "iPhone9,1": "6.03.00",
+        "iPhone9,2": "6.03.00",
+        "iPhone9,3": "3.50.09",
+        "iPhone9,4": "3.50.09",
         "iPhone10,1": "4.03.02",
         "iPhone10,2": "4.03.02",
         "iPhone10,3": "4.03.02",
@@ -393,6 +401,8 @@
         {
             "type": "ipsw",
             "deviceMap": [
+                "iPhone9,1",
+                "iPhone9,3",
                 "iPhone10,1",
                 "iPhone10,4"
             ],
@@ -407,6 +417,26 @@
                 "sha2-256": "bd6e119414bd307fb8d1a5eb9815b2c9420721ca56944b5938bf2a1dd06f8e4f"
             },
             "size": 4171686009
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPhone9,2",
+                "iPhone9,4",
+                "iPhone10,2",
+                "iPhone10,5"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019SummerSeed/fullrestores/041-81822/EDF388B2-9BC0-11E9-BF53-2D1A024E608E/iPhone_5.5_P3_13.0_17A5522f_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "70b1a17b8612dbd85ba7fa7b70a4ad8d1052a313",
+                "sha2-256": "5982dd4ee997c843c1dd694dc47dbe4aedc4f5cd5325c42a3e7bb5a383aff041"
+            },
+            "size": 4363140590
         },
         {
             "type": "ota",
@@ -448,24 +478,6 @@
                 }
             ],
             "size": 710799939
-        },
-        {
-            "type": "ipsw",
-            "deviceMap": [
-                "iPhone10,2",
-                "iPhone10,5"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2019SummerSeed/fullrestores/041-81822/EDF388B2-9BC0-11E9-BF53-2D1A024E608E/iPhone_5.5_P3_13.0_17A5522f_Restore.ipsw",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "70b1a17b8612dbd85ba7fa7b70a4ad8d1052a313",
-                "sha2-256": "5982dd4ee997c843c1dd694dc47dbe4aedc4f5cd5325c42a3e7bb5a383aff041"
-            },
-            "size": 4363140590
         },
         {
             "type": "ota",
