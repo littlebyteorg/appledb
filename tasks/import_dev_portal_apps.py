@@ -99,7 +99,7 @@ for download in downloads:
                     json.dump(sort_os_file(None, candidate_data), candidate_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
                     update_links([candidate_file])
     elif download_name.startswith("Icon Composer") and process_downloads["Icon Composer"]:
-        icon_composer_version = download_name.removeprefix('Icon Composer ')
+        icon_composer_version = download_name.removeprefix('Icon Composer ').replace("Release Candidate", "RC")
         target_file = Path(f"osFiles/Software/Icon Composer/{icon_composer_version}.json")
         if target_file.exists():
             process_downloads["Icon Composer"] = False
