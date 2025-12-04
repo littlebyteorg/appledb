@@ -286,9 +286,15 @@ else:
         if args.os and os_str not in args.os: continue
         if os_str not in choice_list: continue
         parsed_args.setdefault(os_str, [])
-        parsed_args[os_str].extend(latest_builds[os_str]['rc' if is_rc else 'beta' if beta_builds else 'release'])
-        if is_next_major:
-            parsed_args[os_str].extend(latest_builds[os_str]['next'])
+        if is_rc:
+            if os_str != 'macOS':
+                parsed_args[os_str].extend(latest_builds[os_str]['release'])
+            if os_str in ['macOS', 'watchOS']:
+                parsed_args[os_str].extend(latest_builds[os_str]['beta'])
+            if os_str == 'watchOS':
+                parsed_args[os_str] = list(set(parsed_args[os_str]))
+        else:
+            parsed_args[os_str].extend(latest_builds[os_str]['next' if is_next_major else 'beta' if beta_builds else 'release'])
 
 if args.os and "Studio Display Firmware" in args.os:
     # Studio Display Firmware is a mesu asset shoehorned into pallas
