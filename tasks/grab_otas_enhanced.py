@@ -264,6 +264,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
+parser.add_argument('-e', '--echo-request', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
@@ -284,10 +285,21 @@ else:
     parsed_args = {}
     for os_str, types in latest_builds.items():
         if args.os and os_str not in args.os: continue
+        if os_str not in choice_list: continue
         parsed_args.setdefault(os_str, [])
-        parsed_args[os_str].extend(latest_builds[os_str]['rc' if is_rc else 'beta' if beta_builds else 'release'])
-        if is_next_major:
-            parsed_args[os_str].extend(latest_builds[os_str]['next'])
+        if is_rc:
+            if os_str != 'macOS':
+                parsed_args[os_str].extend(latest_builds[os_str]['release'])
+            if os_str in ['macOS', 'watchOS']:
+                parsed_args[os_str].extend(latest_builds[os_str]['beta'])
+            if os_str == 'watchOS':
+                parsed_args[os_str] = list(set(parsed_args[os_str]))
+        else:
+            parsed_args[os_str].extend(latest_builds[os_str]['next' if is_next_major else 'beta' if beta_builds else 'release'])
+
+if args.os and "Studio Display Firmware" in args.os:
+    # Studio Display Firmware is a mesu asset shoehorned into pallas
+    parsed_args.setdefault("Studio Display Firmware", ["19D8050"])
 
 minimum_compatibility = 0
 maximum_compatibility = 1000
@@ -404,6 +416,9 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
         request['DelayPeriod'] = time_delay
         request['DelayRequested'] = True
         request['Supervised'] = True
+    
+    if args.echo_request:
+        print(json.dumps(request))
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 
@@ -447,6 +462,9 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                     'restoreVersion': asset.get('RestoreVersion'),
                     'sources': {}
                 }
+                if is_rsr:
+                    base_details['rsr'] = True
+                    base_details['versionExtra'] = asset.get('ProductVersionExtra')
                 if asset.get('BridgeVersionInfo'):
                     base_details['bridgeVersionInfo'] = {
                         'BridgeProductBuildVersion': asset['BridgeVersionInfo']['BridgeProductBuildVersion'],

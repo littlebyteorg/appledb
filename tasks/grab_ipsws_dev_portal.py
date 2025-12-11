@@ -39,13 +39,7 @@ if DEV_PORTAL_PROXY:
 
     Path("import_raw.html").write_bytes(result.content)
 
-    ipsws = re.findall(r"href=\"(.*\.ipsw)\"", result.text)
-
-    Path("import.txt").write_text("\n".join(ipsws), "utf-8", newline="\n")
-
-    element = lxml.html.fromstring(result.text)
-else:
-    element = lxml.html.fromstring(Path("import_raw.html").read_text("utf-8"))  # result.text)
+element = lxml.html.fromstring(Path("import_raw.html").read_text("utf-8"))
 
 sections = element.xpath(".//section")
 for section in sections:
@@ -60,26 +54,20 @@ out = []
 HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
 
 skip_builds = [
-    "22H20", # iOS/iPadOS 18.7
     "22H124", # iOS/iPadOS 18.7.2
-    "23A355", # iOS/iPadOS 26.0.1
-    "23A8466", # iPadOS 26.0.1 (M5)
     "23B85", # iOS/iPadOS 26.1
-    "23J362", # tvOS 26.0.1
     "23J582", # tvOS 26.1
-    "23M8340", # visionOS 26.0.1 (M5)
-    "23M341", # visionOS 26.0.1
     "23N49", # visionOS 26.1
-    "23R362 | 23R8362", # watchOS 26.0.2
     "23S37", # watchOS 26.1
-    "25A8364", # macOS 26.0.1 (M5)
     "25B78", # macOS 26.1
     # betas
-    "23C5027f", # iOS/iPadOS 26.2
-    "23K5029e", # tvOS 26.2
-    "23N5279e", # visionOS 26.2
-    "23S5280e", # watchOS 26.2
-    "25C5031i", # macOS 26.1
+    "22H217", # iOS/iPadOS 18.7.3
+    "23C52", # iPadOS 26.2
+    "23C54", # iOS 26.2
+    "23K53", # tvOS 26.2
+    "23N301", # visionOS 26.2
+    "23S303", # watchOS 26.2
+    "25C56", # macOS 26.2
 ]
 
 for group in element.xpath(".//h3/.."):

@@ -86,7 +86,7 @@ APPLE_BASEBAND_DEVICES = [
 def import_ota(
     ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, final_version=None, released=None, beta=None, rc=None, \
         use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None, \
-        restore_version=None, bridge_version_info=None, size=None
+        restore_version=None, bridge_version_info=None, size=None, version_extra=None
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
     local_available = USE_LOCAL_IF_FOUND and local_path.exists()
@@ -199,7 +199,6 @@ def import_ota(
                     continue
                 path = identity['Manifest']['Cellular1,RTKitOS']['Info']['Path']
                 bbfw_version = list(extracted_path.rglob(path))[0].read_bytes().split(b"|BBFW:")[1].split(b"|")[0].decode()
-                # bbfw_version = ipsw.read(path).split(b"|BBFW:")[1].split(b"|")[0].decode()
                 baseband_map[mapped_device[0]] = bbfw_version
     if (ota_url.endswith(".ipsw")):
         build = build or info_plist["TargetUpdate"]
@@ -212,7 +211,7 @@ def import_ota(
         build = build or info_plist["Build"]
         recommended_version = recommended_version or info_plist["OSVersion"].removeprefix("9.9.")
         if rsr:
-            recommended_version = recommended_version + (f" {info_plist['ProductVersionExtra']}" if info_plist.get('ProductVersionExtra') else '')
+            recommended_version = recommended_version + (f" {version_extra or info_plist['ProductVersionExtra']}" if version_extra or info_plist.get('ProductVersionExtra') else '')
         # Devices supported specifically in this source
         supported_boards = []
         if device_map:
@@ -370,7 +369,8 @@ if __name__ == "__main__":
                                         link["url"], os_str=version['osStr'], ota_key=link.get('key'), recommended_version=version["version"], \
                                         released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), \
                                         device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"), \
-                                        restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo'), size=source.get('size')
+                                        restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo'), size=source.get('size'), \
+                                        rsr=version.get('rsr', False), version_extra=version.get('versionExtra')
                                     )
                                 if fresh_import:
                                     files_processed.add(processed_file)

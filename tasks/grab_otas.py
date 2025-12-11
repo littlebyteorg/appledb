@@ -114,6 +114,7 @@ else:
     parsed_args = {}
     for os_str, types in latest_builds.items():
         if args.os and os_str not in args.os: continue
+        if os_str not in choice_list: continue
         parsed_args.setdefault(os_str, [])
         parsed_args[os_str].extend(latest_builds[os_str]['rc' if is_rc else 'beta' if beta_builds else 'release'])
         if is_next_major:
