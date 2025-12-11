@@ -264,6 +264,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
+parser.add_argument('-e', '--echo-request', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
@@ -415,6 +416,9 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
         request['DelayPeriod'] = time_delay
         request['DelayRequested'] = True
         request['Supervised'] = True
+    
+    if args.echo_request:
+        print(json.dumps(request))
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
 

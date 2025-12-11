@@ -48,7 +48,7 @@ known_builds = [
     '23B85',   # 26.1
     '23J582',  # tvOS 26.1
     '23N49',   # visionOS 26.1
-    '23P1072', # bridgeOS 10.0
+    '23P1072', # bridgeOS 10.1
     '25B78',   # macOS 26.1
 ]
 
