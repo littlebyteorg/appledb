@@ -289,7 +289,7 @@ def get_builds(os_names, include_devices):
                 if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
                 if file_contents['build'] in final_builds.get(os_name, []): continue
             if not file_contents.get('signed', args.unsigned): continue
-            if not args.future_betas:
+            if not args.future_betas and not args.list_signed:
                 current_prefix = file_contents['build'][:2]
                 current_release = [x for x in released_builds.get(os_name, []) if x.startswith(current_prefix)]
                 if current_release and build_number_sort(file_contents['build']) > build_number_sort(current_release[0]): continue
