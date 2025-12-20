@@ -300,7 +300,7 @@ class ProcessFileThread(threading.Thread):
                         data[key][i] = self.process_reference_link(link_entry)
                 else:
                     data[key] = self.process_reference_link(data[key])
-            for (key, link) in data.get('ipd', {}).items():
+            for key in data.get('ipd', {}).keys():
                 data['ipd'][key] = self.process_reference_link(data['ipd'][key])
 
             entries = []
@@ -310,36 +310,14 @@ class ProcessFileThread(threading.Thread):
 
                 for key in ['releaseNotes', 'securityNotes']:
                     if not entry.get(key): continue
+                    if isinstance(entry[key], list):
+                        for i, link_entry in enumerate(entry[key]):
+                            entry[key][i] = self.process_reference_link(link_entry)
+                    else:
+                        entry[key] = self.process_reference_link(entry[key])
 
-                    if isinstance(entry[key], str):
-                        link = entry[key]
-                        active_status = True
-                    else:
-                        link = entry[key]['url']
-                        active_status = entry[key]['active']
-                    active_status = self.process_link(link, active_status)
-                    if active_status:
-                        entry[key] = link
-                    else:
-                        entry[key] = {
-                            'url': link,
-                            'active': False
-                        }
-                for (key, link) in entry.get('ipd', {}).items():
-                    if isinstance(entry['ipd'][key], str):
-                        link = entry['ipd'][key]
-                        active_status = True
-                    else:
-                        link = entry['ipd'][key]['url']
-                        active_status = entry['ipd'][key]['active']
-                    active_status = self.process_link(link, active_status)
-                    if active_status:
-                        entry['ipd'][key] = link
-                    else:
-                        entry['ipd'][key] = {
-                            'url': link,
-                            'active': False
-                        }
+                for key in entry.get('ipd', {}).keys():
+                    entry['ipd'][key] = self.process_reference_link(entry['ipd'][key])
 
                 entries.append(entry)
             
