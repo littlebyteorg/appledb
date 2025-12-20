@@ -36,11 +36,13 @@ added_builds = {
     '22A3354': ['22A3351'],
     '22C152': ['22C154'],
     '22D63': ['22D64'],
+    '22H124': ['23-22H123'],
     '23A5297m': ['23A5297n'],
     '22G86': ['22G84'],
     '23A341': ['23A330', '23A340'],
     '23A355': ['23A357'],
-    '23A8355': ['23A8357']
+    '23A8355': ['23A8357'],
+    '23B85': ['23B82']
 }
 
 ignore_builds = {
@@ -391,7 +393,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
 
     request = {
         "ClientVersion": 2,
-        "CertIssuanceDay": "2024-12-05",
+        "CertIssuanceDay": "2025-12-08",
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
         "AssetAudience": asset_audience,
         # Device name might have an AppleDB-specific suffix; remove this when calling Pallas

@@ -30,7 +30,7 @@ simulator_pallas_mapping = {
 def call_pallas(os, requested_build):
     request = {
         "ClientVersion": 2,
-        "CertIssuanceDay": "2024-12-05",
+        "CertIssuanceDay": "2025-12-08",
         "AssetType": f"com.apple.MobileAsset.{simulator_pallas_mapping[os]}",
         "AssetAudience": "02d8e57e-dd1c-4090-aa50-b4ed2aef0062",
         "RequestedBuild": requested_build

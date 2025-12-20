@@ -101,7 +101,7 @@ for os in choices:
     audiences = flatten_audiences(raw_audiences.get(audience_key, {}))
     pallas_request = {
         "ClientVersion": 2,
-        "CertIssuanceDay": "2024-12-05",
+        "CertIssuanceDay": "2025-12-08",
         "BuildVersion": "0"
     }
     if os == 'macOS':

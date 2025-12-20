@@ -17,7 +17,6 @@ from sort_os_files import sort_os_file
 from update_links import update_links
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-c', '--catalog-version', default='14')
 parser.add_argument('-f', '--force', action='store_true')
 args = parser.parse_args()
 
@@ -46,10 +45,7 @@ for link in links:
     if not a_tag.attrib.get("class", ""):
         continue
     span_text = html.unescape(link.xpath('span')[0].text).split()[2]
-    if span_text == '26':
-        mac_versions.add('16')
-    else:
-        mac_versions.add(span_text)
+    mac_versions.add(span_text)
     sources['dmg'][span_text] = a_tag.attrib.get("href")
 
 properties = {}
@@ -79,7 +75,7 @@ os_version_override_map = {
 }
 
 for mac_version in mac_versions:
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{args.catalog_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})

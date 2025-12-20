@@ -181,8 +181,8 @@ class ProcessFileThread(threading.Thread):
     def process_link(self, url, current_status):
         updated_status = current_status
         hostname = urlparse(url).hostname
-        if DOMAIN_CHECK_LIST and hostname not in DOMAIN_CHECK_LIST:
-            # explicitly not checking this domain
+        if (DOMAIN_CHECK_LIST and hostname not in DOMAIN_CHECK_LIST) or (hostname in stop_remaking_active and not current_status):
+            # explicitly not checking this link
             return current_status
         if url in success_map:
             # Skip ones we've already processed

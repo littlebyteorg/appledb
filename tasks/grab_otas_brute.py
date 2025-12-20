@@ -26,7 +26,7 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
 
     request = {
         "ClientVersion": 2,
-        "CertIssuanceDay": "2023-12-10",
+        "CertIssuanceDay": "2025-12-08",
         "AssetType": f"com.apple.MobileAsset.{asset_type}",
         "AssetAudience": target_audience,
         "ProductType": device_identifier,
