@@ -31,6 +31,8 @@ def build_number_sort(build_number):
     return kernel_version, build_train_version, build_version, build_prefix, build_suffix
 
 folder_map = {
+    '11x - 11.x': 'Yellowstone',
+    '12x - 12.x': 'Glacier',
     '13x - 13.x': 'Sunriver',
     '14x - 14.x': 'Summit',
     '15x - 15.x': 'Rainbow',
