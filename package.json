@@ -5,7 +5,7 @@
   "scripts": {
     "deploy": "deploy.js",
     "prepare": "is-ci || husky install",
-    "parse-web": "./tasks/json_validator.py",
+    "parse-test": "./tasks/json_validator.py",
     "sort-os-files": "./tasks/sort_os_files.py",
     "sort-device-files": "./tasks/sort_device_files.py",
     "sort-device-group-files": "./tasks/sort_device_group_files.py",
@@ -36,7 +36,7 @@
     "node-liblzma": "^1.1.9"
   },
   "lint-staged": {
-    "appledb-web/*.json": "npm run parse-web -- -f",
+    "*.json": "npm run parse-test -- -f",
     "osFiles/**/*.json": "npm run sort-os-files -- -f",
     "deviceFiles/**/*.json": "npm run sort-device-files -- -f",
     "deviceGroupFiles/**/*.json": "npm run sort-device-group-files -- -f",
