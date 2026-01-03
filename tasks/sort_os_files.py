@@ -62,6 +62,46 @@ links_key_order = ["url", "decryptionKey", "catalog", "preferred", "active", "au
 source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "aar", "dmg", "pkg", "bin", "tar", "appx", "ipa", "xpi", "apk", "exe"]
 
 
+def sort_buildtrain(buildtrain):
+    buildtrain_order = [
+        "Snow",
+        "Lion",
+        "Win",
+        "Mountain",
+        "Mavericks",
+        "Yosemite",
+        "ElCapitan",
+        "Sierra",
+        "Fuji",
+        "HiSierra",
+        "HighSierra",
+        "Lobo",
+        "Mojave",
+        "Liberty",
+        "Catalina",
+        "Jazz",
+        "BigSur",
+        "GoldenGate",
+        "Monterey",
+        "Star",
+        "Ventura",
+        "Rome",
+        "Sonoma",
+        "Sunburst",
+        "Sequoia",
+        "Glow",
+        "Tahoe",
+        "Cheer",
+    ]
+
+    for (i, item) in enumerate(buildtrain_order):
+        if buildtrain.endswith(item):
+            if item == 'Sierra' and (buildtrain.endswith('HiSierra') or buildtrain.endswith('HighSierra')): continue
+            return i
+    print(f"MISSING - {buildtrain}")
+    return buildtrain
+
+
 def sort_os_file(file_path: Optional[Path], raw_data=None):
     if not file_path and not raw_data:
         raise ValueError("Must provide either a file path or raw data")
@@ -77,6 +117,9 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
     for i, duplicate_entry in enumerate(data.get("createDuplicateEntries", [])):
         data["createDuplicateEntries"][i] = sort_os_file(None, duplicate_entry)
     data.get("createDuplicateEntries", []).sort(key=lambda x: x["released"])
+
+    if isinstance(data.get("buildTrain"), list):
+        data["buildTrain"].sort(key=sort_buildtrain)
 
     if isinstance(data.get("releaseNotes"), dict):
         data["releaseNotes"] = sorted_dict_by_key(data["releaseNotes"], links_key_order)

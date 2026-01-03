@@ -285,6 +285,17 @@ def import_ota(
                 existing_source.setdefault("deviceMap", []).extend(supported_devices)
                 if supported_boards:
                     existing_source.setdefault("boardMap", []).extend(supported_boards)
+                if existing_source.get('prerequisiteBuild'):
+                    if existing_source['prerequisiteBuild'] != prerequisite_builds:
+                        if isinstance(prerequisite_builds, str): prerequisite_builds = [prerequisite_builds]
+                        if isinstance(existing_source['prerequisiteBuild'], str): existing_source['prerequisiteBuild'] = [existing_source['prerequisiteBuild']]
+                        prerequisite_builds = set(prerequisite_builds)
+                        existing_source['prerequisiteBuild'] = set(existing_source['prerequisiteBuild'])
+                        existing_source['prerequisiteBuild'].update(prerequisite_builds)
+                        existing_source['prerequisiteBuild'] = list(existing_source['prerequisiteBuild'])
+                elif prerequisite_builds:
+                    existing_source['prerequisiteBuild'] = prerequisite_builds
+
 
     if not found_source:
         print("\tReplacing source" if REFRESH_EXISTING else "\tAdding new source")
