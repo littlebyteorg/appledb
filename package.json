@@ -4,15 +4,14 @@
   "description": "AppleDB Data API",
   "scripts": {
     "deploy": "deploy.js",
-    "test": "jest",
     "prepare": "is-ci || husky install",
+    "parse-test": "./tasks/json_validator.py",
     "sort-os-files": "./tasks/sort_os_files.py",
     "sort-device-files": "./tasks/sort_device_files.py",
     "sort-device-group-files": "./tasks/sort_device_group_files.py",
     "sort-jailbreak-files": "./tasks/sort_jailbreak_files.py",
     "sort-bypass-app-files": "./tasks/sort_bypass_app_files.py",
     "sort-bypass-tweak-files": "./tasks/sort_bypass_tweak_files.py",
-    "lint": "eslint .",
     "validate": "node tasks/schema_validator.js"
   },
   "repository": {
@@ -26,27 +25,19 @@
   },
   "homepage": "https://github.com/littlebyteorg/appledb#readme",
   "devDependencies": {
-    "@eslint/create-config": "^1.10.0",
-    "@types/jest": "^30.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.43.0",
-    "@typescript-eslint/parser": "^8.43.0",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
-    "eslint": "^9.35.0",
-    "glob": "^11.0.3",
-    "graceful-fs": "^4.2.11",
+    "glob": "^13.0.0",
     "husky": "^9.1.7",
-    "jest": "^30.1.3",
-    "lint-staged": "^16.1.6",
-    "object-hash": "^3.0.0",
-    "ts-jest": "^29.4.1",
-    "typescript": "^5.9.2"
+    "lint-staged": "^15.5.2",
+    "object-hash": "^3.0.0"
   },
   "dependencies": {
     "lzma-native": "^8.0.6",
     "node-liblzma": "^1.1.9"
   },
   "lint-staged": {
+    "*.json": "npm run parse-test -- -f",
     "osFiles/**/*.json": "npm run sort-os-files -- -f",
     "deviceFiles/**/*.json": "npm run sort-device-files -- -f",
     "deviceGroupFiles/**/*.json": "npm run sort-device-group-files -- -f",
