@@ -130,7 +130,10 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
 
     file_path = f"osFiles/{os_str}/{version_dir}/{build}.json"
     if rsr:
-        file_path = file_path.replace("osFiles", "osFiles/Rapid Security Responses")
+        if " - 1" in version_dir:
+            file_path = file_path.replace("osFiles", "osFiles/Rapid Security Responses")
+        else:
+            file_path = file_path.replace("osFiles", "osFiles/Background Security Improvements")
 
     db_file = Path(file_path)
     if db_file.exists():
