@@ -22,6 +22,7 @@ key_order = [
     "released",
     "rc",
     "beta",
+    "bsi",
     "rsr",
     "internal",
     "hideFromLatestVersions",

@@ -35,7 +35,6 @@ parser.add_argument('-fr', '--force-final-releases', action='store_true')
 parser.add_argument('-l', '--list-signed', action='store_true')
 parser.add_argument('-ld', '--list-devices', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=supported_os_names)
-parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--signed-only', action='store_true')
 parser.add_argument('-u', '--unsigned', action='store_true')
 args = parser.parse_args()
@@ -275,8 +274,6 @@ def get_builds(os_names, include_devices):
     signed_builds = {}
     for os_name in os_names:
         os_path = os_name
-        if args.rsr:
-            os_path = f"Rapid Security Responses/{os_name}"
         working_dict = {}
         for file_path in Path(f"osFiles/{os_path}").rglob("*.json"):
             file_contents = json.load(file_path.open(encoding='utf-8'))
@@ -451,8 +448,6 @@ for os_str, builds in os_build_map.items():
             continue
         print(f"  {build}")
         os_relative_path = os_str
-        if args.rsr:
-            os_relative_path = f"Rapid Security Responses/{os_str}"
         for file_name in Path(f'osFiles/{os_relative_path}').rglob(f"{build}.json"):
             json_contents = json.load(file_name.open(encoding="utf-8"))
             if not [x for x in json_contents.get('sources', []) if x['type'] != 'kdk']: continue
