@@ -20,6 +20,7 @@ rewrite_map_v2 = {
     "http://apsu.apple.com/": [],
     "https://seeddownload.cdn-apple.com/": [],
     "http://a1408.g.akamai.net/": [],
+    "http://apple.speedera.net/": [],
     "https://addons.mozilla.org/": [],
     "https://download.info.apple.com/": ["http://download.info.apple.com/"],
     "https://support.apple.com/downloads/": ["http://support.apple.com/downloads/"],
