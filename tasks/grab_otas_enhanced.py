@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from pathlib import Path
 import re
 import argparse
@@ -298,6 +299,8 @@ else:
                 parsed_args[os_str] = list(set(parsed_args[os_str]))
         else:
             parsed_args[os_str].extend(latest_builds[os_str]['next' if is_next_major else 'beta' if beta_builds else 'release'])
+        if args.rsr:
+            parsed_args[os_str] = [parsed_args[os_str][-1]]
 
 if args.os and "Studio Display Firmware" in args.os:
     # Studio Display Firmware is a mesu asset shoehorned into pallas
@@ -645,7 +648,8 @@ missing_decryption_keys = set()
 builds = set()
 for key, value in ota_list.items():
     sources = []
-    builds.add(value['build'])
+    if date.today() == datetime.strptime(value['released'], "%Y-%m-%d").date():
+        builds.add(value['build'])
     for source in value['sources'].values():
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
             missing_key = f"{value['osStr']}-{'/'.join(source['prerequisites'])}"
