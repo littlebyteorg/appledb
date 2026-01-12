@@ -27,6 +27,7 @@ key_order = [
     "internal",
     "hideFromLatestVersions",
     "preinstalled",
+    "preinstalledOS",
     "createDuplicateEntries",
     "notes",
     "releaseNotes",

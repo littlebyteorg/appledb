@@ -71,6 +71,12 @@
                         {"type": "array", "items": {"type": "string"}}
                     ]
                 },
+                "preinstalledOS": {
+                    "anyOf": [
+                        {"type": "boolean"},
+                        {"type": "array", "items": {"type": "string"}}
+                    ]
+                },
                 "signed": {
                     "anyOf": [
                         {"type": "boolean"},
