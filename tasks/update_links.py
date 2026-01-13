@@ -169,12 +169,18 @@ class ProcessFileThread(threading.Thread):
                         )
                         continue
                     
-                    if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
+                    if int(resp.headers["Content-Length"]) > 1000:
+                        if "size" in source and source["size"] != int(resp.headers["Content-Length"]):
+                            print(
+                                f"Warning: {file_name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}"
+                            )
+
+                        source["size"] = int(resp.headers["Content-Length"])
+                    else:
                         print(
-                            f"Warning: {file_name}: Size mismatch for {url}; expected {source['size']} but got {resp.headers['Content-Length']}"
+                            f"Warning: {file_name}: Size too small ({resp.headers['Content-Length']}) for {url}"
                         )
 
-                    source["size"] = int(resp.headers["Content-Length"])
                 # self.print_queue.put("Processed a link")
         return sources
 
