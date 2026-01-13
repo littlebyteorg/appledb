@@ -67,7 +67,7 @@ skip_builds = [
     "25B78", # macOS 26.1
     "25C56", # macOS 26.2
     # betas
-    "23D5303d", # iOS/iPadOS 26.3
+    "23D5103d", # iOS/iPadOS 26.3
     "23K5600b", # tvOS 26.3
     "23N5602d", # visionOS 26.3
     "23S5600d", # watchOS 26.3

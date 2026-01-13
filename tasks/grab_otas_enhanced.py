@@ -316,6 +316,9 @@ if parsed_args.get('watchOS'):
     minimum_compatibility = generate_build_compatibility_version(compatibility_builds[0]) - 1
     maximum_compatibility = generate_build_compatibility_version(compatibility_builds[-1]) + 1
 
+if args.rsr:
+    parsed_args = {k:v for (k,v) in parsed_args.items() if k in ['macOS', 'iOS', 'iPadOS']}
+
 board_ids = {}
 build_versions = {}
 restore_versions = {}
