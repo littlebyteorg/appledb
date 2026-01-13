@@ -60,6 +60,7 @@
                 },
                 "securityNotes": {
                     "anyOf": [
+                        {"type": "null"},
                         {"type": "string", "format": "uri"},
                         {"$ref": "#/definitions/sourceLink"}
                     ]
