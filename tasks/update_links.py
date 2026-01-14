@@ -5,6 +5,7 @@ import random
 import json
 import queue
 import string
+import sys
 import threading
 import time
 import argparse
@@ -344,18 +345,28 @@ class PrintThread(threading.Thread):
         self.stop_event = threading.Event()
         self.count = 0
         self.total = total
+        self.start_time = time.time()
         super().__init__(name=name)
+    
+    def show(self, j):
+        size = 60
+        x = int(size*j/self.total)
+        print(f"[{'█'*x}{('.'*(size-x))}] {j}/{self.total}", end='\r', file=sys.stdout, flush=True)
 
     def run(self):
         while not self.stop_event.is_set():
             try:
                 item = self.print_queue.get(block=False)
-                self.count += 1
-                print(item or f"Processed {self.count}/{self.total} ({self.count/self.total*100:.2f}%) files")
+                if item:
+                    print(item)
+                else:
+                    self.count += 1
+                    self.show(self.count)
             except queue.Empty:
                 pass
 
     def stop(self):
+        print() # extra print to clear out the progress bar
         self.stop_event.set()
 
 
