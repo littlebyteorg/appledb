@@ -361,7 +361,8 @@ class PrintThread(threading.Thread):
                     print(item)
                 else:
                     self.count += 1
-                    self.show(self.count)
+                    if __name__ == "__main__":
+                        self.show(self.count)
             except queue.Empty:
                 pass
 
