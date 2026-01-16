@@ -6,7 +6,10 @@
         {
             "uniqueBuild": "7.1.6.200-Security",
             "released": "2007-05-29",
-            "securityNotes": "http://support.apple.com/kb/TA24733",
+            "securityNotes": {
+                "url": "http://support.apple.com/kb/TA24733",
+                "active": false
+            },
             "sources": [
                 {
                     "type": "msi",
@@ -22,7 +25,10 @@
                             "url": "http://download.info.apple.com/Mac_OS_X/061-3451.20070529.o08v3/SecUpdQuickTime716.msi",
                             "active": true
                         }
-                    ]
+                    ],
+                    "hashes": {
+                        "md5": "0f7ff9ce7aede468ab26855ccf324fd5"
+                    }
                 }
             ]
         }
@@ -50,7 +56,11 @@
                     "url": "http://appldnld.apple.com/QuickTime/061-3155.20070501.qbBt4/QuickTimeInstaller.exe",
                     "active": true
                 }
-            ]
+            ],
+            "hashes": {
+                "md5": "b646694d13177d3fb6911bbbac4749e3"
+            },
+            "size": 20006472
         }
     ]
 }
