@@ -42,7 +42,7 @@ def device_sort(device):
 def os_sort(os):
     if os.startswith("Windows"):
         os_split = os.split(" ", 1)
-        os_remains_mapping = {"2000": "5", "XP": "5.1", "XP SP2": "5.2", "XP SP3": "5.3", "Vista": "6"}
+        os_remains_mapping = {"98": "4.1", "ME": "4.9", "2000": "5", "XP": "5.1", "XP SP2": "5.2", "XP SP3": "5.3", "Vista": "6"}
         os_split[1] = os_remains_mapping.get(os_split[1], os_split[1])
     else:
         os_split = os.split(" (", 1)[0].rsplit(" ", 1)
