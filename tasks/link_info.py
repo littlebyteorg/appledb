@@ -22,6 +22,7 @@ rewrite_map_v2 = {
     "http://a1408.g.akamai.net/": [],
     "http://apple.speedera.net/": [],
     "https://addons.mozilla.org/": [],
+    "https://qtinstall.info.apple.com/": ["http://qtinstall.info.apple.com/"],
     "https://download.info.apple.com/": ["http://download.info.apple.com/"],
     "https://support.apple.com/downloads/": ["http://support.apple.com/downloads/"],
     "https://devimages-cdn.apple.com/": ["http://devimages-cdn.apple.com/"],
