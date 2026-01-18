@@ -367,7 +367,8 @@ class PrintThread(threading.Thread):
                 pass
 
     def stop(self):
-        print() # extra print to clear out the progress bar
+        if __name__ == "__main__":
+            print() # extra print to clear out the progress bar
         self.stop_event.set()
 
 
