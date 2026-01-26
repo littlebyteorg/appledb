@@ -54,13 +54,13 @@ final_builds = {
         '13G37', # iPad 2, 3/iPad mini 1/iPhone 4S
         '14G60', # iPad 4/iPhone 5, 5c
         '14G61', # iPad 4/iPhone 5, 5c
-        '16H81', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
-        '19H394', # iPhone 6s, 7, SE/iPod touch 7
-        '20H364', # iPhone 8, X
+        '16H88', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
+        '19H402', # iPhone 6s, 7, SE/iPod touch 7
+        '20H365', # iPhone 8, X
     ],
     'iPadOS': [
-        '19H394', # iPad Air 2/iPad mini 4
-        '20H364', # iPad 5/iPad Pro 1
+        '19H402', # iPad Air 2/iPad mini 4
+        '20H365', # iPad 5/iPad Pro 1
     ],
     'macOS': [
         '20B28' # 11.0.1 RC (still signed somehow)
