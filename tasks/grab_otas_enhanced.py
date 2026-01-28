@@ -268,6 +268,7 @@ parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-e', '--echo-request', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
+parser.add_argument('-q', '--quiet', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--suffix', default="")
@@ -526,10 +527,12 @@ def merge_dicts(original, additional):
 
 beta_specific_types = ['developer', 'appleseed', 'public']
 for (os_str, builds) in parsed_args.items():
-    print(f"Checking {os_str}")
+    if not args.quiet:
+        print(f"Checking {os_str}")
     target_asset_audiences = asset_audiences[asset_audiences_overrides.get(os_str, os_str)]
     for build in builds:
-        print(f"\tChecking {build}")
+        if not args.quiet:
+            print(f"\tChecking {build}")
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
@@ -635,7 +638,8 @@ for (os_str, builds) in parsed_args.items():
 
         for audience in audiences:
             for key, value in devices.items():
-                print(f"\t\tChecking {key}")
+                if not args.quiet:
+                    print(f"\t\tChecking {key}")
                 for board in value['boards']:
                     if not (args.no_prerequisites or os_str == 'tvOS'):
                         for prerequisite_build, version in value['builds'].items():
@@ -677,7 +681,8 @@ for key, value in ota_list.items():
     ota_list[key]['sources'] = sources
 print(sorted(builds, key=build_number_sort))
 if bool(ota_list.keys()):
-    print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
+    if not args.quiet:
+        print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     if missing_decryption_keys:
         print(f"Missing decryption keys: {sorted(missing_decryption_keys)}")
     _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]

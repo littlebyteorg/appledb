@@ -142,3 +142,5 @@ if bool(out):
     print([f"{d['osStr']} {d['version']} ({len(d.get('links', []))})" for d in out])
     _ = [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
     json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
+else:
+    print([])
