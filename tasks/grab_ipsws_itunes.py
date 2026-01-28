@@ -11,7 +11,7 @@ import requests
 from urllib.parse import unquote
 
 from common_update_import import OS_MAP
-from sort_os_files import device_sort
+from sort_os_files import build_number_sort, device_sort
 
 # other links:
 # http://ax.phobos.apple.com.edgesuite.net/WebObjects/MZStore.woa/wa/com.apple.jingle.appserver.client.MZITunesClientCheck/version
@@ -109,7 +109,7 @@ for url in urls:
                                 ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd'][ipd_property] = variant['DocumentationURL']
                                 break
 
-print(builds)
+print(sorted(builds, key=build_number_sort))
 if bool(ipsw_list):
     cleaned_list = []
     count = 0

@@ -1,4 +1,3 @@
-from datetime import date, datetime
 from pathlib import Path
 import re
 import argparse
@@ -651,8 +650,7 @@ missing_decryption_keys = set()
 builds = set()
 for key, value in ota_list.items():
     sources = []
-    if date.today() == datetime.strptime(value['released'], "%Y-%m-%d").date():
-        builds.add(value['build'])
+    builds.add(value['build'])
     for source in value['sources'].values():
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
             missing_key = f"{value['osStr']}-{'/'.join(source['prerequisites'])}"
@@ -677,7 +675,7 @@ for key, value in ota_list.items():
         source['boardMap'] = sorted(list(source['boardMap']))
         sources.append(source)
     ota_list[key]['sources'] = sources
-print(builds)
+print(sorted(builds, key=build_number_sort))
 if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     if missing_decryption_keys:

@@ -105,8 +105,10 @@ for url in urls:
             link = f"{link};{asset['ArchiveDecryptionKey']}"
         ota_links.add(link)
 
+builds = set()
 for key in ota_list.keys():
     sources = []
+    builds.add(ota_list[key]['build'])
     for source in ota_list[key]['sources'].values():
         source['deviceMap'] = sorted(list(source['deviceMap']), key=device_sort)
         source['prerequisites'] = sorted(list(source['prerequisites']), key=build_number_sort)
@@ -117,6 +119,7 @@ for key in ota_list.keys():
         sources.append(source)
     ota_list[key]['sources'] = sources
 
+print(sorted(builds, key=build_number_sort))
 if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
