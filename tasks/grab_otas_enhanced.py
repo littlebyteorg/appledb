@@ -54,13 +54,13 @@ ignore_builds = {
 latest_watch_compatibility_versions = {
     12: ['5.3.9'],  # iPhone 5s/6
     18: ['8.8.1'],  # iPhone 6s/SE (1st)/7
-    20: ['9.6.3'],  # iPhone 8/X
+    20: ['9.6.4'],  # iPhone 8/X
     24: ['11.6', '11.6.1'], # iPhone Xr/Xs
 }
 
 legacy_versions = {
-    'iOS': [15, 16],
-    'iPadOS': [15, 16, 17],
+    'iOS': [15, 16, 18],
+    'iPadOS': [15, 16, 17, 18],
 }
 
 asset_audiences_overrides = {

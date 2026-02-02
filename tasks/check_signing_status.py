@@ -8,10 +8,13 @@ import random
 import requests
 import remotezip
 import packaging.version
+from datetime import datetime
 
 from file_downloader import handle_ota_file, handle_pkg_file
 from sort_os_files import sort_os_file
 from sort_files_common import build_number_sort, device_sort
+
+print(datetime.now())
 
 session = requests.Session()
 
@@ -31,6 +34,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--all-signed', action='store_true')
 parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-fb', '--future-betas', action='store_true')
+parser.add_argument('-fmr', '--force-mac-final-releases', action='store_true')
 parser.add_argument('-fr', '--force-final-releases', action='store_true')
 parser.add_argument('-l', '--list-signed', action='store_true')
 parser.add_argument('-ld', '--list-devices', action='store_true')
@@ -56,11 +60,11 @@ final_builds = {
         '14G61', # iPad 4/iPhone 5, 5c
         '16H88', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
         '19H402', # iPhone 6s, 7, SE/iPod touch 7
-        '20H365', # iPhone 8, X
+        '20H370', # iPhone 8, X
     ],
     'iPadOS': [
         '19H402', # iPad Air 2/iPad mini 4
-        '20H365', # iPad 5/iPad Pro 1
+        '20H370', # iPad 5/iPad Pro 1
     ],
     'macOS': [
         '20B28' # 11.0.1 RC (still signed somehow)
@@ -84,11 +88,10 @@ final_builds = {
         '14V753', # latest iOS 10
         '15U70', # latest 1st-generation
         '16U693', # latest iOS 12
-        '17U208', # intermediate OTA required for everything pre-watchOS 7
-        '17U216', # latest series 1/2
+        '17U224', # latest series 1/2, intermediate OTA required for everything pre-watchOS 7
         '19U512', # latest series 3, iOS 15
-        '20U502', # latest iOS 16
-        '21U580', # latest series 4/5, SE
+        '20U512', # latest iOS 16
+        '21U594', # latest series 4/5, SE
         '22U84', # SE 2, latest iOS 18
         '22U90', # latest iOS 18
     ],
@@ -283,7 +286,7 @@ def get_builds(os_names, include_devices):
             if os_name == 'tvOS' and packaging.version.parse(file_contents.get('version', '0').split(" ", 1)[0]) < packaging.version.parse("4"): continue
             if not file_contents.get('deviceMap'): continue
             if not args.force_final_releases and not args.list_signed:
-                if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
+                if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')) and not args.force_final_mac_releases: continue
                 if file_contents['build'] in final_builds.get(os_name, []): continue
             if not file_contents.get('signed', args.unsigned): continue
             if not args.future_betas and not args.list_signed:

@@ -56,7 +56,7 @@ HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)
 skip_builds = [
     '16H88', # iOS 12.5.8
     '19H402', # iOS/iPadOS 15.8.6
-    '20H365', # iOS/iPadOS 16.7.13
+    '20H370', # iOS/iPadOS 16.7.14
     "22H218", # iOS/iPadOS 18.7.4
     "23C55", # iOS/iPadOS 26.2
     "23C71", # iOS/iPadOS 26.2.1

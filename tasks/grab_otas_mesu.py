@@ -17,7 +17,8 @@ class SetEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 urls = [
-    "https://mesu.apple.com/assets/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml"
+    "https://mesu.apple.com/assets/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml",
+    "https://mesu.apple.com/assets/watch/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml"
 ]
 
 skip_builds = [
@@ -35,7 +36,7 @@ skip_builds = [
     "14G61",
     "16H88",
     "19H402",
-    "20H365",
+    "20H370",
     "21H450",
     "22H218",
     "23C71",
@@ -59,7 +60,7 @@ for url in urls:
 
     for asset in assets:
         cleaned_os_version = asset['OSVersion'].removeprefix('9.9.')
-        os_str = 'audioOS' if '/audio/' in url else 'iPadOS' if 'iPad' in asset['SupportedDevices'][0] and int(cleaned_os_version.split('.')[0]) >= 13 else 'iOS'
+        os_str = 'audioOS' if '/audio/' in url else 'watchOS' if '/watch/' in url else 'iPadOS' if 'iPad' in asset['SupportedDevices'][0] and int(cleaned_os_version.split('.')[0]) >= 13 else 'iOS'
         updated_build = asset['Build']
         # ensure deltas from beta builds to release builds are properly filtered out as noise as well if the target build is known
         delta_from_beta = re.search(r"(6\d{3})", updated_build)
