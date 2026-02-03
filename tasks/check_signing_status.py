@@ -278,6 +278,7 @@ def get_builds(os_names, include_devices):
     for os_name in os_names:
         os_path = os_name
         working_dict = {}
+        force_releases = ((os_name == 'macOS' and args.force_mac_final_releases) or os_name != 'macOS') and args.force_final_releases
         for file_path in Path(f"osFiles/{os_path}").rglob("*.json"):
             file_contents = json.load(file_path.open(encoding='utf-8'))
             if os_name == 'audioOS' and file_contents['build'] == '15C25': continue
@@ -285,8 +286,8 @@ def get_builds(os_names, include_devices):
             if os_name == 'macOS' and packaging.version.parse(file_contents.get('version', '0').split(" ", 1)[0]) < packaging.version.parse("10.16"): continue
             if os_name == 'tvOS' and packaging.version.parse(file_contents.get('version', '0').split(" ", 1)[0]) < packaging.version.parse("4"): continue
             if not file_contents.get('deviceMap'): continue
-            if not args.force_final_releases and not args.list_signed:
-                if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')) and not args.force_final_mac_releases: continue
+            if not force_releases and not args.list_signed:
+                if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
                 if file_contents['build'] in final_builds.get(os_name, []): continue
             if not file_contents.get('signed', args.unsigned): continue
             if not args.future_betas and not args.list_signed:

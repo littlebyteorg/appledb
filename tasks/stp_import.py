@@ -18,6 +18,7 @@ from update_links import update_links
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--force', action='store_true')
+parser.add_argument('-c', '--catalog')
 args = parser.parse_args()
 
 result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}", timeout=30)
@@ -67,6 +68,7 @@ properties['Posted'] = dateutil.parser.parse(properties["Posted"]).date()
 mac_versions = list(mac_versions)
 
 safari_version = None
+metadata_url = None
 
 link_version_map = {}
 
@@ -75,16 +77,18 @@ os_version_override_map = {
 }
 
 for mac_version in mac_versions:
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
+    catalog_version = args.catalog or mac_version
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{catalog_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
     catalog_safari = []
     for product in plist.values():
-        if "SafariTechPreview" not in product.get("ServerMetadataURL", ""):
+        if "SafariTechPreview" not in product['Packages'][0]['URL']:
             continue
 
-        metadata_url = product['ServerMetadataURL']
+        if not metadata_url:
+            metadata_url = product.get('ServerMetadataURL')
 
         dist_response = requests.get(product['Distributions']['English'], timeout=30).text
         os_version = dist_response.split("system.compareVersions(myTargetSystemVersion.ProductVersion, '")[1].split(".")[0]
@@ -98,8 +102,9 @@ for mac_version in mac_versions:
         print(f'Missing Safari Tech Preview for macOS {mac_version}')
         continue
 
-    safari_metadata = plistlib.loads(requests.get(metadata_url, timeout=30).content)
-    safari_version = safari_metadata['CFBundleShortVersionString']
+    if metadata_url:
+        safari_metadata = plistlib.loads(requests.get(metadata_url, timeout=30).content)
+        safari_version = safari_metadata['CFBundleShortVersionString']
 if not sources['pkg']:
     exit(0)
 
