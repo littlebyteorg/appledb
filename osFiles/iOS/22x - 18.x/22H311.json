@@ -1,0 +1,64 @@
+{
+    "osStr": "iOS",
+    "version": "18.7.5 RC",
+    "build": "22H311",
+    "restoreVersion": "22.8.311.0.0,0",
+    "buildTrain": "CrystalUpdate",
+    "released": "2026-02-04",
+    "rc": true,
+    "appledbWebImage": {
+        "id": "ios18",
+        "align": "left"
+    },
+    "deviceMap": [
+        "iPhone11,2",
+        "iPhone11,4",
+        "iPhone11,6",
+        "iPhone11,8"
+    ],
+    "basebandVersions": {
+        "iPhone11,2": "7.03.01",
+        "iPhone11,4": "7.03.01",
+        "iPhone11,6": "7.03.01",
+        "iPhone11,8": "7.03.01"
+    },
+    "signed": true,
+    "sources": [
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone11,2",
+                "iPhone11,4",
+                "iPhone11,6"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026WinterFCS/patches/047-53533/83890C70-3835-4EA0-92C4-F22E9DC3AE72/com_apple_MobileAsset_SoftwareUpdate/3aa73ec4308423fbefcda580a463c34f58746c47.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "3aa73ec4308423fbefcda580a463c34f58746c47",
+                "sha2-256": "038b6b0cad2d9964440be987c24278bd43acff20846c6d3cbbb552b4aa9e15c1"
+            },
+            "size": 6902685211
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPhone11,8"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026WinterFCS/patches/047-53535/4FDACD5C-0CF5-4ABE-95CA-8B8F814DEA33/com_apple_MobileAsset_SoftwareUpdate/39afb2f75143d8b3d82938ba05aad71167b5b2f6.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "39afb2f75143d8b3d82938ba05aad71167b5b2f6",
+                "sha2-256": "e951896198793278f3b998ec0f2cca9e2d67bb5c410d13bb3c16fcc6e3d4971e"
+            },
+            "size": 6705393265
+        }
+    ]
+}
