@@ -92,8 +92,7 @@ final_builds = {
         '19U512', # latest series 3, iOS 15
         '20U512', # latest iOS 16
         '21U594', # latest series 4/5, SE
-        '22U84', # SE 2, latest iOS 18
-        '22U90', # latest iOS 18
+        '22U95', # latest iOS 18
     ],
 }
 

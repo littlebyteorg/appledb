@@ -88,14 +88,19 @@ for fork in args.forks:
 
     target_audiences = []
     filtered_audiences = set()
+    audience_labels = {}
     asset_audience_list = asset_audiences[asset_audiences_overrides.get(args.os, args.os)]
-    for audience in asset_audience_list.values():
+    for label, audience in asset_audience_list.items():
         if isinstance(audience, str):
+            audience_labels[audience] = label
             target_audiences.append(audience)
         else:
-            target_audiences.append(audience[sorted(audience.keys())[-1]])
+            for (version, audience_item) in audience.items():
+                audience_labels[audience_item] = f"{label}-{version}"
+                target_audiences.append(audience_item)
 
     for asset_audience in target_audiences:
+        print(audience_labels[asset_audience])
         for board, identifier in board_identifier_map.items():
             for build in range(start_range, end_range+1):
                 for suffix in suffix_range:
