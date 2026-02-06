@@ -55,7 +55,7 @@ latest_watch_compatibility_versions = {
     12: ['5.3.9'],  # iPhone 5s/6
     18: ['8.8.1'],  # iPhone 6s/SE (1st)/7
     20: ['9.6.4'],  # iPhone 8/X
-    24: ['11.6', '11.6.1'], # iPhone Xr/Xs
+    24: ['11.6.2'], # iPhone Xr/Xs
 }
 
 legacy_versions = {
@@ -412,10 +412,10 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
     }
     if target_os_str in ['iOS', 'iPadOS', 'macOS']:
         request['RestoreVersion'] = generate_restore_version(os_build)
-    elif target_os_str == 'watchOS':
-        request['DeviceName'] = 'Apple Watch'
-        request['MinCompanionCompatibilityVersion'] = minimum_compatibility
-        request['MaxCompanionCompatibilityVersion'] = maximum_compatibility
+    # elif target_os_str == 'watchOS':
+    #     request['DeviceName'] = 'Apple Watch'
+    #     request['MinCompanionCompatibilityVersion'] = minimum_compatibility
+    #     request['MaxCompanionCompatibilityVersion'] = maximum_compatibility
 
     if "beta" in os_version.lower() and target_os_str in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
