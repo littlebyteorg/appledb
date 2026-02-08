@@ -20,6 +20,7 @@ asset_audiences_overrides = {
 }
 
 def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, product_version, counter=5):
+    found_prerequisites = set()
     asset_type = 'SoftwareUpdate'
     if os_str == 'macOS':
         asset_type = 'Mac' + asset_type
@@ -49,9 +50,9 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     for asset in parsed_response['Assets']:
         if not asset.get('PrerequisiteBuild'): continue
-        # print(asset.keys())
-        print(f"{asset['PrerequisiteOSVersion']} ({asset['PrerequisiteBuild']})")
-        break
+        found_prerequisites.add(f"{asset['PrerequisiteOSVersion']} ({asset['PrerequisiteBuild']})")
+    for item in sorted(found_prerequisites):
+        print(item)
 
 choice_list = list(asset_audiences.keys())
 choice_list.extend(list(asset_audiences_overrides.keys()))
@@ -100,9 +101,13 @@ for fork in args.forks:
                 target_audiences.append(audience_item)
 
     for asset_audience in target_audiences:
-        print(audience_labels[asset_audience])
+        audience_label = audience_labels[asset_audience]
+        print(audience_label)
         for board, identifier in board_identifier_map.items():
             for build in range(start_range, end_range+1):
                 for suffix in suffix_range:
                     for version in args.versions:
+                        if not audience_label.endswith('release'):
+                            label_version = int(audience_label.split("-")[-1])
+                            if int(version.split(".", 1)[0]) > label_version: continue
                         call_pallas(board, f"{args.build_prefix}{build}{suffix}", args.os, asset_audience, identifier, version)
