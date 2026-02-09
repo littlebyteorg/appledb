@@ -95,6 +95,7 @@ def import_ota(
     build_manifest = None
     only_needs_baseband = False
     aea_support_filename = 'aastuff'
+    info_plist = {}
 
     # We need per-device details anyway, grab from the full OTA
     # If size is explicitly passed in, assume source is no longer active
@@ -154,15 +155,13 @@ def import_ota(
                     bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
                     break
                 except remotezip.RemoteIOError as e:
-                    if not build:
-                        if e.args[0].startswith('403 Client Error'):
-                            print('No file')
-                            raise e
-                        time.sleep(1+counter)
-                        counter += 1
-                        if counter > 10:
-                            raise e
-                    info_plist = {}
+                    if e.args[0].startswith('403 Client Error'):
+                        print('No file')
+                        raise e
+                    time.sleep(1+counter)
+                    counter += 1
+                    if counter > 10:
+                        raise e
     bridge_version = None
 
     if bridge_version_info:
