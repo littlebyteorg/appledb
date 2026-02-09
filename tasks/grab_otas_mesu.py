@@ -63,6 +63,7 @@ for (os_str, url) in urls.items():
     response.raise_for_status()
 
     assets = plistlib.loads(response.content)['Assets']
+    # assets = plistlib.loads(Path('import_mesu.plist').read_bytes())['Assets']
 
     for asset in assets:
         cleaned_os_version = asset['OSVersion'].removeprefix('9.9.')
@@ -89,7 +90,7 @@ for (os_str, url) in urls.items():
                 'sources': {}
             }
             ota_list[f"{os_str_name}-{updated_build}"] = base_details
-        link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
+        link = f"{asset['__BaseURL'].strip()}{asset['__RelativePath'].strip()}"
         if 'OTARescueAsset' in link: continue
         if not ota_list[f"{os_str_name}-{updated_build}"]['sources'].get(link):
             ota_list[f"{os_str_name}-{updated_build}"]['sources'][link] = {
