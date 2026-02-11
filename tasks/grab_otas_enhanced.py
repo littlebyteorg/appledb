@@ -42,7 +42,8 @@ added_builds = {
     '23A341': ['23A330', '23A340'],
     '23A355': ['23A357'],
     '23A8355': ['23A8357'],
-    '23B85': ['23B82']
+    '23B85': ['23B82'],
+    '23C55': ['23C52', 'iOS;23C54']
 }
 
 ignore_builds = {
@@ -505,6 +506,10 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                     elif '-' in additional_build:
                         additional_build_split = additional_build.split('-')
                         if updated_build.startswith(additional_build_split[0]):
+                            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
+                    elif ';' in additional_build:
+                        additional_build_split = additional_build.split(';')
+                        if response_os_str == additional_build_split[0]:
                             ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
                     else:
                         ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build)
