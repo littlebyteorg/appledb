@@ -109,5 +109,5 @@ for fork in args.forks:
                     for version in args.versions:
                         if not audience_label.endswith('release'):
                             label_version = int(audience_label.split("-")[-1])
-                            if int(version.split(".", 1)[0]) > label_version: continue
+                            if int(version.split(".", 1)[0]) != label_version: continue
                         call_pallas(board, f"{args.build_prefix}{build}{suffix}", args.os, asset_audience, identifier, version)
