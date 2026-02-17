@@ -58,18 +58,23 @@ skip_builds = [
     '19H402', # iOS/iPadOS 15.8.6
     '20H370', # iOS/iPadOS 16.7.14
     "22H218", # iOS/iPadOS 18.7.4
-    "23C55", # iOS/iPadOS 26.2
+    "22H311", # iOS/iPadOS 18.7.5
     "23C71", # iOS/iPadOS 26.2.1
+    "23D127", # iOS/iPadOS 26.3
     "23K54", # tvOS 26.2
+    "23K620", # tvOS 26.3
     "23N301", # visionOS 26.2
+    "23N620", # visionOS 26.3
     "23S314", # watchOS 26.2.1
-    "25C56", # macOS 26.2
+    "23S620", # watchOS 26.3
+    "23C56", # macOS 26.2 (typoed build)
+    "25D125", # macOS 26.3
     # betas
-    "23D5114d", # iOS/iPadOS 26.3
-    "23K5611c", # tvOS 26.3
-    "23N5613b", # visionOS 26.3
-    "23S5611c", # watchOS 26.3
-    "25D5112c", # macOS 26.3
+    "23E5207q", # iOS/iPadOS 26.4 beta
+    "23L5208m", # tvOS 26.4 beta
+    "23O5209m", # visionOS 26.4 beta
+    "23T5209m", # watchOS 26.4 beta
+    "25E5207k", # macOS 26.4 beta
 ]
 
 for group in element.xpath(".//h3/.."):
@@ -77,6 +82,9 @@ for group in element.xpath(".//h3/.."):
     match = HEADING_PATTERN.match(name)
     if not match:
         if name.startswith("Device Support"):
+            # Bruh
+            continue
+        if name.startswith("Accessory Notifications"):
             # Bruh
             continue
         assert match, f"Name does not match pattern: {name}"
@@ -102,6 +110,10 @@ for group in element.xpath(".//h3/.."):
     try:
         links: Element = group.xpath(".//div/ul/li/a/../..")[0]
         for i in links.iterchildren(None):
+            if isinstance(i, lxml.html.HtmlComment):
+                print('COMMENTED-OUT LINK')
+                print(i)
+                continue
             device = i.find("a", None).text.strip()
             url = i.find("a", None).attrib["href"].strip()
             if url.startswith("/"):

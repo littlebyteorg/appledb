@@ -79,6 +79,8 @@ CELLULAR_DEVICES_26 = [
 ]
 
 APPLE_BASEBAND_DEVICES = [
+    'iPad17,2',
+    'iPad17,4',
     'iPhone17,5',
     'iPhone18,4',
 ]
