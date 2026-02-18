@@ -11,7 +11,7 @@ import requests
 from urllib.parse import unquote
 
 from common_update_import import OS_MAP
-from sort_os_files import device_sort
+from sort_os_files import build_number_sort, device_sort
 
 # other links:
 # http://ax.phobos.apple.com.edgesuite.net/WebObjects/MZStore.woa/wa/com.apple.jingle.appserver.client.MZITunesClientCheck/version
@@ -39,17 +39,17 @@ def get_os_str(supported_device, version):
 ipsw_list = {}
 known_builds = [
     # iOS
-    '16H81',   # 12.5.7
-    '19H394',  # 15.8.5
-    '20H364',  # 16.7.12
+    '16H88',   # 12.5.8
+    '19H402',  # 15.8.6
+    '20H370',  # 16.7.14
     '21H450',  # 17.7.10
     '22C161',  # 18.2.1
-    '22H217',  # 18.7.3
-    '23C55',   # 26.2
-    '23K54',   # tvOS 26.2
-    '23N301',  # visionOS 26.2
-    '23P2048', # bridgeOS 10.2
-    '25C56',   # macOS 26.2
+    '22H311',  # 18.7.5
+    '23D127',  # 26.3
+    '23K620',  # tvOS 26.2
+    '23N620',  # visionOS 26.2
+    '23P3120', # bridgeOS 10.2
+    '25D125',  # macOS 26.2
 ]
 
 filename_prefix_map = {
@@ -109,7 +109,7 @@ for url in urls:
                                 ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd'][ipd_property] = variant['DocumentationURL']
                                 break
 
-print(builds)
+print(sorted(builds, key=build_number_sort))
 if bool(ipsw_list):
     cleaned_list = []
     count = 0

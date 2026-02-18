@@ -57,30 +57,33 @@ def call_pallas(request, os_str, target_device):
     discovered_builds = set()
     for asset in parsed_response['Assets']:
         cleaned_build = clear_inflated_build(asset['Build'])
+        default_version = asset['OSVersion'].removeprefix('9.9.')
         if cleaned_build in discovered_builds: continue
-        if len(list(Path(f"osFiles/{os_str}").rglob(f"{cleaned_build}.json"))) > 0:
-            print(f"{os_str}-{cleaned_build}")
+        os_str_override = os_str
+        if int(default_version.split(".", 1)[0]) < 13 and os_str == 'iPadOS':
+            os_str_override = 'iOS'
+        if len(list(Path(f"osFiles/{os_str_override}").rglob(f"{cleaned_build}.json"))) > 0:
+            print(f"{os_str_override}-{cleaned_build}")
             continue
         discovered_builds.add(cleaned_build)
-        if not processed_builds.get(f"{os_str}-{cleaned_build}"):
-            default_version = asset['OSVersion'].removeprefix('9.9.')
-            entered_version = input(f"Enter version (include beta/RC), or press Enter to keep {default_version} for {os_str} ({cleaned_build}): ").strip() or default_version
+        if not processed_builds.get(f"{os_str_override}-{cleaned_build}"):
+            entered_version = input(f"Enter version (include beta/RC), or press Enter to keep {default_version} for {os_str_override} ({cleaned_build}): ").strip() or default_version
             processed_build = {
-                "osStr": os_str,
+                "osStr": os_str_override,
                 "version": entered_version,
                 "build": cleaned_build,
                 "released": parsed_response['PostingDate'],
                 "beta": "beta" in entered_version,
                 "rc": "RC" in entered_version,
-                "appledbWebImage": get_image(os_str, entered_version),
+                "appledbWebImage": get_image(os_str_override, entered_version),
                 "deviceMap": set()
             }
             if not processed_build['beta']:
                 del processed_build['beta']
             if not processed_build['rc']:
                 del processed_build['rc']
-            processed_builds[f"{os_str}-{cleaned_build}"] = processed_build
-        processed_builds[f"{os_str}-{cleaned_build}"]['deviceMap'].add(target_device)
+            processed_builds[f"{os_str_override}-{cleaned_build}"] = processed_build
+        processed_builds[f"{os_str_override}-{cleaned_build}"]['deviceMap'].add(target_device)
 
 def flatten_audiences(audience_dict):
     audience_list = []

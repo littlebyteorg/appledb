@@ -163,7 +163,6 @@ for download in downloads:
                 "Command Line Tools for Xcode"
             ],
             "osMap": [
-                "macOS 15",
                 "macOS 26"
             ],
             "sources": [
@@ -173,7 +172,6 @@ for download in downloads:
                         "Command Line Tools for Xcode"
                     ],
                     "osMap": [
-                        "macOS 15",
                         "macOS 26"
                     ],
                     "links": [

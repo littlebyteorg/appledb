@@ -6,12 +6,37 @@
     "createDuplicateEntries": [
         {
             "uniqueBuild": "4-beta-2",
-            "released": "2008-08-22"
+            "released": "2008-08-25"
         },
         {
             "uniqueBuild": "4-beta-3",
             "released": "2009-02-12",
+            "osMap": [
+                "Mac OS X 10.5",
+                "Windows XP",
+                "Windows Vista"
+            ],
             "sources": [
+                {
+                    "type": "exe",
+                    "deviceMap": [
+                        "Safari (Windows)"
+                    ],
+                    "osMap": [
+                        "Windows XP",
+                        "Windows Vista"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/Safari4/061-4663.20090224.Fret6/SafariSetup.exe",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "dc811b8e8af50a26753bc7ea0f723b7e"
+                    },
+                    "size": 26699048
+                },
                 {
                     "type": "dmg",
                     "deviceMap": [
@@ -36,7 +61,50 @@
         {
             "uniqueBuild": "4-beta-4",
             "released": "2009-05-12",
-            "securityNotes": "https://support.apple.com/HT3551"
+            "securityNotes": "https://support.apple.com/HT3551",
+            "osMap": [
+                "Mac OS X 10.5",
+                "Windows XP",
+                "Windows Vista"
+            ],
+            "sources": [
+                {
+                    "type": "exe",
+                    "deviceMap": [
+                        "Safari (Windows)"
+                    ],
+                    "osMap": [
+                        "Windows XP",
+                        "Windows Vista"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/Safari4/061-6161.20090429.vfe34/SafariSetup.exe",
+                            "active": true
+                        }
+                    ],
+                    "hashes": {
+                        "md5": "76f680c9435ee3ade48e6690cf05c488"
+                    },
+                    "size": 26690856
+                },
+                {
+                    "type": "dmg",
+                    "deviceMap": [
+                        "Safari (macOS)"
+                    ],
+                    "osMap": [
+                        "Mac OS X 10.5"
+                    ],
+                    "links": [
+                        {
+                            "url": "http://appldnld.apple.com/Safari4/061-6162.20090429.gttre/Safari4.0BetaSecUpdateLeo.dmg",
+                            "active": false
+                        }
+                    ],
+                    "size": 33227174
+                }
+            ]
         }
     ],
     "deviceMap": [

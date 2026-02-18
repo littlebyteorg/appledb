@@ -13,6 +13,7 @@ key_order = [
     "type",
     "order",
     "devices",
+    "imageKey",
     "subgroups"
 ]
 

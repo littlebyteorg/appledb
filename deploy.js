@@ -197,6 +197,8 @@ osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
 
   if (ver.preinstalled === true) ver.preinstalled = ver.deviceMap;
   else if (!ver.preinstalled) ver.preinstalled = [];
+  if (ver.preinstalledOS === true) ver.preinstalledOS = ver.osMap;
+  else if (!ver.preinstalledOS) ver.preinstalledOS = [];
   if (ver.signed === true) ver.signed = ver.deviceMap;
   else if (!ver.signed) ver.signed = [];
 

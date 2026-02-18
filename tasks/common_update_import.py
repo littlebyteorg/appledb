@@ -129,8 +129,12 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         version_dir = "8x - 4.0 to 4.3"
 
     file_path = f"osFiles/{os_str}/{version_dir}/{build}.json"
+    bsi = rsr and " - 1" not in version_dir
+    rsr = rsr and not bsi
     if rsr:
         file_path = file_path.replace("osFiles", "osFiles/Rapid Security Responses")
+    elif bsi:
+        file_path = file_path.replace("osFiles", "osFiles/Background Security Improvements")
 
     db_file = Path(file_path)
     if db_file.exists():
@@ -164,7 +168,7 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         web_image = get_image(os_str, friendly_version)
         if web_image:
             db_data['appledbWebImage'] = web_image
-        if os_str != 'cloudOS':
+        if os_str != 'cloudOS' and not rsr and not bsi:
             db_data['signed'] = True
 
     if buildtrain and buildtrain != db_data.get('buildTrain'):
@@ -206,7 +210,11 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         file_updated = True
         db_data["rsr"] = True
 
-    if "releaseNotes" not in db_data and not db_data.get("beta") and not db_data.get("rc") and not db_data.get("rsr") and not db_data.get("internal"):
+    if "bsi" not in db_data and bsi:
+        file_updated = True
+        db_data["bsi"] = True
+
+    if "releaseNotes" not in db_data and not db_data.get("beta") and not db_data.get("rc") and not db_data.get("rsr") and not db_data.get("bsi") and not db_data.get("internal"):
         release_notes_link = get_release_notes_link(os_str, db_data["version"])
         if release_notes_link:
             file_updated = True

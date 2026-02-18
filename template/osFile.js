@@ -41,6 +41,9 @@ module.exports = function (json) {
     beta: {
       type: Boolean,
     },
+    bsi: {
+      type: Boolean,
+    },
     rsr: {
       type: Boolean,
     },

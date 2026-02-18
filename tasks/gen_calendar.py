@@ -76,6 +76,8 @@ Released on {data["released"]}.
         description += "This is a release candidate build.\n"
     if data.get("rsr"):
         description += "This is a Rapid Security Response.\n"
+    if data.get("bsi"):
+        description += "This is a Background Security Improvement.\n"
 
     description = description.strip()
 
