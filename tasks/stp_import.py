@@ -96,7 +96,7 @@ for mac_version in mac_versions:
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
         if dist_version != properties['Release']: continue
         catalog_safari.append(product)
-        sources['pkg'][os_version] = product['Packages'][0]['URL']
+        sources['pkg'][os_version] = product['Packages'][0]['URL'].replace("http://", "https://")
 
     if not catalog_safari:
         print(f'Missing Safari Tech Preview for macOS {mac_version}')
@@ -124,7 +124,10 @@ source = {
 
 for package_type, type_sources in sources.items():
     for mac_version, link in type_sources.items():
-        (file_hashes, _) = handle_pkg_file(download_link=link, hashes=['md5', 'sha1', 'sha2-256'], file_suffix=f"-stp-{mac_version}")
+        manifest_path = "Applications/Safari Technology Preview.app/Contents/version.plist" if package_type == 'pkg' else None
+        (file_hashes, app_version) = handle_pkg_file(download_link=link, hashes=['md5', 'sha1', 'sha2-256'], file_suffix=f"-stp-{mac_version}", extracted_manifest_file_path=manifest_path)
+        if app_version and not source['safariVersion']:
+            source['safariVersion'] = app_version['CFBundleShortVersionString']
         source["sources"].append({
             "type": package_type,
             "deviceMap": ["Safari Technology Preview"],
