@@ -130,7 +130,7 @@ class ProcessFileThread(threading.Thread):
                     # Dead link
                     successful_hit = False
                 else:  # Leave it be
-                    raise Exception(f"Unknown status code: {resp.status_code}") #pylint: disable=broad-exception-raised
+                    raise Exception(f"Unknown status code for {url}: {resp.status_code}") #pylint: disable=broad-exception-raised
 
                 success_map[url] = link["active"] = successful_hit
 
