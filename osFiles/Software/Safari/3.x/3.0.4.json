@@ -2,15 +2,20 @@
     "osStr": "Safari",
     "version": "3.0.4",
     "released": "2007-10-26",
+    "preinstalledOS": true,
     "createDuplicateEntries": [
         {
             "uniqueBuild": "3.0.4-2",
-            "released": "2007-11-14"
+            "released": "2007-11-14",
+            "osMap": [
+                "Mac OS X 10.4.11"
+            ]
         },
         {
             "uniqueBuild": "3.0.4-beta",
             "released": "2007-11-14",
             "beta": true,
+            "preinstalledOS": false,
             "securityNotes": {
                 "url": "http://support.apple.com/kb/TA25078",
                 "active": false
@@ -49,6 +54,7 @@
             "uniqueBuild": "3.0.4-beta-2",
             "released": "2007-12-17",
             "beta": true,
+            "preinstalledOS": false,
             "securityNotes": "https://support.apple.com/HT2290",
             "deviceMap": [
                 "Safari (Windows)"
@@ -56,12 +62,32 @@
             "osMap": [
                 "Windows XP",
                 "Windows Vista"
+            ],
+            "sources": [
+                {
+                    "type": "msi",
+                    "deviceMap": [
+                        "Safari (Windows)"
+                    ],
+                    "osMap": [
+                        "Windows XP",
+                        "Windows Vista"
+                    ],
+                    "links": [
+                        {
+                            "url": "https://swcdn.apple.com/content/downloads/05/53/061-4197/svpKZMZBjY69rmqrnsVTxWN4GDtvqt8gnx/Safari.msi",
+                            "active": false
+                        }
+                    ],
+                    "size": 18632192
+                }
             ]
         },
         {
             "uniqueBuild": "3.0.4-beta-3",
             "released": "2007-12-21",
             "beta": true,
+            "preinstalledOS": false,
             "securityNotes": "https://support.apple.com/HT2267",
             "deviceMap": [
                 "Safari (Windows)"
@@ -98,7 +124,6 @@
         "Safari (macOS)"
     ],
     "osMap": [
-        "Mac OS X 10.4",
         "Mac OS X 10.5"
     ]
 }

@@ -42,12 +42,14 @@ def device_sort(device):
 def os_sort(os):
     if os.startswith("Windows"):
         os_split = os.split(" ", 1)
-        os_remains_mapping = {"2000": "5", "XP": "5.1", "XP SP2": "5.2", "XP SP3": "5.3", "Vista": "6"}
+        os_remains_mapping = {"95": "4", "NT 4.0": "4.1", "98": "4.2", "ME": "4.9", "2000": "5", "XP": "5.1", "XP SP2": "5.2", "XP SP3": "5.3", "Vista": "6"}
         os_split[1] = os_remains_mapping.get(os_split[1], os_split[1])
     else:
-        os_split = os.rsplit(" ", 1)
+        os_split = os.split(" (", 1)[0].rsplit(" ", 1)
         if os_split[1].startswith("10"):
-            os_split[1] = ".".join([f"{int(x):02d}" for x in os_split[1].split(".")])
+            os_split[1] = ".".join([f"{int(x):02d}" for (i, x) in enumerate(os_split[1].split(" ", 1)[0].split(".")) if i < 2])
+        else:
+            os_split[1] = os_split[1].split(".", 1)[0]
 
     return os_prefix_order.index(os_split[0]), float(os_split[1])
 

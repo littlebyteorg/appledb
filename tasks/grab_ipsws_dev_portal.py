@@ -54,25 +54,21 @@ out = []
 HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
 
 skip_builds = [
-    "22H124", # iOS/iPadOS 18.7.2
-    "22H217", # iOS/iPadOS 18.7.3
-    "23B85", # iOS/iPadOS 26.1
-    "23C55", # iOS/iPadOS 26.2
-    "23J582", # tvOS 26.1
-    "23K54", # tvOS 26.2
-    "23N49", # visionOS 26.1
-    "23N301", # visionOS 26.2
-    "23S37", # watchOS 26.1
-    "23S303", # watchOS 26.2
-    "25B78", # macOS 26.1
-    "25C56", # macOS 26.2
+    '16H88', # iOS 12.5.8
+    '19H402', # iOS/iPadOS 15.8.6
+    '20H370', # iOS/iPadOS 16.7.14
+    "22H311", # iOS/iPadOS 18.7.5
+    "23D127", # iOS/iPadOS 26.3
+    "23K620", # tvOS 26.3
+    "23N620", # visionOS 26.3
+    "23S620", # watchOS 26.3
+    "25D125", # macOS 26.3
     # betas
-    "22H217", # iOS/iPadOS 18.7.3
-    "23D5089e", # iOS/iPadOS 26.3
-    "23K5585c", # tvOS 26.3
-    "23N5588c", # visionOS 26.3
-    "23S5586d", # watchOS 26.3
-    "25D5087f", # macOS 26.3
+    "23E5207q", # iOS/iPadOS 26.4 beta
+    "23L5208m", # tvOS 26.4 beta
+    "23O5209m", # visionOS 26.4 beta
+    "23T5209m", # watchOS 26.4 beta
+    "25E5207k", # macOS 26.4 beta
 ]
 
 for group in element.xpath(".//h3/.."):
@@ -80,6 +76,9 @@ for group in element.xpath(".//h3/.."):
     match = HEADING_PATTERN.match(name)
     if not match:
         if name.startswith("Device Support"):
+            # Bruh
+            continue
+        if name.startswith("Accessory Notifications"):
             # Bruh
             continue
         assert match, f"Name does not match pattern: {name}"
@@ -105,6 +104,10 @@ for group in element.xpath(".//h3/.."):
     try:
         links: Element = group.xpath(".//div/ul/li/a/../..")[0]
         for i in links.iterchildren(None):
+            if isinstance(i, lxml.html.HtmlComment):
+                print('COMMENTED-OUT LINK')
+                print(i)
+                continue
             device = i.find("a", None).text.strip()
             url = i.find("a", None).attrib["href"].strip()
             if url.startswith("/"):
@@ -145,3 +148,5 @@ if bool(out):
     print([f"{d['osStr']} {d['version']} ({len(d.get('links', []))})" for d in out])
     _ = [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
     json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
+else:
+    print([])

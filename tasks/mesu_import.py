@@ -79,7 +79,8 @@ asset_types = {
         ]
     },
     'AirTags': {
-        'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware'
+        'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware',
+        'A2937': 'com_apple_MobileAsset_UARP_A2937'
     },
     'Beats': {
         'A2048': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2048_EA',
@@ -95,7 +96,13 @@ asset_types = {
         'A2450': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_8',
         'A2449': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_6',
         'A1644': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_5',
-        'A1843': 'com_apple_MobileAsset_MobileAccessoryUpdate_ExternalKeyboardFirmware'
+        'A1843': 'com_apple_MobileAsset_MobileAccessoryUpdate_ExternalKeyboardFirmware',
+    },
+    'Keyboard Covers': {
+        'A2974': 'com_apple_MobileAsset_UARP_A2974',
+        'A2975': 'com_apple_MobileAsset_UARP_A2975',
+        'A3339': 'com_apple_MobileAsset_UARP_A3339',
+        'A3340': 'com_apple_MobileAsset_UARP_A3340',
     }
 }
 
@@ -103,7 +110,8 @@ os_str_map = {
     'AirPods': 'Bluetooth Headset Firmware',
     'AirTags': 'Durian Firmware',
     'Beats': 'Bluetooth Headset Firmware',
-    'Keyboards': 'Keyboard Firmware'
+    'Keyboards': 'Keyboard Firmware',
+    'Keyboard Covers': 'Keyboard Firmware',
 }
 
 os_subfolder_map = {
@@ -111,6 +119,7 @@ os_subfolder_map = {
     'AirTags': [''],
     'Beats': ['', 'macos'],
     'Keyboards': ['', 'macos'],
+    'Keyboard Covers': [''],
 }
 
 os_asset_type_maps = {
@@ -118,6 +127,7 @@ os_asset_type_maps = {
     'AirTags': [''],
     'Beats': [''],
     'Keyboards': [''],
+    'Keyboard Covers': [''],
 }
 
 release_notes_map = {
@@ -154,6 +164,9 @@ device_map = {
     'A2187': [
         "AirTag1,1"
     ],
+    'A2937': [
+        "AirTag (2nd generation)"
+    ],
     'A2449': [
         'Magic Keyboard with Touch ID'
     ],
@@ -178,6 +191,12 @@ device_map = {
     'A2968': [
         "AirPodsPro1,2-usbc-case"
     ],
+    'A2974': [
+        'Magic Keyboard for iPad Pro 13-inch (M4)'
+    ],
+    'A2975': [
+        'Magic Keyboard for iPad Pro 11-inch (M4)'
+    ],
     'A3048': [
         "AirPodsPro1,2-usbc-left",
         "AirPodsPro1,2-usbc-right"
@@ -200,6 +219,12 @@ device_map = {
     ],
     'A3184': [
         "AirPodsMax1,2"
+    ],
+    'A3339': [
+        'Magic Keyboard for iPad Air 11-inch (M3)'
+    ],
+    'A3340': [
+        'Magic Keyboard for iPad Air 13-inch (M3)'
     ],
     'A3476': [
         "Powerbeats Fit-left",

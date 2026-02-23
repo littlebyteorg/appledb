@@ -18,6 +18,7 @@ from update_links import update_links
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--force', action='store_true')
+parser.add_argument('-c', '--catalog')
 args = parser.parse_args()
 
 result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}", timeout=30)
@@ -67,6 +68,7 @@ properties['Posted'] = dateutil.parser.parse(properties["Posted"]).date()
 mac_versions = list(mac_versions)
 
 safari_version = None
+metadata_url = None
 
 link_version_map = {}
 
@@ -75,16 +77,18 @@ os_version_override_map = {
 }
 
 for mac_version in mac_versions:
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
+    catalog_version = args.catalog or mac_version
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{catalog_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
     catalog_safari = []
     for product in plist.values():
-        if "SafariTechPreview" not in product.get("ServerMetadataURL", ""):
+        if "SafariTechPreview" not in product['Packages'][0]['URL']:
             continue
 
-        metadata_url = product['ServerMetadataURL']
+        if not metadata_url:
+            metadata_url = product.get('ServerMetadataURL')
 
         dist_response = requests.get(product['Distributions']['English'], timeout=30).text
         os_version = dist_response.split("system.compareVersions(myTargetSystemVersion.ProductVersion, '")[1].split(".")[0]
@@ -92,14 +96,15 @@ for mac_version in mac_versions:
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
         if dist_version != properties['Release']: continue
         catalog_safari.append(product)
-        sources['pkg'][os_version] = product['Packages'][0]['URL']
+        sources['pkg'][os_version] = product['Packages'][0]['URL'].replace("http://", "https://")
 
     if not catalog_safari:
         print(f'Missing Safari Tech Preview for macOS {mac_version}')
         continue
 
-    safari_metadata = plistlib.loads(requests.get(metadata_url, timeout=30).content)
-    safari_version = safari_metadata['CFBundleShortVersionString']
+    if metadata_url:
+        safari_metadata = plistlib.loads(requests.get(metadata_url, timeout=30).content)
+        safari_version = safari_metadata['CFBundleShortVersionString']
 if not sources['pkg']:
     exit(0)
 
@@ -119,7 +124,10 @@ source = {
 
 for package_type, type_sources in sources.items():
     for mac_version, link in type_sources.items():
-        (file_hashes, _) = handle_pkg_file(download_link=link, hashes=['md5', 'sha1', 'sha2-256'], file_suffix=f"-stp-{mac_version}")
+        manifest_path = "Applications/Safari Technology Preview.app/Contents/version.plist" if package_type == 'pkg' else None
+        (file_hashes, app_version) = handle_pkg_file(download_link=link, hashes=['md5', 'sha1', 'sha2-256'], file_suffix=f"-stp-{mac_version}", extracted_manifest_file_path=manifest_path)
+        if app_version and not source['safariVersion']:
+            source['safariVersion'] = app_version['CFBundleShortVersionString']
         source["sources"].append({
             "type": package_type,
             "deviceMap": ["Safari Technology Preview"],
@@ -127,7 +135,8 @@ for package_type, type_sources in sources.items():
             "hashes": file_hashes,
             "links": [{"url": link}]
         })
-stp_file = Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json")
+Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split(".", 1)[0]}.x").mkdir(exist_ok=True, parents=True)
+stp_file = Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split(".", 1)[0]}.x/{properties['Release']}.json")
 if args.force or not stp_file.exists():
     json.dump(sort_os_file(None, source), stp_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 

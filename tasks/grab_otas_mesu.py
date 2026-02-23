@@ -16,9 +16,12 @@ class SetEncoder(json.JSONEncoder):
             return list(o)
         return json.JSONEncoder.default(self, o)
 
-urls = [
-    "https://mesu.apple.com/assets/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml"
-]
+urls = {
+    'audioOS': 'https://mesu.apple.com/assets/audio/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml',
+    'iOS': 'https://mesu.apple.com/assets/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml',
+    'tvOS': 'https://mesu.apple.com/assets/tv/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml',
+    'watchOS': 'https://mesu.apple.com/assets/watch/com_apple_MobileAsset_SoftwareUpdate/com_apple_MobileAsset_SoftwareUpdate.xml',
+}
 
 skip_builds = [
     "9B206",
@@ -33,12 +36,16 @@ skip_builds = [
     "13G37",
     "14G60",
     "14G61",
-    "16H81",
-    "19H394",
-    "20H364",
+    "15U70",
+    "16H88",
+    "16U693",
+    "17M61",
+    "17U224",
+    "19H402",
+    "20H370",
     "21H450",
-    "22H217",
-    "23C55",
+    "22H311",
+    "23D127",
     "99Z999"
 ]
 
@@ -51,15 +58,19 @@ args = parser.parse_args()
 
 file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
-for url in urls:
+for (os_str, url) in urls.items():
     response = requests.get(url + f"?cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     assets = plistlib.loads(response.content)['Assets']
+    # assets = plistlib.loads(Path('import_mesu.plist').read_bytes())['Assets']
 
     for asset in assets:
         cleaned_os_version = asset['OSVersion'].removeprefix('9.9.')
-        os_str = 'audioOS' if '/audio/' in url else 'iPadOS' if 'iPad' in asset['SupportedDevices'][0] and int(cleaned_os_version.split('.')[0]) >= 13 else 'iOS'
+        if os_str == 'iOS' and 'iPad' in asset['SupportedDevices'][0] and int(cleaned_os_version.split('.')[0]) >= 13:
+            os_str_name = 'iPadOS'
+        else:
+            os_str_name = os_str
         updated_build = asset['Build']
         # ensure deltas from beta builds to release builds are properly filtered out as noise as well if the target build is known
         delta_from_beta = re.search(r"(6\d{3})", updated_build)
@@ -69,20 +80,20 @@ for url in urls:
         restore_version = asset.get('RestoreVersion')
         if restore_version:
             restore_version = restore_version.replace('.6.0,0', '.0.0,0')
-        if not ota_list.get(f"{os_str}-{updated_build}"):
+        if not ota_list.get(f"{os_str_name}-{updated_build}"):
             base_details = {
-                'osStr': os_str,
+                'osStr': os_str_name,
                 'version': cleaned_os_version,
                 'build': updated_build,
                 'buildTrain': asset.get('TrainName'),
                 'restoreVersion': restore_version,
                 'sources': {}
             }
-            ota_list[f"{os_str}-{updated_build}"] = base_details
-        link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
+            ota_list[f"{os_str_name}-{updated_build}"] = base_details
+        link = f"{asset['__BaseURL'].strip()}{asset['__RelativePath'].strip()}"
         if 'OTARescueAsset' in link: continue
-        if not ota_list[f"{os_str}-{updated_build}"]['sources'].get(link):
-            ota_list[f"{os_str}-{updated_build}"]['sources'][link] = {
+        if not ota_list[f"{os_str_name}-{updated_build}"]['sources'].get(link):
+            ota_list[f"{os_str_name}-{updated_build}"]['sources'][link] = {
                 "prerequisites": set(),
                 "deviceMap": set(),
                 "boardMap": set(),
@@ -91,22 +102,24 @@ for url in urls:
                     "key": asset.get('ArchiveDecryptionKey')
                 }]
             }
-        ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].update(asset['SupportedDevices'])
+        ota_list[f"{os_str_name}-{updated_build}"]['sources'][link]["deviceMap"].update(asset['SupportedDevices'])
         # iPhone11,4 is weird; nothing comes back from Pallas, but it's in the BuildManifest for the actual zip in this scenario
-        if ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
-            ota_list[f"{os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
-        ota_list[f"{os_str}-{updated_build}"]['sources'][link]["boardMap"].update(asset.get('SupportedDeviceModels', []))
+        if ota_list[f"{os_str_name}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
+            ota_list[f"{os_str_name}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
+        ota_list[f"{os_str_name}-{updated_build}"]['sources'][link]["boardMap"].update(asset.get('SupportedDeviceModels', []))
         if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True):
-            ota_list[f"{os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
+            ota_list[f"{os_str_name}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
 
-        if asset.get('TrainName') and not ota_list[f"{os_str}-{updated_build}"].get('buildTrain'):
-            ota_list[f"{os_str}-{updated_build}"]['buildTrain'] = asset['TrainName']
+        if asset.get('TrainName') and not ota_list[f"{os_str_name}-{updated_build}"].get('buildTrain'):
+            ota_list[f"{os_str_name}-{updated_build}"]['buildTrain'] = asset['TrainName']
         if asset.get('ArchiveDecryptionKey'):
             link = f"{link};{asset['ArchiveDecryptionKey']}"
         ota_links.add(link)
 
+builds = set()
 for key in ota_list.keys():
     sources = []
+    builds.add(ota_list[key]['build'])
     for source in ota_list[key]['sources'].values():
         source['deviceMap'] = sorted(list(source['deviceMap']), key=device_sort)
         source['prerequisites'] = sorted(list(source['prerequisites']), key=build_number_sort)
@@ -117,6 +130,7 @@ for key in ota_list.keys():
         sources.append(source)
     ota_list[key]['sources'] = sources
 
+print(sorted(builds, key=build_number_sort))
 if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]

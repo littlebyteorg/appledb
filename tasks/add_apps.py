@@ -42,7 +42,7 @@ while True:
         os.makedirs(f'osFiles/Software/{app_key}', exist_ok=True)
     app_file = Path(f"osFiles/Software/{app_key}/{version}.json")
     os_str = app_name.split(" (", 1)[0]
-    if os_str in ['Apple TV', 'Apple Music Classical', 'iCloud Bookmarks', 'iCloud Passwords', 'GarageBand', 'Photomator', 'Connect SSO', 'Sneaky Sasquatch']:
+    if os_str in ['Apple TV', 'Apple Music Classical', 'Apple Partner Media Review', 'iCloud Bookmarks', 'iCloud Passwords', 'GarageBand', 'Photomator', 'Connect SSO', 'Sneaky Sasquatch', 'Shazam', 'Numbers', 'Pages', 'Keynote', 'Final Cut Pro', 'Logic Pro', 'Compressor', 'Motion', 'Pixelmator Pro', 'iMovie']:
         os_str = app_name
     app_details = {
         'osStr': os_str,

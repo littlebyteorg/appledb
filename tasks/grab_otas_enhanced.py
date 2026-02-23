@@ -42,7 +42,8 @@ added_builds = {
     '23A341': ['23A330', '23A340'],
     '23A355': ['23A357'],
     '23A8355': ['23A8357'],
-    '23B85': ['23B82']
+    '23B85': ['23B82'],
+    '23C55': ['23C52', 'iOS;23C54']
 }
 
 ignore_builds = {
@@ -54,13 +55,13 @@ ignore_builds = {
 latest_watch_compatibility_versions = {
     12: ['5.3.9'],  # iPhone 5s/6
     18: ['8.8.1'],  # iPhone 6s/SE (1st)/7
-    20: ['9.6.3'],  # iPhone 8/X
-    24: ['11.6', '11.6.1'], # iPhone Xr/Xs
+    20: ['9.6.4'],  # iPhone 8/X
+    24: ['11.6.2'], # iPhone Xr/Xs
 }
 
 legacy_versions = {
-    'iOS': [15, 16],
-    'iPadOS': [15, 16, 17],
+    'iOS': [15, 16, 18],
+    'iPadOS': [15, 16, 17, 18],
 }
 
 asset_audiences_overrides = {
@@ -268,6 +269,7 @@ parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-e', '--echo-request', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
+parser.add_argument('-q', '--quiet', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--suffix', default="")
@@ -298,6 +300,8 @@ else:
                 parsed_args[os_str] = list(set(parsed_args[os_str]))
         else:
             parsed_args[os_str].extend(latest_builds[os_str]['next' if is_next_major else 'beta' if beta_builds else 'release'])
+        if args.rsr:
+            parsed_args[os_str] = [parsed_args[os_str][-1]]
 
 if args.os and "Studio Display Firmware" in args.os:
     # Studio Display Firmware is a mesu asset shoehorned into pallas
@@ -312,6 +316,9 @@ if parsed_args.get('watchOS'):
 
     minimum_compatibility = generate_build_compatibility_version(compatibility_builds[0]) - 1
     maximum_compatibility = generate_build_compatibility_version(compatibility_builds[-1]) + 1
+
+if args.rsr:
+    parsed_args = {k:v for (k,v) in parsed_args.items() if k in ['macOS', 'iOS', 'iPadOS']}
 
 board_ids = {}
 build_versions = {}
@@ -406,10 +413,10 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
     }
     if target_os_str in ['iOS', 'iPadOS', 'macOS']:
         request['RestoreVersion'] = generate_restore_version(os_build)
-    elif target_os_str == 'watchOS':
-        request['DeviceName'] = 'Apple Watch'
-        request['MinCompanionCompatibilityVersion'] = minimum_compatibility
-        request['MaxCompanionCompatibilityVersion'] = maximum_compatibility
+    # elif target_os_str == 'watchOS':
+    #     request['DeviceName'] = 'Apple Watch'
+    #     request['MinCompanionCompatibilityVersion'] = minimum_compatibility
+    #     request['MaxCompanionCompatibilityVersion'] = maximum_compatibility
 
     if "beta" in os_version.lower() and target_os_str in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
@@ -500,6 +507,10 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                         additional_build_split = additional_build.split('-')
                         if updated_build.startswith(additional_build_split[0]):
                             ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
+                    elif ';' in additional_build:
+                        additional_build_split = additional_build.split(';')
+                        if response_os_str == additional_build_split[0]:
+                            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
                     else:
                         ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build)
 
@@ -521,10 +532,12 @@ def merge_dicts(original, additional):
 
 beta_specific_types = ['developer', 'appleseed', 'public']
 for (os_str, builds) in parsed_args.items():
-    print(f"Checking {os_str}")
+    if not args.quiet:
+        print(f"Checking {os_str}")
     target_asset_audiences = asset_audiences[asset_audiences_overrides.get(os_str, os_str)]
     for build in builds:
-        print(f"\tChecking {build}")
+        if not args.quiet:
+            print(f"\tChecking {build}")
         kern_version = re.search(r"\d+(?=[a-zA-Z])", build)
         assert kern_version
         kern_version = kern_version.group()
@@ -630,7 +643,8 @@ for (os_str, builds) in parsed_args.items():
 
         for audience in audiences:
             for key, value in devices.items():
-                print(f"\t\tChecking {key}")
+                if not args.quiet:
+                    print(f"\t\tChecking {key}")
                 for board in value['boards']:
                     if not (args.no_prerequisites or os_str == 'tvOS'):
                         for prerequisite_build, version in value['builds'].items():
@@ -670,9 +684,10 @@ for key, value in ota_list.items():
         source['boardMap'] = sorted(list(source['boardMap']))
         sources.append(source)
     ota_list[key]['sources'] = sources
-print(builds)
+print(sorted(builds, key=build_number_sort))
 if bool(ota_list.keys()):
-    print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
+    if not args.quiet:
+        print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     if missing_decryption_keys:
         print(f"Missing decryption keys: {sorted(missing_decryption_keys)}")
     _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]

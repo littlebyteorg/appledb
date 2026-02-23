@@ -8,10 +8,13 @@ import random
 import requests
 import remotezip
 import packaging.version
+from datetime import datetime
 
 from file_downloader import handle_ota_file, handle_pkg_file
 from sort_os_files import sort_os_file
 from sort_files_common import build_number_sort, device_sort
+
+print(datetime.now())
 
 session = requests.Session()
 
@@ -31,11 +34,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--all-signed', action='store_true')
 parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-fb', '--future-betas', action='store_true')
+parser.add_argument('-fmr', '--force-mac-final-releases', action='store_true')
 parser.add_argument('-fr', '--force-final-releases', action='store_true')
 parser.add_argument('-l', '--list-signed', action='store_true')
 parser.add_argument('-ld', '--list-devices', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=supported_os_names)
-parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--signed-only', action='store_true')
 parser.add_argument('-u', '--unsigned', action='store_true')
 args = parser.parse_args()
@@ -55,13 +58,13 @@ final_builds = {
         '13G37', # iPad 2, 3/iPad mini 1/iPhone 4S
         '14G60', # iPad 4/iPhone 5, 5c
         '14G61', # iPad 4/iPhone 5, 5c
-        '16H81', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
-        '19H394', # iPhone 6s, 7, SE/iPod touch 7
-        '20H364', # iPhone 8, X
+        '16H88', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
+        '19H402', # iPhone 6s, 7, SE/iPod touch 7
+        '20H370', # iPhone 8, X
     ],
     'iPadOS': [
-        '19H394', # iPad Air 2/iPad mini 4
-        '20H364', # iPad 5/iPad Pro 1
+        '19H402', # iPad Air 2/iPad mini 4
+        '20H370', # iPad 5/iPad Pro 1
     ],
     'macOS': [
         '20B28' # 11.0.1 RC (still signed somehow)
@@ -85,13 +88,11 @@ final_builds = {
         '14V753', # latest iOS 10
         '15U70', # latest 1st-generation
         '16U693', # latest iOS 12
-        '17U208', # intermediate OTA required for everything pre-watchOS 7
-        '17U216', # latest series 1/2
+        '17U224', # latest series 1/2, intermediate OTA required for everything pre-watchOS 7
         '19U512', # latest series 3, iOS 15
-        '20U502', # latest iOS 16
-        '21U580', # latest series 4/5, SE
-        '22U84', # SE 2, latest iOS 18
-        '22U90', # latest iOS 18
+        '20U512', # latest iOS 16
+        '21U594', # latest series 4/5, SE
+        '22U95', # latest iOS 18
     ],
 }
 
@@ -275,9 +276,8 @@ def get_builds(os_names, include_devices):
     signed_builds = {}
     for os_name in os_names:
         os_path = os_name
-        if args.rsr:
-            os_path = f"Rapid Security Responses/{os_name}"
         working_dict = {}
+        force_releases = ((os_name == 'macOS' and args.force_mac_final_releases) or os_name != 'macOS') and args.force_final_releases
         for file_path in Path(f"osFiles/{os_path}").rglob("*.json"):
             file_contents = json.load(file_path.open(encoding='utf-8'))
             if os_name == 'audioOS' and file_contents['build'] == '15C25': continue
@@ -285,7 +285,7 @@ def get_builds(os_names, include_devices):
             if os_name == 'macOS' and packaging.version.parse(file_contents.get('version', '0').split(" ", 1)[0]) < packaging.version.parse("10.16"): continue
             if os_name == 'tvOS' and packaging.version.parse(file_contents.get('version', '0').split(" ", 1)[0]) < packaging.version.parse("4"): continue
             if not file_contents.get('deviceMap'): continue
-            if not args.force_final_releases and not args.list_signed:
+            if not force_releases and not args.list_signed:
                 if os_name == 'macOS' and not (file_contents.get('beta') or file_contents.get('rc')): continue
                 if file_contents['build'] in final_builds.get(os_name, []): continue
             if not file_contents.get('signed', args.unsigned): continue
@@ -451,8 +451,6 @@ for os_str, builds in os_build_map.items():
             continue
         print(f"  {build}")
         os_relative_path = os_str
-        if args.rsr:
-            os_relative_path = f"Rapid Security Responses/{os_str}"
         for file_name in Path(f'osFiles/{os_relative_path}').rglob(f"{build}.json"):
             json_contents = json.load(file_name.open(encoding="utf-8"))
             if not [x for x in json_contents.get('sources', []) if x['type'] != 'kdk']: continue

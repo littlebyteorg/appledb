@@ -22,10 +22,12 @@ key_order = [
     "released",
     "rc",
     "beta",
+    "bsi",
     "rsr",
     "internal",
     "hideFromLatestVersions",
     "preinstalled",
+    "preinstalledOS",
     "createDuplicateEntries",
     "notes",
     "releaseNotes",
@@ -59,7 +61,7 @@ ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPad_old", "iPhone", "iPh
 
 links_key_order = ["url", "decryptionKey", "catalog", "preferred", "active", "auth"]
 
-source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "aar", "dmg", "pkg", "bin", "tar", "appx", "ipa", "xpi", "apk", "exe"]
+source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "aar", "dmg", "pkg", "bin", "tar", "appx", "ipa", "xpi", "apk", "exe", "msi", "zip", "smi"]
 
 
 def sort_buildtrain(buildtrain):
