@@ -46,10 +46,10 @@ known_builds = [
     '22C161',  # 18.2.1
     '22H311',  # 18.7.5
     '23D127',  # 26.3
-    '23K620',  # tvOS 26.2
-    '23N620',  # visionOS 26.2
-    '23P3120', # bridgeOS 10.2
-    '25D125',  # macOS 26.2
+    '23K620',  # tvOS 26.3
+    '23N630',  # visionOS 26.3.1
+    '23P3120', # bridgeOS 10.3
+    '25D125',  # macOS 26.3
 ]
 
 filename_prefix_map = {
