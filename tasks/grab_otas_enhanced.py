@@ -78,6 +78,19 @@ default_kernel_marketing_version_offset = 4
 
 asset_audiences = json.load(Path("tasks/audiences.json").open(encoding="utf-8"))
 
+asset_types = {
+    'macOS': ['MacSoftwareUpdate'],
+    'Studio Display Firmware': [
+        'DarwinAccessoryUpdate.A2525',
+        'DarwinAccessoryUpdate.A3348',
+        'DarwinAccessoryUpdate.A3350',
+    ],
+    'AirTag Firmware': [
+        "UARP.A2937"
+    ],
+    'default': ['SoftwareUpdate']
+}
+
 default_mac_devices = [
     'MacBookAir8,1',    # Intel, only supports up to Sonoma
     'MacBookAir9,1',    # Intel, only supports up to Sequoia
@@ -229,6 +242,14 @@ default_mac_device_extensions = {
         'Mac15,14',
         'Mac16,9',
     ]),
+    'Mac17,3': set([
+        'Mac17,3',
+        'Mac17,4',
+        'Mac17,6',
+        'Mac17,7',
+        'Mac17,8',
+        'Mac17,9',
+    ]),
 }
 
 mac_device_additions = {
@@ -303,9 +324,14 @@ else:
         if args.rsr:
             parsed_args[os_str] = [parsed_args[os_str][-1]]
 
-if args.os and "Studio Display Firmware" in args.os:
+if args.os and ("Studio Display Firmware" in args.os):
+    print("SDF")
     # Studio Display Firmware is a mesu asset shoehorned into pallas
     parsed_args.setdefault("Studio Display Firmware", ["19D8050"])
+if args.os and ("AirTag Firmware" in args.os):
+    # AirTag Firmware is a mesu asset shoehorned into pallas
+    print("AF")
+    parsed_args.setdefault("AirTag Firmware", ["3.0.14"])
 
 minimum_compatibility = 0
 maximum_compatibility = 1000
@@ -385,17 +411,9 @@ def get_build_version(target_os_str, target_build):
 
     return build_versions[f"{target_os_str}-{target_build}"]
 
-def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, counter=5):
-    asset_type = 'SoftwareUpdate'
+def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, asset_type, counter=5):
     if is_rsr:
-        asset_type = 'Splat' + asset_type
-
-    if target_os_str == 'macOS':
-        asset_type = 'Mac' + asset_type
-    elif target_os_str == 'Studio Display Firmware':
-        asset_type = 'DarwinAccessoryUpdate.A2525'
-
-    # links = set()
+        asset_type = 'Splat' + asset_type.replace('SoftwareUpdate', 'SplatSoftwareUpdate')
     additional_audiences = set()
 
     request = {
@@ -434,10 +452,12 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
     try:
         response.raise_for_status()
     except requests.HTTPError:
+        if response.status_code == 404:
+            return
         if counter == 0:
             print(json.dumps(request))
             raise
-        call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, counter - 1)
+        call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, asset_type, counter - 1)
     else:
         parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
         assets = parsed_response.get('Assets', [])
@@ -520,7 +540,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
             newly_discovered_versions.setdefault(response_os_str, {})[updated_build] = cleaned_os_version
 
         for additional_audience in additional_audiences:
-            call_pallas(device_name, board_id, os_version, os_build, target_os_str, additional_audience, is_rsr, time_delay)
+            call_pallas(device_name, board_id, os_version, os_build, target_os_str, additional_audience, is_rsr, time_delay, asset_type)
 
 def merge_dicts(original, additional):
     for k in additional.keys():
@@ -642,18 +662,19 @@ for (os_str, builds) in parsed_args.items():
                         devices[current_device]['builds'][prerequisite_build] = get_build_version(os_str, prerequisite_build)
 
         for audience in audiences:
-            for key, value in devices.items():
-                if not args.quiet:
-                    print(f"\t\tChecking {key}")
-                for board in value['boards']:
-                    if not (args.no_prerequisites or os_str == 'tvOS'):
-                        for prerequisite_build, version in value['builds'].items():
-                            call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay)
-                    call_pallas(key, board, build_data['version'], build, os_str, audience, args.rsr, args.time_delay)
+            for asset_type_name in asset_types.get(os_str, asset_types['default']):
+                for key, value in devices.items():
+                    if not args.quiet:
+                        print(f"\t\tChecking {key}")
+                    for board in value['boards']:
+                        if not (args.no_prerequisites or os_str == 'tvOS'):
+                            for prerequisite_build, version in value['builds'].items():
+                                call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
+                        call_pallas(key, board, build_data['version'], build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
 
-                    new_version_builds = sorted([x for x in newly_discovered_versions.get(os_str, {}).keys() if x < build])
-                    for new_build in new_version_builds:
-                        call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay)
+                        new_version_builds = sorted([x for x in newly_discovered_versions.get(os_str, {}).keys() if x < build])
+                        for new_build in new_version_builds:
+                            call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
 
 missing_decryption_keys = set()
 builds = set()
