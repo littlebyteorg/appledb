@@ -50,7 +50,7 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     for asset in parsed_response['Assets']:
         if not asset.get('PrerequisiteBuild'):
-            found_prerequisites.add(f"{asset['OSVersion']} ({asset['Build']})")
+            # found_prerequisites.add(f"{asset['OSVersion']} ({asset['Build']})")
             continue
         found_prerequisites.add(f"{asset['PrerequisiteOSVersion']} ({asset['PrerequisiteBuild']})")
     for item in sorted(found_prerequisites):
