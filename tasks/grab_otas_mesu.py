@@ -76,6 +76,9 @@ for (os_str, url) in urls.items():
         delta_from_beta = re.search(r"(6\d{3})", updated_build)
         if delta_from_beta:
             updated_build = updated_build.replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))
+        delta_from_forked_beta = re.search(r"(9\d{3})", updated_build)
+        if delta_from_forked_beta:
+            updated_build = updated_build.replace(delta_from_forked_beta.group(), str(int(delta_from_forked_beta.group()) - 1000))
         if updated_build in skip_builds: continue
         restore_version = asset.get('RestoreVersion')
         if restore_version:
