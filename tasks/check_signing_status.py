@@ -81,7 +81,8 @@ final_builds = {
     'Studio Display Firmware': [
         '19F80', # pre-Ventura 13.3
         '20E246', # pre-Sonoma
-        '21A329' # latest
+        '21A329', # latest (original)
+        '23D8128', # latest (2026/XDR)
     ],
     'visionOS': [],
     'watchOS': [
