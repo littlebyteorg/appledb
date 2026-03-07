@@ -331,12 +331,10 @@ else:
             parsed_args[os_str] = [parsed_args[os_str][-1]]
 
 if args.os and ("Studio Display Firmware" in args.os):
-    print("SDF")
     # Studio Display Firmware is a mesu asset shoehorned into pallas
     parsed_args.setdefault("Studio Display Firmware", ["19D8050"])
 if args.os and ("AirTag Firmware" in args.os):
     # AirTag Firmware is a mesu asset shoehorned into pallas
-    print("AF")
     parsed_args.setdefault("AirTag Firmware", ["3.0.14"])
 
 minimum_compatibility = 0
@@ -516,11 +514,15 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                         "key": asset.get('ArchiveDecryptionKey')
                     }]
                 }
-            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add(device_name)
-            # iPhone11,4 is weird; nothing comes back from Pallas, but it's in the BuildManifest for the actual zip in this scenario
-            if ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
-                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
-            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].add(board_id)
+            if os_str == "Studio Display Firmware":
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].update(asset['SupportedDevices'])
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].update(asset['SupportedDeviceModels'])
+            else:
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add(device_name)
+                # iPhone11,4 is weird; nothing comes back from Pallas, but it's in the BuildManifest for the actual zip in this scenario
+                if ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
+                    ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].add(board_id)
             if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True):
                 ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
                 for additional_build in added_builds.get(asset['PrerequisiteBuild'], []):
