@@ -112,7 +112,7 @@ default_mac_devices = [
     'Mac16,9',          # Covers Sequoia 15.3 forked builds
     'Mac17,2',          # Covers Tahoe 26.0 forked builds
     'Mac17,3',          # Covers Tahoe 26.2 forked builds
-    'Mac17,5',          # Covers Tahoe 26.3 forked builds
+    'Mac17,6',          # Covers Tahoe 26.3 forked builds
     'VirtualMac2,1'     # Always include
 ]
 
