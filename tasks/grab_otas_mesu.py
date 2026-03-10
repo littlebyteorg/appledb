@@ -82,7 +82,7 @@ for (os_str, url) in urls.items():
         if updated_build in skip_builds: continue
         restore_version = asset.get('RestoreVersion')
         if restore_version:
-            restore_version = restore_version.replace('.6.0,0', '.0.0,0')
+            restore_version = restore_version.replace('.6.0,0', '.0.0,0').replace('.9.0,0', '.8.0,0')
         if not ota_list.get(f"{os_str_name}-{updated_build}"):
             base_details = {
                 'osStr': os_str_name,
