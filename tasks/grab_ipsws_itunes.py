@@ -51,6 +51,7 @@ known_builds = [
     '23N630',  # visionOS 26.3.1
     '23P3120', # bridgeOS 10.3
     '25D2128', # macOS 26.3.1
+    '25D2140', # macOS 26.3.2
 ]
 
 filename_prefix_map = {
