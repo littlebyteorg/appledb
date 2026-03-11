@@ -523,7 +523,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                 if ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
                     ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
                 ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].add(board_id)
-            if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True):
+            if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True) and not asset['OSVersion'].startswith('9.9.'):
                 ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
                 for additional_build in added_builds.get(asset['PrerequisiteBuild'], []):
                     if '|' in additional_build:
