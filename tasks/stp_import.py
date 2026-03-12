@@ -59,7 +59,7 @@ for cell in table:
 
 properties['Release'] = properties['Release'].split(" ")[0]
 
-if Path(f"osFiles/Software/Safari Technology Preview/{properties['Release']}.json").exists() and not args.force:
+if len(list(Path("osFiles/Software/Safari Technology Preview").rglob(f"{properties['Release']}.json"))) > 0 and not args.force:
     print(f"{properties['Release']}.json already exists, exiting...")
     sys.exit(0)
 
