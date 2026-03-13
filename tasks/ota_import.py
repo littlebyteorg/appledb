@@ -26,7 +26,7 @@ LOCAL_OTA_PATH = Path("otas")
 
 SESSION = requests.Session()
 
-CELLULAR_DEVICES_26 = [
+CELLULAR_DEVICES_BACKPORT = [
     'iPad8,3',
     'iPad8,4',
     'iPad8,7',
@@ -55,8 +55,41 @@ CELLULAR_DEVICES_26 = [
     'iPad16,2',
     'iPad16,4',
     'iPad16,6',
+    'iPad16,9',
+    'iPad16,11',
     'iPad17,2',
     'iPad17,4',
+    'iPhone12,1',
+    'iPhone12,3',
+    'iPhone12,5',
+    'iPhone12,8',
+    'iPhone13,1',
+    'iPhone13,2',
+    'iPhone13,3',
+    'iPhone13,4',
+    'iPhone14,2',
+    'iPhone14,3',
+    'iPhone14,4',
+    'iPhone14,5',
+    'iPhone14,6',
+    'iPhone14,7',
+    'iPhone14,8',
+    'iPhone15,2',
+    'iPhone15,3',
+    'iPhone15,4',
+    'iPhone15,5',
+    'iPhone16,1',
+    'iPhone16,2',
+    'iPhone17,1',
+    'iPhone17,2',
+    'iPhone17,3',
+    'iPhone17,4',
+    'iPhone17,5',
+    'iPhone18,1',
+    'iPhone18,2',
+    'iPhone18,3',
+    'iPhone18,4',
+    'iPhone18,5',
     'Watch6,3',
     'Watch6,4',
     'Watch6,8',
@@ -79,10 +112,13 @@ CELLULAR_DEVICES_26 = [
 ]
 
 APPLE_BASEBAND_DEVICES = [
+    'iPad16,9',
+    'iPad16,11',
     'iPad17,2',
     'iPad17,4',
     'iPhone17,5',
     'iPhone18,4',
+    'iPhone18,5',
 ]
 
 def import_ota(
@@ -104,7 +140,7 @@ def import_ota(
     if skip_remote and not size:
         skip_remote = bool(prerequisite_builds) or (os_str in ['iOS', 'iPadOS'] and build[2] <= 'G')
         if ota_url.endswith('.aea'):
-            skip_remote = skip_remote or (len(set(device_map).intersection(CELLULAR_DEVICES_26)) == 0 and not device_map[0].startswith('iPhone'))
+            skip_remote = skip_remote or len(set(device_map).intersection(CELLULAR_DEVICES_BACKPORT)) == 0
             if not skip_remote and len(set(device_map).intersection(APPLE_BASEBAND_DEVICES)) == 0:
                 skip_remote = True
                 only_needs_baseband = True
