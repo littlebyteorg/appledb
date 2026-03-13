@@ -41,11 +41,12 @@ skip_builds = [
     "16U693",
     "17M61",
     "17U224",
-    "19H402",
-    "20H370",
+    "19H411",
+    "20H380",
     "21H450",
     "22H311",
-    "23D127",
+    "22H330",
+    "23D8133",
     "99Z999"
 ]
 
@@ -76,10 +77,13 @@ for (os_str, url) in urls.items():
         delta_from_beta = re.search(r"(6\d{3})", updated_build)
         if delta_from_beta:
             updated_build = updated_build.replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))
+        delta_from_forked_beta = re.search(r"(9\d{3})", updated_build)
+        if delta_from_forked_beta:
+            updated_build = updated_build.replace(delta_from_forked_beta.group(), str(int(delta_from_forked_beta.group()) - 1000))
         if updated_build in skip_builds: continue
         restore_version = asset.get('RestoreVersion')
         if restore_version:
-            restore_version = restore_version.replace('.6.0,0', '.0.0,0')
+            restore_version = restore_version.replace('.6.0,0', '.0.0,0').replace('.9.0,0', '.8.0,0')
         if not ota_list.get(f"{os_str_name}-{updated_build}"):
             base_details = {
                 'osStr': os_str_name,
