@@ -22,6 +22,9 @@ jobs:
           node-version: "24"
           cache: 'yarn'
 
+      - name: Install build dependencies
+        run: sudo apt-get install -y liblzma-dev
+
       # install dependencies
       - name: Install node.js dependencies
         run: yarn
@@ -74,6 +77,9 @@ jobs:
         with:
           node-version: "24"
           cache: 'yarn'
+
+      - name: Install build dependencies
+        run: sudo apt-get install -y liblzma-dev
 
       - name: Install node.js dependencies
         run: yarn
