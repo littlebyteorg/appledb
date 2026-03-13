@@ -59,12 +59,12 @@ final_builds = {
         '14G60', # iPad 4/iPhone 5, 5c
         '14G61', # iPad 4/iPhone 5, 5c
         '16H88', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
-        '19H402', # iPhone 6s, 7, SE/iPod touch 7
-        '20H370', # iPhone 8, X
+        '19H411', # iPhone 6s, 7, SE/iPod touch 7
+        '20H380', # iPhone 8, X
     ],
     'iPadOS': [
-        '19H402', # iPad Air 2/iPad mini 4
-        '20H370', # iPad 5/iPad Pro 1
+        '19H411', # iPad Air 2/iPad mini 4
+        '20H380', # iPad 5/iPad Pro 1
     ],
     'macOS': [
         '20B28' # 11.0.1 RC (still signed somehow)
@@ -81,7 +81,8 @@ final_builds = {
     'Studio Display Firmware': [
         '19F80', # pre-Ventura 13.3
         '20E246', # pre-Sonoma
-        '21A329' # latest
+        '21A329', # latest (original)
+        '23D8128', # latest (2026/XDR)
     ],
     'visionOS': [],
     'watchOS': [

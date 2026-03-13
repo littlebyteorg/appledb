@@ -55,20 +55,22 @@ HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)
 
 skip_builds = [
     '16H88', # iOS 12.5.8
-    '19H402', # iOS/iPadOS 15.8.6
-    '20H370', # iOS/iPadOS 16.7.14
+    '19H411', # iOS/iPadOS 15.8.6
+    '20H380', # iOS/iPadOS 16.7.14
     "22H311", # iOS/iPadOS 18.7.5
-    "23D127", # iOS/iPadOS 26.3
+    "22H320", # iOS 18.7.6
+    "23D8133", # iOS/iPadOS 26.3.1
     "23K620", # tvOS 26.3
-    "23N620", # visionOS 26.3
+    "23N630", # visionOS 26.3.1
     "23S620", # watchOS 26.3
-    "25D125", # macOS 26.3
+    "25D2128", # macOS 26.3.1
+    "25D2140", # macOS 26.3.2
     # betas
-    "23E5207q", # iOS/iPadOS 26.4 beta
-    "23L5208m", # tvOS 26.4 beta
-    "23O5209m", # visionOS 26.4 beta
-    "23T5209m", # watchOS 26.4 beta
-    "25E5207k", # macOS 26.4 beta
+    "23E5234a", # iOS/iPadOS 26.4 beta
+    "23L5234a", # tvOS 26.4 beta
+    "23O5235a", # visionOS 26.4 beta
+    "23T5236a", # watchOS 26.4 beta
+    "25E5233c", # macOS 26.4 beta
 ]
 
 for group in element.xpath(".//h3/.."):
