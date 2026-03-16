@@ -73,6 +73,7 @@ asset_types = {
         'A3053': 'com_apple_MobileAsset_UARP_A3053',
         'A3056': 'com_apple_MobileAsset_UARP_A3056',
         'A3064': 'com_apple_MobileAsset_UARP_A3064',
+        'A3454': 'com_apple_MobileAsset_UARP_A3454',
         'A3184': [
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184_EA',
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184-24E_EA'
@@ -225,6 +226,9 @@ device_map = {
     ],
     'A3340': [
         'Magic Keyboard for iPad Air 13-inch (M3)'
+    ],
+    'A3454': [
+        "AirPods Max 2"
     ],
     'A3476': [
         "Powerbeats Fit-left",
