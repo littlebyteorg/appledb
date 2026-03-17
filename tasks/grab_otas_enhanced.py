@@ -417,7 +417,7 @@ def get_build_version(target_os_str, target_build):
 
 def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, asset_type, counter=5):
     if is_rsr:
-        asset_type = 'Splat' + asset_type.replace('SoftwareUpdate', 'SplatSoftwareUpdate')
+        asset_type = asset_type.replace('SoftwareUpdate', 'SplatSoftwareUpdate')
     additional_audiences = set()
 
     request = {
