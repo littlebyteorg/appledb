@@ -222,7 +222,7 @@ device_map = {
         'Powerb3,1-right'
     ],
     'A3184': [
-        "AirPodsMax1,2"
+        "AirPodsMax1,1-usbc"
     ],
     'A3339': [
         'Magic Keyboard for iPad Air 11-inch (M3)'
@@ -231,7 +231,7 @@ device_map = {
         'Magic Keyboard for iPad Air 13-inch (M3)'
     ],
     'A3454': [
-        "AirPods Max 2"
+        "AirPodsMax1,2"
     ],
     'A3476': [
         "Powerbeats Fit-left",
