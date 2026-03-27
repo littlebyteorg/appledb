@@ -55,8 +55,8 @@ ignore_builds = {
 # Ensure known versions of watchOS don't get included in import-ota.txt.
 # Update this dictionary in case Apple updates watchOS for iPhones that don't support latest iOS.
 latest_watch_compatibility_versions = {
-    12: ['5.3.9'],  # iPhone 5s/6
-    18: ['8.8.1'],  # iPhone 6s/SE (1st)/7
+    12: ['5.3.10'],  # iPhone 5s/6
+    18: ['8.8.2'],  # iPhone 6s/SE (1st)/7
     20: ['9.6.4'],  # iPhone 8/X
     24: ['11.6.2'], # iPhone Xr/Xs
 }
