@@ -12,12 +12,12 @@ from support_page_info import get_release_notes_link
 from sort_os_files import sort_os_file
 
 OS_MAP = [
+    ("ComputeModule", "cloudOS"),
     ("iPod", "iOS"),
     ("iPhone", "iOS"),
     ("iPad", "iPadOS"),
     ("AudioAccessory", "audioOS"),
     ("AppleTV", "tvOS"),
-    ("ComputeModule", "cloudOS"),
     ("Mac", "macOS"),
     ("ADP", "macOS"),
     ("Watch", "watchOS"),
