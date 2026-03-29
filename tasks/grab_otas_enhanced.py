@@ -421,7 +421,7 @@ def get_build_version(target_os_str, target_build):
     return build_versions[f"{target_os_str}-{target_build}"]
 
 def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, asset_type, counter=5):
-    asset_type = f"{asset_type}.{asset_sub_type_map.get(asset_type, {}).get(device_name, '')}"
+    asset_type = f"{asset_type}.{asset_sub_type_map.get(asset_type, {}).get(device_name, '')}".removesuffix(".")
     if is_rsr:
         asset_type = asset_type.replace('SoftwareUpdate', 'SplatSoftwareUpdate')
     additional_audiences = set()
