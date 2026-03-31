@@ -91,9 +91,6 @@ asset_audiences = json.load(Path("tasks/audiences.json").open(encoding="utf-8"))
 asset_types = {
     'macOS': ['MacSoftwareUpdate'],
     'Studio Display Firmware': ['DarwinAccessoryUpdate'],
-    'AirTag Firmware': [
-        "UARP.A2937"
-    ],
     'default': ['SoftwareUpdate']
 }
 
@@ -338,9 +335,6 @@ else:
 if args.os and ("Studio Display Firmware" in args.os):
     # Studio Display Firmware is a mesu asset shoehorned into pallas
     parsed_args.setdefault("Studio Display Firmware", ["19D8050", "23D8128"])
-if args.os and ("AirTag Firmware" in args.os):
-    # AirTag Firmware is a mesu asset shoehorned into pallas
-    parsed_args.setdefault("AirTag Firmware", ["3.0.14"])
 
 minimum_compatibility = 0
 maximum_compatibility = 1000

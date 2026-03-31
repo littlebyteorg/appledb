@@ -82,15 +82,15 @@ final_builds = {
         '19F80', # pre-Ventura 13.3
         '20E246', # pre-Sonoma
         '21A329', # latest (original)
-        '23D8128', # latest (2026/XDR)
+        '23E246', # latest (2026/XDR)
     ],
     'visionOS': [],
     'watchOS': [
         '14V753', # latest iOS 10
         '15U70', # latest 1st-generation
-        '16U693', # latest iOS 12
+        '16U711', # latest iOS 12
         '17U224', # latest series 1/2, intermediate OTA required for everything pre-watchOS 7
-        '19U512', # latest series 3, iOS 15
+        '19U526', # latest series 3, iOS 15
         '20U512', # latest iOS 16
         '21U594', # latest series 4/5, SE
         '22U95', # latest iOS 18
