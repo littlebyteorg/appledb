@@ -48,7 +48,8 @@ beta_asset_subfolders = {
             'A3048',
             'A3053',
             'A3056',
-            'A3064'
+            'A3064',
+            'A3454'
         ],
         'AirPodsPublicSeed': [
             'A2618',
@@ -56,7 +57,8 @@ beta_asset_subfolders = {
             'A3048',
             'A3053',
             'A3056',
-            'A3064'
+            'A3064',
+            'A3454'
         ]
     }
 }
@@ -73,10 +75,7 @@ asset_types = {
         'A3053': 'com_apple_MobileAsset_UARP_A3053',
         'A3056': 'com_apple_MobileAsset_UARP_A3056',
         'A3064': 'com_apple_MobileAsset_UARP_A3064',
-        'A3454': [
-            'com_apple_MobileAsset_MobileAccessoryUpdate_A3454_EA',
-            'com_apple_MobileAsset_UARP_A3454'
-        ],
+        'A3454': 'com_apple_MobileAsset_UARP_A3454',
         'A3184': [
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184_EA',
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184-24E_EA'
