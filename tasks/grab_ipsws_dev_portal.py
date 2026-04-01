@@ -59,7 +59,7 @@ skip_builds = [
     '20H380', # iOS/iPadOS 16.7.15
     "22H311", # iOS/iPadOS 18.7.5
     "22H320", # iOS 18.7.6
-    "22H333", # iOS/iPadOS 18.7.7
+    "22H340", # iOS/iPadOS 18.7.7
     "23D8133", # iOS/iPadOS 26.3.1
     "23E246", # iOS/iPadOS 26.4
     "23K620", # tvOS 26.3
