@@ -82,8 +82,7 @@ asset_types = {
         ]
     },
     'AirTags': {
-        'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware',
-        'A2937': 'com_apple_MobileAsset_UARP_A2937'
+        'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware'
     },
     'Beats': {
         'A2048': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2048_EA',
@@ -166,9 +165,6 @@ device_map = {
     ],
     'A2187': [
         "AirTag1,1"
-    ],
-    'A2937': [
-        "AirTag (2nd generation)"
     ],
     'A2449': [
         'Magic Keyboard with Touch ID'
