@@ -95,9 +95,12 @@ asset_types = {
 }
 
 default_mac_devices = [
+    'MacBookAir6,1',    # Intel, only supports up to Big Sur
+    'MacBookAir7,1',    # Intel, only supports up to Monterey
+    'MacBookPro14,1',   # Intel, only supports up to Ventura
     'MacBookAir8,1',    # Intel, only supports up to Sonoma
     'MacBookAir9,1',    # Intel, only supports up to Sequoia
-    'MacPro7,1',        # Intel, supports Tahoe
+    'MacPro7,1',        # Intel, only supports up to Tahoe
     'MacBookPro17,1',   # M1, covers all released Apple Silicon builds
     'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds + Ventura 13.6.2
     'Mac14,2',          # Covers Monterey 12.4 (WWDC 2022) forked builds

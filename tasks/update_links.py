@@ -16,7 +16,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
-from link_info import needs_auth, needs_apple_auth, needs_apple_auth_exception, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token
+from link_info import needs_auth, needs_apple_auth, needs_apple_auth_exception, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token, no_check
 from sort_os_files import sort_os_file
 from sort_device_files import sort_device_file
 
@@ -60,6 +60,10 @@ class ProcessFileThread(threading.Thread):
                 if url in success_map:
                     # Skip ones we've already processed
                     link["active"] = success_map[url]
+                    continue
+
+                if hostname in no_check:
+                    # skip checking this
                     continue
 
                 if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth and not any([x for x in needs_apple_auth_exception if x in url])):
@@ -194,6 +198,10 @@ class ProcessFileThread(threading.Thread):
         if url in success_map:
             # Skip ones we've already processed
             updated_status = success_map[url]
+            return updated_status
+
+        if hostname in no_check:
+            # skip checking this
             return updated_status
 
         if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth and not any([x for x in needs_apple_auth_exception if x in url])):
