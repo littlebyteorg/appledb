@@ -63,7 +63,7 @@ known_builds = [
     # others
     '23O247',  # visionOS 26.4
     '23P4242', # bridgeOS 10.4
-    '25E246',  # macOS 26.4
+    '25E253',  # macOS 26.4
 ]
 
 filename_prefix_map = {
