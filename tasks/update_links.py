@@ -280,17 +280,21 @@ class ProcessFileThread(threading.Thread):
         if isinstance(reference_link, str):
             link = reference_link
             active_status = True
+            has_label = False
         else:
             link = reference_link['url']
+            has_label = bool(reference_link.get('label'))
             active_status = reference_link['active']
         active_status = self.process_link(link, active_status)
-        if active_status:
+        if active_status and not has_label:
             return link
-        else:
-            return {
-                'url': link,
-                'active': False
-            }
+        response = {
+            'url': link,
+            'active': active_status
+        }
+        if has_label:
+            response['label'] = reference_link['label']
+        return response
 
     def run(self):
         while not self.file_queue.empty():

@@ -59,7 +59,7 @@ list_fields = [
 
 colors_key_order = ["name", "key", "group", "hex", "released"]
 
-links_key_order = ["url", "active"]
+links_key_order = ["url", "label", "active"]
 
 
 def sort_device_file(file_path: Optional[Path], raw_data=None):
@@ -96,6 +96,12 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
 
     if isinstance(data.get("appLink"), dict):
         data["appLink"] = sorted_dict_by_key(data["appLink"], links_key_order)
+    elif isinstance(data.get("appLink"), list):
+        for i, link in enumerate(data["appLink"]):
+            if isinstance(link, dict):
+                data["appLink"][i] = sorted_dict_by_key(link, links_key_order)
+            else:
+                data["appLink"][i] = link
 
     if not raw_data:
         json.dump(data, file_path.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)  # type: ignore
