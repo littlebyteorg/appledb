@@ -311,7 +311,7 @@ class ProcessFileThread(threading.Thread):
             if data.get('sources', []) and not self.notes_only:
                 data['sources'] = self.process_sources(data['sources'], ios_file.name)
 
-            for key in ['releaseNotes', 'securityNotes', 'appLink']:
+            for key in ['releaseNotes', 'enterpriseNotes', 'securityNotes', 'appLink']:
                 if not data.get(key): continue
 
                 if isinstance(data[key], list):
