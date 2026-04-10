@@ -68,6 +68,9 @@ module.exports = function (json) {
     releaseNotes: {
       type: String,
     },
+    enterpriseNotes: {
+      type: String,
+    },
     securityNotes: {
       type: String,
     },

@@ -58,6 +58,12 @@
                         {"$ref": "#/definitions/sourceLink"}
                     ]
                 },
+                "enterpriseNotes": {
+                    "anyOf": [
+                        {"type": "string", "format": "uri"},
+                        {"$ref": "#/definitions/sourceLink"}
+                    ]
+                },
                 "securityNotes": {
                     "anyOf": [
                         {"type": "null"},

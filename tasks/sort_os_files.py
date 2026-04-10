@@ -31,6 +31,7 @@ key_order = [
     "createDuplicateEntries",
     "notes",
     "releaseNotes",
+    "enterpriseNotes",
     "securityNotes",
     "ipd",
     "appledbWebImage",

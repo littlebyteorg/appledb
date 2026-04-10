@@ -6,7 +6,7 @@ import zoneinfo
 from copy import deepcopy
 
 from sort_os_files import sort_os_file
-from support_page_info import get_release_notes_link
+from support_page_info import get_release_notes_link, get_enterprise_notes_link
 
 supported_subfolders = [
     'audioOS',
@@ -81,6 +81,9 @@ for (osStr, builds) in parsed_builds.items():
             release_notes_link = get_release_notes_link(osStr, file_data["version"])
             if release_notes_link:
                 file_data["releaseNotes"] = release_notes_link
+            enterprise_notes_link = get_enterprise_notes_link(osStr, file_data["version"])
+            if enterprise_notes_link:
+                file_data["enterpriseNotes"] = enterprise_notes_link
 
         if args.exclude_devices:
             excluded_devices = list(set(args.exclude_devices).intersection(set(file_data['deviceMap'])))
