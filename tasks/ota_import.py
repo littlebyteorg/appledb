@@ -138,7 +138,7 @@ def import_ota(
     # We need per-device details anyway, grab from the full OTA
     # If size is explicitly passed in, assume source is no longer active
     if skip_remote and not size:
-        skip_remote = bool(prerequisite_builds) or (os_str in ['iOS', 'iPadOS'] and build[2] <= 'E')
+        skip_remote = bool(prerequisite_builds) or (os_str in ['iOS', 'iPadOS'] and build[2] <= 'G')
         if ota_url.endswith('.aea'):
             skip_remote = skip_remote or len(set(device_map).intersection(CELLULAR_DEVICES_BACKPORT)) == 0
             if not skip_remote and len(set(device_map).intersection(APPLE_BASEBAND_DEVICES)) == 0:
