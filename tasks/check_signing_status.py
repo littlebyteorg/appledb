@@ -349,7 +349,7 @@ def check_signing_status(fw, os_name):
             device_map_name = 'Universal'
         else:
             device_map_name = ";".join(cached_device_map)
-        cached_path = f"manifest_cache/{os_str}/{fw_build}/{device_map_name}/BuildManifest.plist"
+        cached_path = f"../manifest_cache/{os_str}/{fw_build}/{device_map_name}/BuildManifest.plist"
         has_cached_manifest = Path(cached_path).exists()
         if not has_cached_manifest:
             link = [x for x in source['links'] if x['active'] and 'apple.com' in x['url'] and 'developer' not in x['url']]
