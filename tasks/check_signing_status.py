@@ -52,8 +52,10 @@ final_builds = {
         '8B117', # iPhone 3G/iPod touch 2
         '8C148', # iPhone 3G/iPod touch 2
         '9B206', # iPad 1/iPod touch 3
+        '10B329', # intermediate OTA required for 5.0.x
         '10B500', # iPhone 3GS/iPod touch 4
         '11D257', # iPhone 4
+        '12H321', # intermediate OTA required for 5.1-7.0.6
         '13G36', # iPad 2, 3/iPad mini 1/iPhone 4S/iPod touch 5
         '13G37', # iPad 2, 3/iPad mini 1/iPhone 4S
         '14G60', # iPad 4/iPhone 5, 5c
@@ -75,7 +77,7 @@ final_builds = {
         '11D258', # Apple TV 2
         '12H606', # Apple TV 3
         '12H1006', # Apple TV 3
-        '14W756', # intermediate required for everything pre-tvOS 11
+        '14W756', # intermediate OTA required for everything pre-tvOS 11
         '17M61', # intermediate OTA required for everything pre-tvOS 14
     ],
     'Studio Display Firmware': [
