@@ -200,18 +200,27 @@ for download in downloads:
         kdk_build_data = json.load(target_file[0].open(encoding="utf-8"))
         kdk_file = download['files'][0]
         if bool([source for source in kdk_build_data.get('sources', []) if source['type'] == 'kdk']):
-            continue
-        kdk_build_data.setdefault('sources', []).append({
-            "type": "kdk",
-            "deviceMap": kdk_build_data['deviceMap'],
-            "links": [
-                {
-                    "url": LINK_PREFIX + kdk_file['remotePath'],
-                    "active": True
-                }
-            ],
-            "size": kdk_file['fileSize']
-        })
+            kdk_source = [source for source in kdk_build_data.get('sources', []) if source['type'] == 'kdk'][0]
+            if (LINK_PREFIX + kdk_file['remotePath']) in [x['url'] for x in kdk_source['links']]:
+                continue
+            kdk_build_data['sources'] = [source for source in kdk_build_data.get('sources', []) if source['type'] != 'kdk']
+            kdk_source['links'].append({
+                "url": LINK_PREFIX + kdk_file['remotePath'],
+                "active": True
+            })
+            kdk_build_data['sources'].append(kdk_source)
+        else:
+            kdk_build_data.setdefault('sources', []).append({
+                "type": "kdk",
+                "deviceMap": kdk_build_data['deviceMap'],
+                "links": [
+                    {
+                        "url": LINK_PREFIX + kdk_file['remotePath'],
+                        "active": True
+                    }
+                ],
+                "size": kdk_file['fileSize']
+            })
 
         json.dump(sort_os_file(None, kdk_build_data), target_file[0].open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
         update_links([target_file[0]])
