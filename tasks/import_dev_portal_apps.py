@@ -165,25 +165,35 @@ for download in downloads:
             "osMap": [
                 "macOS 26"
             ],
-            "sources": [
-                {
-                    "type": "dmg",
-                    "deviceMap": [
-                        "Command Line Tools for Xcode"
-                    ],
-                    "osMap": [
-                        "macOS 26"
-                    ],
-                    "links": [
-                        {
-                            "url": LINK_PREFIX + download_details['remotePath'],
-                            "active": True
-                        }
-                    ],
-                    "size": download_details['fileSize']
-                }
-            ]
+            "sources": []
         }
+        for download_file in download['files']:
+            source = {
+                "type": "dmg",
+                "deviceMap": [
+                    "Command Line Tools for Xcode"
+                ],
+                "osMap": [
+                    "macOS 26"
+                ],
+                "links": [
+                    {
+                        "url": LINK_PREFIX + download_file['remotePath'],
+                        "active": True
+                    }
+                ],
+                "size": download_file['fileSize']
+            }
+            if '_universal.' in download_file['remotePath'].lower():
+                source['arch'] = [
+                    'arm64',
+                    'x86_64'
+                ]
+            elif '_silicon.' in download_file['remotePath'].lower():
+                source['arch'] = [
+                    'arm64'
+                ]
+            json_data['sources'].append(source)
         if "beta" in clt_version:
             json_data["beta"] = True
         if "RC" in clt_version:
