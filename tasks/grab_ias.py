@@ -48,7 +48,7 @@ for mac_version in args.versions:
                 continue
             if product['PostDate'].date() != date.today() and not args.all:
                 continue
-            base_url = product['Packages'][0]['URL'].rsplit("/", 1)[0]
+            base_url = product['Packages'][0]['URL'].rsplit("/", 1)[0].replace("http://", "https://")
             if VARIATION_CATALOG_MAPS.get(variation):
                 links.add(f"{base_url}/InstallAssistant.pkg;{VARIATION_CATALOG_MAPS[variation]}")
             else:

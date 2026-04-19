@@ -52,8 +52,10 @@ final_builds = {
         '8B117', # iPhone 3G/iPod touch 2
         '8C148', # iPhone 3G/iPod touch 2
         '9B206', # iPad 1/iPod touch 3
+        '10B329', # intermediate OTA required for 5.0.x
         '10B500', # iPhone 3GS/iPod touch 4
         '11D257', # iPhone 4
+        '12H321', # intermediate OTA required for 5.1-7.0.6
         '13G36', # iPad 2, 3/iPad mini 1/iPhone 4S/iPod touch 5
         '13G37', # iPad 2, 3/iPad mini 1/iPhone 4S
         '14G60', # iPad 4/iPhone 5, 5c
@@ -75,22 +77,22 @@ final_builds = {
         '11D258', # Apple TV 2
         '12H606', # Apple TV 3
         '12H1006', # Apple TV 3
-        '14W756', # intermediate required for everything pre-tvOS 11
+        '14W756', # intermediate OTA required for everything pre-tvOS 11
         '17M61', # intermediate OTA required for everything pre-tvOS 14
     ],
     'Studio Display Firmware': [
         '19F80', # pre-Ventura 13.3
         '20E246', # pre-Sonoma
         '21A329', # latest (original)
-        '23D8128', # latest (2026/XDR)
+        '23E246', # latest (2026/XDR)
     ],
     'visionOS': [],
     'watchOS': [
         '14V753', # latest iOS 10
         '15U70', # latest 1st-generation
-        '16U693', # latest iOS 12
+        '16U711', # latest iOS 12
         '17U224', # latest series 1/2, intermediate OTA required for everything pre-watchOS 7
-        '19U512', # latest series 3, iOS 15
+        '19U526', # latest series 3, iOS 15
         '20U512', # latest iOS 16
         '21U594', # latest series 4/5, SE
         '22U95', # latest iOS 18
@@ -349,7 +351,7 @@ def check_signing_status(fw, os_name):
             device_map_name = 'Universal'
         else:
             device_map_name = ";".join(cached_device_map)
-        cached_path = f"manifest_cache/{os_str}/{fw_build}/{device_map_name}/BuildManifest.plist"
+        cached_path = f"../manifest_cache/{os_str}/{fw_build}/{device_map_name}/BuildManifest.plist"
         has_cached_manifest = Path(cached_path).exists()
         if not has_cached_manifest:
             link = [x for x in source['links'] if x['active'] and 'apple.com' in x['url'] and 'developer' not in x['url']]

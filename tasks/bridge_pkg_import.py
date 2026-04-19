@@ -17,7 +17,7 @@ from update_links import update_links
 from common_update_import import create_file
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-v', '--versions', default=['15'], nargs="+")
+parser.add_argument('-v', '--versions', default=['26'], nargs="+")
 parser.add_argument('-r', '--release-types', default=['release'], nargs="+", choices=['dev', 'public', 'release'])
 parser.add_argument('-a', '--all', action='store_true')
 args = parser.parse_args()
@@ -68,7 +68,7 @@ for version in args.versions:
                 continue
             if product['PostDate'].date() != date.today() and not args.all:
                 continue
-            url = product['ServerMetadataURL'].replace('.smd', '.pkg')
+            url = product['ServerMetadataURL'].replace('.smd', '.pkg').replace("http://", "https://")
             build = convert_version_to_build(product['ExtendedMetaInfo']['BridgeOSPredicateProductOrdering'])
             print(build)
             file_location = Path(f'osFiles/bridgeOS/{build[0:2]}x - {int(build[0:2]) - 13}.x/{build}.json')

@@ -45,6 +45,7 @@ added_builds = {
     '23B85': ['23B82'],
     '23C55': ['23C52', 'iOS;23C54'],
     '23D127': ['23D125'],
+    '23D8133': ['23D8128'],
 }
 
 ignore_builds = {
@@ -54,8 +55,8 @@ ignore_builds = {
 # Ensure known versions of watchOS don't get included in import-ota.txt.
 # Update this dictionary in case Apple updates watchOS for iPhones that don't support latest iOS.
 latest_watch_compatibility_versions = {
-    12: ['5.3.9'],  # iPhone 5s/6
-    18: ['8.8.1'],  # iPhone 6s/SE (1st)/7
+    12: ['5.3.10'],  # iPhone 5s/6
+    18: ['8.8.2'],  # iPhone 6s/SE (1st)/7
     20: ['9.6.4'],  # iPhone 8/X
     24: ['11.6.2'], # iPhone Xr/Xs
 }
@@ -75,27 +76,31 @@ kernel_marketing_version_offset_map = {
     'visionOS': 20
 }
 
+asset_sub_type_map = {
+    'DarwinAccessoryUpdate': {
+        'AppleDisplay2,1': 'A2525',
+        'AppleDisplay18,1': 'A3348',
+        'AppleDisplay18,2': 'A3350'
+    }
+}
+
 default_kernel_marketing_version_offset = 4
 
 asset_audiences = json.load(Path("tasks/audiences.json").open(encoding="utf-8"))
 
 asset_types = {
     'macOS': ['MacSoftwareUpdate'],
-    'Studio Display Firmware': [
-        'DarwinAccessoryUpdate.A2525',
-        'DarwinAccessoryUpdate.A3348',
-        'DarwinAccessoryUpdate.A3350',
-    ],
-    'AirTag Firmware': [
-        "UARP.A2937"
-    ],
+    'Studio Display Firmware': ['DarwinAccessoryUpdate'],
     'default': ['SoftwareUpdate']
 }
 
 default_mac_devices = [
+    'MacBookAir6,1',    # Intel, only supports up to Big Sur
+    'MacBookAir7,1',    # Intel, only supports up to Monterey
+    'MacBookPro14,1',   # Intel, only supports up to Ventura
     'MacBookAir8,1',    # Intel, only supports up to Sonoma
     'MacBookAir9,1',    # Intel, only supports up to Sequoia
-    'MacPro7,1',        # Intel, supports Tahoe
+    'MacPro7,1',        # Intel, only supports up to Tahoe
     'MacBookPro17,1',   # M1, covers all released Apple Silicon builds
     'MacBookPro18,1',   # M1 Pro, covers all released Apple Silicon builds + Ventura 13.6.2
     'Mac14,2',          # Covers Monterey 12.4 (WWDC 2022) forked builds
@@ -332,10 +337,7 @@ else:
 
 if args.os and ("Studio Display Firmware" in args.os):
     # Studio Display Firmware is a mesu asset shoehorned into pallas
-    parsed_args.setdefault("Studio Display Firmware", ["19D8050"])
-if args.os and ("AirTag Firmware" in args.os):
-    # AirTag Firmware is a mesu asset shoehorned into pallas
-    parsed_args.setdefault("AirTag Firmware", ["3.0.14"])
+    parsed_args.setdefault("Studio Display Firmware", ["19D8050", "23D8128"])
 
 minimum_compatibility = 0
 maximum_compatibility = 1000
@@ -416,8 +418,9 @@ def get_build_version(target_os_str, target_build):
     return build_versions[f"{target_os_str}-{target_build}"]
 
 def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, asset_type, counter=5):
+    asset_type = f"{asset_type}.{asset_sub_type_map.get(asset_type, {}).get(device_name, '')}".removesuffix(".")
     if is_rsr:
-        asset_type = 'Splat' + asset_type.replace('SoftwareUpdate', 'SplatSoftwareUpdate')
+        asset_type = asset_type.replace('SoftwareUpdate', 'SplatSoftwareUpdate')
     additional_audiences = set()
 
     request = {
@@ -675,14 +678,15 @@ for (os_str, builds) in parsed_args.items():
                     if not args.quiet:
                         print(f"\t\tChecking {key}")
                     for board in value['boards']:
-                        if not (args.no_prerequisites or os_str == 'tvOS'):
+                        if not (args.no_prerequisites or os_str in ['tvOS', 'Studio Display Firmware']):
                             for prerequisite_build, version in value['builds'].items():
                                 call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
                         call_pallas(key, board, build_data['version'], build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
 
                         new_version_builds = sorted([x for x in newly_discovered_versions.get(os_str, {}).keys() if x < build])
-                        for new_build in new_version_builds:
-                            call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
+                        if os_str not in ['tvOS', 'Studio Display Firmware']:
+                            for new_build in new_version_builds:
+                                call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
 
 missing_decryption_keys = set()
 builds = set()

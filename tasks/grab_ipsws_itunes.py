@@ -39,19 +39,31 @@ def get_os_str(supported_device, version):
 ipsw_list = {}
 known_builds = [
     # iOS
+    '4B1',     # 1.1.5
+    '7E18',    # 3.1.3
+    '8C148',   # 4.2.1
+    '9B206',   # 5.1.1
+    '10B500',  # 6.1.6
+    '11D257',  # 7.1.2
+    '13G36',   # 9.3.5
+    '13G37',   # 9.3.6
+    '14G60',   # 10.3.3
+    '14G61',   # 10.3.4
     '16H88',   # 12.5.8
-    '19H411',  # 15.8.6
-    '20H380',  # 16.7.14
+    '19H411',  # 15.8.7
+    '20H380',  # 16.7.15
     '21H450',  # 17.7.10
     '22C161',  # 18.2.1
-    '22H311',  # 18.7.5
-    '22H320',  # 18.7.6
-    '23D8133', # 26.3.1
-    '23K620',  # tvOS 26.3
-    '23N630',  # visionOS 26.3.1
-    '23P3120', # bridgeOS 10.3
-    '25D2128', # macOS 26.3.1
-    '25D2140', # macOS 26.3.2
+    '22H340',  # 18.7.7
+    '23E254',  # 26.4.1
+    # tvOS
+    '11D258',  # 6.2.1
+    '12H1006', # 7.9
+    '23L243',  # 26.4
+    # others
+    '23O247',  # visionOS 26.4
+    '23P4242', # bridgeOS 10.4
+    '25E253',  # macOS 26.4
 ]
 
 filename_prefix_map = {
@@ -68,48 +80,45 @@ for url in urls:
     response.raise_for_status()
 
     plist = plistlib.loads(response.content)
-
-    for version_group in plist["MobileDeviceSoftwareVersionsByVersion"].values():
-        for device, device_info in version_group["MobileDeviceSoftwareVersions"].items():
-            if device in ["iPod1,1", "iPhone1,1", "iPhone1,2", "iPod2,1", "AppleTV2,1", "AppleTV3,1", "AppleTV3,2"]:
-                # Special cases not worth dealing with
+    # Ignore super-old IPSWs
+    version_group = plist["MobileDeviceSoftwareVersionsByVersion"][list(plist["MobileDeviceSoftwareVersionsByVersion"].keys())[-1]]
+    for device, device_info in version_group["MobileDeviceSoftwareVersions"].items():
+        for build, build_info in device_info.items():
+            if build == "Unknown":
+                if "Universal" in build_info:
+                    build_info = build_info["Universal"]
+            if build_info.keys() == {"SameAs"}:
                 continue
-            for build, build_info in device_info.items():
-                if build == "Unknown":
-                    if "Universal" in build_info:
-                        build_info = build_info["Universal"]
-                if build_info.keys() == {"SameAs"}:
+            for variant in [i for i in build_info.values() if isinstance(i, dict)]:
+                if variant.get('PurchasedRestore'): continue
+                if not variant["FirmwareURL"]:
                     continue
-                for variant in [i for i in build_info.values() if isinstance(i, dict)]:
-                    if not variant["FirmwareURL"]:
-                        continue
-                    # Ignore super-old IPSWs
-                    if not variant["FirmwareURL"].startswith("https"):
-                        continue
-                    if variant.get('BuildVersion') in known_builds:
-                        continue
-                    builds.add(variant['BuildVersion'])
-                    os_str = get_os_str(device, variant['ProductVersion'])
-                    if not ipsw_list.get(f"{os_str}-{variant['BuildVersion']}"):
-                        ipsw_list[f"{os_str}-{variant['BuildVersion']}"] = {
-                            "osStr": os_str,
-                            "version": variant['ProductVersion'],
-                            "build": variant['BuildVersion'],
-                            "links": {}
-                        }
-                    if not ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"].get(unquote(variant["FirmwareURL"])):
-                        ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"][unquote(variant["FirmwareURL"])] = {
-                            "device": set(),
-                            "url": unquote(variant["FirmwareURL"])
-                        }
-                    ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"][unquote(variant["FirmwareURL"])]["device"].add(device)
-                    if variant.get("DocumentationURL"):
-                        ipsw_list[f"{os_str}-{variant['BuildVersion']}"].setdefault('ipd', {})
-                        doc_filename = variant['DocumentationURL'].split('/')[-1]
-                        for prefix, ipd_property in filename_prefix_map.items():
-                            if doc_filename.startswith(prefix):
-                                ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd'][ipd_property] = variant['DocumentationURL']
-                                break
+                if variant["FirmwareURL"].startswith('protected'):
+                    continue
+                if variant.get('BuildVersion') in known_builds:
+                    continue
+                builds.add(variant['BuildVersion'])
+                os_str = get_os_str(device, variant['ProductVersion'])
+                if not ipsw_list.get(f"{os_str}-{variant['BuildVersion']}"):
+                    ipsw_list[f"{os_str}-{variant['BuildVersion']}"] = {
+                        "osStr": os_str,
+                        "version": variant['ProductVersion'],
+                        "build": variant['BuildVersion'],
+                        "links": {}
+                    }
+                if not ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"].get(unquote(variant["FirmwareURL"])):
+                    ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"][unquote(variant["FirmwareURL"])] = {
+                        "device": set(),
+                        "url": unquote(variant["FirmwareURL"])
+                    }
+                ipsw_list[f"{os_str}-{variant['BuildVersion']}"]["links"][unquote(variant["FirmwareURL"])]["device"].add(device)
+                if variant.get("DocumentationURL"):
+                    ipsw_list[f"{os_str}-{variant['BuildVersion']}"].setdefault('ipd', {})
+                    doc_filename = variant['DocumentationURL'].split('/')[-1]
+                    for prefix, ipd_property in filename_prefix_map.items():
+                        if doc_filename.startswith(prefix):
+                            ipsw_list[f"{os_str}-{variant['BuildVersion']}"]['ipd'][ipd_property] = variant['DocumentationURL']
+                            break
 
 print(sorted(builds, key=build_number_sort))
 if bool(ipsw_list):

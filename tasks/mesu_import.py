@@ -48,7 +48,8 @@ beta_asset_subfolders = {
             'A3048',
             'A3053',
             'A3056',
-            'A3064'
+            'A3064',
+            'A3454'
         ],
         'AirPodsPublicSeed': [
             'A2618',
@@ -56,7 +57,8 @@ beta_asset_subfolders = {
             'A3048',
             'A3053',
             'A3056',
-            'A3064'
+            'A3064',
+            'A3454'
         ]
     }
 }
@@ -73,14 +75,14 @@ asset_types = {
         'A3053': 'com_apple_MobileAsset_UARP_A3053',
         'A3056': 'com_apple_MobileAsset_UARP_A3056',
         'A3064': 'com_apple_MobileAsset_UARP_A3064',
+        'A3454': 'com_apple_MobileAsset_UARP_A3454',
         'A3184': [
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184_EA',
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184-24E_EA'
         ]
     },
     'AirTags': {
-        'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware',
-        'A2937': 'com_apple_MobileAsset_UARP_A2937'
+        'A2187': 'com_apple_MobileAsset_MobileAccessoryUpdate_DurianFirmware'
     },
     'Beats': {
         'A2048': 'com_apple_MobileAsset_MobileAccessoryUpdate_A2048_EA',
@@ -164,9 +166,6 @@ device_map = {
     'A2187': [
         "AirTag1,1"
     ],
-    'A2937': [
-        "AirTag (2nd generation)"
-    ],
     'A2449': [
         'Magic Keyboard with Touch ID'
     ],
@@ -218,13 +217,16 @@ device_map = {
         'Powerb3,1-right'
     ],
     'A3184': [
-        "AirPodsMax1,2"
+        "AirPodsMax1,1-usbc"
     ],
     'A3339': [
         'Magic Keyboard for iPad Air 11-inch (M3)'
     ],
     'A3340': [
         'Magic Keyboard for iPad Air 13-inch (M3)'
+    ],
+    'A3454': [
+        "AirPodsMax1,2"
     ],
     'A3476': [
         "Powerbeats Fit-left",

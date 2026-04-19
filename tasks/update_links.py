@@ -16,7 +16,7 @@ from urllib.parse import urlparse
 import requests
 import requests.adapters
 import urllib3
-from link_info import needs_auth, needs_apple_auth, needs_apple_auth_exception, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token
+from link_info import needs_auth, needs_apple_auth, needs_apple_auth_exception, no_head, needs_cache_bust, stop_remaking_active, apple_auth_token, no_check
 from sort_os_files import sort_os_file
 from sort_device_files import sort_device_file
 
@@ -60,6 +60,10 @@ class ProcessFileThread(threading.Thread):
                 if url in success_map:
                     # Skip ones we've already processed
                     link["active"] = success_map[url]
+                    continue
+
+                if hostname in no_check:
+                    # skip checking this
                     continue
 
                 if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth and not any([x for x in needs_apple_auth_exception if x in url])):
@@ -196,6 +200,10 @@ class ProcessFileThread(threading.Thread):
             updated_status = success_map[url]
             return updated_status
 
+        if hostname in no_check:
+            # skip checking this
+            return updated_status
+
         if hostname in needs_auth or (hostname in needs_apple_auth and not self.has_apple_auth and not any([x for x in needs_apple_auth_exception if x in url])):
             # We don't have credentials for this host, don't touch active status
             return current_status
@@ -272,17 +280,21 @@ class ProcessFileThread(threading.Thread):
         if isinstance(reference_link, str):
             link = reference_link
             active_status = True
+            has_label = False
         else:
             link = reference_link['url']
+            has_label = bool(reference_link.get('label'))
             active_status = reference_link['active']
         active_status = self.process_link(link, active_status)
-        if active_status:
+        if active_status and not has_label:
             return link
-        else:
-            return {
-                'url': link,
-                'active': False
-            }
+        response = {
+            'url': link,
+            'active': active_status
+        }
+        if has_label:
+            response['label'] = reference_link['label']
+        return response
 
     def run(self):
         while not self.file_queue.empty():
@@ -299,7 +311,7 @@ class ProcessFileThread(threading.Thread):
             if data.get('sources', []) and not self.notes_only:
                 data['sources'] = self.process_sources(data['sources'], ios_file.name)
 
-            for key in ['releaseNotes', 'securityNotes', 'appLink']:
+            for key in ['releaseNotes', 'enterpriseNotes', 'securityNotes', 'appLink']:
                 if not data.get(key): continue
 
                 if isinstance(data[key], list):

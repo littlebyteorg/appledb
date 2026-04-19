@@ -1,21 +1,24 @@
 {
     "osStr": "iPhone Software",
-    "version": "2.0 GM",
+    "version": "2.0",
     "build": "5A345",
     "buildTrain": "BigBear",
-    "released": "2008-06-26",
-    "rc": true,
+    "released": "2008-07-11",
+    "preinstalled": true,
     "createDuplicateEntries": [
         {
-            "version": "2.0",
-            "uniqueBuild": "5A345-preinstalled",
-            "released": "2008-07-11",
-            "rc": false,
-            "preinstalled": true,
+            "version": "2.0 GM",
+            "uniqueBuild": "5A345-GM",
+            "released": "2008-06-26",
+            "rc": true,
+            "preinstalled": false,
             "deviceMap": [
-                "iPhone1,2"
+                "iPhone1,1",
+                "iPhone1,2",
+                "iPod1,1"
             ],
             "basebandVersions": {
+                "iPhone1,1": "04.05.04_G",
                 "iPhone1,2": "01.45.00"
             }
         }
@@ -25,12 +28,9 @@
         "align": "left"
     },
     "deviceMap": [
-        "iPhone1,1",
-        "iPhone1,2",
-        "iPod1,1"
+        "iPhone1,2"
     ],
     "basebandVersions": {
-        "iPhone1,1": "04.05.04_G",
         "iPhone1,2": "01.45.00"
     }
 }

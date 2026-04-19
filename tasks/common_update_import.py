@@ -8,16 +8,16 @@ from pathlib import Path
 
 import packaging.version
 from image_info import get_image
-from support_page_info import get_release_notes_link
+from support_page_info import get_release_notes_link, get_enterprise_notes_link
 from sort_os_files import sort_os_file
 
 OS_MAP = [
+    ("ComputeModule", "cloudOS"),
     ("iPod", "iOS"),
     ("iPhone", "iOS"),
     ("iPad", "iPadOS"),
     ("AudioAccessory", "audioOS"),
     ("AppleTV", "tvOS"),
-    ("ComputeModule", "cloudOS"),
     ("Mac", "macOS"),
     ("ADP", "macOS"),
     ("Watch", "watchOS"),
@@ -214,11 +214,17 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
         file_updated = True
         db_data["bsi"] = True
 
-    if "releaseNotes" not in db_data and not db_data.get("beta") and not db_data.get("rc") and not db_data.get("rsr") and not db_data.get("bsi") and not db_data.get("internal"):
-        release_notes_link = get_release_notes_link(os_str, db_data["version"])
-        if release_notes_link:
-            file_updated = True
-            db_data["releaseNotes"] = release_notes_link
+    if not db_data.get("beta") and not db_data.get("rc") and not db_data.get("rsr") and not db_data.get("bsi") and not db_data.get("internal"):
+        if "releaseNotes" not in db_data:
+            release_notes_link = get_release_notes_link(os_str, db_data["version"])
+            if release_notes_link:
+                file_updated = True
+                db_data["releaseNotes"] = release_notes_link
+        if "enterpriseNotes" not in db_data:
+            enterprise_notes_link = get_enterprise_notes_link(os_str, db_data["version"])
+            if enterprise_notes_link:
+                file_updated = True
+                db_data["enterpriseNotes"] = enterprise_notes_link
 
     # Only write to file if required
     if file_updated:

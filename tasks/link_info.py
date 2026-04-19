@@ -58,7 +58,14 @@ needs_cache_bust = [
 
 # Domains that regularly flip-flop from available to unavailable as it leaves the CDN
 stop_remaking_active = [
-    "swcdn.apple.com"
+    "swcdn.apple.com",
+]
+
+# Domains that regularly cause problems
+no_check = [
+    "www.pixelmator.com",
+    "docs.info.apple.com",
+    "qtinstall.info.apple.com"
 ]
 
 apple_auth_token = ""

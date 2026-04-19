@@ -145,7 +145,7 @@ for download in downloads:
             clt_version = download_name.split(" - Xcode ")[-1]
             clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
         else:
-            clt_version = download_name.split("Xcode ")[1].replace('Release Candidate', 'RC').replace(' Seed', '').replace(' seed', '').removeprefix('- ')
+            clt_version = download_name.split("Xcode ")[-1].removeprefix("Command Line Tools ").replace('Release Candidate', 'RC').replace(' Seed', '').replace(' seed', '').removeprefix('- ')
             clt_subfolder = f"{clt_version.split(' ')[0].split('.')[0]}.x"
         target_file = Path(f"osFiles/Software/Command Line Tools for Xcode/{clt_subfolder}/{clt_version}.json")
         Path(f"osFiles/Software/Command Line Tools for Xcode/{clt_subfolder}").mkdir(exist_ok=True, parents=True)
@@ -165,25 +165,35 @@ for download in downloads:
             "osMap": [
                 "macOS 26"
             ],
-            "sources": [
-                {
-                    "type": "dmg",
-                    "deviceMap": [
-                        "Command Line Tools for Xcode"
-                    ],
-                    "osMap": [
-                        "macOS 26"
-                    ],
-                    "links": [
-                        {
-                            "url": LINK_PREFIX + download_details['remotePath'],
-                            "active": True
-                        }
-                    ],
-                    "size": download_details['fileSize']
-                }
-            ]
+            "sources": []
         }
+        for download_file in download['files']:
+            source = {
+                "type": "dmg",
+                "deviceMap": [
+                    "Command Line Tools for Xcode"
+                ],
+                "osMap": [
+                    "macOS 26"
+                ],
+                "links": [
+                    {
+                        "url": LINK_PREFIX + download_file['remotePath'],
+                        "active": True
+                    }
+                ],
+                "size": download_file['fileSize']
+            }
+            if '_universal.' in download_file['remotePath'].lower():
+                source['arch'] = [
+                    'arm64',
+                    'x86_64'
+                ]
+            elif '_silicon.' in download_file['remotePath'].lower():
+                source['arch'] = [
+                    'arm64'
+                ]
+            json_data['sources'].append(source)
         if "beta" in clt_version:
             json_data["beta"] = True
         if "RC" in clt_version:
@@ -200,18 +210,27 @@ for download in downloads:
         kdk_build_data = json.load(target_file[0].open(encoding="utf-8"))
         kdk_file = download['files'][0]
         if bool([source for source in kdk_build_data.get('sources', []) if source['type'] == 'kdk']):
-            continue
-        kdk_build_data.setdefault('sources', []).append({
-            "type": "kdk",
-            "deviceMap": kdk_build_data['deviceMap'],
-            "links": [
-                {
-                    "url": LINK_PREFIX + kdk_file['remotePath'],
-                    "active": True
-                }
-            ],
-            "size": kdk_file['fileSize']
-        })
+            kdk_source = [source for source in kdk_build_data.get('sources', []) if source['type'] == 'kdk'][0]
+            if (LINK_PREFIX + kdk_file['remotePath']) in [x['url'] for x in kdk_source['links']]:
+                continue
+            kdk_build_data['sources'] = [source for source in kdk_build_data.get('sources', []) if source['type'] != 'kdk']
+            kdk_source['links'].append({
+                "url": LINK_PREFIX + kdk_file['remotePath'],
+                "active": True
+            })
+            kdk_build_data['sources'].append(kdk_source)
+        else:
+            kdk_build_data.setdefault('sources', []).append({
+                "type": "kdk",
+                "deviceMap": kdk_build_data['deviceMap'],
+                "links": [
+                    {
+                        "url": LINK_PREFIX + kdk_file['remotePath'],
+                        "active": True
+                    }
+                ],
+                "size": kdk_file['fileSize']
+            })
 
         json.dump(sort_os_file(None, kdk_build_data), target_file[0].open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
         update_links([target_file[0]])

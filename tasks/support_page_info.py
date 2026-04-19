@@ -1,6 +1,7 @@
 release_notes_ids = {
     'audioOS': '108045',
     'iOS': {
+        12: '118387',
         15: '108051',
         16: '101566',
         17: '118723',
@@ -15,6 +16,7 @@ release_notes_ids = {
         26: '123074',
     },
     'macOS': {
+        11: '106338',
         12: '106339',
         13: '106337',
         14: '109035',
@@ -29,10 +31,44 @@ release_notes_ids = {
         26: '123024',
     },
     'watchOS': {
+        5: '118393',
+        6: '118388',
+        8: '118389',
         9: '117792',
         10: '119065',
         11: '121163',
         26: '123002',
+    }
+}
+
+enterprise_notes_ids = {
+    'iOS': {
+        14: '103266',
+        15: '103194',
+        16: '101584',
+        17: '118102',
+        18: '121158',
+        26: '125073'
+    },
+    'iPadOS': {
+        14: '103262',
+        15: '103209',
+        16: '101556',
+        17: '108388',
+        18: '121159',
+        26: '125074'
+    },
+    'macOS': {
+        11: '103261',
+        12: '103271',
+        13: '101570',
+        14: '109030',
+        15: '121011',
+        26: '124963'
+    },
+    'visionOS': {
+        2: '121160',
+        26: '124965'
     }
 }
 
@@ -91,3 +127,19 @@ def get_release_notes_link(os_str, version):
             anchor = anchor.removesuffix("0")
 
     return f"{base_url}{article_id}{anchor}"
+
+def get_enterprise_notes_link(os_str, version):
+    if not enterprise_notes_ids.get(os_str):
+        print('no enterprise')
+        return None
+    base_url = 'https://support.apple.com/'
+
+    article_id = ''
+    if type(enterprise_notes_ids[os_str]) == str:
+        article_id = enterprise_notes_ids[os_str]
+    else:
+        parsed_version = int(version.split(".", 1)[0])
+        if not enterprise_notes_ids[os_str].get(parsed_version): return None
+        article_id = enterprise_notes_ids[os_str][parsed_version]
+
+    return f"{base_url}{article_id}"
