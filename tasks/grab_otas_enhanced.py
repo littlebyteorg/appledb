@@ -301,6 +301,7 @@ parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-e', '--echo-request', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
+parser.add_argument('-p', '--only-prerequisites', action='store_true')
 parser.add_argument('-q', '--quiet', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
@@ -694,6 +695,7 @@ for key, value in ota_list.items():
     sources = []
     builds.add(value['build'])
     for source in value['sources'].values():
+        if args.only_prerequisites and not source['prerequisites']: continue
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
             missing_key = f"{value['osStr']}-{'/'.join(source['prerequisites'])}"
             if value['osStr'] == 'macOS':
