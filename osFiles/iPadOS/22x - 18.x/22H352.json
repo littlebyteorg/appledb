@@ -7,6 +7,9 @@
     "released": "2026-04-22",
     "releaseNotes": "https://support.apple.com/121162#a1878",
     "enterpriseNotes": "https://support.apple.com/121159",
+    "ipd": {
+        "iPad": "https://updates.cdn-apple.com/2026SpringFCS/documentation/122-63384/8CFC335D-59D4-45A6-A9F6-E9FE238A3685/iPadLuckShortRTF.ipd"
+    },
     "appledbWebImage": {
         "id": "ipados18",
         "align": "left"
@@ -72,9 +75,32 @@
         "iPad16,6"
     ],
     "basebandVersions": {
+        "iPad7,12": "7.03.02",
         "iPad11,7": "7.03.02"
     },
+    "signed": [
+        "iPad7,11",
+        "iPad7,12"
+    ],
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad7,11",
+                "iPad7,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026WinterFCS/fullrestores/122-58410/24E63E28-CF91-4062-8BCC-537FDA45C36F/iPad_10.2_18.7.8_22H352_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "a4149f1a386220d0b8f0b9cade9c792c2382260f",
+                "sha2-256": "f27544462de1ccfe0f50f4d296696b4bc10945df8d32f06c039f91b77cd19409"
+            },
+            "size": 7891308125
+        },
         {
             "type": "ipsw",
             "deviceMap": [
