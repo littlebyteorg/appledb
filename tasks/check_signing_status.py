@@ -67,6 +67,7 @@ final_builds = {
     'iPadOS': [
         '19H411', # iPad Air 2/iPad mini 4
         '20H380', # iPad 5/iPad Pro 1
+        '21H450', # iPad 6/iPad Pro 2
     ],
     'macOS': [
         '20B28' # 11.0.1 RC (still signed somehow)
