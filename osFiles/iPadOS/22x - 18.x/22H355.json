@@ -1,0 +1,65 @@
+{
+    "osStr": "iPadOS",
+    "version": "18.7.9 RC",
+    "build": "22H355",
+    "restoreVersion": "22.8.355.0.0,0",
+    "buildTrain": "CrystalUpdate",
+    "released": "2026-05-04",
+    "rc": true,
+    "appledbWebImage": {
+        "id": "ipados18",
+        "align": "left"
+    },
+    "deviceMap": [
+        "iPad7,11",
+        "iPad7,12",
+        "iPad11,6",
+        "iPad11,7"
+    ],
+    "basebandVersions": {
+        "iPad7,12": "7.03.02",
+        "iPad11,7": "7.03.02"
+    },
+    "signed": [
+        "iPad7,11",
+        "iPad7,12"
+    ],
+    "sources": [
+        {
+            "type": "ota",
+            "deviceMap": [
+                "iPad7,11",
+                "iPad7,12"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026WinterFCS/patches/122-58223/BC850977-ADD4-4EE3-9C8F-5EA0970FB3C0/com_apple_MobileAsset_SoftwareUpdate/8915d3b2cd95cd0306b9ff779720eefc8132611f.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "8915d3b2cd95cd0306b9ff779720eefc8132611f",
+                "sha2-256": "2483fabd3208bc151c213edef249702d237c63c4f9aadcb54ca7ed9fdba018a2"
+            },
+            "size": 6102644109
+        },
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iPad11,6",
+                "iPad11,7"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026WinterFCS/fullrestores/122-65639/7D3230BB-9FAC-4E53-B084-D8811655B043/iPad_10.2_2020_18.7.9_22H355_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "725c68b8ffe06375d425a210febd00567825fa1f",
+                "sha2-256": "72482398ae5b46727a903b3ca86790ae76f06079f510cc4cc4825724fd655790"
+            },
+            "size": 8511711487
+        }
+    ]
+}
