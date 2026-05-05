@@ -35,6 +35,10 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
         "HWModelStr": board_id,
         "BuildVersion": os_build
     }
+    if args.time_delay > 0:
+        request['DelayPeriod'] = args.time_delay
+        request['DelayRequested'] = True
+        request['Supervised'] = True
     # print(json.dumps(request))
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
@@ -67,6 +71,7 @@ parser.add_argument('-o', '--os', choices=choice_list, required=True)
 parser.add_argument('-p', '--build-prefix', required=True)
 parser.add_argument('-r', '--range', nargs='+', type=int, required=True)
 parser.add_argument('-s', '--suffix-range', nargs='+', type=str)
+parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
 parser.add_argument('-v', '--versions', nargs='+', required=True)
 args = parser.parse_args()
 if len(args.range) != 2:
