@@ -633,6 +633,7 @@ for (os_str, builds) in parsed_args.items():
         build_versions[f"{os_str}-{build}"] = build_data['version']
 
         for device in build_data['deviceMap']:
+            device = device.split("-", 1)[0]
             if args.devices and device not in args.devices:
                 continue
             if os_str == 'macOS' and not args.devices and device not in default_mac_devices:
@@ -662,6 +663,8 @@ for (os_str, builds) in parsed_args.items():
                         continue
                 else:
                     current_devices = source['deviceMap']
+                
+                current_devices = set([x.split("-")[0] for x in current_devices])
 
                 prerequisite_builds = source['prerequisiteBuild']
                 if not isinstance(prerequisite_builds, list):
