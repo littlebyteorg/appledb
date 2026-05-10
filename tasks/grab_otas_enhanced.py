@@ -332,7 +332,11 @@ else:
             if os_str == 'watchOS':
                 parsed_args[os_str] = list(set(parsed_args[os_str]))
         else:
-            parsed_args[os_str].extend(latest_builds[os_str]['next' if is_next_major else 'beta' if beta_builds else 'release'])
+            build_key = 'next' if is_next_major else 'beta' if beta_builds else 'release'
+            if not latest_builds[os_str].get(build_key):
+                del parsed_args[os_str]
+                continue
+            parsed_args[os_str].extend(latest_builds[os_str][build_key])
         if args.rsr:
             parsed_args[os_str] = [parsed_args[os_str][-1]]
 
@@ -478,6 +482,10 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
             delta_from_beta = re.search(r"(6\d{3})", updated_build)
             if delta_from_beta:
                 updated_build = updated_build.replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))
+                if asset.get('RestoreVersion'):
+                    updated_restore_version = asset['RestoreVersion'].split(".")
+                    updated_restore_version[3] = '0'
+                    asset['RestoreVersion'] = ".".join(updated_restore_version)
             if build_versions.get(f"{target_os_str}-{updated_build}") or updated_build in parsed_args.get(target_os_str, []):
                 continue
 
