@@ -63,7 +63,10 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
 choice_list = list(asset_audiences.keys())
 choice_list.extend(list(asset_audiences_overrides.keys()))
 
+audience_choice_list = ['alternate', 'developer', 'appleseed', 'public', 'release']
+
 parser = argparse.ArgumentParser()
+parser.add_argument('-a', '--audiences', nargs="+", choices=audience_choice_list, default=audience_choice_list)
 parser.add_argument('-b', '--boards', nargs="+", required=True)
 parser.add_argument('-f', '--forks', nargs="+", type=int, required=True)
 parser.add_argument('-i', '--identifiers', nargs="+", required=True)
@@ -99,6 +102,7 @@ for fork in args.forks:
     audience_labels = {}
     asset_audience_list = asset_audiences[asset_audiences_overrides.get(args.os, args.os)]
     for label, audience in asset_audience_list.items():
+        if label not in args.audiences: continue
         if isinstance(audience, str):
             audience_labels[audience] = label
             target_audiences.append(audience)

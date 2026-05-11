@@ -1,11 +1,18 @@
 {
     "osStr": "bridgeOS",
-    "version": "10.5 RC",
+    "version": "10.5",
     "build": "23P5067",
     "restoreVersion": "23.16.15067.0.0,0",
     "buildTrain": "CheerBridgeF",
-    "released": "2026-05-04",
-    "rc": true,
+    "released": "2026-05-11",
+    "createDuplicateEntries": [
+        {
+            "version": "10.5 RC",
+            "uniqueBuild": "23P5067-RC",
+            "released": "2026-05-04",
+            "rc": true
+        }
+    ],
     "deviceMap": [
         "iBridge2,1",
         "iBridge2,3",
@@ -27,6 +34,38 @@
     "signed": true,
     "sources": [
         {
+            "type": "ipsw",
+            "deviceMap": [
+                "iBridge2,1",
+                "iBridge2,3",
+                "iBridge2,4",
+                "iBridge2,5",
+                "iBridge2,6",
+                "iBridge2,7",
+                "iBridge2,8",
+                "iBridge2,10",
+                "iBridge2,12",
+                "iBridge2,14",
+                "iBridge2,15",
+                "iBridge2,16",
+                "iBridge2,19",
+                "iBridge2,20",
+                "iBridge2,21",
+                "iBridge2,22"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SpringFCS/fullrestores/047-40526/FC334944-424B-4A87-9CF3-FDCD3C4BBCF6/iBridge2,1,iBridge2,10,iBridge2,12,iBridge2,14,iBridge2,15,iBridge2,16,iBridge2,19,iBridge2,20,iBridge2,21,iBridge2,22,iBridge2,3,iBridge2,4,iBridge2,5,iBridge2,6,iBridge2,7,iBridge2,8_10.5_23P5067_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "70d1a3f9588b5274c5c81211764bd490a1a1d4e7",
+                "sha2-256": "32b1b347b883f1377eb3b36ca80393d29b416d2de804b0a3dbbad29eee723fc3"
+            },
+            "size": 741648535
+        },
+        {
             "type": "pkg",
             "deviceMap": [
                 "iBridge2,1",
@@ -47,6 +86,10 @@
                 "iBridge2,22"
             ],
             "links": [
+                {
+                    "url": "https://swcdn.apple.com/content/downloads/48/25/122-77691-A_EXP6OPU85L/q77cg5f0qh1ywlba35qhmmqnxgdozyzaub/BridgeOSUpdateCustomer.pkg",
+                    "active": true
+                },
                 {
                     "url": "https://swcdn.apple.com/content/downloads/36/13/122-77691-A_85K3U8GFZI/51ki8c4ejcrcxfroke3jes21smm96r5a50/BridgeOSUpdateCustomer.pkg",
                     "catalog": "dev-beta",
