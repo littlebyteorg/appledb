@@ -26,6 +26,7 @@ key_order = [
     "released", # conditional array
     "discontinued", # conditional array
     "colors",
+    "storage",
     "info",
     "windowsStoreId",
     "appLink",
@@ -59,6 +60,7 @@ list_fields = [
 ]
 
 colors_key_order = ["name", "key", "group", "hex", "released", "discontinued"]
+storage_key_order = ["capacity", "unit", "key", "released", "discontinued"]
 
 links_key_order = ["url", "label", "active"]
 
@@ -83,6 +85,13 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
         data['colors'][i] = sorted_dict_by_key(colors, colors_key_order)
         if set(data["colors"][i].keys()) - set(colors_key_order):
             raise ValueError(f"Unknown keys: {sorted(set(data['colors'][i].keys()) - set(colors_key_order))}")
+
+    for i, storage in enumerate(data.get('storage', [])):
+        data['storage'][i] = sorted_dict_by_key(storage, storage_key_order)
+        if set(data["storage"][i].keys()) - set(storage_key_order):
+            raise ValueError(f"Unknown keys: {sorted(set(data['storage'][i].keys()) - set(storage_key_order))}")
+        
+    data.get('storage', []).sort(key=lambda storage: (storage['unit'], storage['capacity']))
 
     # HACK: sorting order is release date in descending order, then name in ascending order
     data.get('colors', []).sort(key=lambda color: color['name'])
