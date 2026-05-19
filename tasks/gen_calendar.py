@@ -159,7 +159,7 @@ def process_device_event(data: dict, all_day: bool = True):
         description = (
             event.pop("description", "")
             + f"""
-Released on {", ".join(release_dates)}.{(" Discontinued on " + data["discontinued"] + ".") if data.get("discontinued") else ""}
+Released on {", ".join(release_dates)}.{(" Discontinued on " + discontinued + ".") if discontinued else ""}
 
 Type: {data["type"]}
 
