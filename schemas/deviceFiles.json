@@ -66,6 +66,7 @@
         },
         "info":           {"type": "array", "items": {"type": "object"}},
         "colors":         {"type": "array", "items": {"$ref": "#/definitions/color"}},
+        "storage":         {"type": "array", "items": {"$ref": "#/definitions/storage"}},
         "windowsStoreId": {"type": "string"},
         "extra":          {"type": "object"}
     },
@@ -104,6 +105,18 @@
                 "discontinued": {"$ref": "#/definitions/partial-date"}
             },
             "required": ["name", "hex"]
+        },
+        "storage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "capacity": {"type": "integer"},
+                "unit": {"type": "string", "enum": ["GB", "TB"]},
+                "key": {"type": "string"},
+                "released": {"$ref": "#/definitions/partial-date"},
+                "discontinued": {"$ref": "#/definitions/partial-date"}
+            },
+            "required": ["capacity", "unit"]
         },
         "sourceLink": {
             "type": "object",
