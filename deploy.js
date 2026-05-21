@@ -112,6 +112,11 @@ deviceFiles = deviceFiles.map(function (dev) {
         if (!c.key) c.key = c.name
         return c
       })
+    if (dev.storage)
+      dev.storage = dev.storage.map((s) => {
+        if (!s.key) s.key = `${s.capacity}${s.unit}`
+        return s
+      })
 
   return dev;
 });
