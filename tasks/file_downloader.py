@@ -8,10 +8,9 @@ import plistlib
 import shutil
 from pathlib import Path
 import subprocess
-
 import pbzx
 import requests
-import libarchive
+
 
 SESSION = requests.session()
 async def get_size(url):
@@ -138,21 +137,21 @@ def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_pat
     manifest_content = {}
 
     if extracted_manifest_file_path:
-        base_file = 'Payload'
-        with libarchive.Archive(f'{output_path}.pkg') as pkg_archive:
-            for entry in pkg_archive:
-                if entry.pathname == base_file:
-                    pkg_archive.readpath(f'{output_path}/{base_file}')
-                    break
-        is_compressed = pbzx.extract_file(f'{output_path}/{base_file}', f'{output_path}/{base_file}_expanded')
-        if is_compressed:
-            base_file = f'{base_file}_expanded'
-        with libarchive.Archive(f'{output_path}/{base_file}') as payload_archive:
-            for entry in payload_archive:
-                if entry.pathname == f'./{extracted_manifest_file_path}':
-                    payload_archive.readpath(f'{output_path}/{extracted_manifest_file_path}')
-                    break
-            manifest_content = plistlib.loads(Path(f'{output_path}/{extracted_manifest_file_path}').read_bytes())
+        payload_path = f"{output_path}/Payload"
+        try:
+            subprocess.run(['pkgutil', '--expand-full', f'{output_path}.pkg', output_path], check=True)
+        except subprocess.CalledProcessError:
+            subprocess.run(["7z", "x", "-txar", "-bso0", "-bsp0", f'-o{output_path}', f'{output_path}.pkg', "Payload"], check=True)
+            is_compressed = pbzx.extract_file(f'{payload_path}', f'{payload_path}_expanded')
+            payload_file = 'Payload'
+            if is_compressed:
+                payload_file = 'Payload_expanded'
+                payload_path = f'{payload_path}_expanded'
+            Path(payload_path).move(f"{payload_path}.gz")
+            gz_output = subprocess.run(["gunzip", "-f", f"{payload_file}.gz"], cwd=output_path, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+            subprocess.run(["cpio", "-i"], input=gz_output.stdout, cwd=output_path, stderr=subprocess.DEVNULL)
+            payload_path = output_path
+        manifest_content = plistlib.loads(Path(f'{payload_path}/{extracted_manifest_file_path}').read_bytes())
         shutil.rmtree(output_path)
 
     if remove_file:
