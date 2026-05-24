@@ -107,6 +107,8 @@ def process_device_event(data: dict, all_day: bool = True):
 
     multiple = len(release_dates) > 1
     discontinued = data.get("discontinued")
+    if isinstance(discontinued, list):
+        discontinued = discontinued[-1]
 
     events: list[Event] = []
     for i, release_date in enumerate(release_dates):
@@ -157,7 +159,7 @@ def process_device_event(data: dict, all_day: bool = True):
         description = (
             event.pop("description", "")
             + f"""
-Released on {", ".join(release_dates)}.{(" Discontinued on " + data["discontinued"] + ".") if data.get("discontinued") else ""}
+Released on {", ".join(release_dates)}.{(" Discontinued on " + discontinued + ".") if discontinued else ""}
 
 Type: {data["type"]}
 

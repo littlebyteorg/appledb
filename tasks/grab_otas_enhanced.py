@@ -30,20 +30,20 @@ added_builds = {
     '21A327': ['21A329'],
     '21A350': ['21A340', '21A351'],
     '21B80': ['21B74'],
-    '21F90': ['21F101'],
     '21G80': ['21G79'],
     '21H433': ['21H432'],
     '22A3354': ['22A3351'],
     '22C152': ['22C154'],
     '22D63': ['22D64'],
     '22H124': ['23-22H123'],
+    '22H340': ['23-22H355'],
     '23A5297m': ['23A5297n'],
     '22G86': ['22G84'],
-    '23A341': ['23A330', '23A340'],
+    '23A341': ['23A330', '23A340', '23A345'],
     '23A355': ['23A357'],
     '23A8355': ['23A8357'],
     '23B85': ['23B82'],
-    '23C55': ['23C52', 'iOS;23C54'],
+    '23C55': ['23C52'],
     '23D127': ['23D125'],
     '23D8133': ['23D8128'],
 }
@@ -301,6 +301,7 @@ parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-e', '--echo-request', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
+parser.add_argument('-p', '--only-prerequisites', action='store_true')
 parser.add_argument('-q', '--quiet', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
@@ -331,7 +332,11 @@ else:
             if os_str == 'watchOS':
                 parsed_args[os_str] = list(set(parsed_args[os_str]))
         else:
-            parsed_args[os_str].extend(latest_builds[os_str]['next' if is_next_major else 'beta' if beta_builds else 'release'])
+            build_key = 'next' if is_next_major else 'beta' if beta_builds else 'release'
+            if not latest_builds[os_str].get(build_key):
+                del parsed_args[os_str]
+                continue
+            parsed_args[os_str].extend(latest_builds[os_str][build_key])
         if args.rsr:
             parsed_args[os_str] = [parsed_args[os_str][-1]]
 
@@ -477,6 +482,10 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
             delta_from_beta = re.search(r"(6\d{3})", updated_build)
             if delta_from_beta:
                 updated_build = updated_build.replace(delta_from_beta.group(), str(int(delta_from_beta.group()) - 6000))
+                if asset.get('RestoreVersion'):
+                    updated_restore_version = asset['RestoreVersion'].split(".")
+                    updated_restore_version[3] = '0'
+                    asset['RestoreVersion'] = ".".join(updated_restore_version)
             if build_versions.get(f"{target_os_str}-{updated_build}") or updated_build in parsed_args.get(target_os_str, []):
                 continue
 
@@ -632,6 +641,7 @@ for (os_str, builds) in parsed_args.items():
         build_versions[f"{os_str}-{build}"] = build_data['version']
 
         for device in build_data['deviceMap']:
+            device = device.split("-", 1)[0]
             if args.devices and device not in args.devices:
                 continue
             if os_str == 'macOS' and not args.devices and device not in default_mac_devices:
@@ -661,6 +671,8 @@ for (os_str, builds) in parsed_args.items():
                         continue
                 else:
                     current_devices = source['deviceMap']
+                
+                current_devices = set([x.split("-")[0] for x in current_devices])
 
                 prerequisite_builds = source['prerequisiteBuild']
                 if not isinstance(prerequisite_builds, list):
@@ -694,6 +706,7 @@ for key, value in ota_list.items():
     sources = []
     builds.add(value['build'])
     for source in value['sources'].values():
+        if args.only_prerequisites and not source['prerequisites']: continue
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
             missing_key = f"{value['osStr']}-{'/'.join(source['prerequisites'])}"
             if value['osStr'] == 'macOS':

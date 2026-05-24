@@ -58,7 +58,12 @@
                 {"type": "array", "items": {"$ref": "#/definitions/partial-date"}}
             ]
         },
-        "discontinued":   {"type": "string", "format": "date"},
+        "discontinued":   {
+            "anyOf": [
+                {"$ref": "#/definitions/partial-date"},
+                {"type": "array", "items": {"$ref": "#/definitions/partial-date"}}
+            ]
+        },
         "info":           {"type": "array", "items": {"type": "object"}},
         "colors":         {"type": "array", "items": {"$ref": "#/definitions/color"}},
         "windowsStoreId": {"type": "string"},
@@ -95,7 +100,8 @@
                         {"type": "array", "items": {"$ref": "#/definitions/color-hex"}}
                     ]
                 },
-                "released": {"$ref": "#/definitions/partial-date"}
+                "released": {"$ref": "#/definitions/partial-date"},
+                "discontinued": {"$ref": "#/definitions/partial-date"}
             },
             "required": ["name", "hex"]
         },

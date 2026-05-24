@@ -76,7 +76,12 @@ def import_ipsw(
     ipsw = None
     if not build_manifest or any([x.get('Cellular1,ChipID') for x in build_manifest['BuildIdentities']]):
         # Get it via remotezip
-        ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url, headers=headers)
+        try:
+            ipsw = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ipsw_url, headers=headers)
+        except remotezip.RemoteIOError as e:
+            if e.args[0].startswith('403 Client Error'):
+                print(f'Cannot import {ipsw_url}')
+                return None, False
         print(f"\tGetting BuildManifest.plist {'from local file' if local_available else 'via remotezip'}")
 
         # Commented out because IPSWs should always have the BuildManifest in the root

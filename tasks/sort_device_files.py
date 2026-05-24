@@ -24,7 +24,7 @@ key_order = [
     "internal",
     "group",
     "released", # conditional array
-    "discontinued",
+    "discontinued", # conditional array
     "colors",
     "info",
     "windowsStoreId",
@@ -50,6 +50,7 @@ info_type_order = ["SoC", "Cores", "Memory", "Power", "Connectivity", "CPU, RAM 
 
 list_fields = [
     "released",
+    "discontinued",
     "model",
     "soc",
     "cpid",
@@ -57,7 +58,7 @@ list_fields = [
     "alias"
 ]
 
-colors_key_order = ["name", "key", "group", "hex", "released"]
+colors_key_order = ["name", "key", "group", "hex", "released", "discontinued"]
 
 links_key_order = ["url", "label", "active"]
 
@@ -85,7 +86,7 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
 
     # HACK: sorting order is release date in descending order, then name in ascending order
     data.get('colors', []).sort(key=lambda color: color['name'])
-    data.get('colors', []).sort(key=lambda color: color.get('released', ''), reverse=True)
+    data.get('colors', []).sort(key=lambda color: (color.get('released', ''), color.get('discontinued', '')), reverse=True)
 
     for i, info in enumerate(data.get('info', [])):
         data['info'][i] = sorted_dict_by_key(info, info_key_order[info['type']])

@@ -35,6 +35,10 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
         "HWModelStr": board_id,
         "BuildVersion": os_build
     }
+    if args.time_delay > 0:
+        request['DelayPeriod'] = args.time_delay
+        request['DelayRequested'] = True
+        request['Supervised'] = True
     # print(json.dumps(request))
 
     response = session.post("https://gdmf.apple.com/v2/assets", json=request, headers={"Content-Type": "application/json"}, verify=False)
@@ -59,7 +63,10 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
 choice_list = list(asset_audiences.keys())
 choice_list.extend(list(asset_audiences_overrides.keys()))
 
+audience_choice_list = ['alternate', 'developer', 'appleseed', 'public', 'release']
+
 parser = argparse.ArgumentParser()
+parser.add_argument('-a', '--audiences', nargs="+", choices=audience_choice_list, default=audience_choice_list)
 parser.add_argument('-b', '--boards', nargs="+", required=True)
 parser.add_argument('-f', '--forks', nargs="+", type=int, required=True)
 parser.add_argument('-i', '--identifiers', nargs="+", required=True)
@@ -67,6 +74,7 @@ parser.add_argument('-o', '--os', choices=choice_list, required=True)
 parser.add_argument('-p', '--build-prefix', required=True)
 parser.add_argument('-r', '--range', nargs='+', type=int, required=True)
 parser.add_argument('-s', '--suffix-range', nargs='+', type=str)
+parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
 parser.add_argument('-v', '--versions', nargs='+', required=True)
 args = parser.parse_args()
 if len(args.range) != 2:
@@ -94,6 +102,7 @@ for fork in args.forks:
     audience_labels = {}
     asset_audience_list = asset_audiences[asset_audiences_overrides.get(args.os, args.os)]
     for label, audience in asset_audience_list.items():
+        if label not in args.audiences: continue
         if isinstance(audience, str):
             audience_labels[audience] = label
             target_audiences.append(audience)
@@ -111,5 +120,5 @@ for fork in args.forks:
                     for version in args.versions:
                         if not audience_label.endswith('release'):
                             label_version = int(audience_label.split("-")[-1])
-                            if int(version.split(".", 1)[0]) != label_version: continue
+                            if int(version.split(".", 1)[0]) > label_version: continue
                         call_pallas(board, f"{args.build_prefix}{build}{suffix}", args.os, asset_audience, identifier, version)

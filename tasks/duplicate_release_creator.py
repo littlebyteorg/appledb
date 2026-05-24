@@ -29,7 +29,7 @@ supported_subfolders = [
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--os', required=True, action='append', choices=supported_subfolders)
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
-parser.add_argument('-d', '--exclude-devices', nargs='+')
+parser.add_argument('-s', '--separate-sources', action='store_true')
 args = parser.parse_args()
 
 parsed_builds = dict(zip(args.os, args.build))
@@ -85,14 +85,14 @@ for (osStr, builds) in parsed_builds.items():
             if enterprise_notes_link:
                 file_data["enterpriseNotes"] = enterprise_notes_link
 
-        if args.exclude_devices:
-            excluded_devices = list(set(args.exclude_devices).intersection(set(file_data['deviceMap'])))
-            if excluded_devices:
-                duplicate_entry['deviceMap'] = deepcopy(file_data['deviceMap'])
-                file_data['deviceMap'] = [x for x in file_data['deviceMap'] if x not in excluded_devices]
-                if file_data.get('sources'):
-                    duplicate_entry['sources'] = deepcopy(file_data['sources'])
-                    file_data['sources'] = [source for source in file_data['sources'] if source['deviceMap'][0] not in excluded_devices]
+        if args.separate_sources:
+            duplicate_entry['deviceMap'] = deepcopy(file_data['deviceMap'])
+            del file_data['deviceMap']
+            duplicate_entry['sources'] = deepcopy(file_data['sources'])
+            del file_data['sources']
+            if file_data.get('basebandVersions'):
+                duplicate_entry['basebandVersions'] = deepcopy(file_data['basebandVersions'])
+                del file_data['basebandVersions']
 
         file_data.setdefault('createDuplicateEntries', [])
         file_data['createDuplicateEntries'].append(duplicate_entry)
