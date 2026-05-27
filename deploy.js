@@ -411,18 +411,18 @@ const latestVersions = latestVersionArr
   x.released =  new Intl.DateTimeFormat('en-US', dateStyleArr[releasedArr.length-1]).format(adjustedDate)
   x.releasedVal = adjustedDate.valueOf()
 
+  x.majorVersion = parseInt(x.version.split(".")[0])
+
+  x.isBeta = x.beta || x.rc
+
   return x
 })
 .sort((a,b) => {
-  const dateRel = [a,b].map(x => new Date(x.released))
-  if (dateRel[0] < dateRel[1]) return 1
-  if (dateRel[0] > dateRel[1]) return -1
-
-  if (a.osStr.toLowerCase() < b.osStr.toLowerCase()) return -1
-  if (a.osStr.toLowerCase() > b.osStr.toLowerCase()) return 1
-
-  if (a.version < b.version) return 1
-  if (a.version > b.version) return -1
+  if (a.isBeta && !b.isBeta) return 1
+  if (!a.isBeta && b.isBeta) return -1
+  
+  if (a.majorVersion < b.majorVersion) return 1
+  if (a.majorVersion > b.majorVersion) return -1
   return 0
 }).reduce(((a, x) => {
   if (!a.hasOwnProperty(x.osStr)) a[x.osStr] = []
