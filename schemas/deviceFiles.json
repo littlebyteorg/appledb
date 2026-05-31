@@ -101,9 +101,47 @@
                     ]
                 },
                 "released": {"$ref": "#/definitions/partial-date"},
-                "discontinued": {"$ref": "#/definitions/partial-date"}
+                "discontinued": {"$ref": "#/definitions/partial-date"},
+                "configurations": {"$ref": "#/definitions/configurations"}
             },
             "required": ["name", "hex"]
+        },
+        "storage-unit": {
+                    "type": "string",
+                    "enum": ["MB", "GB", "TB"]
+                },
+        "configurations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "storage": {
+                        "type": "object",
+                        "properties": {
+                            "capacity": {"type": "integer"},
+                            "unit": {"$ref": "#/definitions/storage-unit"},
+                            "type": {
+                                "type": "string",
+                                "enum": ["HDD", "Fusion", "SSD"]
+                            }
+                        },
+                        "required": ["capacity", "unit", "type"]
+                    },
+                    "memory": {
+                        "type": "object",
+                        "properties": {
+                            "capacity": {"type": "number"},
+                            "unit": {"$ref": "#/definitions/storage-unit"}
+                        },
+                        "required": ["capacity", "unit"]
+                    },
+                    "released": {"$ref": "#/definitions/partial-date"},
+                    "discontinued": {"$ref": "#/definitions/partial-date"}
+                },
+                "additionalProperties": false,
+                "required": ["storage", "memory"]
+            },
+            "minimum": 1
         },
         "sourceLink": {
             "type": "object",

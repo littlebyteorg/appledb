@@ -58,7 +58,10 @@ list_fields = [
     "alias"
 ]
 
-colors_key_order = ["name", "key", "group", "hex", "released", "discontinued"]
+colors_key_order = ["name", "key", "group", "hex", "released", "discontinued", "configurations"]
+
+configuration_key_order = ["storage", "memory", "released", "discontinued"]
+storage_key_order = ["capacity", "unit", "type"]
 
 links_key_order = ["url", "label", "active"]
 
@@ -79,10 +82,15 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
         if not isinstance(data.get(key), list): continue
         data[key].sort()
 
-    for i, colors in enumerate(data.get('colors', [])):
-        data['colors'][i] = sorted_dict_by_key(colors, colors_key_order)
+    for i, color in enumerate(data.get('colors', [])):
+        data['colors'][i] = sorted_dict_by_key(color, colors_key_order)
         if set(data["colors"][i].keys()) - set(colors_key_order):
             raise ValueError(f"Unknown keys: {sorted(set(data['colors'][i].keys()) - set(colors_key_order))}")
+        for j, config in enumerate(color.get('configurations', [])):
+            config['storage'] = sorted_dict_by_key(config['storage'], storage_key_order)
+            config['memory'] = sorted_dict_by_key(config['memory'], storage_key_order)
+            data['colors'][i]['configurations'][j] = sorted_dict_by_key(config, configuration_key_order)
+        data['colors'][i].get('configurations', []).sort(key=lambda config: (config.get('released', ''), config.get('discontinued', '')))
 
     # HACK: sorting order is release date in descending order, then name in ascending order
     data.get('colors', []).sort(key=lambda color: color['name'])
