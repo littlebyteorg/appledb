@@ -60,7 +60,7 @@ list_fields = [
 
 colors_key_order = ["name", "key", "group", "hex", "released", "discontinued", "configurations"]
 
-configuration_key_order = ["storage", "memory", "released", "discontinued"]
+configuration_key_order = ["name", "storage", "memory", "released", "discontinued"]
 storage_key_order = ["capacity", "unit", "type"]
 
 links_key_order = ["url", "label", "active"]
@@ -90,7 +90,6 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
             config['storage'] = sorted_dict_by_key(config['storage'], storage_key_order)
             config['memory'] = sorted_dict_by_key(config['memory'], storage_key_order)
             data['colors'][i]['configurations'][j] = sorted_dict_by_key(config, configuration_key_order)
-        data['colors'][i].get('configurations', []).sort(key=lambda config: (config.get('released', ''), config.get('discontinued', '')))
 
     # HACK: sorting order is release date in descending order, then name in ascending order
     data.get('colors', []).sort(key=lambda color: color['name'])

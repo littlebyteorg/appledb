@@ -115,6 +115,7 @@
             "items": {
                 "type": "object",
                 "properties": {
+                    "name": {"type": "string"},
                     "storage": {
                         "type": "object",
                         "properties": {
@@ -139,7 +140,7 @@
                     "discontinued": {"$ref": "#/definitions/partial-date"}
                 },
                 "additionalProperties": false,
-                "required": ["storage", "memory"]
+                "required": ["name", "storage", "memory"]
             },
             "minimum": 1
         },
