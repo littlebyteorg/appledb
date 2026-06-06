@@ -344,6 +344,8 @@ def check_signing_status(fw, os_name):
             fw_build = fw['uniqueBuild'].split('-')[0]
         link = [x for x in source['links'] if 'apple.com' in x['url'] and ('developer' not in x['url'] or fw_build in ['20A5299w'])]
         if not link: continue
+        # HACK
+        if fw_build == '14G60' and source['type'] == 'ipsw' and ('iPad4,1' in device_map or 'iPhone6,1' in device_map): continue
         link = link[0]
         url_prefix = link['url'].rsplit('/', 1)[1].split('_', 1)[0]
         if url_prefix in ['iPhone1,1', 'iPod1,1']: continue
