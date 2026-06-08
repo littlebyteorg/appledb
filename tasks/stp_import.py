@@ -38,6 +38,12 @@ sources = {
 
 mac_versions = set()
 
+catalog_overrides = {
+    '15': 'lion',
+    '26': 'lion',
+    '27': '14'
+}
+
 for link in links:
     try:
         a_tag = link.xpath('a')[0]
@@ -77,7 +83,7 @@ os_version_override_map = {
 }
 
 for mac_version in mac_versions:
-    catalog_version = args.catalog or mac_version
+    catalog_version = args.catalog or catalog_overrides.get(mac_version, mac_version)
     raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{catalog_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
@@ -95,6 +101,7 @@ for mac_version in mac_versions:
         os_version = os_version_override_map.get(os_version, os_version)
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
         if dist_version != properties['Release']: continue
+        if product['PostDate'].date() < properties['Posted']: continue
         catalog_safari.append(product)
         sources['pkg'][os_version] = product['Packages'][0]['URL'].replace("http://", "https://")
 
