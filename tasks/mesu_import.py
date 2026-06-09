@@ -268,9 +268,11 @@ def call_mesu(url):
                         version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}"
                 elif os_str_map[asset_type] == 'Durian Firmware':
                     version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}.{asset['FirmwareVersionRelease']}"
+                print(f"\tCurrent version is: {version}")
+                friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip() or version
                 base_contents = {
                     "osStr": os_str_map[asset_type],
-                    "version": version,
+                    "version": friendly_version,
                     "build": asset['Build'],
                     "released": release_date,
                     "deviceMap": []
