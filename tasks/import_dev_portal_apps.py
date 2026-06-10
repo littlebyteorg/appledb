@@ -140,6 +140,8 @@ for download in downloads:
         update_links([target_file])
     elif download_name.startswith("Pass Designer") and process_downloads["Pass Designer"]:
         pass_designer_version = download_name.removeprefix('Pass Designer ').replace("Release Candidate", "RC")
+        if pass_designer_version.lower().startswith('beta'):
+            pass_designer_version = f'1.0 {pass_designer_version}'
         target_file = Path(f"osFiles/Software/Pass Designer/{pass_designer_version}.json")
         if target_file.exists():
             process_downloads["Pass Designer"] = False
