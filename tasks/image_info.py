@@ -35,7 +35,7 @@ def get_image(os_str, version_number, image_align='left'):
     if not minimum_version_map.get(os_str): return None
     if minimum_version_map[os_str] > version_number: return None
     image_id = f"{os_str.lower()}{version_number}"
-    if os_str == 'macOS':
+    if os_str == 'macOS' and macos_codenames.get(str(version_number)):
         image_id = macos_codenames[str(version_number)]
     elif image_overrides.get(os_str, {}).get(version_number):
         image_id = image_overrides[os_str][version_number]['name']

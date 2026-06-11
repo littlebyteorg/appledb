@@ -8,6 +8,7 @@ import random
 import requests
 import remotezip
 import packaging.version
+import plistlib
 from datetime import datetime
 
 from file_downloader import handle_ota_file, handle_pkg_file
@@ -344,6 +345,8 @@ def check_signing_status(fw, os_name):
             fw_build = fw['uniqueBuild'].split('-')[0]
         link = [x for x in source['links'] if 'apple.com' in x['url'] and ('developer' not in x['url'] or fw_build in ['20A5299w'])]
         if not link: continue
+        # HACK
+        if fw_build == '14G60' and source['type'] == 'ipsw' and ('iPad4,1' in device_map or 'iPhone6,1' in device_map): continue
         link = link[0]
         url_prefix = link['url'].rsplit('/', 1)[1].split('_', 1)[0]
         if url_prefix in ['iPhone1,1', 'iPod1,1']: continue
@@ -376,6 +379,12 @@ def check_signing_status(fw, os_name):
                         handle_ota_file(link['url'], link['decryptionKey'], 'aastuff_standalone', True)
                         parent_path = f"otas/{link['url'].rsplit('/', 1)[1].split('.', 1)[0]}"
                         file_path = f"{parent_path}/AssetData/boot/BuildManifest.plist"
+                        try:
+                            Path(f"{parent_path}/AssetData/boot/BuildManifest-copy.plist").write_text(plistlib.dumps(plistlib.loads(Path(file_path).read_bytes(), fmt=plistlib.PlistFormat.FMT_BINARY)).decode("utf-8"), encoding='utf-8')
+                            Path(file_path).unlink()
+                            file_path = f"{parent_path}/AssetData/boot/BuildManifest-copy.plist"
+                        except plistlib.InvalidFileException:
+                            pass
                     else:
                         path_prefix = 'AssetData/boot/' if link['url'].endswith('.zip') else ''
                         if os_name == 'Studio Display Firmware':
@@ -386,6 +395,12 @@ def check_signing_status(fw, os_name):
                         else:
                             source_file_name = 'BuildManifest.plist'
                         Path(file_path).write_bytes(file.read(f"{path_prefix}{source_file_name}"))
+                        try:
+                            Path("out/BuildManifest-copy.plist").write_text(plistlib.dumps(plistlib.loads(Path(file_path).read_bytes(), fmt=plistlib.PlistFormat.FMT_BINARY)).decode("utf-8"), encoding='utf-8')
+                            Path(file_path).unlink()
+                            file_path = "out/BuildManifest-copy.plist"
+                        except plistlib.InvalidFileException:
+                            pass
             shutil.copyfile(file_path, cached_path)
             Path(file_path).unlink()
             if parent_path:

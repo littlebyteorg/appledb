@@ -60,10 +60,22 @@ skip_builds = [
     '21H461', # iPadOS 17.7.11
     "22H355", # iOS/iPadOS 18.7.9
     "23F77", # iOS/iPadOS 26.5
+    "23F81", # iOS/iPadOS 26.5.1
     "23L471", # tvOS 26.5
     "23O471", # visionOS 26.5
     "23T570", # watchOS 26.5
-    "25F71", # macOS 26.5
+    "25F80", # macOS 26.5.1
+    # BETAS
+    "23G5028e", # iOS/iPadOS 26.6
+    "23L5729e", # tvOS 26.6
+    "23O5728e", # visionOS 26.6
+    "23U5025e", # watchOS 26.6
+    "25G5028f", # macOS 26.6
+    "24A5355q", # iOS 27.0
+    "24J5355p", # tvOS 27.0
+    "24M5291p", # visionOS 27.0
+    "24R5289n", # watchOS 27.0
+    "26A5353q", # macOS 27.0
 ]
 
 for group in element.xpath(".//h3/.."):
@@ -127,7 +139,7 @@ for group in element.xpath(".//h3/.."):
             has_profile_download = False
             data.setdefault("links", []).append({"device": 'Mac computers with Apple Silicon', "url": direct_download[0].attrib["href"].replace("hhttp", "http"), "build": build})
         else:
-            assert data["osStr"] == "watchOS" or (
+            assert data["osStr"] == "watchOS" or data['osStr'] == 'tvOS' or (
                 any(("macappstore" in i.get("href") or "apps.apple.com" in i.get("href")) for i in group.findall(".//a"))  # type: ignore
                 and data["osStr"] == "macOS"
                 and "beta" not in data["version"].lower()

@@ -27,6 +27,10 @@ APPS_TO_CHECK = {
     "9NP83LWLPZ9K": "Apple Devices",
     "9PFHDD62MXS1": "Apple Music",
     "9NM4T8B9JQZ1": "Apple TV",
+    "9N0FW69W1Z2M": "Apple TV Ted Lasso Theme",
+    "9NDMR1CV4T52": "Apple TV Severance Theme",
+    "9NGBZW8SRHRP": "Apple TV F1 The Movie Theme",
+    "9P0275LQJZ0Q": "Apple TV The Morning Show Theme",
     "9PKTQ5699M62": "iCloud",  # Currently unsupported because there's multiple architectures + some kind of Xbox version
     # (TODO: Filter by platform.target as well, see ApplicabilityBlob)
     # https://github.com/dongle-the-gadget/StoreListings/blob/88ad3eac390978a85f5c23f98fa79bef41bc4552/StoreListings.Library/FE3Handler.cs#L418

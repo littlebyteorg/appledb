@@ -103,11 +103,13 @@ for fork in args.forks:
     asset_audience_list = asset_audiences[asset_audiences_overrides.get(args.os, args.os)]
     for label, audience in asset_audience_list.items():
         if label not in args.audiences: continue
+        if not audience: continue
         if isinstance(audience, str):
             audience_labels[audience] = label
             target_audiences.append(audience)
         else:
             for (version, audience_item) in audience.items():
+                if not audience_item: continue
                 audience_labels[audience_item] = f"{label}-{version}"
                 target_audiences.append(audience_item)
 

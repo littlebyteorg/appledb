@@ -49,6 +49,7 @@ beta_asset_subfolders = {
             'A3053',
             'A3056',
             'A3064',
+            'A3122',
             'A3454'
         ],
         'AirPodsPublicSeed': [
@@ -58,6 +59,7 @@ beta_asset_subfolders = {
             'A3053',
             'A3056',
             'A3064',
+            'A3122',
             'A3454'
         ]
     }
@@ -75,6 +77,7 @@ asset_types = {
         'A3053': 'com_apple_MobileAsset_UARP_A3053',
         'A3056': 'com_apple_MobileAsset_UARP_A3056',
         'A3064': 'com_apple_MobileAsset_UARP_A3064',
+        'A3122': 'com_apple_MobileAsset_UARP_A3122',
         'A3454': 'com_apple_MobileAsset_UARP_A3454',
         'A3184': [
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3184_EA',
@@ -212,6 +215,9 @@ device_map = {
         'AirPodsPro1,3-left',
         'AirPodsPro1,3-right'
     ],
+    'A3122': [
+        'AirPodsPro1,3-case'
+    ],
     'A3157': [
         'Powerb3,1-left',
         'Powerb3,1-right'
@@ -268,9 +274,11 @@ def call_mesu(url):
                         version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}"
                 elif os_str_map[asset_type] == 'Durian Firmware':
                     version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}.{asset['FirmwareVersionRelease']}"
+                print(f"\tCurrent version is: {version}")
+                friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip() or version
                 base_contents = {
                     "osStr": os_str_map[asset_type],
-                    "version": version,
+                    "version": friendly_version,
                     "build": asset['Build'],
                     "released": release_date,
                     "deviceMap": []
