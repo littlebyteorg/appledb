@@ -473,6 +473,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
     else:
         parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
         assets = parsed_response.get('Assets', [])
+        full_relative_url = None
         for asset in assets:
             if asset.get("AlternateAssetAudienceUUID"):
                 additional_audiences.add(asset["AlternateAssetAudienceUUID"])
@@ -535,7 +536,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                 if ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
                     ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
                 ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].add(board_id)
-            if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True):
+            if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True) and full_relative_url != link:
                 ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
                 for additional_build in added_builds.get(asset['PrerequisiteBuild'], []):
                     if '|' in additional_build:
@@ -553,6 +554,9 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                             ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build_split[1])
                     else:
                         ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(additional_build)
+            else:
+                full_relative_url = link
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].clear()
 
             if asset.get('TrainName') and not ota_list[f"{response_os_str}-{updated_build}"].get('buildTrain'):
                 ota_list[f"{response_os_str}-{updated_build}"]['buildTrain'] = asset['TrainName']

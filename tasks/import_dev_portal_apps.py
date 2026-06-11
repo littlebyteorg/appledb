@@ -209,6 +209,8 @@ for download in downloads:
             ],
             "sources": []
         }
+        if clt_version.startswith('27'):
+            json_data['osMap'].append('macOS 27')
         for download_file in download['files']:
             source = {
                 "type": "dmg",
@@ -226,6 +228,8 @@ for download in downloads:
                 ],
                 "size": download_file['fileSize']
             }
+            if clt_version.startswith('27'):
+                source['osMap'].append('macOS 27')
             if '_universal.' in download_file['remotePath'].lower():
                 source['arch'] = [
                     'arm64',
