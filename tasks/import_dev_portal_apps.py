@@ -54,6 +54,7 @@ downloads = sorted(json_data['downloads'], key=lambda x: dateutil.parser.parse(x
 process_downloads = {
     "Safari": True,
     "Icon Composer": True,
+    "Pass Designer": True,
     "Command Line Tools": True,
     "Kernel Debug Kit": True,
     "Simulator": True,
@@ -133,6 +134,47 @@ for download in downloads:
         if "beta" in icon_composer_version:
             json_data["beta"] = True
         if "RC" in icon_composer_version:
+            json_data["rc"] = True
+
+        json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        update_links([target_file])
+    elif download_name.startswith("Pass Designer") and process_downloads["Pass Designer"]:
+        pass_designer_version = download_name.removeprefix('Pass Designer ').replace("Release Candidate", "RC")
+        if pass_designer_version.lower().startswith('beta'):
+            pass_designer_version = f'1.0 {pass_designer_version}'
+        target_file = Path(f"osFiles/Software/Pass Designer/{pass_designer_version}.json")
+        if target_file.exists():
+            process_downloads["Pass Designer"] = False
+            continue
+        download_details = download['files'][0]
+        
+        release_date = dateutil.parser.parse(download['dateCreated'])
+        json_data = {
+            "osStr": "Pass Designer",
+            "version": pass_designer_version,
+            "released": release_date.strftime("%Y-%m-%d"),
+            "deviceMap": [
+                "Pass Designer"
+            ],
+            "sources": [
+                {
+                    "type": "pkg",
+                    "deviceMap": [
+                        "Pass Designer"
+                    ],
+                    "links": [
+                        {
+                            "url": LINK_PREFIX + download_details['remotePath'],
+                            "active": True
+                        }
+                    ],
+                    "size": download_details['fileSize']
+                }
+            ]
+        }
+        if "beta" in pass_designer_version:
+            json_data["beta"] = True
+        if "RC" in pass_designer_version:
             json_data["rc"] = True
 
         json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
