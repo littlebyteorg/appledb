@@ -66,13 +66,13 @@ skip_builds = [
     "23T570", # watchOS 26.5
     "25F80", # macOS 26.5.1
     # BETAS
-    "23G5028e", # iOS/iPadOS 26.6
-    "23L5729e", # tvOS 26.6
-    "23O5728e", # visionOS 26.6
-    "23U5025e", # watchOS 26.6
-    "25G5028f", # macOS 26.6
+    "23G5043d", # iOS/iPadOS 26.6
+    "23L5744d", # tvOS 26.6
+    "23O5743c", # visionOS 26.6
+    "23U5040d", # watchOS 26.6
+    "25G5043d", # macOS 26.6
     "24A5355q", # iOS 27.0
-    "24J5355p", # tvOS 27.0
+    "24J5289o", # tvOS 27.0
     "24M5291p", # visionOS 27.0
     "24R5289n", # watchOS 27.0
     "26A5353q", # macOS 27.0

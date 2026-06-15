@@ -688,12 +688,12 @@ for (os_str, builds) in parsed_args.items():
                             continue
                         devices[current_device]['builds'][prerequisite_build] = get_build_version(os_str, prerequisite_build)
 
-        for audience in audiences:
-            for asset_type_name in asset_types.get(os_str, asset_types['default']):
-                for key, value in devices.items():
-                    if not args.quiet:
-                        print(f"\t\tChecking {key}")
-                    for board in value['boards']:
+        for key, value in devices.items():
+            if not args.quiet:
+                print(f"\t\tChecking {key}")
+            for board in value['boards']:
+                for audience in audiences:
+                    for asset_type_name in asset_types.get(os_str, asset_types['default']):
                         if not (args.no_prerequisites or os_str in ['tvOS', 'Studio Display Firmware']):
                             for prerequisite_build, version in value['builds'].items():
                                 call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)

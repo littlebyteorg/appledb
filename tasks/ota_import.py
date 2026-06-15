@@ -27,15 +27,8 @@ LOCAL_OTA_PATH = Path("otas")
 SESSION = requests.Session()
 
 CELLULAR_DEVICES_BACKPORT = [
-    'iPad8,3',
-    'iPad8,4',
-    'iPad8,7',
-    'iPad8,8',
     'iPad8,10',
     'iPad8,12',
-    'iPad11,2',
-    'iPad11,4',
-    'iPad11,7',
     'iPad12,2',
     'iPad13,2',
     'iPad13,6',

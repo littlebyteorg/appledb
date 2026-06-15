@@ -115,6 +115,7 @@ for fork in args.forks:
 
     for asset_audience in target_audiences:
         audience_label = audience_labels[asset_audience]
+        if suffix_range[0] != '' and audience_label.endswith('release'): continue
         print(audience_label)
         for board, identifier in board_identifier_map.items():
             for build in range(start_range, end_range+1):
