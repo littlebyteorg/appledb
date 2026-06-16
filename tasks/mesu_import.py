@@ -6,6 +6,7 @@ import random
 import re
 from pathlib import Path
 from datetime import datetime, timezone
+import string
 import zoneinfo
 import argparse
 
@@ -242,7 +243,7 @@ device_map = {
 
 def call_mesu(url):
     files = set()
-    asset_response = SESSION.get(f"{url}?cachebust{random.randint(100, 1000)}")
+    asset_response = SESSION.get(f"{url}?{random.choices(string.ascii_letters, k=10)}cachebust{random.randint(100, 1000)}")
     try:
         asset_response.raise_for_status()
     except requests.HTTPError as ex:
