@@ -77,7 +77,7 @@ filename_prefix_map = {
 }
 builds = set()
 for url in urls:
-    response = requests.get(url + f"?{random.choice(string.ascii_letters)}cachebust{random.randint(100, 1000)}", timeout=30)
+    response = requests.get(url + f"?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     plist = plistlib.loads(response.content)

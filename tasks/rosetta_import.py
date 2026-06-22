@@ -5,6 +5,7 @@ import re
 import json
 import plistlib
 import random
+import string
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -13,7 +14,7 @@ import requests
 from sort_os_files import sort_os_file
 from file_downloader import handle_pkg_file
 
-result = requests.get(f"https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog?cachebust{random.randint(100, 1000)}", timeout=30)
+result = requests.get(f"https://swscan.apple.com/content/catalogs/others/index-rosettaupdateauto-1.sucatalog?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}", timeout=30)
 result.raise_for_status()
 
 plist = plistlib.loads(result.content)

@@ -332,7 +332,9 @@ else:
             if os_str == 'watchOS':
                 parsed_args[os_str] = list(set(parsed_args[os_str]))
         else:
-            build_key = 'next' if is_next_major else 'beta' if beta_builds else 'release'
+            if is_next_major:
+                parsed_args[os_str].extend(latest_builds[os_str]['next'])
+            build_key = 'beta' if beta_builds else 'release'
             if not latest_builds[os_str].get(build_key):
                 del parsed_args[os_str]
                 continue

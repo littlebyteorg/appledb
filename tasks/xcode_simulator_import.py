@@ -39,6 +39,8 @@ def call_pallas(os, requested_build):
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     assets = parsed_response.get('Assets', [])
     parsed_assets = []
+    if not assets:
+        print(f"Missing simulator - {os} {requested_build}")
     for asset in assets:
         parsed_asset = {
             'type': asset['__RelativePath'].split('.')[-1],
