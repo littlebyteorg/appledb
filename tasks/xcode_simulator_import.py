@@ -6,6 +6,7 @@ import json
 import plistlib
 from pathlib import Path
 import re
+import string
 import zoneinfo
 import random
 
@@ -18,7 +19,7 @@ from update_links import update_links
 session = requests.session()
 
 xcode_response = session.get('https://xcodereleases.com/data.json').json()
-simulator_response = plistlib.loads(session.get(f'https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex?cachebust{random.randint(100, 1000)}').content)
+simulator_response = plistlib.loads(session.get(f'https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}').content)
 
 simulator_pallas_mapping = {
     'iOS': 'iOSSimulatorRuntime',
