@@ -6,6 +6,7 @@ import plistlib
 from pathlib import Path
 import random
 import re
+import string
 
 import requests
 from sort_os_files import build_number_sort, device_sort
@@ -59,7 +60,7 @@ args = parser.parse_args()
 file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 for (os_str, url) in urls.items():
-    response = requests.get(url + f"?cachebust{random.randint(100, 1000)}", timeout=30)
+    response = requests.get(url + f"?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     assets = plistlib.loads(response.content)['Assets']
