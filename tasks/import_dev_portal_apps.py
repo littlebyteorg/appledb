@@ -55,6 +55,7 @@ process_downloads = {
     "Safari": True,
     "Icon Composer": True,
     "Pass Designer": True,
+    "Reality Composer Pro": True,
     "Command Line Tools": True,
     "Kernel Debug Kit": True,
     "Simulator": True,
@@ -175,6 +176,47 @@ for download in downloads:
         if "beta" in pass_designer_version:
             json_data["beta"] = True
         if "RC" in pass_designer_version:
+            json_data["rc"] = True
+
+        json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        update_links([target_file])
+    elif download_name.startswith("Reality Composer Pro") and process_downloads["Reality Composer Pro"]:
+        reality_composer_version = download_name.removeprefix('Reality Composer Pro ').replace("Release Candidate", "RC")
+        if reality_composer_version.lower().startswith('beta'):
+            reality_composer_version = f'1.0 {reality_composer_version}'
+        target_file = Path(f"osFiles/Software/Reality Composer Pro/{reality_composer_version}.json")
+        if target_file.exists():
+            process_downloads["Reality Composer Pro"] = False
+            continue
+        download_details = download['files'][0]
+        
+        release_date = dateutil.parser.parse(download['dateCreated'])
+        json_data = {
+            "osStr": "Reality Composer Pro",
+            "version": reality_composer_version,
+            "released": release_date.strftime("%Y-%m-%d"),
+            "deviceMap": [
+                "Reality Composer Pro"
+            ],
+            "sources": [
+                {
+                    "type": "pkg",
+                    "deviceMap": [
+                        "Reality Composer Pro"
+                    ],
+                    "links": [
+                        {
+                            "url": LINK_PREFIX + download_details['remotePath'],
+                            "active": True
+                        }
+                    ],
+                    "size": download_details['fileSize']
+                }
+            ]
+        }
+        if "beta" in reality_composer_version:
+            json_data["beta"] = True
+        if "RC" in reality_composer_version:
             json_data["rc"] = True
 
         json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
