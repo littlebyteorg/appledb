@@ -6,6 +6,7 @@ import plistlib
 import random
 from pathlib import Path
 import argparse
+import string
 from zoneinfo import ZoneInfo
 
 import requests
@@ -53,7 +54,7 @@ for version in args.versions:
     print(version)
     for release_type in args.release_types:
         print(release_type)
-        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{RELEASE_CATALOG_MAP[release_type]}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{version}{RELEASE_CATALOG_MAP[release_type]}-1.sucatalog?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
 
         catalog_name = RELEASE_CATALOG_NAME_MAP.get(release_type, "")
