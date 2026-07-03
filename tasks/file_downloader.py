@@ -22,7 +22,7 @@ async def get_size(url):
 def download_range(url, start, end, output):
     if Path(output).exists(): return
     headers = {'Range': f'bytes={start}-{end}'}
-    response = SESSION.get(url, headers=headers)
+    response = SESSION.get(url, headers=headers, timeout=60)
 
     with open(output, 'wb') as f:
         for part in response.iter_content(1024):
@@ -57,6 +57,10 @@ async def download(run, url, hashes, output_path, chunk_size=104857600):
             md5 = hashlib.md5()
         if 'sha2-256' in hashes:
             sha256 = hashlib.sha256()
+
+        for i in range(len(chunks)):
+            if not Path(f'{output_path}.part{i}').exists():
+                return await download(run, url, hashes, output_path, chunk_size)
 
         with open(output_path, 'wb') as o:
             for i in range(len(chunks)):
