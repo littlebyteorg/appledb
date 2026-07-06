@@ -2,11 +2,132 @@
     "osStr": "tvOS",
     "version": "27.0 beta 3",
     "build": "24J5315i",
+    "restoreVersion": "24.10.315.5.9,0",
+    "buildTrain": "LotusSeed",
     "released": "2026-07-06",
     "beta": true,
     "appledbWebImage": {
         "id": "tvos27",
         "align": "left"
     },
-    "signed": true
+    "deviceMap": [
+        "AppleTV11,1",
+        "AppleTV14,1",
+        "AppleTV14,1-wifi"
+    ],
+    "signed": true,
+    "sources": [
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AppleTV11,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-34497/AB005B54-11A3-4FEC-9D7A-9BB86962EED3/com_apple_MobileAsset_SoftwareUpdate/2e9a1f38d783051d44b9fa0afa061429b9808c94.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "2e9a1f38d783051d44b9fa0afa061429b9808c94",
+                "sha2-256": "0fa9b78437e02220880db08a8e1605284d56ebe8d89849ab49329081537e4eef"
+            },
+            "size": 4757897023
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "23L5758b",
+            "deviceMap": [
+                "AppleTV11,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-34489/65AC71C0-4C90-4BB1-A438-835782890F34/com_apple_MobileAsset_SoftwareUpdate/50d62f1010b75e27d31a5adcdc33d9624ab5d798.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "50d62f1010b75e27d31a5adcdc33d9624ab5d798",
+                "sha2-256": "d016cbaf9923f53d93d2a2db8d3b816f2eca6fde6e4cb3338da9f63f23e38b74"
+            },
+            "size": 1845447630
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "24J5305f",
+            "deviceMap": [
+                "AppleTV11,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-34492/4BC873F9-327F-47A7-A014-4D83F2826E40/com_apple_MobileAsset_SoftwareUpdate/bcec981a2b5b9c812179b8cb4a36d1432dee29a3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bcec981a2b5b9c812179b8cb4a36d1432dee29a3",
+                "sha2-256": "5761cb2adc124c96959ebe237a040ee99f66ff0f368ef4f14d3d6173c764fe45"
+            },
+            "size": 839824914
+        },
+        {
+            "type": "ota",
+            "deviceMap": [
+                "AppleTV14,1",
+                "AppleTV14,1-wifi"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/mobileassets/140-34488/B0114D68-FF05-40DC-908A-3308E0A15BAD/com_apple_MobileAsset_SoftwareUpdate/370a1d99f63e900757312454a6e1645fdf2799ae7cae7fd11863757180705537.aea",
+                    "decryptionKey": "JrRCjuUwHijaoeaF5fW8fRAcgux6A3EKeZsZqRFrFnM=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "e9e040f115fc1eeb9338c507168d337527f807f7",
+                "sha2-256": "755b56968ff869d972e5a7abfcde5beeb1afd9032d46cb8762ff0ba7cc5b12ca"
+            },
+            "size": 4966055936
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "23L5758b",
+            "deviceMap": [
+                "AppleTV14,1",
+                "AppleTV14,1-wifi"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/mobileassets/140-34494/804AB4CF-AB63-442B-A280-D8EA4D90322A/com_apple_MobileAsset_SoftwareUpdate/2e7ef6ae378dfe0808385a94d81fbfcefd0bdc806a9d37d0e46f8e7783159fe2.aea",
+                    "decryptionKey": "pjS/0qyHcUXIZqlyBg22PruAWZeo+G56xFtyLGCmiaY=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "f1bd93a91f6afd5643b412f99e0765aea79bc5c1",
+                "sha2-256": "b356e47afc6a1f78fa6b57d1b73782046ef92fbc12e799e8ebb4a57abd19a7bf"
+            },
+            "size": 1979711488
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "24J5305f",
+            "deviceMap": [
+                "AppleTV14,1",
+                "AppleTV14,1-wifi"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/mobileassets/140-34499/666FD482-B23E-4741-94DD-2317821C67F1/com_apple_MobileAsset_SoftwareUpdate/cdf591450858653d65a19ac00bb2398c71805bfcf74bb1b1cd5ec1126e805cd2.aea",
+                    "decryptionKey": "lfF8HpnlE1yDFFyG3oaLoPGK2XDp4wQRujS7jfCw408=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1835a48804a1d6375fb05466cd143463a53fe773",
+                "sha2-256": "018a1b2cd3d569dccb00d6ddf84a88589dbef68ddbf32dab1917443ccdb0584f"
+            },
+            "size": 872415232
+        }
+    ]
 }
