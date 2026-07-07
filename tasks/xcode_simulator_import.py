@@ -66,7 +66,7 @@ def get_build_train(target_build):
         '15': 'Rainbow',
         '16': 'Geode',
         '17': 'Wonder',
-        '18': 'Meadow',
+        '27': 'Meadow',
     }
     build_type_map = {
         '5': 'Seed',
