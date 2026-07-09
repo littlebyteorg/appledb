@@ -42,6 +42,7 @@ parser.add_argument('-ld', '--list-devices', action='store_true')
 parser.add_argument('-o', '--os', action='append', choices=supported_os_names)
 parser.add_argument('-s', '--signed-only', action='store_true')
 parser.add_argument('-u', '--unsigned', action='store_true')
+parser.add_argument('-v', '--verbose', action='store_true')
 args = parser.parse_args()
 
 final_builds = {
@@ -432,7 +433,7 @@ def check_signing_status(fw, os_name):
                     params.append(board)
                     signing_check = subprocess.run(params, check=False, capture_output=True)
                     signed = signed or (signing_check.returncode == 0)
-                    if (args.signed_only and not signed) or not args.signed_only:
+                    if args.verbose or ((args.signed_only and not signed) or not args.signed_only):
                         print(f"    {model}-{board} ({build}): {signed}")
                     checked_board_device_list.add(board)
             else:
@@ -441,7 +442,7 @@ def check_signing_status(fw, os_name):
                     params.append(board_ids[model])
                 signing_check = subprocess.run(params, check=False, capture_output=True)
                 signed = signing_check.returncode == 0
-                if (args.signed_only and not signed) or not args.signed_only:
+                if args.verbose or ((args.signed_only and not signed) or not args.signed_only):
                     print(f"    {model} ({build}): {signed}")
             checked_build_device_list.add(model)
             if signed:
