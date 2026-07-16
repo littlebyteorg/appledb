@@ -22,7 +22,7 @@ async def get_size(url):
 def download_range(url, start, end, output):
     if Path(output).exists(): return
     headers = {'Range': f'bytes={start}-{end}'}
-    response = SESSION.get(url, headers=headers, timeout=60)
+    response = SESSION.get(url, headers=headers, timeout=30)
 
     with open(output, 'wb') as f:
         for part in response.iter_content(1024):
@@ -87,7 +87,7 @@ async def download(run, url, hashes, output_path, chunk_size=104857600):
 
     return file_hashes
 
-def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifest=False):
+def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifest=False, extract_file=True):
     file_path = f'otas/{download_link.split("/")[-1]}'
     output_path = file_path.split('.')[0]
     remove_input_file = False
@@ -112,7 +112,7 @@ def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifes
             finally:
                 loop.close()
 
-        if not Path(output_path).exists():
+        if extract_file and not Path(output_path).exists():
             remove_output_file = True
             subprocess.run([f'./{aea_support_file}', '-i', file_path, '-o', output_path, '-k', key], check=True, stderr=subprocess.DEVNULL)
             if remove_input_file:
@@ -144,7 +144,7 @@ def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_pat
         payload_path = f"{output_path}/Payload"
         try:
             subprocess.run(['pkgutil', '--expand-full', f'{output_path}.pkg', output_path], check=True)
-        except subprocess.CalledProcessError:
+        except FileNotFoundError:
             subprocess.run(["7z", "x", "-txar", "-bso0", "-bsp0", f'-o{output_path}', f'{output_path}.pkg', "Payload"], check=True)
             is_compressed = pbzx.extract_file(f'{payload_path}', f'{payload_path}_expanded')
             payload_file = 'Payload'
