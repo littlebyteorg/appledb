@@ -14,8 +14,9 @@ import requests
 
 SESSION = requests.session()
 async def get_size(url):
-    response = SESSION.head(url)
+    response = SESSION.head(url, allow_redirects=True)
     size = int(response.headers['Content-Length'])
+    assert size > 0
     return size
 
 
