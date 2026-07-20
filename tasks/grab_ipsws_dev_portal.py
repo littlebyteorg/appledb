@@ -73,7 +73,7 @@ skip_builds = [
     "24A5390f", # iOS 27.0
     "24J5325d", # tvOS 27.0
     "24M5316k", # visionOS 27.0
-    "24R5315i", # watchOS 27.0
+    "24R5325h", # watchOS 27.0
     "26A5388g", # macOS 27.0
 ]
 
