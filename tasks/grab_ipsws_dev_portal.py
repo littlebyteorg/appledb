@@ -72,7 +72,7 @@ skip_builds = [
     "25G70", # macOS 26.6
     "24A5390f", # iOS 27.0
     "24J5325d", # tvOS 27.0
-    "24M5316k", # visionOS 27.0
+    "24M5326g", # visionOS 27.0
     "24R5325h", # watchOS 27.0
     "26A5388g", # macOS 27.0
 ]
@@ -91,7 +91,7 @@ for group in element.xpath(".//h3/.."):
     version = match.groupdict()["version"]
     if "." not in version:
         version += ".0"
-    data = {"osStr": match.groupdict()["os_str"], "version": version + (match.groupdict()["additional"] or "").replace("Release Candidate", "RC")}
+    data = {"osStr": match.groupdict()["os_str"], "version": version + (match.groupdict()["additional"] or "").replace("\u00a0", " ").replace("Release Candidate", "RC")}
 
     build_info_container: list[Element] = group.xpath("./ul[@class='version typography-caption']")
     if not build_info_container:
