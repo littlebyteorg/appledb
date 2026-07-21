@@ -70,13 +70,18 @@ for version in args.versions:
             if product['PostDate'].date() != date.today() and not args.all:
                 continue
             url = product['ServerMetadataURL'].replace('.smd', '.pkg').replace("http://", "https://")
-            build = convert_version_to_build(product['ExtendedMetaInfo']['BridgeOSPredicateProductOrdering'])
+            restore_version = product['ExtendedMetaInfo']['BridgeOSPredicateProductOrdering']
+            release_date = product['PostDate'].replace(tzinfo=timezone.utc).astimezone(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+            build = convert_version_to_build(restore_version)
             print(build)
+            if ',' not in restore_version:
+                restore_version = f"{restore_version},0"
             file_location = Path(f'osFiles/bridgeOS/{build[0:2]}x - {int(build[0:2]) - 13}.x/{build}.json')
             if not file_location.exists():
                 (file_hashes, manifest) = handle_pkg_file(download_link=url, extracted_manifest_file_path=manifest_path, file_suffix=file_suffix)
-                create_file("bridgeOS", build, False, recommended_version=manifest['ProductVersion'], released=product['PostDate'].replace(tzinfo=timezone.utc).astimezone(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"), buildtrain=manifest['BuildIdentities'][0]['Info']['BuildTrain'])
-            db_data = json.load(file_location.open(encoding="utf-8"))
+                create_file("bridgeOS", build, False, recommended_version=manifest['ProductVersion'], released=release_date, buildtrain=manifest['BuildIdentities'][0]['Info']['BuildTrain'], restore_version=restore_version)
+            with file_location.open(encoding="utf-8") as opened_file:
+                db_data = json.load(opened_file)
             found_source = False
             has_new_link = False
 
@@ -115,5 +120,6 @@ for version in args.versions:
                 has_new_link = True
             if has_new_link:
                 db_data['sources'] = new_sources
-                json.dump(sort_os_file(None, db_data), file_location.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                with file_location.open("w", encoding="utf-8", newline="\n") as opened_file:
+                    json.dump(sort_os_file(None, db_data), opened_file, indent=4, ensure_ascii=False)
                 update_links([file_location])

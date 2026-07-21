@@ -34,7 +34,8 @@ BOARD_IDS = {}
 MULTI_BOARD_DEVICES = {}
 
 for device in Path("deviceFiles").rglob("*.json"):
-    device_data = json.load(device.open(encoding="utf-8"))
+    with device.open(encoding="utf-8") as open_device_file:
+        device_data = json.load(open_device_file)
     name = device_data["name"]
     device_identifiers = device_data.get("identifier", [])
     if isinstance(device_identifiers, str):
@@ -42,7 +43,8 @@ for device in Path("deviceFiles").rglob("*.json"):
     if not device_identifiers:
         device_identifiers = [name]
     key = device_data.get("key", device_identifiers[0] if device_identifiers else name)
-    if key in FILTERED_OUT_DEVICES: continue
+    if key in FILTERED_OUT_DEVICES:
+        continue
 
     for device_identifier in device_identifiers:
         VARIANTS.setdefault(device_identifier, set()).add(key)
@@ -58,7 +60,8 @@ for device in Path("deviceFiles").rglob("*.json"):
 def augment_with_keys(identifiers):
     new_identifiers = []
     for identifier in identifiers:
-        if identifier in FILTERED_OUT_DEVICES: continue
+        if identifier in FILTERED_OUT_DEVICES:
+            continue
         new_identifiers.extend(VARIANTS.get(identifier, [identifier]))
     return list(set(new_identifiers))
 
@@ -113,20 +116,21 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
     if os_str == "watchOS" and version_dir == "12x - 8.x":
         version_dir = "12x - 1.x"
     if os_str == "watchOS" and version_dir.endswith("9.x") and version_dir != "20x - 9.x":
-        base_build = int(version_dir.split('x')[0])
+        base_build = int(version_dir.split('x', 1)[0])
         version_dir = f"{base_build}x - {base_build - 11}.x"
 
     # HACK: Apple TV 2nd and 3rd gen
-    if os_str == "tvOS" and version_dir == "12x - 8.x":
-        version_dir = "12x - 7.x"
-    if os_str == "tvOS" and version_dir == "11x - 7.x":
-        version_dir = "11x - 6.x"
-    if os_str == "tvOS" and version_dir == "10x - 6.x":
-        version_dir = "10x - 5.1 to 5.3"
-    if os_str == "tvOS" and version_dir == "9x - 5.x":
-        version_dir = "9x - 4.4 to 5.0.2"
-    if os_str == "tvOS" and version_dir == "8x - 4.x":
-        version_dir = "8x - 4.0 to 4.3"
+    if os_str == "tvOS":
+        if version_dir == "12x - 8.x":
+            version_dir = "12x - 7.x"
+        if version_dir == "11x - 7.x":
+            version_dir = "11x - 6.x"
+        if version_dir == "10x - 6.x":
+            version_dir = "10x - 5.1 to 5.3"
+        if version_dir == "9x - 5.x":
+            version_dir = "9x - 4.4 to 5.0.2"
+        if version_dir == "8x - 4.x":
+            version_dir = "8x - 4.0 to 4.3"
 
     file_path = f"osFiles/{os_str}/{version_dir}/{build}.json"
     bsi = rsr and " - 1" not in version_dir
@@ -139,8 +143,10 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
     db_file = Path(file_path)
     if db_file.exists():
         print("\tFile already exists, not replacing")
-        if os_str == 'bridgeOS': return db_file
-        db_data = json.load(db_file.open(encoding="utf-8"))
+        if os_str == 'bridgeOS':
+            return db_file
+        with db_file.open(encoding="utf-8") as open_file:
+            db_data = json.load(open_file)
     else:
         file_updated = True
         print(f"\tNo file found for build {build}, creating new file")
@@ -228,11 +234,12 @@ def create_file(os_str, build, full_self_driving, recommended_version=None, vers
 
     # Only write to file if required
     if file_updated:
-        json.dump(
-            sort_os_file(None, db_data),
-            db_file.open("w", encoding="utf-8", newline="\n"),
-            indent=4,
-            ensure_ascii=False,
-        )
+        with db_file.open("w", encoding="utf-8", newline="\n") as open_file:
+            json.dump(
+                sort_os_file(None, db_data),
+                open_file,
+                indent=4,
+                ensure_ascii=False,
+            )
 
     return db_file

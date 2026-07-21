@@ -295,7 +295,8 @@ def import_ota(
         restore_version = info_plist.get('RestoreVersion')
 
     db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=final_version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain, restore_version=restore_version)
-    db_data = json.load(db_file.open(encoding="utf-8"))
+    with db_file.open(encoding="utf-8") as opened_file:
+        db_data = json.load(opened_file)
 
     if baseband_map:
         db_data.setdefault("basebandVersions", {}).update(baseband_map)
@@ -345,7 +346,8 @@ def import_ota(
     if bridge_version and bridge_version_info and not rsr:
         db_data['bridgeOSBuild'] = bridge_version_info['BridgeProductBuildVersion']
 
-    json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    with db_file.open("w", encoding="utf-8", newline="\n") as opened_file:
+        json.dump(sort_os_file(None, db_data), opened_file, indent=4, ensure_ascii=False)
     if is_new_import and use_network:
         print("\tRunning update links on file")
         update_links([db_file])
@@ -394,7 +396,8 @@ if __name__ == "__main__":
 
         if Path(f"{file_name_base}.json").exists():
             print(f"Reading versions from {file_name_base}.json")
-            versions = json.load(Path(f"{file_name_base}.json").open(encoding="utf-8"))
+            with Path(f"{file_name_base}.json").open(encoding="utf-8") as opened_import_file:
+                versions = json.load(opened_import_file)
 
             for version in versions:
                 print(f"Importing {version['osStr']} {version['version']}")

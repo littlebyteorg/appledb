@@ -134,4 +134,5 @@ if bool(ipsw_list):
         cleaned_list.append(item)
     print(f"{count} links added")
     _ = [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
-    json.dump(cleaned_list, Path("import.json").open("w", encoding="utf-8"), indent=4)
+    with Path("import.json").open("w", encoding="utf-8") as open_import_file:
+        json.dump(cleaned_list, open_import_file, indent=4)

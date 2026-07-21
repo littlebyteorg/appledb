@@ -86,7 +86,8 @@ asset_sub_type_map = {
 
 default_kernel_marketing_version_offset = 4
 
-asset_audiences = json.load(Path("tasks/audiences.json").open(encoding="utf-8"))
+with Path("tasks/audiences.json").open(encoding="utf-8") as open_audiences_file:
+    asset_audiences = json.load(open_audiences_file)
 
 asset_types = {
     'macOS': ['MacSoftwareUpdate'],
@@ -317,7 +318,8 @@ is_next_major = args.update_type == 'next'
 if args.os and args.build:
     parsed_args = dict(zip(args.os, args.build))
 else:
-    latest_builds = json.load(Path('tasks/latest_builds.json').open(encoding="utf-8"))
+    with Path('tasks/latest_builds.json').open(encoding="utf-8") as open_latest_builds_file:
+        latest_builds = json.load(open_latest_builds_file)
     beta_builds = is_next_major or any((x for x in args.audience if x in ['beta', 'developer', 'appleseed', 'public']))
     parsed_args = {}
     for os_str, types in latest_builds.items():
@@ -395,11 +397,13 @@ def generate_restore_version(build_number):
 def get_board_ids(identifier):
     if not board_ids.get(identifier):
         device_path = list(Path('deviceFiles').rglob(f"{identifier}.json"))[0]
-        device_data = json.load(device_path.open())
-        
+        with device_path.open(encoding="utf-8") as open_devices_file:
+            device_data = json.load(open_devices_file)
+
         if device_data.get('iBridge'):
             device_path = Path(f"deviceFiles/iBridge/{device_data['iBridge']}.json")
-            device_data = json.load(device_path.open(encoding="utf-8"))
+            with device_path.open(encoding="utf-8") as open_devices_file:
+                device_data = json.load(open_devices_file)
             # iBridge board IDs need to be upper-cased
             device_data['board'] = device_data['board'].upper()
         if isinstance(device_data['board'], list):
@@ -412,7 +416,8 @@ def get_build_version(target_os_str, target_build):
     if not build_versions.get(f"{target_os_str}-{target_build}"):
         try:
             version_path = list(Path(f'osFiles/{target_os_str}').rglob(f'{target_build}.json'))[0]
-            version_data = json.load(version_path.open())
+            with version_path.open(encoding="utf-8") as open_version_file:
+                version_data = json.load(open_version_file)
             build_versions[f"{target_os_str}-{target_build}"] = version_data['version']
         except (FileNotFoundError, IndexError):
             if target_os_str == 'iPadOS':
@@ -457,7 +462,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
         request['DelayPeriod'] = time_delay
         request['DelayRequested'] = True
         request['Supervised'] = True
-    
+
     if args.echo_request:
         print(json.dumps(request))
 
@@ -610,7 +615,8 @@ for (os_str, builds) in parsed_args.items():
 
                 values = [v for k,v in desired_audiences.items() if (calculated_version == int(k)) or (calculated_version < int(k) and calculated_version not in legacy_versions.get(os_str, []))]
                 for value in values:
-                    if not value: continue
+                    if not value:
+                        continue
                     if isinstance(value, list):
                         audiences.extend(value)
                     else:
@@ -619,7 +625,8 @@ for (os_str, builds) in parsed_args.items():
                 if target_asset_audiences.get(audience):
                     values = [v for k,v in target_asset_audiences[audience].items() if calculated_version <= int(k)]
                     for value in values:
-                        if not value: continue
+                        if not value:
+                            continue
                         if isinstance(value, list):
                             audiences.extend(value)
                         else:
@@ -640,7 +647,8 @@ for (os_str, builds) in parsed_args.items():
         devices = {}
         build_data = {}
         try:
-            build_data = json.load(build_path.open())
+            with build_path.open(encoding="utf-8") as open_build_file:
+                build_data = json.load(open_build_file)
         except FileNotFoundError:
             print(f"Bad path - {build_path}")
             continue
@@ -656,7 +664,7 @@ for (os_str, builds) in parsed_args.items():
                 'boards': get_board_ids(device),
                 'builds': {}
             })
-        
+
         # RSRs are only for the latest version
         if not args.rsr and not args.no_prerequisites and not (is_rc and os_str not in ('watchOS', 'macOS')):
             for source in build_data.get("sources", []):
@@ -677,7 +685,7 @@ for (os_str, builds) in parsed_args.items():
                         continue
                 else:
                     current_devices = source['deviceMap']
-                
+
                 current_devices = set([x.split("-")[0] for x in current_devices])
 
                 prerequisite_builds = source['prerequisiteBuild']
@@ -712,7 +720,8 @@ for key, value in ota_list.items():
     sources = []
     builds.add(value['build'])
     for source in value['sources'].values():
-        if args.only_prerequisites and not source['prerequisites']: continue
+        if args.only_prerequisites and not source['prerequisites']:
+            continue
         if source['links'][0]['url'].endswith('.aea') and not source['links'][0]['key']:
             missing_key = f"{value['osStr']}-{'/'.join(source['prerequisites'])}"
             if value['osStr'] == 'macOS':
@@ -743,4 +752,5 @@ if bool(ota_list.keys()):
     if missing_decryption_keys:
         print(f"Missing decryption keys: {sorted(missing_decryption_keys)}")
     _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
-    json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)
+    with Path(f"{file_name_base}.json").open("w", encoding="utf-8") as open_result_file:
+        json.dump(list(ota_list.values()), open_result_file, indent=4, cls=SetEncoder)
