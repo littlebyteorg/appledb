@@ -96,7 +96,7 @@ asset_types = {
 }
 
 default_mac_devices = [
-    'MacBookAir6,1',    # Intel, only supports up to Big Sur
+    'iMac14,4',         # Intel, only supports up to Big Sur
     'MacBookAir7,1',    # Intel, only supports up to Monterey
     'MacBookPro14,1',   # Intel, only supports up to Ventura
     'MacBookAir8,1',    # Intel, only supports up to Sonoma
@@ -124,6 +124,49 @@ default_mac_devices = [
 ]
 
 default_mac_device_extensions = {
+    'iMac14,4': set([
+        "iMac14,4",
+        "iMac15,1-Late-2014",
+        "iMac15,1-Mid-2015",
+        "MacBook8,1",
+        "MacBookAir6,1-2013",
+        "MacBookAir6,1-2014",
+        "MacBookAir6,2-2013",
+        "MacBookAir6,2-2014",
+        "MacBookPro11,1-Late-2013",
+        "MacBookPro11,1-Mid-2014",
+        "MacBookPro11,2-Late-2013",
+        "MacBookPro11,2-Mid-2014",
+        "MacBookPro11,3-Late-2013",
+        "MacBookPro11,3-Mid-2014"
+    ]),
+    'MacBookAir7,1': set([
+        "iMac16,1",
+        "iMac16,2",
+        "iMac16,2-4K",
+        "iMac17,1",
+        "MacBook9,1",
+        "MacBookAir7,1",
+        "MacBookAir7,2-2015",
+        "MacBookAir7,2-2017",
+        "MacBookPro11,4",
+        "MacBookPro11,5",
+        "MacBookPro12,1",
+        "MacBookPro13,1",
+        "MacBookPro13,2",
+        "MacBookPro13,3",
+        "Macmini7,1",
+        "MacPro6,1"
+    ]),
+    'MacBookPro14,1': set([
+        "iMac18,1",
+        "iMac18,2",
+        "iMac18,3",
+        "MacBook10,1",
+        "MacBookPro14,1",
+        "MacBookPro14,2",
+        "MacBookPro14,3"
+    ]),
     'MacBookAir8,1': set([
         "iMac19,1",
         "iMac19,2",
