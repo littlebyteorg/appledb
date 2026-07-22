@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import string
 import sys
 import json
 import plistlib
@@ -64,6 +65,7 @@ for cell in table:
         properties[property_name] = cell.text
 
 properties['Release'] = properties['Release'].split(" ")[0]
+print(properties)
 
 if len(list(Path("osFiles/Software/Safari Technology Preview").rglob(f"{properties['Release']}.json"))) > 0 and not args.force:
     print(f"{properties['Release']}.json already exists, exiting...")
@@ -84,7 +86,7 @@ os_version_override_map = {
 
 for mac_version in mac_versions:
     catalog_version = args.catalog or catalog_overrides.get(mac_version, mac_version)
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{catalog_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{catalog_version}-1.sucatalog?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
