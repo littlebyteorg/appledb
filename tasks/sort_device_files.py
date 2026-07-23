@@ -58,7 +58,20 @@ list_fields = [
     "alias"
 ]
 
-colors_key_order = ["name", "key", "group", "hex", "released", "discontinued"]
+colors_key_order = ["name", "key", "group", "hex", "released", "discontinued", "configurations"]
+
+configuration_key_order = ["name", "storage", "memory", "released", "discontinued"]
+storage_key_order = ["capacity", "unit", "type"]
+storage_type_order = ["HDD", "Fusion", "SSD"]
+storage_multiplier_dict = {"GB": 1, "TB": 1024}
+memory_multiplier_dict = {"MB": 1, "GB": 1024}
+
+def sort_config_item(config):
+    normalized_storage = config['storage']['capacity'] * storage_multiplier_dict[config['storage']['unit']]
+    storage_type_index = storage_type_order.index(config['storage']['type'])
+    normalized_memory = config['memory']['capacity'] * memory_multiplier_dict[config['memory']['unit']]
+
+    return normalized_storage, storage_type_index, normalized_memory, config['released'], config.get('discontinued', '9999-12-31')
 
 links_key_order = ["url", "label", "active"]
 
@@ -79,10 +92,15 @@ def sort_device_file(file_path: Optional[Path], raw_data=None):
         if not isinstance(data.get(key), list): continue
         data[key].sort()
 
-    for i, colors in enumerate(data.get('colors', [])):
-        data['colors'][i] = sorted_dict_by_key(colors, colors_key_order)
+    for i, color in enumerate(data.get('colors', [])):
+        data['colors'][i] = sorted_dict_by_key(color, colors_key_order)
         if set(data["colors"][i].keys()) - set(colors_key_order):
             raise ValueError(f"Unknown keys: {sorted(set(data['colors'][i].keys()) - set(colors_key_order))}")
+        for j, config in enumerate(color.get('configurations', [])):
+            config['storage'] = sorted_dict_by_key(config['storage'], storage_key_order)
+            config['memory'] = sorted_dict_by_key(config['memory'], storage_key_order)
+            data['colors'][i]['configurations'][j] = sorted_dict_by_key(config, configuration_key_order)
+        data['colors'][i].get('configurations', []).sort(key=sort_config_item)
 
     # HACK: sorting order is release date in descending order, then name in ascending order
     data.get('colors', []).sort(key=lambda color: color['name'])
