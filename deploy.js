@@ -1,12 +1,14 @@
 const cname = "api.appledb.dev";
-const fs = require("fs");
-const path = require("path");
-const hash = require("object-hash");
-const zlib = require("zlib");
-const lzma = require("node-liblzma");
+import fs from "fs";
+import path from "path";
+import hash from "object-hash";
+import zlib from "zlib";
+import lzma from "lzma-native";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 function getAllFiles(dirPath, arrayOfFiles) {
-  files = fs.readdirSync(dirPath);
+  var files = fs.readdirSync(dirPath);
   arrayOfFiles = arrayOfFiles || [];
   files.forEach(function (file) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
@@ -36,27 +38,39 @@ function write(p, f) {
   filesWritten++;
 }
 
-function writeCompressed(p, f) {
+async function writeCompressed(p, f) {
+  console.time(`compressing ${p}, gz`);
   write(p + ".gz", zlib.gzipSync(f));
-  write(p + ".xz", lzma.xzSync(f));
+  console.timeEnd(`compressing ${p}, gz`);
+  console.time(`compressing ${p}, xz2`);
+  write(p + ".xz", await lzma.compress(f, { threads: 0 }));
+  console.timeEnd(`compressing ${p}, xz2`);
 }
 
-function writeJson(dirName, arr, property, makeSmaller = (data) => data) {
+async function writeJson(dirName, arr, property, makeSmaller = (data) => data, individual = true) {
   mkdir(path.join(p, dirName));
+  console.time(`writing ${dirName} index.json`);
   write(
     path.join(p, dirName, "index.json"),
     JSON.stringify(arr.map((x) => x[property])),
   );
+  console.timeEnd(`writing ${dirName} index.json`);
+  console.time(`writing ${dirName} main.json`);
   write(path.join(p, dirName, "main.json"), JSON.stringify(makeSmaller(arr)));
-  writeCompressed(path.join(p, dirName, "main.json"), JSON.stringify(arr));
-  arr.map(function (x) {
-    write(
-      path.join(p, dirName, x[property].replace("/", "%2F") + ".json"),
-      JSON.stringify(x),
-    );
-  });
-
-  main[dirName] = makeSmaller(arr);
+  console.timeEnd(`writing ${dirName} main.json`);
+  console.time(`writing ${dirName} main.json compressed`);
+  await writeCompressed(path.join(p, dirName, "main.json"), JSON.stringify(arr));
+  console.timeEnd(`writing ${dirName} main.json compressed`);
+  if (individual) {
+    console.time(`writing ${dirName} individual json files`);
+    arr.map(function (x) {
+      write(
+        path.join(p, dirName, x[property].replace("/", "%2F") + ".json"),
+        JSON.stringify(x),
+      );
+    });
+    console.timeEnd(`writing ${dirName} individual json files`);
+  }
 }
 
 function handleSDKs(baseItem) {
@@ -77,12 +91,14 @@ function handleSDKs(baseItem) {
   return sdkEntries;
 }
 
+console.time("loading files");
 var osFiles = requireAll("osFiles", ".json"),
   jailbreakFiles = requireAll("jailbreakFiles", ".json"),
   deviceGroupFiles = requireAll("deviceGroupFiles", ".json"),
   deviceFiles = requireAll("deviceFiles", ".json"),
   bypassTweaks = requireAll("bypassTweaks", ".json"),
   bypassApps = requireAll("bypassApps", ".json");
+console.timeEnd("loading files");
 
 deviceFiles = deviceFiles.map(function (dev) {
   for (const p of ["model", "board", "identifier"]) {
@@ -271,6 +287,7 @@ bypassApps = bypassApps.map(function (app) {
 
 const p = "out";
 mkdir(p);
+console.time("writing CNAME, .nojekyll, index.html");
 fs.writeFileSync(`${p}/CNAME`, cname);
 fs.writeFileSync(`${p}/.nojekyll`, "");
 fs.writeFileSync(
@@ -291,8 +308,8 @@ fs.writeFileSync(
 </html>
 `,
 );
+console.timeEnd("writing CNAME, .nojekyll, index.html");
 
-var main = {};
 var filesWritten = 0;
 
 function filterOTAs(ver) {
@@ -302,37 +319,47 @@ function filterOTAs(ver) {
   return ver;
 }
 
-writeJson("ios", osFiles, "key", (data) => data.map(filterOTAs));
+await writeJson("ios", osFiles, "key", (data) => data.map(filterOTAs));
 
+console.time("writing osFiles inner");
 // Write index.json and main.json filtered by each osType
-Object.entries(
-  osFiles.reduce(function (r, a) {
-    r[a.osType] = r[a.osType] || [];
-    r[a.osType].push(a);
-    return r;
-  }, {}),
-).forEach(([osType, fws]) => {
-  mkdir(path.join(p, `ios/${osType}`));
-  write(
-    path.join(p, `ios/${osType}/index.json`),
-    JSON.stringify(fws.map((x) => x.key)),
-  );
-  write(
-    path.join(p, `ios/${osType}/main.json`),
-    JSON.stringify(fws.map(filterOTAs)),
-  );
-  writeCompressed(path.join(p, `ios/${osType}/main.json`), JSON.stringify(fws));
-});
+for (const [osType, fws] of Object.entries(Object.groupBy(osFiles, (x) => x.osType))) {
+  await writeJson(`ios/${osType}`, fws, "key", (data) => data.map(filterOTAs), false);
+}
+console.timeEnd("writing osFiles inner");
 
-writeJson("jailbreak", jailbreakFiles, "name");
-writeJson("group", deviceGroupFiles, "name");
-writeJson("device", deviceFiles, "key");
-writeJson("bypass", bypassApps, "bundleId");
+console.time("writing jailbreakFiles");
+await writeJson("jailbreak", jailbreakFiles, "name");
+console.timeEnd("writing jailbreakFiles");
+console.time("writing deviceGroupFiles");
+await writeJson("group", deviceGroupFiles, "name");
+console.timeEnd("writing deviceGroupFiles");
+console.time("writing deviceFiles");
+await writeJson("device", deviceFiles, "key");
+console.timeEnd("writing deviceFiles");
+console.time("writing bypassTweaks");
+await writeJson("bypass", bypassApps, "bundleId");
+console.timeEnd("writing bypassTweaks");
 
-write(path.join(p, "main.json"), JSON.stringify(main));
-writeCompressed(path.join(p, "main.json"), JSON.stringify(main));
-write(path.join(p, "hash"), hash(main));
+var main = {
+  "ios": osFiles,
+  "jailbreak": jailbreakFiles,
+  "group": deviceGroupFiles,
+  "device": deviceFiles,
+  "bypass": bypassApps
+};
 
+console.time("writing main");
+write(path.join(p, "main.json"), JSON.stringify({...main, "ios": osFiles.map(filterOTAs)}));
+console.timeEnd("writing main");
+console.time("writing main compressed");
+await writeCompressed(path.join(p, "main.json"), JSON.stringify(main));
+console.timeEnd("writing main compressed");
+console.time("writing main hash");
+write(path.join(p, "hash"), hash(JSON.stringify(main)));
+console.timeEnd("writing main hash");
+
+console.time("writing compatibility files");
 var dirName = path.join(p, "compat");
 mkdir(dirName);
 osFiles.map(function (fw) {
@@ -358,6 +385,7 @@ osFiles.map(function (fw) {
       );
     });
 });
+console.timeEnd("writing compatibility files");
 
 // home page json
 
@@ -434,8 +462,10 @@ const latestVersions = latestVersionArr
 
 homePage['latestVersions'] = latestVersions
 
+console.time("writing appledb-web files");
 mkdir(`${p}/appledb-web`);
 write(`${p}/appledb-web/homePage.json`, JSON.stringify(homePage));
+console.timeEnd("writing appledb-web files");
 
 // finish
 
