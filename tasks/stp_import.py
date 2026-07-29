@@ -22,7 +22,7 @@ parser.add_argument('-f', '--force', action='store_true')
 parser.add_argument('-c', '--catalog')
 args = parser.parse_args()
 
-result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}", timeout=30)
+result = requests.get(f"https://developer.apple.com/safari/resources/?{random.choices(string.ascii_letters, k=5)}cbust{random.randint(100, 1000)}", timeout=30)
 result.raise_for_status()
 element = lxml.html.fromstring(result.text)
 
