@@ -200,7 +200,7 @@ for download in downloads:
             ],
             "sources": [
                 {
-                    "type": "pkg",
+                    "type": "dmg",
                     "deviceMap": [
                         "Reality Composer Pro"
                     ],
