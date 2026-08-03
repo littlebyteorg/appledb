@@ -53,13 +53,9 @@ ignore_builds = {
     'audioOS': ['17L256', '17L562', '17L570']
 }
 
-# Ensure known versions of watchOS don't get included in import-ota.txt.
-# Update this dictionary in case Apple updates watchOS for iPhones that don't support latest iOS.
-latest_watch_compatibility_versions = {
-    12: ['5.3.10'],  # iPhone 5s/6
-    18: ['8.8.2'],  # iPhone 6s/SE (1st)/7
-    20: ['9.6.4'],  # iPhone 8/X
-    24: ['11.6.2'], # iPhone Xr/Xs
+ignore_result_builds = {
+    'macOS': ['25D125'],
+    'watchOS': ['16U711', '17U224', '19U526', '20U512', '21U594', '22U95']
 }
 
 legacy_versions = {
@@ -553,8 +549,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
 
             cleaned_os_version = asset['OSVersion'].removeprefix('9.9.')
 
-            if target_os_str == 'watchOS' and cleaned_os_version in latest_watch_compatibility_versions.get(asset['CompatibilityVersion'], []):
-                continue
+            if updated_build in ignore_result_builds.get(os_str, []): continue
             link = f"{asset['__BaseURL']}{asset['__RelativePath']}"
             response_os_str = target_os_str
             if target_os_str == "iOS" and packaging.version.parse(cleaned_os_version.split(" ")[0]) >= packaging.version.parse("13.0") and device_name.startswith('iPad'):
