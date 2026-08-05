@@ -88,7 +88,6 @@ with Path("tasks/audiences.json").open(encoding="utf-8") as open_audiences_file:
 
 asset_types = {
     'macOS': ['MacSoftwareUpdate', 'MacRecoveryOSUpdate', 'SFRSoftwareUpdate'],
-    'Studio Display Firmware': ['DarwinAccessoryUpdate'],
     'default': ['SoftwareUpdate', 'RecoveryOSUpdate']
 }
 
@@ -393,10 +392,6 @@ else:
         if args.rsr:
             parsed_args[os_str] = [parsed_args[os_str][-1]]
 
-if args.os and ("Studio Display Firmware" in args.os):
-    # Studio Display Firmware is a mesu asset shoehorned into pallas
-    parsed_args.setdefault("Studio Display Firmware", ["19D8050", "23D8128"])
-
 minimum_compatibility = 0
 maximum_compatibility = 1000
 if parsed_args.get('watchOS'):
@@ -584,15 +579,11 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                         "key": asset.get('ArchiveDecryptionKey')
                     }]
                 }
-            if os_str == "Studio Display Firmware":
-                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].update(asset['SupportedDevices'])
-                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].update(asset['SupportedDeviceModels'])
-            else:
-                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].update(asset.get('SupportedDevices', [device_name]))
-                # iPhone11,4 is weird; nothing comes back from Pallas, but it's in the BuildManifest for the actual zip in this scenario
-                if ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
-                    ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
-                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].update(asset.get('SupportedDeviceModels', [board_id]))
+            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].update(asset.get('SupportedDevices', [device_name]))
+            # iPhone11,4 is weird; nothing comes back from Pallas, but it's in the BuildManifest for the actual zip in this scenario
+            if ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].intersection({"iPhone11,2", "iPhone11,6"}) == {"iPhone11,2", "iPhone11,6"}:
+                ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].add("iPhone11,4")
+            ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["boardMap"].update(asset.get('SupportedDeviceModels', [board_id]))
             if asset.get('PrerequisiteBuild') and asset.get('AllowableOTA', True) and full_relative_url != link:
                 ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]['prerequisites'].add(asset['PrerequisiteBuild'])
                 for additional_build in added_builds.get(asset['PrerequisiteBuild'], []):
@@ -758,7 +749,7 @@ for (os_str, builds) in parsed_args.items():
                     for asset_type_name in asset_types.get(os_str, asset_types['default']):
                         if asset_type_name in recovery_assets_called[audience] and os_str != 'macOS': continue
                         recovery_asset = asset_type_name.startswith('SFR') or 'RecoveryOS' in asset_type_name
-                        if not (args.no_prerequisites or os_str in ['tvOS', 'Studio Display Firmware'] or recovery_asset):
+                        if not (args.no_prerequisites or os_str in ['tvOS'] or recovery_asset):
                             for prerequisite_build, version in value['builds'].items():
                                 call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
                         call_pallas(key, board, build_data['version'], build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
@@ -767,7 +758,7 @@ for (os_str, builds) in parsed_args.items():
                             continue
 
                         new_version_builds = sorted([x for x in newly_discovered_versions.get(os_str, {}).keys() if x < build])
-                        if os_str not in ['tvOS', 'Studio Display Firmware']:
+                        if os_str not in ['tvOS']:
                             for new_build in new_version_builds:
                                 call_pallas(key, board, newly_discovered_versions[os_str][new_build], new_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
 

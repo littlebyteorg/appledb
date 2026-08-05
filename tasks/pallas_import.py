@@ -19,12 +19,18 @@ print(datetime.now())
 
 asset_types = {
     'AirTags': {
-        'A2937': ['com.apple.MobileAsset.UARP.A2937']
+        'A2937': ['com.apple.MobileAsset.UARP.A2937'],
+    },
+    'Studio Display': {
+        'A2525': ['com.apple.MobileAsset.DarwinAccessoryUpdate.A2525'],
+        'A3348': ['com.apple.MobileAsset.DarwinAccessoryUpdate.A3348'],
+        'A3350': ['com.apple.MobileAsset.DarwinAccessoryUpdate.A3350'],
     }
 }
 
 os_str_map = {
-    'AirTags': '<Model> Firmware'
+    'AirTags': '<Model> Firmware',
+    'Studio Display': 'Studio Display Firmware',
 }
 
 os_subfolder_map = {
@@ -36,9 +42,19 @@ release_notes_map = {
 }
 
 device_map = {
+    'A2525': [
+        'AppleDisplay2,1'
+    ],
     'A2937': [
         'afw2,4'
-    ]
+    ],
+    'A3348': [
+        'AppleDisplay18,1'
+    ],
+    'A3350': [
+        'AppleDisplay18,2'
+    ],
+
 }
 
 os_audience_map = {
@@ -65,7 +81,10 @@ def call_pallas(audience, asset_name, model):
             file_path = f"osFiles/{os_subfolder_map.get(os_str, os_str)}/{asset['FirmwareVersionMajor']}x/{version}.json"
         else:
             kern_version = re.search(r"\d+(?=[a-zA-Z])", asset['Build']).group()
-            file_path = f"osFiles/{os_subfolder_map.get(os_str, os_str)}/{kern_version}x/{asset['Build']}.json"
+            if os_str == 'Studio Display Firmware':
+                file_path = f"osFiles/{os_subfolder_map.get(os_str, os_str)}/{kern_version}x - {asset['OSVersion'].split('.', 1)[0]}.x/{asset['Build']}.json"
+            else:
+                file_path = f"osFiles/{os_subfolder_map.get(os_str, os_str)}/{kern_version}x/{asset['Build']}.json"
 
         if not Path(file_path).exists():
             if not Path(file_path).parent.exists():
@@ -93,6 +112,7 @@ def call_pallas(audience, asset_name, model):
                 json.dump(base_contents, Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
 
         file_data = json.load(Path(file_path).open(encoding="utf-8"))
+        print(file_path)
         if device_map[model][0] in file_data['deviceMap']:
             continue
         source = {"deviceMap": device_map[model], "type": "ota", "links": [{"url": f"{asset['__BaseURL']}{asset['__RelativePath']}", "active": True}]}
@@ -131,10 +151,10 @@ def call_pallas(audience, asset_name, model):
 
 processed_files = set()
 for asset_type, assets in asset_types.items():
-    for model, asset_names in assets.items():
-        for audience in os_audience_map[asset_type]:
-            for asset_name in asset_names:
-                processed_files.update(call_pallas(audience, asset_name, model))
+    for asset_model, asset_names in assets.items():
+        for audience_uuid in os_audience_map[asset_type]:
+            for model_asset_name in asset_names:
+                processed_files.update(call_pallas(audience_uuid, model_asset_name, asset_model))
 
 if processed_files:
     update_links(list(processed_files))
