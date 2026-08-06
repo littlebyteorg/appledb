@@ -73,14 +73,6 @@ kernel_marketing_version_offset_map = {
     'visionOS': 20
 }
 
-asset_sub_type_map = {
-    'DarwinAccessoryUpdate': {
-        'AppleDisplay2,1': 'A2525',
-        'AppleDisplay18,1': 'A3348',
-        'AppleDisplay18,2': 'A3350'
-    }
-}
-
 default_kernel_marketing_version_offset = 4
 
 with Path("tasks/audiences.json").open(encoding="utf-8") as open_audiences_file:
@@ -475,7 +467,6 @@ def get_build_version(target_os_str, target_build):
 
 def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asset_audience, is_rsr, time_delay, asset_type, counter=5):
     update_type = update_types[asset_type]
-    asset_type = f"{asset_type}.{asset_sub_type_map.get(asset_type, {}).get(device_name, '')}".removesuffix(".")
     if is_rsr:
         asset_type = asset_type.replace('SoftwareUpdate', 'SplatSoftwareUpdate')
     additional_audiences = set()
