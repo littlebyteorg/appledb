@@ -1,20 +1,16 @@
 {
     "osStr": "macOS",
-    "version": "26.6 RC",
-    "build": "25G70",
-    "restoreVersion": "25.7.70.0.0,0",
-    "buildId": "F16B4B24-8164-11F1-9DE2-4DF507866189",
-    "bridgeOSBuild": "23P6068",
-    "buildTrain": "CheerG",
-    "released": "2026-07-20",
-    "rc": true,
+    "version": "27.0 beta 5",
+    "build": "26A5406e",
+    "restoreVersion": "26.1.406.5.5,0",
+    "buildTrain": "FizzSeed",
+    "released": "2026-08-10",
+    "beta": true,
     "appledbWebImage": {
-        "id": "Tahoe",
+        "id": "Golden Gate",
         "align": "left"
     },
     "deviceMap": [
-        "iMac20,1",
-        "iMac20,2",
         "iMac21,1",
         "iMac21,2",
         "Mac13,1",
@@ -65,17 +61,12 @@
         "Mac17,8",
         "Mac17,9",
         "MacBookAir10,1",
-        "MacBookPro16,1",
-        "MacBookPro16,2",
-        "MacBookPro16,4",
         "MacBookPro17,1",
         "MacBookPro18,1",
         "MacBookPro18,2",
         "MacBookPro18,3",
         "MacBookPro18,4",
         "Macmini9,1",
-        "MacPro7,1",
-        "MacPro7,1-Rack",
         "VirtualMac2,1"
     ],
     "signed": true,
@@ -143,21 +134,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/fullrestores/140-56823/1C29995E-8C11-4384-B9C0-B00145B84F51/UniversalMac_26.6_25G70_Restore.ipsw",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/fullrestores/140-81421/E76AF7DE-7F9D-4808-B023-AC9A8313B177/UniversalMac_27.0_26A5406e_Restore.ipsw",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "482bf6897884eefaf39b7d64b93e583ef12db9f4",
-                "sha2-256": "3d2d8989737f2b93a55cdf3565166fd8fc34599a686e4a658b824a6ea0c21258"
+                "sha1": "a966f6dddf58902b8697aee4eb10f925ce90effd",
+                "sha2-256": "8064e8cc9b23dcfc758f51d6ebd3e15e846baae65760bc53f1e7591ff50d56d3"
             },
-            "size": 19772219794
+            "size": 22743302878
         },
         {
-            "type": "ota",
+            "type": "installassistant",
             "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
                 "iMac21,1",
                 "iMac21,2",
                 "Mac13,1",
@@ -208,54 +197,98 @@
                 "Mac17,8",
                 "Mac17,9",
                 "MacBookAir10,1",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
                 "MacBookPro18,2",
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
                 "VirtualMac2,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56914/3CB5D64F-307D-4BBC-888F-850D8E45E85C/com_apple_MobileAsset_MacSoftwareUpdate/8fc98b7b8867d8ce93b07c284f400e3a71c4e604.zip",
+                    "url": "https://swcdn.apple.com/content/downloads/14/30/140-92763-A_1USB01JWS6/77vr6t3n9b6tu6yjjzbwpurjfv0ohibaob/InstallAssistant.pkg",
+                    "catalog": "dev-beta",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "8fc98b7b8867d8ce93b07c284f400e3a71c4e604",
-                "sha2-256": "df8d23f873d3c08970a90d4e3cb907ea423cdc0f6292afe9ef0bb0e8bfc09b43"
+                "sha1": "eb8b39abc21aa29227a09b92759878ae37c41b41"
             },
-            "size": 18347881110
+            "size": 16960517923
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "22H713",
             "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
+                "Mac15,12",
+                "Mac15,13",
+                "Mac15,14",
+                "Mac16,1",
+                "Mac16,2",
+                "Mac16,3",
+                "Mac16,5",
+                "Mac16,6",
+                "Mac16,7",
+                "Mac16,8",
+                "Mac16,9",
+                "Mac16,10",
+                "Mac16,11",
+                "Mac16,12",
+                "Mac16,13",
+                "Mac17,2",
+                "Mac17,3",
+                "Mac17,4",
+                "Mac17,5",
+                "Mac17,6",
+                "Mac17,7",
+                "Mac17,8",
+                "Mac17,9",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-57316/55E0A4CC-2D60-4394-A82E-842E9ABF0D30/com_apple_MobileAsset_MacSoftwareUpdate/0a05b075c8ae52899b74070fc1ac451e08779cf1.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-83318/8C141673-0CE2-4B42-979E-BD913721EF05/com_apple_MobileAsset_MacSoftwareUpdate/3d17ec034309e6ca627b220b8138f8b29d4ea06d.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "0a05b075c8ae52899b74070fc1ac451e08779cf1",
-                "sha2-256": "a6a838abb6e15c2b0dccd87f14b4f05d4f5d5a89c6413471aac1f0f3457227ef"
+                "sha1": "3d17ec034309e6ca627b220b8138f8b29d4ea06d",
+                "sha2-256": "ea6dd9db5ffe72d6c27b8df15b01b0e531c59cab1fff9742f23830a7f2119719"
             },
-            "size": 8805153901
+            "size": 16938427554
         },
         {
             "type": "ota",
@@ -292,39 +325,15 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56761/49C41B53-F1DC-4355-8021-90EAED742407/com_apple_MobileAsset_MacSoftwareUpdate/e49984a13203ca7614e7255d4e0570acd078b003.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-87060/A93576B6-84FB-4518-BC57-CA56FA0BC6B9/com_apple_MobileAsset_MacSoftwareUpdate/7f5e5f257afa9828412d32467959447c5c8080a7.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "e49984a13203ca7614e7255d4e0570acd078b003",
-                "sha2-256": "de2e5408598524b3f025afbb1a99812cf37027f3ce759f9233100f8089f2af59"
+                "sha1": "7f5e5f257afa9828412d32467959447c5c8080a7",
+                "sha2-256": "e57cbee8d892d0a415a67232752f78c234b4e50d44b243f648c74e5b5164e605"
             },
-            "size": 13509339207
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22H717",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-57250/D272878D-A020-4765-837F-047CBD2B7B38/com_apple_MobileAsset_MacSoftwareUpdate/14e095a5ab511a3b673b41d317b5e59987fcb355.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "14e095a5ab511a3b673b41d317b5e59987fcb355",
-                "sha2-256": "c4f2737644bee0e92d1b59b87d5fec9dd4c88349d118df9191bd56d3916c363b"
-            },
-            "size": 8803924711
+            "size": 14908798499
         },
         {
             "type": "ota",
@@ -361,39 +370,15 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56752/3208E982-DBA5-4E89-8C7B-A405B352105E/com_apple_MobileAsset_MacSoftwareUpdate/3632f44327099e10bbaf74575a5aec118d4e78e4.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-91901/1D75DDA8-EC33-4965-9451-507A6083C7B7/com_apple_MobileAsset_MacSoftwareUpdate/3d9982f82909d17d05e4377c2a23cd156f1d4433.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "3632f44327099e10bbaf74575a5aec118d4e78e4",
-                "sha2-256": "7f9d029721b3a9d9cef172d7d64e73780d526ba43dab954aa6c0cb3ab5c322e0"
+                "sha1": "3d9982f82909d17d05e4377c2a23cd156f1d4433",
+                "sha2-256": "f08ff0162d0b14d49bcbd27336bb94cddf1aad9fd6a0dad92e9044799e0c813a"
             },
-            "size": 13510094237
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22H722",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-57401/232553FB-F7B5-4DC6-B795-51137086C992/com_apple_MobileAsset_MacSoftwareUpdate/be20797638ec23495af2e4bd723c50183e2724d2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "be20797638ec23495af2e4bd723c50183e2724d2",
-                "sha2-256": "dcefd06b0d875b86932933446303db912df703df271031bdca16635af144b550"
-            },
-            "size": 8800931187
+            "size": 14909939315
         },
         {
             "type": "ota",
@@ -430,39 +415,15 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56800/ACBFB6CC-3FDA-45E8-8B2B-BBC062283190/com_apple_MobileAsset_MacSoftwareUpdate/9500d6876d33a334ca4528209347527e9c2f24f6.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-87700/1AC8C469-C2CE-4E08-B42D-70E99D18E281/com_apple_MobileAsset_MacSoftwareUpdate/9f015d26bbe7587189dfd0d443f91770a62fe5e3.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "9500d6876d33a334ca4528209347527e9c2f24f6",
-                "sha2-256": "3cc290fa239e52f8395b9258faf9d94a70530c26001d79a0b06b967331731ae4"
+                "sha1": "9f015d26bbe7587189dfd0d443f91770a62fe5e3",
+                "sha2-256": "7b9d7120edb3ffc2f0f582c24b1ff6dbc993ecfd51be66bd420e59c1897187f6"
             },
-            "size": 13507153301
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "22H730",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56975/A9B5CF0C-97D9-4942-B14F-CCAF96AE1FEE/com_apple_MobileAsset_MacSoftwareUpdate/3fe679ba6cbc6721519bc819e79bb96786f4abc9.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3fe679ba6cbc6721519bc819e79bb96786f4abc9",
-                "sha2-256": "34adaa26ef230751beaee0ae7f92314f78d9a96bbe4b594e6f5b8c03de2e8650"
-            },
-            "size": 8802978758
+            "size": 14908928569
         },
         {
             "type": "ota",
@@ -499,193 +460,15 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56808/7BD72186-B8CD-4AD4-8C1C-F443D8D505D7/com_apple_MobileAsset_MacSoftwareUpdate/6a57adcec92ad8bdb666035916c27ffae3f3f7d4.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-87061/951325DF-5A6F-43C1-AC0C-AA2621BBC849/com_apple_MobileAsset_MacSoftwareUpdate/fb3515fb0657709854269a56440f7e2dba47732a.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "6a57adcec92ad8bdb666035916c27ffae3f3f7d4",
-                "sha2-256": "ced4ffdff2f3957b5beabcfa5f1ae61f12d9b8a79c8fb6d81e324e8415f96d8f"
+                "sha1": "fb3515fb0657709854269a56440f7e2dba47732a",
+                "sha2-256": "3b804702311c0acd463278b91a43de05e7cc4dd5925f7bc0416a0351930f5fe2"
             },
-            "size": 13509220971
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23J520",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56950/2BEDD097-FA2B-4C08-A48F-D7665B5EBDE7/com_apple_MobileAsset_MacSoftwareUpdate/b8ee291ccb20d9ac3c5c164393ab8e7f2ff9b89b.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "b8ee291ccb20d9ac3c5c164393ab8e7f2ff9b89b",
-                "sha2-256": "d47a685d833ed87e46bc606df491c1c6daf697fa91484396f839bfc14b59ff69"
-            },
-            "size": 7556041827
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23J520",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "Mac15,12",
-                "Mac15,13",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56873/5CB9A6AA-CA4B-44FD-9825-26E430D2ADAF/com_apple_MobileAsset_MacSoftwareUpdate/20178a78b66ec75527ac0451e9e9a14aa551ba31.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "20178a78b66ec75527ac0451e9e9a14aa551ba31",
-                "sha2-256": "1644f34aefaee944389171e07c34afe7616cd9e7f07d73eb66c92d62ab2ffa4d"
-            },
-            "size": 12143229087
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23J612",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56945/3616CE05-F7CE-4375-B067-9EC5F67D7471/com_apple_MobileAsset_MacSoftwareUpdate/2426091f2a3d9ba802f7f4ebe0a9719bc67a9168.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2426091f2a3d9ba802f7f4ebe0a9719bc67a9168",
-                "sha2-256": "b7f314be84394d9ec7107ec337df25cdcb52c77aebce15fb265533337d2ae99a"
-            },
-            "size": 7555557453
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23J612",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "Mac15,12",
-                "Mac15,13",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56826/E406B62B-175D-49A1-A283-CB3B77C8E025/com_apple_MobileAsset_MacSoftwareUpdate/e167269e44e2f3a8977339fbc1361d28ec8de933.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e167269e44e2f3a8977339fbc1361d28ec8de933",
-                "sha2-256": "ca06d13b8481f442500c287dd1c6d1436a37bbd5099d3edc60eed59d7803157e"
-            },
-            "size": 12141868798
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "23J615",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-57561/E6C03E4E-92F4-44F3-82CC-6C245E3D6811/com_apple_MobileAsset_MacSoftwareUpdate/2718c850a073de3d3ca8a1cbb7a62e7c20a2ff30.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2718c850a073de3d3ca8a1cbb7a62e7c20a2ff30",
-                "sha2-256": "3a40d8aa6fb9bb3821f1e9945991d3039035795a8ff273c0c4fe2c451af1ba10"
-            },
-            "size": 7555614347
+            "size": 14909354212
         },
         {
             "type": "ota",
@@ -730,43 +513,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-57529/205DF429-47DD-41F4-BEE7-A394978C3F07/com_apple_MobileAsset_MacSoftwareUpdate/fbfdf85d0e49d7707a2c0af8b2977beab20f650c.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-82605/A6D0DEC7-29CB-486D-A0B4-30A23CED780D/com_apple_MobileAsset_MacSoftwareUpdate/e8fb8b190c116b2799eda1e62945d3be22e2068d.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "fbfdf85d0e49d7707a2c0af8b2977beab20f650c",
-                "sha2-256": "638d25ba7f20ebc20006855e6a1bb4126fd98d8a8302f2871ef83a5c928d909f"
+                "sha1": "e8fb8b190c116b2799eda1e62945d3be22e2068d",
+                "sha2-256": "82dca435b34133d8f4cb885b31ae2bccd522402a27a29f25b0575ab0faebbb52"
             },
-            "size": 12142009340
+            "size": 13887534446
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "24G624",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56929/BEA40BFF-D12E-4398-8C48-A74F94FAB6F1/com_apple_MobileAsset_MacSoftwareUpdate/6ea2c3524c3f05711d9977dbcbe919759c0bc16c.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6ea2c3524c3f05711d9977dbcbe919759c0bc16c",
-                "sha2-256": "14bba4f4302945f719352c3835d7bc0bae78cd9bf083174cdef9d1ebfcb13999"
-            },
-            "size": 6031444123
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "24G624",
+            "prerequisiteBuild": "23J619",
             "deviceMap": [
                 "iMac21,1",
                 "iMac21,2",
@@ -796,19 +555,6 @@
                 "Mac15,11",
                 "Mac15,12",
                 "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
                 "MacBookAir10,1",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
@@ -820,43 +566,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56777/47B99A81-78E8-405A-A518-FCE99B31C62B/com_apple_MobileAsset_MacSoftwareUpdate/739f4b1d339d550790119c0b0d806414a0850591.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-88318/942F4AEB-0537-47DD-84F6-F2A24237FDF5/com_apple_MobileAsset_MacSoftwareUpdate/72c9b2d74ed443f56c9db4a5e6359ddab3cbebe3.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "739f4b1d339d550790119c0b0d806414a0850591",
-                "sha2-256": "407c426a82e9963358652722c08d488481ac51d2f160b7e0d688bec513b20403"
+                "sha1": "72c9b2d74ed443f56c9db4a5e6359ddab3cbebe3",
+                "sha2-256": "0f49ef507539eba468c7cad3245bd79a85d64fc89dffd1a79c77aa49034a3705"
             },
-            "size": 10161519169
+            "size": 13886865303
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "24G720",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56977/50335415-DC32-4157-BD7C-AF5B2070466D/com_apple_MobileAsset_MacSoftwareUpdate/bcc02c45406df4f27f81c78e9ea239b7423c3c7d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bcc02c45406df4f27f81c78e9ea239b7423c3c7d",
-                "sha2-256": "eebb5ca78e9cc8b107f4fc0e355a2cb5ec3b418fe5ca175d03ca2a7902ad245b"
-            },
-            "size": 6031112618
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "24G720",
+            "prerequisiteBuild": "23J620",
             "deviceMap": [
                 "iMac21,1",
                 "iMac21,2",
@@ -886,19 +608,6 @@
                 "Mac15,11",
                 "Mac15,12",
                 "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
                 "MacBookAir10,1",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
@@ -910,43 +619,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56737/12ABEEF4-A140-429E-85BA-7E82FB30AD8B/com_apple_MobileAsset_MacSoftwareUpdate/3c92354d97353ffbd57a2c66555257cf35e346ce.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-87699/2428EDE3-77D6-463E-83E2-FC78EBDEAA4B/com_apple_MobileAsset_MacSoftwareUpdate/379841fb6be2707800fa79a85ed622bf37fb75a6.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "3c92354d97353ffbd57a2c66555257cf35e346ce",
-                "sha2-256": "2a9485bdb9db176a2424917d2c452d250ca01edf2f4238c1226eb0d04c968d6d"
+                "sha1": "379841fb6be2707800fa79a85ed622bf37fb75a6",
+                "sha2-256": "fb5fd6e3662010c2bd2338c4de8a7016d3706fa702469e370d77bcbdabbacd11"
             },
-            "size": 10161033903
+            "size": 13886576135
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "24G814",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56931/62ACB74E-35CC-4A5F-B2D7-8E830D90E266/com_apple_MobileAsset_MacSoftwareUpdate/dc644486b0040fb46d1d0122cbbb9d9c21e8979a.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "dc644486b0040fb46d1d0122cbbb9d9c21e8979a",
-                "sha2-256": "d77ea8e34e932e15d25de9a3eac5df575a3ba84a55582396b60f70da0643b1f7"
-            },
-            "size": 6029583746
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "24G814",
+            "prerequisiteBuild": "23J631",
             "deviceMap": [
                 "iMac21,1",
                 "iMac21,2",
@@ -976,19 +661,6 @@
                 "Mac15,11",
                 "Mac15,12",
                 "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
                 "MacBookAir10,1",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
@@ -1000,39 +672,15 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56804/913CFBF9-25A0-446B-A503-47F8F7DA4B69/com_apple_MobileAsset_MacSoftwareUpdate/4777267c5538df17af12ad114f9bbe7a89dd039a.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-91902/78E7F852-45CB-4380-BCA5-E0344E1D3C80/com_apple_MobileAsset_MacSoftwareUpdate/11aab2f3c095bcd43a053b8e79360faadcd2d918.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "4777267c5538df17af12ad114f9bbe7a89dd039a",
-                "sha2-256": "da1f6db5418bf7bfcc50713a979114f9a506c321761fdb5c0946869e746bd820"
+                "sha1": "11aab2f3c095bcd43a053b8e79360faadcd2d918",
+                "sha2-256": "cadeea7f53475db221e419fae5bd4dfb1b762c7496e1e75531f3fbb48883d2ed"
             },
-            "size": 10161101719
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "24G817",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56944/E3FD3F0F-6139-4B71-A434-FF80880C928F/com_apple_MobileAsset_MacSoftwareUpdate/278739edb2b4d2ab48d4672a4e071e587046eb71.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "278739edb2b4d2ab48d4672a4e071e587046eb71",
-                "sha2-256": "b84f9c8340df44dc5af1600b240a7704ff842e1574cb9b37ca6c6423f6d07aff"
-            },
-            "size": 6029052841
+            "size": 13886680202
         },
         {
             "type": "ota",
@@ -1090,43 +738,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56712/66AD65F5-864D-4302-89C9-B1597103508D/com_apple_MobileAsset_MacSoftwareUpdate/39932daf5bad0cd685460173bc2e083f2548ea8d.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-91900/D17A1354-C176-4465-9DCB-F9D0E62DA3F7/com_apple_MobileAsset_MacSoftwareUpdate/4f79ab8a5d713cccb88096c3555ad17372b22fe2.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "39932daf5bad0cd685460173bc2e083f2548ea8d",
-                "sha2-256": "d480ec468b035e0b8d0b8059a6a8bcd342300991ef4c186bd1e27f9cf51e99d3"
+                "sha1": "4f79ab8a5d713cccb88096c3555ad17372b22fe2",
+                "sha2-256": "b89cd4b735e13a9b711bc7435df18325baebdbc4392fae82124e0cddfaf98e69"
             },
-            "size": 10157077680
+            "size": 12598879263
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "25D125",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56907/347A9D80-7DBA-4281-A1AA-E8774060D380/com_apple_MobileAsset_MacSoftwareUpdate/89e035cacbf8321f32ace88889d8e35bec2df90f.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "89e035cacbf8321f32ace88889d8e35bec2df90f",
-                "sha2-256": "07d92758b5595584eb509b7dc0eaa58397de6fb5eab215d1f9c2c8d669a43c80"
-            },
-            "size": 3921000460
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25D125",
+            "prerequisiteBuild": "24G822",
             "deviceMap": [
                 "iMac21,1",
                 "iMac21,2",
@@ -1169,7 +793,6 @@
                 "Mac16,11",
                 "Mac16,12",
                 "Mac16,13",
-                "Mac17,2",
                 "MacBookAir10,1",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
@@ -1181,43 +804,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56713/35C5B552-CF14-4933-A124-034FADA4FFEA/com_apple_MobileAsset_MacSoftwareUpdate/c421bf51e02933b030ed36d312bd0d4dfa403481.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-85741/97B9E547-E36B-4438-A3BC-79D1123E4EDB/com_apple_MobileAsset_MacSoftwareUpdate/a185cd032bf2dc82506f35a3618d96657287db4d.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "c421bf51e02933b030ed36d312bd0d4dfa403481",
-                "sha2-256": "63e4e31ca50c60f91e0d7c4df6980196fa18605f62e44350156c09e9be7730cb"
+                "sha1": "a185cd032bf2dc82506f35a3618d96657287db4d",
+                "sha2-256": "077c110b0710a9309d57f6b9504e82c7797ee49457616ad4429c261d4584e972"
             },
-            "size": 7567929560
+            "size": 12598611225
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "25E5223i",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-57580/C5D3038D-F086-493F-A880-A1F113DCF11F/com_apple_MobileAsset_MacSoftwareUpdate/4b997240d08127d43fed0325c277364c15c432ec.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "4b997240d08127d43fed0325c277364c15c432ec",
-                "sha2-256": "d61272e9c4fae3756372590c3d6a7c53a4a2ed55baebf210910752ae74b47ea0"
-            },
-            "size": 2313990231
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25E5223i",
+            "prerequisiteBuild": "24G824",
             "deviceMap": [
                 "iMac21,1",
                 "iMac21,2",
@@ -1260,7 +859,6 @@
                 "Mac16,11",
                 "Mac16,12",
                 "Mac16,13",
-                "Mac17,2",
                 "MacBookAir10,1",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
@@ -1272,43 +870,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-57577/0E79165B-4A24-46C5-9A61-838F8321C355/com_apple_MobileAsset_MacSoftwareUpdate/16b0b10f5754437e9d0482bc4366d08bc32d7552.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-87059/9CE33392-AA7B-495A-813C-8219F3C1B7C9/com_apple_MobileAsset_MacSoftwareUpdate/606aaa07117a63542c78e72dba56dd55e688e882.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "16b0b10f5754437e9d0482bc4366d08bc32d7552",
-                "sha2-256": "26e799731fcaf2d04fc4c7da165118d4cd6aa0b111f0546daf06506ac369b6d4"
+                "sha1": "606aaa07117a63542c78e72dba56dd55e688e882",
+                "sha2-256": "b1a68299b48f975e0a1f29dd981d1e93e6bc24932f8708e67f323f2c53df4572"
             },
-            "size": 4419665990
+            "size": 12599037497
         },
         {
             "type": "ota",
-            "prerequisiteBuild": "25E246",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56859/14E73578-3D57-4C74-AE66-1772C4BA43D6/com_apple_MobileAsset_MacSoftwareUpdate/e72066ef41cfe5fdf4dadd4564d198410b10ba53.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e72066ef41cfe5fdf4dadd4564d198410b10ba53",
-                "sha2-256": "e82083a0f2e83b0a4a59b2f7c0dc9d29f7fc90519d7dabf2aa94e341d4528a95"
-            },
-            "size": 2148629389
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25E246",
+            "prerequisiteBuild": "24G830",
             "deviceMap": [
                 "iMac21,1",
                 "iMac21,2",
@@ -1351,14 +925,6 @@
                 "Mac16,11",
                 "Mac16,12",
                 "Mac16,13",
-                "Mac17,2",
-                "Mac17,3",
-                "Mac17,4",
-                "Mac17,5",
-                "Mac17,6",
-                "Mac17,7",
-                "Mac17,8",
-                "Mac17,9",
                 "MacBookAir10,1",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
@@ -1370,529 +936,15 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56744/0D09F7ED-DCA3-49D9-A353-BF31E4613FE2/com_apple_MobileAsset_MacSoftwareUpdate/7891581187ffe126094308caf2569a6c9f915529.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-86405/38342054-E8BD-4D71-818A-C5539E8F3B38/com_apple_MobileAsset_MacSoftwareUpdate/875e7d1298cd3d5b4c04cd5f9cc5d4b200ec7965.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "7891581187ffe126094308caf2569a6c9f915529",
-                "sha2-256": "61aa3b407e8ac132ac8e1bba6bd74ff85840ea602efee1ba64ad5723b7587792"
+                "sha1": "875e7d1298cd3d5b4c04cd5f9cc5d4b200ec7965",
+                "sha2-256": "2b695bcb6cfb7cbd3a8787b6d92f0dd27266165bdda604bd735f2846b621fd5f"
             },
-            "size": 4227169108
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25E253",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56843/01408687-D664-474F-AEC1-1B2399A0BCD2/com_apple_MobileAsset_MacSoftwareUpdate/2027fab4f88053a935257df28822e0bad7238e63.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "2027fab4f88053a935257df28822e0bad7238e63",
-                "sha2-256": "72eaca8aa1347a468bb2844bf47a3d5d154a6bc0ce4bfc4be718be83691e9941"
-            },
-            "size": 2149314736
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25E253",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "Mac15,12",
-                "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
-                "Mac17,2",
-                "Mac17,3",
-                "Mac17,4",
-                "Mac17,5",
-                "Mac17,6",
-                "Mac17,7",
-                "Mac17,8",
-                "Mac17,9",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56801/45BC14FA-4AFC-44E3-9B4C-1F211DEE7B3F/com_apple_MobileAsset_MacSoftwareUpdate/401e5f1263718d91380c2c34b5c165a43be478c4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "401e5f1263718d91380c2c34b5c165a43be478c4",
-                "sha2-256": "bfc25d65ef2dd0900877ab02fd80c290a500775bcf2f76dd20af2f7b60c50356"
-            },
-            "size": 4231228919
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25F71",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56861/C8C104B5-9AF7-4679-BC1F-63770C30C47F/com_apple_MobileAsset_MacSoftwareUpdate/f1d6c202803426e475bc8de50aeeeef35115a8e7.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "f1d6c202803426e475bc8de50aeeeef35115a8e7",
-                "sha2-256": "8c100a3e0bce3308a833256b9350dd9b173147426d8a55bd595b5ca31a9501f4"
-            },
-            "size": 1968813118
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25F71",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "Mac15,12",
-                "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
-                "Mac17,2",
-                "Mac17,3",
-                "Mac17,4",
-                "Mac17,5",
-                "Mac17,6",
-                "Mac17,7",
-                "Mac17,8",
-                "Mac17,9",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56798/46D6B749-E999-4DEA-A169-F262BA17F001/com_apple_MobileAsset_MacSoftwareUpdate/e1667ab523db26c063b859231ab845d2bcd78adb.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "e1667ab523db26c063b859231ab845d2bcd78adb",
-                "sha2-256": "d21443b739b4d204deaed4b37393343145778f61f0f121c06d710f757b19f7da"
-            },
-            "size": 3929198773
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25F80",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56912/51BE3030-1980-462A-8809-9B9137EC28A1/com_apple_MobileAsset_MacSoftwareUpdate/3daf3c059e9322a51d0ef8eb839a3b88fde78b3d.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "3daf3c059e9322a51d0ef8eb839a3b88fde78b3d",
-                "sha2-256": "1556a20b945be3bb4d01b72ee53c98095e2b0430cfe55cd15cd955e7ecebc904"
-            },
-            "size": 1969666675
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25F80",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "Mac15,12",
-                "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
-                "Mac17,2",
-                "Mac17,3",
-                "Mac17,4",
-                "Mac17,5",
-                "Mac17,6",
-                "Mac17,7",
-                "Mac17,8",
-                "Mac17,9",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56714/5782ABBB-5CBA-4C5C-B2BF-688ECBF20C68/com_apple_MobileAsset_MacSoftwareUpdate/173798a8aa98d2cfb982bc3f8d515570d6cafde2.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "173798a8aa98d2cfb982bc3f8d515570d6cafde2",
-                "sha2-256": "a747157c63211748108992409b8001282131efd57ec6550783e632ae09c47c97"
-            },
-            "size": 3928722614
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25F84",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56840/166325B1-8040-49D1-B5F6-1F0713FF3063/com_apple_MobileAsset_MacSoftwareUpdate/50c976277fb05a475f26c7252bd33c789a274863.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "50c976277fb05a475f26c7252bd33c789a274863",
-                "sha2-256": "b087f66196ee26f51549bc079a4e79d52e458f7c49059e28b190af94e249e330"
-            },
-            "size": 1961227255
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25F84",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "Mac15,12",
-                "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
-                "Mac17,2",
-                "Mac17,3",
-                "Mac17,4",
-                "Mac17,5",
-                "Mac17,6",
-                "Mac17,7",
-                "Mac17,8",
-                "Mac17,9",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56796/6E530457-DF8B-4508-8D40-A5C7705E9E97/com_apple_MobileAsset_MacSoftwareUpdate/6ffa8e5e2e5f6ea71bd70d7ae65005efa35e7594.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "6ffa8e5e2e5f6ea71bd70d7ae65005efa35e7594",
-                "sha2-256": "dca71412cc125d06051257e088a12478edead6a983070ffee3ccb9a97161e700"
-            },
-            "size": 3920611477
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25G5057c",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56819/A0A534EB-A7FA-43CD-B38F-EC963634F255/com_apple_MobileAsset_MacSoftwareUpdate/dbe80599ed8a93fa7fe3cd0ef8722ee215e87784.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "dbe80599ed8a93fa7fe3cd0ef8722ee215e87784",
-                "sha2-256": "ce97d234640353bf616a072b8e11b3802fdc164e061cf72a30bbbd0fe64335a0"
-            },
-            "size": 1496823644
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25G5057c",
-            "deviceMap": [
-                "iMac21,1",
-                "iMac21,2",
-                "Mac13,1",
-                "Mac13,2",
-                "Mac14,2",
-                "Mac14,3",
-                "Mac14,5",
-                "Mac14,6",
-                "Mac14,7",
-                "Mac14,8",
-                "Mac14,8-Rack",
-                "Mac14,9",
-                "Mac14,10",
-                "Mac14,12",
-                "Mac14,13",
-                "Mac14,14",
-                "Mac14,15",
-                "Mac15,3",
-                "Mac15,4",
-                "Mac15,5",
-                "Mac15,6",
-                "Mac15,7",
-                "Mac15,8",
-                "Mac15,9",
-                "Mac15,10",
-                "Mac15,11",
-                "Mac15,12",
-                "Mac15,13",
-                "Mac15,14",
-                "Mac16,1",
-                "Mac16,2",
-                "Mac16,3",
-                "Mac16,5",
-                "Mac16,6",
-                "Mac16,7",
-                "Mac16,8",
-                "Mac16,9",
-                "Mac16,10",
-                "Mac16,11",
-                "Mac16,12",
-                "Mac16,13",
-                "Mac17,2",
-                "Mac17,3",
-                "Mac17,4",
-                "Mac17,5",
-                "Mac17,6",
-                "Mac17,7",
-                "Mac17,8",
-                "Mac17,9",
-                "MacBookAir10,1",
-                "MacBookPro17,1",
-                "MacBookPro18,1",
-                "MacBookPro18,2",
-                "MacBookPro18,3",
-                "MacBookPro18,4",
-                "Macmini9,1",
-                "VirtualMac2,1"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56723/AE2D2305-BA64-403E-A865-D89D696F9891/com_apple_MobileAsset_MacSoftwareUpdate/bdceaee544b1884d9dcf043fd7f18de07d865d53.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "bdceaee544b1884d9dcf043fd7f18de07d865d53",
-                "sha2-256": "e19edfd86551ee2b4e5db6e595cef715b5f9ec625b408526eff72c2a7e40bc7c"
-            },
-            "size": 3265425236
-        },
-        {
-            "type": "ota",
-            "prerequisiteBuild": "25G5065a",
-            "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
-                "MacPro7,1",
-                "MacPro7,1-Rack"
-            ],
-            "links": [
-                {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56813/2889384B-688C-4CAF-A690-C2B2022490A0/com_apple_MobileAsset_MacSoftwareUpdate/a7cb6e5c50a6ac3ae2a1eaa9aa42e230c313a6f4.zip",
-                    "active": true
-                }
-            ],
-            "hashes": {
-                "sha1": "a7cb6e5c50a6ac3ae2a1eaa9aa42e230c313a6f4",
-                "sha2-256": "84f5aea83257eb2e025a952a1aef065b7e7dace99f650f825cfc6462e8f9c9bd"
-            },
-            "size": 1261483416
+            "size": 12598118682
         },
         {
             "type": "ota",
@@ -1958,15 +1010,459 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56760/1FD00BB0-BD21-4B85-AC53-E34DA5FFD9A7/com_apple_MobileAsset_MacSoftwareUpdate/90d91c5d5dc217df6dd332ffe84ebb8b0ff17c3a.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-86403/F647E55F-65D4-4978-97E9-B5562ED29BE3/com_apple_MobileAsset_MacSoftwareUpdate/d2b7038466d85adfff8174d56ed09aa8c3126c4a.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "90d91c5d5dc217df6dd332ffe84ebb8b0ff17c3a",
-                "sha2-256": "082c986bf1ab9097ced7ef4efa3e2075659a576079fc928d88ff8a883b07e0fd"
+                "sha1": "d2b7038466d85adfff8174d56ed09aa8c3126c4a",
+                "sha2-256": "402d5eab85ee77a17665a7f87f163a2209148457fabe667da9a929d8fa2a193d"
             },
-            "size": 2981184336
+            "size": 11079581425
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "25G70",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
+                "Mac15,12",
+                "Mac15,13",
+                "Mac15,14",
+                "Mac16,1",
+                "Mac16,2",
+                "Mac16,3",
+                "Mac16,5",
+                "Mac16,6",
+                "Mac16,7",
+                "Mac16,8",
+                "Mac16,9",
+                "Mac16,10",
+                "Mac16,11",
+                "Mac16,12",
+                "Mac16,13",
+                "Mac17,2",
+                "Mac17,3",
+                "Mac17,4",
+                "Mac17,5",
+                "Mac17,6",
+                "Mac17,7",
+                "Mac17,8",
+                "Mac17,9",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-87698/AF782AE7-4C6D-48BC-9D2D-B95F96D08781/com_apple_MobileAsset_MacSoftwareUpdate/7ade6dcbe7e72c78fb6e43f024f0e69812c8fa8d.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "7ade6dcbe7e72c78fb6e43f024f0e69812c8fa8d",
+                "sha2-256": "f5b5cc3caffdb3c1740fd17be985e217b0a52d8b9737b75f5c42cf504d418624"
+            },
+            "size": 11083243249
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "25G72",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
+                "Mac15,12",
+                "Mac15,13",
+                "Mac15,14",
+                "Mac16,1",
+                "Mac16,2",
+                "Mac16,3",
+                "Mac16,5",
+                "Mac16,6",
+                "Mac16,7",
+                "Mac16,8",
+                "Mac16,9",
+                "Mac16,10",
+                "Mac16,11",
+                "Mac16,12",
+                "Mac16,13",
+                "Mac17,2",
+                "Mac17,3",
+                "Mac17,4",
+                "Mac17,5",
+                "Mac17,6",
+                "Mac17,7",
+                "Mac17,8",
+                "Mac17,9",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-84083/04FE81AC-9D54-4F71-9DFC-58E4B9F4E4F5/com_apple_MobileAsset_MacSoftwareUpdate/1ac9902f4d1241dd6f51ed0055fca87ff56d454a.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "1ac9902f4d1241dd6f51ed0055fca87ff56d454a",
+                "sha2-256": "1d752b355e15b2fa2b052e5a6f76e436e2b06b43dcd975d3ccdda20d0a961216"
+            },
+            "size": 11082562509
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "25G76",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
+                "Mac15,12",
+                "Mac15,13",
+                "Mac15,14",
+                "Mac16,1",
+                "Mac16,2",
+                "Mac16,3",
+                "Mac16,5",
+                "Mac16,6",
+                "Mac16,7",
+                "Mac16,8",
+                "Mac16,9",
+                "Mac16,10",
+                "Mac16,11",
+                "Mac16,12",
+                "Mac16,13",
+                "Mac17,2",
+                "Mac17,3",
+                "Mac17,4",
+                "Mac17,5",
+                "Mac17,6",
+                "Mac17,7",
+                "Mac17,8",
+                "Mac17,9",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-84082/CD554A79-1CCD-4226-A36D-183CBA899A43/com_apple_MobileAsset_MacSoftwareUpdate/bf4ea44a0c100a5749eb508d5cb9f24ed770fa41.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "bf4ea44a0c100a5749eb508d5cb9f24ed770fa41",
+                "sha2-256": "5f383d7ba97bb5254d7079a472d44678f0d76c82e979a4aa3b59958e1c94dc66"
+            },
+            "size": 11083436136
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "26A5378j",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
+                "Mac15,12",
+                "Mac15,13",
+                "Mac15,14",
+                "Mac16,1",
+                "Mac16,2",
+                "Mac16,3",
+                "Mac16,5",
+                "Mac16,6",
+                "Mac16,7",
+                "Mac16,8",
+                "Mac16,9",
+                "Mac16,10",
+                "Mac16,11",
+                "Mac16,12",
+                "Mac16,13",
+                "Mac17,2",
+                "Mac17,3",
+                "Mac17,4",
+                "Mac17,5",
+                "Mac17,6",
+                "Mac17,7",
+                "Mac17,8",
+                "Mac17,9",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-83319/7E61EDA8-FC2C-4C2E-A7D2-9BFDF97348C4/com_apple_MobileAsset_MacSoftwareUpdate/4e0c756b49fea87acd4d1e77afcf27b38cb73c20.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "4e0c756b49fea87acd4d1e77afcf27b38cb73c20",
+                "sha2-256": "ffe69cc3129db704723e00b9b2c09030ff5dd1baa0fed668bfca429f106370ec"
+            },
+            "size": 5923082458
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "26A5378n",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
+                "Mac15,12",
+                "Mac15,13",
+                "Mac15,14",
+                "Mac16,1",
+                "Mac16,2",
+                "Mac16,3",
+                "Mac16,5",
+                "Mac16,6",
+                "Mac16,7",
+                "Mac16,8",
+                "Mac16,9",
+                "Mac16,10",
+                "Mac16,11",
+                "Mac16,12",
+                "Mac16,13",
+                "Mac17,2",
+                "Mac17,3",
+                "Mac17,4",
+                "Mac17,5",
+                "Mac17,6",
+                "Mac17,7",
+                "Mac17,8",
+                "Mac17,9",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-82604/D626A75A-9512-457F-978E-6889949EE2FA/com_apple_MobileAsset_MacSoftwareUpdate/891489ca3ab628e41c3f7cf88b36409e5ed021e3.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "891489ca3ab628e41c3f7cf88b36409e5ed021e3",
+                "sha2-256": "0418064cd824c20f282987ad48a6f23be39d7b40817d570121d3142c1d6b8650"
+            },
+            "size": 5922423204
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "26A5388g",
+            "deviceMap": [
+                "iMac21,1",
+                "iMac21,2",
+                "Mac13,1",
+                "Mac13,2",
+                "Mac14,2",
+                "Mac14,3",
+                "Mac14,5",
+                "Mac14,6",
+                "Mac14,7",
+                "Mac14,8",
+                "Mac14,8-Rack",
+                "Mac14,9",
+                "Mac14,10",
+                "Mac14,12",
+                "Mac14,13",
+                "Mac14,14",
+                "Mac14,15",
+                "Mac15,3",
+                "Mac15,4",
+                "Mac15,5",
+                "Mac15,6",
+                "Mac15,7",
+                "Mac15,8",
+                "Mac15,9",
+                "Mac15,10",
+                "Mac15,11",
+                "Mac15,12",
+                "Mac15,13",
+                "Mac15,14",
+                "Mac16,1",
+                "Mac16,2",
+                "Mac16,3",
+                "Mac16,5",
+                "Mac16,6",
+                "Mac16,7",
+                "Mac16,8",
+                "Mac16,9",
+                "Mac16,10",
+                "Mac16,11",
+                "Mac16,12",
+                "Mac16,13",
+                "Mac17,2",
+                "Mac17,3",
+                "Mac17,4",
+                "Mac17,5",
+                "Mac17,6",
+                "Mac17,7",
+                "Mac17,8",
+                "Mac17,9",
+                "MacBookAir10,1",
+                "MacBookPro17,1",
+                "MacBookPro18,1",
+                "MacBookPro18,2",
+                "MacBookPro18,3",
+                "MacBookPro18,4",
+                "Macmini9,1",
+                "VirtualMac2,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-88320/62992DF1-23B5-477F-A2C8-343A5F888A02/com_apple_MobileAsset_MacSoftwareUpdate/0a086f774ff05b47a0a9c1ac354f04a973722409.zip",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "0a086f774ff05b47a0a9c1ac354f04a973722409",
+                "sha2-256": "f34e137115351f8dc5752f4f11e238d53b80517e090011f77caf76f1d9e44d43"
+            },
+            "size": 5416207712
         },
         {
             "type": "sfr",
@@ -2031,21 +1527,19 @@
             ],
             "links": [
                 {
-                    "url": "https://updates.cdn-apple.com/2026SummerFCS/patches/140-56858/3EA061FA-D6A3-47AE-BE7F-109B27CA4CC1/com_apple_MobileAsset_SFRSoftwareUpdate/0e9a453f0196420a586a6ed787b4b8a873cc1887.zip",
+                    "url": "https://updates.cdn-apple.com/2026SummerSeed/patches/140-85742/B57F2F57-679A-498D-B25C-90FB192DDD3C/com_apple_MobileAsset_SFRSoftwareUpdate/11d6ebef07034a9e4461649158ca2109ed7765cd.zip",
                     "active": true
                 }
             ],
             "hashes": {
-                "sha1": "0e9a453f0196420a586a6ed787b4b8a873cc1887",
-                "sha2-256": "895778f77a2e90e21304585628059be340689db11b628b6fda2c53842e8543cf"
+                "sha1": "11d6ebef07034a9e4461649158ca2109ed7765cd",
+                "sha2-256": "5eb49de77e2c8ad65aa6b8685a85a1277bfa68116a93bb5c52e411f6f1e1e82b"
             },
-            "size": 2711166942
+            "size": 2858905311
         },
         {
             "type": "kdk",
             "deviceMap": [
-                "iMac20,1",
-                "iMac20,2",
                 "iMac21,1",
                 "iMac21,2",
                 "Mac13,1",
@@ -2096,26 +1590,21 @@
                 "Mac17,8",
                 "Mac17,9",
                 "MacBookAir10,1",
-                "MacBookPro16,1",
-                "MacBookPro16,2",
-                "MacBookPro16,4",
                 "MacBookPro17,1",
                 "MacBookPro18,1",
                 "MacBookPro18,2",
                 "MacBookPro18,3",
                 "MacBookPro18,4",
                 "Macmini9,1",
-                "MacPro7,1",
-                "MacPro7,1-Rack",
                 "VirtualMac2,1"
             ],
             "links": [
                 {
-                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_26.6_build_25G70/Kernel_Debug_Kit_26.6_build_25G70.dmg",
+                    "url": "https://developer.apple.com/services-account/download?path=/macOS/Kernel_Debug_Kit_27.0_build_26A5406e/Kernel_Debug_Kit_27.0_build_26A5406e.dmg",
                     "active": true
                 }
             ],
-            "size": 1179591212
+            "size": 1149520803
         }
     ]
 }
