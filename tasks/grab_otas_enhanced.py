@@ -518,6 +518,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
         assets = parsed_response.get('Assets', [])
         full_relative_url = None
         for asset in assets:
+            if update_type == 'recovery' and os_str in ['iOS', 'iPadOS'] and ((asset['SupportedDevices'][0].startswith('iPad')) != (os_str == 'iPadOS')): continue
             if asset.get("AlternateAssetAudienceUUID"):
                 additional_audiences.add(asset["AlternateAssetAudienceUUID"])
 

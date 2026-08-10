@@ -161,50 +161,51 @@ def import_ota(
 
     counter = 0
     delete_output_dir = False
-    if only_needs_baseband:
-        delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
-        extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
-        build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
-    elif not skip_remote:
-        if ota_key:
-            if Path(aea_support_filename).exists():
-                print('Downloading full OTA file')
-                delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
-                extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
-                info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
-                build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
-
-                if info_plist.get('MobileAssetProperties'):
-                    info_plist = info_plist['MobileAssetProperties']
-
-                if info_plist.get('SplatOnly'):
-                    update_type = 'rsr'
-        else:
-            while True:
-                try:
-                    ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
-                    print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
-
-                    info_plist = plistlib.loads(ota.read("Info.plist"))
-                    manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
-                    if manifest_paths:
-                        build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+    if update_type == 'ota':
+        if only_needs_baseband:
+            delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
+            extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
+            build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
+        elif not skip_remote:
+            if ota_key:
+                if Path(aea_support_filename).exists():
+                    print('Downloading full OTA file')
+                    delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
+                    extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
+                    info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
+                    build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
 
                     if info_plist.get('MobileAssetProperties'):
                         info_plist = info_plist['MobileAssetProperties']
 
                     if info_plist.get('SplatOnly'):
                         update_type = 'rsr'
-                    bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
-                    break
-                except remotezip.RemoteIOError as e:
-                    if e.args[0].startswith('403 Client Error'):
-                        print('No file')
-                        raise e
-                    time.sleep(1+counter)
-                    counter += 1
-                    if counter > 10:
-                        raise e
+            else:
+                while True:
+                    try:
+                        ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
+                        print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
+
+                        info_plist = plistlib.loads(ota.read("Info.plist"))
+                        manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
+                        if manifest_paths:
+                            build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+
+                        if info_plist.get('MobileAssetProperties'):
+                            info_plist = info_plist['MobileAssetProperties']
+
+                        if info_plist.get('SplatOnly'):
+                            update_type = 'rsr'
+                        bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
+                        break
+                    except remotezip.RemoteIOError as e:
+                        if e.args[0].startswith('403 Client Error'):
+                            print('No file')
+                            raise e
+                        time.sleep(1+counter)
+                        counter += 1
+                        if counter > 10:
+                            raise e
     bridge_version = None
 
     if bridge_version_info:
