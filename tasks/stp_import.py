@@ -144,8 +144,8 @@ for package_type, type_sources in sources.items():
             "hashes": file_hashes,
             "links": [{"url": link}]
         })
-Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split(".", 1)[0]}.x").mkdir(exist_ok=True, parents=True)
-stp_file = Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split(".", 1)[0]}.x/{properties['Release']}.json")
+Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split('.', 1)[0]}.x").mkdir(exist_ok=True, parents=True)
+stp_file = Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split('.', 1)[0]}.x/{properties['Release']}.json")
 if args.force or not stp_file.exists():
     with stp_file.open("w", encoding="utf-8", newline="\n") as opened_stp_file:
         json.dump(sort_os_file(None, source), opened_stp_file, indent=4, ensure_ascii=False)
