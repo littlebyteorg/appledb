@@ -341,6 +341,7 @@ parser.add_argument('-a', '--audience', default=['release'], nargs="+")
 parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-e', '--echo-request', action='store_true')
+parser.add_argument('-i', '--include-rcs', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
 parser.add_argument('-p', '--only-prerequisites', action='store_true')
 parser.add_argument('-q', '--quiet', action='store_true')
@@ -355,6 +356,7 @@ file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 is_rc = args.update_type == 'rc'
 is_next_major = args.update_type == 'next'
+skip_delta_os_map = {}
 if args.os and args.build:
     parsed_args = dict(zip(args.os, args.build))
 else:
@@ -367,12 +369,17 @@ else:
         if os_str not in choice_list: continue
         parsed_args.setdefault(os_str, [])
         if is_rc:
-            if os_str != 'macOS':
-                parsed_args[os_str].extend(latest_builds[os_str]['release'])
-            if os_str in ['macOS', 'watchOS']:
-                parsed_args[os_str].extend(latest_builds[os_str]['beta'])
-            if os_str == 'watchOS':
-                parsed_args[os_str] = list(set(parsed_args[os_str]))
+            if latest_builds[os_str].get('rc'):
+                parsed_args[os_str].extend(latest_builds[os_str]['rc'])
+            else:
+                if os_str != 'macOS':
+                    parsed_args[os_str].extend(latest_builds[os_str]['release'])
+                if os_str in ['macOS', 'watchOS']:
+                    parsed_args[os_str].extend(latest_builds[os_str]['beta'])
+                else:
+                    skip_delta_os_map[os_str] = True
+                if os_str == 'watchOS':
+                    parsed_args[os_str] = list(set(parsed_args[os_str]))
         else:
             if is_next_major:
                 parsed_args[os_str].extend(latest_builds[os_str]['next'])
@@ -381,8 +388,13 @@ else:
                 del parsed_args[os_str]
                 continue
             parsed_args[os_str].extend(latest_builds[os_str][build_key])
+            if latest_builds[os_str].get('rc') and args.include_rcs:
+                parsed_args[os_str].extend(latest_builds[os_str]['rc'])
         if args.rsr:
             parsed_args[os_str] = [parsed_args[os_str][-1]]
+
+for os_str in parsed_args.keys():
+    skip_delta_os_map.setdefault(os_str, args.no_prerequisites)
 
 minimum_compatibility = 0
 maximum_compatibility = 1000
@@ -700,7 +712,7 @@ for (os_str, builds) in parsed_args.items():
             })
 
         # RSRs are only for the latest version
-        if not args.rsr and not args.no_prerequisites and not (is_rc and os_str not in ('watchOS', 'macOS')):
+        if not args.rsr and not skip_delta_os_map[os_str]:
             for source in build_data.get("sources", []):
                 if not source.get('prerequisiteBuild'):
                     continue
