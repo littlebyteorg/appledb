@@ -2,6 +2,7 @@
     "osStr": "watchOS",
     "version": "6.0.1",
     "build": "17R604",
+    "buildId": "875E6EA2-DF52-11E9-8E03-CD54AEB892C2",
     "buildTrain": "Grace",
     "released": "2019-09-30",
     "releaseNotes": "https://support.apple.com/HT210583#601",
@@ -10,6 +11,10 @@
         "Watch3,2",
         "Watch3,3",
         "Watch3,4",
+        "Watch4,1",
+        "Watch4,2",
+        "Watch4,3",
+        "Watch4,4",
         "Watch5,1",
         "Watch5,2",
         "Watch5,3",
@@ -18,10 +23,124 @@
     "basebandVersions": {
         "Watch3,1": "4.00.00",
         "Watch3,2": "4.00.00",
+        "Watch4,3": "2.00.03",
+        "Watch4,4": "2.00.03",
         "Watch5,3": "2.00.03",
         "Watch5,4": "2.00.03"
     },
     "sources": [
+        {
+            "type": "recovery",
+            "systemImageId": "08EDB3DC-CB9B-445B-A517-0B49BA464EEC",
+            "deviceMap": [
+                "Watch3,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22275/063A68AE-DF97-11E9-A973-04456638053C/com_apple_MobileAsset_RecoveryOSUpdate/1836fc0f956799f73aebab32b19619f63e52096d.zip",
+                    "active": true
+                }
+            ],
+            "size": 131778189
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "504F875A-42EB-41B9-9A74-224E8C4C1435",
+            "deviceMap": [
+                "Watch3,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22297/0617B0FC-DF97-11E9-8EF5-03456638053C/com_apple_MobileAsset_RecoveryOSUpdate/82d519e0df3943750edd68cd5cba35f3fa515fa7.zip",
+                    "active": true
+                }
+            ],
+            "size": 131741474
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "C31DB3F5-7EC6-415B-B492-2DA90985879B",
+            "deviceMap": [
+                "Watch3,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22264/061EC73E-DF97-11E9-8802-09456638053C/com_apple_MobileAsset_RecoveryOSUpdate/a8852b5921b0618beda22e4df2d11c46262d1e66.zip",
+                    "active": true
+                }
+            ],
+            "size": 100935323
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "1512862B-F6F5-4BD4-8444-CE923DA6BB20",
+            "deviceMap": [
+                "Watch3,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22223/063CDC1A-DF97-11E9-B298-06456638053C/com_apple_MobileAsset_RecoveryOSUpdate/2e04b9aa9ce69bacf4153b5b598747b4e1fce7db.zip",
+                    "active": true
+                }
+            ],
+            "size": 100722598
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "5765989C-D4A2-449B-A261-6D06EEB8E486",
+            "deviceMap": [
+                "Watch4,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22075/06389754-DF97-11E9-A956-0D456638053C/com_apple_MobileAsset_RecoveryOSUpdate/8b612ea61a4d2c73aec016e585b3f490335c4c38.zip",
+                    "active": true
+                }
+            ],
+            "size": 98535403
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "16F19B63-CC3E-4979-A3DE-3BEE06A94D71",
+            "deviceMap": [
+                "Watch4,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22365/062E9006-DF97-11E9-897D-0B456638053C/com_apple_MobileAsset_RecoveryOSUpdate/cad586b07c4544a687392d77674935f8ecece036.zip",
+                    "active": true
+                }
+            ],
+            "size": 98607826
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "D5917FCA-DE60-463F-B154-CDD77B7B650C",
+            "deviceMap": [
+                "Watch4,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22043/064C2BA2-DF97-11E9-8363-12456638053C/com_apple_MobileAsset_RecoveryOSUpdate/885445fecdf4205791fafe0100f94695a7f7f1cc.zip",
+                    "active": true
+                }
+            ],
+            "size": 116287110
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "BF925CE2-F44E-44D4-8549-BA71CBC35979",
+            "deviceMap": [
+                "Watch4,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22296/0646BDAC-DF97-11E9-A7C0-0F456638053C/com_apple_MobileAsset_RecoveryOSUpdate/a77b51921278787af581cd28ceaa5d997e5b4363.zip",
+                    "active": true
+                }
+            ],
+            "size": 116335100
+        },
         {
             "type": "ota",
             "deviceMap": [
@@ -38,6 +157,7 @@
         {
             "type": "ota",
             "prerequisiteBuild": "17R575",
+            "systemImageId": "7E59411F-2042-443F-9CDB-EC524944B57F",
             "deviceMap": [
                 "Watch5,1"
             ],
@@ -48,6 +168,20 @@
                 }
             ],
             "size": 80035060
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "A0E2054B-727E-4717-9CB8-7800E9305541",
+            "deviceMap": [
+                "Watch5,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22101/063BFAAC-DF97-11E9-8437-15456638053C/com_apple_MobileAsset_RecoveryOSUpdate/38e41cc95299fe0b6b7a5b9a3b49b9c7058c3cdc.zip",
+                    "active": true
+                }
+            ],
+            "size": 98850436
         },
         {
             "type": "ota",
@@ -65,6 +199,7 @@
         {
             "type": "ota",
             "prerequisiteBuild": "17R575",
+            "systemImageId": "F9D0BD85-4BE1-420D-9E25-7DE85FA7EF80",
             "deviceMap": [
                 "Watch5,2"
             ],
@@ -77,7 +212,22 @@
             "size": 80108145
         },
         {
+            "type": "recovery",
+            "systemImageId": "B334966D-A599-4427-B2ED-189C917688AA",
+            "deviceMap": [
+                "Watch5,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22107/0635518E-DF97-11E9-90AD-13456638053C/com_apple_MobileAsset_RecoveryOSUpdate/37d27fe6cc07694b7d9b09be015bf477b8c084a8.zip",
+                    "active": true
+                }
+            ],
+            "size": 98991428
+        },
+        {
             "type": "ota",
+            "systemImageId": "FCABEBF9-64AC-4422-8519-5823738F96F7",
             "deviceMap": [
                 "Watch5,3"
             ],
@@ -104,6 +254,20 @@
             "size": 95927668
         },
         {
+            "type": "recovery",
+            "systemImageId": "FCE8DA8C-41EE-47FC-B3C5-89BBAD3839F6",
+            "deviceMap": [
+                "Watch5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22351/0635FE22-DF97-11E9-A410-16456638053C/com_apple_MobileAsset_RecoveryOSUpdate/0af9a68b4ddd3390af646eb8c7952e543f13fd0c.zip",
+                    "active": true
+                }
+            ],
+            "size": 116734478
+        },
+        {
             "type": "ota",
             "deviceMap": [
                 "Watch5,4"
@@ -119,6 +283,7 @@
         {
             "type": "ota",
             "prerequisiteBuild": "17R575",
+            "systemImageId": "CE06B688-6A59-4DC9-8BC3-66E409F1817C",
             "deviceMap": [
                 "Watch5,4"
             ],
@@ -129,6 +294,20 @@
                 }
             ],
             "size": 95921526
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "337DEA5A-D8A6-43D5-9E4D-692B71A6644B",
+            "deviceMap": [
+                "Watch5,4"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2019FallFCS/patches/061-22333/063CE89A-DF97-11E9-8813-14456638053C/com_apple_MobileAsset_RecoveryOSUpdate/71d56fb6a5674e9687cdd0261799b95bcbacaff9.zip",
+                    "active": true
+                }
+            ],
+            "size": 116791227
         }
     ]
 }

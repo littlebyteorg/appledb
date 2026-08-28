@@ -25,7 +25,7 @@ rewrite_map_v2 = {
     "https://qtinstall.info.apple.com/": ["http://qtinstall.info.apple.com/"],
     "https://download.info.apple.com/": ["http://download.info.apple.com/"],
     "https://support.apple.com/downloads/": ["http://support.apple.com/downloads/"],
-    "https://devimages-cdn.apple.com/": ["http://devimages-cdn.apple.com/"],
+    "https://devimages-cdn.apple.com/": ["http://devimages-cdn.apple.com/", "https://devimages.apple.com.edgekey.net/", "http://devimages.apple.com.edgekey.net"],
     # It's archive.org
     "https://archive.org/": [],
     # Placeholder in the source files because APPX links expire

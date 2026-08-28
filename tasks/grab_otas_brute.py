@@ -53,7 +53,7 @@ def call_pallas(board_id, os_build, os_str, target_audience, device_identifier, 
 
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     for asset in parsed_response['Assets']:
-        if not asset.get('PrerequisiteBuild'):
+        if args.only_deltas and not asset.get('PrerequisiteBuild'):
             # found_prerequisites.add(f"{asset['OSVersion']} ({asset['Build']})")
             continue
         found_prerequisites.add(f"{asset['PrerequisiteOSVersion']} ({asset['PrerequisiteBuild']})")
@@ -68,6 +68,7 @@ audience_choice_list = ['alternate', 'developer', 'appleseed', 'public', 'releas
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--audiences', nargs="+", choices=audience_choice_list, default=audience_choice_list)
 parser.add_argument('-b', '--boards', nargs="+", required=True)
+parser.add_argument('-d', '--only-deltas', action='store_false')
 parser.add_argument('-f', '--forks', nargs="+", type=int, required=True)
 parser.add_argument('-i', '--identifiers', nargs="+", required=True)
 parser.add_argument('-o', '--os', choices=choice_list, required=True)
@@ -115,6 +116,7 @@ for fork in args.forks:
 
     for asset_audience in target_audiences:
         audience_label = audience_labels[asset_audience]
+        if suffix_range[0] != '' and audience_label.endswith('release'): continue
         print(audience_label)
         for board, identifier in board_identifier_map.items():
             for build in range(start_range, end_range+1):

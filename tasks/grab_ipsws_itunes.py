@@ -54,17 +54,16 @@ known_builds = [
     '20H392',  # 16.7.16
     '21H461',  # 17.7.11
     '22C161',  # 18.2.1
-    '22H355',  # 18.7.9
-    '23F77',   # 26.5
-    '23F81',   # 26.5.1
+    '22H374',  # 18.7.10
+    '23G83',   # 26.6.1
     # tvOS
     '11D258',  # 6.2.1
     '12H1006', # 7.9
-    '23L471',  # 26.5
+    '23L773',  # 26.6
     # others
-    '23O471',  # visionOS 26.5
-    '23P5067', # bridgeOS 10.5
-    '25F80',   # macOS 26.5
+    '23O780',  # visionOS 26.6.1
+    '23P6068', # bridgeOS 10.6
+    '25G83',   # macOS 26.6.2
 ]
 
 filename_prefix_map = {
@@ -77,7 +76,7 @@ filename_prefix_map = {
 }
 builds = set()
 for url in urls:
-    response = requests.get(url + f"?{random.choice(string.ascii_letters)}cachebust{random.randint(100, 1000)}", timeout=30)
+    response = requests.get(url + f"?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     plist = plistlib.loads(response.content)
@@ -135,4 +134,5 @@ if bool(ipsw_list):
         cleaned_list.append(item)
     print(f"{count} links added")
     _ = [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
-    json.dump(cleaned_list, Path("import.json").open("w", encoding="utf-8"), indent=4)
+    with Path("import.json").open("w", encoding="utf-8") as open_import_file:
+        json.dump(cleaned_list, open_import_file, indent=4)

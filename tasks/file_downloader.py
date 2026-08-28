@@ -14,15 +14,16 @@ import requests
 
 SESSION = requests.session()
 async def get_size(url):
-    response = SESSION.head(url)
+    response = SESSION.head(url, allow_redirects=True)
     size = int(response.headers['Content-Length'])
+    assert size > 0
     return size
 
 
 def download_range(url, start, end, output):
     if Path(output).exists(): return
     headers = {'Range': f'bytes={start}-{end}'}
-    response = SESSION.get(url, headers=headers)
+    response = SESSION.get(url, headers=headers, timeout=30)
 
     with open(output, 'wb') as f:
         for part in response.iter_content(1024):
@@ -58,6 +59,10 @@ async def download(run, url, hashes, output_path, chunk_size=104857600):
         if 'sha2-256' in hashes:
             sha256 = hashlib.sha256()
 
+        for i in range(len(chunks)):
+            if not Path(f'{output_path}.part{i}').exists():
+                return await download(run, url, hashes, output_path, chunk_size)
+
         with open(output_path, 'wb') as o:
             for i in range(len(chunks)):
                 chunk_path = f'{output_path}.part{i}'
@@ -83,7 +88,7 @@ async def download(run, url, hashes, output_path, chunk_size=104857600):
 
     return file_hashes
 
-def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifest=False):
+def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifest=False, extract_file=True):
     file_path = f'otas/{download_link.split("/")[-1]}'
     output_path = file_path.split('.')[0]
     remove_input_file = False
@@ -108,14 +113,14 @@ def handle_ota_file(download_link, key, aea_support_file='aastuff', only_manifes
             finally:
                 loop.close()
 
-        if not Path(output_path).exists():
+        if extract_file and not Path(output_path).exists():
             remove_output_file = True
             subprocess.run([f'./{aea_support_file}', '-i', file_path, '-o', output_path, '-k', key], check=True, stderr=subprocess.DEVNULL)
             if remove_input_file:
                 Path(file_path).unlink(missing_ok=True)
     return remove_output_file
 
-def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None, file_suffix=None, remove_file=True):
+def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_path=None, file_suffix=None, remove_file=True, remove_extracted_folder=True):
     if hashes is None:
         hashes = ['sha1']
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
@@ -140,7 +145,7 @@ def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_pat
         payload_path = f"{output_path}/Payload"
         try:
             subprocess.run(['pkgutil', '--expand-full', f'{output_path}.pkg', output_path], check=True)
-        except subprocess.CalledProcessError:
+        except FileNotFoundError:
             subprocess.run(["7z", "x", "-txar", "-bso0", "-bsp0", f'-o{output_path}', f'{output_path}.pkg', "Payload"], check=True)
             is_compressed = pbzx.extract_file(f'{payload_path}', f'{payload_path}_expanded')
             payload_file = 'Payload'
@@ -152,7 +157,8 @@ def handle_pkg_file(download_link=None, hashes=None, extracted_manifest_file_pat
             subprocess.run(["cpio", "-i"], input=gz_output.stdout, cwd=output_path, stderr=subprocess.DEVNULL)
             payload_path = output_path
         manifest_content = plistlib.loads(Path(f'{payload_path}/{extracted_manifest_file_path}').read_bytes())
-        shutil.rmtree(output_path)
+        if remove_extracted_folder:
+            shutil.rmtree(output_path)
 
     if remove_file:
         Path(f'{output_path}.pkg').unlink(missing_ok=True)

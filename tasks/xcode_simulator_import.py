@@ -6,6 +6,7 @@ import json
 import plistlib
 from pathlib import Path
 import re
+import string
 import zoneinfo
 import random
 
@@ -18,7 +19,7 @@ from update_links import update_links
 session = requests.session()
 
 xcode_response = session.get('https://xcodereleases.com/data.json').json()
-simulator_response = plistlib.loads(session.get(f'https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex?cachebust{random.randint(100, 1000)}').content)
+simulator_response = plistlib.loads(session.get(f'https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}').content)
 
 simulator_pallas_mapping = {
     'iOS': 'iOSSimulatorRuntime',
@@ -39,6 +40,8 @@ def call_pallas(os, requested_build):
     parsed_response = json.loads(base64.b64decode(response.text.split('.')[1] + '==', validate=False))
     assets = parsed_response.get('Assets', [])
     parsed_assets = []
+    if not assets:
+        print(f"Missing simulator - {os} {requested_build}")
     for asset in assets:
         parsed_asset = {
             'type': asset['__RelativePath'].split('.')[-1],
@@ -63,7 +66,7 @@ def get_build_train(target_build):
         '15': 'Rainbow',
         '16': 'Geode',
         '17': 'Wonder',
-        '18': 'Meadow',
+        '27': 'Meadow',
     }
     build_type_map = {
         '5': 'Seed',

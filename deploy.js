@@ -82,7 +82,7 @@ function handleSDKs(baseItem) {
     sdk["uniqueBuild"] = (sdk["build"] || sdk["version"]) + "-" + (baseItem["uniqueBuild"] || baseItem["build"] || baseItem["version"]) + "-SDK";
     sdk["released"] = baseItem["released"];
     sdk["deviceMap"] = [
-      (sdk["osStr"].indexOf("OS X") >= 0 ? "macOS" : sdk["osStr"]) + " SDK",
+      (sdk["osStr"].indexOf("OS X") >= 0 ? "macOS" : (sdk["osStr"].indexOf("iPhone") >= 0 ? "iOS" : sdk["osStr"])) + " SDK",
     ];
     sdk["sdk"] = true;
     sdkEntries.push(sdk);
@@ -203,6 +203,7 @@ for (let i of osFiles) {
   );
 }
 let filterOTAsArray = ["audioOS", "tvOS", "watchOS", "iOS", "HomePod Software"];
+let filterTypes = ["ota", "sfr", "recovery"]
 osFiles = osFiles.concat(createDuplicateEntriesArray).map(function (ver) {
   if (!ver.uniqueBuild) ver.uniqueBuild = ver.build || ver.version;
   if (!ver.key) ver.key = ver.osStr + ";" + ver.uniqueBuild;
@@ -315,7 +316,7 @@ var filesWritten = 0;
 function filterOTAs(ver) {
   ver = { ...ver };
   if (filterOTAsArray.indexOf(ver.osType) >= 0 && ver.sources)
-    ver.sources = ver.sources.filter((source) => source.type != "ota");
+    ver.sources = ver.sources.filter((source) => filterTypes.indexOf(source.type) === -1);
   return ver;
 }
 

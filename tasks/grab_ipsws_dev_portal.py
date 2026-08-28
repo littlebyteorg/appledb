@@ -58,24 +58,18 @@ skip_builds = [
     '19H422', # iOS/iPadOS 15.8.8
     '20H392', # iOS/iPadOS 16.7.16
     '21H461', # iPadOS 17.7.11
-    "22H355", # iOS/iPadOS 18.7.9
-    "23F77", # iOS/iPadOS 26.5
-    "23F81", # iOS/iPadOS 26.5.1
-    "23L471", # tvOS 26.5
-    "23O471", # visionOS 26.5
-    "23T570", # watchOS 26.5
-    "25F80", # macOS 26.5.1
+    "22H374", # iOS/iPadOS 18.7.10
+    "23G83", # iOS/iPadOS 26.6.1
+    "23L773", # tvOS 26.6
+    "23O780", # visionOS 26.6.1
+    "23U67", # watchOS 26.6
+    "25G83", # macOS 26.6.2
     # BETAS
-    "23G5028e", # iOS/iPadOS 26.6
-    "23L5729e", # tvOS 26.6
-    "23O5728e", # visionOS 26.6
-    "23U5025e", # watchOS 26.6
-    "25G5028f", # macOS 26.6
-    "24A5355q", # iOS 27.0
-    "24J5355p", # tvOS 27.0
-    "24M5291p", # visionOS 27.0
-    "24R5289n", # watchOS 27.0
-    "26A5353q", # macOS 27.0
+    "24A5424a", # iOS 27.0
+    "24J5358a", # tvOS 27.0
+    "24M5359a", # visionOS 27.0
+    "24R5358a", # watchOS 27.0
+    "26A5421a", # macOS 27.0
 ]
 
 for group in element.xpath(".//h3/.."):
@@ -92,7 +86,7 @@ for group in element.xpath(".//h3/.."):
     version = match.groupdict()["version"]
     if "." not in version:
         version += ".0"
-    data = {"osStr": match.groupdict()["os_str"], "version": version + (match.groupdict()["additional"] or "").replace("Release Candidate", "RC")}
+    data = {"osStr": match.groupdict()["os_str"], "version": version + (match.groupdict()["additional"] or "").replace("\u00a0", " ").replace("Release Candidate", "RC")}
 
     build_info_container: list[Element] = group.xpath("./ul[@class='version typography-caption']")
     if not build_info_container:
@@ -154,6 +148,7 @@ for group in element.xpath(".//h3/.."):
 if bool(out):
     print([f"{d['osStr']} {d['version']} ({len(d.get('links', []))})" for d in out])
     _ = [i.unlink() for i in Path.cwd().glob("import.*") if i.is_file()]
-    json.dump(out, Path("import.json").open("w", encoding="utf-8"), indent=4)
+    with Path("import.json").open("w", encoding="utf-8") as open_import_file:
+        json.dump(out, open_import_file, indent=4)
 else:
     print([])

@@ -5,7 +5,7 @@ import json
 import argparse
 from pathlib import Path
 from typing import Optional
-from sort_files_common import board_map_sort, build_number_sort, device_map_sort, device_sort, os_map_sort, os_sort, sorted_dict_by_alphasort, sorted_dict_by_key, validate_file_name
+from sort_files_common import board_map_sort, build_number_sort, device_map_sort, device_sort, os_map_sort, os_sort, sorted_dict_by_alphasort, sorted_dict_by_key, validate_file_name, version_sort
 
 key_order = [
     "osStr",
@@ -62,7 +62,7 @@ ipd_key_order = ["AudioAccessory", "AppleTV", "iPad", "iPad_old", "iPhone", "iPh
 
 links_key_order = ["url", "decryptionKey", "catalog", "preferred", "active", "auth"]
 
-source_type_order = ["ipsw", "installassistant", "ota", "combo", "update", "kdk", "xip", "aar", "dmg", "pkg", "bin", "tar", "appx", "ipa", "xpi", "apk", "exe", "msi", "zip", "smi"]
+source_type_order = ["ipsw", "installassistant", "ota", "sfr", "recovery", "combo", "update", "kdk", "xip", "aar", "dmg", "pkg", "bin", "tar", "appx", "ipa", "xpi", "apk", "exe", "msi", "zip", "smi"]
 
 
 def sort_buildtrain(buildtrain):
@@ -103,6 +103,17 @@ def sort_buildtrain(buildtrain):
             return i
     print(f"MISSING - {buildtrain}")
     return buildtrain
+
+def sort_sdk(sdk):
+    if not sdk.get('osStr'):
+        print(sdk)
+    os_str_base = sdk['osStr']
+    if sdk['osStr'] in ['Mac OS X', 'OS X']:
+        os_str_base = 'macOS'
+    elif 'iPhone' in sdk['osStr']:
+        os_str_base = 'iOS'
+
+    return os_str_base, version_sort(sdk['version']), build_number_sort(sdk.get('build', ''))
 
 
 def sort_os_file(file_path: Optional[Path], raw_data=None):
@@ -150,7 +161,7 @@ def sort_os_file(file_path: Optional[Path], raw_data=None):
     for i, sdk in enumerate(data.get("sdks", [])):
         data["sdks"][i] = sorted_dict_by_key(sdk, key_order)
 
-    data.get("sdks", []).sort(key=lambda sdk: f"{sdk['osStr']} {sdk['version']}")
+    data.get("sdks", []).sort(key=sort_sdk)
 
     for i, source in enumerate(data.get("sources", [])):
         data["sources"][i] = sorted_dict_by_key(source, sources_key_order)

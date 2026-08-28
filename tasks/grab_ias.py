@@ -37,7 +37,7 @@ links = set()
 
 for mac_version in args.versions:
     for variation in variations:
-        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{variation}-1.sucatalog?{random.choice(string.ascii_letters)}cachebust{random.randint(100, 1000)}')
+        raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{variation}-1.sucatalog?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}')
         raw_sucatalog.raise_for_status()
 
         plist = plistlib.loads(raw_sucatalog.content).get('Products', {})

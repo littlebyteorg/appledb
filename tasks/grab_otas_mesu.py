@@ -6,6 +6,7 @@ import plistlib
 from pathlib import Path
 import random
 import re
+import string
 
 import requests
 from sort_os_files import build_number_sort, device_sort
@@ -45,7 +46,7 @@ skip_builds = [
     "20H392",
     "21H461",
     "22H355",
-    "23F77",
+    "23G71",
     "99Z999"
 ]
 
@@ -59,7 +60,7 @@ args = parser.parse_args()
 file_name_base = f"import-ota-{args.suffix}" if args.suffix else "import-ota"
 
 for (os_str, url) in urls.items():
-    response = requests.get(url + f"?cachebust{random.randint(100, 1000)}", timeout=30)
+    response = requests.get(url + f"?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     assets = plistlib.loads(response.content)['Assets']
@@ -139,4 +140,5 @@ print(sorted(builds, key=build_number_sort))
 if bool(ota_list.keys()):
     print(f"{len([x for x in ota_list.values() for y in x['sources'] for z in y['links']])} links added")
     _ = [i.unlink() for i in Path.cwd().glob(f"{file_name_base}.*") if i.is_file()]
-    json.dump(list(ota_list.values()), Path(f"{file_name_base}.json").open("w", encoding="utf-8"), indent=4, cls=SetEncoder)
+    with Path(f"{file_name_base}.json").open("w", encoding="utf-8") as open_import_file:
+        json.dump(list(ota_list.values()), open_import_file, indent=4, cls=SetEncoder)

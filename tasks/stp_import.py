@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import string
 import sys
 import json
 import plistlib
@@ -21,7 +22,7 @@ parser.add_argument('-f', '--force', action='store_true')
 parser.add_argument('-c', '--catalog')
 args = parser.parse_args()
 
-result = requests.get(f"https://developer.apple.com/safari/resources/?cachebust{random.randint(100, 1000)}", timeout=30)
+result = requests.get(f"https://developer.apple.com/safari/resources/?{random.choices(string.ascii_letters, k=5)}cbust{random.randint(100, 1000)}", timeout=30)
 result.raise_for_status()
 element = lxml.html.fromstring(result.text)
 
@@ -64,6 +65,7 @@ for cell in table:
         properties[property_name] = cell.text
 
 properties['Release'] = properties['Release'].split(" ")[0]
+print(properties)
 
 if len(list(Path("osFiles/Software/Safari Technology Preview").rglob(f"{properties['Release']}.json"))) > 0 and not args.force:
     print(f"{properties['Release']}.json already exists, exiting...")
@@ -84,7 +86,7 @@ os_version_override_map = {
 
 for mac_version in mac_versions:
     catalog_version = args.catalog or catalog_overrides.get(mac_version, mac_version)
-    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{catalog_version}-1.sucatalog?cachebust{random.randint(100, 1000)}', timeout=30)
+    raw_sucatalog = requests.get(f'https://swscan.apple.com/content/catalogs/others/index-{catalog_version}-1.sucatalog?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}', timeout=30)
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
@@ -142,9 +144,10 @@ for package_type, type_sources in sources.items():
             "hashes": file_hashes,
             "links": [{"url": link}]
         })
-Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split(".", 1)[0]}.x").mkdir(exist_ok=True, parents=True)
-stp_file = Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split(".", 1)[0]}.x/{properties['Release']}.json")
+Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split('.', 1)[0]}.x").mkdir(exist_ok=True, parents=True)
+stp_file = Path(f"osFiles/Software/Safari Technology Preview/{source['safariVersion'].split('.', 1)[0]}.x/{properties['Release']}.json")
 if args.force or not stp_file.exists():
-    json.dump(sort_os_file(None, source), stp_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    with stp_file.open("w", encoding="utf-8", newline="\n") as opened_stp_file:
+        json.dump(sort_os_file(None, source), opened_stp_file, indent=4, ensure_ascii=False)
 
     update_links([stp_file])

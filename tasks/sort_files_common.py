@@ -83,8 +83,36 @@ def build_number_sort(build_number):
     build_version = int(match.groups()[2])
     build_prefix = 0
     build_suffix = match.groups()[3] or ""
-    build_prefix_position = 10000 if build_train_version == 'P' or build_number.startswith('8N') or ((build_number.startswith('20G') or build_number.startswith('12H')) and build_version < 2000) else 1000
+    build_prefix_position = 10000 if (build_train_version == 'P' and not (build_suffix and str(build_version)[0] == '5' and build_version < 10000)) or build_number.startswith('8N') or ((build_number.startswith('20G') or build_number.startswith('12H')) and build_version < 2000) else 1000
     if build_version > build_prefix_position:
         build_prefix = int(build_version / build_prefix_position)
         build_version = build_version % build_prefix_position
     return kernel_version, build_train_version, build_version, build_prefix, build_suffix
+
+def version_sort(version):
+    version_suffix_order = {
+        'beta': 1,
+        'GM': 2,
+        'RC': 3
+    }
+    version_split = version.split(' ')
+    cleaned_version = version_split[0].split('.')
+    major_version = int(cleaned_version[0])
+    minor_version = int(cleaned_version[1])
+    if len(cleaned_version) > 2:
+        patch_version = int(cleaned_version[2])
+    else:
+        patch_version = 0
+    if len(version_split) > 1:
+        if version_split[1].startswith('('):
+            version_order = 4
+            version_order_suffix = version_split[-1].removesuffix(')')
+        version_order = version_suffix_order[version_split[1]]
+        if len(version_split) > 2:
+            version_order_suffix = float(version_split[2])
+        else:
+            version_order_suffix = 1
+    else:
+        version_order = 4
+        version_order_suffix = 0
+    return (major_version, minor_version, patch_version, cleaned_version, version_order, version_order_suffix)

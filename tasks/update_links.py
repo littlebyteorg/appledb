@@ -24,15 +24,11 @@ from sort_device_files import sort_device_file
 urllib3.disable_warnings()
 # urllib3.add_stderr_logger()
 
-THREAD_COUNT = 16
-
-DOMAIN_CHECK_LIST = []
-
 success_map = {}
 
 
 class ProcessFileThread(threading.Thread):
-    def __init__(self, file_queue: queue.Queue, print_queue: queue.Queue, use_network=True, name=None, active_only=False, notes_only=False):
+    def __init__(self, file_queue: queue.Queue, print_queue: queue.Queue, use_network=True, name=None, active_only=False, notes_only=False, domain_list=None):
         self.file_queue: queue.Queue = file_queue
         self.print_queue: queue.Queue = print_queue
         self.use_network = use_network
@@ -40,6 +36,7 @@ class ProcessFileThread(threading.Thread):
         self.has_apple_auth = apple_auth_token != ''
         self.active_only = active_only
         self.notes_only = notes_only
+        self.domain_list = [] if domain_list is None else domain_list
         adapter = requests.adapters.HTTPAdapter(max_retries=10, pool_connections=16)
         self.session.mount("https://", adapter)
         self.session.mount("http://", adapter)
@@ -54,7 +51,7 @@ class ProcessFileThread(threading.Thread):
             for link in links:
                 url = link["url"]
                 hostname = urlparse(url).hostname
-                if DOMAIN_CHECK_LIST and hostname not in DOMAIN_CHECK_LIST:
+                if self.domain_list and hostname not in self.domain_list:
                     # explicitly not checking this domain
                     continue
                 if url in success_map:
@@ -192,7 +189,7 @@ class ProcessFileThread(threading.Thread):
     def process_link(self, url, current_status):
         updated_status = current_status
         hostname = urlparse(url).hostname
-        if (DOMAIN_CHECK_LIST and hostname not in DOMAIN_CHECK_LIST) or (hostname in stop_remaking_active and not current_status):
+        if (self.domain_list and hostname not in self.domain_list) or (hostname in stop_remaking_active and not current_status):
             # explicitly not checking this link
             return current_status
         if url in success_map:
@@ -352,12 +349,13 @@ class ProcessFileThread(threading.Thread):
 
 
 class PrintThread(threading.Thread):
-    def __init__(self, print_queue: queue.Queue, total: int, name=None) -> None:
+    def __init__(self, print_queue: queue.Queue, total: int, name=None, show_progress_bar=False) -> None:
         self.print_queue: queue.Queue = print_queue
         self.stop_event = threading.Event()
         self.count = 0
         self.total = total
         self.start_time = time.time()
+        self.show_progress_bar = show_progress_bar
         super().__init__(name=name)
     
     def show(self, j):
@@ -373,18 +371,20 @@ class PrintThread(threading.Thread):
                     print(item)
                 else:
                     self.count += 1
-                    if __name__ == "__main__":
+                    if self.show_progress_bar:
                         self.show(self.count)
             except queue.Empty:
                 pass
 
     def stop(self):
-        if __name__ == "__main__":
+        if self.show_progress_bar:
             print() # extra print to clear out the progress bar
         self.stop_event.set()
 
 
-def update_links(files: Collection[Path], use_network=True, active_only=False, notes_only=False):
+def update_links(files: Collection[Path], use_network=True, active_only=False, notes_only=False, domain_list=None, show_pregress_bar=False, clear_success_map=False, thread_count=16):
+    if clear_success_map:
+        success_map.clear()
     file_queue = queue.Queue()
     for i in files:
         file_queue.put(i)
@@ -393,10 +393,10 @@ def update_links(files: Collection[Path], use_network=True, active_only=False, n
 
     start = time.time()
 
-    printer_thread = PrintThread(print_queue, len(files), "Printer Thread")
+    printer_thread = PrintThread(print_queue, len(files), "Printer Thread", show_pregress_bar)
     printer_thread.start()
 
-    threads = [ProcessFileThread(file_queue, print_queue, use_network, name=f"Thread {i}", active_only=active_only, notes_only=notes_only) for i in range(min(len(files), THREAD_COUNT))]
+    threads = [ProcessFileThread(file_queue, print_queue, use_network, name=f"Thread {i}", active_only=active_only, notes_only=notes_only, domain_list=domain_list) for i in range(min(len(files), thread_count))]
     for thread in threads:
         thread.start()
 
@@ -418,9 +418,8 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--domains', nargs='+')
     parser.add_argument('-n', '--notes_only', action='store_true')
     parser.add_argument('-a', '--active_only', action='store_true')
-    parser.add_argument('-t', '--thread-count', type=int, default=16)
+    parser.add_argument('-t', '--thread_count', type=int, default=16)
     args = parser.parse_args()
-    THREAD_COUNT = args.thread_count
     file_list = []
     if args.folders:
         for path in args.folders:
@@ -429,7 +428,8 @@ if __name__ == "__main__":
         file_list.extend(list(Path("osFiles").rglob("*.json")))
         file_list.extend(list(Path("deviceFiles/Software").rglob("*.json")))
 
+    domain_check_list = []
     if args.domains:
-        DOMAIN_CHECK_LIST = args.domains
+        domain_check_list = args.domains
     
-    update_links(file_list, active_only=args.active_only, notes_only=args.notes_only)
+    update_links(file_list, active_only=args.active_only, notes_only=args.notes_only, domain_list=domain_check_list, show_pregress_bar=True, thread_count=args.thread_count)

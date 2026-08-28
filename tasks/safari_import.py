@@ -4,6 +4,7 @@ import json
 import plistlib
 import random
 from pathlib import Path
+import string
 from zoneinfo import ZoneInfo
 import argparse
 from datetime import date
@@ -40,7 +41,8 @@ mac_versions = [
     args.version - OFFSET_VERSION
 ]
 
-mac_codenames = json.load(Path("tasks/macos_codenames.json").open(encoding="utf-8"))
+with Path("tasks/macos_codenames.json").open(encoding="utf-8") as opened_codenames_file:
+    mac_codenames = json.load(opened_codenames_file)
 
 MAC_CATALOG_SUFFIX = ''
 if args.beta:
@@ -49,7 +51,7 @@ if args.beta:
 SAFARI_DETAILS = {}
 
 for mac_version in mac_versions:
-    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?cachebust{random.randint(100, 1000)}')
+    raw_sucatalog = SESSION.get(f'https://swscan.apple.com/content/catalogs/others/index-{mac_version}{MAC_CATALOG_SUFFIX}-1.sucatalog?{random.choices(string.ascii_letters, k=5)}cbust{random.randint(100, 1000)}')
     raw_sucatalog.raise_for_status()
 
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
@@ -130,13 +132,15 @@ for build, details in SAFARI_DETAILS.items():
     if not safari_file.parent.exists():
         safari_file.parent.mkdir()
     if safari_file.exists():
-        parsed_safari_file = json.load(safari_file.open(encoding="utf-8"))
+        with safari_file.open(encoding="utf-8") as opened_safari_file:
+            parsed_safari_file = json.load(opened_safari_file)
         if parsed_safari_file['version'] != details['version'] or parsed_safari_file['osMap'] != details['osMap']:
             if parsed_safari_file.get('beta') and not details.get('beta'):
                 build_suffix = parsed_safari_file['version'].split(" ", 1)[1].replace(" ", "")
                 parsed_safari_file['uniqueBuild'] = f"{build}-{build_suffix}"
                 old_safari_file = Path(f"osFiles/Software/Safari/{args.version}.x/{build}-{build_suffix}.json")
-                json.dump(sort_os_file(None, parsed_safari_file), old_safari_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                with old_safari_file.open("w", encoding="utf-8", newline="\n") as opened_old_safari_file:
+                    json.dump(sort_os_file(None, parsed_safari_file), opened_old_safari_file, indent=4, ensure_ascii=False)
             else:
                 if details.get('beta'):
                     build_suffix = details['version'].split(" ", 1)[1].replace(" ", "")
@@ -150,5 +154,6 @@ for build, details in SAFARI_DETAILS.items():
         else:
             print(f"Skipping {build} for {', '.join(details['osMap'])}")
             continue
-    json.dump(sort_os_file(None, details), safari_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    with safari_file.open("w", encoding="utf-8", newline="\n") as opened_safari_file:
+        json.dump(sort_os_file(None, details), opened_safari_file, indent=4, ensure_ascii=False)
     update_links([safari_file])

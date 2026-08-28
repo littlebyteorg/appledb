@@ -6,6 +6,7 @@ import random
 import re
 from pathlib import Path
 from datetime import datetime, timezone
+import string
 import zoneinfo
 import argparse
 
@@ -242,7 +243,7 @@ device_map = {
 
 def call_mesu(url):
     files = set()
-    asset_response = SESSION.get(f"{url}?cachebust{random.randint(100, 1000)}")
+    asset_response = SESSION.get(f"{url}?{random.choices(string.ascii_letters, k=10)}cachebust{random.randint(100, 1000)}")
     try:
         asset_response.raise_for_status()
     except requests.HTTPError as ex:
@@ -257,8 +258,7 @@ def call_mesu(url):
         file_path = f"osFiles/{os_str_map[asset_type]}/{kern_version}x/{asset['Build']}.json"
 
         if not Path(file_path).exists():
-            if not Path(file_path).parent.exists():
-                Path(file_path).parent.mkdir()
+            Path(file_path).parent.mkdir(exist_ok=True)
             with remotezip.RemoteZip(f"{asset['__BaseURL']}{asset['__RelativePath']}") as file:
                 manifest_paths = [f for f in file.namelist() if f.endswith("BuildManifest.plist")]
                 buildtrain = None
@@ -274,6 +274,7 @@ def call_mesu(url):
                         version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}"
                 elif os_str_map[asset_type] == 'Durian Firmware':
                     version = f"{asset['FirmwareVersionMajor']}.{asset['FirmwareVersionMinor']}.{asset['FirmwareVersionRelease']}"
+                print(f"\tNo file found for build {asset['Build']}, creating new file")
                 print(f"\tCurrent version is: {version}")
                 friendly_version = input("\tEnter version (include beta/RC), or press Enter to keep current: ").strip() or version
                 base_contents = {
@@ -290,12 +291,15 @@ def call_mesu(url):
                     base_contents["beta"] = True
                 elif release_notes_map.get(asset_type):
                     base_contents["releaseNotes"] = release_notes_map[asset_type]
-                json.dump(base_contents, Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+                with Path(file_path).open("w", encoding="utf-8", newline="\n") as open_file:
+                    json.dump(base_contents, open_file, indent=4, ensure_ascii=False)
 
-        file_data = json.load(Path(file_path).open(encoding="utf-8"))
+        with Path(file_path).open(encoding="utf-8") as open_file:
+            file_data = json.load(open_file)
         if device_map[model][0] in file_data['deviceMap']:
             continue
         source = {"deviceMap": device_map[model], "type": "ota", "links": [{"url": f"{asset['__BaseURL']}{asset['__RelativePath']}", "active": True}]}
+        print(f"New build {asset['Build']} for {model}")
         if release_date != file_data['released']:
             extended_items = []
             extended_item_processed = False
@@ -324,7 +328,8 @@ def call_mesu(url):
             file_data['deviceMap'].extend(device_map[model])
             file_data.setdefault('sources', []).append(source)
 
-        json.dump(sort_os_file(None, file_data), Path(file_path).open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+        with Path(file_path).open("w", encoding="utf-8", newline="\n") as open_file:
+            json.dump(sort_os_file(None, file_data), open_file, indent=4, ensure_ascii=False)
 
         files.add(Path(file_path))
     return files

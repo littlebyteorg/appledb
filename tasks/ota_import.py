@@ -12,6 +12,8 @@ import packaging.version
 import remotezip
 import requests
 import time
+
+import urllib3
 from file_downloader import handle_ota_file
 from link_info import source_has_link
 from sort_os_files import sort_os_file
@@ -27,15 +29,8 @@ LOCAL_OTA_PATH = Path("otas")
 SESSION = requests.Session()
 
 CELLULAR_DEVICES_BACKPORT = [
-    'iPad8,3',
-    'iPad8,4',
-    'iPad8,7',
-    'iPad8,8',
     'iPad8,10',
     'iPad8,12',
-    'iPad11,2',
-    'iPad11,4',
-    'iPad11,7',
     'iPad12,2',
     'iPad13,2',
     'iPad13,6',
@@ -123,7 +118,7 @@ APPLE_BASEBAND_DEVICES = [
 
 def import_ota(
     ota_url, ota_key=None, os_str=None, build=None, recommended_version=None, final_version=None, released=None, beta=None, rc=None, \
-        use_network=True, prerequisite_builds=None, device_map=None, board_map=None, rsr=False, skip_remote=False, buildtrain=None, \
+        use_network=True, prerequisite_builds=None, device_map=None, board_map=None, update_type=None, skip_remote=False, buildtrain=None, \
         restore_version=None, bridge_version_info=None, size=None, version_extra=None
 ):
     local_path = LOCAL_OTA_PATH / Path(Path(ota_url).name)
@@ -134,6 +129,16 @@ def import_ota(
     only_needs_baseband = False
     aea_support_filename = 'aastuff'
     info_plist = {}
+
+    if not update_type:
+        if 'SplatSoftwareUpdate' in ota_url:
+            update_type = 'rsr'
+        elif 'RecoveryOSUpdate' in ota_url:
+            update_type = 'recovery'
+        elif 'SFRSoftwareUpdate' in ota_url:
+            update_type = 'sfr'
+        else:
+            update_type = 'ota'
 
     # We need per-device details anyway, grab from the full OTA
     # If size is explicitly passed in, assume source is no longer active
@@ -156,50 +161,51 @@ def import_ota(
 
     counter = 0
     delete_output_dir = False
-    if only_needs_baseband:
-        delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
-        extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
-        build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
-    elif not skip_remote:
-        if ota_key:
-            if Path(aea_support_filename).exists():
-                print('Downloading full OTA file')
-                delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
-                extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
-                info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
-                build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
-
-                if info_plist.get('MobileAssetProperties'):
-                    info_plist = info_plist['MobileAssetProperties']
-
-                if info_plist.get('SplatOnly'):
-                    rsr = True
-        else:
-            while True:
-                try:
-                    ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
-                    print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
-
-                    info_plist = plistlib.loads(ota.read("Info.plist"))
-                    manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
-                    if manifest_paths:
-                        build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+    if update_type == 'ota':
+        if only_needs_baseband:
+            delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
+            extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
+            build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
+        elif not skip_remote:
+            if ota_key:
+                if Path(aea_support_filename).exists():
+                    print('Downloading full OTA file')
+                    delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
+                    extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
+                    info_plist = plistlib.loads(extracted_path.joinpath("Info.plist").read_bytes())
+                    build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
 
                     if info_plist.get('MobileAssetProperties'):
                         info_plist = info_plist['MobileAssetProperties']
 
                     if info_plist.get('SplatOnly'):
-                        rsr = True
-                    bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
-                    break
-                except remotezip.RemoteIOError as e:
-                    if e.args[0].startswith('403 Client Error'):
-                        print('No file')
-                        raise e
-                    time.sleep(1+counter)
-                    counter += 1
-                    if counter > 10:
-                        raise e
+                        update_type = 'rsr'
+            else:
+                while True:
+                    try:
+                        ota = zipfile.ZipFile(local_path) if local_available else remotezip.RemoteZip(ota_url, initial_buffer_size=256*1024, session=SESSION, timeout=60)
+                        print(f"\tGetting Info.plist {'from local file' if local_available else 'via remotezip'}")
+
+                        info_plist = plistlib.loads(ota.read("Info.plist"))
+                        manifest_paths = [f for f in ota.namelist() if f.endswith("BuildManifest.plist")]
+                        if manifest_paths:
+                            build_manifest = plistlib.loads(ota.read(manifest_paths[0]))
+
+                        if info_plist.get('MobileAssetProperties'):
+                            info_plist = info_plist['MobileAssetProperties']
+
+                        if info_plist.get('SplatOnly'):
+                            update_type = 'rsr'
+                        bridge_version_info = bridge_version_info or info_plist.get('BridgeVersionInfo')
+                        break
+                    except remotezip.RemoteIOError as e:
+                        if e.args[0].startswith('403 Client Error'):
+                            print('No file')
+                            raise e
+                        time.sleep(1+counter)
+                        counter += 1
+                        if counter > 10:
+                            raise e
     bridge_version = None
 
     if bridge_version_info:
@@ -211,7 +217,7 @@ def import_ota(
 
     # Get the build, version, and supported devices
     baseband_map = {}
-    if build_manifest:
+    if build_manifest and update_type == 'ota':
         # Grab baseband versions and buildtrain (both per device)
         for identity in build_manifest['BuildIdentities']:
             board_id = identity['Info']['DeviceClass']
@@ -247,7 +253,7 @@ def import_ota(
     else:
         build = build or info_plist["Build"]
         recommended_version = recommended_version or info_plist["OSVersion"].removeprefix("9.9.")
-        if rsr:
+        if update_type == 'rsr':
             recommended_version = recommended_version + (f" {version_extra or info_plist['ProductVersionExtra']}" if version_extra or info_plist.get('ProductVersionExtra') else '')
         # Devices supported specifically in this source
         supported_boards = []
@@ -301,8 +307,9 @@ def import_ota(
     if restore_version is None and info_plist and info_plist.get('RestoreVersion'):
         restore_version = info_plist.get('RestoreVersion')
 
-    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=final_version, released=released, beta=beta, rc=rc, rsr=rsr, buildtrain=buildtrain, restore_version=restore_version)
-    db_data = json.load(db_file.open(encoding="utf-8"))
+    db_file = create_file(os_str, build, FULL_SELF_DRIVING, recommended_version=recommended_version, version=final_version, released=released, beta=beta, rc=rc, rsr=(update_type=='rsr'), buildtrain=buildtrain, restore_version=restore_version)
+    with db_file.open(encoding="utf-8") as opened_file:
+        db_data = json.load(opened_file)
 
     if baseband_map:
         db_data.setdefault("basebandVersions", {}).update(baseband_map)
@@ -336,7 +343,7 @@ def import_ota(
 
     if not found_source:
         print("\tReplacing source" if REFRESH_EXISTING else "\tAdding new source")
-        existing_source = {"deviceMap": supported_devices, "type": "ota", "links": [{"url": ota_url, "active": True}]}
+        existing_source = {"deviceMap": supported_devices, "type": update_type.replace('rsr', 'ota'), "links": [{"url": ota_url, "active": True}]}
         if ota_key:
             existing_source["links"][0]["decryptionKey"] = ota_key
         if prerequisite_builds:
@@ -349,10 +356,11 @@ def import_ota(
         db_data["sources"].append(existing_source)
         is_new_import = True
 
-    if bridge_version and bridge_version_info and not rsr:
+    if bridge_version and bridge_version_info and update_type != 'rsr':
         db_data['bridgeOSBuild'] = bridge_version_info['BridgeProductBuildVersion']
 
-    json.dump(sort_os_file(None, db_data), db_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
+    with db_file.open("w", encoding="utf-8", newline="\n") as opened_file:
+        json.dump(sort_os_file(None, db_data), opened_file, indent=4, ensure_ascii=False)
     if is_new_import and use_network:
         print("\tRunning update links on file")
         update_links([db_file])
@@ -401,7 +409,8 @@ if __name__ == "__main__":
 
         if Path(f"{file_name_base}.json").exists():
             print(f"Reading versions from {file_name_base}.json")
-            versions = json.load(Path(f"{file_name_base}.json").open(encoding="utf-8"))
+            with Path(f"{file_name_base}.json").open(encoding="utf-8") as opened_import_file:
+                versions = json.load(opened_import_file)
 
             for version in versions:
                 print(f"Importing {version['osStr']} {version['version']}")
@@ -418,11 +427,11 @@ if __name__ == "__main__":
                                         released=version.get("released"), use_network=False, build=version["build"], prerequisite_builds=source.get("prerequisites", []), \
                                         device_map=source["deviceMap"], board_map=source["boardMap"], skip_remote=True, buildtrain=version.get("buildTrain"), \
                                         restore_version=version.get("restoreVersion"), bridge_version_info=version.get('bridgeVersionInfo'), size=source.get('size'), \
-                                        rsr=version.get('rsr', False), version_extra=version.get('versionExtra')
+                                        version_extra=version.get('versionExtra'), update_type=source.get("update_type")
                                     )
                                 if fresh_import:
                                     files_processed.add(processed_file)
-                            except (requests.HTTPError, remotezip.RemoteIOError):
+                            except (requests.HTTPError, remotezip.RemoteIOError, urllib3.exceptions.ReadTimeoutError):
                                 failed_links.append(link["url"])
 
         elif Path(f"{file_name_base}.txt").exists():
@@ -440,7 +449,7 @@ if __name__ == "__main__":
                     (processed_file, fresh_import) = import_ota(url, ota_key=key, use_network=False)
                     if fresh_import:
                         files_processed.add(processed_file)
-                except (requests.HTTPError, remotezip.RemoteIOError):
+                except (requests.HTTPError, remotezip.RemoteIOError, urllib3.exceptions.ReadTimeoutError):
                     failed_links.append(url)
         else:
             raise RuntimeError("No import file found")
