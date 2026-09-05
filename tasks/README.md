@@ -1,6 +1,8 @@
 # Automation scripts
 These scripts are primarily used to assist with adding new software versions to AppleDB.
 
+For JSON parse checks, sort/normalize rules, AJV schemas, pre-commit hooks, and CI validation, see [VALIDATION.md](VALIDATION.md).
+
 ## Importing IPSW files
 ### Grabbing IPSW links from the Developer Portal
 Run `grab_ipsws_dev_portal.py`. This takes in a positional argument for a dev portal proxy, but if one isn't passed in or provided by a manual edit of the script, will instead look at `import_raw.html` for an HTML dump of the Operating Systems page. This script outputs link data to `import.json`.
