@@ -1,0 +1,31 @@
+# libirecovery >= 1.1 removed irecv_init()/irecv_exit().
+# idevicerestore 1.0.0 still called irecv_init() before irecv_open_with_ecid().
+# Drop those calls so the port builds against current libirecovery (e.g. 1.3.x).
+--- src/dfu.c
++++ src/dfu.c
+@@ -95,7 +95,6 @@
+ 		return -1;
+ 	}
+ 
+-	irecv_init();
+ 	if (irecv_open_with_ecid(&dfu, client->ecid) != IRECV_E_SUCCESS) {
+ 		return -1;
+ 	}
+@@ -119,7 +119,6 @@
+ 	irecv_error_t dfu_error = IRECV_E_SUCCESS;
+ 	irecv_device_t device = NULL;
+ 
+-	irecv_init();
+ 	if (irecv_open_with_ecid(&dfu, client->ecid) != IRECV_E_SUCCESS) {
+ 		return NULL;
+ 	}
+--- src/recovery.c
++++ src/recovery.c
+@@ -108,7 +108,6 @@
+ 		return -1;
+ 	}
+ 
+-	irecv_init();
+ 	recovery_error=irecv_open_with_ecid(&recovery, client->ecid);
+ 
+ 	if (recovery_error != IRECV_E_SUCCESS) {
