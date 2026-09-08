@@ -95,7 +95,11 @@ asset_types = {
             'com_apple_MobileAsset_MobileAccessoryUpdate_A3476_EA',
             'com_apple_MobileAsset_UARP_A3476'
         ],
-        'A3157': 'com_apple_MobileAsset_UARP_A3157'
+        'A3157': 'com_apple_MobileAsset_UARP_A3157',
+        'A3577': [
+            'com_apple_MobileAsset_MobileAccessoryUpdate_A3577_EA',
+            'com_apple_MobileAsset_UARP_A3577'
+        ]
     },
     'Keyboards': {
         'A2520': 'com_apple_MobileAsset_MobileAccessoryUpdate_KeyboardFirmware_10',
@@ -238,6 +242,9 @@ device_map = {
     'A3476': [
         "Powerbeats Fit-left",
         "Powerbeats Fit-right"
+    ],
+    'A3577': [
+        'Device1,8248'
     ]
 }
 
