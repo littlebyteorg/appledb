@@ -117,6 +117,10 @@ default_mac_devices = [
     'Mac17,3',          # Covers Tahoe 26.2 forked builds
     'Mac17,5',          # Covers Tahoe 26.3.2 forked builds
     'Mac17,6',          # Covers Tahoe 26.3 forked builds
+    'Mac17,14',          # Covers Golden Gate 27.0 preinstalled build
+    'Mac17,15',          # Covers Golden Gate 27.0 preinstalled build
+    'Mac17,16',          # Covers Golden Gate 27.0 preinstalled build
+    'Mac18,5',          # Covers Golden Gate 27.0 preinstalled build
     'VirtualMac2,1'     # Always include
 ]
 

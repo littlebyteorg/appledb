@@ -104,6 +104,9 @@ CELLULAR_DEVICES_BACKPORT = [
     'Watch7,16',
     'Watch7,19',
     'Watch7,20',
+    'Watch8,1',
+    'Watch8,4',
+    'Watch8,5',
 ]
 
 APPLE_BASEBAND_DEVICES = [
