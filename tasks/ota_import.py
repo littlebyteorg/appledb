@@ -117,6 +117,8 @@ APPLE_BASEBAND_DEVICES = [
     'iPhone17,5',
     'iPhone18,4',
     'iPhone18,5',
+    'iPhone19,2',
+    'iPhone19,7',
 ]
 
 def import_ota(
