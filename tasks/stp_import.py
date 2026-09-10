@@ -52,7 +52,7 @@ for link in links:
         continue
     if not a_tag.attrib.get("class", ""):
         continue
-    span_text = html.unescape(link.xpath('span')[0].text).split()[2]
+    span_text = html.unescape(link.xpath('span')[0].text).split()[2].split(".", 1)[0]
     mac_versions.add(span_text)
     sources['dmg'][span_text] = a_tag.attrib.get("href")
 
