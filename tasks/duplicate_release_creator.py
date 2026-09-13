@@ -30,6 +30,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--os', required=True, action='append', choices=supported_subfolders)
 parser.add_argument('-b', '--build', required=True, action='append', nargs='+')
 parser.add_argument('-s', '--separate-sources', action='store_true')
+parser.add_argument('-d', '--date', default=datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d"))
 args = parser.parse_args()
 
 parsed_builds = dict(zip(args.os, args.build))
@@ -76,7 +77,7 @@ for (osStr, builds) in parsed_builds.items():
                     extension = link['url'].rsplit('.', 1)[1]
                     link['url'] = link['url'].replace(f'_{old_version.split(" ", 1)[1].split(' Simulator')[0].replace('RC', 'Release Candidate').replace(' ', '_')}', '')
         duplicate_entry['released'] = file_data['released']
-        file_data['released'] = datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+        file_data['released'] = args.date
         if not osStr.startswith('Simulators/'):
             release_notes_link = get_release_notes_link(osStr, file_data["version"])
             if release_notes_link:
