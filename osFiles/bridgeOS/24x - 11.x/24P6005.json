@@ -1,12 +1,19 @@
 {
     "osStr": "bridgeOS",
-    "version": "11.0 RC 2",
+    "version": "11.0",
     "build": "24P6005",
     "restoreVersion": "24.16.6005.0.0,0",
     "buildId": "076AE662-9D32-11F1-A00F-285C0FFE22B4",
     "buildTrain": "SunsetBridge",
-    "released": "2026-08-24",
-    "rc": true,
+    "released": "2026-09-14",
+    "createDuplicateEntries": [
+        {
+            "version": "11.0 RC 2",
+            "uniqueBuild": "24P6005-RC",
+            "released": "2026-08-24",
+            "rc": true
+        }
+    ],
     "deviceMap": [
         "iBridge2,1",
         "iBridge2,3",
@@ -27,6 +34,38 @@
     ],
     "signed": true,
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "iBridge2,1",
+                "iBridge2,3",
+                "iBridge2,4",
+                "iBridge2,5",
+                "iBridge2,6",
+                "iBridge2,7",
+                "iBridge2,8",
+                "iBridge2,10",
+                "iBridge2,12",
+                "iBridge2,14",
+                "iBridge2,15",
+                "iBridge2,16",
+                "iBridge2,19",
+                "iBridge2,20",
+                "iBridge2,21",
+                "iBridge2,22"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/fullrestores/140-55161/E2CF296A-8792-4933-8B38-F810EB1D9EAD/iBridge2,1,iBridge2,10,iBridge2,12,iBridge2,14,iBridge2,15,iBridge2,16,iBridge2,19,iBridge2,20,iBridge2,21,iBridge2,22,iBridge2,3,iBridge2,4,iBridge2,5,iBridge2,6,iBridge2,7,iBridge2,8_11.0_24P6005_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "cc2fc87bc573cfc6b354c412cf41d07f2413fa1a",
+                "sha2-256": "a05d18e176ca66838c00aac28164850c3c2e30fc65e209a1425b2947141b5c1b"
+            },
+            "size": 742648126
+        },
         {
             "type": "pkg",
             "systemImageId": "EE2222E3-FDB8-430D-84EA-60E288F9DFC6",
@@ -123,6 +162,10 @@
                 "iBridge2,22"
             ],
             "links": [
+                {
+                    "url": "https://swcdn.apple.com/content/downloads/31/20/142-16672-A_C51A5G5731/4gcs1wgc97v1l5jkap2h2exz9gft8iyyob/BridgeOSUpdateCustomer.pkg",
+                    "active": true
+                },
                 {
                     "url": "https://swcdn.apple.com/content/downloads/38/04/142-16672-A_Z5D76TIY55/ikfiuhgqhpnjyv5euk2i8bfbbjhq72yh8e/BridgeOSUpdateCustomer.pkg",
                     "catalog": "dev-beta",

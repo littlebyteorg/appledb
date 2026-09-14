@@ -7,6 +7,7 @@ release_notes_ids = {
         17: '118723',
         18: '121161',
         26: '123075',
+        27: '149076',
     },
     'iPadOS': {
         15: '108049',
@@ -14,6 +15,7 @@ release_notes_ids = {
         17: '118702',
         18: '121162',
         26: '123074',
+        27: '149075',
     },
     'macOS': {
         11: '106338',
@@ -22,6 +24,7 @@ release_notes_ids = {
         14: '109035',
         15: '120283',
         26: '122868',
+        27: '127257',
     },
     'Studio Display Firmware': '106345',
     'tvOS': '106336',
@@ -29,6 +32,7 @@ release_notes_ids = {
         1: '118202',
         2: '121164',
         26: '123024',
+        27: '149067',
     },
     'watchOS': {
         5: '118393',
@@ -38,6 +42,7 @@ release_notes_ids = {
         10: '119065',
         11: '121163',
         26: '123002',
+        27: '149077',
     }
 }
 
@@ -48,7 +53,8 @@ enterprise_notes_ids = {
         16: '101584',
         17: '118102',
         18: '121158',
-        26: '125073'
+        26: '125073',
+        27: '148828',
     },
     'iPadOS': {
         14: '103262',
@@ -56,7 +62,8 @@ enterprise_notes_ids = {
         16: '101556',
         17: '108388',
         18: '121159',
-        26: '125074'
+        26: '125074',
+        27: '148829',
     },
     'macOS': {
         11: '103261',
@@ -64,11 +71,13 @@ enterprise_notes_ids = {
         13: '101570',
         14: '109030',
         15: '121011',
-        26: '124963'
+        26: '124963',
+        27: '148830',
     },
     'visionOS': {
         2: '121160',
-        26: '124965'
+        26: '124965',
+        27: '148831',
     }
 }
 
@@ -129,9 +138,7 @@ def get_release_notes_link(os_str, version):
     return f"{base_url}{article_id}{anchor}"
 
 def get_enterprise_notes_link(os_str, version):
-    if not enterprise_notes_ids.get(os_str):
-        print('no enterprise')
-        return None
+    if not enterprise_notes_ids.get(os_str): return None
     base_url = 'https://support.apple.com/'
 
     article_id = ''
