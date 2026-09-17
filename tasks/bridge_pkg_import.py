@@ -67,7 +67,7 @@ for version in args.versions:
         for product in plist.values():
             if product.get('ExtendedMetaInfo', {}).get('ProductType') != 'bridgeOS':
                 continue
-            if product['PostDate'].date() != date.today() and not args.all:
+            if product['PostDate'].date() < date.today() and not args.all:
                 continue
             url = product['ServerMetadataURL'].replace('.smd', '.pkg').replace("http://", "https://")
             restore_version = product['ExtendedMetaInfo']['BridgeOSPredicateProductOrdering']
