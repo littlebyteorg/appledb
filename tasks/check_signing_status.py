@@ -65,11 +65,13 @@ final_builds = {
         '16H88', # iPad Air 1/iPad mini 2, 3/iPhone 5s, 6/iPod touch 6
         '19H422', # iPhone 6s, 7, SE/iPod touch 7
         '20H392', # iPhone 8, X
+        '22H374', # iPhone XS, XS Max, XR
     ],
     'iPadOS': [
         '19H422', # iPad Air 2/iPad mini 4
         '20H392', # iPad 5/iPad Pro 1
         '21H461', # iPad 6/iPad Pro 2
+        '22H374', # iPad 7
     ],
     'macOS': [
         '20B28' # 11.0.1 RC (still signed somehow)
@@ -82,6 +84,7 @@ final_builds = {
         '12H1006', # Apple TV 3
         '14W756', # intermediate OTA required for everything pre-tvOS 11
         '17M61', # intermediate OTA required for everything pre-tvOS 14
+        '23L773', # Apple TV HD, 4K
     ],
     'Studio Display Firmware': [
         '19F80', # pre-Ventura 13.3
@@ -99,6 +102,7 @@ final_builds = {
         '20U512', # latest iOS 16
         '21U594', # latest series 4/5, SE
         '22U95', # latest iOS 18
+        '23U67', # latest series 6/7/8, SE 2, Ultra
     ],
 }
 
@@ -216,6 +220,7 @@ baseband_value = {
     "iPhone18,1": 8,
     "iPhone18,2": 8,
     "iPhone18,3": 8,
+    "iPhone19,3": 8,
     "Watch3,1": 4,
     "Watch3,2": 4,
     "Watch4,3": 12,
