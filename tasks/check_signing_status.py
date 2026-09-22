@@ -243,6 +243,14 @@ baseband_value = {
     "Watch7,5": 12,
     "Watch7,10": 12,
     "Watch7,11": 12,
+    "Watch7,12": 8,
+    "Watch7,15": 8,
+    "Watch7,16": 8,
+    "Watch7,19": 8,
+    "Watch7,20": 8,
+    "Watch8,1": 8,
+    "Watch8,4": 8,
+    "Watch8,5": 8,
 }
 
 board_ids = {
