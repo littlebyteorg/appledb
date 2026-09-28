@@ -55,17 +55,17 @@ known_builds = [
     '21H461',  # 17.7.11
     '22C161',  # 18.2.1
     '22H374',  # 18.7.10
-    '23H24',   # 26.7
-    '24A437',  # 27.0
+    '23H30',   # 26.7.1
+    '24A446',  # 27.0.1
     # tvOS
     '11D258',  # 6.2.1
     '12H1006', # 7.9
     '23L773',  # 26.6
     '24J361',  # 27.0
     # others
-    '24M362',  # visionOS 27.0
+    '24M372',  # visionOS 27.0.1
     '24P6005', # bridgeOS 11.0
-    '26A428',  # macOS 27.0
+    '26A434',  # macOS 27.0.1
 ]
 
 filename_prefix_map = {
@@ -78,7 +78,7 @@ filename_prefix_map = {
 }
 builds = set()
 for url in urls:
-    response = requests.get(url + f"?{random.choices(string.ascii_letters, k=5)}cachebust{random.randint(100, 1000)}", timeout=30)
+    response = requests.get(url + f"?{random.choices(string.ascii_letters, k=15)}cachebust{random.randint(100, 1000)}", timeout=30)
     response.raise_for_status()
 
     plist = plistlib.loads(response.content)
