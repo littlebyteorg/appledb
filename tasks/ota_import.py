@@ -399,7 +399,10 @@ def import_ota(
                 continue
             buildtrain = buildtrain or identity['Info']['BuildTrain']
             restore_version = restore_version or identity.get('Ap,OSLongVersion')
-            mapped_device = get_board_mapping_lower_case([board_id])[0]
+            mapped_device = get_board_mapping_lower_case([board_id])
+            if not mapped_device:
+                continue
+            mapped_device = mapped_device[0]
             current_baseband_group = DEVICE_BASEBAND_GROUP.get(mapped_device)
             if current_baseband_group:
                 BASEBAND_GROUP_VERSION_MAP.setdefault(current_baseband_group, {})
