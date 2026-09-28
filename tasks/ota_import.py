@@ -28,6 +28,162 @@ LOCAL_OTA_PATH = Path("otas")
 
 SESSION = requests.Session()
 
+DEVICE_BASEBAND_GROUP = {
+    'iPad1,1': 'ICE2_iPad',
+    'iPad2,2': 'ICE3',
+    'iPad2,3': 'Phoenix',
+    'iPad2,6': 'Mav5',
+    'iPad2,7': 'Mav5',
+    'iPad3,2': 'Mav4',
+    'iPad3,3': 'Mav4',
+    'iPad3,5': 'Mav5',
+    'iPad3,6': 'Mav5',
+    'iPad4,2': 'Mav7Mav8',
+    'iPad4,3': 'Mav7Mav8',
+    'iPad4,5': 'Mav7Mav8',
+    'iPad4,6': 'Mav7Mav8',
+    'iPad4,8': 'Mav7Mav8',
+    'iPad4,9': 'Mav7Mav8',
+    'iPad5,2': 'Mav10',
+    'iPad5,4': 'Mav10',
+    'iPad6,4': 'Mav13',
+    'iPad6,8': 'Mav10',
+    'iPad6,12': 'Mav10',
+    'iPad7,2': 'Mav16',
+    'iPad7,4': 'Mav16',
+    'iPad7,6': 'Mav13',
+    'iPad7,12': 'ICE18',
+    'iPad8,3': 'ICE18',
+    'iPad8,4': 'ICE18',
+    'iPad8,7': 'ICE18',
+    'iPad8,8': 'ICE18',
+    'iPad8,10': 'ICE19',
+    'iPad8,12': 'ICE19',
+    'iPad11,2': 'ICE18',
+    'iPad11,4': 'ICE18',
+    'iPad11,7': 'ICE18',
+    'iPad12,2': 'ICE18',
+    'iPad13,2': 'ICE19',
+    'iPad13,6': 'Mav20',
+    'iPad13,7': 'Mav20',
+    'iPad13,10': 'Mav20',
+    'iPad13,11': 'Mav20',
+    'iPad13,17': 'Mav21',
+    'iPad13,19': 'Mav21',
+    'iPad14,2': 'Mav21',
+    'iPad14,4': 'Mav22',
+    'iPad14,6': 'Mav22',
+    'iPad14,9': 'Mav23',
+    'iPad14,11': 'Mav23',
+    'iPad15,4': 'Mav23',
+    'iPad15,6': 'Mav23',
+    'iPad15,8': 'Mav23',
+    'iPad16,2': 'Mav23',
+    'iPad16,4': 'Mav23',
+    'iPad16,6': 'Mav23',
+    'iPad16,9': 'C4000',
+    'iPad16,11': 'C4000',
+    'iPad17,2': 'C4000',
+    'iPad17,4': 'C4000',
+    'iPhone1,1': 'ICE',
+    'iPhone1,2': 'ICE2',
+    'iPhone2,1': 'ICE2',
+    'iPhone3,1': 'ICE3',
+    'iPhone3,2': 'ICE3',
+    'iPhone3,3': 'Phoenix',
+    'iPhone4,1': 'Trek',
+    'iPhone5,1': 'Mav5',
+    'iPhone5,2': 'Mav5',
+    'iPhone5,3': 'Mav7Mav8',
+    'iPhone5,4': 'Mav7Mav8',
+    'iPhone6,1': 'Mav7Mav8',
+    'iPhone6,2': 'Mav7Mav8',
+    'iPhone7,1': 'Mav10',
+    'iPhone7,2': 'Mav10',
+    'iPhone8,1': 'Mav13',
+    'iPhone8,2': 'Mav13',
+    'iPhone8,4': 'Mav10',
+    'iPhone9,1': 'Mav16',
+    'iPhone9,2': 'Mav16',
+    'iPhone9,3': 'ICE16',
+    'iPhone9,4': 'ICE16',
+    'iPhone10,1': 'Mav17',
+    'iPhone10,2': 'Mav17',
+    'iPhone10,3': 'Mav17',
+    'iPhone10,4': 'ICE17',
+    'iPhone10,5': 'ICE17',
+    'iPhone10,6': 'ICE17',
+    'iPhone11,2': 'ICE18',
+    'iPhone11,4': 'ICE18',
+    'iPhone11,6': 'ICE18',
+    'iPhone11,8': 'ICE18',
+    'iPhone12,1': 'ICE19',
+    'iPhone12,3': 'ICE19',
+    'iPhone12,5': 'ICE19',
+    'iPhone12,8': 'ICE19',
+    'iPhone13,1': 'Mav20',
+    'iPhone13,2': 'Mav20',
+    'iPhone13,3': 'Mav20',
+    'iPhone13,4': 'Mav20',
+    'iPhone14,2': 'Mav21',
+    'iPhone14,3': 'Mav21',
+    'iPhone14,4': 'Mav21',
+    'iPhone14,5': 'Mav21',
+    'iPhone14,6': 'Mav30',
+    'iPhone14,7': 'Mav22',
+    'iPhone14,8': 'Mav22',
+    'iPhone15,2': 'Mav22',
+    'iPhone15,3': 'Mav22',
+    'iPhone15,4': 'Mav23',
+    'iPhone15,5': 'Mav23',
+    'iPhone16,1': 'Mav23',
+    'iPhone16,2': 'Mav23',
+    'iPhone17,1': 'Mav24',
+    'iPhone17,2': 'Mav24',
+    'iPhone17,3': 'Mav24',
+    'iPhone17,4': 'Mav24',
+    'iPhone17,5': 'C4000',
+    'iPhone18,1': 'Mav25',
+    'iPhone18,2': 'Mav25',
+    'iPhone18,3': 'Mav25',
+    'iPhone18,4': 'C4000',
+    'iPhone18,5': 'C4000',
+    'iPhone19,2': 'C4020',
+    'iPhone19,3': 'Mav25',
+    'iPhone19,4': 'C4020',
+    'iPhone19,7': 'C4020',
+    'Watch3,1': 'Mav13_7',
+    'Watch3,2': 'Mav13_7',
+    'Watch4,3': 'IBIS18',
+    'Watch4,4': 'IBIS18',
+    'Watch5,3': 'IBIS18',
+    'Watch5,4': 'IBIS18',
+    'Watch5,11': 'IBIS18',
+    'Watch5,12': 'IBIS18',
+    'Watch6,3': 'IBIS18',
+    'Watch6,4': 'IBIS18',
+    'Watch6,8': 'IBIS18',
+    'Watch6,9': 'IBIS18',
+    'Watch6,12': 'IBIS18',
+    'Watch6,13': 'IBIS18',
+    'Watch6,16': 'IBIS18',
+    'Watch6,17': 'IBIS18',
+    'Watch6,18': 'IBIS18',
+    'Watch7,3': 'IBIS18',
+    'Watch7,4': 'IBIS18',
+    'Watch7,5': 'IBIS18',
+    'Watch7,10': 'IBIS18',
+    'Watch7,11': 'IBIS18',
+    'Watch7,12': 'Dale25',
+    'Watch7,15': 'Dale25',
+    'Watch7,16': 'Dale25',
+    'Watch7,19': 'Dale25',
+    'Watch7,20': 'Dale25',
+    'Watch8,1': 'Dale25',
+    'Watch8,4': 'Dale25',
+    'Watch8,5': 'Dale25',
+}
+
 CELLULAR_DEVICES_BACKPORT = [
     'iPad8,10',
     'iPad8,12',
@@ -109,6 +265,8 @@ CELLULAR_DEVICES_BACKPORT = [
     'Watch8,5',
 ]
 
+BASEBAND_GROUP_VERSION_MAP = {}
+
 APPLE_BASEBAND_DEVICES = [
     'iPad16,9',
     'iPad16,11',
@@ -151,9 +309,13 @@ def import_ota(
         skip_remote = bool(prerequisite_builds) or (os_str in ['iOS', 'iPadOS'] and build[2] <= 'G')
         if ota_url.endswith('.aea'):
             skip_remote = skip_remote or len(set(device_map).intersection(CELLULAR_DEVICES_BACKPORT)) == 0
-            if not skip_remote and len(set(device_map).intersection(APPLE_BASEBAND_DEVICES)) == 0:
-                skip_remote = True
-                only_needs_baseband = True
+            if not skip_remote:
+                if len(set(device_map).intersection(APPLE_BASEBAND_DEVICES)) == 0:
+                    skip_remote = True
+                    only_needs_baseband = True
+                elif len([x for x in device_map if DEVICE_BASEBAND_GROUP.get(x) and not BASEBAND_GROUP_VERSION_MAP.get(DEVICE_BASEBAND_GROUP.get(x), {}).get(build)]) == 0:
+                    skip_remote = True
+                    only_needs_baseband = True
 
     if not skip_remote and not ota_key and ota_url.endswith('.aea'):
         ota_key = input(f"Enter OTA Key for {ota_url} (enter to skip import): ").strip()
@@ -166,8 +328,11 @@ def import_ota(
 
     counter = 0
     delete_output_dir = False
+    has_baseband_version = False
     if update_type == 'ota':
-        if only_needs_baseband:
+        if only_needs_baseband and len([x for x in device_map if DEVICE_BASEBAND_GROUP.get(x) and not BASEBAND_GROUP_VERSION_MAP.get(DEVICE_BASEBAND_GROUP.get(x), {}).get(build)]) == 0:
+            has_baseband_version = True
+        if only_needs_baseband and not has_baseband_version:
             delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
             extracted_path = Path(str(local_path).split(".", maxsplit=1)[0])
             build_manifest = plistlib.loads(list(extracted_path.rglob("BuildManifest.plist"))[0].read_bytes())
@@ -222,6 +387,10 @@ def import_ota(
 
     # Get the build, version, and supported devices
     baseband_map = {}
+    if has_baseband_version:
+        for device in device_map:
+            if not DEVICE_BASEBAND_GROUP.get(device): continue
+            baseband_map[device] = BASEBAND_GROUP_VERSION_MAP[DEVICE_BASEBAND_GROUP[device]][build]
     if build_manifest and update_type == 'ota':
         # Grab baseband versions and buildtrain (both per device)
         for identity in build_manifest['BuildIdentities']:
@@ -230,24 +399,32 @@ def import_ota(
                 continue
             buildtrain = buildtrain or identity['Info']['BuildTrain']
             restore_version = restore_version or identity.get('Ap,OSLongVersion')
-            if 'BasebandFirmware' in identity['Manifest']:
-                path = identity['Manifest']['BasebandFirmware']['Info']['Path']
-                baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
-                mapped_device = get_board_mapping_lower_case([board_id])[0]
-                if baseband_response:
-                    baseband_map[mapped_device] = baseband_response.groups(1)[0]
+            mapped_device = get_board_mapping_lower_case([board_id])[0]
+            current_baseband_group = DEVICE_BASEBAND_GROUP.get(mapped_device)
+            if current_baseband_group:
+                BASEBAND_GROUP_VERSION_MAP.setdefault(current_baseband_group, {})
+                BASEBAND_GROUP_VERSION_MAP[current_baseband_group].setdefault(build, {})
+                if BASEBAND_GROUP_VERSION_MAP.get(current_baseband_group, {}).get(build):
+                    baseband_map[mapped_device] = BASEBAND_GROUP_VERSION_MAP[current_baseband_group][build]
                 else:
-                    print(f"MISSING BASEBAND - {path}")
-            elif 'Cellular1,ChipID' in identity and not skip_remote:
-                mapped_device = get_board_mapping_lower_case([board_id])
-                if not mapped_device:
-                    print((f"MISSING BOARD - {board_id}"))
-                    continue
-                if baseband_map.get(mapped_device[0]):
-                    continue
-                path = identity['Manifest']['Cellular1,RTKitOS']['Info']['Path']
-                bbfw_version = list(extracted_path.rglob(path))[0].read_bytes().split(b"|BBFW:")[1].split(b"|")[0].decode()
-                baseband_map[mapped_device[0]] = bbfw_version
+                    if 'BasebandFirmware' in identity['Manifest']:
+                        path = identity['Manifest']['BasebandFirmware']['Info']['Path']
+                        baseband_response = re.match(r'Firmware/[^-]+-([0-9.-]+)\.Release\.bbfw$', path)
+                        if baseband_response:
+                            baseband_map[mapped_device] = baseband_response.groups(1)[0]
+                            BASEBAND_GROUP_VERSION_MAP[current_baseband_group][build] = baseband_response.groups(1)[0]
+                        else:
+                            print(f"MISSING BASEBAND - {path}")
+                    elif 'Cellular1,ChipID' in identity and not skip_remote:
+                        if not mapped_device:
+                            print((f"MISSING BOARD - {board_id}"))
+                            continue
+                        if baseband_map.get(mapped_device):
+                            continue
+                        path = identity['Manifest']['Cellular1,RTKitOS']['Info']['Path']
+                        bbfw_version = list(extracted_path.rglob(path))[0].read_bytes().split(b"|BBFW:")[1].split(b"|")[0].decode()
+                        baseband_map[mapped_device] = bbfw_version
+                        BASEBAND_GROUP_VERSION_MAP[current_baseband_group][build] = bbfw_version
     if (ota_url.endswith(".ipsw")):
         build = build or info_plist["TargetUpdate"]
         recommended_version = recommended_version or info_plist["ProductVersion"]

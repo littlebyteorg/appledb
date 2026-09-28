@@ -348,10 +348,11 @@ parser.add_argument('-b', '--build', action='append', nargs='+')
 parser.add_argument('-d', '--devices', nargs='+')
 parser.add_argument('-e', '--echo-request', action='store_true')
 parser.add_argument('-i', '--include-rcs', action='store_true')
+parser.add_argument('-m', '--include-recovery', action='store_true')
 parser.add_argument('-n', '--no-prerequisites', action='store_true')
+parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-p', '--only-prerequisites', action='store_true')
 parser.add_argument('-q', '--quiet', action='store_true')
-parser.add_argument('-o', '--os', action='append', choices=choice_list)
 parser.add_argument('-r', '--rsr', action='store_true')
 parser.add_argument('-s', '--suffix', default="")
 parser.add_argument('-t', '--time-delay', type=int, default=0, choices=range(0,91))
@@ -759,6 +760,9 @@ for (os_str, builds) in parsed_args.items():
                     for asset_type_name in asset_types.get(os_str, asset_types['default']):
                         if asset_type_name in recovery_assets_called[audience] and os_str != 'macOS': continue
                         recovery_asset = asset_type_name.startswith('SFR') or 'RecoveryOS' in asset_type_name
+                        if recovery_asset and not args.include_recovery:
+                            recovery_assets_called[audience].add(asset_type_name)
+                            continue
                         if not (args.no_prerequisites or os_str in ['tvOS'] or recovery_asset):
                             for prerequisite_build, version in value['builds'].items():
                                 call_pallas(key, board, version, prerequisite_build, os_str, audience, args.rsr, args.time_delay, asset_type_name)
