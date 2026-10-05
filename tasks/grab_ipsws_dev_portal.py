@@ -66,16 +66,16 @@ skip_builds = [
     "23U67", # watchOS 26.6
     "24A446", # iOS/iPadOS 27.0.1
     "24J361", # tvOS 27.0
-    "24M362", # visionOS 27.0
-    "24R364", # watchOS 27.0
+    "24M372", # visionOS 27.0.1
+    "24R365", # watchOS 27.0.1
     "25G83", # macOS 26.6.2
     "26A434", # macOS 27.0.1
     # BETAS
-    "24B5089g", # iOS 27.2
-    "24K5093g", # tvOS 27.2
-    "24N5093f", # visionOS 27.2
-    "24S5091f", # watchOS 27.2
-    "26B5091g", # macOS 27.2
+    "24B5099f", # iOS 27.2
+    "24K5103f", # tvOS 27.2
+    "24N5103f", # visionOS 27.2
+    "24S5101f", # watchOS 27.2
+    "26B5101f", # macOS 27.2
 ]
 
 for group in element.xpath(".//h3/.."):
