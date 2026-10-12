@@ -181,11 +181,21 @@ for download in downloads:
         json.dump(sort_os_file(None, json_data), target_file.open("w", encoding="utf-8", newline="\n"), indent=4, ensure_ascii=False)
         update_links([target_file])
     elif download_name.startswith("Reality Composer Pro") and process_downloads["Reality Composer Pro"]:
+        target_folder = "osFiles/Software/Reality Composer Pro"
         reality_composer_version = download_name.removeprefix('Reality Composer Pro ').replace("Release Candidate", "RC")
         if reality_composer_version.lower().startswith('beta'):
             reality_composer_version = f'1.0 {reality_composer_version}'
-        target_file = Path(f"osFiles/Software/Reality Composer Pro/{reality_composer_version}.json")
+        target_file = Path(f"{target_folder}/{reality_composer_version}.json")
         if target_file.exists():
+            process_downloads["Reality Composer Pro"] = False
+            continue
+        version_found = False
+        for candidate_file in Path(target_folder).rglob("*.json"):
+            candidate_data = json.load(candidate_file.open(encoding="utf-8"))
+            if candidate_data["version"] == reality_composer_version:
+                version_found = True
+                break
+        if version_found:
             process_downloads["Reality Composer Pro"] = False
             continue
         download_details = download['files'][0]
