@@ -11,6 +11,7 @@ from support_page_info import get_release_notes_link, get_enterprise_notes_link
 supported_subfolders = [
     'audioOS',
     'bridgeOS',
+    'HomeView Software',
     'iOS',
     'iPadOS',
     'macOS',

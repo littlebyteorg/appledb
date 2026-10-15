@@ -224,7 +224,7 @@ def call_pallas(device_name, board_id, os_version, os_build, source_os_str, asse
         request['MinCompanionCompatibilityVersion'] = minimum_compatibility
         request['MaxCompanionCompatibilityVersion'] = maximum_compatibility
 
-    if "beta" in os_version.lower() and source_os_str in ['audioOS', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
+    if "beta" in os_version.lower() and source_os_str in ['audioOS', 'HomeView Software', 'iOS', 'iPadOS', 'tvOS', 'visionOS']:
         request['ReleaseType'] = 'Beta'
 
     if time_delay > 0:

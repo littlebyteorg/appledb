@@ -22,6 +22,7 @@ session = requests.Session()
 supported_os_names = [
     'audioOS',
     'bridgeOS',
+    'HomeView Software',
     'iOS',
     'iPadOS',
     'macOS',
