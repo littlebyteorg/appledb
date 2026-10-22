@@ -95,6 +95,7 @@ for mac_version in mac_versions:
         if "SafariTechPreview" not in product['Packages'][0]['URL']:
             continue
 
+        if product['PostDate'].date() < properties['Posted']: continue
         if not metadata_url:
             metadata_url = product.get('ServerMetadataURL')
 
@@ -103,7 +104,6 @@ for mac_version in mac_versions:
         os_version = os_version_override_map.get(os_version, os_version)
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
         if dist_version != properties['Release']: continue
-        if product['PostDate'].date() < properties['Posted']: continue
         catalog_safari.append(product)
         sources['pkg'][os_version] = product['Packages'][0]['URL'].replace("http://", "https://")
 
