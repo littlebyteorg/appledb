@@ -450,7 +450,7 @@ def generate_restore_version(build_number):
         restore_pieces.append(ord(build_letter) - 64)
         restore_pieces.append(build_iteration % divisor)
         restore_pieces.append(int(build_iteration / divisor))
-        if build_suffix.isnumeric():
+        if build_suffix and build_suffix.isnumeric():
             restore_pieces.append(build_suffix)
         else:
             restore_pieces.append(ord(build_suffix) - 96 if build_suffix else '0')
