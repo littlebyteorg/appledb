@@ -15,7 +15,8 @@
     "deviceMap": [
         "AppleTV11,1",
         "AppleTV14,1",
-        "AppleTV14,1-wifi"
+        "AppleTV14,1-wifi",
+        "AppleTV18,1"
     ],
     "signed": true,
     "sources": [
@@ -1717,6 +1718,42 @@
                 "sha2-256": "ce42caafb5d0442a5737657f3a90b30a285ce3a09ce04c1f2f6b509f32ab8681"
             },
             "size": 255852544
+        },
+        {
+            "type": "ota",
+            "systemImageId": "95A22263-F276-4149-B13D-289BA41EF70B",
+            "deviceMap": [
+                "AppleTV18,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/254fcf6a-f30d-406d-aaf7-509d34f0ba0a/com_apple_MobileAsset_SoftwareUpdate/aeace7b12880ce6e859d9582a9e40d2ceae73f0357ec521dbbed67226a2e28e0.aea",
+                    "decryptionKey": "YA1gJ7xOAB+1hDq+FZ4NFgSJuTPCAHBYmEVwlw/Cevc=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "0f49c9b97e6adaba392d4f3f2098db7cbd0a655ef8f11399c03bee4ecb79cc35"
+            },
+            "size": 5234491392
+        },
+        {
+            "type": "recovery",
+            "systemImageId": "7802F51E-6ECE-4DC7-8460-F222FF91899A",
+            "deviceMap": [
+                "AppleTV18,1"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/8020b795-d3dc-4800-b978-70133f354f92/com_apple_MobileAsset_RecoveryOSUpdate/7c4140129a90b681ea768230e45e69659df6716a049312434c5b99928e3d6875.aea",
+                    "decryptionKey": "ZilaEVoLw10Y//89rXNuAXmta4piwtCN2UmYRBZH0CQ=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "97298c87dc7ddfd76fe26ef1757fb848c4fd56908825a6667d3da67d5f6a7bde"
+            },
+            "size": 276824064
         }
     ]
 }
