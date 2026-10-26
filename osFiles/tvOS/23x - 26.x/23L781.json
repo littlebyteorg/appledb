@@ -6,6 +6,9 @@
     "buildTrain": "CharismaG",
     "released": "2026-10-26",
     "releaseNotes": "https://support.apple.com/106336",
+    "ipd": {
+        "AppleTV": "https://updates.cdn-apple.com/2021SummerFCS/documentation/061-22404/2329418F-C1A6-44BC-8C44-212F77D3DD04/AppleTViTunesUpdateReadMe.ipd"
+    },
     "appledbWebImage": {
         "id": "tvos26",
         "align": "left"
@@ -16,6 +19,23 @@
     ],
     "signed": true,
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "AppleTV5,3"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026SummerFCS/fullrestores/142-23175/686B5890-EE38-4DFD-9A0D-6848A994D337/AppleTV5,3_26.6.1_23L781_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "366e9518068958ca0054f654e35f09a27df3141f",
+                "sha2-256": "08bb7001565746699636a00c73ae35c0cba7536a15bafc01c900de26048d77c1"
+            },
+            "size": 5269474064
+        },
         {
             "type": "ota",
             "deviceMap": [
