@@ -85,6 +85,7 @@ DEVICE_BASEBAND_GROUP = {
     'iPad16,11': 'C4000',
     'iPad17,2': 'C4000',
     'iPad17,4': 'C4000',
+    'iPad19,2': 'C4020',
     'iPhone1,1': 'ICE',
     'iPhone1,2': 'ICE2',
     'iPhone2,1': 'ICE2',
