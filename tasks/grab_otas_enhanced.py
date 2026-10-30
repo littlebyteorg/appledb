@@ -7,6 +7,7 @@ import uuid
 import packaging.version
 import requests
 import urllib3
+from pyhpke import AEADId, CipherSuite, KDFId, KEMId, KEMKey
 from sort_os_files import build_number_sort, device_sort
 
 class SetEncoder(json.JSONEncoder):
@@ -20,6 +21,10 @@ class SetEncoder(json.JSONEncoder):
 urllib3.disable_warnings()
 
 session = requests.session()
+
+AEA_PROFILE__HKDF_SHA256_AESCTR_HMAC__SYMMETRIC__NONE = 1
+
+suite = CipherSuite.new(KEMId.DHKEM_P256_HKDF_SHA256, KDFId.HKDF_SHA256, AEADId.AES256_GCM)
 
 added_builds = {
     '19A346': ['19A340', '19A345|19A344'],
@@ -427,6 +432,27 @@ newly_discovered_versions = {}
 
 ota_list = {}
 
+failed_urls = set()
+
+def get_decryption_key(url, fcs_response):
+    if url in failed_urls:
+        raise Exception()
+    enc_request = base64.b64decode(fcs_response["enc-request"])
+    wrapped_key = base64.b64decode(fcs_response["wrapped-key"])
+    r = session.get(url, timeout=10)
+    try:
+        r.raise_for_status()
+    except Exception as e:
+        failed_urls.add(url)
+        print(e)
+        raise
+
+    privkey = KEMKey.from_pem(r.text)
+
+    recipient = suite.create_recipient_context(enc_request, privkey)
+    pt = recipient.open(wrapped_key)
+    return base64.b64encode(pt).decode()
+
 def generate_restore_version(build_number):
     if not restore_versions.get(build_number):
         match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
@@ -597,7 +623,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                     "updateType": update_type,
                     "links": [{
                         "url": link,
-                        "key": asset.get('ArchiveDecryptionKey')
+                        "key": asset.get('ArchiveDecryptionKey', get_decryption_key(asset['__FCSKeyURL'], json.loads(asset['__FCSResponse'])))
                     }]
                 }
             ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].update(asset.get('SupportedDevices', [device_name]))
