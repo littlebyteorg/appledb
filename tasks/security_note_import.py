@@ -44,7 +44,7 @@ build_prefix_offset_26 = {
     'tvOS': 3,
     'visionOS': 3,
     'watchOS': 3,
-    'Xcode': 9,
+    'Xcode': 0,
 }
 
 parser = argparse.ArgumentParser()
