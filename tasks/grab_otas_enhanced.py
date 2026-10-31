@@ -345,6 +345,114 @@ mac_device_additions = {
     '24B2091': [
         "VirtualMac2,1"
     ],
+    '25C2058': [
+        'Mac17,5',
+        "VirtualMac2,1"
+    ],
+    '25D2125': [
+        "iMac21,1",
+        "iMac21,2",
+        "Mac13,1",
+        "Mac13,2",
+        "Mac14,2",
+        "Mac14,3",
+        "Mac14,5",
+        "Mac14,6",
+        "Mac14,7",
+        "Mac14,8",
+        "Mac14,8-Rack",
+        "Mac14,9",
+        "Mac14,10",
+        "Mac14,12",
+        "Mac14,13",
+        "Mac14,14",
+        "Mac14,15",
+        "Mac15,3",
+        "Mac15,4",
+        "Mac15,5",
+        "Mac15,6",
+        "Mac15,7",
+        "Mac15,8",
+        "Mac15,9",
+        "Mac15,10",
+        "Mac15,11",
+        "Mac15,12",
+        "Mac15,13",
+        "Mac15,14",
+        "Mac16,1",
+        "Mac16,2",
+        "Mac16,3",
+        "Mac16,5",
+        "Mac16,6",
+        "Mac16,7",
+        "Mac16,8",
+        "Mac16,9",
+        "Mac16,10",
+        "Mac16,11",
+        "Mac16,12",
+        "Mac16,13",
+        "Mac17,2",
+        "MacBookAir10,1",
+        "MacBookPro17,1",
+        "MacBookPro18,1",
+        "MacBookPro18,2",
+        "MacBookPro18,3",
+        "MacBookPro18,4",
+        "Macmini9,1",
+        "VirtualMac2,1"
+    ],
+    '25D2150': [
+        "iMac21,1",
+        "iMac21,2",
+        "Mac13,1",
+        "Mac13,2",
+        "Mac14,2",
+        "Mac14,3",
+        "Mac14,5",
+        "Mac14,6",
+        "Mac14,7",
+        "Mac14,8",
+        "Mac14,8-Rack",
+        "Mac14,9",
+        "Mac14,10",
+        "Mac14,12",
+        "Mac14,13",
+        "Mac14,14",
+        "Mac14,15",
+        "Mac15,3",
+        "Mac15,4",
+        "Mac15,5",
+        "Mac15,6",
+        "Mac15,7",
+        "Mac15,8",
+        "Mac15,9",
+        "Mac15,10",
+        "Mac15,11",
+        "Mac15,12",
+        "Mac15,13",
+        "Mac15,14",
+        "Mac16,1",
+        "Mac16,2",
+        "Mac16,3",
+        "Mac16,5",
+        "Mac16,6",
+        "Mac16,7",
+        "Mac16,8",
+        "Mac16,9",
+        "Mac16,10",
+        "Mac16,11",
+        "Mac16,12",
+        "Mac16,13",
+        "Mac17,2",
+        "MacBookAir10,1",
+        "MacBookPro17,1",
+        "MacBookPro18,1",
+        "MacBookPro18,2",
+        "MacBookPro18,3",
+        "MacBookPro18,4",
+        "Macmini9,1",
+        "VirtualMac2,1"
+    ]
 }
 
 choice_list = list(asset_audiences.keys())
@@ -616,6 +724,8 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                     }
                 ota_list[f"{response_os_str}-{updated_build}"] = base_details
             if not ota_list[f"{response_os_str}-{updated_build}"]['sources'].get(link):
+                if asset.get('_IsEncrypted', False) and not asset.get('ArchiveDecryptionKey'):
+                    asset['ArchiveDecryptionKey'] = get_decryption_key(asset['__FCSKeyURL'], json.loads(asset['__FCSResponse']))
                 ota_list[f"{response_os_str}-{updated_build}"]['sources'][link] = {
                     "prerequisites": set(),
                     "deviceMap": set(),
@@ -623,7 +733,7 @@ def call_pallas(device_name, board_id, os_version, os_build, target_os_str, asse
                     "updateType": update_type,
                     "links": [{
                         "url": link,
-                        "key": asset.get('ArchiveDecryptionKey', get_decryption_key(asset['__FCSKeyURL'], json.loads(asset['__FCSResponse'])))
+                        "key": asset.get('ArchiveDecryptionKey')
                     }]
                 }
             ota_list[f"{response_os_str}-{updated_build}"]['sources'][link]["deviceMap"].update(asset.get('SupportedDevices', [device_name]))
