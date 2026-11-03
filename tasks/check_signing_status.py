@@ -51,6 +51,7 @@ final_builds = {
         '17M61', # intermediate OTA required for everything pre-tvOS 14
     ],
     'bridgeOS': [],
+    'HomeView Software': [],
     'iOS': [
         '8B117', # iPhone 3G/iPod touch 2
         '8C148', # iPhone 3G/iPod touch 2
