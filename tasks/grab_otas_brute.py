@@ -80,8 +80,8 @@ parser.add_argument('-v', '--versions', nargs='+', required=True)
 args = parser.parse_args()
 if len(args.range) != 2:
     raise argparse.ArgumentTypeError("Must be exactly two values for range")
-if 5 in args.forks and len(args.suffix_range) != 2:
-    raise argparse.ArgumentTypeError("Must be exactly two values for suffix range")
+# if 5 in args.forks and len(args.suffix_range) != 2:
+#     raise argparse.ArgumentTypeError("Must be exactly two values for suffix range")
 if len(args.boards) != len(args.identifiers):
     raise argparse.ArgumentTypeError("Same number of boards and identifiers must be passed in")
 
