@@ -127,10 +127,10 @@ default_mac_devices = [
     'Mac17,3',          # Covers Tahoe 26.2 forked builds
     'Mac17,5',          # Covers Tahoe 26.3.2 forked builds
     'Mac17,6',          # Covers Tahoe 26.3 forked builds
-    'Mac17,14',          # Covers Golden Gate 27.0 preinstalled build
-    'Mac17,15',          # Covers Golden Gate 27.0 preinstalled build
-    'Mac17,16',          # Covers Golden Gate 27.0 preinstalled build
-    'Mac18,5',          # Covers Golden Gate 27.0 preinstalled build
+    'Mac17,10',         # Covers Golden Gate 27.2 forked builds for M5
+    'Mac17,14',         # Covers Golden Gate 27.0 preinstalled build for M5
+    'Mac18,1',          # Covers Golden Gate 27.0/27.2 forked builds for M6
+    'Mac18,5',          # Covers Golden Gate 27.0 preinstalled build for M6
     'VirtualMac2,1'     # Always include
 ]
 
@@ -315,6 +315,20 @@ default_mac_device_extensions = {
         'Mac17,7',
         'Mac17,8',
         'Mac17,9',
+    ]),
+    'Mac17,10': set([
+        'Mac17,10',
+        'Mac17,11',
+        'Mac17,12',
+        'Mac17,13',
+    ]),
+    'Mac17,14': set([
+        'Mac17,14',
+        'Mac17,15',
+    ]),
+    'Mac18,1': set([
+        'Mac18,1',
+        'Mac18,2',
     ]),
 }
 

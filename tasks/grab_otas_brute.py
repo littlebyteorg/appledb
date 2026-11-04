@@ -111,6 +111,7 @@ for fork in args.forks:
         else:
             for (version, audience_item) in audience.items():
                 if not audience_item: continue
+                if int(args.versions[0].split(".", 1)[0]) > int(version.split(".", 1)[0]): continue
                 audience_labels[audience_item] = f"{label}-{version}"
                 target_audiences.append(audience_item)
 
