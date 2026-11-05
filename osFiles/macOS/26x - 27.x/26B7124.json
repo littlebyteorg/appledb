@@ -3,7 +3,8 @@
     "version": "27.2",
     "build": "26B7124",
     "restoreVersion": "26.2.124.7.0,0",
-    "internal": true,
+    "buildTrain": "FizzBHWTwo",
+    "released": "2026-11-05",
     "appledbWebImage": {
         "id": "Golden Gate",
         "align": "left"
@@ -11,5 +12,44 @@
     "deviceMap": [
         "Mac18,1",
         "Mac18,2"
+    ],
+    "sources": [
+        {
+            "type": "ota",
+            "deviceMap": [
+                "Mac18,1",
+                "Mac18,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/20f5f8b2-a9a1-4647-bab8-226a18833157/com_apple_MobileAsset_MacSoftwareUpdate/03eb91e616fd53f22e45f63c7183a867f890d00523ee6d342e7293c67eaa0528.aea",
+                    "decryptionKey": "6uRklbBWxiMaYBBJrwrz5cSB4dV8zwv+5+fTeNrmark=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "a51c5bac78c5646a199a8472eaba64c316201ff0fe28c7e29b86caa12ae9ddc7"
+            },
+            "size": 15300820992
+        },
+        {
+            "type": "ota",
+            "prerequisiteBuild": "26A8425",
+            "deviceMap": [
+                "Mac18,1",
+                "Mac18,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/73cf9658-c2c4-4a9d-96c0-b172467a6e72/com_apple_MobileAsset_MacSoftwareUpdate/e3b489da9ea996357eea0dbd114ca236c043af0f79fcd913beaa7a0788c3179f.aea",
+                    "decryptionKey": "BNp3Z4/3BdYG+eDkX/Xx2vmnGc1OTssb2B/iTJ+cpbQ=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "fc3d592e0e901bd934a9c7aa88dc6fe7323a786b2bf6f451c6cd9ca4022903d3"
+            },
+            "size": 4496293888
+        }
     ]
 }
