@@ -3,8 +3,11 @@
     "version": "27.2",
     "build": "26B7124",
     "restoreVersion": "26.2.124.7.0,0",
+    "buildId": "E38D527E-CFF5-11F1-BB72-4D3B21D29651",
     "buildTrain": "FizzBHWTwo",
     "released": "2026-11-05",
+    "releaseNotes": "https://support.apple.com/127257#macos272",
+    "enterpriseNotes": "https://support.apple.com/148830",
     "appledbWebImage": {
         "id": "Golden Gate",
         "align": "left"
@@ -13,7 +16,44 @@
         "Mac18,1",
         "Mac18,2"
     ],
+    "signed": true,
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "Mac18,1",
+                "Mac18,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/04f50f4e-1485-4efb-bd81-f3d743fdff4a/UniversalMac_27.2_26B7124_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "fc4244384cebb835c2db4729e76b6983",
+                "sha1": "b10b25896174e29c76c5c28de6a818999b31d9fa",
+                "sha2-256": "44f88c404b409847bd164f1e87a7e3d3968b9c68376a76c913c4902ca0fb4bfc"
+            },
+            "size": 20867518362
+        },
+        {
+            "type": "installassistant",
+            "deviceMap": [
+                "Mac18,1",
+                "Mac18,2"
+            ],
+            "links": [
+                {
+                    "url": "https://swcdn.apple.com/content/downloads/26/50/142-16607-A_JXDI69BEGN/r45lva8qa0ox3v7bxlqs3yynpa538jdzxk/InstallAssistant.pkg",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "fe7da5073b629b164d635f28db9c52e5d3fdc195"
+            },
+            "size": 15324419237
+        },
         {
             "type": "ota",
             "deviceMap": [
@@ -50,6 +90,24 @@
                 "sha2-256": "fc3d592e0e901bd934a9c7aa88dc6fe7323a786b2bf6f451c6cd9ca4022903d3"
             },
             "size": 4496293888
+        },
+        {
+            "type": "sfr",
+            "deviceMap": [
+                "Mac18,1",
+                "Mac18,2"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/18830ad9-b83e-468c-9c44-d0ee333a9d1e/com_apple_MobileAsset_SFRSoftwareUpdate/d772dab1211295582fa20b1ca9d24bd2a0a495b6da27d306eba6824fb7ec2f3d.aea",
+                    "decryptionKey": "p9Wi1ak178ruuxIPmTOi+EJSeBp+Zl3Q83iTQeIb05Q=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "9ce3cbcf70b681482e3f8b7518be7cbb4d2ff73148f41c51e037c0982a135d0e"
+            },
+            "size": 1442840576
         }
     ]
 }

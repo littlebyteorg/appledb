@@ -3,6 +3,7 @@
     "version": "27.2",
     "build": "26B8125",
     "restoreVersion": "26.2.125.8.0,0",
+    "buildId": "1F81123C-D4F3-11F1-B423-4A38AA19DF1C",
     "buildTrain": "FizzBHW",
     "released": "2026-11-05",
     "releaseNotes": "https://support.apple.com/127257#macos272",
@@ -19,6 +20,46 @@
     ],
     "signed": true,
     "sources": [
+        {
+            "type": "ipsw",
+            "deviceMap": [
+                "Mac17,10",
+                "Mac17,11",
+                "Mac17,12",
+                "Mac17,13"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/b83bb963-ebd8-4608-8b5d-fdc70cb24927/UniversalMac_27.2_26B8125_Restore.ipsw",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "md5": "40148843adcde8c45be435a2df4ee0ed",
+                "sha1": "30b48ba7b54114c8eec0bef084344c4fce908aa6",
+                "sha2-256": "b3f4cb057d73722af2a2840884778fd9fc5f433aa263d37767ebd44529b3c6f4"
+            },
+            "size": 20928022286
+        },
+        {
+            "type": "installassistant",
+            "deviceMap": [
+                "Mac17,10",
+                "Mac17,11",
+                "Mac17,12",
+                "Mac17,13"
+            ],
+            "links": [
+                {
+                    "url": "https://swcdn.apple.com/content/downloads/11/49/142-52618-A_3KJCAKDKAK/3ezbu5p177r2xvfphp803sduetahnw914q/InstallAssistant.pkg",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha1": "db2ff046a6a2022fcc075670ab5ddb7a12b08679"
+            },
+            "size": 15324592317
+        },
         {
             "type": "ota",
             "deviceMap": [
@@ -80,6 +121,26 @@
                 "sha2-256": "a08fb8824401f03c7e240b59a462522e85a441eaa3cca2590df2e51d5c0edceb"
             },
             "size": 1275068416
+        },
+        {
+            "type": "sfr",
+            "deviceMap": [
+                "Mac17,10",
+                "Mac17,11",
+                "Mac17,12",
+                "Mac17,13"
+            ],
+            "links": [
+                {
+                    "url": "https://updates.cdn-apple.com/2026FallFCS/69a4a99c-1275-49b2-b212-fc20249a5064/com_apple_MobileAsset_SFRSoftwareUpdate/a10dc5d65228632d9cfa09aa24c3b78d4c087801363fb24bf4e8a1ccf07ea3d6.aea",
+                    "decryptionKey": "LSVgASROV1xnk+6ei4GBO3eOTY/je7o25l37vPnAR34=",
+                    "active": true
+                }
+            ],
+            "hashes": {
+                "sha2-256": "6a201910f849376ef6ed92ac65bd378ea3a22f16518d92a07ccb39d433b00503"
+            },
+            "size": 1476395008
         }
     ]
 }
