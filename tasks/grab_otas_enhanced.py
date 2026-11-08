@@ -64,7 +64,7 @@ ignore_builds = {
 
 ignore_result_builds = {
     'macOS': ['25G83'],
-    'tvOS': ['23L773'],
+    'tvOS': ['23L781'],
     'watchOS': ['16U711', '17U224', '19U526', '20U512', '21U594', '22U95']
 }
 
