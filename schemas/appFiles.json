@@ -1,0 +1,252 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "AppleDB source app identity",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "name",
+        "variants"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "minLength": 1
+        },
+        "aliases": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "developer": {
+            "type": "string",
+            "minLength": 1
+        },
+        "description": {
+            "type": "string",
+            "minLength": 1
+        },
+        "website": {
+            "type": "string",
+            "format": "uri"
+        },
+        "released": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "date"
+                },
+                {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2]))?$"
+                }
+            ]
+        },
+        "discontinued": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "date"
+                },
+                {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2]))?$"
+                }
+            ]
+        },
+        "internal": {
+            "type": "boolean"
+        },
+        "icon": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "key",
+                "id"
+            ],
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                    "not": {
+                        "const": "main"
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                    "not": {
+                        "const": "main"
+                    }
+                }
+            }
+        },
+        "variants": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "platform"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "platform": {
+                        "enum": [
+                            "iOS",
+                            "iPadOS",
+                            "macOS",
+                            "watchOS",
+                            "tvOS",
+                            "visionOS",
+                            "Android",
+                            "Windows",
+                            "web",
+                            "Chrome",
+                            "Firefox",
+                            "Safari",
+                            "other",
+                            "Wear OS",
+                            "Edge",
+                            "Fire TV",
+                            "Android TV",
+                            "Sony TV",
+                            "Mac OS"
+                        ]
+                    },
+                    "platformName": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "bundleIds": {
+                        "type": "array",
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "links": {
+                        "type": "array",
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "type",
+                                "url"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "enum": [
+                                        "app-store",
+                                        "mac-app-store",
+                                        "google-play",
+                                        "microsoft-store",
+                                        "website",
+                                        "download",
+                                        "other",
+                                        "amazon-appstore"
+                                    ]
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                "storeId": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "region": {
+                                    "type": "string",
+                                    "pattern": "^[A-Z]{2}$"
+                                },
+                                "active": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    "released": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2]))?$"
+                            }
+                        ]
+                    },
+                    "discontinued": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2]))?$"
+                            }
+                        ]
+                    },
+                    "icon": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "key",
+                            "id"
+                        ],
+                        "properties": {
+                            "key": {
+                                "type": "string",
+                                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                                "not": {
+                                    "const": "main"
+                                }
+                            },
+                            "id": {
+                                "type": "string",
+                                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                                "not": {
+                                    "const": "main"
+                                }
+                            }
+                        }
+                    },
+                    "edition": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    }
+                }
+            }
+        }
+    }
+}
