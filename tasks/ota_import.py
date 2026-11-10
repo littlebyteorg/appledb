@@ -314,7 +314,7 @@ def import_ota(
                 if len(set(device_map).intersection(APPLE_BASEBAND_DEVICES)) == 0:
                     skip_remote = True
                     only_needs_baseband = True
-                elif len([x for x in device_map if DEVICE_BASEBAND_GROUP.get(x) and not BASEBAND_GROUP_VERSION_MAP.get(DEVICE_BASEBAND_GROUP.get(x), {}).get(build)]) == 0:
+                elif build and len([x for x in device_map if DEVICE_BASEBAND_GROUP.get(x) and not BASEBAND_GROUP_VERSION_MAP.get(DEVICE_BASEBAND_GROUP.get(x), {}).get(build)]) == 0:
                     skip_remote = True
                     only_needs_baseband = True
 
@@ -331,7 +331,7 @@ def import_ota(
     delete_output_dir = False
     has_baseband_version = False
     if update_type == 'ota':
-        if only_needs_baseband and len([x for x in device_map if DEVICE_BASEBAND_GROUP.get(x) and not BASEBAND_GROUP_VERSION_MAP.get(DEVICE_BASEBAND_GROUP.get(x), {}).get(build)]) == 0:
+        if only_needs_baseband and build and len([x for x in device_map if DEVICE_BASEBAND_GROUP.get(x) and not BASEBAND_GROUP_VERSION_MAP.get(DEVICE_BASEBAND_GROUP.get(x), {}).get(build)]) == 0:
             has_baseband_version = True
         if only_needs_baseband and not has_baseband_version:
             delete_output_dir = handle_ota_file(ota_url, ota_key, aea_support_filename, only_needs_baseband)
@@ -385,6 +385,7 @@ def import_ota(
 
     if ota:
         ota.close()
+    build = build or info_plist.get('Build', info_plist.get('TargetUpdate'))
 
     # Get the build, version, and supported devices
     baseband_map = {}

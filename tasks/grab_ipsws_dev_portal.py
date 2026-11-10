@@ -58,24 +58,19 @@ skip_builds = [
     '19H422', # iOS/iPadOS 15.8.8
     '20H392', # iOS/iPadOS 16.7.16
     '21H461', # iPadOS 17.7.11
-    "22H384", # iOS/iPadOS 18.7.11
+    "22H390", # iOS/iPadOS 18.7.12
     "23G90", # iOS/iPadOS 26.6.2
-    "23H128", # iOS/iPadOS 26.7.2
+    "23H131", # iOS/iPadOS 26.7.3
     "23L773", # tvOS 26.6
     "23O780", # visionOS 26.6.1
     "23U67", # watchOS 26.6
-    "24A446", # iOS/iPadOS 27.0.1
-    "24B119", # iOS/iPadOS 27.2
-    "24B91020", # iOS 27.2 (Duo)
-    "24J361", # tvOS 27.0
+    "24B156", # iOS/iPadOS 27.2.1
+    "24B91034", # iOS 27.2.1 (Duo)
     "24K122", # tvOS 27.2
-    "24M372", # visionOS 27.0.1
-    "24N120", # visionOS 27.2
-    "24R365", # watchOS 27.0.1
-    "24S118", # watchOS 27.2
+    "24N124", # visionOS 27.2.1
+    "24S132", # watchOS 27.2.1
     "25G83", # macOS 26.6.2
-    "26A434", # macOS 27.0.1
-    "26B123", # macOS 27.2
+    "26B131", # macOS 27.2.1
     # BETAS
     "24C5037i", # iOS 27.3
     "24K5286g", # tvOS 27.3
