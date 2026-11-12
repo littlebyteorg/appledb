@@ -84,9 +84,14 @@ def build_number_sort(build_number):
     build_prefix = 0
     build_suffix = match.groups()[3] or ""
     build_prefix_position = 10000 if (build_train_version == 'P' and not (build_suffix and str(build_version)[0] == '5' and build_version < 10000)) or build_number.startswith('8N') or ((build_number.startswith('20G') or build_number.startswith('12H')) and build_version < 2000) else 1000
+    if len(build_number) == 8 and build_number[-1].isnumeric() and build_number[3] == '9':
+        build_prefix_position = 10000
     if build_version > build_prefix_position:
         build_prefix = int(build_version / build_prefix_position)
         build_version = build_version % build_prefix_position
+    # if len(build_number) == 8 and build_number[-1].isnumeric() and build_number[3] == '9':
+    #     print(build_prefix)
+    #     print(build_version)
     return kernel_version, build_train_version, build_version, build_prefix, build_suffix
 
 def version_sort(version):

@@ -310,7 +310,7 @@ def get_builds(os_names, include_devices):
             if not args.future_betas and not args.list_signed:
                 current_prefix = file_contents['build'][:2]
                 current_release = [x for x in released_builds.get(os_name, []) if x.startswith(current_prefix)]
-                if current_release and build_number_sort(file_contents['build']) > build_number_sort(current_release[0]): continue
+                if not file_contents['build'].startswith(current_prefix) and build_number_sort(file_contents['build']) > build_number_sort(current_release[0]): continue
                 elif released_builds.get(os_name, []) and build_number_sort(file_contents['build']) > build_number_sort(released_builds.get(os_name, [])[-1]): continue
             if not args.unsigned and isinstance(file_contents['signed'], list):
                 working_dict[file_contents['build']] = file_contents['signed']
