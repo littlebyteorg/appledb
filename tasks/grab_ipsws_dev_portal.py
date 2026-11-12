@@ -51,7 +51,7 @@ group: Element
 
 out = []
 
-HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
+HEADING_PATTERN = re.compile(r"(?P<os_str>^\w+OS|\w+\sSoftware) (?P<version>\d+(\.\d+(\.\d+)?)?)(?P<additional> .+)?")
 
 skip_builds = [
     '16H88', # iOS 12.5.8
@@ -69,6 +69,7 @@ skip_builds = [
     "24K122", # tvOS 27.2
     "24N124", # visionOS 27.2.1
     "24S132", # watchOS 27.2.1
+    "24V526", # HomeView 27.2
     "25G83", # macOS 26.6.2
     "26B131", # macOS 27.2.1
     # BETAS

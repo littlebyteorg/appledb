@@ -68,6 +68,7 @@ known_builds = [
     # others
     '24N124',  # visionOS 27.2.1
     '24P6005', # bridgeOS 11.0
+    '24V526', # HomeView 27.2
     '26B131',  # macOS 27.2.1
     '26B7131',  # macOS 27.2.1
     '26B8132',  # macOS 27.2.1
