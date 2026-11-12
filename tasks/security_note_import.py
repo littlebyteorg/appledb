@@ -12,6 +12,7 @@ import requests
 from sort_os_files import sort_os_file
 
 supported_product_list = [
+    'HomeView Software',
     'iOS',
     'iPadOS',
     'macOS',
@@ -28,6 +29,7 @@ software_list = [
 ]
 
 build_prefix_offset = {
+    'HomeView Software': 4,
     'iOS': 4,
     'iPadOS': 4,
     'macOS': 9,
@@ -38,6 +40,7 @@ build_prefix_offset = {
 }
 
 build_prefix_offset_26 = {
+    'HomeView Software': 3,
     'iOS': 3,
     'iPadOS': 3,
     'macOS': 1,
@@ -79,6 +82,9 @@ for row in rows:
 
     for impacted_version in impacted_versions.split(' and '):
         impacted_version_split = impacted_version.replace(' for Windows', '').split(' ')
+        if impacted_version_split[1] == 'Software':
+            impacted_version_split[0] = f"{impacted_version_split[0]} {impacted_version_split[1]}"
+            impacted_version_split.remove('Software')
         if impacted_version_split[0] not in supported_product_list: continue
         if args.product and impacted_version_split[0] != args.product: continue
         if args.version:
