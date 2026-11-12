@@ -1,5 +1,6 @@
 release_notes_ids = {
     'audioOS': '108045',
+    'HomeView Software': '127196',
     'iOS': {
         12: '118387',
         15: '108051',
@@ -90,6 +91,9 @@ default_settings = {
 release_note_settings = {
     'audioOS': {
         'anchor_prefix': 'link'
+    },
+    'HomeView Software': {
+        'use_anchors': False
     },
     'iOS': {
         'anchor_prefix': 'a'
