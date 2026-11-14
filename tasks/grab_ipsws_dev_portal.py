@@ -66,7 +66,7 @@ skip_builds = [
     "23U67", # watchOS 26.6
     "24B156", # iOS/iPadOS 27.2.1
     "24B91034", # iOS 27.2.1 (Duo)
-    "24K122", # tvOS 27.2
+    "24K157", # tvOS 27.2.1
     "24N124", # visionOS 27.2.1
     "24S132", # watchOS 27.2.1
     "24V526", # HomeView 27.2
