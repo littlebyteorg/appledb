@@ -227,4 +227,11 @@ for asset_type, assets in asset_types.items():
 
 if processed_files:
     update_links(list(processed_files))
-print(found_builds)
+
+sorted_build_lists = {}
+for key, build_list in found_builds.items():
+    if key == 'AirTags':
+        sorted_build_lists[key] = list(build_list)
+    else:
+        sorted_build_lists[key] = sorted(list(build_list), key=build_number_sort)
+print(sorted_build_lists)
