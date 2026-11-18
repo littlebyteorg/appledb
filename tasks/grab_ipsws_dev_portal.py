@@ -69,7 +69,7 @@ skip_builds = [
     "24K157", # tvOS 27.2.1
     "24N124", # visionOS 27.2.1
     "24S132", # watchOS 27.2.1
-    "24V526", # HomeView 27.2
+    "24V553", # HomeView 27.2.1
     "25G83", # macOS 26.6.2
     "26B131", # macOS 27.2.1
     # BETAS
