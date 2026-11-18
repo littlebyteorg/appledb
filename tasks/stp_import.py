@@ -19,7 +19,7 @@ from update_links import update_links
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--force', action='store_true')
-parser.add_argument('-c', '--catalog')
+parser.add_argument('-c', '--catalog', default='14')
 args = parser.parse_args()
 
 result = requests.get(f"https://developer.apple.com/safari/resources/?{random.choices(string.ascii_letters, k=5)}cbust{random.randint(100, 1000)}", timeout=30)
@@ -92,7 +92,7 @@ for mac_version in mac_versions:
     plist = plistlib.loads(raw_sucatalog.content).get('Products', {})
     catalog_safari = []
     for product in plist.values():
-        if "SafariTechPreview" not in product['Packages'][0]['URL']:
+        if "Safari" not in product['Packages'][0]['URL']:
             continue
 
         if product['PostDate'].date() < properties['Posted']: continue
@@ -103,6 +103,7 @@ for mac_version in mac_versions:
         os_version = dist_response.split("system.compareVersions(myTargetSystemVersion.ProductVersion, '")[1].split(".")[0]
         os_version = os_version_override_map.get(os_version, os_version)
         dist_version = dist_response.split('"SU_VERS" = "')[1].split('"')[0]
+        safari_version = ".".join(dist_response.split("<pkg-ref")[-1].split('version="')[1].split(".")[:-1])
         if dist_version != properties['Release']: continue
         catalog_safari.append(product)
         sources['pkg'][os_version] = product['Packages'][0]['URL'].replace("http://", "https://")
@@ -110,10 +111,6 @@ for mac_version in mac_versions:
     if not catalog_safari:
         print(f'Missing Safari Tech Preview for macOS {mac_version}')
         continue
-
-    if metadata_url:
-        safari_metadata = plistlib.loads(requests.get(metadata_url, timeout=30).content)
-        safari_version = safari_metadata['CFBundleShortVersionString']
 if not sources['pkg']:
     exit(0)
 
