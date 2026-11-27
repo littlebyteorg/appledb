@@ -74,7 +74,7 @@ def os_map_sort(os_map):
     return sorted(set(os_map), key=os_sort)
 
 
-def build_number_sort(build_number):
+def build_number_sort(build_number, default_prefix_position=1000):
     match = re.match(r"(\d+)([A-Z])(\d+)([A-z])?", build_number)
     if not match:
         return 0, "A", 0, 0, "a"
@@ -83,15 +83,15 @@ def build_number_sort(build_number):
     build_version = int(match.groups()[2])
     build_prefix = 0
     build_suffix = match.groups()[3] or ""
-    build_prefix_position = 10000 if (build_train_version == 'P' and not (build_suffix and str(build_version)[0] == '5' and build_version < 10000)) or build_number.startswith('8N') or ((build_number.startswith('20G') or build_number.startswith('12H')) and build_version < 2000) else 1000
+    # in VERY specific cases (OS X 10.11.6 and macOS 10.13.6), default position needs to be overridden to 100k but version information isn't available in this function
+    build_prefix_position = 10000 if build_number.startswith('10K') or build_number.startswith('8N') or ((build_number.startswith('20G') or build_number.startswith('12H')) and build_version < 2000) else default_prefix_position
+    if (build_train_version == 'P' and not (build_suffix and str(build_version)[0] == '5' and build_version < 10000)):
+        build_prefix_position = 10000
     if len(build_number) == 8 and build_number[-1].isnumeric() and build_number[3] == '9':
         build_prefix_position = 10000
     if build_version > build_prefix_position:
         build_prefix = int(build_version / build_prefix_position)
         build_version = build_version % build_prefix_position
-    # if len(build_number) == 8 and build_number[-1].isnumeric() and build_number[3] == '9':
-    #     print(build_prefix)
-    #     print(build_version)
     return kernel_version, build_train_version, build_version, build_prefix, build_suffix
 
 def version_sort(version):
